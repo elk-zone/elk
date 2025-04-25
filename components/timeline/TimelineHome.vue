@@ -10,12 +10,14 @@ const stream = useStreaming(client => client.user.subscribe())
 function reorderAndFilter(items: mastodon.v1.Status[]) {
   return reorderedTimeline(items, 'home')
 }
+
+const followedTags = (await useMasto().client.value.v1.followedTags.list({ limit: 0 }))
 </script>
 
 <template>
   <div>
     <PublishWidgetList draft-key="home" />
     <div h="1px" w-auto bg-border mb-3 />
-    <TimelinePaginator v-bind="{ paginator, stream }" :preprocess="reorderAndFilter" context="home" />
+    <TimelinePaginator :followed-tags="followedTags" v-bind="{ paginator, stream }" :preprocess="reorderAndFilter" context="home" />
   </div>
 </template>

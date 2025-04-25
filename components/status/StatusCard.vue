@@ -3,6 +3,7 @@ import type { mastodon } from 'masto'
 
 const { actions = true, older, newer, hasOlder, hasNewer, main, ...props } = defineProps<{
   status: mastodon.v1.Status
+  followedTag?: string | null
   actions?: boolean
   context?: mastodon.v2.FilterContext
   hover?: boolean
@@ -61,10 +62,6 @@ const collapseRebloggedBy = computed(() => rebloggedBy.value?.id === status.valu
 const isDM = computed(() => status.value.visibility === 'direct')
 const isPinned = computed(() => status.value.pinned)
 
-// limit 0 should get all w/o pagination, but might need checking
-const followedTags = (await useMasto().client.value.v1.followedTags.list({ limit: 0 })).map(tag => tag.name)
-const statusTagsFollowed = computed(() => status.value.tags.filter(tag => followedTags.includes(tag.name)).map(tag => tag.name))
-
 const showUpperBorder = computed(() => newer && !directReply.value)
 const showReplyTo = computed(() => !replyToMain.value && !directReply.value)
 
@@ -80,14 +77,14 @@ const forceShow = ref(false)
       <!-- followed hashtag badge -->
       <div flex="~ col" justify-between>
         <div
-          v-if="statusTagsFollowed.length > 0"
+          v-if="followedTag"
           flex="~ gap2" items-center h-auto text-sm text-orange
           m="is-5" p="t-1 is-5"
           relative text-secondary ws-nowrap
         >
           <div i-ri:hashtag />
           <!-- show first hit followed tag -->
-          <span>{{ statusTagsFollowed[0] }}</span>
+          <span>{{ followedTag }}</span>
         </div>
       </div>
 

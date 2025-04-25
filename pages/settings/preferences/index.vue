@@ -51,6 +51,16 @@ const userSettings = useUserSettings()
       >
         {{ $t('settings.preferences.enable_autoplay') }}
       </SettingsToggleItem>
+      <!-- Embedded Media -->
+      <SettingsToggleItem
+        :checked="getPreferences(userSettings, 'showEmbeddedMediaPlayer')"
+        @click="togglePreferences('showEmbeddedMediaPlayer')"
+      >
+        {{ $t('settings.preferences.embedded_media') }}
+        <template #description>
+          {{ $t('settings.preferences.embedded_media_description') }}
+        </template>
+      </SettingsToggleItem>
       <SettingsToggleItem
         :checked="getPreferences(userSettings, 'unmuteVideos')"
         @click="togglePreferences('unmuteVideos')"
@@ -150,16 +160,7 @@ const userSettings = useUserSettings()
         <span aria-hidden="true" block i-ri-flask-line />
         {{ $t('settings.preferences.title') }}
       </h2>
-      <!-- Embedded Media -->
-      <SettingsToggleItem
-        :checked="getPreferences(userSettings, 'experimentalEmbeddedMedia')"
-        @click="togglePreferences('experimentalEmbeddedMedia')"
-      >
-        {{ $t('settings.preferences.embedded_media') }}
-        <template #description>
-          {{ $t('settings.preferences.embedded_media_description') }}
-        </template>
-      </SettingsToggleItem>
+
       <SettingsToggleItem
         :checked="getPreferences(userSettings, 'experimentalVirtualScroller')"
         @click="togglePreferences('experimentalVirtualScroller')"

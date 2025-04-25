@@ -72,7 +72,6 @@ function removeAccount(id: string) {
       flex="~ wrap" relative gap-3
       :aria-describedby="actionError ? 'create-list-error' : undefined"
       :class="actionError ? 'border border-base border-rounded rounded-be-is-0 rounded-be-ie-0 border-b-unset border-$c-danger-active' : null"
-      @submit.prevent="addAccount"
     >
       <div
         bg-base border="~ base" flex-1 h10 ps-1 pe-4 rounded-2 w-full flex="~ row"

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.60 (2025-04-25)
+
+
+### Bug Fixes
+
+* better search impl ([254a7a8](https://github.com/BDX-town/elk/commit/254a7a8c1aa8192e82c4aeb36ce6e253a66c25c7))
+
 ## 0.15.59 (2025-04-22)
 
 ## 0.15.58 (2025-04-02)

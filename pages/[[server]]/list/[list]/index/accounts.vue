@@ -16,6 +16,8 @@ const listId = computed(() => params.list as string)
 
 const mastoListAccounts = useMastoClient().v1.lists.$select(listId.value).accounts
 const paginator = mastoListAccounts.list()
+
+// the limit parameter is set to 1000 while masto.js issue is still open: https://github.com/neet/masto.js/issues/1282
 const accountsInList = ref((await useMastoClient().v1.lists.$select(listId.value).accounts.list({ limit: 1000 })))
 
 const paginatorRef = ref()

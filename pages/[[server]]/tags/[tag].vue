@@ -23,6 +23,7 @@ onReactivated(() => {
   // The user will see the previous content first, and any changes will be updated to the UI when the request is completed
   refresh()
 })
+const followedTags = (await useMasto().client.value.v1.followedTags.list({ limit: 0 }))
 </script>
 
 <template>
@@ -38,7 +39,7 @@ onReactivated(() => {
     </template>
 
     <slot>
-      <TimelinePaginator v-bind="{ paginator, stream }" context="public" />
+      <TimelinePaginator :followed-tags="followedTags" v-bind="{ paginator, stream }" context="public" />
     </slot>
   </MainContent>
 </template>

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.61 (2025-04-27)
+
+
+### Features
+
+* better editing placement ([e76a545](https://github.com/BDX-town/elk/commit/e76a5455315ae78e305c67b3cc1e840d0da143f8))
+
 ## 0.15.60 (2025-04-25)
 
 

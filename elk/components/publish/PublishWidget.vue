@@ -263,7 +263,7 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
       </div>
     </template>
     <div flex gap-3 flex-1>
-      <div>
+      <div class="hidden sm:block">
         <NuxtLink self-start :to="getAccountRoute(currentUser.account)">
           <AccountBigAvatar :account="currentUser.account" square />
         </NuxtLink>
@@ -405,12 +405,8 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
                 draft.params.poll!.options[index].length }}</span>
             </div>
           </form>
-          <div v-if="shouldExpanded" flex="~ gap-1 1 wrap" m="s--1" pt-2 justify="end" max-w-full border="t base">
-            <EmojiPicker @select="insertEmoji" @select-custom="insertCustomEmoji">
-              <button btn-action-icon :title="$t('tooltip.emojis')" :aria-label="$t('tooltip.add_emojis')">
-                <div i-ri:emotion-line />
-              </button>
-            </EmojiPicker>
+          <div v-if="shouldExpanded" flex="~ gap-2 1 wrap" m="s--1" pt-2 justify="end" max-w-full border="t base">
+            <PublishThreadTools :draft-item-index="draftItemIndex" :draft-key="draftKey" />
 
             <CommonTooltip
               v-if="draft.params.poll === undefined" placement="top" :content="$t('tooltip.add_media')"
@@ -483,24 +479,6 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
 
             <PublishEditorTools v-if="editor" :editor="editor" />
 
-            <div flex-auto />
-
-            <PublishCharacterCounter :max="characterLimit" :length="characterCount" />
-
-            <CommonTooltip placement="top" :content="$t('tooltip.change_language')">
-              <CommonDropdown placement="bottom" auto-boundary-max-size>
-                <button btn-action-icon :aria-label="$t('tooltip.change_language')" w-max mr1>
-                  <span v-if="postLanguageDisplay" text-secondary text-sm ml1>{{ postLanguageDisplay }}</span>
-                  <div v-else i-ri:translate-2 />
-                  <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
-                </button>
-
-                <template #popper>
-                  <PublishLanguagePicker v-model="draft.params.language" min-w-80 />
-                </template>
-              </CommonDropdown>
-            </CommonTooltip>
-
             <CommonTooltip placement="top" :content="$t('tooltip.add_content_warning')">
               <button btn-action-icon :aria-label="$t('tooltip.add_content_warning')" @click="toggleSensitive">
                 <div v-if="draft.params.sensitive" i-ri:alarm-warning-fill text-orange />
@@ -520,10 +498,30 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
               </template>
             </PublishVisibilityPicker>
 
-            <PublishThreadTools :draft-item-index="draftItemIndex" :draft-key="draftKey" />
+            <EmojiPicker @select="insertEmoji" @select-custom="insertCustomEmoji">
+              <button btn-action-icon :title="$t('tooltip.emojis')" :aria-label="$t('tooltip.add_emojis')">
+                <div i-ri:emotion-line />
+              </button>
+            </EmojiPicker>
           </div>
         </div>
-        <div v-if="shouldExpanded" flex justify-end>
+        <div v-if="shouldExpanded" flex items-center justify-end gap-2 mt-2>
+          <CommonTooltip placement="top" :content="$t('tooltip.change_language')">
+            <CommonDropdown placement="bottom" auto-boundary-max-size>
+              <button btn-action-icon :aria-label="$t('tooltip.change_language')" w-max mr1>
+                <span v-if="postLanguageDisplay" text-secondary text-sm ml1>{{ postLanguageDisplay }}</span>
+                <div v-else i-ri:translate-2 />
+                <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+              </button>
+
+              <template #popper>
+                <PublishLanguagePicker v-model="draft.params.language" min-w-80 />
+              </template>
+            </CommonDropdown>
+          </CommonTooltip>
+
+          <PublishCharacterCounter :max="characterLimit" :length="characterCount" />
+
           <CommonTooltip
             v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top"
             :content="$t('tooltip.publish_failed')"
@@ -544,8 +542,7 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
           >
             <button
               v-if="!threadIsActive || isFinalItemOfThread"
-              mt-4
-              btn-solid rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit class="publish-button"
+              btn-solid rounded-3 text-sm flex="~ gap1" items-center class="publish-button"
               :aria-disabled="isPublishDisabled || isExceedingCharacterLimit" aria-describedby="publish-tooltip"
               :disabled="isPublishDisabled || isExceedingCharacterLimit"
               @click="publish"

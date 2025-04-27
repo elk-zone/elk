@@ -226,7 +226,9 @@
     "manage": "Gerir listas",
     "modify_account": "Modificar listas com a conta",
     "remove_account": "Remover conta da lista",
-    "save": "Salvar alterações"
+    "save": "Salvar alterações",
+    "search_following_desc": "Pesquisar por pessoas que está a seguir",
+    "search_following_placeholder": "Pesquisar de entre as pessoas que segue"
   },
   "magic_keys": {
     "dialog_header": "Atalhos de teclado",

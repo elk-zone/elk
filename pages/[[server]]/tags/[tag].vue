@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { mastodon } from 'masto'
+
 definePageMeta({
   name: 'tag',
 })
@@ -23,7 +25,11 @@ onReactivated(() => {
   // The user will see the previous content first, and any changes will be updated to the UI when the request is completed
   refresh()
 })
-const followedTags = (await useMasto().client.value.v1.followedTags.list({ limit: 0 }))
+
+let followedTags: mastodon.v1.Tag[] | undefined
+if (currentUser.value !== undefined) {
+  followedTags = (await useMasto().client.value.v1.followedTags.list({ limit: 0 }))
+}
 </script>
 
 <template>

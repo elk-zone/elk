@@ -230,7 +230,9 @@
     "manage": "Gérer les listes",
     "modify_account": "Modifier les listes de ce compte",
     "remove_account": "Supprimer ce compte de listes",
-    "save": "Enregistrer les changements"
+    "save": "Enregistrer les changements",
+    "search_following_desc": "Recherchez parmi vos abonnements",
+    "search_following_placeholder": "Recherchez parmi vos abonnements"
   },
   "magic_keys": {
     "dialog_header": "Raccourcis clavier",

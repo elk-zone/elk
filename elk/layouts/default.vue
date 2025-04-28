@@ -19,6 +19,7 @@ watch(route, () => {
 })
 
 const isGrayscale = usePreferences('grayscaleMode')
+const instance = instanceStorage.value[currentServer.value]
 </script>
 
 <template>
@@ -45,10 +46,10 @@ const isGrayscale = usePreferences('grayscaleMode')
         </div>
       </div>
       <aside v-if="isHydrated && !wideLayout" class="hidden lg:w-1/5 xl:w-1/4 sm:none xl:block native:w-full zen-hide">
-        <div sticky top-0 h-100dvh flex="~ col" gap-2 py1 ms-2>
+        <div sticky top-0 h-100dvh overflow-auto flex="~ col" gap-6 py1 ms-2>
           <slot name="right">
             <div v-if="isHydrated" flex flex-col sticky bottom-0 bg-base>
-              <div hidden xl:block>
+              <div hidden xl:block mt-3>
                 <UserSignInEntry v-if="!currentUser" />
               </div>
               <div v-if="currentUser" pt3 px3 w-full>
@@ -69,9 +70,18 @@ const isGrayscale = usePreferences('grayscaleMode')
                 <UserDropdown xl:hidden />
               </div>
             </div>
-            <SearchWidget mt-4 mx-1 hidden xl:block />
+            <SearchWidget v-if="currentUser" hidden xl:block />
+            <!-- server info -->
+            <div v-if="!currentUser" grid gap-3 m3>
+              <span text-size-lg text-primary font-bold>{{ instance.title }}</span>
+              <img v-if="instance.thumbnail" mx-auto rounded-3 :src="instance.thumbnail">
+              <p text-secondary>
+                {{ instance.description }}
+              </p>
+            </div>
+
             <div flex-auto>
-              <NavPromoPanel class="mt-12" />
+              <NavPromoPanel />
             </div>
             <PwaPrompt />
             <PwaInstallPrompt />

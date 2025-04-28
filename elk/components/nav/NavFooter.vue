@@ -14,7 +14,7 @@ function toggleDark() {
 </script>
 
 <template>
-  <footer p4 text-sm text-secondary-light flex="~ col">
+  <footer text-sm text-secondary-light flex="~ col">
     <div flex="~ gap2" items-center mb4>
       <CommonTooltip :content="$t('nav.toggle_theme')">
         <button flex i-ri:sun-line dark-i-ri:moon-line text-lg :aria-label="$t('nav.toggle_theme')" @click="toggleDark()" />

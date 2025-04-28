@@ -3,6 +3,7 @@ import type { akkoma } from '@bdxtown/akko'
 
 const { actions = true, older, newer, hasOlder, hasNewer, main, ...props } = defineProps<{
   status: akkoma.v1.Status
+  followedTag?: string | null
   actions?: boolean
   context?: akkoma.v2.FilterContext
   hover?: boolean
@@ -83,6 +84,20 @@ const forceShow = ref(false)
     <div :h="showUpperBorder ? '1px' : '0'" w-auto bg-border mb-1 z--1 />
 
     <slot name="meta">
+      <!-- followed hashtag badge -->
+      <div flex="~ col" justify-between>
+        <div
+          v-if="!!followedTag && followedTag !== ''"
+          flex="~ gap2" items-center h-auto text-sm text-orange
+          m="is-5" p="t-1 is-5"
+          relative text-secondary ws-nowrap
+        >
+          <div i-ri:hashtag />
+          <!-- show first hit followed tag -->
+          <span>{{ followedTag }}</span>
+        </div>
+      </div>
+
       <!-- Pinned status -->
       <div flex="~ col" justify-between>
         <div

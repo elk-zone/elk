@@ -4,11 +4,12 @@ import type { akkoma } from '@bdxtown/akko'
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
-const { account, buffer = 10, endMessage = true, paginator } = defineProps<{
+const { account, buffer = 10, endMessage = true, followedTags = [], paginator } = defineProps<{
   paginator: akkoma.Paginator<akkoma.v1.Status[], akkoma.rest.v1.ListAccountStatusesParams>
   stream?: akkoma.streaming.Subscription
   context?: akkoma.v2.FilterContext
   account?: akkoma.v1.Account
+  followedTags?: akkoma.v1.Tag[]
   preprocess?: (items: akkoma.v1.Status[]) => akkoma.v1.Status[]
   buffer?: number
   endMessage?: boolean | string
@@ -24,7 +25,14 @@ const showOriginSite = computed(() =>
 )
 
 const dedupPaginator = ref(new DedupCachePaginator(paginator))
+
 watch(() => paginator, () => dedupPaginator.value = new DedupCachePaginator(paginator))
+
+function getFollowedTag(status: akkoma.v1.Status): string | null {
+  const followedTagNames = followedTags.map(tag => tag.name)
+  const followedStatusTags = status.tags.filter(tag => followedTagNames.includes(tag.name))
+  return followedStatusTags.length > 0 ? followedStatusTags[0]?.name : null
+}
 </script>
 
 <template>
@@ -35,11 +43,11 @@ watch(() => paginator, () => dedupPaginator.value = new DedupCachePaginator(pagi
     <template #default="{ item, older, newer, active }">
       <template v-if="virtualScroller">
         <DynamicScrollerItem :item="item" :active="active" tag="article">
-          <StatusCard :status="item" :context="context" :older="older" :newer="newer" />
+          <StatusCard :followed-tag="getFollowedTag(item)" :status="item" :context="context" :older="older" :newer="newer" />
         </DynamicScrollerItem>
       </template>
       <template v-else>
-        <StatusCard :status="item" :context="context" :older="older" :newer="newer" />
+        <StatusCard :followed-tag="getFollowedTag(item)" :status="item" :context="context" :older="older" :newer="newer" />
       </template>
     </template>
     <template v-if="context === 'account' " #done="{ items }">

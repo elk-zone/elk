@@ -80,7 +80,7 @@ function activate(e: KeyboardEvent) {
     </div>
     <!-- Results -->
     <div left-0 top-11 absolute w-full z-10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
-      <div w-full bg-base border="~ base" rounded-3 max-h-100 overflow-auto py2>
+      <div w-full bg-base border="~ base" rounded-3 max-h-100 overflow-auto :class="results.length === 0 ? 'py2' : null">
         <span v-if="query.trim().length === 0" block text-center text-sm text-secondary>
           {{ t('search.search_desc') }}
         </span>

@@ -103,6 +103,7 @@ onReactivated(() => {
             v-if="currentUser"
             ref="publishWidget"
             class="border-y border-base"
+            :expanded="true"
             :draft-key="replyDraft!.key"
             :initial="replyDraft!.draft"
             @published="refreshContext()"

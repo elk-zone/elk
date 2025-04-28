@@ -15,7 +15,7 @@ function reorderAndFilter(items: akkoma.v1.Status[]) {
 
 <template>
   <div>
-    <PublishWidgetList draft-key="home" />
+    <PublishWidgetList :expanded="true" draft-key="home" />
     <div h="1px" w-auto bg-border mb-3 />
     <TimelinePaginator v-bind="{ paginator, stream }" :preprocess="reorderAndFilter" context="home" />
   </div>

@@ -12,6 +12,7 @@ const showUserPicker = logicAnd(
 )
 
 const isGrayscale = usePreferences('grayscaleMode')
+const instance = instanceStorage.value[currentServer.value]
 </script>
 
 <template>
@@ -63,8 +64,17 @@ const isGrayscale = usePreferences('grayscaleMode')
         <div sticky top-0 h-100dvh flex="~ col" gap-2 py3 ms-2>
           <slot name="right">
             <SearchWidget mt-4 mx-1 hidden xl:block />
-            <div flex-auto />
 
+            <!-- server info -->
+            <div v-if="!currentUser" grid gap-3 m3>
+              <span text-size-lg text-primary font-bold>{{ instance.title }}</span>
+              <img rounded-3 :src="instance.thumbnail.url">
+              <p text-secondary>
+                {{ instance.description }}
+              </p>
+            </div>
+
+            <div flex-auto />
             <PwaPrompt />
             <PwaInstallPrompt />
             <LazyCommonPreviewPrompt v-if="info.env === 'preview'" />

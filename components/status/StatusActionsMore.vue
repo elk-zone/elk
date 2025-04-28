@@ -132,7 +132,7 @@ function showFavoritedAndBoostedBy() {
 </script>
 
 <template>
-  <CommonDropdown flex-none ms3 placement="bottom" :eager-mount="command">
+  <CommonDropdown flex-none ms3 placement="bottom" :eager-mount="command" @click.prevent>
     <StatusActionButton
       :content="$t('action.more')"
       color="text-primary"

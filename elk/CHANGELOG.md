@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.63 (2025-04-28)
+
+
+### Bug Fixes
+
+* **ui:** move account lock and bot icons next to name in timeline ([c54afc5](https://github.com/BDX-town/elk/commit/c54afc5ef5076da79c894a10f50aaf365d61c828))
+
 ## 0.15.62 (2025-04-28)
 
 ## 0.15.61 (2025-04-27)

@@ -7,7 +7,10 @@ function reorderAndFilter(items: mastodon.v1.Status[]) {
   return reorderedTimeline(items, 'public')
 }
 
-const followedTags = (await useMasto().client.value.v1.followedTags.list({ limit: 0 }))
+let followedTags: mastodon.v1.Tag[] | undefined
+if (currentUser.value !== undefined) {
+  followedTags = (await useMasto().client.value.v1.followedTags.list({ limit: 0 }))
+}
 </script>
 
 <template>

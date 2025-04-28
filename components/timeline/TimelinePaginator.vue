@@ -25,7 +25,7 @@ const showOriginSite = computed(() =>
 function getFollowedTag(status: mastodon.v1.Status): string | null {
   const followedTagNames = followedTags.map(tag => tag.name)
   const followedStatusTags = status.tags.filter(tag => followedTagNames.includes(tag.name))
-  return followedStatusTags.length ? followedStatusTags[0]?.name : null
+  return followedStatusTags.length > 0 ? followedStatusTags[0]?.name : null
 }
 </script>
 

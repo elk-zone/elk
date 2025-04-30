@@ -226,7 +226,9 @@
     "manage": "Manage lists",
     "modify_account": "Modify lists with account",
     "remove_account": "Remove account from list",
-    "save": "Save changes"
+    "save": "Save changes",
+    "search_following_desc": "Search for people you are following",
+    "search_following_placeholder": "Search among people you follow"
   },
   "magic_keys": {
     "dialog_header": "Keyboard shortcuts",

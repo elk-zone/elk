@@ -226,7 +226,9 @@
     "manage": "Gestisci liste",
     "modify_account": "Modifica liste con account",
     "remove_account": "Rimuovi account dalla lista",
-    "save": "Salva modifiche"
+    "save": "Salva modifiche",
+    "search_following_desc": "Cerca le persone che segui",
+    "search_following_placeholder": "Cerca fra le persone che segui"
   },
   "magic_keys": {
     "dialog_header": "Scorciatoie da tastiera",

@@ -69,7 +69,7 @@ const { editor } = useTiptap({
     },
   }),
   placeholder: computed(() => placeholder ?? draft.value.params.inReplyToId ? t('placeholder.replying') : t('placeholder.default_1')),
-  autofocus: shouldExpanded.value,
+  autofocus: false,
   onSubmit: publish,
   onFocus() {
     if (!isExpanded && draft.value.initialText) {

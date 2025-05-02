@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.64 (2025-05-02)
+
+
+### Bug Fixes
+
+* do not autofocus input ([ecb8b18](https://github.com/BDX-town/elk/commit/ecb8b180bc2b7f900e676ef4900f0ab2c59425a6))
+
 ## 0.15.63 (2025-04-28)
 
 

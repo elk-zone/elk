@@ -4,11 +4,12 @@ import type { mastodon } from 'masto'
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
-const { account, buffer = 10, endMessage = true } = defineProps<{
+const { account, buffer = 10, endMessage = true, followedTags = [] } = defineProps<{
   paginator: mastodon.Paginator<mastodon.v1.Status[], mastodon.rest.v1.ListAccountStatusesParams>
   stream?: mastodon.streaming.Subscription
   context?: mastodon.v2.FilterContext
   account?: mastodon.v1.Account
+  followedTags?: mastodon.v1.Tag[]
   preprocess?: (items: mastodon.v1.Status[]) => mastodon.v1.Status[]
   buffer?: number
   endMessage?: boolean | string
@@ -20,6 +21,12 @@ const virtualScroller = usePreferences('experimentalVirtualScroller')
 const showOriginSite = computed(() =>
   account && account.id !== currentUser.value?.account.id && getServerName(account) !== currentServer.value,
 )
+
+function getFollowedTag(status: mastodon.v1.Status): string | null {
+  const followedTagNames = followedTags.map(tag => tag.name)
+  const followedStatusTags = status.tags.filter(tag => followedTagNames.includes(tag.name))
+  return followedStatusTags.length > 0 ? followedStatusTags[0]?.name : null
+}
 </script>
 
 <template>
@@ -32,11 +39,11 @@ const showOriginSite = computed(() =>
     <template #default="{ item, older, newer, active }">
       <template v-if="virtualScroller">
         <DynamicScrollerItem :item="item" :active="active" tag="article">
-          <StatusCard :status="item" :context="context" :older="older" :newer="newer" />
+          <StatusCard :followed-tag="getFollowedTag(item)" :status="item" :context="context" :older="older" :newer="newer" />
         </DynamicScrollerItem>
       </template>
       <template v-else>
-        <StatusCard :status="item" :context="context" :older="older" :newer="newer" />
+        <StatusCard :followed-tag="getFollowedTag(item)" :status="item" :context="context" :older="older" :newer="newer" />
       </template>
     </template>
     <template v-if="context === 'account' " #done="{ items }">

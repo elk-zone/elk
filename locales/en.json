@@ -459,6 +459,7 @@
     },
     "interface": {
       "bottom_nav": "Bottom Navigation",
+      "bottom_nav_hide_label": "Hide bottom labels",
       "bottom_nav_instructions": "Choose your favorite navigation buttons up to five for the bottom navigation. Must include the \"More menu\" button.",
       "color_mode": "Color Mode",
       "dark_mode": "Dark",

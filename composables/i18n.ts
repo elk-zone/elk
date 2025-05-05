@@ -22,9 +22,18 @@ export function useHumanReadableNumber() {
   }
 
   return {
-    formatHumanReadableNumber: (num: MaybeRef<number>) => fn(unref(num)),
-    formatNumber: (num: MaybeRef<number>) => n(unref(num), 'smallCounting', locale.value),
-    formatPercentage: (num: MaybeRef<number>) => n(unref(num), 'percentage', locale.value),
+    formatHumanReadableNumber: (num: MaybeRef<number>) => {
+      return String(unref(num))
+      return fn(unref(num))
+    },
+    formatNumber: (num: MaybeRef<number>) => {
+      return String(unref(num))
+      return n(unref(num), 'smallCounting', locale.value)
+    },
+    formatPercentage: (num: MaybeRef<number>) => {
+      return String(unref(num))
+      return n(unref(num), 'percentage', locale.value)
+    },
     forSR: (num: MaybeRef<number>) => unref(num) > 10000,
   }
 }

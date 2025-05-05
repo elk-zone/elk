@@ -16,6 +16,9 @@ const { account, buffer = 10, endMessage = true, followedTags = [] } = definePro
 }>()
 
 const { formatNumber } = useHumanReadableNumber()
+const userSettings = useUserSettings()
+const willChange = computed(() => getPreferences(userSettings.value, 'optimizeForLowPerformanceDevice') ? 'unset' : 'transform')
+
 const virtualScroller = usePreferences('experimentalVirtualScroller')
 
 const showOriginSite = computed(() =>
@@ -67,3 +70,9 @@ function getFollowedTag(status: mastodon.v1.Status): string | null {
     </template>
   </CommonPaginator>
 </template>
+
+<style lang="css">
+.vue-recycle-scroller.ready .vue-recycle-scroller__item-view {
+  will-change: v-bind('willChange');
+}
+</style>

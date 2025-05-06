@@ -55,6 +55,7 @@ One could put Elk behind popular reverse proxies with SSL Handling like Traefik,
 These are known deployments using Elk as an alternative Web client for Mastodon servers or as a base for other projects in the fediverse:
 
 - [elk.fedified.com](https://elk.fedified.com) - Use Elk to log into any compatible instance
+- [elk.mastodon.com.pl](https://elk.mastodon.com.pl) - Use Elk for the `mastodon.com.pl` Server
 - [elk.me.uk](https://elk.me.uk) - Use Elk to log into any compatible instance, hosted on Google Cloud Run with no Cloudflare proxy
 - [elk.h4.io](https://elk.h4.io) - Use Elk for the `h4.io` Server
 - [elk.universeodon.com](https://elk.universeodon.com) - Use Elk for the Universeodon Server

@@ -226,7 +226,9 @@
     "manage": "Kudeatu zerrendak",
     "modify_account": "Aldatu honako kontua duten zerrendak:",
     "remove_account": "Kendu kontua zerrendatik",
-    "save": "Gorde aldaketak"
+    "save": "Gorde aldaketak",
+    "search_following_desc": "Egin bilaketa jarraitzen ari zatzailen jendearen artean",
+    "search_following_placeholder": "Bilatu jarraitzen dituzunen artean"
   },
   "magic_keys": {
     "dialog_header": "Teklatuaren lasterbideak",

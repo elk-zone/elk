@@ -227,7 +227,7 @@ function showFavoritedAndBoostedBy() {
 
         <CommonDropdownItem
           is="button"
-          v-if="currentUser && (status.account.id === currentUser.account.id || status.mentions.some(m => m.id === currentUser!.account.id))"
+          v-if="currentUser && (status.account.id === currentUser.account.id || status.mentions.some((m: mastodon.v1.StatusMention) => m.id === currentUser!.account.id))"
           :text="status.muted ? $t('menu.unmute_conversation') : $t('menu.mute_conversation')"
           :icon="status.muted ? 'i-ri:eye-line' : 'i-ri:eye-off-line'"
           :command="command"

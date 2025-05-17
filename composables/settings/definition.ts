@@ -33,6 +33,7 @@ export interface PreferencesSettings {
   experimentalGitHubCards: boolean
   experimentalUserPicker: boolean
   experimentalEmbeddedMedia: boolean
+  hideBottomNavLabel: boolean
 }
 
 export interface UserSettings {
@@ -90,6 +91,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   experimentalGitHubCards: true,
   experimentalUserPicker: true,
   experimentalEmbeddedMedia: false,
+  hideBottomNavLabel: false,
 }
 
 export function getDefaultUserSettings(locales: string[]): UserSettings {

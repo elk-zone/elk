@@ -1,23 +1,5 @@
-import type { mastodon } from 'masto'
-
 type Action = 'reblogged' | 'favourited' | 'bookmarked' | 'pinned' | 'muted'
 type CountField = 'reblogsCount' | 'favouritesCount'
-
-// Add EmojiReaction type to support fedibird non-mastodon emoji reaction
-export interface EmojiReaction {
-  name: string
-  count: number
-  accountIds: string[]
-  me: boolean
-  // Only used by custom emoji
-  url?: string
-  staticUrl?: string
-  domain?: string | null
-  width?: number
-  height?: number
-}
-
-export type Status = mastodon.v1.Status & { emojiReactionsCount?: number, emojiReactions?: EmojiReaction[] }
 
 export interface StatusActionsProps {
   status: Status

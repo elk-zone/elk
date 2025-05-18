@@ -2,7 +2,7 @@
 const {
   zIndex = 100,
   background = 'transparent',
-} = $defineProps<{
+} = defineProps<{
   zIndex?: number
   background?: string
 }>()

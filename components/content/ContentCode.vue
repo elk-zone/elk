@@ -1,10 +1,10 @@
 <script setup lang="ts">
-const props = defineProps<{
+const { code, lang } = defineProps<{
   code: string
   lang?: string
 }>()
 
-const raw = computed(() => decodeURIComponent(props.code).replace(/&#39;/g, '\''))
+const raw = computed(() => decodeURIComponent(code).replace(/&#39;/g, '\''))
 
 const langMap: Record<string, string> = {
   js: 'javascript',
@@ -13,7 +13,7 @@ const langMap: Record<string, string> = {
 }
 
 const highlighted = computed(() => {
-  return props.lang ? highlightCode(raw.value, (langMap[props.lang] || props.lang) as any) : raw
+  return lang ? highlightCode(raw.value, (langMap[lang] || lang) as any) : raw
 })
 </script>
 

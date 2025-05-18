@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ConfirmDialogChoice, ConfirmDialogOptions } from '~/types'
 
-const props = defineProps<ConfirmDialogOptions>()
+const { extraOptionType } = defineProps<ConfirmDialogOptions>()
 
 const emit = defineEmits<{
   (evt: 'choice', choice: ConfirmDialogChoice): void
@@ -11,7 +11,7 @@ const hasDuration = ref(false)
 const isValidDuration = ref(true)
 const duration = ref(60 * 60) // default to 1 hour
 const shouldMuteNotifications = ref(true)
-const isMute = computed(() => props.extraOptionType === 'mute')
+const isMute = computed(() => extraOptionType === 'mute')
 
 function handleChoice(choice: ConfirmDialogChoice['choice']) {
   const dialogChoice = {
@@ -40,7 +40,7 @@ function handleChoice(choice: ConfirmDialogChoice['choice']) {
     </div>
     <div v-if="isMute" flex-col flex gap-4>
       <CommonCheckbox v-model="hasDuration" :label="$t('confirm.mute_account.specify_duration')" prepend-checkbox checked-icon-color="text-primary" />
-      <DurationPicker v-if="hasDuration" v-model="duration" v-model:is-valid="isValidDuration" />
+      <ModalDurationPicker v-if="hasDuration" v-model="duration" v-model:is-valid="isValidDuration" />
       <CommonCheckbox v-model="shouldMuteNotifications" :label="$t('confirm.mute_account.notifications')" prepend-checkbox checked-icon-color="text-primary" />
     </div>
 

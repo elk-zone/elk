@@ -54,10 +54,10 @@
   "action": {
     "apply": "Áp dụng",
     "bookmark": "Lưu",
-    "bookmarked": "Đã lưu",
+    "bookmarked": "Bỏ lưu",
     "boost": "Đăng lại",
     "boost_count": "{0}",
-    "boosted": "Đã đăng lại",
+    "boosted": "Bỏ đăng lại",
     "clear": "Xóa",
     "clear_publish_failed": "Xóa lỗi khi đăng tút",
     "clear_save_failed": "Xóa lỗi khi lưu tút",
@@ -226,7 +226,9 @@
     "manage": "Quản lý danh sách",
     "modify_account": "Sửa danh sách có người này",
     "remove_account": "Xóa người ra khỏi danh sách",
-    "save": "Lưu thay đổi"
+    "save": "Lưu thay đổi",
+    "search_following_desc": "Tìm trong những người bạn theo dõi",
+    "search_following_placeholder": "Tìm trong những người bạn theo dõi"
   },
   "magic_keys": {
     "dialog_header": "Phím tắt",
@@ -334,14 +336,16 @@
     "zen_mode": "Tập Trung"
   },
   "notification": {
-    "favourited_post": "thích tút của bạn",
-    "followed_you": "theo dõi bạn",
+    "and": "và",
+    "favourited_post": "đã thích tút của bạn",
+    "followed_you": "đang theo dõi bạn",
     "followed_you_count": "{0} người theo dõi bạn|{0} người theo dõi bạn|{0} người theo dõi bạn",
     "missing_type": "THIẾU notification.type:",
-    "reblogged_post": "đăng lại tút của bạn",
+    "others": "{0} người khác|{0} người khác|{0} người khác",
+    "reblogged_post": "đã đăng lại tút của bạn",
     "reported": "{0} báo cáo {1}",
     "request_to_follow": "yêu cầu theo dõi bạn",
-    "signed_up": "tham gia máy chủ",
+    "signed_up": "đã tham gia máy chủ",
     "update_status": "cập nhật tút"
   },
   "placeholder": {
@@ -401,8 +405,8 @@
     "another_server": "Người bạn báo cáo thuộc ở máy chủ khác",
     "anything_else": "Có điều gì mà chúng tôi cần biết không?",
     "block_desc": "Bạn sẽ không còn thấy tút của người này. Họ sẽ không thể thấy tút của bạn hoặc theo dõi bạn. Họ biết là bạn đã chặn họ.",
-    "dontlike": "Tôi không thích nó",
-    "dontlike_desc": "Đó không phải là thứ gì mà bạn muốn thấy",
+    "dontlike": "Tôi không thích",
+    "dontlike_desc": "Đây không phải thứ mà bạn muốn thấy",
     "forward": "Gửi luôn báo cáo đến {0}",
     "forward_question": "Bạn có chắc muốn gửi luôn báo cáo đến máy chủ của người này?",
     "further_actions": {
@@ -417,8 +421,8 @@
     },
     "limiting": "Hạn chế {0}",
     "mute_desc": "Bạn sẽ không còn thấy tút của người này. Họ vẫn có thể thấy tút của bạn hoặc theo dõi bạn. Họ không biết là bạn đã chặn họ.",
-    "other": "Một lý do khác",
-    "other_desc": "Vấn đề không nằm trong những mục trên",
+    "other": "Lý do khác",
+    "other_desc": "Vấn đề không thuộc những mục trên",
     "reporting": "Báo cáo {0}",
     "select_many": "Chọn tất cả lý do phù hợp:",
     "select_one": "Chọn lý do phù hợp nhất:",
@@ -537,7 +541,7 @@
     "preferences": {
       "embedded_media": "Trình Phát Media Dạng Nhúng",
       "embedded_media_description": "Khi chia sẻ một liên kết media, hiển thị trình phát dạng nhúng thay vì ảnh mặc định.",
-      "enable_autoplay": "Tự động phát",
+      "enable_autoplay": "Tự động phát video/GIF",
       "enable_data_saving": "Tiết kiệm dữ liệu mạng",
       "enable_data_saving_description": "Không cho tự động tải file đính kèm.",
       "enable_pinch_to_zoom": "Chụm 2 ngón tay để thu phóng",
@@ -559,6 +563,7 @@
       "label": "Thiết lập",
       "optimize_for_low_performance_device": "Tối ưu cho thiết bị yếu",
       "title": "Tính năng thử nghiệm",
+      "unmute_videos": "Mặc định bật âm thanh video",
       "use_star_favorite_icon": "Dùng biểu tượng thích ngôi sao",
       "user_picker": "Chuyển Đổi Tài Khoản",
       "user_picker_description": "Hiển thị danh sách tài khoản đã đăng nhập ở góc dưới bên trái để nhanh chóng chuyển đổi qua lại.",
@@ -637,9 +642,10 @@
     "poll": {
       "count": "{0} bình chọn|{0} bình chọn|{0} bình chọn",
       "ends": "đóng {0}",
-      "finished": "kết thúc {0}"
+      "finished": "kết thúc {0}",
+      "update": "Làm mới"
     },
-    "replying_to": "Trả lời {0}",
+    "replying_to": "Trả lời đến {0}",
     "show_full_thread": "Chuỗi tút liên quan",
     "someone": "ai đó",
     "spoiler_media_hidden": "Media ẩn",
@@ -668,7 +674,7 @@
     "notifications_follow": "Theo dõi",
     "notifications_follow_request": "Yêu cầu theo dõi",
     "notifications_mention": "Lượt nhắc",
-    "notifications_more_tooltip": "Lọc loại thông báo",
+    "notifications_more_tooltip": "Lọc theo loại thông báo",
     "notifications_poll": "Bình chọn",
     "notifications_reblog": "Đăng lại",
     "notifications_status": "Tút mới",
@@ -708,10 +714,10 @@
     "short_week_past": "{n} tuần",
     "short_year_future": "sau {n} năm",
     "short_year_past": "{n} năm",
-    "week_future": "sau 0 tuần|tuần sau|trong {n} tuần",
+    "week_future": "sau 0 tuần|tuần tới|trong {n} tuần",
     "week_past": "0 tuần trước|tuần trước|{n} tuần trước",
-    "year_future": "sau 0 năm|năm sau|in {n} năm sau",
-    "year_past": "0 năm trước|năm trước|{n} năm trước"
+    "year_future": "sau 0 năm|năm tới|sau {n} năm sau",
+    "year_past": "0 năm trước|năm ngoái|{n} năm trước"
   },
   "timeline": {
     "no_posts": "Chưa có tút!",

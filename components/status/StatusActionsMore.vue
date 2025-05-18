@@ -2,7 +2,7 @@
 import type { mastodon } from 'masto'
 import { toggleBlockAccount, toggleMuteAccount, useRelationship } from '~~/composables/masto/relationship'
 
-const props = defineProps<{
+const { details, ...props } = defineProps<{
   status: mastodon.v1.Status
   details?: boolean
   command?: boolean
@@ -22,7 +22,7 @@ const {
   togglePin,
   toggleReblog,
   toggleMute,
-} = useStatusActions(props)
+} = useStatusActions({ status: props.status })
 
 const clipboard = useClipboard()
 const router = useRouter()
@@ -109,7 +109,7 @@ async function deleteAndRedraft() {
 function reply() {
   if (!checkLogin())
     return
-  if (props.details) {
+  if (details) {
     focusEditor()
   }
   else {

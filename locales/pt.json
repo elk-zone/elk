@@ -226,7 +226,9 @@
     "manage": "Gerir listas",
     "modify_account": "Modificar listas com a conta",
     "remove_account": "Remover conta da lista",
-    "save": "Salvar alterações"
+    "save": "Salvar alterações",
+    "search_following_desc": "Pesquisar por pessoas que está a seguir",
+    "search_following_placeholder": "Pesquisar de entre as pessoas que segue"
   },
   "magic_keys": {
     "dialog_header": "Atalhos de teclado",
@@ -334,10 +336,12 @@
     "zen_mode": "Modo Zen"
   },
   "notification": {
+    "and": "e",
     "favourited_post": "adicionou a sua publicação aos favoritos",
     "followed_you": "começou a segui-lo",
     "followed_you_count": "{0} pessoas seguem-no|{0} pessoa segue-o|{0} pessoas seguem-no",
     "missing_type": "notification.type em FALTA:",
+    "others": "{0} outros|{0} outro|{0} outros",
     "reblogged_post": "partilhou a sua publicação",
     "reported": "{0} denunciou {1}",
     "request_to_follow": "pediu para segui-lo",
@@ -489,7 +493,7 @@
           "favourite": "Favoritos",
           "follow": "Novos seguidores",
           "mention": "Menções",
-          "poll": "Votações",
+          "poll": "Sondagens",
           "reblog": "Partilha das sua publicação",
           "title": "Que notificações quer receber?"
         },
@@ -559,6 +563,7 @@
       "label": "Preferências",
       "optimize_for_low_performance_device": "Otimizar para dispositivos de menor desempenho",
       "title": "Funcionalidades Experimentais",
+      "unmute_videos": "Som de vídeo ativado por predefinição",
       "use_star_favorite_icon": "Utilizar estrela como ícone de favoritos",
       "user_picker": "Selecionador de Utilizador",
       "user_picker_description": "Exibe as imagens de perfil de todas as contas registadas no canto inferior esquerdo para que possa alternar rapidamente entre elas.",
@@ -637,7 +642,8 @@
     "poll": {
       "count": "{0} votos|{0} voto|{0} votos",
       "ends": "termina {0}",
-      "finished": "terminou {0}"
+      "finished": "terminou {0}",
+      "update": "Atualizar sondagem"
     },
     "replying_to": "Em resposta a {0}",
     "show_full_thread": "Mostrar toda a conversa",

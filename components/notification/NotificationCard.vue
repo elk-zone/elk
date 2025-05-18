@@ -33,6 +33,9 @@ const unsupportedEmojiReactionTypes = ['pleroma:emoji_reaction', 'reaction']
 if (unsupportedEmojiReactionTypes.includes(notification.type) || !supportedNotificationTypes.includes(notification.type)) {
   console.warn(`[DEV] ${t('notification.missing_type')} '${notification.type}' (notification.id: ${notification.id})`)
 }
+
+const timeAgoOptions = useTimeAgoOptions(true)
+const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
 </script>
 
 <template>
@@ -49,6 +52,9 @@ if (unsupportedEmojiReactionTypes.includes(notification.type) || !supportedNotif
           <AccountDisplayName :account="notification.account" text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all />
           <span ws-nowrap>
             {{ $t('notification.followed_you') }}
+            <time text-secondary :datetime="notification.createdAt">
+              ・{{ timeAgo }}
+            </time>
           </span>
         </div>
         <AccountBigCard
@@ -65,7 +71,11 @@ if (unsupportedEmojiReactionTypes.includes(notification.type) || !supportedNotif
             :account="notification.account"
             text-purple me-1 font-bold line-clamp-1 ws-pre-wrap break-all
           />
-          <span>{{ $t("notification.signed_up") }}</span>
+          <span>{{ $t("notification.signed_up") }}
+            <time text-secondary :datetime="notification.createdAt">
+              ・{{ timeAgo }}
+            </time>
+          </span>
         </div>
       </NuxtLink>
     </template>
@@ -95,6 +105,9 @@ if (unsupportedEmojiReactionTypes.includes(notification.type) || !supportedNotif
         />
         <span me-1 ws-nowrap>
           {{ $t('notification.request_to_follow') }}
+          <time text-secondary :datetime="notification.createdAt">
+            ・{{ timeAgo }}
+          </time>
         </span>
       </div>
       <AccountCard p="s-2 e-4 b-2" hover-card :account="notification.account">
@@ -109,6 +122,9 @@ if (unsupportedEmojiReactionTypes.includes(notification.type) || !supportedNotif
             <AccountInlineInfo :account="notification.account" me1 />
             <span ws-nowrap>
               {{ $t('notification.update_status') }}
+              <time text-secondary :datetime="notification.createdAt">
+                ・{{ timeAgo }}
+              </time>
             </span>
           </div>
         </template>

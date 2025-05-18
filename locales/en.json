@@ -226,7 +226,9 @@
     "manage": "Manage lists",
     "modify_account": "Modify lists with account",
     "remove_account": "Remove account from list",
-    "save": "Save changes"
+    "save": "Save changes",
+    "search_following_desc": "Search for people you are following",
+    "search_following_placeholder": "Search among people you follow"
   },
   "magic_keys": {
     "dialog_header": "Keyboard shortcuts",
@@ -334,10 +336,12 @@
     "zen_mode": "Zen Mode"
   },
   "notification": {
+    "and": "and",
     "favourited_post": "favorited your post",
     "followed_you": "followed you",
     "followed_you_count": "{0} people followed you|{0} person followed you|{0} people followed you",
     "missing_type": "MISSING notification.type:",
+    "others": "{0} others|{0} other|{0} others",
     "reblogged_post": "boosted your post",
     "reported": "{0} reported {1}",
     "request_to_follow": "requested to follow you",
@@ -559,6 +563,7 @@
       "label": "Preferences",
       "optimize_for_low_performance_device": "Optimize for low performance device",
       "title": "Experimental Features",
+      "unmute_videos": "Video sound on by default",
       "use_star_favorite_icon": "Use star favorite icon",
       "user_picker": "User Picker",
       "user_picker_description": "Displays all avatars of logged accounts in the bottom-left so you can switch quickly between them.",
@@ -637,7 +642,8 @@
     "poll": {
       "count": "{0} votes|{0} vote|{0} votes",
       "ends": "ends {0}",
-      "finished": "finished {0}"
+      "finished": "finished {0}",
+      "update": "Update poll"
     },
     "replying_to": "Replying to {0}",
     "show_full_thread": "Show Full thread",

@@ -11,3 +11,10 @@ from = "https://chat.elk.zone"
 to = "https://discord.gg/vAZSDU9J"
 status = 301
 force = true
+
+# Redirect to Discord server
+[[redirects]]
+from = "https://code.elk.zone"
+to = "https://github.com/elk-zone/elk"
+status = 301
+force = true

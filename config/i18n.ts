@@ -257,6 +257,11 @@ const locales: LocaleObjectData[] = [
     file: 'vi-VN.json',
     name: 'Tiếng Việt',
   },
+  {
+    code: 'cy',
+    file: 'cy.json',
+    name: 'Cymraeg',
+  },
 ]
 
 function buildLocales() {

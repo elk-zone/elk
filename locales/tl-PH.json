@@ -58,6 +58,7 @@
     "boost": "I-boost",
     "boost_count": "{0} nag-boost",
     "boosted": "Nai-boost na",
+    "clear": "I-clear",
     "clear_publish_failed": "I-clear ang mga error sa pag-publish",
     "clear_save_failed": "I-clear ang mga error sa pag-save",
     "clear_upload_failed": "I-clear ang mga error sa pag-upload ng file",
@@ -72,8 +73,10 @@
     "favourited": "Nai-favorite na",
     "more": "Iba pa",
     "next": "Susunod",
+    "open_image_preview_dialog": "Buksan ang image preview",
     "prev": "Nakaraan",
     "publish": "I-publish",
+    "publish_thread": "I-publish ang thread",
     "reply": "Sumagot",
     "reply_count": "{0} sumagot",
     "reset": "I-reset",
@@ -220,6 +223,7 @@
     "error": "Mayroong error sa paglikha ng listahan",
     "error_prefix": "Error: ",
     "list_title_placeholder": "Pangalan ng listahan",
+    "manage": "I-manage",
     "modify_account": "Baguhin ang mga listahan sa account",
     "remove_account": "Tanggalin ang account sa listahan",
     "save": "I-save ang mga pagbabago"
@@ -306,6 +310,7 @@
     "built_at": "Build version mula noong {0}",
     "compose": "Lumikha ng Mensahe",
     "conversations": "Mga Usapang Pribado",
+    "docs": "Dokumentasyon",
     "explore": "Mag-Explore",
     "favourites": "Mga Paborito",
     "federated": "Pederal",
@@ -314,6 +319,7 @@
     "list": "Listahan",
     "lists": "Mga Listahan",
     "local": "Lokal",
+    "more_menu": "Higit pang menu",
     "muted_users": "Mga Naka-Mute na User",
     "notifications": "Mga Abiso",
     "privacy": "Privacy",
@@ -328,11 +334,14 @@
     "zen_mode": "Zen Mode"
   },
   "notification": {
+    "and": "at",
     "favourited_post": "nag-favorite ng iyong post",
     "followed_you": "nag-follow sa iyo",
     "followed_you_count": "{0} na tao ang nag-follow sa iyo|{0} na tao ang nag-follow sa iyo|{0} na tao ang nag-follow sa iyo",
     "missing_type": "MISSING notification.type:",
+    "others": "{0} iba pa|{0} iba pa|{0} iba pa",
     "reblogged_post": "bumoost ng iyong post",
+    "reported": "ni-report ni {0} si {1}",
     "request_to_follow": "humiling na sumunod sa iyo",
     "signed_up": "nag-sign up",
     "update_status": "nag-update ng kanilang post"
@@ -447,6 +456,8 @@
       "label": "Mga account setting"
     },
     "interface": {
+      "bottom_nav": "Ibabang Nabigasyon",
+      "bottom_nav_instructions": "Pumili ng hanggang limang navigation button para sa ibabang nabigasyon. Dapat isama ang button na \"Higit pang menu.\"",
       "color_mode": "Mode ng Kulay",
       "dark_mode": "Madilim",
       "default": " (default)",
@@ -458,6 +469,7 @@
     },
     "language": {
       "display_language": "Ipakita ang Wika",
+      "how_to_contribute": "Paano mag-contribute?",
       "label": "Wika",
       "post_language": "Posting Language",
       "status": "Kalagayan ng Pagsasalin: {0}/{1} ({2}%)",
@@ -539,6 +551,7 @@
       "hide_boost_count": "Itago ang boost count",
       "hide_favorite_count": "Itago ang favorite count",
       "hide_follower_count": "Itago ang following/follower count",
+      "hide_gif_indi_on_posts": "Itago ang indicator ng mga GIF",
       "hide_news": "Itago ang mga balita",
       "hide_reply_count": "Itago ang reply count",
       "hide_tag_hover_card": "Itago ang tag hover card",
@@ -552,6 +565,7 @@
       "user_picker": "Pagpipilian na mga Account",
       "user_picker_description": "Ipakita ang mga avatar ng mga naka-login na account sa kaliwang ibaba para makalipat sa mga ito.",
       "virtual_scroll": "Virtual na Scrolling",
+      "virtual_scroll_description": "Gumamit ng isang virtual list sa mga timeline, upang ang mas marami pang mga items ang mai-render nang mas mabilis.",
       "wellbeing": "Kalusugan at Kagalingan",
       "zen_mode": "Modong Zen",
       "zen_mode_description": "Itago ang ibang mga elemento sa timeline at mga asides maliban kung naka-focus ang mouse cursor sa kanila."
@@ -589,7 +603,11 @@
   },
   "state": {
     "attachments_exceed_server_limit": "Nalagpasan na ang bilang ng mga attachments na pinapayagan bawat post.",
+    "attachments_limit_audio_error": "Lumagpas sa limit ng audio file size: {0}",
     "attachments_limit_error": "Lumagpas sa limitasyon bawat post",
+    "attachments_limit_image_error": "Lumagpas sa limit ng image file size: {0}",
+    "attachments_limit_unknown_error": "Lumagpas sa limit ng file size: {0}",
+    "attachments_limit_video_error": "Lumagpas sa limit ng video file size: {0}",
     "edited": "(Naedit)",
     "editing": "Pinaeedit",
     "loading": "Nagloload...",
@@ -610,16 +628,19 @@
     "favourited_by": "Pumaborito si",
     "filter_hidden_phrase": "Nakafilter dahil sa",
     "filter_show_anyway": "Ipakita pa rin",
+    "gif": "GIF",
     "img_alt": {
       "ALT": "ALT",
       "desc": "Paglalarawan",
       "dismiss": "I-dismiss",
       "read": "Basahin ang {0} paglalarawan"
     },
+    "pinned": "Naka-pin",
     "poll": {
       "count": "{0} boto|{0} boto|{0} mga boto",
       "ends": "magtatapos {0}",
-      "finished": "natapos {0}"
+      "finished": "natapos {0}",
+      "update": "I-update ang poll"
     },
     "replying_to": "Sumasagot kay {0}",
     "show_full_thread": "Ipakita ang buong thread",
@@ -696,6 +717,7 @@
     "year_past": "0 taon na ang nakalipas|nakaraang taon|{n} taon na ang nakalipas"
   },
   "timeline": {
+    "no_posts": "Walang mga post dito!",
     "show_new_items": "Ipakita ang {v} bagong item|Ipakita ang {v} bagong item|Ipakita ang {v} bagong item",
     "view_older_posts": "Maaaring hindi ipakita ang mga lumang post mula sa ibang pagkakataon."
   },
@@ -708,6 +730,7 @@
     "add_emojis": "Magdagdag ng mga emoji",
     "add_media": "Magdagdag ng mga larawan, isang video o isang audio file",
     "add_publishable_content": "Magdagdag ng nilalamang ilalathala",
+    "add_thread_item": "Magdagdag ng item sa thread",
     "change_content_visibility": "Baguhin ang visibility ng nilalaman",
     "change_language": "Baguhin ang wika",
     "emoji": "Emoji",
@@ -717,6 +740,8 @@
     "open_editor_tools": "Mga tool sa editor",
     "pick_an_icon": "Pumili ng icon",
     "publish_failed": "Isara ang mga nabigong mensahe sa tuktok ng editor upang muling i-publish ang mga post",
+    "remove_thread_item": "Mag-tanggal ng item sa thread",
+    "start_thread": "Magsimula ng thread",
     "toggle_bold": "I-toggle ang bold",
     "toggle_code_block": "I-toggle ang block ng code",
     "toggle_italic": "I-toggle ang italic"

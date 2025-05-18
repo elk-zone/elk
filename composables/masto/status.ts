@@ -40,7 +40,7 @@ export function useStatusActions(props: StatusActionsProps) {
       if (isCancel && countField && prevCount === newStatus[countField])
         newStatus[countField] -= 1
 
-      Object.assign(status, newStatus)
+      Object.assign(status.value, newStatus)
       cacheStatus(newStatus, undefined, true)
     }).finally(() => {
       isLoading.value[action] = false

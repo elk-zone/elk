@@ -44,6 +44,7 @@ async function edit() {
         <button
           text-sm p2 border-1 transition-colors
           border-dark
+          bg-base
           btn-action-icon
           @click="edit"
         >

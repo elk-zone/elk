@@ -176,8 +176,8 @@ importers:
         specifier: ^11.0.0
         version: 11.0.0
       masto:
-        specifier: ^6.10.4
-        version: 6.10.4
+        specifier: ^7.1.0
+        version: 7.1.0
       mocked-exports:
         specifier: ^0.1.1
         version: 0.1.1
@@ -6989,8 +6989,8 @@ packages:
   markdown-table@3.0.3:
     resolution: {integrity: sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw==}
 
-  masto@6.10.4:
-    resolution: {integrity: sha512-TqIkWaZa884j9jik39efsv6mdpgalUElwiGLLPHevLlIuCSnGjapGC++VovlQvvVV6O5e4ce/gzWNy17cF6PHg==}
+  masto@7.1.0:
+    resolution: {integrity: sha512-jIWQr8WIjGOh3bbE4AuS1FIjsMvXbYpUHHQoijQ9Ueb4YqE4fOxWf1eU6ZRHOiBBjTa1Tm20pciRqJTy6IMa7Q==}
 
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
@@ -17791,7 +17791,7 @@ snapshots:
 
   markdown-table@3.0.3: {}
 
-  masto@6.10.4:
+  masto@7.1.0:
     dependencies:
       change-case: 4.1.2
       events-to-async: 2.0.1

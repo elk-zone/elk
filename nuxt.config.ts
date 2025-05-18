@@ -34,7 +34,7 @@ export default defineNuxtConfig({
     '~/modules/purge-comments',
     '~/modules/build-env',
     '~/modules/tauri/index',
-    '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
+    '@vite-pwa/nuxt',
     'stale-dep/nuxt',
   ],
   vue: {

@@ -7,8 +7,8 @@ const props = defineProps<{
   details?: boolean
 }>()
 
-const { status }: { status: mastodon.v1.Status } = useStatusActions(props)
-function isCustomEmoji(emoji: EmojiReaction) {
+const { status } = useStatusActions(props)
+function isCustomEmoji(emoji: mastodon.v1.EmojiReaction) {
   return !!emoji.staticUrl
 }
 </script>

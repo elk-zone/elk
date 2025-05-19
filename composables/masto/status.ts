@@ -1,12 +1,14 @@
+import type { mastodon } from 'masto'
+
 type Action = 'reblogged' | 'favourited' | 'bookmarked' | 'pinned' | 'muted'
 type CountField = 'reblogsCount' | 'favouritesCount'
 
 export interface StatusActionsProps {
-  status: Status
+  status: mastodon.v1.Status
 }
 
 export function useStatusActions(props: StatusActionsProps) {
-  const status = ref<Status>({ ...props.status })
+  const status = ref<mastodon.v1.Status>({ ...props.status })
   const { client } = useMasto()
 
   watch(
@@ -25,7 +27,7 @@ export function useStatusActions(props: StatusActionsProps) {
     muted: false,
   })
 
-  async function toggleStatusAction(action: Action, fetchNewStatus: () => Promise<Status>, countField?: CountField) {
+  async function toggleStatusAction(action: Action, fetchNewStatus: () => Promise<mastodon.v1.Status>, countField?: CountField) {
     // check login
     if (!checkLogin())
       return

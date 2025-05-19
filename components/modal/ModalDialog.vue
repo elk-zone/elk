@@ -144,7 +144,7 @@ useEventListener('keydown', (e: KeyboardEvent) => {
         <div class="dialog-mask" absolute inset-0 z-0 bg-black opacity-48 touch-none h="[calc(100%+0.5px)]" @click="clickMask" />
         <!-- Dialog container -->
         <div class="p-safe-area" absolute inset-0 z-1 pointer-events-none opacity-100 flex>
-          <div flex-1 flex items-center justify-center p-4>
+          <div flex-1 flex items-start justify-center p-4>
             <!-- We use `class` here to make v-bind being able to be override them -->
             <div
               ref="elDialogMain"

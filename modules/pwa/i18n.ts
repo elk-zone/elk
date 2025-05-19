@@ -2,9 +2,9 @@ import type { ManifestOptions } from 'vite-plugin-pwa'
 import { Buffer } from 'node:buffer'
 import { readFile } from 'node:fs/promises'
 import { createResolver } from '@nuxt/kit'
+import { THEME_COLORS } from '../../app/constants/index'
 import { getEnv } from '../../config/env'
 import { currentLocales } from '../../config/i18n'
-import { THEME_COLORS } from '../../constants/index'
 
 export type LocalizedWebManifest = Record<string, Partial<ManifestOptions>>
 

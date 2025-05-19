@@ -38,7 +38,7 @@ useCommand({
 
 <template>
   <NuxtLink
-    :disabled="disabled"
+    :disabled="disabled ? 'disabled' : null"
     :to="to"
     :external="external"
     :target="target"

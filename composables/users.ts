@@ -60,6 +60,8 @@ export const currentServer = computed<string>(() => currentUser.value?.server ||
 export const currentNodeInfo = computed<null | Record<string, any>>(() => nodes.value[currentServer.value] || null)
 export const isGotoSocial = computed(() => currentNodeInfo.value?.software?.name === 'gotosocial')
 export const isGlitchEdition = computed(() => currentInstance.value?.version?.includes('+glitch'))
+export const isAkkoma = computed(() => currentNodeInfo.value?.software?.name === 'akkoma')
+export const isPleroma = computed(() => currentNodeInfo.value?.software?.name === 'pleroma')
 
 export function useUsers() {
   return users

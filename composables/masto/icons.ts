@@ -54,15 +54,10 @@ export const accountFieldIcons: Record<string, string> = Object.fromEntries(Obje
   Zhihu: 'i-ri:zhihu-line',
 }).sort(([a], [b]) => a.localeCompare(b)))
 
-const accountFieldIconsLowercase = Object.fromEntries(
-  Object.entries(accountFieldIcons).map(([k, v]) =>
-    [k.toLowerCase(), v],
-  ),
-)
+const accountFieldIconsRegex = Object.entries(accountFieldIcons).map(([name, icon]) => [name, icon])
 
 export function getAccountFieldIcon(value: string) {
-  const name = value.trim().toLowerCase()
-  return accountFieldIconsLowercase[name] || undefined
+  return accountFieldIconsRegex.find(([name]) => new RegExp(name, 'i').test(value))
 }
 
 export const statusVisibilities = [

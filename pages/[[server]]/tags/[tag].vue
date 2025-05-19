@@ -35,7 +35,10 @@ if (currentUser.value !== undefined) {
 <template>
   <MainContent back>
     <template #title>
-      <bdi text-lg font-bold>#{{ tagName }}</bdi>
+      <bdi
+        text-lg font-bold timeline-title-style cursor-pointer
+        @click="$scrollToTop"
+      >#{{ tagName }}</bdi>
     </template>
 
     <template #actions>

@@ -7,7 +7,7 @@ useHydratedHead({
 </script>
 
 <template>
-  <MainContent>
+  <MainContent skip-content="nav.hashtags">
     <template #title>
       <NuxtLink to="/hashtags" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
         <div class="i-ri:hashtag" />

@@ -11,7 +11,7 @@ useHydratedHead({
 </script>
 
 <template>
-  <MainContent back>
+  <MainContent back skip-content="nav.muted_users">
     <template #title>
       <span timeline-title-style>{{ $t('nav.muted_users') }}</span>
     </template>

@@ -11,7 +11,7 @@ useHydratedHead({
 </script>
 
 <template>
-  <MainContent>
+  <MainContent skip-content="account.pinned">
     <template #title>
       <NuxtLink to="/pinned" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:pushpin-line />

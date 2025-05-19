@@ -11,7 +11,7 @@ useHydratedHead({
 </script>
 
 <template>
-  <MainContent back>
+  <MainContent back skip-content="settings.profile.featured_tags.label">
     <template #title>
       <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:test-tube-line />

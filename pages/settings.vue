@@ -18,7 +18,7 @@ const isRootPath = computed(() => route.name === 'settings')
   <div>
     <div min-h-screen flex>
       <div border="e base" :class="isRootPath ? 'block lg:flex-none flex-1' : 'hidden lg:block'">
-        <MainContent>
+        <MainContent :skip-content="isRootPath ? 'nav.settings' : undefined">
           <template #title>
             <div timeline-title-style flex items-center gap-2 @click="$scrollToTop">
               <div i-ri:settings-3-line />

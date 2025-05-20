@@ -81,8 +81,8 @@ export interface QueryResult {
   grouped: Map<CommandScopeNames, QueryResultItem[]>
 }
 
-function resolveFunction<T>(i: T): T extends () => infer R ? R : T {
-  return typeof i === 'function' ? i() : i
+function resolveFunction<T>(i: T): T extends (...args: never) => infer R ? R : T {
+  return typeof i === 'function' ? i() : i as T extends ((...args: never) => infer R) ? R : T
 }
 
 export const useCommandRegistry = defineStore('command', () => {

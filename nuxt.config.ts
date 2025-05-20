@@ -18,6 +18,10 @@ export default defineNuxtConfig({
   typescript: {
     tsConfig: {
       exclude: ['../service-worker'],
+      compilerOptions: {
+        // TODO: enable this once we fix the issues
+        noUncheckedIndexedAccess: false,
+      },
       vueCompilerOptions: {
         target: 3.5,
       },

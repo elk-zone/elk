@@ -6,7 +6,7 @@ export const pwa: VitePWANuxtOptions = {
   // disable PWA only when in preview mode
   disable: /* temporarily test in CI isPreview || */ (isDevelopment && process.env.VITE_DEV_PWA !== 'true'),
   scope: '/',
-  srcDir: './service-worker',
+  srcDir: '../service-worker',
   filename: 'elk-sw.ts',
   strategies: 'injectManifest',
   injectRegister: false,

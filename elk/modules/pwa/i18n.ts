@@ -154,6 +154,6 @@ export async function createI18n(): Promise<RequiredWebManifestEntry> {
 async function readI18nFile(file: string) {
   const { resolve } = createResolver(import.meta.url)
   return JSON.parse(Buffer.from(
-    await readFile(resolve(`../../locales/${file}`), 'utf-8'),
+    await readFile(resolve(`../../i18n/locales/${file}`), 'utf-8'),
   ).toString())
 }

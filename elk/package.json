@@ -2,7 +2,6 @@
   "name": "@elk-zone/elk",
   "type": "module",
   "version": "0.16.0",
-  "packageManager": "pnpm@9.15.9",
   "license": "MIT",
   "homepage": "https://elk.zone/",
   "main": "./nuxt.config.ts",
@@ -148,14 +147,6 @@
     "typescript": "^5.4.4",
     "vitest": "2.1.5",
     "vue-tsc": "^2.1.6"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "pinceau": "patches/pinceau.patch",
-      "vue-i18n": "patches/vue-i18n.patch",
-      "nuxt-security": "patches/nuxt-security.patch",
-      "nuxt": "patches/nuxt.patch"
-    }
   },
   "resolutions": {
     "**/cheerio": "1.0.0-rc.12",

@@ -1,5 +1,5 @@
 <script setup lang="tsx">
-import { getThemeColors } from '~/scripts/generate-themes'
+import { getThemeColors } from '~~/scripts/generate-themes'
 
 const isLoading = ref(false)
 

@@ -1,6 +1,6 @@
 import type { akkoma } from '@bdxtown/akko'
 import { LRUCache } from 'lru-cache'
-import { name } from './../package.json'
+import { name } from './../../package.json'
 
 const cache = new LRUCache<string, any>({
   max: 1000,

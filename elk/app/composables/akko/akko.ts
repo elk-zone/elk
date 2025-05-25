@@ -2,10 +2,10 @@ import type { akkoma } from '@bdxtown/akko'
 import type { Pausable } from '@vueuse/core'
 import type { Ref } from 'vue'
 import type { ElkInstance } from '../users'
-import type { UserLogin } from '~/types'
 import { createRestAPIClient, createStreamingAPIClient } from '@bdxtown/akko'
 import { STORAGE_KEY_CLIENT_APP } from '~/constants'
-import { name } from './../../package.json'
+import type { UserLogin } from '~/types'
+import { name } from './../../../package.json'
 
 export function createMasto() {
   return {

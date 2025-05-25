@@ -1,26 +1,31 @@
 name: Release
 
-permissions:
-  contents: write
-
 on:
   push:
-    tags:
-      - 'v*'
-
+    branches: [ "main" ]
+    tags-ignore:
+      - '**'
+    
 jobs:
   release:
     runs-on: ubuntu-latest
+    if: startsWith(github.event.head_commit.message, 'chore(release):') != true
+
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    - uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.PA }}
+        ref: main
 
-      - name: Set node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
 
-      - run: npx changelogithub
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+    - name: Bump version
+      run: |
+        git config --global user.name 'BDX.town'
+        git config --global user.email 'BDX-town@users.noreply.github.com'
+        cd elk
+        npx commit-and-tag-version
+        git push --follow-tag origin main

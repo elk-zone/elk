@@ -46,7 +46,7 @@ export const pwa: PwaModuleOptions = {
       },
     ],
     share_target: {
-      action: '/share-target',
+      action: '/web-share-target',
       method: 'POST',
       enctype: 'multipart/form-data',
       params: {

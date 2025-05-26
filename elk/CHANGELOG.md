@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.16.3 (2025-05-26)
+
+
+### Bug Fixes
+
+* enable simpler webmanifest ([e51b013](https://github.com/BDX-town/elk/commit/e51b013c8a608d95bd0c2c92f737c340b93f3e09))
+
 ## 0.16.2 (2025-05-25)
 
 ## 0.16.1 (2025-05-25)

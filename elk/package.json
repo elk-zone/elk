@@ -62,6 +62,7 @@
     "@unocss/nuxt": "^66.1.2",
     "@upstash/redis": "^1.27.1",
     "@vercel/kv": "^2.0.0",
+    "@vite-pwa/nuxt": "^1.0.1",
     "@vue-macros/nuxt": "^1.11.12",
     "@vueuse/core": "^11.0.3",
     "@vueuse/gesture": "^2.0.0",

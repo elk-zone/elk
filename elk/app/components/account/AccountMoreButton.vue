@@ -20,7 +20,7 @@ const { client } = useAkko()
 const { share, isSupported: isShareSupported } = useShare()
 
 function shareAccount() {
-  share({ url: location.href })
+  share({ url: account.url })
 }
 
 async function toggleReblogs() {

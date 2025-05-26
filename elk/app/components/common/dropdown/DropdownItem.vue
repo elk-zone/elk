@@ -63,7 +63,7 @@ useCommand({
   >
     <div v-if="icon" :class="icon" />
     <div flex="~ col">
-      <div text-15px>
+      <div text-left text-15px>
         <slot>
           {{ text }}
         </slot>

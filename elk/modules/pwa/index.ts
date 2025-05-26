@@ -11,6 +11,15 @@ import { createI18n, pwaLocales } from './i18n'
 
 export * from './types'
 
+interface PwaDevIcon {
+  src: string
+  type: string
+}
+
+interface ResolvedPwaDevIcon extends PwaDevIcon {
+  data: Promise<Buffer>
+}
+
 export default defineNuxtModule<VitePWANuxtOptions>({
   meta: {
     name: 'elk-pwa',
@@ -27,7 +36,8 @@ export default defineNuxtModule<VitePWANuxtOptions>({
     const resolveVitePluginPWAAPI = (): VitePluginPWAAPI | undefined => {
       return vitePwaClientPlugin?.api
     }
-    let webmanifests: any | undefined
+    let webmanifests: LocalizedWebManifest | undefined
+
     nuxt.options.appConfig = nuxt.options.appConfig || {}
     nuxt.options.appConfig.pwaEnabled = !options.disable
 
@@ -69,8 +79,11 @@ export default defineNuxtModule<VitePWANuxtOptions>({
         throw new Error('Remove vite-plugin-pwa plugin from Vite Plugins entry in Nuxt config file!')
 
       webmanifests = await createI18n()
-      const generateManifest = () => {
-        return JSON.stringify(webmanifests)
+      const generateManifest = (entry: string) => {
+        const manifest = webmanifests![entry]
+        if (!manifest)
+          throw new Error(`No webmanifest found for locale/theme ${entry}`)
+        return JSON.stringify(manifest)
       }
       if (isClient) {
         viteInlineConfig.plugins.push({
@@ -80,7 +93,8 @@ export default defineNuxtModule<VitePWANuxtOptions>({
             if (options.disable || !bundle)
               return
             await mkdir(manifestDir, { recursive: true })
-            await writeFile(join(manifestDir, `manifest.webmanifest`), generateManifest())
+            for (const wm in webmanifests)
+              await writeFile(join(manifestDir, `manifest-${wm}.webmanifest`), generateManifest(wm))
           },
         })
       }
@@ -88,14 +102,31 @@ export default defineNuxtModule<VitePWANuxtOptions>({
         name: 'elk:pwa:dev',
         apply: 'serve',
         configureServer(server) {
-          const localeMatcher = new RegExp(`^${nuxt.options.app.baseURL}manifest.webmanifest$`)
+          const icons: PwaDevIcon[] = webmanifests?.['en-US']?.icons as any
+          const mappedIcons: PwaDevIcon[] = [
+            ...icons.map(({ src, type }) => ({ src, type })),
+            { src: 'favicon.ico', type: 'image/x-icon' },
+            { src: 'apple-touch-icon.png', type: 'image/png' },
+            { src: 'logo.svg', type: 'image/svg+xml' },
+          ]
+
+          const folder = dirname(fileURLToPath(import.meta.url))
+          const useIcons = mappedIcons.reduce((acc, icon) => {
+            icon.src = `${nuxt.options.app.baseURL}${icon.src}`
+            acc[icon.src] = {
+              ...icon,
+              data: readFile(resolve(join(folder, '../../public-dev', icon.src))),
+            }
+            return acc
+          }, <Record<string, ResolvedPwaDevIcon>>{})
+          const localeMatcher = new RegExp(`^${nuxt.options.app.baseURL}manifest-(.*).webmanifest$`)
           server.middlewares.use(async (req, res, next) => {
             const url = req.url
             if (!url)
               return next()
 
             const match = url.match(localeMatcher)
-            const entry = match && webmanifests
+            const entry = match && webmanifests![match[1]]
             if (entry) {
               res.statusCode = 200
               res.setHeader('Content-Type', 'application/manifest+json')
@@ -105,7 +136,15 @@ export default defineNuxtModule<VitePWANuxtOptions>({
               return
             }
 
-            return next()
+            const icon = useIcons[url]
+            if (!icon)
+              return next()
+
+            res.statusCode = 200
+            res.setHeader('Content-Type', icon.type)
+            res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate')
+            res.write(await icon.data)
+            res.end()
           })
         },
       })
@@ -130,6 +169,14 @@ export default defineNuxtModule<VitePWANuxtOptions>({
           return
 
         viteServer.middlewares.stack.push({ route: webManifest, handle: emptyHandle })
+        if (webmanifests) {
+          Object.keys(webmanifests).forEach((wm) => {
+            viteServer.middlewares.stack.push({
+              route: `${nuxt.options.app.baseURL}manifest-${wm}.webmanifest`,
+              handle: emptyHandle,
+            })
+          })
+        }
         viteServer.middlewares.stack.push({ route: devSw, handle: emptyHandle })
       })
 

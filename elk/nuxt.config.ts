@@ -327,7 +327,6 @@ export default defineNuxtConfig({
     },
     vueI18n: '../config/i18n.config.ts',
     bundle: {
-      // @ts-expect-error ???
       optimizeTranslationDirective: false,
     },
   },

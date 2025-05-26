@@ -2,6 +2,7 @@ import type { Directions, LocaleObject } from '@nuxtjs/i18n'
 
 export function setupPageHeader() {
   const { locale, locales, t } = useI18n()
+  const colorMode = useColorMode()
   const buildInfo = useBuildInfo()
   const enablePinchToZoom = usePreferences('enablePinchToZoom')
 
@@ -58,15 +59,13 @@ export function setupPageHeader() {
 
       return titleTemplate
     },
-    link: [
-      ...manifest.value,
-      ...(currentInstance.value?.thumbnail
-        ? [{
-            rel: 'icon',
-            href: currentInstance.value?.thumbnail,
-          }]
-        : []),
-    ],
+    link: (import.meta.client && useAppConfig().pwaEnabled)
+      ? () => [{
+          key: 'webmanifest',
+          rel: 'manifest',
+          href: `/manifest-${locale.value}${colorMode.value === 'dark' ? '-dark' : ''}.webmanifest`,
+        }]
+      : [],
   })
 }
 

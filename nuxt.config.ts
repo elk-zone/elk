@@ -1,4 +1,4 @@
-import type { BuildInfo } from './types'
+import type { BuildInfo } from './shared/types'
 import { createResolver, useNuxt } from '@nuxt/kit'
 import { resolveModulePath } from 'exsolve'
 import { isCI, isDevelopment, isWindows } from 'std-env'
@@ -12,9 +12,16 @@ const mockProxy = resolveModulePath('mocked-exports/proxy', { from: import.meta.
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-09-11',
+  future: {
+    compatibilityVersion: 4,
+  },
   typescript: {
     tsConfig: {
       exclude: ['../service-worker'],
+      compilerOptions: {
+        // TODO: enable this once we fix the issues
+        noUncheckedIndexedAccess: false,
+      },
       vueCompilerOptions: {
         target: 3.5,
       },
@@ -30,11 +37,11 @@ export default defineNuxtConfig({
     '@unlazy/nuxt',
     '@nuxt/test-utils/module',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
-    '~/modules/emoji-mart-translation',
-    '~/modules/purge-comments',
-    '~/modules/build-env',
-    '~/modules/tauri/index',
-    '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
+    '~~/modules/emoji-mart-translation',
+    '~~/modules/purge-comments',
+    '~~/modules/build-env',
+    '~~/modules/tauri/index',
+    '~~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     'stale-dep/nuxt',
   ],
   vue: {
@@ -320,7 +327,7 @@ export default defineNuxtConfig({
     experimental: {
       generatedLocaleFilePathFormat: 'relative',
     },
-    vueI18n: './config/i18n.config.ts',
+    vueI18n: '../config/i18n.config.ts',
     bundle: {
       optimizeTranslationDirective: false,
     },

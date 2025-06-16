@@ -72,7 +72,7 @@ export const statusVisibilities = [
   },
   {
     value: 'unlisted',
-    icon: 'i-ri:lock-unlock-line',
+    icon: 'i-ri:moon-line',
   },
   {
     value: 'private',

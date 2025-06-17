@@ -115,17 +115,20 @@ export async function useTranslation(status: mastodon.v1.Status | mastodon.v1.St
   const translation = translations.get(status)!
   const userSettings = useUserSettings()
 
-  let shouldTranslate = 'language' in status && status.language && status.language !== to
-    && !userSettings.value.disabledTranslationLanguages.includes(status.language)
-  if (!translationAPISupported) {
-    shouldTranslate = supportedTranslationCodes.includes(to as any)
-      && supportedTranslationCodes.includes(status.language as any)
-  }
-  else {
-    shouldTranslate = (await (globalThis as any).Translator.availability({
-      sourceLanguage: status.language,
-      targetLanguage: to,
-    })) !== 'unavailable'
+  let shouldTranslate = false as boolean
+  if ('language' in status) {
+    shouldTranslate = !!(status.language && status.language !== to
+      && !userSettings.value.disabledTranslationLanguages.includes(status.language))
+    if (!translationAPISupported) {
+      shouldTranslate = supportedTranslationCodes.includes(to as any)
+        && supportedTranslationCodes.includes(status.language as any)
+    }
+    else {
+      shouldTranslate = (await (globalThis as any).Translator.availability({
+        sourceLanguage: status.language,
+        targetLanguage: to,
+      })) !== 'unavailable'
+    }
   }
   const enabled = /*! !useRuntimeConfig().public.translateApi && */ shouldTranslate
 
@@ -141,7 +144,7 @@ export async function useTranslation(status: mastodon.v1.Status | mastodon.v1.St
           success: false,
         },
       }
-      if (translationAPISupported) {
+      if (translationAPISupported && 'language' in status) {
         let sourceLanguage = status.language
         if (!sourceLanguage) {
           const languageDetector = await (globalThis as any).LanguageDetector.create()
@@ -177,7 +180,9 @@ export async function useTranslation(status: mastodon.v1.Status | mastodon.v1.St
         }
       }
       else {
-        translated = await translateText(status.content, status.language, to)
+        if ('language' in status) {
+          translated = await translateText(status.content, status.language, to)
+        }
       }
       translation.error = translated.value.error
       translation.text = translated.value.text

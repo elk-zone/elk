@@ -115,16 +115,15 @@ export async function useTranslation(status: mastodon.v1.Status | mastodon.v1.St
   const translation = translations.get(status)!
   const userSettings = useUserSettings()
 
-  let shouldTranslate = false as boolean
+  let shouldTranslate = false
   if ('language' in status) {
-    shouldTranslate = !!(status.language && status.language !== to
-      && !userSettings.value.disabledTranslationLanguages.includes(status.language))
+    shouldTranslate = typeof status.language === 'string' && status.language !== to && !userSettings.value.disabledTranslationLanguages.includes(status.language)
     if (!translationAPISupported) {
-      shouldTranslate = supportedTranslationCodes.includes(to as any)
+      shouldTranslate = shouldTranslate && supportedTranslationCodes.includes(to as any)
         && supportedTranslationCodes.includes(status.language as any)
     }
     else {
-      shouldTranslate = (await (globalThis as any).Translator.availability({
+      shouldTranslate = shouldTranslate && (await (globalThis as any).Translator.availability({
         sourceLanguage: status.language,
         targetLanguage: to,
       })) !== 'unavailable'

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { DraftItem } from '#shared/types'
 import type { mastodon } from 'masto'
-import { PublishLanguagePicker } from '#components'
 import { EditorContent } from '@tiptap/vue-3'
 import stringLength from 'string-length'
 

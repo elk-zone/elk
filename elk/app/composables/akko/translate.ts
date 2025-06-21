@@ -42,6 +42,10 @@ export const supportedTranslationCodes = [
   'zh',
 ] as const
 
+const translationAPISupported = 'Translator' in globalThis && 'LanguageDetector' in globalThis
+
+const anchorMarkupRegEx = /<a[^>]*>.*?<\/a>/g
+
 export function getLanguageCode() {
   let code = 'en'
   const getCode = (code: string) => code.replace(/-.*$/, '')
@@ -58,6 +62,13 @@ interface TranslationErr {
   }
 }
 
+function replaceTranslatedLinksWithOriginal(text: string) {
+  return text.replace(anchorMarkupRegEx, (match) => {
+    const tagLink = anchorMarkupRegEx.exec(text)
+    return tagLink ? tagLink[0] : match
+  })
+}
+
 export async function translateText(text: string, from: string | null | undefined, to: string) {
   const config = useRuntimeConfig()
   const status = ref({
@@ -65,7 +76,6 @@ export async function translateText(text: string, from: string | null | undefine
     error: '',
     text: '',
   })
-  const regex = /<a[^>]*>.*?<\/a>/g
   try {
     const response = await ($fetch as any)(config.public.translateApi, {
       method: 'POST',
@@ -78,11 +88,7 @@ export async function translateText(text: string, from: string | null | undefine
       },
     }) as TranslationResponse
     status.value.success = true
-    // replace the translated links with the original
-    status.value.text = response.translatedText.replace(regex, (match) => {
-      const tagLink = regex.exec(text)
-      return tagLink ? tagLink[0] : match
-    })
+    status.value.text = replaceTranslatedLinksWithOriginal(response.translatedText)
   }
   catch (err) {
     // TODO: improve type
@@ -102,17 +108,27 @@ const translations = new WeakMap<akkoma.v1.Status | akkoma.v1.StatusEdit, {
   error: string
 }>()
 
-export function useTranslation(status: akkoma.v1.Status | akkoma.v1.StatusEdit, to: string) {
+export async function useTranslation(status: akkoma.v1.Status | akkoma.v1.StatusEdit, to: string) {
   if (!translations.has(status))
     translations.set(status, reactive({ visible: false, text: '', success: false, error: '' }))
 
   const translation = translations.get(status)!
   const userSettings = useUserSettings()
 
-  const shouldTranslate = 'language' in status && status.language && status.language !== to
-    && supportedTranslationCodes.includes(to as any)
-    && supportedTranslationCodes.includes(status.language as any)
-    && !userSettings.value.disabledTranslationLanguages.includes(status.language)
+  let shouldTranslate = false
+  if ('language' in status) {
+    shouldTranslate = typeof status.language === 'string' && status.language !== to && !userSettings.value.disabledTranslationLanguages.includes(status.language)
+    if (!translationAPISupported) {
+      shouldTranslate = shouldTranslate && supportedTranslationCodes.includes(to as any)
+        && supportedTranslationCodes.includes(status.language as any)
+    }
+    else {
+      shouldTranslate = shouldTranslate && (await (globalThis as any).Translator.availability({
+        sourceLanguage: status.language,
+        targetLanguage: to,
+      })) !== 'unavailable'
+    }
+  }
   const enabled = /*! !useRuntimeConfig().public.translateApi && */ shouldTranslate
 
   async function toggle() {
@@ -120,12 +136,57 @@ export function useTranslation(status: akkoma.v1.Status | akkoma.v1.StatusEdit, 
       return
 
     if (!translation.text) {
-      const translated = await translateText(status.content, status.language, to)
+      let translated = {
+        value: {
+          error: '',
+          text: '',
+          success: false,
+        },
+      }
+      if (translationAPISupported && 'language' in status) {
+        let sourceLanguage = status.language
+        if (!sourceLanguage) {
+          const languageDetector = await (globalThis as any).LanguageDetector.create()
+          // Make sure HTML markup doesn't derail language detection.
+          const div = document.createElement('div')
+          div.innerHTML = status.content
+          // eslint-disable-next-line unicorn/prefer-dom-node-text-content
+          const detectedLanguages = await languageDetector.detect(div.innerText)
+          sourceLanguage = detectedLanguages[0].detectedLanguage
+          if (sourceLanguage === 'und') {
+            throw new Error('Could not detect source language.')
+          }
+        }
+        const translator = await (globalThis as any).Translator.create({
+          sourceLanguage,
+          targetLanguage: to,
+        })
+        try {
+          let text = await translator.translate(status.content)
+          text = replaceTranslatedLinksWithOriginal(text)
+          translated.value = {
+            error: '',
+            text,
+            success: true,
+          }
+        }
+        catch (error) {
+          translated.value = {
+            error: (error as Error).message,
+            text: '',
+            success: false,
+          }
+        }
+      }
+      else {
+        if ('language' in status) {
+          translated = await translateText(status.content, status.language, to)
+        }
+      }
       translation.error = translated.value.error
       translation.text = translated.value.text
       translation.success = translated.value.success
     }
-
     translation.visible = !translation.visible
   }
 

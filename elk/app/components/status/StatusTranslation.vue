@@ -9,7 +9,7 @@ const {
   toggle: _toggleTranslation,
   translation,
   enabled: isTranslationEnabled,
-} = useTranslation(status, getLanguageCode())
+} = await useTranslation(status, getLanguageCode())
 const preferenceHideTranslation = usePreferences('hideTranslation')
 
 const showButton = computed(() =>

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.16.5 (2025-06-21)
+
+
+### Features
+
+* do not use language detection features on low end devices and add debounce and abort ([937924f](https://github.com/BDX-town/elk/commit/937924f2ee56a9fe69f458a5b05d25572321f552))
+
 ## 0.16.4 (2025-05-26)
 
 

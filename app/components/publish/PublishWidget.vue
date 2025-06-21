@@ -283,7 +283,7 @@ const detectLanguage = useDebounceFn(async () => {
   }
   catch (e) {
     // if error or abort we end up there
-    if (e.name !== 'AbortError') {
+    if ((e as Error).name !== 'AbortError') {
       console.error(e)
     }
     draft.value.params.language = preferredLanguage.value

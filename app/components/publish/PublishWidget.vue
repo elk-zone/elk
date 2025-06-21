@@ -236,6 +236,45 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
   if (e.key === '?')
     e.stopImmediatePropagation()
 }
+
+const languageDetectorInGlobalThis = 'LanguageDetector' in globalThis
+let supportsLanguageDetector = languageDetectorInGlobalThis && await (globalThis as any).LanguageDetector.availability() === 'available'
+let languageDetector: { detect: (arg0: string) => any }
+// If the API is supported, but the model not loaded yet…
+if (languageDetectorInGlobalThis && !supportsLanguageDetector) {
+  // …trigger the model download
+  (globalThis as any).LanguageDetector.create().then((_languageDetector: { detect: (arg0: string) => any }) => {
+    supportsLanguageDetector = true
+    languageDetector = _languageDetector
+  })
+}
+
+function countLetters(text: string) {
+  const segmenter = new Intl.Segmenter('und', { granularity: 'grapheme' })
+  const letters = [...segmenter.segment(text)]
+  return letters.length
+}
+
+async function detectLanguage() {
+  if (!supportsLanguageDetector) {
+    return
+  }
+  if (!languageDetector) {
+    languageDetector = await (globalThis as any).LanguageDetector.create()
+  }
+  const text = htmlToText(editor.value?.getHTML() || '')
+  if (!text || countLetters(text) <= 5) {
+    draft.value.params.language = preferredLanguage.value
+    return
+  }
+  try {
+    const detectedLanguage = (await languageDetector.detect(text))[0].detectedLanguage
+    draft.value.params.language = detectedLanguage === 'und' ? preferredLanguage.value : detectedLanguage.substring(0, 2)
+  }
+  catch {
+    draft.value.params.language = preferredLanguage.value
+  }
+}
 </script>
 
 <template>
@@ -310,6 +349,7 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
                 }"
                 @keydown="stopQuestionMarkPropagation"
                 @keydown.esc.prevent="editor?.commands.blur()"
+                @keyup="detectLanguage"
               />
             </div>
 

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.16.6 (2025-06-21)
+
+
+### Features
+
+* remove instance name from nav ([7b064ab](https://github.com/BDX-town/elk/commit/7b064ab452b4f09cd71b4c58990b7b2635c59822))
+
 ## 0.16.5 (2025-06-21)
 
 

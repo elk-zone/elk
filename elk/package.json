@@ -1,7 +1,7 @@
 {
   "name": "@elk-zone/elk",
   "type": "module",
-  "version": "0.16.5",
+  "version": "0.16.6",
   "license": "MIT",
   "homepage": "https://elk.zone/",
   "main": "./nuxt.config.ts",

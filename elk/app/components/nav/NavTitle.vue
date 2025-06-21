@@ -30,9 +30,6 @@ router.afterEach(() => {
     >
       <img v-if="currentInstance?.thumbnail" :src="currentInstance?.thumbnail" aria-hidden shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip">
       <NavLogo v-else shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip" />
-      <div v-show="isHydrated" hidden xl:block text-secondary>
-        {{ (currentInstance?.title) || $t('app_name') }} <sup text-sm italic mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
-      </div>
     </NuxtLink>
     <div
       hidden xl:flex items-center me-8 mt-2 gap-1

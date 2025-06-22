@@ -59,7 +59,7 @@ async function refresh() {
   }
 }
 
-const votersCount = computed(() => poll.votersCount ?? poll.votesCount ?? 0)
+const votersCount = computed(() => poll.votesCount ?? poll.votersCount ?? 0)
 </script>
 
 <template>

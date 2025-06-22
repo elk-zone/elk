@@ -110,6 +110,10 @@ const blurHashSrc = computed(() => {
   return getDataUrlFromArr(pixels, 32, 32)
 })
 
+const attachmentUrl = computed(() => (attachment.url || attachment.remoteUrl) as string)
+
+const attachmentExtension = computed(() => (attachmentUrl.value.split('.').at(-1)))
+
 const videoThumbnail = ref(shouldLoadAttachment.value
   ? attachment.previewUrl
   : blurHashSrc.value)
@@ -205,7 +209,7 @@ watch(shouldLoadAttachment, () => {
         <source :src="attachment.url || attachment.previewUrl" type="audio/mp3">
       </audio>
     </template>
-    <template v-else>
+    <template v-else-if="type === 'image'">
       <button
         type="button"
         focus:outline-none
@@ -249,6 +253,21 @@ watch(shouldLoadAttachment, () => {
           i-ri:file-download-line
         />
       </button>
+    </template>
+    <template v-else>
+      <NuxtLink :href="attachment.remoteUrl as string" target="_blank" rounded-lg w-full h-full bg-active relative flex flex-col justify-center items-center p-5>
+        <div
+          i-ri:attachment-line
+          w-6
+          h-6
+        />
+        <div>
+          {{ attachment.id }}.{{ attachmentExtension }}
+        </div>
+        <div text-secondary>
+          {{ attachment.description }}
+        </div>
+      </NuxtLink>
     </template>
     <div
       :class="isAudio ? [] : [

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.16.7 (2025-06-22)
+
+
+### Bug Fixes
+
+* sharing PDF is showing a blank preview ([3702ab1](https://github.com/BDX-town/elk/commit/3702ab14a78b7554bb3b9153a84db7adfa8032cf))
+
 ## 0.16.6 (2025-06-21)
 
 

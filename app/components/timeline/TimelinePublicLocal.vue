@@ -9,7 +9,7 @@ function reorderAndFilter(items: mastodon.v1.Status[]) {
 
 let followedTags: mastodon.v1.Tag[] | undefined
 if (currentUser.value !== undefined) {
-  followedTags = (await useMasto().client.value.v1.followedTags.list({ limit: 0 }))
+  followedTags = (await useMasto().client.value.v1.followedTags.list({ limit: 200 }))
 }
 </script>
 

@@ -127,7 +127,7 @@
     "@types/wicg-file-system-access": "^2023.10.6",
     "@types/ws": "^8.18.1",
     "@unlazy/nuxt": "^0.12.4",
-    "@unocss/eslint-config": "^66.2.3",
+    "@unocss/eslint-config": "^66.3.2",
     "@vue/test-utils": "2.4.6",
     "bumpp": "^10.2.0",
     "consola": "^3.4.2",

@@ -1,28 +1,25 @@
+import type { FetchResponse } from 'ofetch'
 import {
   createApp,
   createRouter,
   defineLazyEventHandler,
   toNodeListener,
 } from 'h3'
-import type { FetchResponse } from 'ofetch'
+import { fetchNodeRequestHandler } from 'node-mock-http'
 import { createFetch } from 'ofetch'
-import {
-  createCall,
-  createFetch as createLocalFetch,
-} from 'unenv/runtime/fetch/index'
 
 const handlers = [
   {
     route: '/api/:server/oauth',
-    handler: defineLazyEventHandler(() => import('~/server/api/[server]/oauth/[origin]').then(r => r.default || r)),
+    handler: defineLazyEventHandler(() => import('~~/server/api/[server]/oauth/[origin]').then(r => r.default || r)),
   },
   {
     route: '/api/:server/login',
-    handler: defineLazyEventHandler(() => import('~/server/api/[server]/login').then(r => r.default || r)),
+    handler: defineLazyEventHandler(() => import('~~/server/api/[server]/login').then(r => r.default || r)),
   },
   {
     route: '/api/list-servers',
-    handler: defineLazyEventHandler(() => import('~/server/api/list-servers').then(r => r.default || r)),
+    handler: defineLazyEventHandler(() => import('~~/server/api/list-servers').then(r => r.default || r)),
   },
 ]
 
@@ -37,7 +34,7 @@ export default defineNuxtPlugin(async () => {
   const config = useRuntimeConfig()
 
   const h3App = createApp({
-    debug: process.dev,
+    debug: import.meta.dev,
     // TODO: add global error handler
     // onError: (err, event) => {
     //  console.log({ err, event })
@@ -52,11 +49,16 @@ export default defineNuxtPlugin(async () => {
   // @ts-expect-error TODO: fix
   h3App.use(config.app.baseURL, router)
 
-  const localCall = createCall(toNodeListener(h3App) as any)
-  const localFetch = createLocalFetch(localCall, globalThis.fetch)
+  const nodeHandler = toNodeListener(h3App)
+  const localFetch: typeof fetch = async (input, init) => {
+    if (!input.toString().startsWith('/')) {
+      return globalThis.fetch(input.toString(), init)
+    }
+    return await fetchNodeRequestHandler(nodeHandler, input.toString(), init)
+  }
 
+  // @ts-expect-error error types are subtly different here in a future nitro version
   globalThis.$fetch = createFetch({
-    // @ts-expect-error slight differences in api
     fetch: localFetch,
     Headers,
     defaults: { baseURL: config.app.baseURL },

@@ -1,4 +1,4 @@
-import proxy from 'unenv/runtime/mock/proxy'
+import proxy from 'mocked-exports/proxy'
 
 export const Extension = proxy
 export const useEditor = proxy
@@ -13,5 +13,7 @@ export const nodePasteRule = proxy
 export const VueNodeViewRenderer = proxy
 export const findChildren = proxy
 export const VueRenderer = proxy
+export const callOrReturn = proxy
+export const InputRule = proxy
 
 export { proxy as default }

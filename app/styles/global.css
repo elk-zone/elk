@@ -1,0 +1,245 @@
+html {
+  font-size: var(--font-size, 15px);
+  width: 100%;
+  width: 100vw;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Homemade Apple';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/homemade-apple-v18.ttf) format('truetype');
+}
+
+::-moz-selection {
+  background: var(--c-bg-selection);
+}
+
+::selection {
+  background: var(--c-bg-selection);
+}
+
+/* Force vertical scrollbar to be always visible to avoid layout shift while loading the content */
+body {
+  overflow-y: scroll;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.zen .zen-hide {
+  --at-apply: 'op0 hover:op100 transition duration-600';
+}
+
+.zen .zen-none {
+  display: none;
+}
+
+.content-editor img.custom-emoji,
+.custom-emoji img,
+.iconify-emoji {
+  display: inline-block;
+  height: 1.2em;
+  max-width: 100%;
+  margin-right: 0.075em;
+  margin-left: 0.075em;
+  object-fit: contain;
+  overflow: hidden;
+  vertical-align: -20%;
+}
+
+.iconify-emoji-padded {
+  transform: scale(1.2);
+}
+
+em-emoji-picker {
+  --border-radius: 0;
+  width: 352px;
+}
+
+.content-rich {
+  overflow-wrap: break-word;
+
+  a {
+    --at-apply: 'text-primary hover:underline hover:text-primary-active';
+    .invisible {
+      --at-apply: 'hidden';
+    }
+    .ellipsis {
+      --at-apply: 'line-clamp-1 ws-pre-wrap break-all inline';
+      &::after {
+        content: '…';
+      }
+    }
+  }
+  b,
+  strong {
+    --at-apply: font-bold;
+  }
+  p {
+    --at-apply: my-2;
+  }
+  p:first-child {
+    --at-apply: mt-1;
+  }
+  p:last-child {
+    --at-apply: mb-1;
+  }
+  pre {
+    --at-apply: whitespace-pre-wrap;
+  }
+  code {
+    --at-apply: bg-code text-code px1 py0.5 rounded text-0.875em leading-0.8em;
+  }
+  pre code {
+    --at-apply: bg-transparent px0 py0 rounded-none leading-1.6em;
+  }
+  ol {
+    --at-apply: list-decimal my-3 pl-6 ml-2;
+  }
+  ul {
+    --at-apply: list-disc my-3 pl-6 ml-2;
+  }
+  li {
+    --at-apply: mt-1 mb-1;
+    &:empty {
+      --at-apply: hidden;
+    }
+  }
+  ol > li {
+    --at-apply: pl-2;
+  }
+  ul > li {
+    --at-apply: pl-2;
+  }
+  blockquote {
+    --at-apply: border-primary border-l-4 border-solid pl-3 my-3 text-secondary;
+  }
+  .code-block {
+    --at-apply: bg-code text-0.875em p3 mt-2 rounded overflow-auto
+      leading-1.6em;
+
+    .shiki {
+      background: transparent !important;
+    }
+  }
+}
+
+.line-compact {
+  line-height: calc(4 / 3 * 1em);
+}
+
+.content-editor {
+  --at-apply: outline-none flex-1;
+  max-width: 100%;
+
+  .custom-emoji {
+    margin: 0 0.2em;
+  }
+
+  p {
+    --at-apply: my-0;
+    line-height: calc(4 / 3 * 1em);
+  }
+  p:first-child {
+    --at-apply: mt-1;
+  }
+  p:last-child {
+    --at-apply: mb-1;
+  }
+}
+
+.skeleton-loading-bg {
+  background: linear-gradient(
+    90deg,
+    rgba(190, 190, 190, 0.2) 25%,
+    rgba(129, 129, 129, 0.24) 37%,
+    rgba(190, 190, 190, 0.2) 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.4s ease infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 50%;
+  }
+  to {
+    background-position: 0 50%;
+  }
+}
+
+html,
+body,
+#__nuxt {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+html {
+  --at-apply: bg-base text-base;
+}
+
+html:not(.enable-pinch-to-zoom) body {
+  /* Prevent arbitrary zooming on mobile devices */
+  touch-action: pan-x pan-y;
+}
+
+.sparkline--fill {
+  fill: var(--c-primary-active);
+  opacity: 0.2;
+}
+
+.sparkline--line {
+  stroke: var(--c-primary);
+  stroke-width: 2;
+}
+
+html[dir="rtl"] .rtl-flip {
+  transform: scale(-1, 1)
+}
+
+footer {
+  a {
+    --at-apply: 'hover:underline';
+  }
+}
+
+.squircle {
+  clip-path: url(#avatar-mask);
+}
+
+/*
+Grayscale mode
+Setting each element filter to a different var
+allows controlling them individually
+*/
+[data-mode="grayscale"] img,
+[data-mode="grayscale"] video {
+  filter: grayscale(var(--media-grayscale, 1));
+  transition: filter .23s ease-in-out .2s;
+}
+[data-mode="grayscale"] pre {
+  filter: grayscale(var(--code-grayscale, 1));
+}
+[data-mode="grayscale"] .poll-wrapper {
+  filter: grayscale(var(--poll-grayscale, 1));
+}
+[data-mode="grayscale"] .status-actions,
+[data-mode="grayscale"] .status-boosted {
+  filter: grayscale(var(--status-grayscale, 1));
+}
+
+[data-mode="grayscale"] img:hover,
+[data-mode="grayscale"] video:hover {
+  filter: grayscale(0);
+}
+
+.nuxt-loading-indicator {
+  opacity: unset !important;
+}

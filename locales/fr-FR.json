@@ -63,7 +63,7 @@
     "enter_app": "Entrer dans l'application",
     "favourite": "J'aime",
     "favourite_count": "{0}",
-    "favourited": "Aimé",
+    "favourited": "J'aime",
     "more": "Plus",
     "next": "Suivant",
     "prev": "Précédent",
@@ -214,8 +214,7 @@
         "command_mode": "Mode commande",
         "compose": "Composer",
         "favourite": "J'aime",
-        "title": "Actions",
-        "zen_mode": "Mode Zen"
+        "title": "Actions"
       },
       "media": {
         "title": "Média"
@@ -278,7 +277,7 @@
     "compose": "Composer",
     "conversations": "Conversations",
     "explore": "Explorer",
-    "favourites": "Favoris",
+    "favourites": "Aimés",
     "federated": "Fédérés",
     "home": "Accueil",
     "list": "Liste",
@@ -550,9 +549,6 @@
       "label": "Comptes connectés"
     }
   },
-  "share-target": {
-    "title": ""
-  },
   "share_target": {
     "description": "Elk peut être configuré pour que vous puissiez partager du contenu à partir d'autres applications, installez simplement Elk sur votre appareil ou ordinateur et connectez-vous.",
     "hint": "Pour partager du contenu avec Elk, Elk doit être installé et vous devez être connecté.",
@@ -589,7 +585,8 @@
     "poll": {
       "count": "{0} votes",
       "ends": "se clôt {0}",
-      "finished": "clos {0}"
+      "finished": "clos {0}",
+      "update": "Mettre à jour les résultats"
     },
     "replying_to": "Répondre à {0}",
     "show_full_thread": "Voir le fil de discussion complet",
@@ -605,7 +602,6 @@
     "edited": "a édité {0}"
   },
   "tab": {
-    "account": "Compte",
     "accounts": "Comptes",
     "for_you": "Pour vous",
     "hashtags": "Hashtags",

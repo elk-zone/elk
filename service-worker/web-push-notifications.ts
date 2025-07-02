@@ -1,12 +1,12 @@
 /// <reference lib="WebWorker" />
 /// <reference types="vite/client" />
-import { ELK_PAGE_LIFECYCLE_FROZEN } from '../constants'
+import type { PushPayload } from '~~/service-worker/types'
+import { ELK_PAGE_LIFECYCLE_FROZEN } from '../app/constants'
 import {
   closeDatabaseConnections,
   createNotificationOptions,
   findNotification,
 } from './notification'
-import type { PushPayload } from '~/service-worker/types'
 
 declare const self: ServiceWorkerGlobalScope
 

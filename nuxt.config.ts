@@ -1,18 +1,29 @@
+import type { BuildInfo } from './shared/types'
 import { createResolver, useNuxt } from '@nuxt/kit'
+import { resolveModulePath } from 'exsolve'
 import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
-import { i18n } from './config/i18n'
+import { currentLocales } from './config/i18n'
 import { pwa } from './config/pwa'
-import type { BuildInfo } from './types'
 
 const { resolve } = createResolver(import.meta.url)
 
+const mockProxy = resolveModulePath('mocked-exports/proxy', { from: import.meta.url })
+
 export default defineNuxtConfig({
+  compatibilityDate: '2024-09-11',
+  future: {
+    compatibilityVersion: 4,
+  },
   typescript: {
     tsConfig: {
       exclude: ['../service-worker'],
+      compilerOptions: {
+        // TODO: enable this once we fix the issues
+        noUncheckedIndexedAccess: false,
+      },
       vueCompilerOptions: {
-        target: 3.3,
+        target: 3.5,
       },
     },
   },
@@ -26,27 +37,30 @@ export default defineNuxtConfig({
     '@unlazy/nuxt',
     '@nuxt/test-utils/module',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
-    '~/modules/emoji-mart-translation',
-    '~/modules/purge-comments',
-    '~/modules/build-env',
-    '~/modules/tauri/index',
-    '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
+    '~~/modules/emoji-mart-translation',
+    '~~/modules/purge-comments',
+    '~~/modules/build-env',
+    '~~/modules/tauri/index',
+    '~~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     'stale-dep/nuxt',
   ],
   vue: {
-    defineModel: true,
+    propsDestructure: true,
   },
   macros: {
     setupSFC: true,
     betterDefine: false,
     defineModels: false,
+    reactivityTransform: false,
   },
   devtools: {
     enabled: true,
   },
+  features: {
+    inlineStyles: false,
+  },
   experimental: {
     payloadExtraction: false,
-    inlineSSRStyles: false,
     renderJsonPayloads: true,
   },
   css: [
@@ -73,6 +87,11 @@ export default defineNuxtConfig({
       './composables/settings',
       './composables/tiptap/index.ts',
     ],
+    imports: [{
+      name: 'useI18n',
+      from: '~/utils/i18n',
+      priority: 100,
+    }],
     injectAtEnd: true,
   },
   vite: {
@@ -83,6 +102,46 @@ export default defineNuxtConfig({
     },
     build: {
       target: 'esnext',
+    },
+    optimizeDeps: {
+      include: [
+        '@tiptap/vue-3',
+        'string-length',
+        'vue-virtual-scroller',
+        'emoji-mart',
+        'iso-639-1',
+        '@tiptap/extension-placeholder',
+        '@tiptap/extension-document',
+        '@tiptap/extension-paragraph',
+        '@tiptap/extension-text',
+        '@tiptap/extension-mention',
+        '@tiptap/extension-hard-break',
+        '@tiptap/extension-bold',
+        '@tiptap/extension-italic',
+        '@tiptap/extension-code',
+        '@tiptap/extension-history',
+        'prosemirror-state',
+        'browser-fs-access',
+        'blurhash',
+        '@vueuse/integrations/useFocusTrap',
+        '@tiptap/extension-code-block',
+        'prosemirror-highlight',
+        '@tiptap/core',
+        'tippy.js',
+        'prosemirror-highlight/shiki',
+        '@fnando/sparkline',
+        '@vueuse/gesture',
+        'github-reserved-names',
+        'file-saver',
+        'slimeform',
+        'vue-advanced-cropper',
+        'workbox-window',
+        'workbox-precaching',
+        'workbox-routing',
+        'workbox-cacheable-response',
+        'workbox-strategies',
+        'workbox-expiration',
+      ],
     },
   },
   postcss: {
@@ -137,7 +196,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     alias: {
-      'isomorphic-ws': 'unenv/runtime/mock/proxy',
+      'isomorphic-ws': mockProxy,
     },
     esbuild: {
       options: {
@@ -149,17 +208,17 @@ export default defineNuxtConfig({
     },
     publicAssets: [
       {
-        dir: '~/public/avatars',
+        dir: resolve('./public/avatars'),
         maxAge: 24 * 60 * 60 * 30, // 30 days
         baseURL: '/avatars',
       },
       {
-        dir: '~/public/emojis',
+        dir: resolve('./public/emojis'),
         maxAge: 24 * 60 * 60 * 15, // 15 days, matching service worker
         baseURL: '/emojis',
       },
       {
-        dir: '~/public/fonts',
+        dir: resolve('./public/fonts'),
         maxAge: 24 * 60 * 60 * 365, // 1 year (versioned)
         baseURL: '/fonts',
       },
@@ -181,7 +240,7 @@ export default defineNuxtConfig({
         for (const dep of ['eventemitter3', 'isomorphic-ws'])
           alias[dep] = resolve('./mocks/class')
         for (const dep of ['fuse.js'])
-          alias[dep] = 'unenv/runtime/mock/proxy'
+          alias[dep] = mockProxy
         const resolver = createResolver(import.meta.url)
 
         config.plugins!.unshift({
@@ -213,7 +272,7 @@ export default defineNuxtConfig({
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
       meta: [
-        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
         // open graph social image
         { property: 'og:title', content: 'Elk' },
         { property: 'og:description', content: 'A nimble Mastodon web client' },
@@ -222,12 +281,13 @@ export default defineNuxtConfig({
         { property: 'og:image:width', content: '3800' },
         { property: 'og:image:height', content: '1900' },
         { property: 'og:site_name', content: 'Elk' },
-        { property: 'twitter:site', content: '@elk_zone' },
-        { property: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:site', content: '@elk_zone' },
+        { name: 'twitter:card', content: 'summary_large_image' },
       ],
     },
   },
-  // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error
+
+  // eslint-disable-next-line ts/ban-ts-comment
   // @ts-ignore nuxt-security is conditional
   security: {
     headers: {
@@ -250,13 +310,28 @@ export default defineNuxtConfig({
         'upgrade-insecure-requests': true,
       },
       permissionsPolicy: {
-        fullscreen: ['\'self\'', 'https:', 'http:'],
+        fullscreen: '*',
       },
     },
     rateLimiter: false,
   },
   colorMode: { classSuffix: '' },
-  i18n,
+  i18n: {
+    locales: currentLocales,
+    lazy: true,
+    strategy: 'no_prefix',
+    detectBrowserLanguage: false,
+    // relative to i18n dir on rootDir: not yet v4 compat layout
+    langDir: '../locales',
+    defaultLocale: 'en-US',
+    experimental: {
+      generatedLocaleFilePathFormat: 'relative',
+    },
+    vueI18n: '../config/i18n.config.ts',
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
+  },
   pwa,
   staleDep: {
     packageManager: 'pnpm',
@@ -267,7 +342,7 @@ export default defineNuxtConfig({
 })
 
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
+  // eslint-disable-next-line ts/no-namespace
   namespace NodeJS {
     interface Process {
       mock?: Record<string, any>
@@ -276,6 +351,10 @@ declare global {
 }
 
 declare module '#app' {
+  interface PageMeta {
+    wideLayout?: boolean
+  }
+
   interface RuntimeNuxtHooks {
     'elk-logo:click': () => void
   }

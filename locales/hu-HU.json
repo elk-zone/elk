@@ -1,14 +1,14 @@
 {
   "a11y": {
-    "loading_page": "Az oldal töltődik, kérem várjon",
-    "loading_titled_page": "Töltődik a(z) {0} oldal, kérem várjon",
-    "locale_changed": "A nyelv megváltoztatva {0} -ra",
-    "locale_changing": "Nyelv változtatás, kérem várjon",
+    "loading_page": "Az oldal töltődik, kérjük várj",
+    "loading_titled_page": "Töltődik a(z) {0} oldal, kérjük várj",
+    "locale_changed": "A nyelv megváltoztatva: {0}",
+    "locale_changing": "Nyelv változtatás, kérjük várj",
     "route_loaded": "Oldal {0} betöltődött"
   },
   "account": {
-    "authorize": "Engedélyezze a követést",
-    "authorized": "Engedélyezte a kérést",
+    "authorize": "Engedélyezed a követést",
+    "authorized": "Engedélyezted a kérést",
     "avatar_description": "{0} felhasználó avatarja",
     "blocked_by": "Ez a felhasználó blokkolt.",
     "blocked_domains": "Blokkolt domainek",
@@ -17,9 +17,9 @@
     "bot": "BOT",
     "copy_account_name": "Fiók nevének másolása",
     "favourites": "Kedvencek",
-    "follow": "Követők",
+    "follow": "Követem",
     "follow_back": "Visszakövetés",
-    "follow_requested": "Kérve",
+    "follow_requested": "Követés kérve",
     "followers": "Követők",
     "followers_count": "{0} Követők|{0} Követő|{0} Követők",
     "following": "Követve",
@@ -27,12 +27,13 @@
     "follows_you": "Követ téged",
     "go_to_profile": "Ugrás a profilhoz",
     "joined": "Csatlakozott",
+    "lock": "Zárolt",
     "moved_title": "jelezte, hogy az új fiók mostantól:",
     "muted_users": "Némított felhasználók",
     "muting": "Némított",
     "mutuals": "Kölcsönös",
-    "notifications_on_post_disable": "Ne értesítsen, mikor {username} felhasználó bejegyzést tesz közzé",
-    "notifications_on_post_enable": "Értesítsen, mikor {username} felhasználó bejegyzést tesz közzé",
+    "notifications_on_post_disable": "Ne értesíts, mikor {username} felhasználó bejegyzést tesz közzé",
+    "notifications_on_post_enable": "Értesíts, mikor {username} felhasználó bejegyzést tesz közzé",
     "pinned": "Kitűzött",
     "posts": "Bejegyzések",
     "posts_count": "{0} Bejegyzések|{0} Bejegyzés|{0} Bejegyzések",
@@ -40,15 +41,15 @@
     "profile_personal_note": "Személyes jegyzetek",
     "profile_unavailable": "A profil nem elérhető",
     "reject": "Követés elutasítása",
-    "rejected": "Elutasítottad a kérést",
+    "rejected": "Elutasított kérés",
     "request_follow": "Követés kérése",
     "requested": "{0} kérte, hogy kövessen",
     "unblock": "Ne legyen blokkolva",
-    "unfollow": "Nem követem tovább",
+    "unfollow": "Nem követem",
     "unmute": "Némítás megszűntetve",
-    "view_other_followers": "A másik instancekról származó követések nem feltétlenül lesznek megjelenítve.",
-    "view_other_following": "A másik instancekról származó követők nem feltétlenül lesznek megjelenítve.",
-    "withdraw_follow_request": "A követési kérés visszavonása"
+    "view_other_followers": "Másik instancekról származó követések nem feltétlenül lesznek megjelenítve.",
+    "view_other_following": "Másik instancekról származó követők nem feltétlenül lesznek megjelenítve.",
+    "withdraw_follow_request": "Követési kérés visszavonása"
   },
   "action": {
     "apply": "Alkalmaz",
@@ -57,7 +58,8 @@
     "boost": "Kiemel",
     "boost_count": "{0}",
     "boosted": "Kiemelt",
-    "clear_publish_failed": "Publikálási hibák tisztítása",
+    "clear": "Tisztítás",
+    "clear_publish_failed": "Közzétételi hibák tisztítása",
     "clear_save_failed": "Mentési hibák tisztítása",
     "clear_upload_failed": "Fájl feltöltési hibák tisztítása",
     "close": "Bezár",
@@ -71,19 +73,21 @@
     "favourited": "Kedvencnek jelölt",
     "more": "Tovább",
     "next": "Következő",
+    "open_image_preview_dialog": "Kép előnézeti megnyitása",
     "prev": "Előző",
-    "publish": "Publikál",
+    "publish": "Közzététel",
+    "publish_thread": "Szál közzététele",
     "reply": "Válaszol",
     "reply_count": "{0}",
     "reset": "Visszaállít",
     "save": "Ment",
     "save_changes": "Változások mentése",
     "sign_in": "Bejelentkezés",
-    "sign_in_to": "Bejelentkezés: {0}",
+    "sign_in_to": "Bejelentkezve: {0}",
     "switch_account": "Fiók váltás",
     "vote": "Szavazás"
   },
-  "app_desc_short": "A fürge Mastodon kliens",
+  "app_desc_short": "Egy fürge Mastodon kliens",
   "app_logo": "Elk Logó",
   "app_name": "Elk",
   "attachment": {
@@ -94,7 +98,7 @@
     "activate": "Aktivál",
     "complete": "Befejez",
     "compose_desc": "Új bejegyzés írása",
-    "n-people-in-the-past-n-days": "{0} felhasználó az elmúlt {1} napban",
+    "n_people_in_the_past_n_days": "{0} ember az elmúlt {1} napban",
     "select_lang": "Nyelv kiválasztása",
     "sign_in_desc": "Létező fiók hozzáadása",
     "switch_account": "Váltás: {0}",
@@ -109,7 +113,7 @@
     "in": "be",
     "no_bookmarks": "Még nincs könyvjelzőzött bejegyzés",
     "no_favourites": "Még nincs kedvelt bejegyzés",
-    "not_found": "404 Nem található",
+    "not_found": "404 - Nem található",
     "offline_desc": "Offline állapot. Kérljük ellenőrízze a hálózati csatlatkozását."
   },
   "compose": {
@@ -120,56 +124,68 @@
     "block_account": {
       "cancel": "Mégsem",
       "confirm": "Blokkol",
-      "description": "Biztosan blokkolja? {0}"
+      "description": "Biztosan blokkolod, {0}?",
+      "title": "Hozzáférés blokkolása"
     },
     "block_domain": {
       "cancel": "Mégsem",
       "confirm": "Blokkol",
-      "description": "Biztosan blokkolja? {0}"
+      "description": "Biztosan blokkolod {0}?",
+      "title": "Domain blokkolása"
     },
     "common": {
-      "cancel": "Mégsem",
+      "cancel": "Nem",
       "confirm": "Igen"
     },
     "delete_list": {
       "cancel": "Mégsem",
       "confirm": "Töröl",
-      "description": "Biztosan törli a listát? \"{0}\""
+      "description": "Biztosan törlöd a listát? \"{0}\"",
+      "title": "Lista törlése"
     },
     "delete_posts": {
       "cancel": "Mégsem",
       "confirm": "Töröl",
-      "description": "Biztosan törli a bejegyzést?"
+      "description": "Biztosan törlöd a bejegyzést?",
+      "title": "Bejegyzés törlése"
     },
     "mute_account": {
       "cancel": "Mégsem",
       "confirm": "Némít",
-      "description": "Biztosan némítja? {0}"
+      "days": "napok|nap|napok",
+      "description": "Biztosan némítod? {0}",
+      "hours": "órák|óra|órák",
+      "minute": "perc|perc|perc",
+      "notifications": "Értesítések némítása",
+      "specify_duration": "Határozz meg némítási időtartamot",
+      "title": "Hozzáférés némítása"
     },
     "show_reblogs": {
       "cancel": "Mégsem",
       "confirm": "Mutat",
-      "description": "Biztosan megjeleníti a Turbót tőle? {0}"
+      "description": "Biztosan megjeleníted a kiemelést tőle? {0}",
+      "title": "Kiemelés megjenítése"
     },
     "unfollow": {
       "cancel": "Mégsem",
-      "confirm": "Követés leállítása",
-      "description": "Biztosan leállítja a követését?"
+      "confirm": "Nem követem",
+      "description": "Biztosan leállítod a követését?",
+      "title": "Nem követem"
     }
   },
   "conversation": {
-    "with": "vele: "
+    "with": "vele"
   },
   "custom_cards": {
     "stackblitz": {
-      "lines": "Sorok: {0}",
+      "lines": "Sorok {0}",
       "open": "Megnyit",
-      "snippet_from": "Töredék ebből: {0}"
+      "snippet_from": "Töredék ebből {0}"
     }
   },
   "error": {
-    "account_not_found": "Fiók {0} nem található",
-    "explore_list-empty": "Nincs most itt semmi... Nézz vissza később!",
+    "account_not_found": "A {0} fiók nem található",
+    "explore_list_empty": "Nincs most semmi érdekes. Térj vissza később!",
     "file_size_cannot_exceed_n_mb": "A fájl mérete nem haladhatja meg a {0}MB-ot",
     "sign_in_error": "Nem lehetséges a csatlakozás.",
     "status_not_found": "A bejegyzés nem található",
@@ -177,20 +193,20 @@
   },
   "help": {
     "build_preview": {
-      "desc1": "Jelenleg az Elk előzetes változatát nézi, a közösség jóvoltából - {0}.",
-      "desc2": "Tartalmazhat áttekintés mentes vagy kártékony változtatásokat is.",
-      "desc3": "Ne lépjen be valódi hozzáféréseddel.",
+      "desc1": "Jelenleg az Elk előzetes változatát látja, a közösség jóvoltából - {0}.",
+      "desc2": "Tartalmazhat áttekintésmentes vagy kártékony változtatásokat is.",
+      "desc3": "Ne lépj be valódi hozzáféréssel.",
       "title": "Előzetes változatát telepítése"
     },
-    "desc_highlight": "Számíthat néhány hibára és hiányzó funkcióra itt és ott.",
+    "desc_highlight": "Számíthatsz néhány hibára és hiányzó funkcióra itt és ott.",
     "desc_para1": "Köszönjük az érdeklődésedet és hogy kipróbálod az Elk folyamazban lévő és fejlesztés alatt álló Mastodon klienst!",
     "desc_para2": "keményen dolgozunk a fejlesztésen és a javításokon időről időre.",
-    "desc_para3": "A fejlesztés lendületéhez tudja támogatni csapatunkat a GitHub szponoráción keresztül. Reméljük elnyeri tetszésedét az Elk!",
+    "desc_para3": "A fejlesztés lendületéhez tudod támogatni csapatunkat a GitHub szponoráción keresztül. Reméljük elnyeri tetszésedét az Elk!",
     "desc_para4": "Az Elk nyílt forráskódú. Ha segíteni akar a tesztelésben, adhat visszajelzést vagy hozzájárulást,",
     "desc_para5": "elér minket a GitHub-on",
     "desc_para6": "és legyen elkötelezett.",
     "footer_team": "Az Elk csapat",
-    "title": "Az Elk Előzetes változata"
+    "title": "Üdvözöl az Elk!"
   },
   "language": {
     "search": "Keresés"
@@ -207,9 +223,12 @@
     "error": "Hiba történt a lista létrehozása közben",
     "error_prefix": "Hiba: ",
     "list_title_placeholder": "Lista címe",
+    "manage": "Listák kezelése",
     "modify_account": "Listák módosítása fiókkal",
     "remove_account": "Fiók eltávolítása a listáról",
-    "save": "Változtatások mentése"
+    "save": "Változtatások mentése",
+    "search_following_desc": "Követők keresése",
+    "search_following_placeholder": "Keresés az emberek között, akiket követsz"
   },
   "magic_keys": {
     "dialog_header": "Gyorsbillentyűk",
@@ -220,14 +239,25 @@
         "compose": "Közzétesz",
         "favourite": "Kedvenc",
         "search": "Keresés",
+        "show_new_items": "Új elemek mutatása",
         "title": "Műveletek"
       },
       "media": {
         "title": "Média"
       },
       "navigation": {
+        "go_to_bookmarks": "Könyvjelzők",
+        "go_to_conversations": "Párbeszédek",
+        "go_to_explore": "Felfedez",
+        "go_to_favourites": "Kedvencek",
+        "go_to_federated": "Összesített",
         "go_to_home": "Otthon",
+        "go_to_lists": "Listák",
+        "go_to_local": "Helyi",
         "go_to_notifications": "Értesítések",
+        "go_to_profile": "Profil",
+        "go_to_search": "Keresés",
+        "go_to_settings": "Beállítások",
         "next_status": "Következő bejegyzés",
         "previous_status": "Előző bejegyzés",
         "shortcut_help": "Gyors segítség",
@@ -237,7 +267,7 @@
     "sequence_then": "miután"
   },
   "menu": {
-    "add_personal_note": "Személyes megjegyzés hozzáfőzése: {0}",
+    "add_personal_note": "Személyes megjegyzés hozzáfűzése: {0}",
     "block_account": "Blokkol {0}",
     "block_domain": "Domaint blokkol {0}",
     "copy_link_to_post": "A bejegyzés hivatkozásának másolása",
@@ -282,13 +312,16 @@
     "built_at": "Verzió {0}",
     "compose": "Közzétesz",
     "conversations": "Párbeszédek",
+    "docs": "Dokumentáció",
     "explore": "Felfedezés",
     "favourites": "Kedvencek",
     "federated": "Összesített",
+    "hashtags": "Címkék",
     "home": "Otthon",
     "list": "Lista",
     "lists": "Listák",
     "local": "Helyi",
+    "more_menu": "Továbbiak",
     "muted_users": "Némított felhasználók",
     "notifications": "Értesítések",
     "privacy": "Adatvédelem",
@@ -299,14 +332,16 @@
     "select_language": "Megjelenítő nyelv",
     "settings": "Beállítások",
     "show_intro": "Bemutatkozás",
-    "toggle_theme": "Téma váltás",
+    "toggle_theme": "Téma váltása",
     "zen_mode": "Zen mód"
   },
   "notification": {
+    "and": "és",
     "favourited_post": "hozzáaadta a bejegyésed a kedvenceihez",
     "followed_you": "mostantól követ téged",
     "followed_you_count": "{0} ember követ téged|{0} ember követ téged|{0} ember követ téged",
     "missing_type": "HIÁNYZÓ éresítés típus:",
+    "others": "{0} mások|{0} más|{0} mások",
     "reblogged_post": "kiemelte a bejegyzésedet",
     "reported": "{0} jelentette {1}",
     "request_to_follow": "kérte hogy kövessen",
@@ -314,13 +349,13 @@
     "update_status": "frissítette a bejegyzését"
   },
   "placeholder": {
-    "content_warning": "Írja ide figyelmeztetését",
+    "content_warning": "Írj ide figyelmeztetést",
     "default_1": "Mi jár a fejedben?",
-    "reply_to_account": "Válasz: {0}",
+    "reply_to_account": "Válasz erre {0}",
     "replying": "Válaszol"
   },
   "polls": {
-    "allow_multiple": "Több választás megenedése",
+    "allow_multiple": "Több választás megengedése",
     "cancel": "Mégsem",
     "create": "Szavazás készítése",
     "disallow_multiple": "Több válasz tiltása",
@@ -336,8 +371,8 @@
     "install": "Telepítés",
     "install_title": "Elk telepítése",
     "screenshots": {
-      "dark": "Az Elk képernyőképe sötét módban fut",
-      "light": "Az Elk képernyőképe világos módban fut"
+      "dark": "Az Elk képernyőkép sötét módban fut",
+      "light": "Az Elk képernyőkép világos módban fut"
     },
     "title": "Új Elk frissítés elérhető!",
     "update": "Frissítés",
@@ -419,10 +454,12 @@
       "version": "Verzió"
     },
     "account_settings": {
-      "description": "Szerkessze fiókbeállításait a Mastodonban.",
+      "description": "Szerkeszd fiókbeállításaid a Mastodonban.",
       "label": "Fiók beállítások"
     },
     "interface": {
+      "bottom_nav": "Alsó navigáció",
+      "bottom_nav_instructions": "Válaszd ki a kedvenc navigációs gombodjaid, maximum öt darabot az alsó navigációhoz. Mindenképpen tartalmaznia kell a \"Továbbiak\" gombot.",
       "color_mode": "Szín mód",
       "dark_mode": "Sötét",
       "default": " (alapértelmezett)",
@@ -434,8 +471,9 @@
     },
     "language": {
       "display_language": "Megjelenítés nyelve",
+      "how_to_contribute": "Hogyan tehetsz közzé?",
       "label": "Nyelv",
-      "post_language": "Tartalom nyelve",
+      "post_language": "Bejegyzés nyelve",
       "status": "Fordítás állapota: {0}/{1} ({2}%)",
       "translations": {
         "add": "Hozzáadás",
@@ -490,13 +528,13 @@
           "enable_description": "Ha értesítéseket szeretne kapni amikor az Elk nincs nyitva, engedélyezze a push értesítéseket. A fenti \"@:settings.notifications.show_btn{'\"'} gomb segítségével pontosan szabályozhatja, hogy milyen típusú interakciók generáljanak push értesítéseket.",
           "enable_description_desktop": "Ha értesítéseket szeretne kapni amikor az Elk nincs nyitva, engedélyezze a push értesítéseket. A \"Beállítások > Értesítések > Push értesítések beállításai\" menüpontban pontosan szabályozhatja, hogy az engedélyezést követően milyen típusú interakciók generáljanak push értesítéseket.",
           "enable_description_mobile": "A beállításokat a \"Beállítások > Értesítések > Push értesítési beállítások\" navigációs menü segítségével is elérheti.",
-          "enable_description_settings": "Ha értesítéseket szeretne kapni amikor az Elk nincs nyitva, engedélyezze a push értesítéseket. Pontosan szabályozhatja, hogy milyen típusú interakciók generálnak push értesítéseket ugyanazon a képernyőn, miután engedélyezte őket.",
+          "enable_description_settings": "Ha értesítéseket szeretnél kapni amikor az Elk nincs nyitva, engedélyezd a push értesítéseket. Pontosan szabályozhatod, hogy milyen típusú interakciók generálhatnak push értesítéseket ugyanazon a képernyőn, miután engedélyezted őket.",
           "enable_desktop": "Push értesítések engedélyezése",
           "enable_title": "Sose hagyj ki semmit",
-          "re_auth": "Úgy tűnik, hogy a szervere nem támogatja a push értesítéseket. Próbáljon kijelentkezni, majd újra bejelentkezni. Ha ez az üzenet továbbra is megjelenik, forduljon a szerver rendszergazdájához."
+          "re_auth": "Úgy tűnik, hogy szervered nem támogatja a push értesítéseket. Próbáljon kijelentkezni, majd újra bejelentkezni. Ha ez az üzenet továbbra is megjelenik, forduljon a szerver rendszergazdájához."
         }
       },
-      "show_btn": "Nyissa meg az értesítési beállításokat",
+      "show_btn": "Nyisd meg az értesítési beállításokat",
       "under_construction": "Felújítás alatt"
     },
     "notifications_settings": "Értesítések",
@@ -515,13 +553,17 @@
       "hide_boost_count": "Kiemelés számláló elrejtése",
       "hide_favorite_count": "Kedvencek számláló elrejtése",
       "hide_follower_count": "Követők/Követések számláló elrejtése",
+      "hide_gif_indi_on_posts": "GIF jelölők elrejtése a bejegyzésekben",
       "hide_news": "Hírek elrejtése",
       "hide_reply_count": "Visszajelzések számláló elrejtése",
+      "hide_tag_hover_card": "Lebegő kártya elrejtése",
       "hide_translation": "Fordítás elrejtése",
       "hide_username_emojis": "Felhasználói emoji elrejtése",
       "hide_username_emojis_description": "Elrejti a hangulatjeleket a felhasználónevek elől az idővonalakban. A hangulatjelek továbbra is láthatók lesznek a profiljukban.",
       "label": "Preferenciák",
+      "optimize_for_low_performance_device": "Alacsony teljesítményre optimalizálás",
       "title": "Kísérleti képességek",
+      "unmute_videos": "Videó hangok bekapcsolva alapértelemezésként",
       "use_star_favorite_icon": "Használja a csillag favikont",
       "user_picker": "Felhasználók váltása",
       "user_picker_description": "Megjeleníti a naplózott fiókok összes avatarját a bal alsó sarokban, így gyorsan válthat közöttük.",
@@ -544,39 +586,43 @@
         "title": "Profil szerkesztése"
       },
       "featured_tags": {
-        "description": "Az emberek ezen címkék alatt böngészhetik nyilvános bejegyzéseit.",
+        "description": "Az emberek ezen címkék alatt böngészhetik a  nyilvános bejegyzéseid.",
         "label": "Kiemelt címkék",
         "under_construction": "Felújítás alatt"
       },
       "label": "Profil"
     },
-    "select_a_settings": "Válasszon egy beállítást",
+    "select_a_settings": "Válassz egy beállítást",
     "users": {
       "export": "Felhasználói tokenek exportálása",
       "import": "Felhasználói tokenek importálása",
       "label": "Bejelentkezett felhasználók"
     }
   },
-  "share-target": {
-    "description": "Az Elk konfigurálható úgy, hogy más alkalmazásokból is megoszthasson tartalmat, egyszerűen telepítse az Elket eszközére vagy számítógépére, és jelentkezzen be.",
-    "hint": "A tartalom Elkkel való megosztásához telepíteni kell az Elket, és be kell jelentkeznie.",
-    "title": "Megosztás Elkkel"
+  "share_target": {
+    "description": "Az Elk konfigurálható úgy, hogy más alkalmazásokból is megoszthass tartalmat, egyszerűen telepítse az Elket eszközödre vagy számítógépedre, és jelentkezz be.",
+    "hint": "A tartalom megosztásához telepíteni kell az Elket, és be kell jelentkezni.",
+    "title": "Oszd meg Elkkel"
   },
   "state": {
     "attachments_exceed_server_limit": "A mellékletek száma meghaladta a bejegyzésenkénti korlátot.",
+    "attachments_limit_audio_error": "A maximális audió méret meghaladva: {0}",
     "attachments_limit_error": "Túllépte a bejegyzésenkénti korlátot",
+    "attachments_limit_image_error": "A maximális kép méret meghaladva: {0}",
+    "attachments_limit_unknown_error": "A maximális fájl méret meghaladva: {0}",
+    "attachments_limit_video_error": "A maximális videó méret meghaladva: {0}",
     "edited": "(Szerkesztve)",
     "editing": "Szerkesztés",
     "loading": "Betöltés...",
-    "publish_failed": "A pubikálás sikertelen",
-    "publishing": "Publikálás",
+    "publish_failed": "A közzététel sikertelen",
+    "publishing": "Közzétesz",
     "save_failed": "Elmentés sikertelen",
     "upload_failed": "Fetöltés sikertelen",
     "uploading": "Fetöltés..."
   },
   "status": {
     "account": {
-      "suspended_message": "A bejegyzéshez tartoz fiókot felfüggesztettük.",
+      "suspended_message": "A bejegyzéshez tartoz fiók felfüggesztésre került.",
       "suspended_show": "Ennek ellenére megjeleníti?"
     },
     "boosted_by": "Kiemelve: ",
@@ -585,25 +631,28 @@
     "favourited_by": "Kedvencek közé helyezve: ",
     "filter_hidden_phrase": "Szűrve: ",
     "filter_show_anyway": "Megjelenít mégis",
+    "gif": "GIF",
     "img_alt": {
       "ALT": "ALT",
       "desc": "Leírás",
       "dismiss": "Elvetés",
       "read": "Olvassa el a {0} leírását"
     },
+    "pinned": "Kitűzött bejegyzés",
     "poll": {
       "count": "{0} szavazat|{0} szavazat|{0} szavazat",
       "ends": "véget ér {0}",
-      "finished": "véget ért {0}"
+      "finished": "véget ért {0}",
+      "update": "Szavazás frissítése"
     },
-    "replying_to": "Válasz {0}-nak",
-    "show_full_thread": "Teljes beszélgetés megjelenítése",
+    "replying_to": "Válasz: {0}",
+    "show_full_thread": "Teljes szál megjelenítése",
     "someone": "valaki",
     "spoiler_media_hidden": "Média elrejtve",
     "spoiler_show_less": "Mutass kevesebbet",
     "spoiler_show_more": "Mutass többet",
     "thread": "Szál",
-    "try_original_site": "Próbálja az eredeti weblapon"
+    "try_original_site": "Próbálja az eredeti webhelyen"
   },
   "status_history": {
     "created": "létrehozva {0}",
@@ -620,7 +669,7 @@
       "report": "Jelentés",
       "sign_up": "Feliratkozás"
     },
-    "notifications_all": "Összes értesítés",
+    "notifications_all": "Összes",
     "notifications_favourite": "Kedvencek",
     "notifications_follow": "Követés",
     "notifications_follow_request": "Követés kérése",
@@ -640,7 +689,7 @@
     "unfollow_label": "Követés vége {0} címke"
   },
   "time_ago_options": {
-    "day_future": "in 0 nap múlva|holnap|{n} napon belül",
+    "day_future": "0 nap múlva|holnap|{n} napon belül",
     "day_past": "0 napja|tegnap|{n} nappal korábban",
     "hour_future": "0 órá múlva|1 óra múlva|{n} óra múlva",
     "hour_past": "0 órája|1 órája|{n} órája",
@@ -671,7 +720,8 @@
     "year_past": "0 évvel ezelőtt|múlt évben|{n} évvel ezelőtt"
   },
   "timeline": {
-    "show_new_items": "{v} új elem megjelenítése|{v} új elem megjelenítése|{v} új elem megjelenítése",
+    "no_posts": "Itt nincsenek bejegyzések.",
+    "show_new_items": "{v} új elemek megjelenítése|{v} új elemek megjelenítése|{v} új elemek megjelenítése",
     "view_older_posts": "Előfordulhat, hogy más instancekről származó régebbi bejegyzések nem jelennek meg."
   },
   "title": {
@@ -683,6 +733,7 @@
     "add_emojis": "Emoji hozzáadása",
     "add_media": "Képek hozzáadása, egy videó, vagy egy audió fájl",
     "add_publishable_content": "Tartalom hozzáadása publikáláshoz",
+    "add_thread_item": "Tartalom hozzáadása a szálhoz",
     "change_content_visibility": "Tartalom láthatóságának megváltoztatása",
     "change_language": "nyelv megváltoztatása",
     "emoji": "Emoji",
@@ -692,19 +743,21 @@
     "open_editor_tools": "Szerkesztő eszközök",
     "pick_an_icon": "Ikon választása",
     "publish_failed": "A bejegyzések újbóli közzétételéhez zárja be a sikertelen üzeneteket a szerkesztő tetején",
+    "remove_thread_item": "Elem eltávolítása a szálból",
+    "start_thread": "Szál megkezdése",
     "toggle_bold": "Váltás félkövérre",
-    "toggle_code_block": "Kódblokk váltása",
-    "toggle_italic": "Váltás dőltbetűssé"
+    "toggle_code_block": "Kód blokkra váltás",
+    "toggle_italic": "Váltás dőlt betűsre"
   },
   "user": {
-    "add_existing": "Egy látező fiók hozzáadása",
+    "add_existing": "Egy létező fiók hozzáadása",
     "server_address_label": "Mastodon szerver címe",
     "sign_in_desc": "Jelentkezzen be profilok vagy címkék követéséhez, kedvencekhez, bejegyzések megosztásához és megválaszolásához, vagy egy másik szerveren lévő fiókjából való interakcióhoz.",
-    "sign_in_notice_title": "{0} nyilvános adat megtekintése",
+    "sign_in_notice_title": "{0} nyilvános adatok megtekintése",
     "sign_out_account": "Kijelentkezés {0}",
     "single_instance_sign_in_desc": "Jelentkezzen be profilok vagy címkék követéséhez, kedvencei közé, bejegyzések megosztásához és megválaszolásához.",
     "tip_no_account": "Ha még nincs Mastodon fiókod: {0}.",
-    "tip_register_account": "válassz egy szervert és regisztrált egyet"
+    "tip_register_account": "válassz egy szervert és regisztrálj egyet"
   },
   "visibility": {
     "direct": "Direkt",

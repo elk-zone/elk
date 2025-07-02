@@ -1,10 +1,20 @@
 [build]
-  publish = "dist"
-  command = "pnpm run build"
+publish = "dist"
+command = "pnpm run build"
+
+[build.environment]
+NODE_OPTIONS = '--max-old-space-size=4096'
 
 # Redirect to Discord server
 [[redirects]]
-  from = "https://chat.elk.zone"
-  to = "https://discord.gg/vAZSDU9J"
-  status = 301
-  force = true
+from = "https://chat.elk.zone"
+to = "https://discord.gg/vAZSDU9J"
+status = 301
+force = true
+
+# Redirect to Discord server
+[[redirects]]
+from = "https://code.elk.zone"
+to = "https://github.com/elk-zone/elk"
+status = 301
+force = true

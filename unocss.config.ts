@@ -1,5 +1,7 @@
-import process from 'node:process'
 import type { Variant } from 'unocss'
+import process from 'node:process'
+import { variantParentMatcher } from '@unocss/preset-mini/utils'
+
 import {
   defineConfig,
   presetAttributify,
@@ -10,8 +12,6 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
-
-import { variantParentMatcher } from '@unocss/preset-mini/utils'
 
 export default defineConfig({
   shortcuts: [
@@ -68,7 +68,7 @@ export default defineConfig({
 
       'timeline-title-style': 'text-primary text-lg font-bold',
     },
-    [/^elk-group-hover[:-]([a-z0-9\/-]+)$/, ([,r]) => `media-mouse-group-hover-${r} group-active-${r}`],
+    [/^elk-group-hover[:-]([a-z0-9/-]+)$/, ([,r]) => `media-mouse-group-hover-${r} group-active-${r}`],
   ],
   presets: [
     presetUno({

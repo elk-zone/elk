@@ -1,10 +1,19 @@
-import { describe, expect, it, vi } from 'vitest'
-import { renderToString } from 'vue/server-renderer'
-import { format } from 'prettier'
+/* eslint perfectionist/sort-imports: "off" */
+// to prevent error when importing '@nuxt/test-utils/runtime' before 'vitest'
+// ref. #2984 chore(deps): update dependency @antfu/eslint-config to v3 by renovate[bot]
+// https://github.com/elk-zone/elk/pull/2984
+
 import type { mastodon } from 'masto'
+import { format } from 'prettier'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { mockComponent } from '@nuxt/test-utils/runtime'
-import { contentToVNode } from '~/composables/content-render'
+import { renderToString } from 'vue/server-renderer'
 import type { ContentParseOptions } from '~/composables/content-parse'
+import { contentToVNode } from '~/composables/content-render'
+
+beforeEach(() => {
+  publicServer.value = useRuntimeConfig().public.defaultServer
+})
 
 describe('content-rich', () => {
   it('empty', async () => {
@@ -163,6 +172,20 @@ describe('content-rich', () => {
     `)
     expect(formatted).toMatchSnapshot()
   })
+
+  it ('root p includes dir="auto" attr when mixed content', async () => {
+    const { formatted } = await render(`
+      <p>هذا اختبار جديد 🐦🐤 <span class="h-card"><a href="https://strangeobject.space/@bebatjof" class="u-url mention">@<span>bebatjof</span></a></span> <br />أنا أحب الطريقة التي يتم بها دعم النموذج المزدوج العربي. تمت ترجمة الكلمة الأخيرة بشكل خاطئ وأحاول العثور على كيفية إصلاحها. 🐦🐤 ;). كما أن النموذج الخاص بـ 0 يحتاج إلى إصلاح <a href="https://m.webtoo.ls/tags/turkey" class="mention hashtag" rel="tag">#<span>turkey</span></a> <a href="https://m.webtoo.ls/tags/%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9" class="mention hashtag" rel="tag">#<span>العربية</span></a> .</p><p>This is a new test 🐦🐤 <span class="h-card"><a href="https://strangeobject.space/@bebatjof" class="u-url mention">@<span>bebatjof</span></a></span> <br />I like how the arabic dual form is supported. The last one is mistranslated and I&#39;m trying to find how to fix it. 🐦🐤 ;). Also, the form for 0 needs to be fixed <a href="https://m.webtoo.ls/tags/turkey" class="mention hashtag" rel="tag">#<span>turkey</span></a> <a href="https://m.webtoo.ls/tags/%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9" class="mention hashtag" rel="tag">#<span>العربية</span></a> .</p>
+    `)
+    expect(formatted).toMatchSnapshot()
+  })
+
+  it ('p moved to div and text children replaced with p[dir="auto"] tags: br children removed', async () => {
+    const { formatted } = await render(`
+      <p><span class="h-card"><a href="https://strangeobject.space/@bebatjof" class="u-url mention">@<span>bebatjof</span></a></span> هذا اختبار:<br />أنا أحب الطريقة التي يتم بها دعم النموذج المزدوج العربي. تمت ترجمة الكلمة الأخيرة بشكل خاطئ وأحاول العثور على كيفية إصلاحها. أيضًا، يجب إصلاح نموذج 0.</p><p>This is a test:<br />I like how the arabic dual form is supported. The last one is mistranslated and I&#39;m trying to find how to fix it. Also, the form for 0 needs to be fixed.</p>
+    `)
+    expect(formatted).toMatchSnapshot()
+  })
 })
 
 describe('editor', () => {
@@ -176,7 +199,7 @@ describe('editor', () => {
 async function render(content: string, options?: ContentParseOptions) {
   const vnode = contentToVNode(content, options)
   const html = (await renderToString(vnode))
-    .replace(/<!--[\[\]]-->/g, '')
+    .replace(/<!--[[\]]-->/g, '')
   let formatted = ''
 
   try {
@@ -184,7 +207,7 @@ async function render(content: string, options?: ContentParseOptions) {
       parser: 'html',
     })
   }
-  catch (e) {
+  catch {
     formatted = html
   }
 
@@ -204,6 +227,30 @@ vi.mock('vue-router', async () => {
         return () => h('a', props, { default: () => slots?.default?.() })
       },
     }),
+  }
+})
+
+vi.mock('@vueuse/shared', async () => {
+  const vueuseShared = await import('@vueuse/shared')
+  // mock pausableWatch and watchPausable: vitest process hangs from time to time
+  return {
+    ...vueuseShared,
+    pausableWatch: () => {
+      return {
+        stop: () => {},
+        pause: () => {},
+        resume: () => {},
+        isActive: readonly(ref(true)),
+      }
+    },
+    watchPausable: () => {
+      return {
+        stop: () => {},
+        pause: () => {},
+        resume: () => {},
+        isActive: readonly(ref(true)),
+      }
+    },
   }
 })
 

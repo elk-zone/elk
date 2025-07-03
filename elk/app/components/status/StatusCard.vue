@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { akkoma } from '@bdxtown/akko'
 
-const { actions = true, older, newer, hasOlder, hasNewer, main, ...props } = defineProps<{
+const { actions = true, older, newer, hasOlder, hasNewer, main, account, ...props } = defineProps<{
   status: akkoma.v1.Status
   followedTag?: string | null
   actions?: boolean
@@ -21,6 +21,7 @@ const { actions = true, older, newer, hasOlder, hasNewer, main, ...props } = def
   // When looking into a detailed view of a post, we can simplify the replying badges
   // to the main expanded post
   main?: akkoma.v1.Status
+  account?: akkoma.v1.Account
 }>()
 
 const userSettings = useUserSettings()
@@ -70,7 +71,10 @@ const timeago = useTimeAgo(() => status.value.createdAt, timeAgoOptions)
 const isSelfReply = computed(() => status.value.inReplyToAccountId === status.value.account.id)
 const collapseRebloggedBy = computed(() => rebloggedBy.value?.id === status.value.account.id)
 const isDM = computed(() => status.value.visibility === 'direct')
-const isPinned = computed(() => status.value.pinned)
+const isPinned = computed(
+  () =>
+    !!props.status.pinned && account?.id === status.value.account.id,
+)
 
 const showUpperBorder = computed(() => newer && !directReply.value)
 const showReplyTo = computed(() => !replyToMain.value && !directReply.value)

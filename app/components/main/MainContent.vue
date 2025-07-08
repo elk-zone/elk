@@ -35,15 +35,16 @@ const containerClass = computed(() => {
         'backdrop-blur': !getPreferences(userSettings, 'optimizeForLowPerformanceDevice'),
       }"
     >
-      <div flex justify-between px5 py2 :class="{ 'xl:hidden': $route.name !== 'tag' }" class="native:xl:flex" border="b base">
-        <div flex gap-3 items-center :overflow-hidden="!noOverflowHidden ? '' : false" py2 w-full>
-          <NuxtLink
-            v-if="backOnSmallScreen || back" flex="~ gap1" items-center btn-text p-0 xl:hidden
+      <div flex justify-between gap-2 min-h-53px px5 py1 :class="{ 'xl:hidden': $route.name !== 'tag' }" class="native:xl:flex" border="b base">
+        <div flex gap-2 items-center :overflow-hidden="!noOverflowHidden ? '' : false" w-full>
+          <button
+            v-if="backOnSmallScreen || back"
+            btn-text flex items-center ms="-3" p-3 xl:hidden
             :aria-label="$t('nav.back')"
             @click="$router.go(-1)"
           >
-            <div i-ri:arrow-left-line class="rtl-flip" />
-          </NuxtLink>
+            <div text-lg i-ri:arrow-left-line class="rtl-flip" />
+          </button>
           <div :truncate="!noOverflowHidden ? '' : false" flex w-full data-tauri-drag-region class="native-mac:justify-start native-mac:text-center">
             <slot name="title" />
           </div>

@@ -4,8 +4,6 @@ defineProps<{
   backOnSmallScreen?: boolean
   /** Show the back button on both small and big screens */
   back?: boolean
-  /** Do not applying overflow hidden to let use floatable components in title */
-  noOverflowHidden?: boolean
 }>()
 
 const container = ref()
@@ -36,7 +34,7 @@ const containerClass = computed(() => {
       }"
     >
       <div flex justify-between gap-2 min-h-53px px5 py1 :class="{ 'xl:hidden': $route.name !== 'tag' }" class="native:xl:flex" border="b base">
-        <div flex gap-2 items-center :overflow-hidden="!noOverflowHidden ? '' : false" w-full>
+        <div flex gap-2 items-center overflow-hidden w-full>
           <button
             v-if="backOnSmallScreen || back"
             btn-text flex items-center ms="-3" p-3 xl:hidden
@@ -45,7 +43,7 @@ const containerClass = computed(() => {
           >
             <div text-lg i-ri:arrow-left-line class="rtl-flip" />
           </button>
-          <div :truncate="!noOverflowHidden ? '' : false" flex w-full data-tauri-drag-region class="native-mac:justify-start native-mac:text-center">
+          <div truncate flex w-full data-tauri-drag-region class="native-mac:justify-start native-mac:text-center">
             <slot name="title" />
           </div>
           <div sm:hidden h-7 w-1px />

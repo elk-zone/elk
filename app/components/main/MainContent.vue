@@ -1,9 +1,10 @@
 <script setup lang="ts">
-defineProps<{
-  /** Show the back button on small screens */
-  backOnSmallScreen?: boolean
-  /** Show the back button on both small and big screens */
-  back?: boolean
+const { back = false } = defineProps<{
+  /**
+   * Should we show a back button?
+   * Note: this will be forced to false on xl screens to avoid duplicating the sidebar's back button.
+   */
+  back?: boolean | 'small-only'
   /** Do not applying overflow hidden to let use floatable components in title */
   noOverflowHidden?: boolean
 }>()
@@ -22,6 +23,17 @@ const containerClass = computed(() => {
 
   return 'lg:sticky lg:top-0'
 })
+
+const showBackButton = computed(() => {
+  switch (back) {
+    case 'small-only':
+      return isSmallOrMediumScreen.value
+    case true:
+      return !isExtraLargeScreen.value
+    default:
+      return false
+  }
+})
 </script>
 
 <template>
@@ -38,8 +50,8 @@ const containerClass = computed(() => {
       <div flex justify-between gap-2 min-h-53px px5 py1 :class="{ 'xl:hidden': $route.name !== 'tag' }" class="native:xl:flex" border="b base">
         <div flex gap-2 items-center :overflow-hidden="!noOverflowHidden ? '' : false" w-full>
           <button
-            v-if="backOnSmallScreen || back"
-            btn-text flex items-center ms="-3" p-3 xl:hidden
+            v-if="showBackButton"
+            btn-text flex items-center ms="-3" p-3
             :aria-label="$t('nav.back')"
             @click="$router.go(-1)"
           >

@@ -42,10 +42,9 @@ const tabs = computed<CommonRouteTabOption[]>(() => [
 <template>
   <MainContent>
     <template #title>
-      <span timeline-title-style flex items-center gap-2 cursor-pointer @click="$scrollToTop">
-        <div i-ri:compass-3-line />
-        <span>{{ t('nav.explore') }}</span>
-      </span>
+      <MainTitle icon="i-ri:compass-3-line">
+        {{ t('nav.explore') }}
+      </MainTitle>
     </template>
 
     <template #header>

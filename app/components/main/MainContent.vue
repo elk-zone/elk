@@ -33,22 +33,22 @@ const containerClass = computed(() => {
         'backdrop-blur': !getPreferences(userSettings, 'optimizeForLowPerformanceDevice'),
       }"
     >
-      <div flex justify-between gap-2 min-h-53px px5 py1 :class="{ 'xl:hidden': $route.name !== 'tag' }" class="native:xl:flex" border="b base">
-        <div flex gap-2 items-center overflow-hidden w-full>
+      <div flex="~ justify-between" min-h-53px px-2 py-1 :class="{ 'xl:hidden': $route.name !== 'tag' }" class="native:xl:flex" border="b base">
+        <div flex="~ items-center" w-full>
           <button
             v-if="backOnSmallScreen || back"
-            btn-text flex items-center ms="-3" p-3 xl:hidden
+            btn-text flex items-center p-3 xl:hidden
             :aria-label="$t('nav.back')"
             @click="$router.go(-1)"
           >
             <div text-lg i-ri:arrow-left-line class="rtl-flip" />
           </button>
-          <div truncate flex w-full data-tauri-drag-region class="native-mac:justify-start native-mac:text-center">
+          <div flex w-full data-tauri-drag-region class="native-mac:justify-start">
             <slot name="title" />
           </div>
           <div sm:hidden h-7 w-1px />
         </div>
-        <div flex items-center flex-shrink-0 gap-x-2>
+        <div flex="~ items-center shrink-0 gap-x-2" px-3>
           <slot name="actions" />
           <PwaBadge xl:hidden />
           <NavUser v-if="isHydrated" />

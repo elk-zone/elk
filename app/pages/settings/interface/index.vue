@@ -9,9 +9,9 @@ useHydratedHead({
 <template>
   <MainContent back-on-small-screen>
     <template #title>
-      <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
-        <span>{{ $t('settings.interface.label') }}</span>
-      </div>
+      <MainTitle as="h1" secondary>
+        {{ $t('settings.interface.label') }}
+      </MainTitle>
     </template>
     <div px-6 pt-3 pb-6 flex="~ col gap6">
       <SettingsFontSize />

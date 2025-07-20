@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type { Component } from 'vue'
+
 const { as = 'div', active } = defineProps<{
-  as: any
+  as?: string | Component
   active: boolean
 }>()
 

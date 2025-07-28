@@ -68,7 +68,7 @@
     "@vueuse/motion": "2.2.6",
     "@vueuse/nuxt": "^13.2.0",
     "blurhash": "^2.0.5",
-    "browser-fs-access": "^0.35.0",
+    "browser-fs-access": "^0.38.0",
     "cheerio": "^1.0.0",
     "chroma-js": "^3.0.0",
     "emoji-mart": "^5.5.2",

@@ -186,6 +186,11 @@ describe('content-rich', () => {
     `)
     expect(formatted).toMatchSnapshot()
   })
+
+  it ('asterisk paris in code block', async () => {
+    const { formatted } = await render('<p>```<br />1 * 2 * 3<br />```</p>')
+    expect(formatted).toMatchSnapshot()
+  })
 })
 
 describe('editor', () => {

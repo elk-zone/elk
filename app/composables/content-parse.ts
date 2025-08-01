@@ -104,11 +104,12 @@ export function parseMastodonHTML(
           .replace(/</g, '&lt;')
           .replace(/>/g, '&gt;')
           .replace(/`/g, '&#96;')
+          .replace(/\*/g, '&ast;')
         const classes = lang ? ` class="language-${lang}"` : ''
         return `><pre><code${classes}>${code}</code></pre>`
       })
       .replace(/`([^`\n]*)`/g, (_1, raw) => {
-        return raw ? `<code>${htmlToText(raw).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code>` : ''
+        return raw ? `<code>${htmlToText(raw).replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\*/g, '&ast;')}</code>` : ''
       })
   }
 

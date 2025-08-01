@@ -10,6 +10,6 @@ catch (err) {
 
 <template>
   <MainContent text-base grid gap-3 m3>
-    <img rounded-3 :src="instance.thumbnail.url">
+    <img v-if="instance !== undefined" rounded-3 :src="instance.thumbnail.url">
   </MainContent>
 </template>

@@ -1,6 +1,6 @@
 import { stringifyQuery } from 'ufo'
 
-import { defaultUserAgent } from '~/server/utils/shared'
+import { defaultUserAgent } from '~~/server/utils/shared'
 
 export default defineEventHandler(async (event) => {
   let { server, origin } = getRouterParams(event)

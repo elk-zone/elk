@@ -226,7 +226,9 @@
     "manage": "Kudeatu zerrendak",
     "modify_account": "Aldatu honako kontua duten zerrendak:",
     "remove_account": "Kendu kontua zerrendatik",
-    "save": "Gorde aldaketak"
+    "save": "Gorde aldaketak",
+    "search_following_desc": "Egin bilaketa jarraitzen ari zatzaien jendearen artean",
+    "search_following_placeholder": "Bilatu jarraitzen dituzunen artean"
   },
   "magic_keys": {
     "dialog_header": "Teklatuaren lasterbideak",
@@ -719,7 +721,7 @@
   },
   "timeline": {
     "no_posts": "Ez dago bidalketarik!",
-    "show_new_items": "Erakutsi {v} elementu berri|Erakutsi elementu berri {v}|Erakutsi {v} elementu berri",
+    "show_new_items": "Erakutsi {v} bidalketa berria|Erakutsi bidalketa berri {v}|Erakutsi {v} bidalketa berri",
     "view_older_posts": "Oso litekeena da beste instantziatako bidalketa zaharragoak ikusgai ez egotea."
   },
   "title": {

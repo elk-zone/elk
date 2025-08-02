@@ -6,19 +6,13 @@ Refer also to https://github.com/antfu/contribute.
 
 For guidelines on contributing to the documentation, refer to the [docs README](./docs/README.md).
 
-### Online
-
-You can use [StackBlitz Codeflow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a Codeflow button on PRs to review them without a local setup. Once the elk repo has been cloned in Codeflow, the dev server will start automatically and print the URL to open the App. You should receive a prompt in the bottom-right suggesting to open it in the Editor or in another Tab. To learn more, check out the [Codeflow docs](https://developer.stackblitz.com/codeflow/what-is-codeflow).
-
-[![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https://pr.new/elk-zone/elk)
-
 ### Local Setup
 
 To develop and test the Elk package:
 
 1. Fork the Elk repository to your own GitHub account and then clone it to your local device.
 
-2. Ensure using the latest Node.js (20.x).
+2. Ensure using the LTS version of Node.js.
 If you have [nvm](https://github.com/nvm-sh/nvm), you can run `nvm i` to install the required version.
 
 3. The package manager used to install and link dependencies must be [pnpm](https://pnpm.io/) v9. To use it you must first enable [Corepack](https://github.com/nodejs/corepack) by running `corepack enable`. (Note: on Linux in a standard Node 20+ environment, you should follow the instructions to install via Node's `corepack` rather than using the `curl` command)

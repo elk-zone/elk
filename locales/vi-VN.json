@@ -54,10 +54,10 @@
   "action": {
     "apply": "Áp dụng",
     "bookmark": "Lưu",
-    "bookmarked": "Đã lưu",
+    "bookmarked": "Bỏ lưu",
     "boost": "Đăng lại",
     "boost_count": "{0}",
-    "boosted": "Đã đăng lại",
+    "boosted": "Bỏ đăng lại",
     "clear": "Xóa",
     "clear_publish_failed": "Xóa lỗi khi đăng tút",
     "clear_save_failed": "Xóa lỗi khi lưu tút",
@@ -226,7 +226,9 @@
     "manage": "Quản lý danh sách",
     "modify_account": "Sửa danh sách có người này",
     "remove_account": "Xóa người ra khỏi danh sách",
-    "save": "Lưu thay đổi"
+    "save": "Lưu thay đổi",
+    "search_following_desc": "Tìm trong những người bạn theo dõi",
+    "search_following_placeholder": "Tìm trong những người bạn theo dõi"
   },
   "magic_keys": {
     "dialog_header": "Phím tắt",
@@ -336,7 +338,7 @@
   "notification": {
     "and": "và",
     "favourited_post": "đã thích tút của bạn",
-    "followed_you": "đã theo dõi bạn",
+    "followed_you": "đang theo dõi bạn",
     "followed_you_count": "{0} người theo dõi bạn|{0} người theo dõi bạn|{0} người theo dõi bạn",
     "missing_type": "THIẾU notification.type:",
     "others": "{0} người khác|{0} người khác|{0} người khác",
@@ -539,7 +541,7 @@
     "preferences": {
       "embedded_media": "Trình Phát Media Dạng Nhúng",
       "embedded_media_description": "Khi chia sẻ một liên kết media, hiển thị trình phát dạng nhúng thay vì ảnh mặc định.",
-      "enable_autoplay": "Tự động phát",
+      "enable_autoplay": "Tự động phát video/GIF",
       "enable_data_saving": "Tiết kiệm dữ liệu mạng",
       "enable_data_saving_description": "Không cho tự động tải file đính kèm.",
       "enable_pinch_to_zoom": "Chụm 2 ngón tay để thu phóng",
@@ -561,6 +563,7 @@
       "label": "Thiết lập",
       "optimize_for_low_performance_device": "Tối ưu cho thiết bị yếu",
       "title": "Tính năng thử nghiệm",
+      "unmute_videos": "Mặc định bật âm thanh video",
       "use_star_favorite_icon": "Dùng biểu tượng thích ngôi sao",
       "user_picker": "Chuyển Đổi Tài Khoản",
       "user_picker_description": "Hiển thị danh sách tài khoản đã đăng nhập ở góc dưới bên trái để nhanh chóng chuyển đổi qua lại.",
@@ -642,7 +645,7 @@
       "finished": "kết thúc {0}",
       "update": "Làm mới"
     },
-    "replying_to": "Trả lời {0}",
+    "replying_to": "Trả lời đến {0}",
     "show_full_thread": "Chuỗi tút liên quan",
     "someone": "ai đó",
     "spoiler_media_hidden": "Media ẩn",
@@ -671,7 +674,7 @@
     "notifications_follow": "Theo dõi",
     "notifications_follow_request": "Yêu cầu theo dõi",
     "notifications_mention": "Lượt nhắc",
-    "notifications_more_tooltip": "Lọc loại thông báo",
+    "notifications_more_tooltip": "Lọc theo loại thông báo",
     "notifications_poll": "Bình chọn",
     "notifications_reblog": "Đăng lại",
     "notifications_status": "Tút mới",
@@ -711,10 +714,10 @@
     "short_week_past": "{n} tuần",
     "short_year_future": "sau {n} năm",
     "short_year_past": "{n} năm",
-    "week_future": "sau 0 tuần|tuần sau|trong {n} tuần",
+    "week_future": "sau 0 tuần|tuần tới|trong {n} tuần",
     "week_past": "0 tuần trước|tuần trước|{n} tuần trước",
-    "year_future": "sau 0 năm|năm sau|in {n} năm sau",
-    "year_past": "0 năm trước|năm trước|{n} năm trước"
+    "year_future": "sau 0 năm|năm tới|sau {n} năm sau",
+    "year_past": "0 năm trước|năm ngoái|{n} năm trước"
   },
   "timeline": {
     "no_posts": "Chưa có tút!",

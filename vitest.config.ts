@@ -8,7 +8,7 @@ export default defineVitestConfig({
   test: {
     reporters: isCI ? ['default', 'hanging-process'] : ['default'],
     setupFiles: [
-      '/tests/setup.ts',
+      './tests/setup.ts',
     ],
     environmentOptions: {
       nuxt: {

@@ -1,4 +1,4 @@
-import type { AppInfo } from '~/types'
+import type { AppInfo } from '#shared/types'
 // @ts-expect-error virtual import
 import { env } from '#build-info'
 // @ts-expect-error virtual import
@@ -13,7 +13,7 @@ import memory from 'unstorage/drivers/memory'
 
 import vercelKVDriver from 'unstorage/drivers/vercel-kv'
 
-import { version } from '~/config/env'
+import { version } from '~~/config/env'
 import { APP_NAME } from '~/constants'
 import cached from '../cache-driver'
 
@@ -60,7 +60,7 @@ async function fetchAppInfo(origin: string, server: string) {
       },
       body: {
         client_name: APP_NAME + (env !== 'release' ? ` (${env})` : ''),
-        website: 'https://elk.zone',
+        website: origin,
         redirect_uris: getRedirectURI(origin, server),
         scopes: 'read write follow push',
       },

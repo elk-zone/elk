@@ -226,7 +226,9 @@
     "manage": "Gerir listas",
     "modify_account": "Modificar listas com a conta",
     "remove_account": "Remover conta da lista",
-    "save": "Salvar alterações"
+    "save": "Salvar alterações",
+    "search_following_desc": "Pesquisar por pessoas que está a seguir",
+    "search_following_placeholder": "Pesquisar de entre as pessoas que segue"
   },
   "magic_keys": {
     "dialog_header": "Atalhos de teclado",
@@ -561,6 +563,7 @@
       "label": "Preferências",
       "optimize_for_low_performance_device": "Otimizar para dispositivos de menor desempenho",
       "title": "Funcionalidades Experimentais",
+      "unmute_videos": "Som de vídeo ativado por predefinição",
       "use_star_favorite_icon": "Utilizar estrela como ícone de favoritos",
       "user_picker": "Selecionador de Utilizador",
       "user_picker_description": "Exibe as imagens de perfil de todas as contas registadas no canto inferior esquerdo para que possa alternar rapidamente entre elas.",

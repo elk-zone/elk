@@ -1,5 +1,5 @@
+import type { ElkTranslationStatus } from '#shared/types/translation-status'
 import type { LocaleEntry } from '../docs/types'
-import type { ElkTranslationStatus } from '~/types/translation-status'
 import { Buffer } from 'node:buffer'
 import { readFile, writeFile } from 'node:fs/promises'
 import { createResolver } from '@nuxt/kit'

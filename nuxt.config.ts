@@ -1,5 +1,6 @@
-import type { BuildInfo } from './types'
+import type { BuildInfo } from './shared/types'
 import { createResolver, useNuxt } from '@nuxt/kit'
+import { resolveModulePath } from 'exsolve'
 import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
 import { currentLocales } from './config/i18n'
@@ -7,11 +8,20 @@ import { pwa } from './config/pwa'
 
 const { resolve } = createResolver(import.meta.url)
 
+const mockProxy = resolveModulePath('mocked-exports/proxy', { from: import.meta.url })
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-09-11',
+  future: {
+    compatibilityVersion: 4,
+  },
   typescript: {
     tsConfig: {
       exclude: ['../service-worker'],
+      compilerOptions: {
+        // TODO: enable this once we fix the issues
+        noUncheckedIndexedAccess: false,
+      },
       vueCompilerOptions: {
         target: 3.5,
       },
@@ -27,11 +37,11 @@ export default defineNuxtConfig({
     '@unlazy/nuxt',
     '@nuxt/test-utils/module',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
-    '~/modules/emoji-mart-translation',
-    '~/modules/purge-comments',
-    '~/modules/build-env',
-    '~/modules/tauri/index',
-    '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
+    '~~/modules/emoji-mart-translation',
+    '~~/modules/purge-comments',
+    '~~/modules/build-env',
+    '~~/modules/tauri/index',
+    '~~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     'stale-dep/nuxt',
   ],
   vue: {
@@ -186,7 +196,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     alias: {
-      'isomorphic-ws': 'unenv/runtime/mock/proxy',
+      'isomorphic-ws': mockProxy,
     },
     esbuild: {
       options: {
@@ -230,7 +240,7 @@ export default defineNuxtConfig({
         for (const dep of ['eventemitter3', 'isomorphic-ws'])
           alias[dep] = resolve('./mocks/class')
         for (const dep of ['fuse.js'])
-          alias[dep] = 'unenv/runtime/mock/proxy'
+          alias[dep] = mockProxy
         const resolver = createResolver(import.meta.url)
 
         config.plugins!.unshift({
@@ -317,7 +327,7 @@ export default defineNuxtConfig({
     experimental: {
       generatedLocaleFilePathFormat: 'relative',
     },
-    vueI18n: './config/i18n.config.ts',
+    vueI18n: '../config/i18n.config.ts',
     bundle: {
       optimizeTranslationDirective: false,
     },

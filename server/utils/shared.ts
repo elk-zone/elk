@@ -60,7 +60,7 @@ async function fetchAppInfo(origin: string, server: string) {
       },
       body: {
         client_name: APP_NAME + (env !== 'release' ? ` (${env})` : ''),
-        website: 'https://elk.zone',
+        website: origin,
         redirect_uris: getRedirectURI(origin, server),
         scopes: 'read write follow push',
       },

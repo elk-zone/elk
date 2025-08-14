@@ -18,7 +18,7 @@ export function usePaginator<T, P, U = T>(
   const items = ref<U[]>([])
   const nextItems = ref<U[]>([])
   const prevItems = ref<T[]>([])
-  const canLoadMore = ref<boolean>(false)
+  const canLoadMore = ref<boolean>(true)
 
   const endAnchor = ref<HTMLDivElement>()
   const bound = useElementBounding(endAnchor)

@@ -54,7 +54,16 @@ const {
   dropZoneRef,
 } = useUploadMediaAttachment(draft)
 
-const { shouldExpanded, isExpanded, isSending, isPublishDisabled, publishDraft, failedMessages, preferredLanguage, publishSpoilerText } = usePublish(
+const {
+  shouldExpanded,
+  isExpanded,
+  isSending,
+  isPublishDisabled,
+  publishDraft,
+  failedMessages,
+  preferredLanguage,
+  publishSpoilerText,
+} = usePublish(
   {
     draftItem: draft,
     ...{ expanded: toRef(() => expanded), isUploading, initialDraft: initial, isPartOfThread: false },
@@ -145,6 +154,32 @@ const isValidScheduledTime = computed(() => {
   return minimumScheduledTime.value.getTime() <= scheduledTimeDate.getTime()
 })
 
+const initialDateTime = computed(() => {
+  const t = new Date(minimumScheduledTime.value.getTime())
+  t.setHours(t.getHours() + 1)
+  t.setMinutes(0)
+  t.setSeconds(0)
+  t.setMilliseconds(0)
+  return t
+})
+
+watchEffect(() => {
+  // Convert the local datetime string from the input to a UTC ISO string for the API
+  if (scheduledTime.value) {
+    const localDate = new Date(scheduledTime.value)
+    draft.value.params.scheduledAt = localDate.toISOString()
+  }
+  else {
+    draft.value.params.scheduledAt = ''
+  }
+})
+
+function setInitialScheduledTime() {
+  if (scheduledTime.value === '') {
+    scheduledTime.value = getDatetimeInputFormat(initialDateTime.value)
+  }
+}
+
 watchEffect(() => {
   draft.value.params.scheduledAt = scheduledTime.value
 })
@@ -163,7 +198,15 @@ function getMinimumScheduledTime(now: Date): Date {
 }
 
 function getDatetimeInputFormat(time: Date) {
-  return time.toISOString().slice(0, 16)
+  // Returns string in 'YYYY-MM-DDTHH:MM' format using local time components
+  // This is the format expected by the <input type="datetime-local"> element.
+  const year = time.getFullYear()
+  const month = (time.getMonth() + 1).toString().padStart(2, '0')
+  const day = time.getDate().toString().padStart(2, '0')
+  const hours = time.getHours().toString().padStart(2, '0')
+  const minutes = time.getMinutes().toString().padStart(2, '0')
+
+  return `${year}-${month}-${day}T${hours}:${minutes}`
 }
 
 const characterCount = computed(() => {
@@ -220,6 +263,7 @@ async function handlePaste(evt: ClipboardEvent) {
 function insertEmoji(name: string) {
   editor.value?.chain().focus().insertEmoji(name).run()
 }
+
 function insertCustomEmoji(image: any) {
   editor.value?.chain().focus().insertCustomEmoji(image).run()
 }
@@ -393,9 +437,13 @@ const detectLanguage = useDebounceFn(async () => {
                   <div aria-hidden="true" i-ri:error-warning-fill />
                   <p>{{ scheduledTime ? $t('state.schedule_failed') : $t('state.publish_failed') }}</p>
                 </div>
-                <CommonTooltip placement="bottom" :content="scheduledTime ? $t('action.clear_schedule_failed') : $t('action.clear_publish_failed')">
+                <CommonTooltip
+                  placement="bottom"
+                  :content="scheduledTime ? $t('action.clear_schedule_failed') : $t('action.clear_publish_failed')"
+                >
                   <button
-                    flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="scheduledTime ? $t('action.clear_schedule_failed') : $t('action.clear_publish_failed')"
+                    flex rounded-4 p1 hover:bg-active cursor-pointer transition-100
+                    :aria-label="scheduledTime ? $t('action.clear_schedule_failed') : $t('action.clear_publish_failed')"
                     @click="failedMessages = []"
                   >
                     <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
@@ -500,7 +548,8 @@ const detectLanguage = useDebounceFn(async () => {
                 aspect-ratio-1 h-10
                 :style="{ background: `radial-gradient(closest-side, rgba(var(--rgb-bg-base)) 79%, transparent 80% 100%), conic-gradient(${draft.params.poll!.options[index].length / currentInstance?.configuration?.polls.maxCharactersPerOption > 1 ? 'var(--c-danger)' : 'var(--c-primary)'} ${draft.params.poll!.options[index].length / currentInstance?.configuration?.polls.maxCharactersPerOption * 100}%, var(--c-primary-fade) 0)` }"
               >{{
-                draft.params.poll!.options[index].length }}</span>
+                draft.params.poll!.options[index].length
+              }}</span>
             </div>
           </form>
           <div v-if="shouldExpanded" flex="~ gap-1 1 wrap" m="s--1" pt-2 justify="end" max-w-full border="t base">
@@ -554,7 +603,8 @@ const detectLanguage = useDebounceFn(async () => {
                       />
                       <CommonCheckbox
                         v-model="draft.params.poll.hideTotals"
-                        :label="draft.params.poll.hideTotals ? $t('polls.show_votes') : $t('polls.hide_votes')" px-2 gap-3
+                        :label="draft.params.poll.hideTotals ? $t('polls.show_votes') : $t('polls.hide_votes')" px-2
+                        gap-3
                         h-9 flex justify-center hover:bg-active rounded-full icon-checked="i-ri:eye-close-line"
                         icon-unchecked="i-ri:eye-line"
                       />
@@ -571,7 +621,8 @@ const detectLanguage = useDebounceFn(async () => {
                   <template #popper>
                     <CommonDropdownItem
                       v-for="expiresInOption in expiresInOptions" :key="expiresInOption.seconds"
-                      :text="expiresInOption.label" :checked="draft.params.poll!.expiresIn === expiresInOption.seconds"
+                      :text="expiresInOption.label"
+                      :checked="draft.params.poll!.expiresIn === expiresInOption.seconds"
                       @click="draft.params.poll!.expiresIn = expiresInOption.seconds"
                     />
                   </template>
@@ -580,8 +631,7 @@ const detectLanguage = useDebounceFn(async () => {
             </template>
 
             <PublishEditorTools v-if="editor" :editor="editor" />
-
-            <CommonDropdown placement="bottom">
+            <CommonDropdown placement="bottom" @click="setInitialScheduledTime">
               <CommonTooltip placement="top" :content="$t('tooltip.schedule_post')" no-auto-focus>
                 <button btn-action-icon :aria-label="$t('tooltip.schedule_post')">
                   <div i-ri:calendar-schedule-line :class="scheduledTime !== '' ? 'text-primary' : ''" />
@@ -659,7 +709,8 @@ const detectLanguage = useDebounceFn(async () => {
               <button
                 v-if="!threadIsActive || isFinalItemOfThread"
                 btn-solid rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit class="publish-button"
-                :aria-disabled="isPublishDisabled || isExceedingCharacterLimit || threadIsSending || !isValidScheduledTime" aria-describedby="publish-tooltip"
+                :aria-disabled="isPublishDisabled || isExceedingCharacterLimit || threadIsSending || !isValidScheduledTime"
+                aria-describedby="publish-tooltip"
                 :disabled="isPublishDisabled || isExceedingCharacterLimit || threadIsSending || !isValidScheduledTime"
                 @click="publish"
               >
@@ -674,7 +725,9 @@ const detectLanguage = useDebounceFn(async () => {
                 </template>
                 <template v-else>
                   <span v-if="draft.editingStatus">{{ $t('action.save_changes') }}</span>
-                  <span v-else-if="scheduledTime">{{ !isSending ? $t('action.schedule') : $t('state.scheduling') }}</span>
+                  <span v-else-if="scheduledTime">{{
+                    !isSending ? $t('action.schedule') : $t('state.scheduling')
+                  }}</span>
                   <span v-else-if="draft.params.inReplyToId">{{ $t('action.reply') }}</span>
                   <span v-else>{{ !isSending ? $t('action.publish') : $t('state.publishing') }}</span>
                 </template>
@@ -703,7 +756,7 @@ const detectLanguage = useDebounceFn(async () => {
   display: none;
 }
 
-.option-input:not(:focus)+.delete-button+.char-limit-radial {
+.option-input:not(:focus) + .delete-button + .char-limit-radial {
   display: none;
 }
 

@@ -14,6 +14,7 @@ import { currentCustomEmojis, updateCustomEmojis } from '~/composables/emojis'
 export type { Emoji }
 
 export type CustomEmoji = (mastodon.v1.CustomEmoji & { custom: true })
+
 export function isCustomEmoji(emoji: CustomEmoji | Emoji): emoji is CustomEmoji {
   return !!(emoji as CustomEmoji).custom
 }
@@ -27,7 +28,12 @@ export const TiptapMentionSuggestion: Partial<SuggestionOptions> = import.meta.s
         if (query.length === 0)
           return []
 
-        const paginator = useMastoClient().v2.search.list({ q: query, type: 'accounts', limit: 25, resolve: true })
+        const paginator = useMastoClient().v2.search.list({
+          q: query,
+          type: 'accounts',
+          limit: 25,
+          resolve: true,
+        }).values()
         return (await paginator.next()).value?.accounts ?? []
       },
       render: createSuggestionRenderer(TiptapMentionList),
@@ -46,7 +52,7 @@ export const TiptapHashtagSuggestion: Partial<SuggestionOptions> = {
       limit: 25,
       resolve: false,
       excludeUnreviewed: true,
-    })
+    }).values()
     return (await paginator.next()).value?.hashtags ?? []
   },
   render: createSuggestionRenderer(TiptapHashtagList),

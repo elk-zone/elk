@@ -44,7 +44,7 @@ export function useNotifications() {
     processNotifications(stream, id)
 
     const position = await client.value.v1.markers.fetch({ timeline: ['notifications'] })
-    const paginator = client.value.v1.notifications.list({ limit: 30 })
+    const paginator = client.value.v1.notifications.list({ limit: 30 }).values()
 
     do {
       const result = await paginator.next()

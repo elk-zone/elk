@@ -6,7 +6,7 @@ settings:
 
 overrides:
   nuxt-component-meta: 0.13.1
-  unstorage: ^1.16.1
+  unstorage: ^1.17.0
   vitest: 3.2.4
   vue: ^3.5.4
 
@@ -7499,6 +7499,9 @@ packages:
   node-fetch-native@1.6.6:
     resolution: {integrity: sha512-8Mc2HhqPdlIfedsuZoc3yioPuzp6b+L5jRCRY1QzuWZh2EGJVQrGppC6V6cF0bLdbW0+O2YpqCA25aF/1lvipQ==}
 
+  node-fetch-native@1.6.7:
+    resolution: {integrity: sha512-g9yhqoedzIUm0nTnTqAQvueMPVOuIY16bqgAJJC8XOOubYFNwz6IER9qs0Gq2Xd0+CecCKFjtdDTMA4u4xG06Q==}
+
   node-fetch@2.7.0:
     resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
     engines: {node: 4.x || >=6.0.0}
@@ -9384,8 +9387,8 @@ packages:
     resolution: {integrity: sha512-RyWSb5AHmGtjjNQ6gIlA67sHOsWpsbWpwDokLwTcejVdOjEkJZh7QKu14J00gDDVSh8kGH4KYC/TNBceXFZhtw==}
     engines: {node: '>=18.12.0'}
 
-  unstorage@1.16.1:
-    resolution: {integrity: sha512-gdpZ3guLDhz+zWIlYP1UwQ259tG5T5vYRzDaHMkQ1bBY1SQPutvZnrRjTFaWUUpseErJIgAZS51h6NOcZVZiqQ==}
+  unstorage@1.17.0:
+    resolution: {integrity: sha512-l9Z7lBiwtNp8ZmcoZ/dmPkFXFdtEdZtTZafCSnEIj3YvtkXeGAtL2rN8MQFy/0cs4eOLpuRJMp9ivdug7TCvww==}
     peerDependencies:
       '@azure/app-configuration': ^1.8.0
       '@azure/cosmos': ^4.2.0
@@ -9399,6 +9402,7 @@ packages:
       '@planetscale/database': ^1.19.0
       '@upstash/redis': ^1.34.3
       '@vercel/blob': '>=0.27.1'
+      '@vercel/functions': ^2.2.12
       '@vercel/kv': ^1.0.1
       aws4fetch: ^1.0.20
       db0: '>=0.2.1'
@@ -9429,6 +9433,8 @@ packages:
       '@upstash/redis':
         optional: true
       '@vercel/blob':
+        optional: true
+      '@vercel/functions':
         optional: true
       '@vercel/kv':
         optional: true
@@ -12091,6 +12097,7 @@ snapshots:
       - '@planetscale/database'
       - '@upstash/redis'
       - '@vercel/blob'
+      - '@vercel/functions'
       - '@vercel/kv'
       - '@vue/composition-api'
       - async-validator
@@ -12214,7 +12221,7 @@ snapshots:
       socket.io-client: 4.8.1
       ufo: 1.6.1
       unist-util-stringify-position: 4.0.0
-      unstorage: 1.16.1(@netlify/blobs@9.1.2)(@upstash/redis@1.34.0)(@vercel/kv@1.0.1)(db0@0.3.2)(idb-keyval@6.2.1)(ioredis@5.6.1)
+      unstorage: 1.17.0(@netlify/blobs@9.1.2)(@upstash/redis@1.34.0)(@vercel/kv@1.0.1)(db0@0.3.2)(idb-keyval@6.2.1)(ioredis@5.6.1)
       ws: 8.18.2
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -12229,6 +12236,7 @@ snapshots:
       - '@planetscale/database'
       - '@upstash/redis'
       - '@vercel/blob'
+      - '@vercel/functions'
       - '@vercel/kv'
       - '@vue/composition-api'
       - aws4fetch
@@ -18631,7 +18639,7 @@ snapshots:
       unenv: 2.0.0-rc.18
       unimport: 5.2.0
       unplugin-utils: 0.2.4
-      unstorage: 1.16.1(@netlify/blobs@9.1.2)(@upstash/redis@1.34.0)(@vercel/kv@1.0.1)(db0@0.3.2)(idb-keyval@6.2.1)(ioredis@5.6.1)
+      unstorage: 1.17.0(@netlify/blobs@9.1.2)(@upstash/redis@1.34.0)(@vercel/kv@1.0.1)(db0@0.3.2)(idb-keyval@6.2.1)(ioredis@5.6.1)
       untyped: 2.0.0
       unwasm: 0.3.9
       youch: 4.1.0-beta.8
@@ -18651,6 +18659,7 @@ snapshots:
       - '@planetscale/database'
       - '@upstash/redis'
       - '@vercel/blob'
+      - '@vercel/functions'
       - '@vercel/kv'
       - aws4fetch
       - better-sqlite3
@@ -18731,7 +18740,7 @@ snapshots:
       unenv: 2.0.0-rc.18
       unimport: 5.2.0
       unplugin-utils: 0.2.4
-      unstorage: 1.16.1(@netlify/blobs@9.1.2)(@upstash/redis@1.34.0)(@vercel/kv@3.0.0)(db0@0.3.2)(idb-keyval@6.2.1)(ioredis@5.6.1)
+      unstorage: 1.17.0(@netlify/blobs@9.1.2)(@upstash/redis@1.34.0)(@vercel/kv@3.0.0)(db0@0.3.2)(idb-keyval@6.2.1)(ioredis@5.6.1)
       untyped: 2.0.0
       unwasm: 0.3.9
       youch: 4.1.0-beta.8
@@ -18751,6 +18760,7 @@ snapshots:
       - '@planetscale/database'
       - '@upstash/redis'
       - '@vercel/blob'
+      - '@vercel/functions'
       - '@vercel/kv'
       - aws4fetch
       - better-sqlite3
@@ -18780,6 +18790,8 @@ snapshots:
       skin-tone: 2.0.0
 
   node-fetch-native@1.6.6: {}
+
+  node-fetch-native@1.6.7: {}
 
   node-fetch@2.7.0(encoding@0.1.13):
     dependencies:
@@ -18962,7 +18974,7 @@ snapshots:
       unimport: 5.2.0
       unplugin: 2.3.5
       unplugin-vue-router: 0.15.0(@vue/compiler-sfc@3.5.17)(typescript@5.8.3)(vue-router@4.5.1(vue@3.5.13(typescript@5.8.3)))(vue@3.5.13(typescript@5.8.3))
-      unstorage: 1.16.1(@netlify/blobs@9.1.2)(@upstash/redis@1.34.0)(@vercel/kv@1.0.1)(db0@0.3.2)(idb-keyval@6.2.1)(ioredis@5.6.1)
+      unstorage: 1.17.0(@netlify/blobs@9.1.2)(@upstash/redis@1.34.0)(@vercel/kv@1.0.1)(db0@0.3.2)(idb-keyval@6.2.1)(ioredis@5.6.1)
       untyped: 2.0.0
       vue: 3.5.13(typescript@5.8.3)
       vue-bundle-renderer: 2.1.2
@@ -18987,6 +18999,7 @@ snapshots:
       - '@planetscale/database'
       - '@upstash/redis'
       - '@vercel/blob'
+      - '@vercel/functions'
       - '@vercel/kv'
       - '@vue/compiler-sfc'
       - aws4fetch
@@ -19085,7 +19098,7 @@ snapshots:
       unimport: 5.2.0
       unplugin: 2.3.5
       unplugin-vue-router: 0.15.0(@vue/compiler-sfc@3.5.17)(typescript@5.8.3)(vue-router@4.5.1(vue@3.5.13(typescript@5.8.3)))(vue@3.5.13(typescript@5.8.3))
-      unstorage: 1.16.1(@netlify/blobs@9.1.2)(@upstash/redis@1.34.0)(@vercel/kv@3.0.0)(db0@0.3.2)(idb-keyval@6.2.1)(ioredis@5.6.1)
+      unstorage: 1.17.0(@netlify/blobs@9.1.2)(@upstash/redis@1.34.0)(@vercel/kv@3.0.0)(db0@0.3.2)(idb-keyval@6.2.1)(ioredis@5.6.1)
       untyped: 2.0.0
       vue: 3.5.13(typescript@5.8.3)
       vue-bundle-renderer: 2.1.2
@@ -19110,6 +19123,7 @@ snapshots:
       - '@planetscale/database'
       - '@upstash/redis'
       - '@vercel/blob'
+      - '@vercel/functions'
       - '@vercel/kv'
       - '@vue/compiler-sfc'
       - aws4fetch
@@ -21437,14 +21451,14 @@ snapshots:
       picomatch: 4.0.3
       webpack-virtual-modules: 0.6.2
 
-  unstorage@1.16.1(@netlify/blobs@9.1.2)(@upstash/redis@1.34.0)(@vercel/kv@1.0.1)(db0@0.3.2)(idb-keyval@6.2.1)(ioredis@5.6.1):
+  unstorage@1.17.0(@netlify/blobs@9.1.2)(@upstash/redis@1.34.0)(@vercel/kv@1.0.1)(db0@0.3.2)(idb-keyval@6.2.1)(ioredis@5.6.1):
     dependencies:
       anymatch: 3.1.3
       chokidar: 4.0.3
       destr: 2.0.5
       h3: 1.15.4
       lru-cache: 10.4.3
-      node-fetch-native: 1.6.6
+      node-fetch-native: 1.6.7
       ofetch: 1.4.1
       ufo: 1.6.1
     optionalDependencies:
@@ -21455,14 +21469,14 @@ snapshots:
       idb-keyval: 6.2.1
       ioredis: 5.6.1
 
-  unstorage@1.16.1(@netlify/blobs@9.1.2)(@upstash/redis@1.34.0)(@vercel/kv@3.0.0)(db0@0.3.2)(idb-keyval@6.2.1)(ioredis@5.6.1):
+  unstorage@1.17.0(@netlify/blobs@9.1.2)(@upstash/redis@1.34.0)(@vercel/kv@3.0.0)(db0@0.3.2)(idb-keyval@6.2.1)(ioredis@5.6.1):
     dependencies:
       anymatch: 3.1.3
       chokidar: 4.0.3
       destr: 2.0.5
       h3: 1.15.4
       lru-cache: 10.4.3
-      node-fetch-native: 1.6.6
+      node-fetch-native: 1.6.7
       ofetch: 1.4.1
       ufo: 1.6.1
     optionalDependencies:

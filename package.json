@@ -141,7 +141,7 @@
     "sharp": "^0.34.3",
     "sharp-ico": "^0.1.5",
     "simple-git-hooks": "^2.13.1",
-    "tsx": "^4.20.4",
+    "tsx": "^4.20.5",
     "typescript": "^5.4.4",
     "vitest": "3.2.4",
     "vue-tsc": "^2.1.6"

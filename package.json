@@ -153,7 +153,7 @@
   },
   "resolutions": {
     "nuxt-component-meta": "0.13.1",
-    "unstorage": "^1.16.1",
+    "unstorage": "^1.17.0",
     "vitest": "3.2.4",
     "vue": "^3.5.4"
   },

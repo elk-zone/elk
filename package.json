@@ -39,7 +39,7 @@
     "@iconify/json": "^2.2.170",
     "@iconify/utils": "^2.1.22",
     "@nuxt/devtools": "^2.4.1",
-    "@nuxt/test-utils": "^3.19.0",
+    "@nuxt/test-utils": "^3.19.2",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/i18n": "^9.5.4",
     "@pinia/nuxt": "^0.11.0",

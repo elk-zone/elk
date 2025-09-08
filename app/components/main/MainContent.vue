@@ -30,12 +30,11 @@ const containerClass = computed(() => {
       sticky top-0 z-20
       pt="[env(safe-area-inset-top,0)]"
       bg="[rgba(var(--rgb-bg-base),0.7)]"
-      class="native:lg:w-[calc(100vw-5rem)] native:xl:w-[calc(135%+(100vw-1200px)/2)]"
       :class="{
         'backdrop-blur': !getPreferences(userSettings, 'optimizeForLowPerformanceDevice'),
       }"
     >
-      <div flex justify-between gap-2 min-h-53px px5 py1 :class="{ 'xl:hidden': $route.name !== 'tag' }" class="native:xl:flex" border="b base">
+      <div flex justify-between gap-2 min-h-53px px5 py1 :class="{ 'xl:hidden': $route.name !== 'tag' }" border="b base">
         <div flex gap-2 items-center :overflow-hidden="!noOverflowHidden ? '' : false" w-full>
           <button
             v-if="backOnSmallScreen || back"
@@ -45,7 +44,7 @@ const containerClass = computed(() => {
           >
             <div text-lg i-ri:arrow-left-line class="rtl-flip" />
           </button>
-          <div :truncate="!noOverflowHidden ? '' : false" flex w-full data-tauri-drag-region class="native-mac:justify-start native-mac:text-center">
+          <div :truncate="!noOverflowHidden ? '' : false" flex w-full class="native-mac:justify-start native-mac:text-center">
             <slot name="title" />
           </div>
           <div sm:hidden h-7 w-1px />

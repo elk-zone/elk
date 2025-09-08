@@ -80,7 +80,7 @@ const locales: LocaleObjectData[] = [
     file: 'en.json',
     name: 'English',
   },
-  ({
+  {
     // @ts-expect-error ar used as placeholder
     code: 'ar',
     file: 'ar.json',
@@ -90,8 +90,8 @@ const locales: LocaleObjectData[] = [
       const name = new Intl.PluralRules('ar-EG').select(choice)
       return { zero: 0, one: 1, two: 2, few: 3, many: 4, other: 5 }[name]
     },
-  } satisfies LocaleObjectData),
-  ({
+  } satisfies LocaleObjectData,
+  {
     code: 'ckb',
     file: 'ckb.json',
     name: 'کوردیی ناوەندی',
@@ -100,8 +100,8 @@ const locales: LocaleObjectData[] = [
       const name = new Intl.PluralRules('ckb').select(choice)
       return { zero: 0, one: 1, two: 2, few: 3, many: 4, other: 5 }[name]
     },
-  } satisfies LocaleObjectData),
-  ({
+  } satisfies LocaleObjectData,
+  {
     code: 'fa-IR',
     file: 'fa-IR.json',
     name: 'فارسی',
@@ -110,7 +110,7 @@ const locales: LocaleObjectData[] = [
       const name = new Intl.PluralRules('fa-IR').select(choice)
       return { zero: 0, one: 1, two: 2, few: 3, many: 4, other: 5 }[name]
     },
-  } satisfies LocaleObjectData),
+  } satisfies LocaleObjectData,
   {
     // @ts-expect-error ca used as placeholder
     code: 'ca',

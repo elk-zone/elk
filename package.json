@@ -101,8 +101,6 @@
     "stale-dep": "^0.8.0",
     "std-env": "^3.7.0",
     "string-length": "^5.0.1",
-    "tauri-plugin-log-api": "github:tauri-apps/tauri-plugin-log",
-    "tauri-plugin-store-api": "github:tauri-apps/tauri-plugin-store",
     "theme-vitesse": "^0.8.0",
     "tiny-decode": "^0.1.3",
     "tippy.js": "^6.3.7",

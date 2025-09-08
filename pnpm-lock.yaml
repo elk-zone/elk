@@ -223,12 +223,6 @@ importers:
       string-length:
         specifier: ^5.0.1
         version: 5.0.1
-      tauri-plugin-log-api:
-        specifier: github:tauri-apps/tauri-plugin-log
-        version: https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/f76f6c56a5f63e9192c5e05fafbd114b9c455ee6
-      tauri-plugin-store-api:
-        specifier: github:tauri-apps/tauri-plugin-store
-        version: https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/56f690f2432e4fd85f53ec32e22de8c2d7a11651
       theme-vitesse:
         specifier: ^0.8.0
         version: 0.8.3
@@ -3505,10 +3499,6 @@ packages:
 
   '@surma/rollup-plugin-off-main-thread@2.2.3':
     resolution: {integrity: sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ==}
-
-  '@tauri-apps/api@1.6.0':
-    resolution: {integrity: sha512-rqI++FWClU5I2UBp4HXFvl+sBWkdigBkxnpJDQUWttNyG7IZP4FwQGhTNL5EOw0vI8i6eSAJ5frLqO7n7jbJdg==}
-    engines: {node: '>= 14.6.0', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
 
   '@tiptap/core@2.2.4':
     resolution: {integrity: sha512-cRrI8IlLIhCE1hacBQzXIC8dsRvGq6a4lYWQK/BaHuZg21CG7szp3Vd8Ix+ra1f5v0xPOT+Hy+QFNQooRMKMCw==}
@@ -9019,14 +9009,6 @@ packages:
     resolution: {integrity: sha512-5S7Va8hKfV7W5U6g3aYxXmlPoZVAwUMy9AOKyF2fVuZa2UD3qZjg578OrLRt8PcNN1PleVaL/5/yYATNL0ICUw==}
     engines: {node: '>=18'}
 
-  tauri-plugin-log-api@https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/f76f6c56a5f63e9192c5e05fafbd114b9c455ee6:
-    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/f76f6c56a5f63e9192c5e05fafbd114b9c455ee6}
-    version: 0.0.0
-
-  tauri-plugin-store-api@https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/56f690f2432e4fd85f53ec32e22de8c2d7a11651:
-    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/56f690f2432e4fd85f53ec32e22de8c2d7a11651}
-    version: 0.0.0
-
   temp-dir@2.0.0:
     resolution: {integrity: sha512-aoBAniQmmwtcKp/7BzsH8Cxzv8OL736p7v1ihGb5e9DJ9kTwGWHrQrVB5+lfVDzfGrdRzXch+ig7LHaY1JTOrg==}
     engines: {node: '>=8'}
@@ -13572,8 +13554,6 @@ snapshots:
       json5: 2.2.3
       magic-string: 0.25.9
       string.prototype.matchall: 4.0.8
-
-  '@tauri-apps/api@1.6.0': {}
 
   '@tiptap/core@2.2.4(@tiptap/pm@2.2.4)':
     dependencies:
@@ -20916,14 +20896,6 @@ snapshots:
       minizlib: 3.0.1
       mkdirp: 3.0.1
       yallist: 5.0.0
-
-  tauri-plugin-log-api@https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/f76f6c56a5f63e9192c5e05fafbd114b9c455ee6:
-    dependencies:
-      '@tauri-apps/api': 1.6.0
-
-  tauri-plugin-store-api@https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/56f690f2432e4fd85f53ec32e22de8c2d7a11651:
-    dependencies:
-      '@tauri-apps/api': 1.6.0
 
   temp-dir@2.0.0: {}
 

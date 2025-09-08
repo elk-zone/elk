@@ -7,7 +7,7 @@ import { flatten } from 'flat'
 import { countryLocaleVariants, currentLocales } from '../config/i18n'
 
 export const localeData: [code: string, file: string[], title: string][]
-    = currentLocales.map((l: any) => [l.code, l.files ? l.files : [l.file!], l.name ?? l.code])
+  = currentLocales.map((l: any) => [l.code, l.files ? l.files : [l.file!], l.name ?? l.code])
 
 function merge(src: Record<string, any>, dst: Record<string, any>) {
   for (const key in src) {

@@ -184,9 +184,6 @@ importers:
       node-emoji:
         specifier: ^2.1.3
         version: 2.1.3
-      node-mock-http:
-        specifier: ^1.0.0
-        version: 1.0.0
       nuxt-security:
         specifier: ^2.2.0
         version: 2.2.0(magicast@0.3.5)(rollup@4.46.2)

@@ -88,7 +88,6 @@
     "masto": "^6.10.4",
     "mocked-exports": "^0.1.1",
     "node-emoji": "^2.1.3",
-    "node-mock-http": "^1.0.0",
     "nuxt-security": "^2.2.0",
     "page-lifecycle": "^0.1.2",
     "pinia": "^3.0.2",

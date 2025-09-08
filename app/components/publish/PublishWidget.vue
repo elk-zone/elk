@@ -193,7 +193,7 @@ function getMinimumScheduledTime(now: Date): Date {
   const bufferInSec = 5 + 5 * 60 // + 5 minutes and 5 seconds
   const nowInSec = Math.floor(now.getTime() / 1000)
   const bufferedTimeInSec
-      = Math.ceil((nowInSec + bufferInSec) / 60) * 60
+    = Math.ceil((nowInSec + bufferInSec) / 60) * 60
   return new Date(bufferedTimeInSec * 1000)
 }
 

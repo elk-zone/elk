@@ -11,8 +11,8 @@ export function useHighlighter(lang: Lang): {
 } {
   if (!shikiImport) {
     shikiImport = import('shiki')
-      .then(async ({ getHighlighter }) => {
-        highlighter.value = await getHighlighter({
+      .then(async ({ createHighlighter }) => {
+        highlighter.value = await createHighlighter({
           themes: [
             'vitesse-dark',
             'vitesse-light',

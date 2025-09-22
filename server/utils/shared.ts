@@ -111,6 +111,12 @@ export async function deleteApp(server: string) {
     await storage.removeItem(key)
 }
 
+export async function invalidateApp(origin: string, server: string) {
+  const host = origin.replace(/^https?:\/\//, '').replace(/\W/g, '-').replace(/\?.*$/, '')
+  const key = `servers:v4:${server}:${host}.json`.toLowerCase()
+  await storage.removeItem(key)
+}
+
 export async function listServers() {
   const keys = await storage.getKeys('servers:v4:')
   const servers = new Set<string>()

@@ -1,6 +1,6 @@
 import type { BuildInfo } from './shared/types'
-import { createResolver, useNuxt } from '@nuxt/kit'
 import { resolveModulePath } from 'exsolve'
+import { createResolver, useNuxt } from 'nuxt/kit'
 import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
 import { currentLocales } from './config/i18n'

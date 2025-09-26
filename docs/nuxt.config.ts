@@ -9,6 +9,10 @@ export default defineNuxtConfig({
     url: 'https://docs.elk.zone',
   },
 
+  llms: {
+    domain: 'https://docs.elk.zone',
+  },
+
   vite: {
     optimizeDeps: {
       include: ['scule'],

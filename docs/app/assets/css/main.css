@@ -1,0 +1,51 @@
+/* Elk brand colors for light and dark modes */
+:root {
+  /* Light mode colors (based on #995e1b) */
+  --color-primary-50: #fef7ed;
+  --color-primary-100: #fdedd5;
+  --color-primary-200: #fad8aa;
+  --color-primary-300: #f6bb74;
+  --color-primary-400: #f0943c;
+  --color-primary-500: #995e1b; /* Light mode primary */
+  --color-primary-600: #8a5218;
+  --color-primary-700: #734515;
+  --color-primary-800: #5c3711;
+  --color-primary-900: #4b2e0e;
+  --color-primary-950: #26170a;
+}
+
+.dark {
+  /* Dark mode colors (based on #d98018) */
+  --color-primary-50: #fef7ed;
+  --color-primary-100: #fdedd5;
+  --color-primary-200: #fad8aa;
+  --color-primary-300: #f6bb74;
+  --color-primary-400: #f0943c;
+  --color-primary-500: #d98018; /* Dark mode primary */
+  --color-primary-600: #cb6210;
+  --color-primary-700: #a84b10;
+  --color-primary-800: #883b14;
+  --color-primary-900: #713213;
+  --color-primary-950: #3d1707;
+}
+
+/* Ensure proper contrast for text on Elk orange backgrounds */
+.bg-primary-500 {
+  color: white;
+}
+
+.text-primary-500 {
+  color: var(--color-primary-500);
+}
+
+/* Custom Elk brand styling */
+.elk-gradient {
+  background: linear-gradient(135deg, #995e1b 0%, #d98018 100%);
+}
+
+.elk-gradient-text {
+  background: linear-gradient(135deg, #995e1b 0%, #d98018 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

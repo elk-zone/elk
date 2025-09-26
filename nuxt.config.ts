@@ -11,10 +11,7 @@ const { resolve } = createResolver(import.meta.url)
 const mockProxy = resolveModulePath('mocked-exports/proxy', { from: import.meta.url })
 
 export default defineNuxtConfig({
-  compatibilityDate: '2024-09-11',
-  future: {
-    compatibilityVersion: 4,
-  },
+  compatibilityDate: '2025-07-11',
   typescript: {
     tsConfig: {
       exclude: ['../service-worker'],
@@ -37,10 +34,6 @@ export default defineNuxtConfig({
     '@unlazy/nuxt',
     '@nuxt/test-utils/module',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
-    '~~/modules/emoji-mart-translation',
-    '~~/modules/purge-comments',
-    '~~/modules/build-env',
-    '~~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     'stale-dep/nuxt',
   ],
   vue: {

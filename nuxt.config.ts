@@ -61,6 +61,9 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: false,
     renderJsonPayloads: true,
+    // Temporary workaround to avoid hash mismatch issue
+    // ref. https://github.com/elk-zone/elk/issues/3385#issuecomment-3335167005
+    entryImportMap: false,
   },
   css: [
     '@unocss/reset/tailwind.css',

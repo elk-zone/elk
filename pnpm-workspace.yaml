@@ -7,3 +7,7 @@ ignoredBuiltDependencies:
 onlyBuiltDependencies:
   - better-sqlite3
   - sharp
+
+shellEmulator: true
+ignoreWorkspaceRootCheck: true
+packageManagerStrict: false

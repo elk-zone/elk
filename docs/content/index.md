@@ -62,7 +62,7 @@ Everything you need for the perfect [Mastodon experience]{.text-primary}
   :::u-page-card
   ---
   spotlight: true
-  icon: i-ph-timeline-duotone
+  icon: i-ic-twotone-view-timeline
   to: /guide/features
   ---
   #title

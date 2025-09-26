@@ -3,19 +3,6 @@ export default defineAppConfig({
     title: 'Elk',
     description: 'A nimble Mastodon web client with modern features and elegant design.',
   },
-  ui: {
-    colors: {
-      primary: 'orange',
-    },
-  },
-  uiPro: {
-    pageHero: {
-      slots: {
-        container: 'lg:!grid-cols-3',
-        wrapper: 'col-span-2',
-      },
-    },
-  },
   header: {
     title: 'Elk',
     logo: {

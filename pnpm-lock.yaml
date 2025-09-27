@@ -29,6 +29,9 @@ importers:
       '@iconify/utils':
         specifier: ^2.1.22
         version: 2.3.0
+      '@intlify/core-base':
+        specifier: ^11.1.12
+        version: 11.1.12
       '@intlify/message-compiler':
         specifier: ^11.1.12
         version: 11.1.12

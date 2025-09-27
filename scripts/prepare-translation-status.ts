@@ -1,10 +1,10 @@
-import type { ElkTranslationStatus } from '#shared/types/translation-status'
 import type { LocaleEntry } from '../docs/types'
+import type { ElkTranslationStatus } from '../shared/types/translation-status'
 import { Buffer } from 'node:buffer'
 import { readFile, writeFile } from 'node:fs/promises'
 import { flatten } from 'flat'
 import { createResolver } from 'nuxt/kit'
-import { countryLocaleVariants, currentLocales } from '../config/i18n'
+import { countryLocaleVariants, currentLocales } from '../config/i18n.ts'
 
 export const localeData: [code: string, file: string[], title: string][]
   = currentLocales.map((l: any) => [l.code, l.files ? l.files : [l.file!], l.name ?? l.code])

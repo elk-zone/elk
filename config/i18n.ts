@@ -278,7 +278,7 @@ function buildLocales() {
       acc.push(data)
     }
     return acc
-  }, <LocaleObjectData[]>[])
+  }, [] as LocaleObjectData[])
 
   return useLocales.sort((a, b) => a.code.localeCompare(b.code))
 }
@@ -308,7 +308,7 @@ export const datetimeFormats = Object.values(currentLocales).reduce((acc, data) 
   }
 
   return acc
-}, <DateTimeFormats>{})
+}, {} as DateTimeFormats)
 
 export const numberFormats = Object.values(currentLocales).reduce((acc, data) => {
   const numberFormats = data.numberFormats
@@ -340,7 +340,7 @@ export const numberFormats = Object.values(currentLocales).reduce((acc, data) =>
   }
 
   return acc
-}, <NumberFormats>{})
+}, {} as NumberFormats)
 
 export const pluralRules = Object.values(currentLocales).reduce((acc, data) => {
   const pluralRule = data.pluralRule
@@ -350,4 +350,4 @@ export const pluralRules = Object.values(currentLocales).reduce((acc, data) => {
   }
 
   return acc
-}, <PluralizationRules>{})
+}, {} as PluralizationRules)

@@ -2,7 +2,7 @@ import { writeFile } from 'node:fs/promises'
 import fs from 'fs-extra'
 import { ofetch } from 'ofetch'
 import { join, resolve } from 'pathe'
-import { elkTeamMembers } from '../app/composables/about'
+import { elkTeamMembers } from '../app/composables/about.ts'
 
 const avatarsDir = resolve('./public/avatars/')
 

@@ -378,9 +378,6 @@ importers:
       simple-git-hooks:
         specifier: ^2.13.1
         version: 2.13.1
-      tsx:
-        specifier: ^4.20.5
-        version: 4.20.6
       typescript:
         specifier: ^5.4.4
         version: 5.9.2
@@ -18866,6 +18863,7 @@ snapshots:
       get-tsconfig: 4.10.1
     optionalDependencies:
       fsevents: 2.3.3
+    optional: true
 
   tunnel-agent@0.6.0:
     dependencies:

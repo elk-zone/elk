@@ -1,7 +1,7 @@
 import process from 'node:process'
 import fs from 'fs-extra'
-import { emojiPrefix, iconifyEmojiPackage } from '../config/emojis'
-import { colorsMap } from './generate-themes'
+import { emojiPrefix, iconifyEmojiPackage } from '../config/emojis.ts'
+import { colorsMap } from './generate-themes.ts'
 
 const dereference = process.platform === 'win32' ? true : undefined
 

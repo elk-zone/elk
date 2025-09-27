@@ -41,7 +41,7 @@
     "@nuxt/devtools": "^2.6.5",
     "@nuxt/test-utils": "^3.19.2",
     "@nuxtjs/color-mode": "^3.5.2",
-    "@nuxtjs/i18n": "^9.5.6",
+    "@nuxtjs/i18n": "^10.1.0",
     "@pinia/nuxt": "^0.11.2",
     "@tiptap/core": "2.2.4",
     "@tiptap/extension-bold": "2.2.4",
@@ -158,6 +158,7 @@
   },
   "resolutions": {
     "nuxt-component-meta": "0.14.0",
+    "synckit": "0.11.11",
     "unstorage": "^1.17.1",
     "vitest": "3.2.4",
     "vue": "^3.5.4"

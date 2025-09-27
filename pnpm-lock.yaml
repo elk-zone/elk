@@ -176,9 +176,6 @@ importers:
       idb-keyval:
         specifier: ^6.2.1
         version: 6.2.2
-      ignore-dependency-scripts:
-        specifier: ^1.0.1
-        version: 1.0.1
       iso-639-1:
         specifier: ^3.0.0
         version: 3.1.5
@@ -5766,10 +5763,6 @@ packages:
 
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
-
-  ignore-dependency-scripts@1.0.1:
-    resolution: {integrity: sha512-WqyrHQb35hinQkdzsNTpFqlmnksHk0mHxmSX/03i91U4WdeiTOYTYf89dB15E8q0oP3lcY+1GP95sqSgjWGUdA==}
-    hasBin: true
 
   ignore@5.3.2:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
@@ -15573,8 +15566,6 @@ snapshots:
   idb@7.1.1: {}
 
   ieee754@1.2.1: {}
-
-  ignore-dependency-scripts@1.0.1: {}
 
   ignore@5.3.2: {}
 

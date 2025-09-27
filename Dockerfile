@@ -22,6 +22,7 @@ RUN pnpm i --frozen-lockfile --ignore-scripts
 
 # Copy all source files
 COPY . ./
+RUN pnpm nuxt prepare
 
 # Run full install with every postinstall script ( This needs project file )
 RUN pnpm i --frozen-lockfile

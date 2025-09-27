@@ -275,6 +275,9 @@ importers:
       vue-advanced-cropper:
         specifier: ^2.8.9
         version: 2.8.9(vue@3.5.22(typescript@5.9.2))
+      vue-i18n:
+        specifier: ^11.1.12
+        version: 11.1.12(vue@3.5.22(typescript@5.9.2))
       vue-virtual-scroller:
         specifier: 2.0.0-beta.8
         version: 2.0.0-beta.8(vue@3.5.22(typescript@5.9.2))

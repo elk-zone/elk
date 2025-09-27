@@ -18,13 +18,13 @@
     "lint": "eslint --cache .",
     "lint:fix": "eslint --cache --fix .",
     "typecheck": "nuxt typecheck",
-    "prepare": "pnpm prepare-translation-status && node scripts/prepare.ts",
+    "prepare": "node scripts/prepare-translation-status.ts && node scripts/prepare.ts",
     "generate": "nuxt generate",
     "test:unit": "vitest",
     "test:unit:ci": "vitest run",
     "test:typecheck": "vue-tsc -b --noEmit",
-    "test": "pnpm test:unit",
-    "test:ci": "pnpm test:unit:ci",
+    "test": "vitest",
+    "test:ci": "vitest run",
     "update:team:avatars": "node scripts/avatars.ts",
     "cleanup-translations": "node scripts/cleanup-translations.ts",
     "prepare-translation-status": "node scripts/prepare-translation-status.ts",
@@ -167,7 +167,7 @@
     "vue": "^3.5.4"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged"
+    "pre-commit": "npx lint-staged"
   },
   "lint-staged": {
     "*": "eslint --fix"

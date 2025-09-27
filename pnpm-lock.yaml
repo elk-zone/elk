@@ -29,6 +29,9 @@ importers:
       '@iconify/utils':
         specifier: ^2.1.22
         version: 2.3.0
+      '@intlify/shared':
+        specifier: ^11.1.12
+        version: 11.1.12
       '@nuxt/devtools':
         specifier: ^2.6.5
         version: 2.6.5(vite@7.1.7(@types/node@24.5.2)(jiti@2.6.0)(lightningcss@1.30.1)(terser@5.44.0)(tsx@4.20.6)(yaml@2.8.1))(vue@3.5.22(typescript@5.9.2))

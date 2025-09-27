@@ -14,6 +14,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-11',
   typescript: {
     tsConfig: {
+      include: ['../tests/nuxt'],
       exclude: ['../service-worker'],
       compilerOptions: {
         // TODO: enable this once we fix the issues
@@ -322,25 +323,6 @@ export default defineNuxtConfig({
     ssr: false,
   },
 })
-
-declare global {
-  // eslint-disable-next-line ts/no-namespace
-  namespace NodeJS {
-    interface Process {
-      mock?: Record<string, any>
-    }
-  }
-}
-
-declare module '#app' {
-  interface PageMeta {
-    wideLayout?: boolean
-  }
-
-  interface RuntimeNuxtHooks {
-    'elk-logo:click': () => void
-  }
-}
 
 declare module '@nuxt/schema' {
   interface AppConfig {

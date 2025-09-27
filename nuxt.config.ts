@@ -34,7 +34,6 @@ export default defineNuxtConfig({
     '@unlazy/nuxt',
     '@nuxt/test-utils/module',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
-    'stale-dep/nuxt',
   ],
   vue: {
     propsDestructure: true,

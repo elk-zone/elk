@@ -95,9 +95,9 @@ export async function toggleMuteAccount(relationship: mastodon.v1.Relationship, 
   relationship!.muting = !relationship!.muting
   relationship = relationship!.muting
     ? await client.value.v1.accounts.$select(account.id).mute({
-      duration,
-      notifications,
-    })
+        duration,
+        notifications,
+      })
     : await client.value.v1.accounts.$select(account.id).unmute()
 }
 

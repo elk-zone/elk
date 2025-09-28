@@ -67,6 +67,11 @@ const sanitizer = sanitize({
   li: {
     value: keep,
   },
+  // Hollo supports <ruby> tags
+  // https://github.com/fedify-dev/hollo/blob/80e7184aa805f579be8712ff9231be655343c661/src/xss.ts#L92-L94
+  ruby: {},
+  rp: {},
+  rt: {},
 })
 
 /**
@@ -104,11 +109,12 @@ export function parseMastodonHTML(
           .replace(/</g, '&lt;')
           .replace(/>/g, '&gt;')
           .replace(/`/g, '&#96;')
+          .replace(/\*/g, '&ast;')
         const classes = lang ? ` class="language-${lang}"` : ''
         return `><pre><code${classes}>${code}</code></pre>`
       })
       .replace(/`([^`\n]*)`/g, (_1, raw) => {
-        return raw ? `<code>${htmlToText(raw).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code>` : ''
+        return raw ? `<code>${htmlToText(raw).replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\*/g, '&ast;')}</code>` : ''
       })
   }
 

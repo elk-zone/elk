@@ -11,6 +11,8 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
    */
   const threadIsActive = computed<boolean>(() => draftItems.value.length > 1)
 
+  const threadIsSending = ref(false)
+
   /**
    * Add an item to the thread
    */
@@ -44,6 +46,7 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
   async function publishThread() {
     const allFailedMessages: Array<string> = []
     const isAReplyThread = Boolean(draftItems.value[0].params.inReplyToId)
+    threadIsSending.value = true
 
     let lastPublishedStatus: mastodon.v1.Status | null = null
     let amountPublished = 0
@@ -72,6 +75,7 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
     }
     // Remove all published items from the thread
     draftItems.value.splice(0, amountPublished)
+    threadIsSending.value = false
 
     // If we have errors, return them
     if (allFailedMessages.length > 0)
@@ -90,5 +94,6 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
     addThreadItem,
     removeThreadItem,
     publishThread,
+    threadIsSending,
   }
 }

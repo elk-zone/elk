@@ -40,7 +40,6 @@ export default defineNuxtConfig({
     '~~/modules/emoji-mart-translation',
     '~~/modules/purge-comments',
     '~~/modules/build-env',
-    '~~/modules/tauri/index',
     '~~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     'stale-dep/nuxt',
   ],
@@ -62,6 +61,9 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: false,
     renderJsonPayloads: true,
+    // Temporary workaround to avoid hash mismatch issue
+    // ref. https://github.com/elk-zone/elk/issues/3385#issuecomment-3335167005
+    entryImportMap: false,
   },
   css: [
     '@unocss/reset/tailwind.css',
@@ -69,9 +71,7 @@ export default defineNuxtConfig({
     '~/styles/default-theme.css',
     '~/styles/vars.css',
     '~/styles/global.css',
-    ...process.env.TAURI_PLATFORM === 'macos'
-      ? []
-      : ['~/styles/scrollbars.css'],
+    '~/styles/scrollbars.css',
     '~/styles/tiptap.css',
     '~/styles/dropdown.css',
   ],

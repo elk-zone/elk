@@ -29,7 +29,7 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 
-const { threadItems, threadIsActive, publishThread } = threadComposer ?? useThreadComposer(draftKey)
+const { threadItems, threadIsActive, publishThread, threadIsSending } = threadComposer ?? useThreadComposer(draftKey)
 
 const draft = computed({
   get: () => threadItems.value[draftItemIndex],
@@ -237,9 +237,13 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
     e.stopImmediatePropagation()
 }
 
+const userSettings = useUserSettings()
+
+const optimizeForLowPerformanceDevice = computed(() => getPreferences(userSettings.value, 'optimizeForLowPerformanceDevice'))
+
 const languageDetectorInGlobalThis = 'LanguageDetector' in globalThis
-let supportsLanguageDetector = languageDetectorInGlobalThis && await (globalThis as any).LanguageDetector.availability() === 'available'
-let languageDetector: { detect: (arg0: string) => any }
+let supportsLanguageDetector = !optimizeForLowPerformanceDevice.value && languageDetectorInGlobalThis && await (globalThis as any).LanguageDetector.availability() === 'available'
+let languageDetector: { detect: (arg0: string, option: { signal: AbortSignal }) => any }
 // If the API is supported, but the model not loaded yet…
 if (languageDetectorInGlobalThis && !supportsLanguageDetector) {
   // …trigger the model download
@@ -255,26 +259,36 @@ function countLetters(text: string) {
   return letters.length
 }
 
-async function detectLanguage() {
+let detectLanguageAbortController = new AbortController()
+
+const detectLanguage = useDebounceFn(async () => {
   if (!supportsLanguageDetector) {
     return
   }
   if (!languageDetector) {
+    // maybe we dont want to mess with this with abort....
     languageDetector = await (globalThis as any).LanguageDetector.create()
   }
+  // we stop previously running language detection process
+  detectLanguageAbortController.abort()
+  detectLanguageAbortController = new AbortController()
   const text = htmlToText(editor.value?.getHTML() || '')
   if (!text || countLetters(text) <= 5) {
     draft.value.params.language = preferredLanguage.value
     return
   }
   try {
-    const detectedLanguage = (await languageDetector.detect(text))[0].detectedLanguage
+    const detectedLanguage = (await languageDetector.detect(text, { signal: detectLanguageAbortController.signal }))[0].detectedLanguage
     draft.value.params.language = detectedLanguage === 'und' ? preferredLanguage.value : detectedLanguage.substring(0, 2)
   }
-  catch {
+  catch (e) {
+    // if error or abort we end up there
+    if ((e as Error).name !== 'AbortError') {
+      console.error(e)
+    }
     draft.value.params.language = preferredLanguage.value
   }
-}
+}, 500)
 </script>
 
 <template>
@@ -563,18 +577,18 @@ async function detectLanguage() {
               <button
                 v-if="!threadIsActive || isFinalItemOfThread"
                 btn-solid rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit class="publish-button"
-                :aria-disabled="isPublishDisabled || isExceedingCharacterLimit" aria-describedby="publish-tooltip"
-                :disabled="isPublishDisabled || isExceedingCharacterLimit"
+                :aria-disabled="isPublishDisabled || isExceedingCharacterLimit || threadIsSending" aria-describedby="publish-tooltip"
+                :disabled="isPublishDisabled || isExceedingCharacterLimit || threadIsSending"
                 @click="publish"
               >
-                <span v-if="isSending" block animate-spin preserve-3d>
+                <span v-if="isSending || threadIsSending" block animate-spin preserve-3d>
                   <div block i-ri:loader-2-fill />
                 </span>
                 <span v-if="failedMessages.length" block>
                   <div block i-carbon:face-dizzy-filled />
                 </span>
                 <template v-if="threadIsActive">
-                  <span>{{ $t('action.publish_thread') }} </span>
+                  <span>{{ !threadIsSending ? $t('action.publish_thread') : $t('state.publishing') }} </span>
                 </template>
                 <template v-else>
                   <span v-if="draft.editingStatus">{{ $t('action.save_changes') }}</span>

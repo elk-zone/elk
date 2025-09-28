@@ -60,7 +60,7 @@ async function fetchAppInfo(origin: string, server: string) {
       },
       body: {
         client_name: APP_NAME + (env !== 'release' ? ` (${env})` : ''),
-        website: 'https://elk.zone',
+        website: origin,
         redirect_uris: getRedirectURI(origin, server),
         scopes: 'read write follow push',
       },
@@ -109,6 +109,12 @@ export async function deleteApp(server: string) {
   const keys = (await storage.getKeys(`servers:v4:${server}:`))
   for (const key of keys)
     await storage.removeItem(key)
+}
+
+export async function invalidateApp(origin: string, server: string) {
+  const host = origin.replace(/^https?:\/\//, '').replace(/\W/g, '-').replace(/\?.*$/, '')
+  const key = `servers:v4:${server}:${host}.json`.toLowerCase()
+  await storage.removeItem(key)
 }
 
 export async function listServers() {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { as = 'div', active } = defineProps<{
-  as: any
+  as?: string
   active: boolean
 }>()
 

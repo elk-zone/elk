@@ -1,5 +1,5 @@
 import { lstat } from 'node:fs'
-import { createResolver, defineNuxtModule } from '@nuxt/kit'
+import { createResolver, defineNuxtModule } from 'nuxt/kit'
 import { currentLocales } from '../config/i18n'
 
 const virtual = 'virtual:emoji-mart-lang-importer'

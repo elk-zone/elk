@@ -67,6 +67,11 @@ const sanitizer = sanitize({
   li: {
     value: keep,
   },
+  // Hollo supports <ruby> tags
+  // https://github.com/fedify-dev/hollo/blob/80e7184aa805f579be8712ff9231be655343c661/src/xss.ts#L92-L94
+  ruby: {},
+  rp: {},
+  rt: {},
 })
 
 /**

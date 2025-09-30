@@ -1,5 +1,5 @@
-import type { RouteLocationRaw } from '#vue-router'
 import type { mastodon } from 'masto'
+import type { RouteLocationRaw } from 'vue-router'
 import type { MarkNonNullable, Mutable } from './utils'
 
 export interface AppInfo {
@@ -42,8 +42,6 @@ export interface GroupedLikeNotifications {
 }
 
 export type NotificationSlot = GroupedNotifications | GroupedLikeNotifications | mastodon.v1.Notification
-
-export type TranslateFn = ReturnType<typeof useI18n>['t']
 
 export interface DraftItem {
   editingStatus?: mastodon.v1.Status

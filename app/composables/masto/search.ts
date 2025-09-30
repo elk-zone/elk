@@ -30,7 +30,7 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
 
   const q = computed(() => resolveUnref(query).trim())
 
-  let paginator: mastodon.Paginator<mastodon.v2.Search, mastodon.rest.v2.SearchParams> | undefined
+  let paginator: AsyncIterableIterator<mastodon.v2.Search, mastodon.rest.v2.SearchParams> | undefined
 
   const appendResults = (results: mastodon.v2.Search, empty = false) => {
     if (empty) {
@@ -76,7 +76,7 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
       q: q.value,
       ...resolveUnref(options),
       resolve: !!currentUser.value,
-    })
+    }).values()
     const nextResults = await paginator.next()
 
     done.value = !!nextResults.done

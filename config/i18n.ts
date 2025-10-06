@@ -75,13 +75,11 @@ export const countryLocaleVariants: Record<string, (LocaleObjectData & { country
 
 const locales: LocaleObjectData[] = [
   {
-    // @ts-expect-error en used as placeholder
     code: 'en',
     file: 'en.json',
     name: 'English',
   },
   {
-    // @ts-expect-error ar used as placeholder
     code: 'ar',
     file: 'ar.json',
     name: 'العربية',
@@ -112,7 +110,6 @@ const locales: LocaleObjectData[] = [
     },
   } satisfies LocaleObjectData,
   {
-    // @ts-expect-error ca used as placeholder
     code: 'ca',
     file: 'ca.json',
     name: 'Català',
@@ -153,7 +150,6 @@ const locales: LocaleObjectData[] = [
     name: 'Nederlands',
   },
   {
-    // @ts-expect-error es used as placeholder
     code: 'es',
     file: 'es.json',
     name: 'Español',
@@ -207,7 +203,6 @@ const locales: LocaleObjectData[] = [
     },
   },
   {
-    // @ts-expect-error pt used as placeholder
     code: 'pt',
     file: 'pt.json',
     name: 'Português',
@@ -283,7 +278,7 @@ function buildLocales() {
       acc.push(data)
     }
     return acc
-  }, <LocaleObjectData[]>[])
+  }, [] as LocaleObjectData[])
 
   return useLocales.sort((a, b) => a.code.localeCompare(b.code))
 }
@@ -313,7 +308,7 @@ export const datetimeFormats = Object.values(currentLocales).reduce((acc, data) 
   }
 
   return acc
-}, <DateTimeFormats>{})
+}, {} as DateTimeFormats)
 
 export const numberFormats = Object.values(currentLocales).reduce((acc, data) => {
   const numberFormats = data.numberFormats
@@ -345,7 +340,7 @@ export const numberFormats = Object.values(currentLocales).reduce((acc, data) =>
   }
 
   return acc
-}, <NumberFormats>{})
+}, {} as NumberFormats)
 
 export const pluralRules = Object.values(currentLocales).reduce((acc, data) => {
   const pluralRule = data.pluralRule
@@ -355,4 +350,4 @@ export const pluralRules = Object.values(currentLocales).reduce((acc, data) => {
   }
 
   return acc
-}, <PluralizationRules>{})
+}, {} as PluralizationRules)

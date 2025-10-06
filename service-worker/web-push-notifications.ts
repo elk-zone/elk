@@ -1,6 +1,6 @@
 /// <reference lib="WebWorker" />
 /// <reference types="vite/client" />
-import type { PushPayload } from '~~/service-worker/types'
+import type { PushPayload } from './types'
 import { ELK_PAGE_LIFECYCLE_FROZEN } from '../app/constants'
 import {
   closeDatabaseConnections,

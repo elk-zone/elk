@@ -17,6 +17,7 @@ export const shikiParser: Parser = (options) => {
     return promise ?? []
 
   if (!parser)
+    // @ts-expect-error will be fixed when shiki upgrades
     parser = createParser(highlighter)
 
   return parser(options)

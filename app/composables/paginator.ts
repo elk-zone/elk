@@ -12,7 +12,7 @@ export function usePaginator<T, P, U = T>(
   // called `next` method will mutate the internal state of the variable,
   // and we need its initial state after HMR
   // so clone it
-  const paginator = _paginator.clone()
+  const paginator = _paginator.values()
 
   const state = ref<PaginatorState>(isHydrated.value ? 'idle' : 'loading')
   const items = ref<U[]>([])

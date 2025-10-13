@@ -13,10 +13,9 @@ useHydratedHead({
 <template>
   <MainContent>
     <template #title>
-      <NuxtLink to="/compose" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
-        <div i-ri:quill-pen-line />
-        <span>{{ $t('nav.compose') }}</span>
-      </NuxtLink>
+      <MainTitle as="router-link" to="/compose" icon="i-ri:quill-pen-line">
+        {{ $t('nav.compose') }}
+      </MainTitle>
     </template>
     <PublishWidgetFull />
   </MainContent>

@@ -37,7 +37,7 @@
     "@fnando/sparkline": "^0.3.10",
     "@iconify-emoji/twemoji": "^1.0.2",
     "@iconify/json": "^2.2.170",
-    "@iconify/utils": "^2.1.22",
+    "@iconify/utils": "^3.0.0",
     "@intlify/core-base": "^11.1.12",
     "@intlify/message-compiler": "^11.1.12",
     "@intlify/shared": "^11.1.12",

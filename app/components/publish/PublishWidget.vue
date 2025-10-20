@@ -541,6 +541,8 @@ const detectLanguage = useDebounceFn(async () => {
               </button>
             </CommonTooltip>
 
+            <PublishSchedulePicker v-if="!draft.editingStatus && !draft.params.inReplyToId" v-model="draft.params.scheduledAt" />
+
             <PublishVisibilityPicker v-model="draft.params.visibility" :editing="!!draft.editingStatus">
               <template #default="{ visibility }">
                 <button

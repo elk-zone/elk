@@ -94,6 +94,7 @@ export function usePublish(options: {
       mediaIds: draftItem.value.attachments.map(a => a.id),
       language: draftItem.value.params.language || preferredLanguage.value,
       poll,
+      ...(draftItem.value.params.scheduledAt ? { scheduledAt: draftItem.value.params.scheduledAt } : {}),
       ...(isGlitchEdition.value ? { 'content-type': 'text/markdown' } : {}),
     } as mastodon.rest.v1.CreateStatusParams
 

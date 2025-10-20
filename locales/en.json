@@ -326,6 +326,7 @@
     "notifications": "Notifications",
     "privacy": "Privacy",
     "profile": "Profile",
+    "scheduled_statuses": "Scheduled Posts",
     "search": "Search",
     "select_feature_flags": "Toggle Feature Flags",
     "select_font_size": "Font Size",
@@ -599,6 +600,13 @@
       "label": "Logged in users"
     }
   },
+  "scheduled_status": {
+    "edit_time": "Edit Scheduled Time",
+    "no_scheduled_statuses": "You don't have any scheduled posts",
+    "schedule": "Schedule",
+    "scheduled_at": "Scheduled for {0}",
+    "scheduled_to_publish": "Scheduled to publish"
+  },
   "share_target": {
     "description": "Elk can be configured so that you can share content from other applications, simply install Elk on your device or computer and sign in.",
     "hint": "In order to share content with Elk, Elk must be installed and you must be signed in.",
@@ -613,6 +621,7 @@
     "attachments_limit_video_error": "Maximum video size exceeded: {0}",
     "edited": "(Edited)",
     "editing": "Editing",
+    "error": "Error",
     "loading": "Loading...",
     "publish_failed": "Publish failed",
     "publishing": "Publishing",

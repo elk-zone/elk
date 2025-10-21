@@ -105,9 +105,9 @@ onReactivated(refreshInfo)
 <template>
   <MainContent back>
     <template #title>
-      <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
-        <span>{{ $t('settings.profile.appearance.title') }}</span>
-      </div>
+      <MainTitle as="h1" secondary>
+        {{ $t('settings.profile.appearance.title') }}
+      </MainTitle>
     </template>
 
     <form space-y-5 @submit.prevent="submit">

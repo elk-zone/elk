@@ -1,13 +1,13 @@
 import type { LocaleEntry } from '../docs/types'
-import type { ElkTranslationStatus } from '~/types/translation-status'
+import type { ElkTranslationStatus } from '../shared/types/translation-status'
 import { Buffer } from 'node:buffer'
 import { readFile, writeFile } from 'node:fs/promises'
-import { createResolver } from '@nuxt/kit'
 import { flatten } from 'flat'
-import { countryLocaleVariants, currentLocales } from '../config/i18n'
+import { createResolver } from 'nuxt/kit'
+import { countryLocaleVariants, currentLocales } from '../config/i18n.ts'
 
 export const localeData: [code: string, file: string[], title: string][]
-    = currentLocales.map((l: any) => [l.code, l.files ? l.files : [l.file!], l.name ?? l.code])
+  = currentLocales.map((l: any) => [l.code, l.files ? l.files : [l.file!], l.name ?? l.code])
 
 function merge(src: Record<string, any>, dst: Record<string, any>) {
   for (const key in src) {

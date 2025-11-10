@@ -147,7 +147,7 @@
     "@vue/test-utils": "2.4.6",
     "bumpp": "^10.2.3",
     "consola": "^3.4.2",
-    "eslint": "^9.39.0",
+    "eslint": "^9.39.1",
     "eslint-plugin-format": "^1.0.1",
     "flat": "^6.0.1",
     "fs-extra": "^11.3.1",

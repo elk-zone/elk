@@ -19,5 +19,4 @@ packageManagerStrict: false
 shellEmulator: true
 
 verifyDepsBeforeRun: install
-trustPolicy: no-downgrade
 

@@ -20,10 +20,9 @@ const isRootPath = computed(() => route.name === 'settings')
       <div border="e base" :class="isRootPath ? 'block lg:flex-none flex-1' : 'hidden lg:block'">
         <MainContent>
           <template #title>
-            <div timeline-title-style flex items-center gap-2 @click="$scrollToTop">
-              <div i-ri:settings-3-line />
-              <span>{{ $t('nav.settings') }}</span>
-            </div>
+            <MainTitle icon="i-ri:settings-3-line">
+              {{ $t('nav.settings') }}
+            </MainTitle>
           </template>
           <div xl:w-97 lg:w-78 w-full>
             <SettingsItem

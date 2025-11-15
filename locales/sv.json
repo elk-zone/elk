@@ -32,8 +32,8 @@
     "muted_users": "Tystade användare",
     "muting": "Tystad",
     "mutuals": "Ömsesidiga",
-    "notifications_on_post_disable": "Sluta meddela mig när {username} gör inlägg",
-    "notifications_on_post_enable": "Meddela mig när {username} gör inlägg",
+    "notifications_on_post_disable": "Sluta notifiera mig när {username} gör inlägg",
+    "notifications_on_post_enable": "Notifiera mig när {username} gör inlägg",
     "pinned": "Fäst",
     "posts": "Inlägg",
     "posts_count": "{0} Inlägg|{0} Inlägg|{0} Inlägg",
@@ -42,7 +42,7 @@
     "profile_unavailable": "Profil ej tillgänlig",
     "reject": "Neka följare",
     "rejected": "Du har nekat begäran",
-    "request_follow": "Begäran att följa",
+    "request_follow": "Begär att följa",
     "requested": "{0} har begärt att följa dig",
     "unblock": "Avblockera",
     "unfollow": "Avfölj",
@@ -70,7 +70,7 @@
     "enter_app": "Öppna appen",
     "favourite": "Favoritmarkera",
     "favourite_count": "{0}",
-    "favourited": "Favoritmärkt",
+    "favourited": "Favoritmarkerad",
     "more": "Mer",
     "next": "Nästa",
     "open_image_preview_dialog": "Öppna bildförhandsgranskning",
@@ -112,7 +112,7 @@
     "fetching": "Hämtar...",
     "in": "i",
     "no_bookmarks": "Inga bokmärkta inlägg än",
-    "no_favourites": "Inga favoritmärkta inlägg än",
+    "no_favourites": "Inga favoritmarkerade inlägg än",
     "not_found": "404 Ej hittad",
     "offline_desc": "Verkar som att du är offline. Vänligen kontrollera din nätverksanslutning."
   },
@@ -337,7 +337,7 @@
   },
   "notification": {
     "and": "och",
-    "favourited_post": "favoritmarkera ditt inlägg",
+    "favourited_post": "favoritmarkerade ditt inlägg",
     "followed_you": "följde dig",
     "followed_you_count": "{0} följde dig|{0} följde dig|{0} följde dig",
     "missing_type": "SAKNAS notification.type:",
@@ -492,18 +492,18 @@
         "alerts": {
           "favourite": "Favoriter",
           "follow": "Nya följare",
-          "mention": "Omnämnande",
-          "poll": "Omröstning",
-          "reblog": "Boost",
-          "title": "Vilka notiser att ta emot?"
+          "mention": "Omnämnanden",
+          "poll": "Omröstningar",
+          "reblog": "Boostar",
+          "title": "Vilka notiser vill jag ta emot?"
         },
         "description": "Ta emot notiser även när du inte använder Elk.",
         "instructions": "Glöm inte att spara dina ändringar med @:settings.notifications.push_notifications.save_settings -knappen!",
         "label": "Inställningar för push-notiser",
         "policy": {
           "all": "Från vem som helst",
-          "followed": "Av personer jag följer",
-          "follower": "Av personer som följer mig",
+          "followed": "Från personer jag följer",
+          "follower": "Från personer som följer mig",
           "none": "Från ingen",
           "title": "Vem kan jag ta emot notiser från?"
         },
@@ -557,7 +557,7 @@
       "hide_news": "Dölj nyheter",
       "hide_reply_count": "Dölj svarsräknare",
       "hide_tag_hover_card": "Dölj tagg-hoverkort",
-      "hide_translation": "Dölj översättning",
+      "hide_translation": "Dölj översättningar",
       "hide_username_emojis": "Dölj användarnamn-emojis",
       "hide_username_emojis_description": "Döljer emojis på användarnamn i tidslinjer. Emojis kommer fortfarande vara synliga i deras profiler.",
       "label": "Inställningar",
@@ -592,7 +592,7 @@
       },
       "label": "Profil"
     },
-    "select_a_settings": "Välj inställning",
+    "select_a_settings": "Välj en inställning",
     "users": {
       "export": "Exportera användarnycklar",
       "import": "Importera användarnycklar",
@@ -635,7 +635,7 @@
     "img_alt": {
       "ALT": "ALT",
       "desc": "Beskrivning",
-      "dismiss": "Avfärda",
+      "dismiss": "Stäng",
       "read": "Läs {0} beskrivning"
     },
     "pinned": "Fästa inlägg",
@@ -670,15 +670,15 @@
       "sign_up": "Registrera"
     },
     "notifications_all": "Alla",
-    "notifications_favourite": "Favoritmarkera",
+    "notifications_favourite": "Favoritmarkering",
     "notifications_follow": "Följ",
     "notifications_follow_request": "Följförfrågan",
     "notifications_mention": "Omnämnanden",
-    "notifications_more_tooltip": "Filtrera notiser per typ",
+    "notifications_more_tooltip": "Filtrera notiser efter typ",
     "notifications_poll": "Omröstning",
-    "notifications_reblog": "Boosta",
+    "notifications_reblog": "Boost",
     "notifications_status": "Status",
-    "notifications_update": "Uppdatera",
+    "notifications_update": "Uppdatering",
     "posts": "Inlägg",
     "posts_with_replies": "Inlägg & svar"
   },

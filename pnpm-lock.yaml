@@ -315,9 +315,6 @@ importers:
       '@antfu/eslint-config':
         specifier: ^6.2.0
         version: 6.2.0(@unocss/eslint-plugin@66.5.2(eslint@9.39.1(jiti@2.6.0))(typescript@5.9.2))(@vue/compiler-sfc@3.5.24)(eslint-plugin-format@1.0.1(eslint@9.39.1(jiti@2.6.0)))(eslint@9.39.1(jiti@2.6.0))(typescript@5.9.2)(vitest@4.0.8(@types/debug@4.1.12)(@types/node@24.10.1)(happy-dom@16.8.1)(jiti@2.6.0)(lightningcss@1.30.1)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.1))
-      '@antfu/ni':
-        specifier: ^26.0.1
-        version: 26.0.1
       '@types/chroma-js':
         specifier: ^3.1.1
         version: 3.1.1
@@ -488,11 +485,6 @@ packages:
 
   '@antfu/install-pkg@1.1.0':
     resolution: {integrity: sha512-MGQsmw10ZyI+EJo45CdSER4zEb+p31LpDAFp2Z3gkSd1yqVZGi0Ebx++YTEMonJy4oChEMLsxZ64j8FH6sSqtQ==}
-
-  '@antfu/ni@26.0.1':
-    resolution: {integrity: sha512-yGtjrmEVziDXW/7ggkzDtJkiJ8e8a9j+CtYBhT6gnvVoIXHtTc+iL+ZDMfUDe1wxRvYJrLpmHLJb5HjA5Hskyg==}
-    engines: {node: '>=20'}
-    hasBin: true
 
   '@antfu/utils@8.1.1':
     resolution: {integrity: sha512-Mex9nXf9vR6AhcXmMrlz/HVgYYZpVGJ6YlPgwl7UnaFpnshXs6EK/oa5Gpf3CzENMjkvEx2tQtntGnb7UtSTOQ==}
@@ -6023,9 +6015,6 @@ packages:
     resolution: {integrity: sha512-trLf4SzuuUxfusZADLINj+dE8clK1frKdmqiJNb1Es75fmI5oY6X2mxLVUciLLjxqw/xr72Dhy+lER6dGd02FQ==}
     engines: {node: '>=10'}
 
-  fzf@0.5.2:
-    resolution: {integrity: sha512-Tt4kuxLXFKHy8KT40zwsUPUkg1CrsgY25FxA2U/j/0WgEDCk3ddc/zLTCCcbSHX9FcKtLuVaDGtGE/STWC+j3Q==}
-
   gensync@1.0.0-beta.2:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
@@ -9904,14 +9893,6 @@ snapshots:
     dependencies:
       package-manager-detector: 1.3.0
       tinyexec: 1.0.1
-
-  '@antfu/ni@26.0.1':
-    dependencies:
-      ansis: 4.1.0
-      fzf: 0.5.2
-      package-manager-detector: 1.3.0
-      tinyexec: 1.0.1
-      tinyglobby: 0.2.15
 
   '@antfu/utils@8.1.1': {}
 
@@ -16623,8 +16604,6 @@ snapshots:
   functions-have-names@1.2.3: {}
 
   fuse.js@7.1.0: {}
-
-  fzf@0.5.2: {}
 
   gensync@1.0.0-beta.2: {}
 

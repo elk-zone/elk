@@ -115,19 +115,12 @@ pnpm run dev
 
 `Warning`: you will need `corepack` enabled, check out the [Elk Contributing Guide](./CONTRIBUTING.md) for a detailed guide on how to set up the project locally.
 
-We recommend installing [ni](https://github.com/antfu/ni#ni), that will use the right package manager in each of your projects. If `ni` is installed, you can instead run:
-
-```
-ni
-nr dev
-```
-
 ### Testing
 
 Elk uses [Vitest](https://vitest.dev). You can run the test suite with:
 
 ```
-nr test
+pnpm run test
 ```
 
 ## 📲 PWA

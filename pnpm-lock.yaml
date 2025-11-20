@@ -27,8 +27,8 @@ importers:
         specifier: ^2.2.170
         version: 2.2.388
       '@iconify/utils':
-        specifier: ^2.1.22
-        version: 2.3.0
+        specifier: ^3.0.0
+        version: 3.0.2
       '@intlify/core-base':
         specifier: ^11.1.12
         version: 11.1.12

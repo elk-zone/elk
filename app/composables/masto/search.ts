@@ -77,7 +77,7 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
       ...resolveUnref(options),
       resolve: !!currentUser.value,
     })
-    const nextResults = await paginator.values().next()
+    const nextResults = await paginator.next()
 
     done.value = !!nextResults.done
     if (!nextResults.done)
@@ -91,7 +91,7 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
       return
 
     loading.value = true
-    const nextResults = await paginator.values().next()
+    const nextResults = await paginator.next()
     loading.value = false
 
     done.value = !!nextResults.done

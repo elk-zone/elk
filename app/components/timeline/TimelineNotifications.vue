@@ -13,8 +13,6 @@ const options = { limit: 30, types: filter ? [filter] : [] }
 
 // Default limit is 20 notifications, and servers are normally caped to 30
 const paginator = useMastoClient().v1.notifications.list(options)
-
-// @ts-expect-error Type error should be fixed with the following PR to masto.js: https://github.com/neet/masto.js/pull/1355
 const stream = useStreaming(client => client.user.notification.subscribe())
 
 lastAccessedNotificationRoute.value = route.path.replace(/\/notifications\/?/, '')

@@ -74,7 +74,7 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
     }
     else {
       const userAcctDomain = userAcct.includes('@') ? userAcct : `${userAcct}@${domain}`
-      account = (await client.v1.search.list({ q: `@${userAcctDomain}`, type: 'accounts' })).accounts[0]
+      account = (await client.v1.search.fetch({ q: `@${userAcctDomain}`, type: 'accounts' })).accounts[0]
     }
 
     if (account.acct && !account.acct.includes('@') && domain)

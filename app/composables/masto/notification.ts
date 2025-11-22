@@ -47,7 +47,7 @@ export function useNotifications() {
     const paginator = client.value.v1.notifications.list({ limit: 30 })
 
     do {
-      const result = await paginator.values().next()
+      const result = await paginator.next()
       if (!result.done && result.value.length) {
         for (const notification of result.value) {
           if (notification.id === position.notifications.lastReadId)

@@ -28,7 +28,7 @@ export const TiptapMentionSuggestion: Partial<SuggestionOptions> = import.meta.s
           return []
 
         const paginator = useMastoClient().v2.search.list({ q: query, type: 'accounts', limit: 25, resolve: true })
-        return (await paginator.values().next()).value?.accounts ?? []
+        return (await paginator.next()).value?.accounts ?? []
       },
       render: createSuggestionRenderer(TiptapMentionList),
     }
@@ -47,7 +47,7 @@ export const TiptapHashtagSuggestion: Partial<SuggestionOptions> = {
       resolve: false,
       excludeUnreviewed: true,
     })
-    return (await paginator.values().next()).value?.hashtags ?? []
+    return (await paginator.next()).value?.hashtags ?? []
   },
   render: createSuggestionRenderer(TiptapHashtagList),
 }

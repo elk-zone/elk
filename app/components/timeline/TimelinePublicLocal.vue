@@ -7,9 +7,11 @@ function reorderAndFilter(items: mastodon.v1.Status[]) {
   return reorderedTimeline(items, 'public')
 }
 
-let followedTags: mastodon.v1.Tag[] | undefined
+let followedTags: mastodon.v1.Tag[]
 if (currentUser.value !== undefined) {
-  followedTags = (await useMasto().client.value.v1.followedTags.list({ limit: 0 }))
+  const { client } = useMasto()
+  const paginator = client.value.v1.followedTags.list()
+  followedTags = (await paginator.values().next()).value ?? []
 }
 </script>
 

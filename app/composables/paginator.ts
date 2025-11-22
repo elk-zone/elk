@@ -13,6 +13,7 @@ export function usePaginator<T, P, U = T>(
   // and we need its initial state after HMR
   // so clone it
 
+  const paginatorValues = paginator.values()
   const state = ref<PaginatorState>(isHydrated.value ? 'idle' : 'loading')
   const items = ref<U[]>([])
   const nextItems = ref<U[]>([])
@@ -74,7 +75,7 @@ export function usePaginator<T, P, U = T>(
 
     state.value = 'loading'
     try {
-      const result = await paginator.values().next()
+      const result = await paginatorValues.next()
 
       if (!result.done && result.value.length) {
         const preprocessedItems = preprocess([...nextItems.value, ...result.value] as (U | T)[])

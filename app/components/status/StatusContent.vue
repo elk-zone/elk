@@ -29,7 +29,7 @@ const hideAllMedia = computed(
     return currentUser.value ? (getHideMediaByDefault(currentUser.value.account) && (!!status.mediaAttachments.length || !!status.card?.html)) : false
   },
 )
-const embeddedMediaPreference = usePreferences('experimentalEmbeddedMedia')
+const embeddedMediaPreference = usePreferences('showEmbeddedMediaPlayer')
 const allowEmbeddedMedia = computed(() => status.card?.html && embeddedMediaPreference.value)
 </script>
 

@@ -12,7 +12,6 @@ const showUserPicker = logicAnd(
 )
 
 const isGrayscale = usePreferences('grayscaleMode')
-const instance = instanceStorage.value[currentServer.value]
 </script>
 
 <template>
@@ -66,11 +65,11 @@ const instance = instanceStorage.value[currentServer.value]
             <SearchWidget mt-4 mx-1 hidden xl:block />
 
             <!-- server info -->
-            <div v-if="!currentUser" grid gap-3 m3>
-              <span text-size-lg text-primary font-bold>{{ instance.title }}</span>
-              <img rounded-3 :src="instance.thumbnail.url">
+            <div v-if="!currentUser && instanceStorage[currentServer]" grid gap-3 m3>
+              <span text-size-lg text-primary font-bold>{{ instanceStorage[currentServer].title }}</span>
+              <img rounded-3 :src="instanceStorage[currentServer].thumbnail?.url">
               <p text-secondary>
-                {{ instance.description }}
+                {{ instanceStorage[currentServer].description }}
               </p>
             </div>
 

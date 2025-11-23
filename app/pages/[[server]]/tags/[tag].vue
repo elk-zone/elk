@@ -12,11 +12,7 @@ const { client } = useMasto()
 const { data: tag, refresh } = await useAsyncData(() => `tag-${tagName.value}`, () => client.value.v1.tags.$select(tagName.value).fetch(), { default: () => shallowRef() })
 
 const paginator = client.value.v1.timelines.tag.$select(tagName.value).list()
-
-// streaming requires user session
-let stream: Ref<mastodon.streaming.Subscription | undefined>
-if (currentUser.value !== undefined)
-  stream = useStreaming(client => client.hashtag.subscribe({ tag: tagName.value }))
+const stream = useStreaming(client => client.hashtag.subscribe({ tag: tagName.value }))
 
 if (tag.value) {
   useHydratedHead({

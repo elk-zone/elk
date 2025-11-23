@@ -6,11 +6,7 @@ const isSlow = computed(() => isSupported.value && effectiveType.value && ['slow
 const limit = computed(() => isSlow.value ? 10 : 30)
 
 const paginator = useMastoClient().v1.timelines.home.list({ limit: limit.value })
-
-// streaming requires user session
-let stream: Ref<mastodon.streaming.Subscription | undefined>
-if (currentUser.value !== undefined)
-  stream = useStreaming(client => client.user.subscribe())
+const stream = useStreaming(client => client.user.subscribe())
 
 function reorderAndFilter(items: mastodon.v1.Status[]) {
   return reorderedTimeline(items, 'home')

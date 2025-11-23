@@ -12,6 +12,7 @@ const showUserPicker = logicAnd(
 )
 
 const isGrayscale = usePreferences('grayscaleMode')
+const instance = computed(() => instanceStorage.value[currentServer.value])
 </script>
 
 <template>
@@ -66,10 +67,10 @@ const isGrayscale = usePreferences('grayscaleMode')
 
             <!-- server info -->
             <div v-if="!currentUser && instanceStorage[currentServer]" grid gap-3 m3>
-              <span text-size-lg text-primary font-bold>{{ instanceStorage[currentServer].title }}</span>
-              <img rounded-3 :src="instanceStorage[currentServer].thumbnail?.url">
+              <span text-size-lg text-primary font-bold>{{ instance.title }}</span>
+              <img rounded-3 :src="instance.thumbnail?.url">
               <p text-secondary>
-                {{ instanceStorage[currentServer].description }}
+                {{ instance.description }}
               </p>
             </div>
 

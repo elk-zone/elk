@@ -26,11 +26,10 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
   const instance: ElkInstance = reactive(getInstanceCache(server) || { uri: server, accountDomain: server })
   const accessToken = user.token
   const streamingApiUrl = instance?.configuration?.urls?.streaming
-
   let createStreamingClient: (streamingApiUrl: string | undefined) => mastodon.streaming.Client | undefined
-
   masto.client.value = createRestAPIClient({ url, accessToken })
 
+  // Only create the streaming client when there is a user session
   if (currentUser.value !== undefined) {
     createStreamingClient = (streamingApiUrl: string | undefined) => {
       return streamingApiUrl ? createStreamingAPIClient({ streamingApiUrl, accessToken, implementation: globalThis.WebSocket }) : undefined

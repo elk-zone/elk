@@ -66,7 +66,7 @@ const instance = computed(() => instanceStorage.value[currentServer.value])
             <SearchWidget mt-4 mx-1 hidden xl:block />
 
             <!-- server info -->
-            <div v-if="!currentUser && instanceStorage[currentServer]" grid gap-3 m3>
+            <div v-if="!currentUser && instance" grid gap-3 m3>
               <span text-size-lg text-primary font-bold>{{ instance.title }}</span>
               <img rounded-3 :src="instance.thumbnail?.url">
               <p text-secondary>

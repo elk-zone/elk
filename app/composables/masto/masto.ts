@@ -25,6 +25,8 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
   const url = `https://${server}`
   const instance: ElkInstance = reactive(getInstanceCache(server) || { uri: server, accountDomain: server })
   const accessToken = user.token
+  const streamingApiUrl = instance?.configuration?.urls?.streaming
+  instanceStorage.value[server] = instance
 
   let createStreamingClient: (streamingApiUrl: string | undefined) => mastodon.streaming.Client | undefined
 
@@ -35,7 +37,6 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
       return streamingApiUrl ? createStreamingAPIClient({ streamingApiUrl, accessToken, implementation: globalThis.WebSocket }) : undefined
     }
 
-    const streamingApiUrl = instance?.configuration?.urls?.streaming
     masto.streamingClient.value = createStreamingClient(streamingApiUrl)
 
     // Refetch instance info in the background on login
@@ -76,6 +77,7 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
       if (newInstance.configuration.urls.streaming !== streamingApiUrl)
         masto.streamingClient.value = createStreamingClient(newInstance.configuration.urls.streaming)
 
+      // update localstorage instance
       instanceStorage.value[server] = newInstance
     })
   }

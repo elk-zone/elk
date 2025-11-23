@@ -49,6 +49,7 @@ const filterIconMap: Record<mastodon.v1.NotificationType, string> = {
   'admin.report': 'i-ri:flag-line',
   'severed_relationships': 'i-ri:user-unfollow-line',
   'moderation_warning': 'i-ri:error-warning-line',
+  'quote': 'i-ri:double-quotes-l',
 }
 
 const filterText = computed(() => `${t('tab.notifications_more_tooltip')}${filter.value ? `: ${t(`tab.notifications_${filter.value}`)}` : ''}`)

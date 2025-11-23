@@ -25,7 +25,7 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
   const url = `https://${server}`
   const instance: ElkInstance = reactive(getInstanceCache(server) || { uri: server, accountDomain: server })
   const accessToken = user.token
-  let streamingApiUrl = instance?.configuration?.urls?.streaming
+  const streamingApiUrl = instance?.configuration?.urls?.streaming
   const createStreamingClient = (streamingApiUrl: string | undefined) => {
     // Only create the streaming client when there is a user session
     return streamingApiUrl && currentUser.value
@@ -71,10 +71,8 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
     return reject(error)
   })).then((newInstance) => {
     Object.assign(instance, newInstance)
-    if (newInstance.configuration.urls.streaming !== streamingApiUrl) {
-      streamingApiUrl = newInstance.configuration.urls.streaming
-      masto.streamingClient.value = createStreamingClient(streamingApiUrl)
-    }
+    if (newInstance.configuration.urls.streaming !== streamingApiUrl)
+      masto.streamingClient.value = createStreamingClient(newInstance.configuration.urls.streaming)
 
     instanceStorage.value[server] = newInstance
   })

@@ -4,7 +4,8 @@ import type { mastodon } from 'masto'
 const paginator = useMastoClient().v1.timelines.public.list({ limit: 30 })
 
 // streaming requires user session
-let stream
+let stream: Ref<mastodon.streaming.Subscription | undefined>
+
 if (currentUser.value !== undefined)
   stream = useStreaming(client => client.public.subscribe())
 function reorderAndFilter(items: mastodon.v1.Status[]) {

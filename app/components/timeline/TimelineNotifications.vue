@@ -15,7 +15,8 @@ const options = { limit: 30, types: filter ? [filter] : [] }
 const paginator = useMastoClient().v1.notifications.list(options)
 
 // streaming requires user session
-let stream
+let stream: Ref<mastodon.streaming.Subscription | undefined>
+
 if (currentUser.value !== undefined)
   // @ts-expect-error Type error should be fixed with the following PR to masto.js: https://github.com/neet/masto.js/pull/1355
   stream = useStreaming(client => client.user.notification.subscribe())

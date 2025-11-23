@@ -14,7 +14,7 @@ const { data: tag, refresh } = await useAsyncData(() => `tag-${tagName.value}`, 
 const paginator = client.value.v1.timelines.tag.$select(tagName.value).list()
 
 // streaming requires user session
-let stream
+let stream: Ref<mastodon.streaming.Subscription | undefined>
 if (currentUser.value !== undefined)
   stream = useStreaming(client => client.hashtag.subscribe({ tag: tagName.value }))
 

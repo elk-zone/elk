@@ -26,17 +26,15 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
   const instance: ElkInstance = reactive(getInstanceCache(server) || { uri: server, accountDomain: server })
   const accessToken = user.token
   let streamingApiUrl = instance?.configuration?.urls?.streaming
-  let createStreamingClient: (streamingApiUrl: string | undefined) => mastodon.streaming.Client | undefined
-  masto.client.value = createRestAPIClient({ url, accessToken })
-
-  // Only create the streaming client when there is a user session
-  if (currentUser.value !== undefined) {
-    createStreamingClient = (streamingApiUrl: string | undefined) => {
-      return streamingApiUrl ? createStreamingAPIClient({ streamingApiUrl, accessToken, implementation: globalThis.WebSocket }) : undefined
-    }
-
-    masto.streamingClient.value = createStreamingClient(streamingApiUrl)
+  const createStreamingClient = (streamingApiUrl: string | undefined) => {
+    // Only create the streaming client when there is a user session
+    return streamingApiUrl && currentUser.value
+      ? createStreamingAPIClient({ streamingApiUrl, accessToken, implementation: globalThis.WebSocket })
+      : undefined
   }
+
+  masto.client.value = createRestAPIClient({ url, accessToken })
+  masto.streamingClient.value = createStreamingClient(streamingApiUrl)
 
   // Refetch instance info in the background on login
   masto.client.value.v2.instance.fetch().catch(error => new Promise<mastodon.v2.Instance>((resolve, reject) => {
@@ -73,12 +71,8 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
     return reject(error)
   })).then((newInstance) => {
     Object.assign(instance, newInstance)
-    if (currentUser.value && newInstance.configuration.urls.streaming !== streamingApiUrl) {
+    if (newInstance.configuration.urls.streaming !== streamingApiUrl) {
       streamingApiUrl = newInstance.configuration.urls.streaming
-      createStreamingClient = (streamingApiUrl: string | undefined) => {
-        return streamingApiUrl ? createStreamingAPIClient({ streamingApiUrl, accessToken, implementation: globalThis.WebSocket }) : undefined
-      }
-
       masto.streamingClient.value = createStreamingClient(streamingApiUrl)
     }
 

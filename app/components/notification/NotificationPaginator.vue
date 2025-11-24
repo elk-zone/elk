@@ -13,7 +13,14 @@ const virtualScroller = false // TODO: fix flickering issue with virtual scroll
 
 const groupCapacity = Number.MAX_VALUE // No limit
 
-const includeNotificationTypes: mastodon.v1.NotificationType[] = ['update', 'mention', 'poll', 'status', 'quote']
+const includeNotificationTypes: mastodon.v1.NotificationType[] = [
+  'update',
+  'mention',
+  'poll',
+  'status',
+  // @ts-expect-error masto.js type does not include this new type yet (ref. https://github.com/neet/masto.js/pull/1357)
+  'quote',
+]
 
 let id = 0
 

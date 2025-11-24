@@ -3,7 +3,7 @@
 // I just copy/paste any entry from masto api and convert it to snake case, reusing types not including camel case props
 import type { mastodon } from 'masto'
 
-export type NotificationType = 'mention' | 'status' | 'reblog' | 'follow' | 'follow_request' | 'favourite' | 'poll' | 'update' | 'admin.sign_up' | 'admin.report'
+export type NotificationType = 'mention' | 'status' | 'reblog' | 'follow' | 'follow_request' | 'favourite' | 'poll' | 'update' | 'admin.sign_up' | 'admin.report' | 'quote'
 
 export interface PushPayload {
   access_token: string

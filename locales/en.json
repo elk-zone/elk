@@ -676,6 +676,7 @@
     "notifications_mention": "Mentions",
     "notifications_more_tooltip": "Filter notifications by type",
     "notifications_poll": "Poll",
+    "notifications_quote": "Quote",
     "notifications_reblog": "Boost",
     "notifications_status": "Status",
     "notifications_update": "Update",

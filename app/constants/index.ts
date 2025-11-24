@@ -27,7 +27,19 @@ export const STORAGE_KEY_BOTTOM_NAV_BUTTONS = 'elk-bottom-nav-buttons'
 
 export const HANDLED_MASTO_URLS = /^(https?:\/\/)?([\w\-]+\.)+\w+\/(@[@\w\-.]+)(\/objects)?(\/\d+)?$/
 
-export const NOTIFICATION_FILTER_TYPES: mastodon.v1.NotificationType[] = ['status', 'reblog', 'follow', 'follow_request', 'favourite', 'poll', 'update', 'admin.sign_up', 'admin.report']
+export const NOTIFICATION_FILTER_TYPES: mastodon.v1.NotificationType[] = [
+  'status',
+  'reblog',
+  // @ts-expect-error masto.js type does not include this new type yet (ref. https://github.com/neet/masto.js/pull/1357)
+  'quote',
+  'follow',
+  'follow_request',
+  'favourite',
+  'poll',
+  'update',
+  'admin.sign_up',
+  'admin.report',
+]
 
 export const THEME_COLORS = {
   defaultTheme: '#cc7d24',

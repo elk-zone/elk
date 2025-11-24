@@ -25,6 +25,8 @@ const supportedNotificationTypes: NotificationType[] = [
   'update',
   'status',
   'annual_report',
+  // @ts-expect-error masto.js type does not include this new type yet (ref. https://github.com/neet/masto.js/pull/1357)
+  'quote',
 ]
 
 // well-known emoji reactions types Elk does not support yet
@@ -130,7 +132,15 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
         </template>
       </StatusCard>
     </template>
-    <template v-else-if="notification.type === 'mention' || notification.type === 'poll' || notification.type === 'status'">
+    <template
+      v-else-if="
+        notification.type === 'mention'
+          || notification.type === 'poll'
+          || notification.type === 'status'
+          // @ts-expect-error masto.js type does not include this new type yet (ref. https://github.com/neet/masto.js/pull/1357)
+          || notification.type === 'quote'
+      "
+    >
       <StatusCard :status="notification.status!" />
     </template>
     <template v-else-if="notification.type === 'annual_report'">

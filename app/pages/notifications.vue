@@ -40,6 +40,8 @@ const filterIconMap: Record<mastodon.v1.NotificationType, string> = {
   'mention': 'i-ri:at-line',
   'status': 'i-ri:account-pin-circle-line',
   'reblog': 'i-ri:repeat-fill',
+  // @ts-expect-error masto.js type does not include this new type yet (ref. https://github.com/neet/masto.js/pull/1357)
+  'quote': 'i-ri:double-quotes-l',
   'follow': 'i-ri:user-follow-line',
   'follow_request': 'i-ri:user-shared-line',
   'favourite': 'i-ri:heart-3-line',

@@ -18,7 +18,6 @@ const includeNotificationTypes: mastodon.v1.NotificationType[] = [
   'mention',
   'poll',
   'status',
-  // @ts-expect-error masto.js type does not include this new type yet (ref. https://github.com/neet/masto.js/pull/1357)
   'quote',
 ]
 

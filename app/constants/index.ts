@@ -30,7 +30,6 @@ export const HANDLED_MASTO_URLS = /^(https?:\/\/)?([\w\-]+\.)+\w+\/(@[@\w\-.]+)(
 export const NOTIFICATION_FILTER_TYPES: mastodon.v1.NotificationType[] = [
   'status',
   'reblog',
-  // @ts-expect-error masto.js type does not include this new type yet (ref. https://github.com/neet/masto.js/pull/1357)
   'quote',
   'follow',
   'follow_request',

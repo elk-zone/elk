@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      NUXT_PUBLIC_TRANSLATE_API: "https://translate.manganiello.tech/translate"
     volumes:
       # make sure this directory has the same ownership as the elk user from the Dockerfile
       # otherwise Elk will not be able to store configs for accounts

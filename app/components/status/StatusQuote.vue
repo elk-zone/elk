@@ -54,8 +54,9 @@ const quotedStatus = computed(() => {
     Quoted post by
     <AccountInlineInfo :account="quotedStatus.account" :link="false" mx-1 />
   </div>
-  <template
+  <blockquote
     v-else-if="quotedStatus"
+    :cite="quotedStatus.uri"
   >
     <StatusCard
       v-show="quoteState === 'accepted'"
@@ -64,7 +65,7 @@ const quotedStatus = computed(() => {
       :is-nested="true"
       b="base 1" rounded-lg hover:bg-active my-3
     />
-    <p>(state.state: {{ JSON.stringify(status.quote?.state) }})</p>
+    <p>(quote.state={{ JSON.stringify(status.quote?.state) }})</p>
     <!--
       TODO: handle non-accepted quoted post
       pending: never;
@@ -84,7 +85,7 @@ const quotedStatus = computed(() => {
       blocked_domain: The user has blocked the domain of the account that was quoted.
       muted_account: The user has muted the account that was quoted.
     -->
-  </template>
+  </blockquote>
 </template>
 
 <style scoped>

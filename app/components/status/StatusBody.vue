@@ -26,6 +26,42 @@ const vnode = computed(() => {
     inReplyToStatus: newer,
   })
 })
+
+function isQuoteType(quote: mastodon.v1.Status['quote']): quote is mastodon.v1.Quote | mastodon.v1.ShallowQuote {
+  return !!quote
+}
+
+function isShallowQuoteType(quote: mastodon.v1.Quote | mastodon.v1.ShallowQuote): quote is mastodon.v1.ShallowQuote {
+  return 'quotedStatusId' in quote
+}
+
+const quoteState = computed(() => {
+  if (!isQuoteType(status.quote)) {
+    return null
+  }
+  return status.quote.state
+})
+const shallowQuotedStatus = ref<mastodon.v1.Status | null>(null)
+watchEffect(async () => {
+  if (!isQuoteType(status.quote) || !isShallowQuoteType(status.quote) || !status.quote.quotedStatusId) {
+    shallowQuotedStatus.value = null
+    return
+  }
+  shallowQuotedStatus.value = await fetchStatus(status.quote.quotedStatusId)
+})
+
+const quotedStatus = computed(() => {
+  if (!isQuoteType(status.quote)) {
+    return null
+  }
+  if (isShallowQuoteType(status.quote)) {
+    if (!status.quote.quotedStatusId) {
+      return null
+    }
+    return shallowQuotedStatus.value
+  }
+  return status.quote.quotedStatus
+})
 </script>
 
 <template>
@@ -38,15 +74,17 @@ const vnode = computed(() => {
       <component :is="vnode" v-if="vnode" />
     </span>
     <div v-else />
-    <StatusCard
-      v-if="status.quote"
-      v-show="status.quote.state === 'accepted'"
-      :status="status.quote?.quotedStatus"
-      :actions="false"
-      :newer="newer"
-      border-1 my-3
-    />
-    <p>Status: {{ status.quote?.state }})</p>
+    <template
+      v-if="quotedStatus"
+    >
+      <StatusCard
+        v-show="quoteState === 'accepted'"
+        :status="quotedStatus"
+        :actions="false"
+        :newer="newer"
+        border-1 my-3
+      />
+      <p>(state.state: {{ JSON.stringify(status.quote?.state) }})</p>
     <!--
       TODO: handle non-accepted quoted post
       pending: never;
@@ -66,7 +104,7 @@ const vnode = computed(() => {
       blocked_domain: The user has blocked the domain of the account that was quoted.
       muted_account: The user has muted the account that was quoted.
     -->
-    <hr>
+    </template>
     <template v-if="translation.visible">
       <div my2 h-px border="b base" bg-base />
       <ContentRich v-if="translation.success" class="line-compact" :content="translation.text" :emojis="status.emojis" />

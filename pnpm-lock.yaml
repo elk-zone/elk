@@ -198,8 +198,8 @@ importers:
         specifier: ^0.30.19
         version: 0.30.19
       masto:
-        specifier: ^7.6.0
-        version: 7.6.0
+        specifier: ^7.7.1
+        version: 7.7.1
       mocked-exports:
         specifier: ^0.1.1
         version: 0.1.1
@@ -6927,8 +6927,8 @@ packages:
   marky@1.3.0:
     resolution: {integrity: sha512-ocnPZQLNpvbedwTy9kNrQEsknEfgvcLMvOtz3sFeWApDq1MXH1TqkCIx58xlpESsfwQOnuBO9beyQuNGzVvuhQ==}
 
-  masto@7.6.0:
-    resolution: {integrity: sha512-oFRcgSxTI31Y1TrKmw8bCCUKqVzD+iTxniC8Im7bfpUkdT7U9TOP4mQv8s2JWsIp+4NumpLyEcIZiPfBUaFZ6w==}
+  masto@7.7.1:
+    resolution: {integrity: sha512-p9koO7C5GK+62BBU5tgWm/ESc2Pdx/LovCpN595stj8jPn6lCTqioBlYN3fPmsgmqhRMmCglz1YiHUq6Wm4FQA==}
 
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
@@ -17576,7 +17576,7 @@ snapshots:
 
   marky@1.3.0: {}
 
-  masto@7.6.0:
+  masto@7.7.1:
     dependencies:
       change-case: 5.4.4
       events-to-async: 2.0.2

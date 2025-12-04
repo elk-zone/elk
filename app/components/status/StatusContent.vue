@@ -7,6 +7,7 @@ const { status, context } = defineProps<{
   context?: mastodon.v2.FilterContext | 'details'
   isPreview?: boolean
   inNotification?: boolean
+  isNested: boolean
 }>()
 
 const isDM = computed(() => status.visibility === 'direct')
@@ -41,7 +42,7 @@ const allowEmbeddedMedia = computed(() => status.card?.html && embeddedMediaPref
       'ms--3.5 mt--1 ms--1': isDM && context !== 'details',
     }"
   >
-    <StatusBody v-if="(!isFiltered && isSensitiveNonSpoiler) || hideAllMedia" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
+    <StatusBody v-if="(!isFiltered && isSensitiveNonSpoiler) || hideAllMedia" :status="status" :newer="newer" :with-action="!isDetails" :is-nested="isNested" :class="isDetails ? 'text-xl' : ''" />
     <StatusSpoiler :enabled="hasSpoilerOrSensitiveMedia || isFiltered" :filter="isFiltered" :sensitive-non-spoiler="isSensitiveNonSpoiler || hideAllMedia" :is-d-m="isDM">
       <template v-if="spoilerTextPresent" #spoiler>
         <p>
@@ -51,7 +52,7 @@ const allowEmbeddedMedia = computed(() => status.card?.html && embeddedMediaPref
       <template v-else-if="filterPhrase" #spoiler>
         <p>{{ `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>
       </template>
-      <StatusBody v-if="!(isSensitiveNonSpoiler || hideAllMedia)" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
+      <StatusBody v-if="!(isSensitiveNonSpoiler || hideAllMedia)" :status="status" :newer="newer" :with-action="!isDetails" :is-nested="isNested" :class="isDetails ? 'text-xl' : ''" />
       <StatusTranslation :status="status" />
       <StatusPoll v-if="status.poll" :status="status" />
       <StatusMedia
@@ -60,7 +61,7 @@ const allowEmbeddedMedia = computed(() => status.card?.html && embeddedMediaPref
         :is-preview="isPreview"
       />
       <StatusPreviewCard
-        v-if="status.card && !allowEmbeddedMedia"
+        v-if="status.card && !allowEmbeddedMedia && !isNested"
         :card="status.card"
         :small-picture-only="status.mediaAttachments?.length > 0"
       />

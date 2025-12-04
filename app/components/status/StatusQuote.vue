@@ -17,7 +17,9 @@ function isShallowQuoteType(quote: mastodon.v1.Quote | mastodon.v1.ShallowQuote)
   return 'quotedStatusId' in quote
 }
 
-const quoteState = computed(() => {
+// TODO: wait for relasese of new version of masto.js
+// ref. feat: add three new quote states introduced by Mastodon v4.5.0 by shuuji3 · Pull Request #1374 · neet/masto.js - https://github.com/neet/masto.js/pull/1374
+const quoteState = computed<mastodon.v1.QuoteState | 'blocked_account' | 'blocked_domain' | 'muted_account' | null>(() => {
   if (!isQuoteType(status.quote)) {
     return null
   }
@@ -25,7 +27,7 @@ const quoteState = computed(() => {
 })
 const shallowQuotedStatus = ref<mastodon.v1.Status | null>(null)
 watchEffect(async () => {
-  if (!isQuoteType(status.quote) || !isShallowQuoteType(status.quote) || !status.quote.quotedStatusId) {
+  if (!isQuoteType(status.quote) || !isShallowQuoteType(status.quote) || quoteState.value === 'deleted' || !status.quote.quotedStatusId) {
     shallowQuotedStatus.value = null
     return
   }
@@ -47,45 +49,85 @@ const quotedStatus = computed(() => {
 </script>
 
 <template>
-  <div
-    v-if="isNested && quotedStatus"
-    flex b="~ 1" rounded-lg bg-card mt-3 p-3
-  >
-    Quoted post by
-    <AccountInlineInfo :account="quotedStatus.account" :link="false" mx-1 />
-  </div>
-  <blockquote
-    v-else-if="quotedStatus"
-    :cite="quotedStatus.uri"
-  >
-    <StatusCard
-      v-show="quoteState === 'accepted'"
-      :status="quotedStatus"
-      :actions="false"
-      :is-nested="true"
-      b="base 1" rounded-lg hover:bg-active my-3
-    />
-    <p>(quote.state={{ JSON.stringify(status.quote?.state) }})</p>
-    <!--
-      TODO: handle non-accepted quoted post
-      pending: never;
-      accepted: never;
-      rejected: never;
-      revoked: never;
-      deleted: never;
-      unauthorized: never;
-
-      pending: The quote has been created but requires the original author's manual approval before it can be displayed to others.
-      accepted: The quote has been approved by the original author and is ready to be displayed.
-      rejected: The original author has explicitly rejected the quote, and it will not be displayed.
-      revoked: The quote was previously accepted but the original author has since revoked it.
-      deleted: The quote was accepted, but the original post has since been deleted.
-      unauthorized: The user is not authorized to see the quote (e.g., it was a private post).
-      blocked_account: The user has blocked the account that was quoted.
-      blocked_domain: The user has blocked the domain of the account that was quoted.
-      muted_account: The user has muted the account that was quoted.
-    -->
-  </blockquote>
+  <template v-if="quotedStatus">
+    <template v-if="isNested && quotedStatus">
+      <div
+        v-if="quoteState === 'pending'"
+        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+      >
+        Post pending for approval by author
+      </div>
+      <div
+        v-else-if="quoteState === 'revoked'"
+        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+      >
+        Post removed by author
+      </div>
+      <div
+        v-else-if="quoteState === 'blocked_account'"
+        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+      >
+        Post by blocked author
+      </div>
+      <div
+        v-else-if="quoteState === 'blocked_domain'"
+        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+      >
+        Post from blocked server
+      </div>
+      <div
+        v-else-if="quoteState === 'muted_account'"
+        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+      >
+        Post by muted author
+      </div>
+      <div
+        v-else-if="quoteState === 'deleted' || quoteState === 'rejected' || quoteState === 'unauthorized'"
+        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+      >
+        Post is unavailable
+      </div>
+      <div
+        v-else-if="quoteState === 'accepted'"
+        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+      >
+        Post by
+        <AccountInlineInfo :account="quotedStatus.account" :link="false" mx-1 />
+      </div>
+    </template>
+    <template v-else>
+      <div
+        v-if="quoteState === 'pending'"
+        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+      >
+        Post pending for approval by author
+      </div>
+      <div
+        v-else-if="quoteState === 'revoked'"
+        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+      >
+        Post removed by author
+      </div>
+      <div
+        v-else-if="quoteState === 'deleted' || quoteState === 'rejected' || quoteState === 'unauthorized'"
+        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+      >
+        Post is unavailable
+      </div>
+      <blockquote
+        v-else-if="quoteState === 'accepted'"
+        :cite="quotedStatus.uri"
+      >
+        <StatusCard
+          :status="quotedStatus"
+          :actions="false"
+          :is-nested="true"
+          b="base 1" rounded-lg hover:bg-active my-3
+        />
+        <p>(quote.state={{ JSON.stringify(status.quote?.state) }})</p>
+      </blockquote>
+    </template>
+  </template>
 </template>
 
 <style scoped>

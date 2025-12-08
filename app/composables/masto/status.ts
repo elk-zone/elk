@@ -61,6 +61,7 @@ export function useStatusActions(props: StatusActionsProps) {
 
   const toggleReblog = () => toggleStatusAction(
     'reblogged',
+    // @ts-expect-error this method should not take any argument, but it expects 1-2 arguments since masto.js v7.7.0 (potential issue)
     () => client.value.v1.statuses.$select(status.value.id)[status.value.reblogged ? 'unreblog' : 'reblog']().then((res) => {
       if (status.value.reblogged)
       // returns the original status

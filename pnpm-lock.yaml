@@ -285,8 +285,8 @@ importers:
         specifier: ^11.1.12
         version: 11.1.12(vue@3.5.22(typescript@5.9.2))
       vue-virtual-scroller:
-        specifier: 2.0.0-beta.8
-        version: 2.0.0-beta.8(vue@3.5.22(typescript@5.9.2))
+        specifier: 2.0.0-beta.4
+        version: 2.0.0-beta.4(vue@3.5.22(typescript@5.9.2))
       workbox-build:
         specifier: ^7.1.1
         version: 7.3.0
@@ -9471,8 +9471,8 @@ packages:
     peerDependencies:
       typescript: '>=5.0.0'
 
-  vue-virtual-scroller@2.0.0-beta.8:
-    resolution: {integrity: sha512-b8/f5NQ5nIEBRTNi6GcPItE4s7kxNHw2AIHLtDp+2QvqdTjVN0FgONwX9cr53jWRgnu+HRLPaWDOR2JPI5MTfQ==}
+  vue-virtual-scroller@2.0.0-beta.4:
+    resolution: {integrity: sha512-JfFRyMCUzjPg+lbDXP4SpWy1aE8lpCbe1AZgwXmQPHZr1eayX5n8GgEuntUi0ixFCzBQzdH7WQwPpchp8UgjtA==}
     peerDependencies:
       vue: ^3.5.4
 
@@ -21300,7 +21300,7 @@ snapshots:
       '@vue/language-core': 2.2.12(typescript@5.9.2)
       typescript: 5.9.2
 
-  vue-virtual-scroller@2.0.0-beta.8(vue@3.5.22(typescript@5.9.2)):
+  vue-virtual-scroller@2.0.0-beta.4(vue@3.5.22(typescript@5.9.2)):
     dependencies:
       mitt: 2.1.0
       vue: 3.5.22(typescript@5.9.2)

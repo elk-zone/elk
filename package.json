@@ -123,7 +123,7 @@
     "vue": "^3.5.4",
     "vue-advanced-cropper": "^2.8.9",
     "vue-i18n": "^11.1.12",
-    "vue-virtual-scroller": "2.0.0-beta.8",
+    "vue-virtual-scroller": "2.0.0-beta.4",
     "workbox-build": "^7.1.1",
     "workbox-cacheable-response": "^7.1.0",
     "workbox-expiration": "^7.1.0",

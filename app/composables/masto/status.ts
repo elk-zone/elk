@@ -1,7 +1,7 @@
 import type { mastodon } from 'masto'
 
 type Action = 'reblogged' | 'favourited' | 'bookmarked' | 'pinned' | 'muted'
-type CountField = 'reblogsCount' | 'favouritesCount'
+type CountField = 'reblogsCount' | 'favouritesCount' | 'quotesCount'
 
 export interface StatusActionsProps {
   status: mastodon.v1.Status
@@ -71,6 +71,9 @@ export function useStatusActions(props: StatusActionsProps) {
     'reblogsCount',
   )
 
+  // TODO: implement properly
+  const canQuote = computed(() => false)
+
   const toggleFavourite = () => toggleStatusAction(
     'favourited',
     () => client.value.v1.statuses.$select(status.value.id)[status.value.favourited ? 'unfavourite' : 'favourite'](),
@@ -95,6 +98,7 @@ export function useStatusActions(props: StatusActionsProps) {
   return {
     status,
     isLoading,
+    canQuote,
     canReblog,
     toggleMute,
     toggleReblog,

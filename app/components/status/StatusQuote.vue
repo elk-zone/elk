@@ -124,7 +124,6 @@ const quotedStatus = computed(() => {
           :is-nested="true"
           b="base 1" rounded-lg hover:bg-active my-3
         />
-        <p>(quote.state={{ JSON.stringify(status.quote?.state) }})</p>
       </blockquote>
     </template>
   </template>

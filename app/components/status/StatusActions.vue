@@ -74,6 +74,29 @@ function reply() {
     </div>
 
     <div flex-1>
+      <!-- TODO: quote action is not implemented yet -->
+      <!-- TODO: disable attr is also not implemented yet -->
+      <StatusActionButton
+        :content="$t('action.quote')"
+        :text="!getPreferences(userSettings, 'hideQuoteCount') && status.quotesCount ? status.quotesCount : ''"
+        color="text-purple" hover="text-purple" elk-group-hover="bg-purple/10"
+        icon="i-ri:double-quotes-l"
+        active-icon="i-ri:double-quotes-l"
+        inactive-icon="i-tabler:repeat-off"
+        :active="!!status.reblogged"
+        :disable="false"
+        :command="command"
+      >
+        <template v-if="status.quotesCount && !getPreferences(userSettings, 'hideQuoteCount')" #text>
+          <CommonLocalizedNumber
+            keypath="action.quote_count"
+            :count="status.quotesCount"
+          />
+        </template>
+      </StatusActionButton>
+    </div>
+
+    <div flex-1>
       <StatusActionButton
         :content="$t(status.favourited ? 'action.favourited' : 'action.favourite')"
         :text="!getPreferences(userSettings, 'hideFavoriteCount') && status.favouritesCount ? status.favouritesCount : ''"

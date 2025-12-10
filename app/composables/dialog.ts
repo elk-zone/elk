@@ -25,12 +25,12 @@ export const isPreviewHelpOpen = ref(false)
 export const isCommandPanelOpen = ref(false)
 export const isConfirmDialogOpen = ref(false)
 export const isErrorDialogOpen = ref(false)
-export const isFavouritedBoostedByDialogOpen = ref(false)
+export const isReactedByDialogOpen = ref(false)
 export const isReportDialogOpen = ref(false)
 
 export const lastPublishDialogStatus = ref<mastodon.v1.Status | null>(null)
 
-export const favouritedBoostedByStatusId = ref<string | null>(null)
+export const reactedByStatusId = ref<string | null>(null)
 
 export function openSigninDialog() {
   isSigninDialogOpen.value = true
@@ -69,9 +69,9 @@ export async function openPublishDialog(draftKey = 'dialog', draft?: DraftItem, 
   await until(isPublishDialogOpen).toBe(false)
 }
 
-export async function openFavoridedBoostedByDialog(statusId: string) {
-  isFavouritedBoostedByDialogOpen.value = true
-  favouritedBoostedByStatusId.value = statusId
+export async function openReactedByDialog(statusId: string) {
+  isReactedByDialogOpen.value = true
+  reactedByStatusId.value = statusId
 }
 
 function restoreMediaPreviewFromState() {

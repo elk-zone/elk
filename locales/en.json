@@ -289,6 +289,7 @@
     "share_account": "Share {0}",
     "share_post": "Share this post",
     "show_favourited_and_boosted_by": "Show who favorited and boosted",
+    "show_reacted_by": "Show who reacted",
     "show_reblogs": "Show boosts from {0}",
     "show_untranslated": "Show untranslated",
     "toggle_theme": {
@@ -648,6 +649,7 @@
       "finished": "finished {0}",
       "update": "Update poll"
     },
+    "quoted_by": "Quoted By",
     "replying_to": "Replying to {0}",
     "show_full_thread": "Show Full thread",
     "someone": "someone",

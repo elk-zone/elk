@@ -17,9 +17,7 @@ function isShallowQuoteType(quote: mastodon.v1.Quote | mastodon.v1.ShallowQuote)
   return 'quotedStatusId' in quote
 }
 
-// TODO: wait for relasese of new version of masto.js
-// ref. feat: add three new quote states introduced by Mastodon v4.5.0 by shuuji3 · Pull Request #1374 · neet/masto.js - https://github.com/neet/masto.js/pull/1374
-const quoteState = computed<mastodon.v1.QuoteState | 'blocked_account' | 'blocked_domain' | 'muted_account' | null>(() => {
+const quoteState = computed<mastodon.v1.QuoteState | null>(() => {
   if (!isQuoteType(status.quote)) {
     return null
   }

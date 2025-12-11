@@ -27,7 +27,18 @@ export const STORAGE_KEY_BOTTOM_NAV_BUTTONS = 'elk-bottom-nav-buttons'
 
 export const HANDLED_MASTO_URLS = /^(https?:\/\/)?([\w\-]+\.)+\w+\/(@[@\w\-.]+)(\/objects)?(\/\d+)?$/
 
-export const NOTIFICATION_FILTER_TYPES: mastodon.v1.NotificationType[] = ['status', 'reblog', 'follow', 'follow_request', 'favourite', 'poll', 'update', 'admin.sign_up', 'admin.report']
+export const NOTIFICATION_FILTER_TYPES: mastodon.v1.NotificationType[] = [
+  'status',
+  'reblog',
+  'quote',
+  'follow',
+  'follow_request',
+  'favourite',
+  'poll',
+  'update',
+  'admin.sign_up',
+  'admin.report',
+]
 
 export const THEME_COLORS = {
   defaultTheme: '#cc7d24',

@@ -1,5 +1,5 @@
 import { lstat } from 'node:fs'
-import { createResolver, defineNuxtModule } from '@nuxt/kit'
+import { createResolver, defineNuxtModule, extendViteConfig } from 'nuxt/kit'
 import { currentLocales } from '../config/i18n'
 
 const virtual = 'virtual:emoji-mart-lang-importer'
@@ -9,9 +9,9 @@ export default defineNuxtModule({
   meta: {
     name: 'emoji-mark-translation',
   },
-  setup(_, nuxt) {
+  setup() {
     const resolver = createResolver(import.meta.url)
-    nuxt.hook('vite:extendConfig', async (viteInlineConfig) => {
+    extendViteConfig(async (viteInlineConfig) => {
       viteInlineConfig.plugins = viteInlineConfig.plugins || []
       viteInlineConfig.plugins.push({
         name: 'vite-emoji-mart-translation',

@@ -50,6 +50,7 @@ export interface DraftItem {
   attachments: mastodon.v1.MediaAttachment[]
   lastUpdated: number
   mentions?: string[]
+  quotedStatusId?: mastodon.v1.Status['id']
 }
 
 export type DraftMap = Record<string, Array<DraftItem>

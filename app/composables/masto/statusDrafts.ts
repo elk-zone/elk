@@ -37,6 +37,7 @@ export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.Cr
     language,
     mentions,
     poll,
+    quotedStatusId,
   } = options
 
   return {
@@ -46,6 +47,7 @@ export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.Cr
       status: status || '',
       poll,
       inReplyToId,
+      quotedStatusId,
       visibility: getDefaultVisibility(visibility || 'public'),
       sensitive: sensitive ?? false,
       spoilerText: spoilerText || '',
@@ -125,9 +127,11 @@ export function isEmptyDraft(drafts: Array<DraftItem> | DraftItem | null | undef
     const { params, attachments } = draft
     const status = params.status ?? ''
     const text = htmlToText(status).trim().replace(/^(@\S+\s?)+/, '').replaceAll(/```/g, '').trim()
+    const hasQuote = !!params.quotedStatusId
 
     return (text.length > 0)
       || (attachments.length > 0)
+      || hasQuote
   })
 
   return !anyDraftHasContent

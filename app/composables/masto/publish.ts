@@ -67,8 +67,9 @@ export function usePublish(options: {
       return
 
     let content = htmlToText(draftItem.value.params.status || '')
-    if (draftItem.value.mentions?.length)
+    if (draftItem.value.mentions?.length) {
       content = `${draftItem.value.mentions.map(i => `@${i}`).join(' ')} ${content}`
+    }
 
     let poll
     if (draftItem.value.params.poll) {
@@ -87,8 +88,9 @@ export function usePublish(options: {
     }
 
     let scheduledAt
-    if (draftItem.value.params.scheduledAt)
+    if (draftItem.value.params.scheduledAt) {
       scheduledAt = new Date(draftItem.value.params.scheduledAt).toISOString()
+    }
 
     const payload = {
       ...draftItem.value.params,

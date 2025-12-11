@@ -16,9 +16,11 @@ const {
   status,
   isLoading,
   canReblog,
+  canQuote,
   toggleBookmark,
   toggleFavourite,
   toggleReblog,
+  composeWithQuote,
 } = useStatusActions({ status: props.status })
 
 function reply() {
@@ -84,8 +86,9 @@ function reply() {
         active-icon="i-ri:double-quotes-l"
         inactive-icon="i-tabler:repeat-off"
         :active="!!status.reblogged"
-        :disable="false"
+        :disable="!canQuote"
         :command="command"
+        @click="composeWithQuote()"
       >
         <template v-if="status.quotesCount && !getPreferences(userSettings, 'hideQuoteCount')" #text>
           <CommonLocalizedNumber

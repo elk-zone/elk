@@ -79,6 +79,7 @@
     "publish_thread": "Publish thread",
     "quote": "Quote",
     "quote_count": "{0}",
+    "remove_quote": "Remove quote",
     "reply": "Reply",
     "reply_count": "{0}",
     "reset": "Reset",

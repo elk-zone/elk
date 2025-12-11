@@ -174,6 +174,20 @@ const postLanguageDisplay = computed(() => languagesNameList.find(i => i.code ==
 
 const isDM = computed(() => draft.value.params.visibility === 'direct')
 
+const hasQuote = computed(() => !!draft.value.params.quotedStatusId)
+
+const quotedStatus = ref<mastodon.v1.Status | null>(null)
+
+watchEffect(async () => {
+  if (hasQuote.value)
+    quotedStatus.value = await fetchStatus(draft.value.params.quotedStatusId!)
+})
+
+function removeQuote() {
+  draft.value.params.quotedStatusId = undefined
+  quotedStatus.value = null
+}
+
 async function handlePaste(evt: ClipboardEvent) {
   const files = evt.clipboardData?.files
   if (!files || files.length === 0)
@@ -438,6 +452,24 @@ const detectLanguage = useDebounceFn(async () => {
                 draft.params.poll!.options[index].length }}</span>
             </div>
           </form>
+
+          <template v-if="hasQuote">
+            <div flex justify-end mt-2>
+              <button
+                text-sm px-2 py-1 rounded-3 hover:bg-gray-300
+                flex="~ gap1" items-center
+                :aria-label="$t('action.remove_quote')"
+                @click="removeQuote"
+              >
+                <div i-ri:close-line />
+                {{ $t('action.remove_quote') }}
+              </button>
+            </div>
+            <StatusQuote v-if="quotedStatus" :status="quotedStatus" />
+            <StatusCardSkeleton v-else b="base 1" rounded-lg hover:bg-active my-3 />
+          </template>
+
+          <!-- toolbar -->
           <div v-if="shouldExpanded" flex="~ gap-1 1 wrap" m="s--1" pt-2 justify="end" max-w-full border="t base">
             <PublishEmojiPicker @select="insertEmoji" @select-custom="insertCustomEmoji">
               <button btn-action-icon :title="$t('tooltip.emojis')" :aria-label="$t('tooltip.add_emojis')">

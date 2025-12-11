@@ -15,9 +15,16 @@ const nonEmptyDrafts = computed(() => draftKeys.value
 )
 
 watchEffect(() => {
-  const key = route.query.draft?.toString() || 'home'
-  if (isDraftKey(key))
-    draftKey.value = key
+  const quotedStatusId = route.query.quote?.toString()
+  if (quotedStatusId) {
+    draftKey.value = 'quote'
+    currentUserDrafts.value[draftKey.value] = [getDefaultDraftItem({ quotedStatusId })]
+  }
+  else {
+    const key = route.query.draft?.toString() || 'home'
+    if (isDraftKey(key))
+      draftKey.value = key
+  }
 })
 
 onDeactivated(() => {

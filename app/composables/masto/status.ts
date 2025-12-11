@@ -54,6 +54,12 @@ export function useStatusActions(props: StatusActionsProps) {
       status.value[countField] += status.value[action] ? 1 : -1
   }
 
+  const toggleFavourite = () => toggleStatusAction(
+    'favourited',
+    () => client.value.v1.statuses.$select(status.value.id)[status.value.favourited ? 'unfavourite' : 'favourite'](),
+    'favouritesCount',
+  )
+
   const canReblog = computed(() =>
     status.value.visibility !== 'direct'
     && (status.value.visibility !== 'private' || status.value.account.id === currentUser.value?.account.id),
@@ -71,14 +77,14 @@ export function useStatusActions(props: StatusActionsProps) {
     'reblogsCount',
   )
 
-  // TODO: implement properly
-  const canQuote = computed(() => false)
+  const canQuote = computed(() => {
+    if (status.value.visibility === 'private' || status.value.visibility === 'direct')
+      return false
 
-  const toggleFavourite = () => toggleStatusAction(
-    'favourited',
-    () => client.value.v1.statuses.$select(status.value.id)[status.value.favourited ? 'unfavourite' : 'favourite'](),
-    'favouritesCount',
-  )
+    return status.value.quoteApproval?.currentUser === 'automatic' || status.value.quoteApproval?.currentUser === 'manual'
+  })
+
+  const composeWithQuote = () => navigateTo(`/compose?quote=${status.value.id}`)
 
   const toggleBookmark = () => toggleStatusAction(
     'bookmarked',
@@ -105,5 +111,6 @@ export function useStatusActions(props: StatusActionsProps) {
     toggleFavourite,
     toggleBookmark,
     togglePin,
+    composeWithQuote,
   }
 }

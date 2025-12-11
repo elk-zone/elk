@@ -53,9 +53,13 @@ export interface DraftItem {
   quotedStatusId?: mastodon.v1.Status['id']
 }
 
-export type DraftMap = Record<string, Array<DraftItem>
- // For backward compatibility we need to support single draft items
-  | DraftItem>
+export type DraftKey = 'home' | 'dialog' | 'intent' | 'quote' | `reply-${string}`
+
+export type DraftMap = {
+  [key in DraftKey]?: DraftItem[]
+  // For backward compatibility to support single draft item before introducing thread
+    | DraftItem
+}
 
 export interface ConfirmDialogOptions {
   title: string

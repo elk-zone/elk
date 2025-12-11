@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DraftItem } from '#shared/types'
+import type { DraftItem, DraftKey } from '#shared/types'
 import type { mastodon } from 'masto'
 import { EditorContent } from '@tiptap/vue-3'
 import stringLength from 'string-length'
@@ -12,7 +12,7 @@ const {
   placeholder,
   initial = getDefaultDraftItem,
 } = defineProps<{
-  draftKey: string
+  draftKey: DraftKey
   draftItemIndex: number
   initial?: () => DraftItem
   threadComposer?: ReturnType<typeof useThreadComposer>

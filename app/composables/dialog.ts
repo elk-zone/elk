@@ -1,4 +1,4 @@
-import type { ConfirmDialogChoice, ConfirmDialogOptions, DraftItem, ErrorDialogData } from '#shared/types'
+import type { ConfirmDialogChoice, ConfirmDialogOptions, DraftItem, DraftKey, ErrorDialogData } from '#shared/types'
 import type { mastodon } from 'masto'
 
 export const confirmDialogChoice = ref<ConfirmDialogChoice>()
@@ -46,7 +46,7 @@ export async function openConfirmDialog(label: ConfirmDialogOptions | string): P
   return confirmDialogChoice.value!
 }
 
-export async function openPublishDialog(draftKey = 'dialog', draft?: DraftItem, overwrite = false): Promise<void> {
+export async function openPublishDialog(draftKey: DraftKey = 'dialog', draft?: DraftItem, overwrite = false): Promise<void> {
   dialogDraftKey.value = draftKey
 
   if (draft) {

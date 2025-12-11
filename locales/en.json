@@ -190,6 +190,7 @@
     "account_not_found": "Account {0} not found",
     "explore_list_empty": "Nothing is trending right now. Check back later!",
     "file_size_cannot_exceed_n_mb": "File size cannot exceed {0}MB",
+    "quote_fetch_error": "Could not fetch the quoted post",
     "sign_in_error": "Cannot connect to the server.",
     "status_not_found": "Post not found",
     "unsupported_file_format": "Unsupported file format"

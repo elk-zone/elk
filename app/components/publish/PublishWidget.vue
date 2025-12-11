@@ -175,17 +175,24 @@ const postLanguageDisplay = computed(() => languagesNameList.find(i => i.code ==
 const isDM = computed(() => draft.value.params.visibility === 'direct')
 
 const hasQuote = computed(() => !!draft.value.params.quotedStatusId)
-
 const quotedStatus = ref<mastodon.v1.Status | null>(null)
-
+const quoteFetchError = ref<string | null>(null)
 watchEffect(async () => {
-  if (hasQuote.value)
-    quotedStatus.value = await fetchStatus(draft.value.params.quotedStatusId!)
+  if (hasQuote.value) {
+    try {
+      quotedStatus.value = await fetchStatus(draft.value.params.quotedStatusId!)
+    }
+    catch (err) {
+      console.error(err)
+      quoteFetchError.value = (err as Error).message
+    }
+  }
 })
 
 function removeQuote() {
   draft.value.params.quotedStatusId = undefined
   quotedStatus.value = null
+  quoteFetchError.value = null
 }
 
 async function handlePaste(evt: ClipboardEvent) {
@@ -466,6 +473,9 @@ const detectLanguage = useDebounceFn(async () => {
               </button>
             </div>
             <StatusQuote v-if="quotedStatus" :status="quotedStatus" />
+            <div v-if="quoteFetchError" text-danger b="base 1" rounded-lg hover:bg-active my-3 p-3>
+              {{ $t('error.quote_fetch_error') }} ({{ quoteFetchError }})
+            </div>
             <StatusCardSkeleton v-else b="base 1" rounded-lg hover:bg-active my-3 />
           </template>
 

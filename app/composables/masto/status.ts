@@ -32,6 +32,7 @@ export function useStatusActions(props: StatusActionsProps) {
     if (!checkLogin())
       return
 
+    // @ts-expect-error waiting for masto.js v7.9.0 release (quotesCount)
     const prevCount = countField ? status.value[countField] : undefined
 
     isLoading.value[action] = true
@@ -39,7 +40,9 @@ export function useStatusActions(props: StatusActionsProps) {
     fetchNewStatus().then((newStatus) => {
       // when the action is cancelled, the count is not updated highly likely (if they're the same)
       // issue of Mastodon API
+      // @ts-expect-error waiting for masto.js v7.9.0 release (quotesCount)
       if (isCancel && countField && prevCount === newStatus[countField])
+        // @ts-expect-error waiting for masto.js v7.9.0 release (quotesCount)
         newStatus[countField] -= 1
 
       Object.assign(status.value, newStatus)
@@ -51,6 +54,7 @@ export function useStatusActions(props: StatusActionsProps) {
     status.value[action] = !status.value[action]
     cacheStatus(status.value, undefined, true)
     if (countField)
+      // @ts-expect-error waiting for masto.js v7.9.0 release (quotesCount)
       status.value[countField] += status.value[action] ? 1 : -1
   }
 
@@ -81,6 +85,7 @@ export function useStatusActions(props: StatusActionsProps) {
     if (status.value.visibility === 'private' || status.value.visibility === 'direct')
       return false
 
+    // @ts-expect-error waiting for masto.js v7.9.0 release
     return status.value.quoteApproval?.currentUser === 'automatic' || status.value.quoteApproval?.currentUser === 'manual'
   })
 

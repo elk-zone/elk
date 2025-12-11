@@ -11,6 +11,7 @@ function load() {
     return accounts
   }
   else {
+    // @ts-expect-error waiting for masto.js v7.9.0 release (quotes)
     const quotes = client.value.v1.statuses.$select(reactedByStatusId.value!).quotes.list()
     return quotes
   }

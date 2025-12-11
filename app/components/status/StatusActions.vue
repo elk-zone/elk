@@ -83,7 +83,6 @@ function reply() {
         icon="i-ri:double-quotes-l"
         active-icon="i-ri:double-quotes-l"
         inactive-icon="i-tabler:repeat-off"
-        :active="!!status.reblogged"
         :disable="!canQuote"
         :command="command"
         @click="composeWithQuote()"

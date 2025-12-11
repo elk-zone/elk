@@ -9,7 +9,7 @@ export const mediaPreviewList = ref<mastodon.v1.MediaAttachment[]>([])
 export const mediaPreviewIndex = ref(0)
 
 export const statusEdit = ref<mastodon.v1.StatusEdit>()
-export const dialogDraftKey = ref<string>()
+export const dialogDraftKey = ref<DraftKey>()
 
 export const reportAccount = ref<mastodon.v1.Account>()
 export const reportStatus = ref<mastodon.v1.Status>()

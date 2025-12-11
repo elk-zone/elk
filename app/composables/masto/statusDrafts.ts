@@ -5,8 +5,8 @@ import type { ComputedRef, Ref } from 'vue'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
 
 export const currentUserDrafts = (import.meta.server || process.test)
-  ? computed<DraftMap>(() => ({}))
-  : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({}))
+  ? computed<DraftMap>(() => ({ home: [], dialog: [], intent: [], quote: [] }))
+  : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({ home: [], dialog: [], intent: [], quote: [] }))
 
 const ALL_VISIBILITY = ['public', 'unlisted', 'private', 'direct'] as const
 
@@ -94,7 +94,7 @@ function getAccountsToMention(status: mastodon.v1.Status) {
 export function getReplyDraft(status: mastodon.v1.Status) {
   const accountsToMention = getAccountsToMention(status)
   return {
-    key: `reply-${status.id}`,
+    key: `reply-${status.id}` satisfies DraftKey,
     draft: () => {
       return getDefaultDraftItem({
         initialText: '',

@@ -13,18 +13,12 @@ function load() {
   else {
     // @ts-expect-error waiting for masto.js v7.9.0 release (quotes)
     const quotes = client.value.v1.statuses.$select(reactedByStatusId.value!).quotes.list()
-    return quotes
+    // @ts-expect-error waiting for masto.js v7.9.0 release (quotes)
+    return quotes.map(quote => quote.account)
   }
 }
 
 const paginator = computed(() => load())
-
-function preprocess(items: mastodon.v1.Account[] | mastodon.v1.Status[]): mastodon.v1.Account[] {
-  if (type.value === 'quoted-by')
-    return items.map(item => item.account)
-
-  return items
-}
 
 function showFavouritedBy() {
   type.value = 'favourited-by'
@@ -79,5 +73,5 @@ const tabs = [
       </div>
     </template>
   </div>
-  <AccountPaginator :key="`paginator-${type}`" :paginator="paginator" :preprocess="preprocess" />
+  <AccountPaginator :key="`paginator-${type}`" :paginator="paginator" />
 </template>

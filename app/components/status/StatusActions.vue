@@ -76,8 +76,6 @@ function reply() {
     </div>
 
     <div flex-1>
-      <!-- TODO: quote action is not implemented yet -->
-      <!-- TODO: disable attr is also not implemented yet -->
       <StatusActionButton
         :content="$t('action.quote')"
         :text="!getPreferences(userSettings, 'hideQuoteCount') && status.quotesCount ? status.quotesCount : ''"

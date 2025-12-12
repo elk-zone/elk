@@ -83,7 +83,7 @@ function reply() {
         color="text-purple" hover="text-purple" elk-group-hover="bg-purple/10"
         icon="i-ri:double-quotes-l"
         active-icon="i-ri:double-quotes-l"
-        inactive-icon="i-tabler:repeat-off"
+        inactive-icon="i-ri:double-quotes-l"
         :disabled="!canQuote"
         :command="command"
         @click="composeWithQuote()"

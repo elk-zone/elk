@@ -118,6 +118,7 @@
     "in": "in",
     "no_bookmarks": "No bookmarked posts yet",
     "no_favourites": "No liked posts yet",
+    "no_scheduled_posts": "No scheduled posts yet",
     "not_found": "404 Not Found",
     "offline_desc": "Seems like you are offline. Please check your network connection."
   },
@@ -334,6 +335,7 @@
     "notifications": "Notifications",
     "privacy": "Privacy",
     "profile": "Profile",
+    "scheduled_posts": "Scheduled posts",
     "search": "Search",
     "select_feature_flags": "Toggle Feature Flags",
     "select_font_size": "Font Size",

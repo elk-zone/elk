@@ -64,8 +64,6 @@ export async function getDraftFromStatus(status: mastodon.v1.Status): Promise<Dr
     spoilerText: status.spoilerText,
     language: status.language,
     inReplyToId: status.inReplyToId,
-    quotedStatusId: status.quotedStatusId,
-    quoteApprovalPolicy: status.quoteApprovalPolicy,
   }
 
   return getDefaultDraftItem((status.mediaAttachments !== undefined && status.mediaAttachments.length > 0)

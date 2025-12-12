@@ -84,7 +84,7 @@ function reply() {
         icon="i-ri:double-quotes-l"
         active-icon="i-ri:double-quotes-l"
         inactive-icon="i-tabler:repeat-off"
-        :disable="!canQuote"
+        :disabled="!canQuote"
         :command="command"
         @click="composeWithQuote()"
       >

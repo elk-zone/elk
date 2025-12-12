@@ -33,6 +33,7 @@ export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.Cr
     mentions,
     poll,
     quotedStatusId,
+    quoteApprovalPolicy,
   } = options
 
   return {
@@ -43,6 +44,7 @@ export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.Cr
       poll,
       inReplyToId,
       quotedStatusId,
+      quoteApprovalPolicy,
       visibility: getDefaultVisibility(visibility || 'public'),
       sensitive: sensitive ?? false,
       spoilerText: spoilerText || '',
@@ -62,6 +64,8 @@ export async function getDraftFromStatus(status: mastodon.v1.Status): Promise<Dr
     spoilerText: status.spoilerText,
     language: status.language,
     inReplyToId: status.inReplyToId,
+    quotedStatusId: status.quotedStatusId,
+    quoteApprovalPolicy: status.quoteApprovalPolicy,
   }
 
   return getDefaultDraftItem((status.mediaAttachments !== undefined && status.mediaAttachments.length > 0)

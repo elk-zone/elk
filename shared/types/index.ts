@@ -51,6 +51,7 @@ export interface DraftItem {
   lastUpdated: number
   mentions?: string[]
   quotedStatusId?: mastodon.v1.Status['id']
+  quoteApprovalPolicy?: mastodon.v1.QuoteApprovalPolicy
 }
 
 export type DraftKey = 'home' | 'dialog' | 'intent' | 'quote' | `reply-${string}` | `edit-${string}`

@@ -76,7 +76,6 @@ function reply() {
     </div>
 
     <div flex-1>
-      <!-- @vue-expect-error waiting for masto.js v7.9.0 release (quotesCount) -->
       <StatusActionButton
         :content="$t('action.quote')"
         :text="!getPreferences(userSettings, 'hideQuoteCount') && status.quotesCount ? status.quotesCount : ''"
@@ -88,9 +87,7 @@ function reply() {
         :command="command"
         @click="composeWithQuote()"
       >
-        <!-- @vue-expect-error waiting for masto.js v7.9.0 release (quotesCount) -->
         <template v-if="status.quotesCount && !getPreferences(userSettings, 'hideQuoteCount')" #text>
-          <!-- @vue-expect-error waiting for masto.js v7.9.0 release (quotesCount) -->
           <CommonLocalizedNumber
             keypath="action.quote_count"
             :count="status.quotesCount"

@@ -71,7 +71,6 @@ async function removeList() {
   if (confirmDelete.choice === 'confirm') {
     await nextTick()
     try {
-      // @ts-expect-error this method should not take any argument, but it expects 1-2 arguments since masto.js v7.7.0 (potential issue)
       await client.v1.lists.$select(list.value.id).remove()
       emit('listRemoved', list.value.id)
     }

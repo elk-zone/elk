@@ -1,9 +1,9 @@
-import type { DraftItem } from '#shared/types'
+import type { DraftItem, DraftKey } from '#shared/types'
 import type { mastodon } from 'masto'
 
 const maxThreadLength = 99
 
-export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
+export function useThreadComposer(draftKey: DraftKey, initial?: () => DraftItem) {
   const { draftItems } = useDraft(draftKey, initial)
 
   /**

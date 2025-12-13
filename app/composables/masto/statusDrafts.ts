@@ -1,17 +1,12 @@
-import type { DraftItem, DraftMap } from '#shared/types'
+import type { DraftItem, DraftKey, DraftMap } from '#shared/types'
 import type { Mutable } from '#shared/types/utils'
 import type { mastodon } from 'masto'
 import type { ComputedRef, Ref } from 'vue'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
 
 export const currentUserDrafts = (import.meta.server || process.test)
-  ? computed<DraftMap>(() => ({}))
-  : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({}))
-
-export const builtinDraftKeys = [
-  'dialog',
-  'home',
-]
+  ? computed<DraftMap>(() => ({ home: [], dialog: [], intent: [], quote: [] }))
+  : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({ home: [], dialog: [], intent: [], quote: [] }))
 
 const ALL_VISIBILITY = ['public', 'unlisted', 'private', 'direct'] as const
 
@@ -37,6 +32,8 @@ export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.Cr
     language,
     mentions,
     poll,
+    quotedStatusId,
+    quoteApprovalPolicy,
   } = options
 
   return {
@@ -46,6 +43,8 @@ export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.Cr
       status: status || '',
       poll,
       inReplyToId,
+      quotedStatusId,
+      quoteApprovalPolicy,
       visibility: getDefaultVisibility(visibility || 'public'),
       sensitive: sensitive ?? false,
       spoilerText: spoilerText || '',
@@ -97,7 +96,7 @@ function getAccountsToMention(status: mastodon.v1.Status) {
 export function getReplyDraft(status: mastodon.v1.Status) {
   const accountsToMention = getAccountsToMention(status)
   return {
-    key: `reply-${status.id}`,
+    key: `reply-${status.id}` satisfies DraftKey,
     draft: () => {
       return getDefaultDraftItem({
         initialText: '',
@@ -125,9 +124,11 @@ export function isEmptyDraft(drafts: Array<DraftItem> | DraftItem | null | undef
     const { params, attachments } = draft
     const status = params.status ?? ''
     const text = htmlToText(status).trim().replace(/^(@\S+\s?)+/, '').replaceAll(/```/g, '').trim()
+    const hasQuote = !!params.quotedStatusId
 
     return (text.length > 0)
       || (attachments.length > 0)
+      || hasQuote
   })
 
   return !anyDraftHasContent
@@ -139,7 +140,7 @@ export interface UseDraft {
 }
 
 export function useDraft(
-  draftKey: string,
+  draftKey: DraftKey,
   initial: () => DraftItem = () => getDefaultDraftItem({}),
 ): UseDraft {
   const draftItems = computed({
@@ -182,11 +183,24 @@ export function directMessageUser(account: mastodon.v1.Account) {
   }))
 }
 
+export const builtinDraftKeys = [
+  'home',
+  'dialog',
+  'intent',
+  'quote',
+]
+
 export function clearEmptyDrafts() {
   for (const key in currentUserDrafts.value) {
-    if (builtinDraftKeys.includes(key) && !isEmptyDraft(currentUserDrafts.value[key]))
-      continue
-    if (isEmptyDraft(currentUserDrafts.value[key]))
-      delete currentUserDrafts.value[key]
+    if (isDraftKey(key)) {
+      if (builtinDraftKeys.includes(key) && !isEmptyDraft(currentUserDrafts.value[key]))
+        continue
+      if (isEmptyDraft(currentUserDrafts.value[key]))
+        delete currentUserDrafts.value[key]
+    }
   }
+}
+
+export function isDraftKey(key: string): key is DraftKey {
+  return builtinDraftKeys.includes(key) || key.startsWith('reply-')
 }

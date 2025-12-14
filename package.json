@@ -1,8 +1,8 @@
 {
   "name": "@elk-zone/elk",
   "type": "module",
-  "version": "0.16.0",
-  "packageManager": "pnpm@10.21.0",
+  "version": "0.17.3",
+  "packageManager": "pnpm@10.24.0",
   "license": "MIT",
   "homepage": "https://elk.zone/",
   "main": "./nuxt.config.ts",
@@ -37,7 +37,7 @@
     "@fnando/sparkline": "^0.3.10",
     "@iconify-emoji/twemoji": "^1.0.2",
     "@iconify/json": "^2.2.170",
-    "@iconify/utils": "^2.1.22",
+    "@iconify/utils": "^3.0.0",
     "@intlify/core-base": "^11.1.12",
     "@intlify/message-compiler": "^11.1.12",
     "@intlify/shared": "^11.1.12",
@@ -88,13 +88,13 @@
     "form-data": "^4.0.0",
     "fuse.js": "^7.0.0",
     "github-reserved-names": "^2.0.4",
-    "happy-dom": "^16.0.0",
+    "happy-dom": "^20.0.0",
     "idb-keyval": "^6.2.1",
     "iso-639-1": "^3.0.0",
     "js-yaml": "^4.1.0",
     "lru-cache": "^11.0.0",
     "magic-string": "^0.30.19",
-    "masto": "^6.10.4",
+    "masto": "^7.8.0",
     "mocked-exports": "^0.1.1",
     "node-emoji": "^2.1.3",
     "nuxt": "^4.1.2",
@@ -134,8 +134,7 @@
     "ws": "^8.15.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^5.4.1",
-    "@antfu/ni": "^26.0.1",
+    "@antfu/eslint-config": "^6.2.0",
     "@types/chroma-js": "^3.1.1",
     "@types/file-saver": "^2.0.7",
     "@types/fnando__sparkline": "^0.3.7",
@@ -157,13 +156,13 @@
     "sharp-ico": "^0.1.5",
     "simple-git-hooks": "^2.13.1",
     "typescript": "^5.4.4",
-    "vitest": "4.0.8",
+    "vitest": "4.0.15",
     "vue-tsc": "^2.1.6"
   },
   "resolutions": {
-    "nuxt-component-meta": "0.14.1",
-    "unstorage": "^1.17.1",
-    "vitest": "4.0.8",
+    "nuxt-component-meta": "0.15.0",
+    "unstorage": "^1.17.3",
+    "vitest": "4.0.15",
     "vue": "^3.5.4"
   },
   "simple-git-hooks": {

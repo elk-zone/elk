@@ -25,6 +25,7 @@ const supportedNotificationTypes: NotificationType[] = [
   'update',
   'status',
   'annual_report',
+  'quote',
 ]
 
 // well-known emoji reactions types Elk does not support yet
@@ -130,7 +131,14 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
         </template>
       </StatusCard>
     </template>
-    <template v-else-if="notification.type === 'mention' || notification.type === 'poll' || notification.type === 'status'">
+    <template
+      v-else-if="
+        notification.type === 'mention'
+          || notification.type === 'poll'
+          || notification.type === 'status'
+          || notification.type === 'quote'
+      "
+    >
       <StatusCard :status="notification.status!" />
     </template>
     <template v-else-if="notification.type === 'annual_report'">

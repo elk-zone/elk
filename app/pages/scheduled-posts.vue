@@ -19,6 +19,6 @@ useHydratedHead({
       </NuxtLink>
     </template>
 
-    <TimelineBookmarks v-if="isHydrated" />
+    <TimelineScheduledPosts v-if="isHydrated" />
   </MainContent>
 </template>

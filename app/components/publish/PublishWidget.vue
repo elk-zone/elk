@@ -473,7 +473,7 @@ const detectLanguage = useDebounceFn(async () => {
               </button>
             </div>
             <StatusQuote v-if="quotedStatus" :status="quotedStatus" />
-            <div v-if="quoteFetchError" text-danger b="base 1" rounded-lg hover:bg-active my-3 p-3>
+            <div v-else-if="quoteFetchError" text-danger b="base 1" rounded-lg hover:bg-active my-3 p-3>
               {{ $t('error.quote_fetch_error') }} ({{ quoteFetchError }})
             </div>
             <StatusCardSkeleton v-else b="base 1" rounded-lg hover:bg-active my-3 />

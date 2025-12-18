@@ -88,3 +88,21 @@ export const statusVisibilities: {
     icon: 'i-ri:at-line',
   },
 ] as const
+
+export const statusQuoteApprovalPolicies: {
+  value: mastodon.rest.v1.QuoteApprovalPolicy
+  icon: `i-ri:${string}`
+}[] = [
+  {
+    value: 'public',
+    icon: 'i-ri:global-line',
+  },
+  {
+    value: 'followers',
+    icon: 'i-ri:group-line',
+  },
+  {
+    value: 'nobody',
+    icon: 'i-ri:lock-line',
+  },
+] as const

@@ -191,6 +191,7 @@ watchEffect(async () => {
 
 function removeQuote() {
   draft.value.params.quotedStatusId = undefined
+  draft.value.params.quoteApprovalPolicy = undefined
   quotedStatus.value = null
   quoteFetchError.value = null
 }
@@ -594,6 +595,18 @@ const detectLanguage = useDebounceFn(async () => {
                 </button>
               </template>
             </PublishVisibilityPicker>
+
+            <PublishQuoteApprovalPicker v-if="hasQuote" v-model="draft.params.quoteApprovalPolicy" :editing="!!draft.editingStatus">
+              <template #default="{ quoteApprovalPolicy }">
+                <button
+                  :disabled="!!draft.editingStatus" :aria-label="$t('tooltip.change_content_visibility')"
+                  btn-action-icon :class="{ 'w-12': !draft.editingStatus }"
+                >
+                  <div :class="quoteApprovalPolicy.icon" />
+                  <div v-if="!draft.editingStatus" i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+                </button>
+              </template>
+            </PublishQuoteApprovalPicker>
 
             <PublishThreadTools :draft-item-index="draftItemIndex" :draft-key="draftKey" />
 

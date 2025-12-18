@@ -406,6 +406,14 @@
       }
     }
   },
+  "quote_approval_policy": {
+    "followers": "Followers only",
+    "followers_desc": "Your followers can quote",
+    "nobody": "Nobody",
+    "nobody_desc": "Only you can quote",
+    "public": "Public",
+    "public_desc": "Anyone can quote"
+  },
   "report": {
     "additional_comments": "Additional comments",
     "another_server": "The user you're reporting is from another server",
@@ -745,6 +753,7 @@
     "add_thread_item": "Add item to thread",
     "change_content_visibility": "Change content visibility",
     "change_language": "Change language",
+    "change_quote_approval_policy": "Change quote approval policy",
     "emoji": "Emoji",
     "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
     "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",

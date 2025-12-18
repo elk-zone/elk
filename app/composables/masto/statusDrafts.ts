@@ -20,6 +20,18 @@ function getDefaultVisibility(currentVisibility: mastodon.v1.StatusVisibility) {
     : preferredVisibility
 }
 
+const ALL_QUOTE_APPROVAL_POLICY: readonly mastodon.rest.v1.QuoteApprovalPolicy[] = ['public', 'followers', 'nobody'] as const
+
+function getDefaultQuoteApprovalPolicy(currentQuoteApprovalPolicy: mastodon.rest.v1.QuoteApprovalPolicy) {
+  // The default privacy only should be taken into account if it makes
+  // the post more private than the replying to post
+  const preferredQuoteApprovalPolicy = currentUser.value?.account.source.quoteApprovalPolicy || 'public'
+  return ALL_QUOTE_APPROVAL_POLICY.indexOf(currentQuoteApprovalPolicy)
+    > ALL_QUOTE_APPROVAL_POLICY.indexOf(preferredQuoteApprovalPolicy)
+    ? currentQuoteApprovalPolicy
+    : preferredQuoteApprovalPolicy
+}
+
 export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.CreateStatusParams> & Omit<DraftItem, 'params'>> = {}): DraftItem {
   const {
     attachments = [],
@@ -44,7 +56,7 @@ export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.Cr
       poll,
       inReplyToId,
       quotedStatusId,
-      quoteApprovalPolicy,
+      quoteApprovalPolicy: getDefaultQuoteApprovalPolicy(quoteApprovalPolicy || 'public'),
       visibility: getDefaultVisibility(visibility || 'public'),
       sensitive: sensitive ?? false,
       spoilerText: spoilerText || '',

@@ -1,4 +1,6 @@
 // @unocss-include
+import type { mastodon } from 'masto'
+
 export const accountFieldIcons: Record<string, string> = Object.fromEntries(Object.entries({
   Alipay: 'i-ri:alipay-line',
   Bilibili: 'i-ri:bilibili-line',
@@ -65,7 +67,10 @@ export function getAccountFieldIcon(value: string) {
   return accountFieldIconsLowercase[name] || undefined
 }
 
-export const statusVisibilities = [
+export const statusVisibilities: {
+  value: mastodon.v1.StatusVisibility
+  icon: `i-ri:${string}`
+}[] = [
   {
     value: 'public',
     icon: 'i-ri:global-line',

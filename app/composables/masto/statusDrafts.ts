@@ -8,7 +8,7 @@ export const currentUserDrafts = (import.meta.server || process.test)
   ? computed<DraftMap>(() => ({ home: [], dialog: [], intent: [], quote: [] }))
   : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({ home: [], dialog: [], intent: [], quote: [] }))
 
-const ALL_VISIBILITY = ['public', 'unlisted', 'private', 'direct'] as const
+const ALL_VISIBILITY: readonly mastodon.v1.StatusVisibility[] = ['public', 'unlisted', 'private', 'direct'] as const
 
 function getDefaultVisibility(currentVisibility: mastodon.v1.StatusVisibility) {
   // The default privacy only should be taken into account if it makes

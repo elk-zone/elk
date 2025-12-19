@@ -23,8 +23,8 @@ function getDefaultVisibility(currentVisibility: mastodon.v1.StatusVisibility) {
 const ALL_QUOTE_APPROVAL_POLICY: readonly mastodon.rest.v1.QuoteApprovalPolicy[] = ['public', 'followers', 'nobody'] as const
 
 function getDefaultQuoteApprovalPolicy(currentQuoteApprovalPolicy: mastodon.rest.v1.QuoteApprovalPolicy) {
-  // The default privacy only should be taken into account if it makes
-  // the post more private than the replying to post
+  // The default quote policy only should be taken into account if it makes
+  // the quote permission more restricted
   const preferredQuoteApprovalPolicy = currentUser.value?.account.source.quotePolicy || 'public'
   return ALL_QUOTE_APPROVAL_POLICY.indexOf(currentQuoteApprovalPolicy)
     > ALL_QUOTE_APPROVAL_POLICY.indexOf(preferredQuoteApprovalPolicy)

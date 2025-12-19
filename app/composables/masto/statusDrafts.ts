@@ -25,7 +25,7 @@ const ALL_QUOTE_APPROVAL_POLICY: readonly mastodon.rest.v1.QuoteApprovalPolicy[]
 function getDefaultQuoteApprovalPolicy(currentQuoteApprovalPolicy: mastodon.rest.v1.QuoteApprovalPolicy) {
   // The default privacy only should be taken into account if it makes
   // the post more private than the replying to post
-  const preferredQuoteApprovalPolicy = currentUser.value?.account.source.quoteApprovalPolicy || 'public'
+  const preferredQuoteApprovalPolicy = currentUser.value?.account.source.quotePolicy || 'public'
   return ALL_QUOTE_APPROVAL_POLICY.indexOf(currentQuoteApprovalPolicy)
     > ALL_QUOTE_APPROVAL_POLICY.indexOf(preferredQuoteApprovalPolicy)
     ? currentQuoteApprovalPolicy

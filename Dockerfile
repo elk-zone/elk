@@ -9,7 +9,7 @@ FROM base AS builder
 # workaround for npm registry key change
 # ref. `pnpm@10.1.0` / `pnpm@9.15.4` cannot be installed due to key id mismatch · Issue #612 · nodejs/corepack
 # - https://github.com/nodejs/corepack/issues/612#issuecomment-2629496091
-RUN npm i -g corepack@latest && corepack enable
+RUN npm i -g tsx corepack@latest && corepack enable
 
 # Prepare deps
 RUN apk update

@@ -109,7 +109,7 @@ function createSuggestionRenderer(component: Component): SuggestionOptions['rend
         popup = tippy(document.body, {
           getReferenceClientRect: props.clientRect as GetReferenceClientRect,
           appendTo: () => document.body,
-          content: renderer.element,
+          content: renderer.renderedComponent.el!,
           showOnCreate: true,
           interactive: true,
           trigger: 'manual',

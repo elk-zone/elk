@@ -617,11 +617,11 @@
     "editing": "Sửa",
     "loading": "Đang tải...",
     "publish_failed": "Đăng thất bại",
+    "publishing": "Đăng",
+    "save_failed": "Lưu thất bại",
     "schedule_failed": "Lên lịch đăng thất bại",
     "schedule_time_invalid": "Thời gian đăng phải cách thời điểm hiện tại ít nhất 5 phút. Đặt thành {0} hoặc xa hơn.",
     "scheduling": "Đang lên lịch đăng",
-    "publishing": "Đăng",
-    "save_failed": "Lưu thất bại",
     "upload_failed": "Tải lên thất bại",
     "uploading": "Đang tải lên..."
   },

@@ -61,6 +61,7 @@
     "clear": "Clear",
     "clear_publish_failed": "Clear publish errors",
     "clear_save_failed": "Clear save errors",
+    "clear_schedule_failed": "Clear schedule errors",
     "clear_upload_failed": "Clear file upload errors",
     "close": "Close",
     "compose": "Compose",
@@ -82,6 +83,7 @@
     "reset": "Reset",
     "save": "Save",
     "save_changes": "Save changes",
+    "schedule": "Schedule",
     "sign_in": "Sign in",
     "sign_in_to": "Sign in to {0}",
     "switch_account": "Switch account",
@@ -274,7 +276,6 @@
     "copy_original_link_to_post": "Copy original link to this post",
     "delete": "Delete",
     "delete_and_redraft": "Delete & re-draft",
-    "direct_message_account": "Direct message {0}",
     "edit": "Edit",
     "hide_reblogs": "Hide boosts from {0}",
     "mention_account": "Mention {0}",
@@ -282,6 +283,7 @@
     "mute_conversation": "Mute this post",
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
+    "private_mention_account": "Private mention {0}",
     "remove_personal_note": "Remove personal note from {0}",
     "report_account": "Report {0}",
     "share_account": "Share {0}",
@@ -617,6 +619,9 @@
     "publish_failed": "Publish failed",
     "publishing": "Publishing",
     "save_failed": "Save failed",
+    "schedule_failed": "Schedule failed",
+    "schedule_time_invalid": "The scheduled time must be at least 5 minutes later in the future. Set to {0} or later.",
+    "scheduling": "Scheduling",
     "upload_failed": "Upload failed",
     "uploading": "Uploading..."
   },
@@ -745,6 +750,8 @@
     "pick_an_icon": "Pick an icon",
     "publish_failed": "Close failed messages at the top of editor to republish posts",
     "remove_thread_item": "Remove item from thread",
+    "schedule_failed": "Close failed messages at the top of editor to reschedule posts",
+    "schedule_post": "Schedule post",
     "start_thread": "Start thread",
     "toggle_bold": "Toggle bold",
     "toggle_code_block": "Toggle code block",
@@ -761,13 +768,13 @@
     "tip_register_account": "pick your server and register one"
   },
   "visibility": {
-    "direct": "Direct",
+    "direct": "Private mention",
     "direct_desc": "Visible for mentioned users only",
     "private": "Followers only",
     "private_desc": "Visible for followers only",
     "public": "Public",
     "public_desc": "Visible for all",
-    "unlisted": "Unlisted",
+    "unlisted": "Quiet public",
     "unlisted_desc": "Visible for all, but opted-out of discovery features"
   }
 }

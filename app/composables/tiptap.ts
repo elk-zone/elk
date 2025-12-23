@@ -4,12 +4,12 @@ import Bold from '@tiptap/extension-bold'
 import Code from '@tiptap/extension-code'
 import Document from '@tiptap/extension-document'
 import HardBreak from '@tiptap/extension-hard-break'
-import History from '@tiptap/extension-history'
 import Italic from '@tiptap/extension-italic'
 import Mention from '@tiptap/extension-mention'
 import Paragraph from '@tiptap/extension-paragraph'
-import Placeholder from '@tiptap/extension-placeholder'
 import Text from '@tiptap/extension-text'
+// TODO: migrate from History to UndoRedo
+import { Placeholder, UndoRedo } from '@tiptap/extensions'
 import { Plugin } from '@tiptap/pm/state'
 import { Extension, useEditor } from '@tiptap/vue-3'
 
@@ -77,7 +77,7 @@ export function useTiptap(options: UseTiptapOptions) {
         placeholder: () => placeholder.value!,
       }),
       TiptapPluginCodeBlockShiki,
-      History.configure({
+      UndoRedo.configure({
         depth: 10,
       }),
       Extension.create({

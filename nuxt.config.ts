@@ -113,7 +113,7 @@ export default defineNuxtConfig({
         '@tiptap/extension-italic',
         '@tiptap/extension-code',
         '@tiptap/extension-history',
-        'prosemirror-state',
+        '@tiptap/pm',
         'browser-fs-access',
         'blurhash',
         '@vueuse/integrations/useFocusTrap',

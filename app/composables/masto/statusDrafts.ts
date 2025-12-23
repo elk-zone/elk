@@ -32,7 +32,7 @@ function getDefaultQuoteApprovalPolicy(currentQuoteApprovalPolicy: mastodon.rest
     : preferredQuoteApprovalPolicy
 }
 
-export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.CreateStatusParams> & Omit<DraftItem, 'params'>> = {}): DraftItem {
+export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.CreateScheduledStatusParams> & Omit<DraftItem, 'params'>> = {}): DraftItem {
   const {
     attachments = [],
     initialText = '',
@@ -44,6 +44,7 @@ export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.Cr
     language,
     mentions,
     poll,
+    scheduledAt,
     quotedStatusId,
     quoteApprovalPolicy,
   } = options
@@ -54,6 +55,7 @@ export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.Cr
     params: {
       status: status || '',
       poll,
+      scheduledAt,
       inReplyToId,
       quotedStatusId,
       quoteApprovalPolicy: getDefaultQuoteApprovalPolicy(quoteApprovalPolicy || 'public'),
@@ -188,7 +190,7 @@ export function mentionUser(account: mastodon.v1.Account) {
   }))
 }
 
-export function directMessageUser(account: mastodon.v1.Account) {
+export function privateMentionUser(account: mastodon.v1.Account) {
   openPublishDialog('dialog', getDefaultDraftItem({
     status: `@${account.acct} `,
     visibility: 'direct',

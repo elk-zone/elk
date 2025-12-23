@@ -120,7 +120,7 @@ export default defineNuxtConfig({
         '@tiptap/extension-code-block',
         'prosemirror-highlight',
         '@tiptap/core',
-        'tippy.js',
+        '@floating-ui/dom',
         'prosemirror-highlight/shiki',
         '@fnando/sparkline',
         '@vueuse/gesture',

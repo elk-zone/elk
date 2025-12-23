@@ -49,8 +49,8 @@ body {
   transition: transform .1s;
 }
 
-.custom-emoji img:hover,
-.iconify-emoji:hover {
+.status-body .custom-emoji img:hover,
+.status-body .iconify-emoji:hover {
   transform: scale(2);
 }
 

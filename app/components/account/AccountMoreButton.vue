@@ -90,10 +90,10 @@ async function removeUserNote() {
           />
           <CommonDropdownItem
             is="button"
-            :text="$t('menu.direct_message_account', [`@${account.acct}`])"
+            :text="$t('menu.private_mention_account', [`@${account.acct}`])"
             icon="i-ri:message-3-line"
             :command="command"
-            @click="directMessageUser(account)"
+            @click="privateMentionUser(account)"
           />
 
           <CommonDropdownItem

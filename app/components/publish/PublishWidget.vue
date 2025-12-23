@@ -2,6 +2,7 @@
 import type { DraftItem } from '#shared/types'
 import type { mastodon } from 'masto'
 import { EditorContent } from '@tiptap/vue-3'
+import { useNow } from '@vueuse/core'
 import stringLength from 'string-length'
 
 const {
@@ -53,7 +54,16 @@ const {
   dropZoneRef,
 } = useUploadMediaAttachment(draft)
 
-const { shouldExpanded, isExpanded, isSending, isPublishDisabled, publishDraft, failedMessages, preferredLanguage, publishSpoilerText } = usePublish(
+const {
+  shouldExpanded,
+  isExpanded,
+  isSending,
+  isPublishDisabled,
+  publishDraft,
+  failedMessages,
+  preferredLanguage,
+  publishSpoilerText,
+} = usePublish(
   {
     draftItem: draft,
     ...{ expanded: toRef(() => expanded), isUploading, initialDraft: initial, isPartOfThread: false },
@@ -132,6 +142,73 @@ const expiresInOptions = computed(() => [
 
 const expiresInDefaultOptionIndex = 2
 
+const scheduledTime = ref('')
+const now = useNow({ interval: 1000 })
+const minimumScheduledTime = computed(() => getMinimumScheduledTime(now.value))
+
+const isValidScheduledTime = computed(() => {
+  if (scheduledTime.value === '')
+    return true
+
+  const scheduledTimeDate = new Date(scheduledTime.value)
+  return minimumScheduledTime.value.getTime() <= scheduledTimeDate.getTime()
+})
+
+const initialDateTime = computed(() => {
+  const t = new Date(minimumScheduledTime.value.getTime())
+  t.setHours(t.getHours() + 1)
+  t.setMinutes(0)
+  t.setSeconds(0)
+  t.setMilliseconds(0)
+  return t
+})
+
+watchEffect(() => {
+  // Convert the local datetime string from the input to a UTC ISO string for the API
+  if (scheduledTime.value) {
+    const localDate = new Date(scheduledTime.value)
+    draft.value.params.scheduledAt = localDate.toISOString()
+  }
+  else {
+    draft.value.params.scheduledAt = ''
+  }
+})
+
+function setInitialScheduledTime() {
+  if (scheduledTime.value === '') {
+    scheduledTime.value = getDatetimeInputFormat(initialDateTime.value)
+  }
+}
+
+watchEffect(() => {
+  draft.value.params.scheduledAt = scheduledTime.value
+})
+
+// Calculate the minimum scheduled time.
+// Mastodon API allows to set the scheduled time to 5 minutes in the future
+// but if the specified scheduled time is less than 5 minutes, Mastodon will
+// send the post immediately.
+// To prevent this, we add a buffer and round up the minutes.
+function getMinimumScheduledTime(now: Date): Date {
+  const bufferInSec = 5 + 5 * 60 // + 5 minutes and 5 seconds
+  const nowInSec = Math.floor(now.getTime() / 1000)
+  const bufferedTimeInSec
+    = Math.ceil((nowInSec + bufferInSec) / 60) * 60
+  return new Date(bufferedTimeInSec * 1000)
+}
+
+function getDatetimeInputFormat(time: Date) {
+  // Returns string in 'YYYY-MM-DDTHH:MM' format using local time components
+  // This is the format expected by the <input type="datetime-local"> element.
+  const year = time.getFullYear()
+  const month = (time.getMonth() + 1).toString().padStart(2, '0')
+  const day = time.getDate().toString().padStart(2, '0')
+  const hours = time.getHours().toString().padStart(2, '0')
+  const minutes = time.getMinutes().toString().padStart(2, '0')
+
+  return `${year}-${month}-${day}T${hours}:${minutes}`
+}
+
 const characterCount = computed(() => {
   const text = htmlToText(editor.value?.getHTML() || '')
 
@@ -186,6 +263,7 @@ async function handlePaste(evt: ClipboardEvent) {
 function insertEmoji(name: string) {
   editor.value?.chain().focus().insertEmoji(name).run()
 }
+
 function insertCustomEmoji(image: any) {
   editor.value?.chain().focus().insertCustomEmoji(image).run()
 }
@@ -353,6 +431,41 @@ const detectLanguage = useDebounceFn(async () => {
                 </li>
               </ol>
             </CommonErrorMessage>
+            <CommonErrorMessage v-if="failedMessages.length > 0" described-by="publish-failed">
+              <header id="publish-failed" flex justify-between>
+                <div flex items-center gap-x-2 font-bold>
+                  <div aria-hidden="true" i-ri:error-warning-fill />
+                  <p>{{ scheduledTime ? $t('state.schedule_failed') : $t('state.publish_failed') }}</p>
+                </div>
+                <CommonTooltip
+                  placement="bottom"
+                  :content="scheduledTime ? $t('action.clear_schedule_failed') : $t('action.clear_publish_failed')"
+                >
+                  <button
+                    flex rounded-4 p1 hover:bg-active cursor-pointer transition-100
+                    :aria-label="scheduledTime ? $t('action.clear_schedule_failed') : $t('action.clear_publish_failed')"
+                    @click="failedMessages = []"
+                  >
+                    <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
+                  </button>
+                </CommonTooltip>
+              </header>
+              <ol ps-2 sm:ps-1>
+                <li v-for="(error, i) in failedMessages" :key="i" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
+                  <strong>{{ i + 1 }}.</strong>
+                  <span>{{ error }}</span>
+                </li>
+              </ol>
+            </CommonErrorMessage>
+
+            <CommonErrorMessage v-if="!isValidScheduledTime" described-by="scheduled-time-invalid" pt-2>
+              <header id="scheduled-time-invalid" flex justify-between>
+                <div flex items-center gap-x-2 font-bold>
+                  <div aria-hidden="true" i-ri:error-warning-fill />
+                  <p>{{ $t('state.schedule_time_invalid', [minimumScheduledTime.toLocaleString()]) }}</p>
+                </div>
+              </header>
+            </CommonErrorMessage>
 
             <div relative flex-1 flex flex-col :class="shouldExpanded ? 'min-h-30' : ''">
               <EditorContent
@@ -435,7 +548,8 @@ const detectLanguage = useDebounceFn(async () => {
                 aspect-ratio-1 h-10
                 :style="{ background: `radial-gradient(closest-side, rgba(var(--rgb-bg-base)) 79%, transparent 80% 100%), conic-gradient(${draft.params.poll!.options[index].length / currentInstance?.configuration?.polls.maxCharactersPerOption > 1 ? 'var(--c-danger)' : 'var(--c-primary)'} ${draft.params.poll!.options[index].length / currentInstance?.configuration?.polls.maxCharactersPerOption * 100}%, var(--c-primary-fade) 0)` }"
               >{{
-                draft.params.poll!.options[index].length }}</span>
+                draft.params.poll!.options[index].length
+              }}</span>
             </div>
           </form>
           <div v-if="shouldExpanded" flex="~ gap-1 1 wrap" m="s--1" pt-2 justify="end" max-w-full border="t base">
@@ -489,7 +603,8 @@ const detectLanguage = useDebounceFn(async () => {
                       />
                       <CommonCheckbox
                         v-model="draft.params.poll.hideTotals"
-                        :label="draft.params.poll.hideTotals ? $t('polls.show_votes') : $t('polls.hide_votes')" px-2 gap-3
+                        :label="draft.params.poll.hideTotals ? $t('polls.show_votes') : $t('polls.hide_votes')" px-2
+                        gap-3
                         h-9 flex justify-center hover:bg-active rounded-full icon-checked="i-ri:eye-close-line"
                         icon-unchecked="i-ri:eye-line"
                       />
@@ -506,7 +621,8 @@ const detectLanguage = useDebounceFn(async () => {
                   <template #popper>
                     <CommonDropdownItem
                       v-for="expiresInOption in expiresInOptions" :key="expiresInOption.seconds"
-                      :text="expiresInOption.label" :checked="draft.params.poll!.expiresIn === expiresInOption.seconds"
+                      :text="expiresInOption.label"
+                      :checked="draft.params.poll!.expiresIn === expiresInOption.seconds"
                       @click="draft.params.poll!.expiresIn = expiresInOption.seconds"
                     />
                   </template>
@@ -515,6 +631,22 @@ const detectLanguage = useDebounceFn(async () => {
             </template>
 
             <PublishEditorTools v-if="editor" :editor="editor" />
+            <CommonDropdown placement="bottom" @click="setInitialScheduledTime">
+              <CommonTooltip placement="top" :content="$t('tooltip.schedule_post')" no-auto-focus>
+                <button btn-action-icon :aria-label="$t('tooltip.schedule_post')">
+                  <div i-ri:calendar-schedule-line :class="scheduledTime !== '' ? 'text-primary' : ''" />
+                </button>
+              </CommonTooltip>
+              <template #popper>
+                <input
+                  v-model="scheduledTime"
+                  p2
+                  type="datetime-local"
+                  name="schedule-datetime"
+                  :min="getDatetimeInputFormat(minimumScheduledTime)"
+                >
+              </template>
+            </CommonDropdown>
 
             <div flex-auto />
 
@@ -557,7 +689,7 @@ const detectLanguage = useDebounceFn(async () => {
 
             <CommonTooltip
               v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top"
-              :content="$t('tooltip.publish_failed')"
+              :content="scheduledTime ? $t('state.schedule_failed') : $t('tooltip.publish_failed')"
             >
               <button
                 btn-danger rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit
@@ -566,7 +698,7 @@ const detectLanguage = useDebounceFn(async () => {
                 <span block>
                   <div block i-carbon:face-dizzy-filled />
                 </span>
-                <span>{{ $t('state.publish_failed') }}</span>
+                <span>{{ scheduledTime ? $t('state.schedule_failed') : $t('state.publish_failed') }}</span>
               </button>
             </CommonTooltip>
 
@@ -577,8 +709,9 @@ const detectLanguage = useDebounceFn(async () => {
               <button
                 v-if="!threadIsActive || isFinalItemOfThread"
                 btn-solid rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit class="publish-button"
-                :aria-disabled="isPublishDisabled || isExceedingCharacterLimit || threadIsSending" aria-describedby="publish-tooltip"
-                :disabled="isPublishDisabled || isExceedingCharacterLimit || threadIsSending"
+                :aria-disabled="isPublishDisabled || isExceedingCharacterLimit || threadIsSending || !isValidScheduledTime"
+                aria-describedby="publish-tooltip"
+                :disabled="isPublishDisabled || isExceedingCharacterLimit || threadIsSending || !isValidScheduledTime"
                 @click="publish"
               >
                 <span v-if="isSending || threadIsSending" block animate-spin preserve-3d>
@@ -592,6 +725,9 @@ const detectLanguage = useDebounceFn(async () => {
                 </template>
                 <template v-else>
                   <span v-if="draft.editingStatus">{{ $t('action.save_changes') }}</span>
+                  <span v-else-if="scheduledTime">{{
+                    !isSending ? $t('action.schedule') : $t('state.scheduling')
+                  }}</span>
                   <span v-else-if="draft.params.inReplyToId">{{ $t('action.reply') }}</span>
                   <span v-else>{{ !isSending ? $t('action.publish') : $t('state.publishing') }}</span>
                 </template>
@@ -616,11 +752,11 @@ const detectLanguage = useDebounceFn(async () => {
   color: var(--c-text-btn-disabled);
 }
 
-.option-input:focus+.delete-button {
+.option-input:focus + .delete-button {
   display: none;
 }
 
-.option-input:not(:focus)+.delete-button+.char-limit-radial {
+.option-input:not(:focus) + .delete-button + .char-limit-radial {
   display: none;
 }
 
@@ -629,5 +765,9 @@ const detectLanguage = useDebounceFn(async () => {
   justify-content: center;
   align-items: center;
   border-radius: 50%;
+}
+
+input[name="schedule-datetime"]:invalid {
+  color: var(--c-danger);
 }
 </style>

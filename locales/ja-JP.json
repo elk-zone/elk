@@ -226,7 +226,9 @@
     "manage": "リストを管理",
     "modify_account": "このアカウントでリストを編集",
     "remove_account": "アカウントをリストから削除",
-    "save": "変更を保存"
+    "save": "変更を保存",
+    "search_following_desc": "フォローしているユーザーから検索します",
+    "search_following_placeholder": "フォローユーザーを検索"
   },
   "magic_keys": {
     "dialog_header": "キーボードショートカット",
@@ -334,10 +336,12 @@
     "zen_mode": "禅モード"
   },
   "notification": {
+    "and": "と",
     "favourited_post": "さんがあなたの投稿をお気に入り登録しました",
     "followed_you": "さんがあなたをフォローしました",
     "followed_you_count": "{0}人のユーザーがあなたをフォローしました",
     "missing_type": "MISSING notification.type:",
+    "others": "その他 {0} 人",
     "reblogged_post": "さんがあなたの投稿をブーストしました",
     "reported": "{0}さんが{1}を報告しました",
     "request_to_follow": "さんがあなたへフォローをリクエストしました",
@@ -559,6 +563,7 @@
       "label": "環境設定",
       "optimize_for_low_performance_device": "処理能力が低いデバイス向けに最適化",
       "title": "実験的機能",
+      "unmute_videos": "デフォルトで動画の音声をオンにする",
       "use_star_favorite_icon": "星のお気に入りアイコンを使用する",
       "user_picker": "ユーザーピッカー",
       "user_picker_description": "右下にログインしたすべてのアカウントを表示することで、アカウントを素早く切り替えられるようにします。",
@@ -637,7 +642,8 @@
     "poll": {
       "count": "{0} 票",
       "ends": "{0}に終了",
-      "finished": "{0}に完了"
+      "finished": "{0}に完了",
+      "update": "投票を更新"
     },
     "replying_to": "{0}さんへの返信",
     "show_full_thread": "スレッド全体を表示",
@@ -669,7 +675,8 @@
     "notifications_follow_request": "フォローリクエスト",
     "notifications_mention": "メンション",
     "notifications_more_tooltip": "通知を種類別にフィルタする",
-    "notifications_poll": "投稿",
+    "notifications_poll": "投票",
+    "notifications_quote": "引用",
     "notifications_reblog": "ブースト",
     "notifications_status": "ステータス",
     "notifications_update": "更新",

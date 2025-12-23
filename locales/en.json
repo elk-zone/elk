@@ -274,7 +274,6 @@
     "copy_original_link_to_post": "Copy original link to this post",
     "delete": "Delete",
     "delete_and_redraft": "Delete & re-draft",
-    "direct_message_account": "Direct message {0}",
     "edit": "Edit",
     "hide_reblogs": "Hide boosts from {0}",
     "mention_account": "Mention {0}",
@@ -282,6 +281,7 @@
     "mute_conversation": "Mute this post",
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
+    "private_mention_account": "Private mention {0}",
     "remove_personal_note": "Remove personal note from {0}",
     "report_account": "Report {0}",
     "share_account": "Share {0}",
@@ -761,13 +761,13 @@
     "tip_register_account": "pick your server and register one"
   },
   "visibility": {
-    "direct": "Direct",
+    "direct": "Private mention",
     "direct_desc": "Visible for mentioned users only",
     "private": "Followers only",
     "private_desc": "Visible for followers only",
     "public": "Public",
     "public_desc": "Visible for all",
-    "unlisted": "Unlisted",
+    "unlisted": "Quiet public",
     "unlisted_desc": "Visible for all, but opted-out of discovery features"
   }
 }

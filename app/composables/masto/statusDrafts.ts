@@ -25,7 +25,7 @@ function getDefaultVisibility(currentVisibility: mastodon.v1.StatusVisibility) {
     : preferredVisibility
 }
 
-export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.CreateStatusParams> & Omit<DraftItem, 'params'>> = {}): DraftItem {
+export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.CreateScheduledStatusParams> & Omit<DraftItem, 'params'>> = {}): DraftItem {
   const {
     attachments = [],
     initialText = '',
@@ -37,6 +37,7 @@ export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.Cr
     language,
     mentions,
     poll,
+    scheduledAt,
   } = options
 
   return {
@@ -45,6 +46,7 @@ export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.Cr
     params: {
       status: status || '',
       poll,
+      scheduledAt,
       inReplyToId,
       visibility: getDefaultVisibility(visibility || 'public'),
       sensitive: sensitive ?? false,
@@ -175,7 +177,7 @@ export function mentionUser(account: mastodon.v1.Account) {
   }))
 }
 
-export function directMessageUser(account: mastodon.v1.Account) {
+export function privateMentionUser(account: mastodon.v1.Account) {
   openPublishDialog('dialog', getDefaultDraftItem({
     status: `@${account.acct} `,
     visibility: 'direct',

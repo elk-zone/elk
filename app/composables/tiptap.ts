@@ -126,7 +126,7 @@ export function useTiptap(options: UseTiptapOptions) {
   watch(content, (value) => {
     if (editor.value?.getHTML() === value)
       return
-    editor.value?.commands.setContent(value || '', false)
+    editor.value?.commands.setContent(value || '', { emitUpdate: false })
   })
   watch(placeholder, () => {
     editor.value?.view.dispatch(editor.value?.state.tr)

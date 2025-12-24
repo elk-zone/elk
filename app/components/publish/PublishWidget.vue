@@ -587,7 +587,13 @@ const detectLanguage = useDebounceFn(async () => {
                 {{ $t('action.remove_quote') }}
               </button>
             </div>
-            <StatusQuote v-if="quotedStatus" :status="quotedStatus" />
+            <blockquote v-if="quotedStatus" b="~ base 1" rounded-lg overflow-hidden my-3>
+              <StatusCard
+                :status="quotedStatus"
+                :actions="false"
+                :is-nested="true"
+              />
+            </blockquote>
             <div v-else-if="quoteFetchError" text-danger b="base 1" rounded-lg hover:bg-active my-3 p-3>
               {{ $t('error.quote_fetch_error') }} ({{ quoteFetchError }})
             </div>

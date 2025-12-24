@@ -48,7 +48,7 @@ const quotedStatus = computed(() => {
 
 <template>
   <template v-if="quotedStatus">
-    <template v-if="isNested && quotedStatus">
+    <template v-if="isNested && quoteState">
       <div
         v-if="quoteState === 'pending'"
         flex b="~ 1" rounded-lg bg-card mt-3 p-3

@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h1 align="center"/>Elk <sup><em>alpha</em></sup></h1>
+<h1 align="center"/>Elk</h1>
 
 <p align="center">
 A nimble Mastodon web client
@@ -23,9 +23,7 @@ A nimble Mastodon web client
   </a>
 </p>
 
-## ⚠️ Elk is in Alpha
-
-It is already quite usable, but it isn't ready for wide adoption yet. We recommend you use it if you would like to help us build it. We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
+We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
 
 ## Deployment
 

@@ -409,12 +409,12 @@
     }
   },
   "quote_approval_policy": {
-     "followers": "Apenas seguidores",
-     "followers_desc": "Os teus seguidores podem citar-te",
-     "nobody": "Ninguém",
-     "nobody_desc": "Apenas tu podes citar-te",
-     "public": "Público",
-     "public_desc": "Todos podem citar-te"
+    "followers": "Apenas seguidores",
+    "followers_desc": "Os teus seguidores podem citar-te",
+    "nobody": "Ninguém",
+    "nobody_desc": "Apenas tu podes citar-te",
+    "public": "Público",
+    "public_desc": "Todos podem citar-te"
   },
   "report": {
     "additional_comments": "Adicionar comentários",

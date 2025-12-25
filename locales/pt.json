@@ -634,7 +634,7 @@
     "publish_failed": "Publicação falhou",
     "publishing": "Publicando",
     "save_failed": "Falha ao guardar",
-    "scheduling": "Agendamento falhou",
+    "schedule_failed": "Agendamento falhou",
     "schedule_time_invalid": "A hora programada deve ser pelo menos 5 minutos mais tarde no futuro. Define-a para {0} ou mais tarde.",
     "scheduling": "A agendar",
     "upload_failed": "Carregamento falhou",

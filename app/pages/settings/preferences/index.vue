@@ -103,6 +103,12 @@ const userSettings = useUserSettings()
         {{ $t('settings.preferences.hide_boost_count') }}
       </SettingsToggleItem>
       <SettingsToggleItem
+        :checked="getPreferences(userSettings, 'hideQuoteCount')"
+        @click="togglePreferences('hideQuoteCount')"
+      >
+        {{ $t('settings.preferences.hide_quote_count') }}
+      </SettingsToggleItem>
+      <SettingsToggleItem
         :checked="getPreferences(userSettings, 'hideFavoriteCount')"
         @click="togglePreferences('hideFavoriteCount')"
       >

@@ -100,6 +100,8 @@ export function usePublish(options: {
       language: draftItem.value.params.language || preferredLanguage.value,
       poll,
       scheduledAt,
+      quotedStatusId: draftItem.value.params.quotedStatusId,
+      quoteApprovalPolicy: draftItem.value.params.quoteApprovalPolicy,
       ...(isGlitchEdition.value ? { 'content-type': 'text/markdown' } : {}),
     } as mastodon.rest.v1.CreateScheduledStatusParams
 

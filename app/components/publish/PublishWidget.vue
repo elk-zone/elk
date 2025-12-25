@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DraftItem } from '#shared/types'
+import type { DraftItem, DraftKey } from '#shared/types'
 import type { mastodon } from 'masto'
 import { EditorContent } from '@tiptap/vue-3'
 import { useNow } from '@vueuse/core'
@@ -13,7 +13,7 @@ const {
   placeholder,
   initial = getDefaultDraftItem,
 } = defineProps<{
-  draftKey: string
+  draftKey: DraftKey
   draftItemIndex: number
   initial?: () => DraftItem
   threadComposer?: ReturnType<typeof useThreadComposer>
@@ -250,6 +250,28 @@ const isExceedingCharacterLimit = computed(() => {
 const postLanguageDisplay = computed(() => languagesNameList.find(i => i.code === (draft.value.params.language || preferredLanguage.value))?.nativeName)
 
 const isDM = computed(() => draft.value.params.visibility === 'direct')
+
+const hasQuote = computed(() => !!draft.value.params.quotedStatusId)
+const quotedStatus = ref<mastodon.v1.Status | null>(null)
+const quoteFetchError = ref<string | null>(null)
+watchEffect(async () => {
+  if (hasQuote.value) {
+    try {
+      quotedStatus.value = await fetchStatus(draft.value.params.quotedStatusId!)
+    }
+    catch (err) {
+      console.error(err)
+      quoteFetchError.value = (err as Error).message
+    }
+  }
+})
+
+function removeQuote() {
+  draft.value.params.quotedStatusId = undefined
+  draft.value.params.quoteApprovalPolicy = undefined
+  quotedStatus.value = null
+  quoteFetchError.value = null
+}
 
 async function handlePaste(evt: ClipboardEvent) {
   const files = evt.clipboardData?.files
@@ -552,6 +574,33 @@ const detectLanguage = useDebounceFn(async () => {
               }}</span>
             </div>
           </form>
+
+          <template v-if="hasQuote">
+            <div flex justify-end mt-2>
+              <button
+                text-sm px-2 py-1 rounded-3 hover:bg-gray-300
+                flex="~ gap1" items-center
+                :aria-label="$t('action.remove_quote')"
+                @click="removeQuote"
+              >
+                <div i-ri:close-line />
+                {{ $t('action.remove_quote') }}
+              </button>
+            </div>
+            <blockquote v-if="quotedStatus" b="~ base 1" rounded-lg overflow-hidden my-3>
+              <StatusCard
+                :status="quotedStatus"
+                :actions="false"
+                :is-nested="true"
+              />
+            </blockquote>
+            <div v-else-if="quoteFetchError" text-danger b="base 1" rounded-lg hover:bg-active my-3 p-3>
+              {{ $t('error.quote_fetch_error') }} ({{ quoteFetchError }})
+            </div>
+            <StatusCardSkeleton v-else b="base 1" rounded-lg hover:bg-active my-3 />
+          </template>
+
+          <!-- toolbar -->
           <div v-if="shouldExpanded" flex="~ gap-1 1 wrap" m="s--1" pt-2 justify="end" max-w-full border="t base">
             <PublishEmojiPicker @select="insertEmoji" @select-custom="insertCustomEmoji">
               <button btn-action-icon :title="$t('tooltip.emojis')" :aria-label="$t('tooltip.add_emojis')">
@@ -684,6 +733,18 @@ const detectLanguage = useDebounceFn(async () => {
                 </button>
               </template>
             </PublishVisibilityPicker>
+
+            <PublishQuoteApprovalPicker v-if="hasQuote" v-model="draft.params.quoteApprovalPolicy" :editing="!!draft.editingStatus">
+              <template #default="{ quoteApprovalPolicy }">
+                <button
+                  :disabled="!!draft.editingStatus" :aria-label="$t('tooltip.change_content_visibility')"
+                  btn-action-icon :class="{ 'w-12': !draft.editingStatus }"
+                >
+                  <div :class="quoteApprovalPolicy.icon" />
+                  <div v-if="!draft.editingStatus" i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+                </button>
+              </template>
+            </PublishQuoteApprovalPicker>
 
             <PublishThreadTools :draft-item-index="draftItemIndex" :draft-key="draftKey" />
 

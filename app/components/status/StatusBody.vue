@@ -5,10 +5,12 @@ const {
   status,
   newer,
   withAction = true,
+  isNested = false,
 } = defineProps<{
   status: mastodon.v1.Status | mastodon.v1.StatusEdit
   newer?: mastodon.v1.Status
   withAction?: boolean
+  isNested?: boolean
 }>()
 
 const { translation } = await useTranslation(status, getLanguageCode())
@@ -38,6 +40,7 @@ const vnode = computed(() => {
       <component :is="vnode" v-if="vnode" />
     </span>
     <div v-else />
+    <StatusQuote :status="status" :is-nested="isNested" />
     <template v-if="translation.visible">
       <div my2 h-px border="b base" bg-base />
       <ContentRich v-if="translation.success" class="line-compact" :content="translation.text" :emojis="status.emojis" />

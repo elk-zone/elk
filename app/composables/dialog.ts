@@ -1,4 +1,4 @@
-import type { ConfirmDialogChoice, ConfirmDialogOptions, DraftItem, ErrorDialogData } from '#shared/types'
+import type { ConfirmDialogChoice, ConfirmDialogOptions, DraftItem, DraftKey, ErrorDialogData } from '#shared/types'
 import type { mastodon } from 'masto'
 
 export const confirmDialogChoice = ref<ConfirmDialogChoice>()
@@ -9,7 +9,7 @@ export const mediaPreviewList = ref<mastodon.v1.MediaAttachment[]>([])
 export const mediaPreviewIndex = ref(0)
 
 export const statusEdit = ref<mastodon.v1.StatusEdit>()
-export const dialogDraftKey = ref<string>()
+export const dialogDraftKey = ref<DraftKey>()
 
 export const reportAccount = ref<mastodon.v1.Account>()
 export const reportStatus = ref<mastodon.v1.Status>()
@@ -25,12 +25,12 @@ export const isPreviewHelpOpen = ref(false)
 export const isCommandPanelOpen = ref(false)
 export const isConfirmDialogOpen = ref(false)
 export const isErrorDialogOpen = ref(false)
-export const isFavouritedBoostedByDialogOpen = ref(false)
+export const isReactedByDialogOpen = ref(false)
 export const isReportDialogOpen = ref(false)
 
 export const lastPublishDialogStatus = ref<mastodon.v1.Status | null>(null)
 
-export const favouritedBoostedByStatusId = ref<string | null>(null)
+export const reactedByStatusId = ref<string | null>(null)
 
 export function openSigninDialog() {
   isSigninDialogOpen.value = true
@@ -46,7 +46,7 @@ export async function openConfirmDialog(label: ConfirmDialogOptions | string): P
   return confirmDialogChoice.value!
 }
 
-export async function openPublishDialog(draftKey = 'dialog', draft?: DraftItem, overwrite = false): Promise<void> {
+export async function openPublishDialog(draftKey: DraftKey = 'dialog', draft?: DraftItem, overwrite = false): Promise<void> {
   dialogDraftKey.value = draftKey
 
   if (draft) {
@@ -69,9 +69,9 @@ export async function openPublishDialog(draftKey = 'dialog', draft?: DraftItem, 
   await until(isPublishDialogOpen).toBe(false)
 }
 
-export async function openFavoridedBoostedByDialog(statusId: string) {
-  isFavouritedBoostedByDialogOpen.value = true
-  favouritedBoostedByStatusId.value = statusId
+export async function openReactedByDialog(statusId: string) {
+  isReactedByDialogOpen.value = true
+  reactedByStatusId.value = statusId
 }
 
 function restoreMediaPreviewFromState() {

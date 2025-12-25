@@ -13,6 +13,7 @@ export interface PreferencesSettings {
   hideAltIndicatorOnPosts: boolean
   hideGifIndicatorOnPosts: boolean
   hideBoostCount: boolean
+  hideQuoteCount: boolean
   hideReplyCount: boolean
   hideFavoriteCount: boolean
   hideFollowerCount: boolean
@@ -70,6 +71,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideAltIndicatorOnPosts: false,
   hideGifIndicatorOnPosts: false,
   hideBoostCount: false,
+  hideQuoteCount: false,
   hideReplyCount: false,
   hideFavoriteCount: false,
   hideFollowerCount: false,

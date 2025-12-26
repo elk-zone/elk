@@ -3,7 +3,8 @@ import type { mastodon } from 'masto'
 
 const paginator = useMastoClient().v1.scheduledStatuses.list()
 
-function preprocess(scheduledStatuses: mastodon.v1.ScheduledStatus[]): mastodon.v1.Status[] {
+function preprocess(items: (mastodon.v1.ScheduledStatus | mastodon.v1.Status)[]): mastodon.v1.Status[] {
+  const scheduledStatuses = items.filter(item => 'scheduledAt' in item) as mastodon.v1.ScheduledStatus[]
   return scheduledStatuses.map((scheduledStatus) => {
     return ({
       ...scheduledStatus.params,

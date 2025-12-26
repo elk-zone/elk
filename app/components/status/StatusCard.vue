@@ -10,6 +10,7 @@ const { actions = true, isNested = false, older, newer, hasOlder, hasNewer, main
   inNotification?: boolean
   isPreview?: boolean
   isNested?: boolean
+  disableLink?: boolean
 
   // If we know the prev and next status in the timeline, we can simplify the card
   older?: mastodon.v1.Status
@@ -74,7 +75,7 @@ const forceShow = ref(false)
 </script>
 
 <template>
-  <StatusLink :status="status" :hover="hover">
+  <component :is="disableLink ? 'div' : 'StatusLink'" :status="status" :hover="hover">
     <!-- Upper border -->
     <div :h="showUpperBorder ? '1px' : '0'" w-auto bg-border mb-1 z--1 />
 
@@ -219,5 +220,5 @@ const forceShow = ref(false)
         </div>
       </template>
     </div>
-  </StatusLink>
+  </component>
 </template>

@@ -16,6 +16,7 @@ const availableNavButtons: NavButton[] = [
   { name: 'favorite', label: 'nav.favourites', icon: 'i-ri:heart-line' },
   { name: 'bookmark', label: 'nav.bookmarks', icon: 'i-ri:bookmark-line' },
   { name: 'compose', label: 'nav.compose', icon: 'i-ri:quill-pen-line' },
+  { name: 'scheduledPosts', label: 'nav.scheduled_posts', icon: 'i-ri:calendar-schedule-line' },
   { name: 'explore', label: 'nav.explore', icon: 'i-ri:compass-3-line' },
   { name: 'local', label: 'nav.local', icon: 'i-ri:group-2-line' },
   { name: 'federated', label: 'nav.federated', icon: 'i-ri:earth-line' },

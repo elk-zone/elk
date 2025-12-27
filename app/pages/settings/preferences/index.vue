@@ -9,7 +9,7 @@ const userSettings = useUserSettings()
 </script>
 
 <template>
-  <MainContent back-on-small-screen>
+  <MainContent back="small-only">
     <template #title>
       <MainTitle as="h1" secondary>
         {{ $t('settings.preferences.label') }}
@@ -101,6 +101,12 @@ const userSettings = useUserSettings()
         @click="togglePreferences('hideBoostCount')"
       >
         {{ $t('settings.preferences.hide_boost_count') }}
+      </SettingsToggleItem>
+      <SettingsToggleItem
+        :checked="getPreferences(userSettings, 'hideQuoteCount')"
+        @click="togglePreferences('hideQuoteCount')"
+      >
+        {{ $t('settings.preferences.hide_quote_count') }}
       </SettingsToggleItem>
       <SettingsToggleItem
         :checked="getPreferences(userSettings, 'hideFavoriteCount')"

@@ -7,7 +7,7 @@ useHydratedHead({
 </script>
 
 <template>
-  <MainContent back-on-small-screen>
+  <MainContent back="small-only">
     <template #title>
       <MainTitle as="h1" secondary>
         {{ $t('settings.interface.label') }}

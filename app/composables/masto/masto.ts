@@ -27,7 +27,10 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
   const accessToken = user.token
 
   const createStreamingClient = (streamingApiUrl: string | undefined) => {
-    return streamingApiUrl ? createStreamingAPIClient({ streamingApiUrl, accessToken, implementation: globalThis.WebSocket }) : undefined
+    // Only create the streaming client when there is a user session
+    return streamingApiUrl && currentUser.value
+      ? createStreamingAPIClient({ streamingApiUrl, accessToken, implementation: globalThis.WebSocket })
+      : undefined
   }
 
   const streamingApiUrl = instance?.configuration?.urls?.streaming

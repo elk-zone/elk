@@ -61,6 +61,7 @@
     "clear": "Clear",
     "clear_publish_failed": "Clear publish errors",
     "clear_save_failed": "Clear save errors",
+    "clear_schedule_failed": "Clear schedule errors",
     "clear_upload_failed": "Clear file upload errors",
     "close": "Close",
     "compose": "Compose",
@@ -77,11 +78,15 @@
     "prev": "Prev",
     "publish": "Publish",
     "publish_thread": "Publish thread",
+    "quote": "Quote",
+    "quote_count": "{0}",
+    "remove_quote": "Remove quote",
     "reply": "Reply",
     "reply_count": "{0}",
     "reset": "Reset",
     "save": "Save",
     "save_changes": "Save changes",
+    "schedule": "Schedule",
     "sign_in": "Sign in",
     "sign_in_to": "Sign in to {0}",
     "switch_account": "Switch account",
@@ -113,6 +118,7 @@
     "in": "in",
     "no_bookmarks": "No bookmarked posts yet",
     "no_favourites": "No liked posts yet",
+    "no_scheduled_posts": "No scheduled posts yet",
     "not_found": "404 Not Found",
     "offline_desc": "Seems like you are offline. Please check your network connection."
   },
@@ -187,6 +193,7 @@
     "account_not_found": "Account {0} not found",
     "explore_list_empty": "Nothing is trending right now. Check back later!",
     "file_size_cannot_exceed_n_mb": "File size cannot exceed {0}MB",
+    "quote_fetch_error": "Could not fetch the quoted post",
     "sign_in_error": "Cannot connect to the server.",
     "status_not_found": "Post not found",
     "unsupported_file_format": "Unsupported file format"
@@ -238,6 +245,7 @@
         "command_mode": "Command mode",
         "compose": "Compose",
         "favourite": "Favorite",
+        "quote": "Quote",
         "search": "Search",
         "show_new_items": "Show new items",
         "title": "Actions"
@@ -274,7 +282,6 @@
     "copy_original_link_to_post": "Copy original link to this post",
     "delete": "Delete",
     "delete_and_redraft": "Delete & re-draft",
-    "direct_message_account": "Direct message {0}",
     "edit": "Edit",
     "hide_reblogs": "Hide boosts from {0}",
     "mention_account": "Mention {0}",
@@ -282,11 +289,13 @@
     "mute_conversation": "Mute this post",
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
+    "private_mention_account": "Private mention {0}",
     "remove_personal_note": "Remove personal note from {0}",
     "report_account": "Report {0}",
     "share_account": "Share {0}",
     "share_post": "Share this post",
     "show_favourited_and_boosted_by": "Show who favorited and boosted",
+    "show_reacted_by": "Show who reacted",
     "show_reblogs": "Show boosts from {0}",
     "show_untranslated": "Show untranslated",
     "toggle_theme": {
@@ -326,6 +335,7 @@
     "notifications": "Notifications",
     "privacy": "Privacy",
     "profile": "Profile",
+    "scheduled_posts": "Scheduled posts",
     "search": "Search",
     "select_feature_flags": "Toggle Feature Flags",
     "select_font_size": "Font Size",
@@ -399,6 +409,14 @@
         "short_name": "Elk"
       }
     }
+  },
+  "quote_approval_policy": {
+    "followers": "Followers only",
+    "followers_desc": "Your followers can quote",
+    "nobody": "Nobody",
+    "nobody_desc": "Only you can quote",
+    "public": "Public",
+    "public_desc": "Anyone can quote"
   },
   "report": {
     "additional_comments": "Additional comments",
@@ -555,6 +573,7 @@
       "hide_follower_count": "Hide following/follower count",
       "hide_gif_indi_on_posts": "Hide gif indicator on posts",
       "hide_news": "Hide news",
+      "hide_quote_count": "Hide quote count",
       "hide_reply_count": "Hide reply count",
       "hide_tag_hover_card": "Hide tag hover card",
       "hide_translation": "Hide translation",
@@ -617,6 +636,9 @@
     "publish_failed": "Publish failed",
     "publishing": "Publishing",
     "save_failed": "Save failed",
+    "schedule_failed": "Schedule failed",
+    "schedule_time_invalid": "The scheduled time must be at least 5 minutes later in the future. Set to {0} or later.",
+    "scheduling": "Scheduling",
     "upload_failed": "Upload failed",
     "uploading": "Uploading..."
   },
@@ -645,6 +667,7 @@
       "finished": "finished {0}",
       "update": "Update poll"
     },
+    "quoted_by": "Quoted By",
     "replying_to": "Replying to {0}",
     "show_full_thread": "Show Full thread",
     "someone": "someone",
@@ -676,6 +699,7 @@
     "notifications_mention": "Mentions",
     "notifications_more_tooltip": "Filter notifications by type",
     "notifications_poll": "Poll",
+    "notifications_quote": "Quote",
     "notifications_reblog": "Boost",
     "notifications_status": "Status",
     "notifications_update": "Update",
@@ -736,6 +760,7 @@
     "add_thread_item": "Add item to thread",
     "change_content_visibility": "Change content visibility",
     "change_language": "Change language",
+    "change_quote_approval_policy": "Change quote approval policy",
     "emoji": "Emoji",
     "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
     "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
@@ -744,6 +769,8 @@
     "pick_an_icon": "Pick an icon",
     "publish_failed": "Close failed messages at the top of editor to republish posts",
     "remove_thread_item": "Remove item from thread",
+    "schedule_failed": "Close failed messages at the top of editor to reschedule posts",
+    "schedule_post": "Schedule post",
     "start_thread": "Start thread",
     "toggle_bold": "Toggle bold",
     "toggle_code_block": "Toggle code block",
@@ -760,13 +787,13 @@
     "tip_register_account": "pick your server and register one"
   },
   "visibility": {
-    "direct": "Direct",
+    "direct": "Private mention",
     "direct_desc": "Visible for mentioned users only",
     "private": "Followers only",
     "private_desc": "Visible for followers only",
     "public": "Public",
     "public_desc": "Visible for all",
-    "unlisted": "Unlisted",
+    "unlisted": "Quiet public",
     "unlisted_desc": "Visible for all, but opted-out of discovery features"
   }
 }

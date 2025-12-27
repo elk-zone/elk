@@ -77,11 +77,15 @@
     "prev": "前へ",
     "publish": "投稿",
     "publish_thread": "スレッドを投稿",
+    "quote": "引用",
+    "quote_count": "{0}",
+    "remove_quote": "引用を削除",
     "reply": "返信",
     "reply_count": "{0}",
     "reset": "リセット",
     "save": "保存する",
     "save_changes": "変更を保存",
+    "schedule": "予約",
     "sign_in": "サインイン",
     "sign_in_to": "{0}にサインイン",
     "switch_account": "アカウントの切り替え",
@@ -187,6 +191,7 @@
     "account_not_found": "アカウント {0} が見つかりません",
     "explore_list_empty": "現在トレンドには何もありません。またあとで！",
     "file_size_cannot_exceed_n_mb": "{0}MBを超えるファイルはアップロードできません",
+    "quote_fetch_error": "引用投稿が取得できませんでした",
     "sign_in_error": "サーバーに接続できません。",
     "status_not_found": "投稿が見つかりません",
     "unsupported_file_format": "対応していないファイル形式です"
@@ -226,7 +231,9 @@
     "manage": "リストを管理",
     "modify_account": "このアカウントでリストを編集",
     "remove_account": "アカウントをリストから削除",
-    "save": "変更を保存"
+    "save": "変更を保存",
+    "search_following_desc": "フォローしているユーザーから検索します",
+    "search_following_placeholder": "フォローユーザーを検索"
   },
   "magic_keys": {
     "dialog_header": "キーボードショートカット",
@@ -236,6 +243,7 @@
         "command_mode": "コマンドモード",
         "compose": "投稿",
         "favourite": "お気に入り",
+        "quote": "引用",
         "search": "検索",
         "show_new_items": "新しいアイテムを表示",
         "title": "アクション"
@@ -334,10 +342,12 @@
     "zen_mode": "禅モード"
   },
   "notification": {
+    "and": "と",
     "favourited_post": "さんがあなたの投稿をお気に入り登録しました",
     "followed_you": "さんがあなたをフォローしました",
     "followed_you_count": "{0}人のユーザーがあなたをフォローしました",
     "missing_type": "MISSING notification.type:",
+    "others": "その他 {0} 人",
     "reblogged_post": "さんがあなたの投稿をブーストしました",
     "reported": "{0}さんが{1}を報告しました",
     "request_to_follow": "さんがあなたへフォローをリクエストしました",
@@ -395,6 +405,14 @@
         "short_name": "Elk"
       }
     }
+  },
+  "quote_approval_policy": {
+    "followers": "フォロワーのみ",
+    "followers_desc": "フォロワーの引用を許可",
+    "nobody": "自分のみ",
+    "nobody_desc": "自分自身の引用のみ許可",
+    "public": "誰でも",
+    "public_desc": "すべての人に引用を許可"
   },
   "report": {
     "additional_comments": "追加コメント",
@@ -551,6 +569,7 @@
       "hide_follower_count": "フォロワーの数を隠す",
       "hide_gif_indi_on_posts": "投稿上のGIF表示を隠す",
       "hide_news": "ニュースを隠す",
+      "hide_quote_count": "引用数を隠す",
       "hide_reply_count": "リプライの数を隠す",
       "hide_tag_hover_card": "タグのホバーカードを隠す",
       "hide_translation": "翻訳を隠す",
@@ -559,6 +578,7 @@
       "label": "環境設定",
       "optimize_for_low_performance_device": "処理能力が低いデバイス向けに最適化",
       "title": "実験的機能",
+      "unmute_videos": "デフォルトで動画の音声をオンにする",
       "use_star_favorite_icon": "星のお気に入りアイコンを使用する",
       "user_picker": "ユーザーピッカー",
       "user_picker_description": "右下にログインしたすべてのアカウントを表示することで、アカウントを素早く切り替えられるようにします。",
@@ -612,6 +632,9 @@
     "publish_failed": "投稿に失敗しました",
     "publishing": "投稿中",
     "save_failed": "保存に失敗しました",
+    "schedule_failed": "投稿の予約に失敗しました",
+    "schedule_time_invalid": "予約時刻は少なくとも5分後でなければなりません。{0}以降に設定してください。",
+    "scheduling": "予約投稿中",
     "upload_failed": "アップロードに失敗しました",
     "uploading": "更新中..."
   },
@@ -637,8 +660,10 @@
     "poll": {
       "count": "{0} 票",
       "ends": "{0}に終了",
-      "finished": "{0}に完了"
+      "finished": "{0}に完了",
+      "update": "投票を更新"
     },
+    "quoted_by": "引用したユーザー",
     "replying_to": "{0}さんへの返信",
     "show_full_thread": "スレッド全体を表示",
     "someone": "誰か",
@@ -669,7 +694,8 @@
     "notifications_follow_request": "フォローリクエスト",
     "notifications_mention": "メンション",
     "notifications_more_tooltip": "通知を種類別にフィルタする",
-    "notifications_poll": "投稿",
+    "notifications_poll": "投票",
+    "notifications_quote": "引用",
     "notifications_reblog": "ブースト",
     "notifications_status": "ステータス",
     "notifications_update": "更新",
@@ -730,6 +756,7 @@
     "add_thread_item": "投稿をスレッドに追加",
     "change_content_visibility": "公開範囲を変更",
     "change_language": "言語を変更",
+    "change_quote_approval_policy": "引用許可ポリシーを変更",
     "emoji": "絵文字",
     "explore_links_intro": "これらのニュース記事は、分散型ネットワーク上のこのサーバーや他のサーバー上で現在話題になっています。",
     "explore_posts_intro": "これらの投稿は、分散型ネットワーク上のこのサーバーや他のサーバー上にあり、現在このサーバー上で注目を集めています。",
@@ -738,6 +765,8 @@
     "pick_an_icon": "アイコンの選択",
     "publish_failed": "投稿の再公開時にエディタ上部のエラーメッセージを閉じる",
     "remove_thread_item": "投稿をスレッドから削除",
+    "schedule_failed": "投稿の予約投稿時にエディタ上部のエラーメッセージを閉じる",
+    "schedule_post": "予約投稿",
     "start_thread": "スレッドを開始",
     "toggle_bold": "太字",
     "toggle_code_block": "コードブロック",

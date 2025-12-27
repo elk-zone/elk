@@ -46,14 +46,17 @@ export type NotificationSlot = GroupedNotifications | GroupedLikeNotifications |
 export interface DraftItem {
   editingStatus?: mastodon.v1.Status
   initialText?: string
-  params: MarkNonNullable<Mutable<Omit<mastodon.rest.v1.CreateStatusParams, 'poll'>>, 'status' | 'language' | 'sensitive' | 'spoilerText' | 'visibility'> & { poll: Mutable<mastodon.rest.v1.CreateStatusParams['poll']> }
+  params: MarkNonNullable<Mutable<Omit<mastodon.rest.v1.CreateScheduledStatusParams, 'poll'>>, 'status' | 'language' | 'sensitive' | 'spoilerText' | 'visibility'> & { poll: Mutable<mastodon.rest.v1.CreateScheduledStatusParams['poll']> }
   attachments: mastodon.v1.MediaAttachment[]
   lastUpdated: number
   mentions?: string[]
+  quotedStatusId?: mastodon.v1.Status['id']
 }
 
-export type DraftMap = Record<string, Array<DraftItem>
- // For backward compatibility we need to support single draft items
+export type DraftKey = 'home' | 'dialog' | 'intent' | 'quote' | `reply-${string}` | `edit-${string}`
+
+export type DraftMap = Record<DraftKey, DraftItem[]
+  // For backward compatibility to support single draft item before introducing thread
   | DraftItem>
 
 export interface ConfirmDialogOptions {

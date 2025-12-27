@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { actions = true, isNested = false, older, newer, hasOlder, hasNewer, main, account, ...props } = defineProps<{
+const { actions = true, isNested = false, disableLink = false, older, newer, hasOlder, hasNewer, main, account, ...props } = defineProps<{
   status: mastodon.v1.Status
   followedTag?: string | null
   actions?: boolean
@@ -10,6 +10,7 @@ const { actions = true, isNested = false, older, newer, hasOlder, hasNewer, main
   inNotification?: boolean
   isPreview?: boolean
   isNested?: boolean
+  disableLink?: boolean
 
   // If we know the prev and next status in the timeline, we can simplify the card
   older?: mastodon.v1.Status
@@ -74,7 +75,7 @@ const forceShow = ref(false)
 </script>
 
 <template>
-  <StatusLink :status="status" :hover="hover">
+  <StatusLink :status="status" :hover="hover" :disable-link="disableLink">
     <!-- Upper border -->
     <div :h="showUpperBorder ? '1px' : '0'" w-auto bg-border mb-1 z--1 />
 

@@ -118,6 +118,7 @@
     "in": "em",
     "no_bookmarks": "Não tem ainda itens salvos",
     "no_favourites": "Não tem ainda publicações favoritas",
+    "no_scheduled_posts": "Não tem ainda publicações agendadas",
     "not_found": "404 Não Encontrado",
     "offline_desc": "Parece que está offline. Por favor, confirme a sua conexão à internet."
   },
@@ -334,6 +335,7 @@
     "notifications": "Notificações",
     "privacy": "Privacidade",
     "profile": "Perfil",
+    "scheduled_posts": "Publicações Agendadas",
     "search": "Pesquisar",
     "select_feature_flags": "Alternar Funcionalidades",
     "select_font_size": "Tamanho da Fonte",

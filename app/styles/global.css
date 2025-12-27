@@ -46,6 +46,12 @@ body {
   object-fit: contain;
   overflow: hidden;
   vertical-align: -20%;
+  transition: transform .1s;
+}
+
+.status-body .custom-emoji img:hover,
+.status-body .iconify-emoji:hover {
+  transform: scale(2);
 }
 
 .iconify-emoji-padded {

@@ -1,4 +1,5 @@
 import type { mastodon } from 'masto'
+import { getPreferences } from '~/composables/settings'
 
 const maxDistance = 10
 const maxSteps = 1000
@@ -17,10 +18,40 @@ function removeFilteredItems(items: mastodon.v1.Status[], context: mastodon.v1.F
   return [...items].filter(isFiltered).filter(isReblogFiltered)
 }
 
+function removeUserPreferenceItems(items: mastodon.v1.Status[], context: mastodon.v1.FilterContext): mastodon.v1.Status[] {
+  // Only apply to home and public timelines
+  if (context !== 'home' && context !== 'public')
+    return items
+
+  const userSettings = useUserSettings()
+  const hideReplies = getPreferences(userSettings.value, 'hideRepliesInTimeline')
+  const hideBoosts = getPreferences(userSettings.value, 'hideBoostsInTimeline')
+
+  // No filters enabled, return as-is
+  if (!hideReplies && !hideBoosts)
+    return items
+
+  return items.filter((item) => {
+    // Filter boosts if enabled
+    if (hideBoosts && item.reblog !== null)
+      return false
+
+    // Filter replies if enabled (preserve self-replies)
+    if (hideReplies && item.inReplyToId !== null) {
+      const isSelfReply = item.inReplyToAccountId === item.account.id
+      if (!isSelfReply)
+        return false
+    }
+
+    return true
+  })
+}
+
 export function reorderedTimeline(items: mastodon.v1.Status[], context: mastodon.v1.FilterContext = 'public') {
   let steps = 0
 
-  const newItems = removeFilteredItems(items, context)
+  let newItems = removeFilteredItems(items, context)
+  newItems = removeUserPreferenceItems(newItems, context)
 
   for (let i = newItems.length - 1; i > 0; i--) {
     for (let k = 1; k <= maxDistance && i - k >= 0; k++) {

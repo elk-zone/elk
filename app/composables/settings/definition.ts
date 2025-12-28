@@ -22,6 +22,8 @@ export interface PreferencesSettings {
   hideAccountHoverCard: boolean
   hideTagHoverCard: boolean
   hideNews: boolean
+  hideRepliesInTimeline: boolean
+  hideBoostsInTimeline: boolean
   grayscaleMode: boolean
   enableAutoplay: boolean
   unmuteVideos: boolean
@@ -80,6 +82,8 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideAccountHoverCard: false,
   hideTagHoverCard: false,
   hideNews: false,
+  hideRepliesInTimeline: false,
+  hideBoostsInTimeline: false,
   grayscaleMode: false,
   enableAutoplay: true,
   unmuteVideos: false,

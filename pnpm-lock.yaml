@@ -104,6 +104,9 @@ importers:
       '@tiptap/vue-3':
         specifier: 2.27.1
         version: 2.27.1(@tiptap/core@2.27.1(@tiptap/pm@2.27.1))(@tiptap/pm@2.27.1)(vue@3.5.22(typescript@5.9.2))
+      '@types/punycode':
+        specifier: ^2.1.4
+        version: 2.1.4
       '@unhead/schema':
         specifier: ^2.0.17
         version: 2.0.17
@@ -230,6 +233,9 @@ importers:
       prosemirror-state:
         specifier: ^1.4.3
         version: 1.4.3
+      punycode:
+        specifier: ^2.3.1
+        version: 2.3.1
       rollup-plugin-node-polyfills:
         specifier: ^0.2.1
         version: 0.2.1
@@ -3638,6 +3644,9 @@ packages:
   '@types/parse-path@7.1.0':
     resolution: {integrity: sha512-EULJ8LApcVEPbrfND0cRQqutIOdiIgJ1Mgrhpy755r14xMohPTEpkV/k28SJvuOs9bHRFW8x+KeDAEPiGQPB9Q==}
     deprecated: This is a stub types definition. parse-path provides its own type definitions, so you do not need this installed.
+
+  '@types/punycode@2.1.4':
+    resolution: {integrity: sha512-trzh6NzBnq8yw5e35f8xe8VTYjqM3NE7bohBtvDVf/dtUer3zYTLK1Ka3DG3p7bdtoaOHZucma6FfVKlQ134pQ==}
 
   '@types/resolve@1.20.2':
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
@@ -13415,6 +13424,8 @@ snapshots:
   '@types/parse-path@7.1.0':
     dependencies:
       parse-path: 7.1.0
+
+  '@types/punycode@2.1.4': {}
 
   '@types/resolve@1.20.2': {}
 

@@ -11,9 +11,9 @@ const userSettings = useUserSettings()
 <template>
   <MainContent back="small-only">
     <template #title>
-      <h1 text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
+      <MainTitle as="h1" secondary>
         {{ $t('settings.preferences.label') }}
-      </h1>
+      </MainTitle>
     </template>
     <section>
       <h2 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center sr-only>

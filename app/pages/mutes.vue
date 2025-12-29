@@ -13,7 +13,7 @@ useHydratedHead({
 <template>
   <MainContent back>
     <template #title>
-      <span timeline-title-style>{{ $t('nav.muted_users') }}</span>
+      <MainTitle>{{ $t('nav.muted_users') }}</MainTitle>
     </template>
 
     <TimelineMutes v-if="isHydrated" />

@@ -9,10 +9,9 @@ useHydratedHead({
 <template>
   <MainContent>
     <template #title>
-      <NuxtLink to="/public" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
-        <div i-ri:earth-line />
-        <span>{{ $t('title.federated_timeline') }}</span>
-      </NuxtLink>
+      <MainTitle as="router-link" to="/public" icon="i-ri:earth-line">
+        {{ $t('title.federated_timeline') }}
+      </MainTitle>
     </template>
 
     <TimelinePublic v-if="isHydrated" />

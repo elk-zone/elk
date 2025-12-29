@@ -36,7 +36,7 @@ async function reload() {
   <NuxtLayout>
     <MainContent>
       <template #title>
-        <span timeline-title-style>Error</span>
+        <MainTitle>Error</MainTitle>
       </template>
       <slot>
         <form p5 grid gap-y-4 @submit="reload">

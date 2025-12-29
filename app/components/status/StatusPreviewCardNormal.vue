@@ -16,6 +16,7 @@ const ogImageWidth = 400
 const alt = computed(() => `${card.title} - ${card.title}`)
 const isSquare = computed(() => (
   smallPictureOnly
+  || !card.image
   || card.width === card.height
   || Number(card.width || 0) < ogImageWidth
   || Number(card.height || 0) < ogImageWidth / 2

@@ -117,6 +117,7 @@
     "in": "in",
     "no_bookmarks": "ブックマークされた投稿はまだありません",
     "no_favourites": "お気に入りされた投稿はまだありません",
+    "no_scheduled_posts": "予約投稿はまだありません",
     "not_found": "404 Not Found",
     "offline_desc": "現在オフラインのようです。ネットワーク接続を確認してください。"
   },
@@ -332,6 +333,7 @@
     "notifications": "通知",
     "privacy": "プライバシー",
     "profile": "プロフィール",
+    "scheduled_posts": "予約投稿",
     "search": "検索",
     "select_feature_flags": "実験的機能を切り替え",
     "select_font_size": "フォントサイズ",

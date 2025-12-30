@@ -11,6 +11,10 @@ const { status } = useStatusActions(props)
 function isCustomEmoji(emoji: mastodon.v1.EmojiReaction) {
   return !!emoji.staticUrl
 }
+
+function emojiCode(emoji: mastodon.v1.EmojiReaction) {
+  return `:${emoji.name}:`
+}
 </script>
 
 <template>
@@ -21,12 +25,12 @@ function isCustomEmoji(emoji: mastodon.v1.EmojiReaction) {
       flex gap-1 p="block-1 inline-2" text-secondary btn-base rounded-1
       :class="emoji.me ? 'b-1 b-primary bg-primary-fade' : 'b b-white bg-gray-1 hover:bg-gray-1 hover:b-gray'"
     >
-      <picture v-if="isCustomEmoji(emoji)" class="custom-emoji" :alt="`:${emoji.name}:`" :data-emoji-id="emoji.name">
+      <picture v-if="isCustomEmoji(emoji)" class="custom-emoji" :data-emoji-id="emoji.name" :title="emojiCode(emoji)">
         <source :srcset="emoji.staticUrl" media="(prefers-reduced-motion: reduce)">
-        <img :src="emoji.url" :alt="`:${emoji.name}:`" title="" style="">
+        <img :src="emoji.url" :alt="emojiCode(emoji)">
       </picture>
-      <picture v-else class="custom-emoji" :alt="`:${emoji.name}:`" :data-emoji-id="emoji.name">
-        <img v-bind="getEmojiAttributes(emoji.name)">
+      <picture v-else class="custom-emoji" :data-emoji-id="emoji.name" :title="emojiCode(emoji)">
+        <img v-bind="getEmojiAttributes(emoji.name)" :alt="emojiCode(emoji)">
       </picture>
       <CommonLocalizedNumber :keypath="emoji.count.toString()" :count="emoji.count" />
     </button>

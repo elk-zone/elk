@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { TranslationStatus } from '../../types'
+import type { TranslationStatus } from '../../../types'
 
-const localesStatuses: TranslationStatus = await import('../../translation-status.json').then(m => m.default)
+const localesStatuses: TranslationStatus = await import('../../../translation-status.json').then(m => m.default)
 
-const totalReference = localesStatuses.en.total
+const totalReference = localesStatuses.en!.total
 
 type Tab = 'missing' | 'outdated'
 
@@ -32,7 +32,7 @@ const missingEntries = computed<string[]>(() => {
   if (hidden.value || !currentLocale.value || localeTab.value !== 'missing')
     return []
 
-  return localesStatuses[locale.value].missing
+  return localesStatuses[locale.value]!.missing
 })
 
 const outdatedEntries = computed<string[]>(() => {

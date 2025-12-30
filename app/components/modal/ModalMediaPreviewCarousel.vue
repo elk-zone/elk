@@ -159,14 +159,16 @@ function handleTap([positionX, positionY]: Vector2) {
     goToFocusedSlide()
   }
   else {
-    const focusedSlideBounding = slide.value[modelValue.value].getBoundingClientRect()
-    const slideCenterX = focusedSlideBounding.left + focusedSlideBounding.width / 2
-    const slideCenterY = focusedSlideBounding.top + focusedSlideBounding.height / 2
+    const focusedSlideBounding = slide.value[modelValue.value]?.getBoundingClientRect()
+    if (focusedSlideBounding) {
+      const slideCenterX = focusedSlideBounding.left + focusedSlideBounding.width / 2
+      const slideCenterY = focusedSlideBounding.top + focusedSlideBounding.height / 2
 
-    scale.value = 3
-    x.value += positionX - slideCenterX
-    y.value += positionY - slideCenterY
-    restrictShiftToInsideSlide()
+      scale.value = 3
+      x.value += positionX - slideCenterX
+      y.value += positionY - slideCenterY
+      restrictShiftToInsideSlide()
+    }
   }
 }
 

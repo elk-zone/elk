@@ -126,8 +126,8 @@ async function editStatus() {
   emit('afterEdit')
 }
 
-function showFavoritedAndBoostedBy() {
-  openFavoridedBoostedByDialog(status.value.id)
+function showReactedBy() {
+  openReactedByDialog(status.value.id)
 }
 </script>
 
@@ -194,10 +194,10 @@ function showFavoritedAndBoostedBy() {
 
         <CommonDropdownItem
           is="button"
-          :text="$t('menu.show_favourited_and_boosted_by')"
+          :text="$t('menu.show_reacted_by')"
           icon="i-ri:hearts-line"
           :command="command"
-          @click="showFavoritedAndBoostedBy()"
+          @click="showReactedBy()"
         />
 
         <CommonDropdownItem

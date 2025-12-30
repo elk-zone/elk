@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { actions = true, ...props } = defineProps<{
+const { actions = true, isNested = false, ...props } = defineProps<{
   status: mastodon.v1.Status
   newer?: mastodon.v1.Status
   command?: boolean
   actions?: boolean
+  isNested?: boolean
 }>()
 
 defineEmits<{
@@ -35,7 +36,7 @@ useHydratedHead({
         <AccountInfo :account="status.account" />
       </AccountHoverWrapper>
     </NuxtLink>
-    <StatusContent :status="status" :newer="newer" context="details" />
+    <StatusContent :status="status" :newer="newer" context="details" :is-nested="isNested" />
     <div flex="~ gap-1" items-center text-secondary text-sm>
       <div flex>
         <div>{{ createdAt }}</div>

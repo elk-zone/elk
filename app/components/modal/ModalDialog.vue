@@ -10,6 +10,7 @@ const {
   closeByMask = true,
   useVIf = true,
   keepAlive = false,
+  focusFirstElement = true,
 } = defineProps<{
   // level of depth
   zIndex?: number
@@ -21,6 +22,8 @@ const {
   keepAlive?: boolean
   // The aria-labelledby id for the dialog.
   dialogLabelledBy?: string
+  // Whether to focus on the first element when the modal opens.
+  focusFirstElement?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -45,6 +48,7 @@ const { activate } = useFocusTrap(elDialogRoot, {
   escapeDeactivates: true,
   preventScroll: true,
   returnFocusOnDeactivate: true,
+  initialFocus: focusFirstElement ? undefined : false,
 })
 
 defineExpose({

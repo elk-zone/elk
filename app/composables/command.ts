@@ -122,9 +122,9 @@ export const useCommandRegistry = defineStore('command', () => {
         const fuse = (lastScope === scope && lastFuse)
           ? lastFuse
           : new Fuse(cmds, {
-            keys: ['scope', 'name', 'description'],
-            includeScore: true,
-          })
+              keys: ['scope', 'name', 'description'],
+              includeScore: true,
+            })
 
         lastScope = scope
         lastFuse = fuse

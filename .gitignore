@@ -4,6 +4,7 @@ dist
 .output
 .pnpm-store
 .nuxt
+.data
 .env
 .DS_Store
 .idea/

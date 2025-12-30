@@ -1,5 +1,5 @@
-import { addVitePlugin, defineNuxtModule } from '@nuxt/kit'
 import MagicString from 'magic-string'
+import { addVitePlugin, defineNuxtModule } from 'nuxt/kit'
 
 export default defineNuxtModule({
   meta: {

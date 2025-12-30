@@ -2,7 +2,7 @@
   "name": "@elk-zone/elk",
   "type": "module",
   "version": "0.17.3",
-  "packageManager": "pnpm@10.26.1",
+  "packageManager": "pnpm@10.26.2",
   "license": "MIT",
   "homepage": "https://elk.zone/",
   "main": "./nuxt.config.ts",
@@ -63,6 +63,7 @@
     "@tiptap/starter-kit": "2.27.1",
     "@tiptap/suggestion": "2.27.1",
     "@tiptap/vue-3": "2.27.1",
+    "@types/punycode": "^2.1.4",
     "@unhead/schema": "^2.0.17",
     "@unlazy/nuxt": "^0.12.4",
     "@unocss/nuxt": "^66.5.2",
@@ -105,6 +106,7 @@
     "postcss-nested": "^7.0.0",
     "prosemirror-highlight": "^0.13.0",
     "prosemirror-state": "^1.4.3",
+    "punycode": "^2.3.1",
     "rollup-plugin-node-polyfills": "^0.2.1",
     "shiki": "^1.22.2",
     "simple-git": "^3.19.1",
@@ -160,7 +162,7 @@
     "vue-tsc": "^2.1.6"
   },
   "resolutions": {
-    "nuxt-component-meta": "0.15.0",
+    "nuxt-component-meta": "0.16.0",
     "unstorage": "^1.17.3",
     "vitest": "4.0.16",
     "vue": "^3.5.4"

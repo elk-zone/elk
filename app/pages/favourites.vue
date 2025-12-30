@@ -14,10 +14,12 @@ useHydratedHead({
 <template>
   <MainContent>
     <template #title>
-      <NuxtLink to="/favourites" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
-        <div :class="useStarFavoriteIcon ? 'i-ri:star-line' : 'i-ri:heart-3-line'" />
-        <span>{{ t('nav.favourites') }}</span>
-      </NuxtLink>
+      <MainTitle
+        as="router-link" to="/favourites"
+        :icon="useStarFavoriteIcon ? 'i-ri:star-line' : 'i-ri:heart-3-line'"
+      >
+        {{ t('nav.favourites') }}
+      </MainTitle>
     </template>
 
     <TimelineFavourites v-if="isHydrated" />

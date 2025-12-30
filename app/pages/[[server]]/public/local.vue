@@ -9,10 +9,9 @@ useHydratedHead({
 <template>
   <MainContent>
     <template #title>
-      <NuxtLink to="/public/local" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
-        <div i-ri:group-2-line />
-        <span>{{ t('title.local_timeline') }}</span>
-      </NuxtLink>
+      <MainTitle as="router-link" to="/public/local" icon="i-ri:group-2-line">
+        {{ $t('title.local_timeline') }}
+      </MainTitle>
     </template>
 
     <TimelinePublicLocal v-if="isHydrated" />

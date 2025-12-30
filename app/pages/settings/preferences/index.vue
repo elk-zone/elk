@@ -142,6 +142,24 @@ const userSettings = useUserSettings()
         {{ $t("settings.preferences.hide_news") }}
       </SettingsToggleItem>
       <SettingsToggleItem
+        :checked="getPreferences(userSettings, 'hideRepliesInTimeline')"
+        @click="togglePreferences('hideRepliesInTimeline')"
+      >
+        {{ $t('settings.preferences.hide_replies_in_timeline') }}
+        <template #description>
+          {{ $t('settings.preferences.hide_replies_in_timeline_description') }}
+        </template>
+      </SettingsToggleItem>
+      <SettingsToggleItem
+        :checked="getPreferences(userSettings, 'hideBoostsInTimeline')"
+        @click="togglePreferences('hideBoostsInTimeline')"
+      >
+        {{ $t('settings.preferences.hide_boosts_in_timeline') }}
+        <template #description>
+          {{ $t('settings.preferences.hide_boosts_in_timeline_description') }}
+        </template>
+      </SettingsToggleItem>
+      <SettingsToggleItem
         :checked="getPreferences(userSettings, 'zenMode')"
         @click="togglePreferences('zenMode')"
       >

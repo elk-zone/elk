@@ -7,8 +7,8 @@ const limit = computed(() => isSlow.value ? 10 : 30)
 
 const paginator = useMastoClient().v1.timelines.home.list({ limit: limit.value })
 const stream = useStreaming(client => client.user.subscribe())
-function reorderAndFilter(items: mastodon.v1.Status[]) {
-  return reorderedTimeline(items, 'home')
+function preprocess(items: mastodon.v1.Status[]) {
+  return filterAndReorderTimeline(items, 'home')
 }
 
 let followedTags: mastodon.v1.Tag[]
@@ -23,6 +23,6 @@ if (currentUser.value !== undefined) {
   <div>
     <PublishWidgetList draft-key="home" />
     <div h="1px" w-auto bg-border mb-3 />
-    <TimelinePaginator :followed-tags="followedTags" v-bind="{ paginator, stream }" :preprocess="reorderAndFilter" context="home" />
+    <TimelinePaginator :followed-tags="followedTags" v-bind="{ paginator, stream }" :preprocess="preprocess" context="home" />
   </div>
 </template>

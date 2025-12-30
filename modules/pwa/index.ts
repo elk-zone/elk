@@ -1,15 +1,16 @@
 import type { Buffer } from 'node:buffer'
 import type { Plugin } from 'vite'
 import type { VitePluginPWAAPI } from 'vite-plugin-pwa'
+import type { LocalizedWebManifest } from './i18n'
 import type { VitePWANuxtOptions } from './types'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
+import { addPlugin, createResolver, defineNuxtModule } from 'nuxt/kit'
 import { join, resolve } from 'pathe'
 import { VitePWA } from 'vite-plugin-pwa'
 import { configurePWAOptions } from './config'
-import { createI18n, type LocalizedWebManifest, pwaLocales } from './i18n'
+import { createI18n, pwaLocales } from './i18n'
 
 export * from './types'
 
@@ -75,8 +76,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
         throw new Error('Remove vite-plugin-pwa plugin from Vite Plugins entry in Nuxt config file!')
     })
     nuxt.hook('vite:extendConfig', async (viteInlineConfig, { isClient }) => {
-      viteInlineConfig.plugins = viteInlineConfig.plugins || []
-      const plugin = viteInlineConfig.plugins.find(p => p && typeof p === 'object' && 'name' in p && p.name === 'vite-plugin-pwa')
+      const plugin = viteInlineConfig.plugins!.find(p => p && typeof p === 'object' && 'name' in p && p.name === 'vite-plugin-pwa')
       if (plugin)
         throw new Error('Remove vite-plugin-pwa plugin from Vite Plugins entry in Nuxt config file!')
 
@@ -88,7 +88,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
         return JSON.stringify(manifest)
       }
       if (isClient) {
-        viteInlineConfig.plugins.push({
+        viteInlineConfig.plugins!.push({
           name: 'elk:pwa:locales:build',
           apply: 'build',
           async writeBundle(_options, bundle) {
@@ -100,7 +100,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
           },
         })
       }
-      viteInlineConfig.plugins.push({
+      viteInlineConfig.plugins!.push({
         name: 'elk:pwa:dev',
         apply: 'serve',
         configureServer(server) {
@@ -153,7 +153,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
 
       configurePWAOptions(options, nuxt)
       const plugins = VitePWA(options)
-      viteInlineConfig.plugins.push(plugins)
+      viteInlineConfig.plugins!.push(plugins)
       if (isClient)
         vitePwaClientPlugin = plugins.find(p => p.name === 'vite-plugin-pwa') as Plugin
     })

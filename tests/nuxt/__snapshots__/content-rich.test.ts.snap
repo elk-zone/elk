@@ -1,5 +1,12 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`content-rich > asterisk paris in code block 1`] = `"<p><pre class="code-block">1 * 2 * 3</pre></p>"`;
+
+exports[`content-rich > asterisk paris in inline code 1`] = `
+"<p><code>1 * 2 * 3</code></p>
+"
+`;
+
 exports[`content-rich > block with backticks 1`] = `"<p><pre class="code-block">[(\`number string) (\`tag string)]</pre></p>"`;
 
 exports[`content-rich > block with injected html, with a known language 1`] = `

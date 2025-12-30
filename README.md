@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h1 align="center"/>Elk <sup><em>alpha</em></sup></h1>
+<h1 align="center"/>Elk</h1>
 
 <p align="center">
 A nimble Mastodon web client
@@ -13,7 +13,6 @@ A nimble Mastodon web client
 <br/>
 <p align="center">
   <a href="https://chat.elk.zone"><img src="https://img.shields.io/badge/chat-discord-blue?style=flat&logo=discord" alt="discord chat"></a>
-  <a href="https://pr.new/elk-zone/elk"><img src="https://developer.stackblitz.com/img/start_pr_dark_small.svg" alt="Start new PR in StackBlitz Codeflow"></a>
   <a href="https://volta.net/elk-zone/elk?utm_source=elk_readme"><img src="https://user-images.githubusercontent.com/904724/209143798-32345f6c-3cf8-4e06-9659-f4ace4a6acde.svg" alt="Open board on Volta"></a>
 </p>
 <br/>
@@ -24,9 +23,7 @@ A nimble Mastodon web client
   </a>
 </p>
 
-## ⚠️ Elk is in Alpha
-
-It is already quite usable, but it isn't ready for wide adoption yet. We recommend you use it if you would like to help us build it. We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
+We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
 
 ## Deployment
 
@@ -46,7 +43,7 @@ One could put Elk behind popular reverse proxies with SSL Handling like Traefik,
 1. got into new source dir: ```cd elk```
 1. create local storage directory for settings: ```mkdir elk-storage```
 1. adjust permissions of storage dir: ```sudo chown 911:911 ./elk-storage```
-1. start container: ```docker-compose up --build -d```
+1. start container: ```docker compose up --build -d```
 
 > [!NOTE]
 > The provided Dockerfile creates a container which will eventually run Elk as non-root user and create a persistent named Docker volume upon first start (if that volume does not yet exist). This volume is always created with root permission. Failing to change the permissions of ```/elk/data``` inside this volume to UID:GID 911 (as specified for Elk in the Dockerfile) will prevent Elk from storing it's config for user accounts. You either have to fix the permission in the created named volume, or mount a directory with the correct permission to ```/elk/data``` into the container.
@@ -56,6 +53,7 @@ One could put Elk behind popular reverse proxies with SSL Handling like Traefik,
 These are known deployments using Elk as an alternative Web client for Mastodon servers or as a base for other projects in the fediverse:
 
 - [elk.fedified.com](https://elk.fedified.com) - Use Elk to log into any compatible instance
+- [elk.mastodon.com.pl](https://elk.mastodon.com.pl) - Use Elk for the `mastodon.com.pl` Server
 - [elk.me.uk](https://elk.me.uk) - Use Elk to log into any compatible instance, hosted on Google Cloud Run with no Cloudflare proxy
 - [elk.h4.io](https://elk.h4.io) - Use Elk for the `h4.io` Server
 - [elk.universeodon.com](https://elk.universeodon.com) - Use Elk for the Universeodon Server
@@ -103,12 +101,6 @@ We would also appreciate sponsoring other contributors to the Elk project. If so
 ## 🧑‍💻 Contributing
 
 We're really excited that you're interested in contributing to Elk! Before submitting your contribution, please read through the following guide.
-
-### Online
-
-You can use [StackBlitz Codeflow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a Codeflow button on PRs to review them without a local setup. Once the elk repo has been cloned in Codeflow, the dev server will start automatically and print the URL to open the App. You should receive a prompt in the bottom-right suggesting to open it in the Editor or in another Tab. To learn more, check out the [Codeflow docs](https://developer.stackblitz.com/codeflow/what-is-codeflow).
-
-[![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https://pr.new/elk-zone/elk)
 
 ### Local Setup
 

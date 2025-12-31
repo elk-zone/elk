@@ -400,6 +400,14 @@
       }
     }
   },
+  "quote_approval_policy": {
+    "followers": "Csak a követők számára",
+    "followers_desc": "A követőid idézhetnek",
+    "nobody": "Senkinek",
+    "nobody_desc": "Csak te idézhetsz",
+    "public": "Nyilvános",
+    "public_desc": "Mindeki számára idézhető"
+  },
   "report": {
     "additional_comments": "További megjegyzések",
     "another_server": "A felhasználó - akit jelentesz - más szerveren van",

@@ -69,7 +69,7 @@ export function useStatusActions(props: StatusActionsProps) {
     'reblogged',
     () => client.value.v1.statuses.$select(status.value.id)[status.value.reblogged ? 'unreblog' : 'reblog']().then((res) => {
       if (status.value.reblogged)
-      // returns the original status
+        // returns the original status
         return res.reblog!
       return res
     }),

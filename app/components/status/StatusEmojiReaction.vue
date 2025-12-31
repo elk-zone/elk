@@ -8,11 +8,11 @@ const props = defineProps<{
 }>()
 
 const { status } = useStatusActions(props)
-function isCustomEmoji(emoji: mastodon.v1.EmojiReaction) {
+function isCustomEmoji(emoji: mastodon.v1.FedibirdEmojiReaction) {
   return !!emoji.staticUrl
 }
 
-function emojiCode(emoji: mastodon.v1.EmojiReaction) {
+function emojiCode(emoji: mastodon.v1.FedibirdEmojiReaction) {
   return `:${emoji.name}:`
 }
 </script>

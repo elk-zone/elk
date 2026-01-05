@@ -556,6 +556,8 @@
     },
     "notifications_settings": "通知",
     "preferences": {
+      "disable_timeline_autoloading": "タイムラインの自動読み込みを無効化",
+      "disable_timeline_autoloading_description": "タイムラインビューでの自動読み込みを防止し、「投稿をもっと読み込み」ボタンを表示します。",
       "embedded_media": "埋め込みメディアプレイヤー",
       "embedded_media_description": "メディアストリーミングの共有リンクを展開する際に、通常のプレビューカードではなく埋め込みメディアプレイヤーを表示します。",
       "enable_autoplay": "自動再生を有効化",
@@ -747,6 +749,7 @@
     "year_past": "0年前|去年|{n}年前"
   },
   "timeline": {
+    "load_more": "投稿をもっと読み込む",
     "no_posts": "ここには投稿がありません！",
     "show_new_items": "{v}件の新しい投稿",
     "view_older_posts": "他のインスタンスの古い投稿は表示されないことがあります。"

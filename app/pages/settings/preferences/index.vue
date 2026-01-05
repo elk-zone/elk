@@ -160,6 +160,15 @@ const userSettings = useUserSettings()
         </template>
       </SettingsToggleItem>
       <SettingsToggleItem
+        :checked="getPreferences(userSettings, 'disableTimelineAutoloading')"
+        @click="togglePreferences('disableTimelineAutoloading')"
+      >
+        {{ $t('settings.preferences.disable_timeline_autoloading') }}
+        <template #description>
+          {{ $t('settings.preferences.disable_timeline_autoloading_description') }}
+        </template>
+      </SettingsToggleItem>
+      <SettingsToggleItem
         :checked="getPreferences(userSettings, 'zenMode')"
         @click="togglePreferences('zenMode')"
       >

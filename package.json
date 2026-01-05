@@ -65,7 +65,7 @@
     "@tiptap/vue-3": "2.27.1",
     "@types/punycode": "^2.1.4",
     "@unhead/schema": "^2.0.17",
-    "@unlazy/nuxt": "^0.12.4",
+    "@unlazy/nuxt": "^1.0.0",
     "@unocss/nuxt": "^66.5.2",
     "@upstash/redis": "^1.27.1",
     "@vercel/kv": "^3.0.0",

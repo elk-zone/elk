@@ -125,18 +125,14 @@ defineExpose({ createEntry, removeEntry, updateEntry })
     <div v-else-if="state === 'error'" p5 text-secondary>
       {{ t('common.error') }}: {{ error }}
     </div>
-    <!-- TODO: debug -->
-    <div flex="~ center col">
-      <button
-        flex btn-solid mt-1
-        :title="$t('settings.notifications.push_notifications.warning.enable_close')"
-        @click="canLoadMore = true"
-      >
-        Load more
-      </button>
-      <p m-y-4>
-        debug: canLoadMore="{{ canLoadMore }}" / state="{{ state }}"
-      </p>
-    </div>
+    <button
+      flex="~ gap-1 center" w-full my-6 py-6
+      btn-text rounded-lg bg="base"
+      filter-saturate-0 hover:filter-saturate-100
+      @click="canLoadMore = true"
+    >
+      <div i-ri:arrow-down-line />
+      {{ $t('timeline.load_more') }}
+    </button>
   </div>
 </template>

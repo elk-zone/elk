@@ -27,7 +27,7 @@
     "follows_you": "Đang theo dõi bạn",
     "go_to_profile": "Xem hồ sơ",
     "joined": "Đã tham gia",
-    "lock": "KHÓA",
+    "lock": "Riêng tư",
     "moved_title": "đã chuyển sang máy chủ khác",
     "muted_users": "Người đã ẩn",
     "muting": "Đã ẩn",
@@ -78,6 +78,9 @@
     "prev": "Trước đó",
     "publish": "Đăng",
     "publish_thread": "Đăng chuỗi tút",
+    "quote": "Trích dẫn",
+    "quote_count": "{0}",
+    "remove_quote": "Gỡ trích dẫn",
     "reply": "Trả lời",
     "reply_count": "{0}",
     "reset": "Đặt lại",
@@ -115,6 +118,7 @@
     "in": "trong",
     "no_bookmarks": "Chưa lưu tút nào",
     "no_favourites": "Chưa thích tút nào",
+    "no_scheduled_posts": "Chưa lên lịch tút nào",
     "not_found": "Hông tìm thấy gì hết",
     "offline_desc": "Có vẻ như rớt mạng. Hãy kiểm tra lại kết nối."
   },
@@ -189,6 +193,7 @@
     "account_not_found": "Không tìm thấy {0}",
     "explore_list_empty": "Chưa có xu hướng. Hãy quay lại sau!",
     "file_size_cannot_exceed_n_mb": "Dung lượng file tối đa {0}MB",
+    "quote_fetch_error": "Không thể lấy tút đã trích dẫn",
     "sign_in_error": "Không thể kết nối đến máy chủ.",
     "status_not_found": "Không tìm thấy tút",
     "unsupported_file_format": "Định dạng file không được hỗ trợ"
@@ -240,6 +245,7 @@
         "command_mode": "Chế độ dòng lệnh",
         "compose": "Soạn",
         "favourite": "Thích",
+        "quote": "Trích dẫn",
         "search": "Tìm kiếm",
         "show_new_items": "Hiện những tút mới",
         "title": "Hành động"
@@ -269,7 +275,7 @@
     "sequence_then": "rồi"
   },
   "menu": {
-    "add_personal_note": "Thêm ghi chú về {0}",
+    "add_personal_note": "Ghi chú về {0}",
     "block_account": "Chặn {0}",
     "block_domain": "Chặn máy chủ {0}",
     "copy_link_to_post": "Sao chép liên kết hiện tại",
@@ -289,6 +295,7 @@
     "share_account": "Chia sẻ {0}",
     "share_post": "Chia sẻ tút",
     "show_favourited_and_boosted_by": "Xem lượt thích & đăng lại",
+    "show_reacted_by": "Xem tương tác",
     "show_reblogs": "Xem đăng lại từ {0}",
     "show_untranslated": "Xem bản chưa dịch",
     "toggle_theme": {
@@ -328,6 +335,7 @@
     "notifications": "Thông báo",
     "privacy": "Bảo mật",
     "profile": "Hồ sơ",
+    "scheduled_posts": "Đăng tự động",
     "search": "Tìm kiếm",
     "select_feature_flags": "Tính Năng Thử Nghiệm",
     "select_font_size": "Cỡ Chữ",
@@ -339,15 +347,15 @@
   },
   "notification": {
     "and": "và",
-    "favourited_post": "đã thích tút của bạn",
-    "followed_you": "đang theo dõi bạn",
+    "favourited_post": "thích tút của bạn",
+    "followed_you": "theo dõi bạn",
     "followed_you_count": "{0} người theo dõi bạn|{0} người theo dõi bạn|{0} người theo dõi bạn",
     "missing_type": "THIẾU notification.type:",
     "others": "{0} người khác|{0} người khác|{0} người khác",
-    "reblogged_post": "đã đăng lại tút của bạn",
+    "reblogged_post": "đăng lại tút của bạn",
     "reported": "{0} báo cáo {1}",
     "request_to_follow": "yêu cầu theo dõi bạn",
-    "signed_up": "đã tham gia máy chủ",
+    "signed_up": "tham gia máy chủ",
     "update_status": "cập nhật tút"
   },
   "placeholder": {
@@ -401,6 +409,14 @@
         "short_name": "Elk"
       }
     }
+  },
+  "quote_approval_policy": {
+    "followers": "Người theo dõi",
+    "followers_desc": "Chỉ người theo dõi bạn có thể trích dẫn",
+    "nobody": "Không ai",
+    "nobody_desc": "Chỉ bạn có thể trích dẫn",
+    "public": "Công khai",
+    "public_desc": "Bất kỳ ai"
   },
   "report": {
     "additional_comments": "Thêm lưu ý",
@@ -553,10 +569,15 @@
       "hide_account_hover_card": "Ẩn popup hồ sơ",
       "hide_alt_indi_on_posts": "Ẩn văn bản thay thế trên tút",
       "hide_boost_count": "Ẩn số lượt đăng lại",
+      "hide_boosts_in_timeline": "Ẩn tút đăng lại",
+      "hide_boosts_in_timeline_description": "Ẩn tút đăng lại/trích dẫn khỏi bảng tin của bạn.",
       "hide_favorite_count": "Ẩn số lượt thích",
       "hide_follower_count": "Ẩn số người theo dõi/đang theo dõi",
       "hide_gif_indi_on_posts": "Ẩn biểu tượng GIF trên tút",
       "hide_news": "Ẩn tin tức",
+      "hide_quote_count": "Ẩn số trích dẫn",
+      "hide_replies_in_timeline": "Ẩn tút trả lời",
+      "hide_replies_in_timeline_description": "Ẩn tút trả lời khỏi bảng tin của bạn. Vẫn hiện tút trả lời của bạn.",
       "hide_reply_count": "Ẩn số trả lời",
       "hide_tag_hover_card": "Ẩn xem trước hashtag",
       "hide_translation": "Ẩn chức năng dịch",
@@ -573,7 +594,7 @@
       "virtual_scroll_description": "Dùng một danh sách ảo trong các bảng tin để có thể kết xuất số lượng mục lớn hiệu quả.",
       "wellbeing": "Chống nghiện",
       "zen_mode": "Tập Trung",
-      "zen_mode_description": "Ẩn thanh bên và một số thành phần trên bảng tin."
+      "zen_mode_description": "Ẩn thanh bên và nút tương tác trên tút."
     },
     "profile": {
       "appearance": {
@@ -650,6 +671,7 @@
       "finished": "kết thúc {0}",
       "update": "Làm mới"
     },
+    "quoted_by": "Trích dẫn bởi",
     "replying_to": "Trả lời đến {0}",
     "show_full_thread": "Chuỗi tút liên quan",
     "someone": "ai đó",
@@ -742,6 +764,7 @@
     "add_thread_item": "Thêm tút vào chuỗi",
     "change_content_visibility": "Chọn kiểu tút",
     "change_language": "Đổi ngôn ngữ",
+    "change_quote_approval_policy": "Đổi chính sách duyệt trích dẫn",
     "emoji": "Emoji",
     "explore_links_intro": "Đây là những liên kết đang được chia sẻ nhiều trong mạng liên hợp của máy chủ này.",
     "explore_posts_intro": "Đây là những tút đang phổ biến trong mạng liên hợp của máy chủ này.",

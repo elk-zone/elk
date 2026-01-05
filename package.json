@@ -118,7 +118,7 @@
     "tippy.js": "^6.3.7",
     "ufo": "^1.5.3",
     "ultrahtml": "^1.5.3",
-    "unimport": "^3.10.0",
+    "unimport": "^5.6.0",
     "unstorage": "^1.17.1",
     "vite": "^7.1.7",
     "vite-plugin-pwa": "^0.21.0",

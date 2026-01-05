@@ -19,8 +19,8 @@ function applyPinned(statuses: mastodon.v1.Status[]) {
   })
 }
 
-function reorderAndFilter(items: mastodon.v1.Status[]) {
-  return reorderedTimeline(items, 'account')
+function preprocess(items: mastodon.v1.Status[]) {
+  return filterAndReorderTimeline(items, 'account')
 }
 
 const pinnedPaginator = useMastoClient().v1.accounts.$select(account.id).statuses.list({ pinned: true })
@@ -39,6 +39,6 @@ if (account) {
     <TimelinePaginator :paginator="pinnedPaginator" :preprocess="applyPinned" context="account" :account="account" :end-message="false" />
     <!-- Upper border -->
     <div h="1px" w-auto bg-border mb-1 />
-    <TimelinePaginator :paginator="postPaginator" :preprocess="reorderAndFilter" context="account" :account="account" />
+    <TimelinePaginator :paginator="postPaginator" :preprocess="preprocess" context="account" :account="account" />
   </div>
 </template>

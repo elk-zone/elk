@@ -9,11 +9,11 @@ const userSettings = useUserSettings()
 </script>
 
 <template>
-  <MainContent back-on-small-screen>
+  <MainContent back="small-only">
     <template #title>
-      <h1 text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
+      <MainTitle as="h1" secondary>
         {{ $t('settings.preferences.label') }}
-      </h1>
+      </MainTitle>
     </template>
     <section>
       <h2 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center sr-only>
@@ -103,6 +103,12 @@ const userSettings = useUserSettings()
         {{ $t('settings.preferences.hide_boost_count') }}
       </SettingsToggleItem>
       <SettingsToggleItem
+        :checked="getPreferences(userSettings, 'hideQuoteCount')"
+        @click="togglePreferences('hideQuoteCount')"
+      >
+        {{ $t('settings.preferences.hide_quote_count') }}
+      </SettingsToggleItem>
+      <SettingsToggleItem
         :checked="getPreferences(userSettings, 'hideFavoriteCount')"
         @click="togglePreferences('hideFavoriteCount')"
       >
@@ -134,6 +140,24 @@ const userSettings = useUserSettings()
         @click="togglePreferences('hideNews')"
       >
         {{ $t("settings.preferences.hide_news") }}
+      </SettingsToggleItem>
+      <SettingsToggleItem
+        :checked="getPreferences(userSettings, 'hideRepliesInTimeline')"
+        @click="togglePreferences('hideRepliesInTimeline')"
+      >
+        {{ $t('settings.preferences.hide_replies_in_timeline') }}
+        <template #description>
+          {{ $t('settings.preferences.hide_replies_in_timeline_description') }}
+        </template>
+      </SettingsToggleItem>
+      <SettingsToggleItem
+        :checked="getPreferences(userSettings, 'hideBoostsInTimeline')"
+        @click="togglePreferences('hideBoostsInTimeline')"
+      >
+        {{ $t('settings.preferences.hide_boosts_in_timeline') }}
+        <template #description>
+          {{ $t('settings.preferences.hide_boosts_in_timeline_description') }}
+        </template>
       </SettingsToggleItem>
       <SettingsToggleItem
         :checked="getPreferences(userSettings, 'zenMode')"

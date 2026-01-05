@@ -6,11 +6,11 @@ import {
   isConfirmDialogOpen,
   isEditHistoryDialogOpen,
   isErrorDialogOpen,
-  isFavouritedBoostedByDialogOpen,
   isKeyboardShortcutsDialogOpen,
   isMediaPreviewOpen,
   isPreviewHelpOpen,
   isPublishDialogOpen,
+  isReactedByDialogOpen,
   isReportDialogOpen,
   isSigninDialogOpen,
 } from '~/composables/dialog'
@@ -48,8 +48,8 @@ function handleConfirmChoice(choice: ConfirmDialogChoice) {
   isConfirmDialogOpen.value = false
 }
 
-function handleFavouritedBoostedByClose() {
-  isFavouritedBoostedByDialogOpen.value = false
+function handleReactedByClose() {
+  isReactedByDialogOpen.value = false
 }
 </script>
 
@@ -82,7 +82,7 @@ function handleFavouritedBoostedByClose() {
     >
       <ModalMediaPreview v-if="isMediaPreviewOpen" @close="closeMediaPreview()" />
     </ModalDialog>
-    <ModalDialog v-model="isEditHistoryDialogOpen" max-w-125>
+    <ModalDialog v-model="isEditHistoryDialogOpen" :focus-first-element="false" max-w-125>
       <StatusEditPreview v-if="statusEdit" :edit="statusEdit" />
     </ModalDialog>
     <ModalDialog v-model="isCommandPanelOpen" max-w-fit flex>
@@ -95,11 +95,11 @@ function handleFavouritedBoostedByClose() {
       <ModalError v-if="errorDialogData" v-bind="errorDialogData" />
     </ModalDialog>
     <ModalDialog
-      v-model="isFavouritedBoostedByDialogOpen"
+      v-model="isReactedByDialogOpen"
       max-w-180
-      @close="handleFavouritedBoostedByClose"
+      @close="handleReactedByClose"
     >
-      <StatusFavouritedBoostedBy />
+      <StatusReactedBy />
     </ModalDialog>
     <ModalDialog v-model="isKeyboardShortcutsDialogOpen" max-w-full sm:max-w-140 md:max-w-170 lg:max-w-220 md:min-w-160>
       <MagickeysKeyboardShortcuts @close="closeKeyboardShortcuts()" />

@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h1 align="center"/>Elk <sup><em>alpha</em></sup></h1>
+<h1 align="center"/>Elk</h1>
 
 <p align="center">
 A nimble Mastodon web client
@@ -23,9 +23,7 @@ A nimble Mastodon web client
   </a>
 </p>
 
-## ⚠️ Elk is in Alpha
-
-It is already quite usable, but it isn't ready for wide adoption yet. We recommend you use it if you would like to help us build it. We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
+We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
 
 ## Deployment
 
@@ -45,7 +43,7 @@ One could put Elk behind popular reverse proxies with SSL Handling like Traefik,
 1. got into new source dir: ```cd elk```
 1. create local storage directory for settings: ```mkdir elk-storage```
 1. adjust permissions of storage dir: ```sudo chown 911:911 ./elk-storage```
-1. start container: ```docker-compose up --build -d```
+1. start container: ```docker compose up --build -d```
 
 > [!NOTE]
 > The provided Dockerfile creates a container which will eventually run Elk as non-root user and create a persistent named Docker volume upon first start (if that volume does not yet exist). This volume is always created with root permission. Failing to change the permissions of ```/elk/data``` inside this volume to UID:GID 911 (as specified for Elk in the Dockerfile) will prevent Elk from storing it's config for user accounts. You either have to fix the permission in the created named volume, or mount a directory with the correct permission to ```/elk/data``` into the container.

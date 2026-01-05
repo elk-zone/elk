@@ -18,7 +18,7 @@ router.afterEach(() => {
 </script>
 
 <template>
-  <div flex justify-between sticky top-0 bg-base z-1 py-4 native:py-7 data-tauri-drag-region>
+  <div flex justify-between sticky top-0 bg-base z-1 py-4>
     <NuxtLink
       flex items-end gap-3
       py2 px-5
@@ -30,7 +30,7 @@ router.afterEach(() => {
     >
       <NavLogo shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip" />
       <div v-show="isHydrated" hidden xl:block text-secondary>
-        {{ $t('app_name') }} <sup text-sm italic mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
+        {{ $t('app_name') }} <sup v-if="env !== 'release'" text-sm italic mt-1>{{ env }}</sup>
       </div>
     </NuxtLink>
     <div hidden xl:flex items-center me-6 mt-2 gap-1>

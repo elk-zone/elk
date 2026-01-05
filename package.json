@@ -121,7 +121,7 @@
     "unimport": "^5.6.0",
     "unstorage": "^1.17.1",
     "vite": "^7.1.7",
-    "vite-plugin-pwa": "^0.21.0",
+    "vite-plugin-pwa": "^1.2.0",
     "vue": "^3.5.4",
     "vue-advanced-cropper": "^2.8.9",
     "vue-i18n": "^11.1.12",

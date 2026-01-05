@@ -45,8 +45,8 @@ importers:
         specifier: ^3.19.2
         version: 3.19.2(@vue/test-utils@2.4.6)(happy-dom@20.0.10)(magicast@0.3.5)(playwright-core@1.57.0)(typescript@5.9.2)(vitest@4.0.16(@types/node@24.10.1)(happy-dom@20.0.10)(jiti@2.6.0)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2))
       '@nuxtjs/color-mode':
-        specifier: ^3.5.2
-        version: 3.5.2(magicast@0.3.5)
+        specifier: ^4.0.0
+        version: 4.0.0(magicast@0.3.5)
       '@nuxtjs/i18n':
         specifier: ^10.1.0
         version: 10.1.0(@upstash/redis@1.35.4)(@vercel/kv@3.0.0)(@vue/compiler-dom@3.5.24)(db0@0.3.2(better-sqlite3@12.4.1))(eslint@9.39.1(jiti@2.6.0))(idb-keyval@6.2.2)(ioredis@5.8.0)(magicast@0.3.5)(rollup@4.53.3)(vue@3.5.22(typescript@5.9.2))
@@ -2138,6 +2138,9 @@ packages:
 
   '@nuxtjs/color-mode@3.5.2':
     resolution: {integrity: sha512-cC6RfgZh3guHBMLLjrBB2Uti5eUoGM9KyauOaYS9ETmxNWBMTvpgjvSiSJp1OFljIXPIqVTJ3xtJpSNZiO3ZaA==}
+
+  '@nuxtjs/color-mode@4.0.0':
+    resolution: {integrity: sha512-xyaVR/TPLdMuRa2VOgH6b75jvmFEsn9QKL6ISldaAw38ooFJfWY1ts2F3ye43wcT/goCbcuvPuskF2f8yUZhlw==}
 
   '@nuxtjs/i18n@10.1.0':
     resolution: {integrity: sha512-2h/6Y4ke+mYq3RrV71erTBn1HzKKKPGEJrzYW6GA8SAc91zb7jqyfRkElG95Cei+2+6XJrt73Djys5qTc0tCUw==}
@@ -10137,6 +10140,7 @@ packages:
   vue-i18n@11.1.12:
     resolution: {integrity: sha512-BnstPj3KLHLrsqbVU2UOrPmr0+Mv11bsUZG0PyCOzsawCivk8W00GMXHeVUWIDOgNaScCuZah47CZFE+Wnl8mw==}
     engines: {node: '>= 16'}
+    deprecated: This version is NOT deprecated. Previous deprecation was a mistake.
     peerDependencies:
       vue: ^3.5.4
 
@@ -12074,7 +12078,7 @@ snapshots:
       confbox: 0.2.2
       consola: 3.4.2
       defu: 6.1.4
-      exsolve: 1.0.7
+      exsolve: 1.0.8
       fuse.js: 7.1.0
       get-port-please: 3.2.0
       giget: 2.0.0
@@ -12089,7 +12093,7 @@ snapshots:
       perfect-debounce: 1.0.0
       pkg-types: 2.3.0
       scule: 1.3.0
-      semver: 7.7.2
+      semver: 7.7.3
       std-env: 3.10.0
       tinyexec: 1.0.2
       ufo: 1.6.1
@@ -12200,7 +12204,7 @@ snapshots:
       pathe: 2.0.3
       pkg-types: 2.3.0
       prompts: 2.4.2
-      semver: 7.7.2
+      semver: 7.7.3
 
   '@nuxt/devtools-wizard@3.1.1':
     dependencies:
@@ -12238,7 +12242,7 @@ snapshots:
       pathe: 2.0.3
       perfect-debounce: 1.0.0
       pkg-types: 2.3.0
-      semver: 7.7.2
+      semver: 7.7.3
       simple-git: 3.28.0
       sirv: 3.0.2
       structured-clone-es: 1.0.0
@@ -12279,7 +12283,7 @@ snapshots:
       pathe: 2.0.3
       perfect-debounce: 1.0.0
       pkg-types: 2.3.0
-      semver: 7.7.2
+      semver: 7.7.3
       simple-git: 3.28.0
       sirv: 3.0.2
       structured-clone-es: 1.0.0
@@ -12446,7 +12450,7 @@ snapshots:
       defu: 6.1.4
       destr: 2.0.5
       errx: 0.1.0
-      exsolve: 1.0.7
+      exsolve: 1.0.8
       ignore: 7.0.5
       jiti: 2.6.0
       klona: 2.0.6
@@ -12457,7 +12461,7 @@ snapshots:
       pkg-types: 2.3.0
       rc9: 2.1.2
       scule: 1.3.0
-      semver: 7.7.2
+      semver: 7.7.3
       std-env: 3.10.0
       tinyglobby: 0.2.15
       ufo: 1.6.1
@@ -12474,7 +12478,7 @@ snapshots:
       defu: 6.1.4
       destr: 2.0.5
       errx: 0.1.0
-      exsolve: 1.0.7
+      exsolve: 1.0.8
       ignore: 7.0.5
       jiti: 2.6.0
       klona: 2.0.6
@@ -12484,7 +12488,7 @@ snapshots:
       pkg-types: 2.3.0
       rc9: 2.1.2
       scule: 1.3.0
-      semver: 7.7.2
+      semver: 7.7.3
       std-env: 3.10.0
       tinyglobby: 0.2.15
       ufo: 1.6.1
@@ -12732,7 +12736,7 @@ snapshots:
       defu: 6.1.4
       esbuild: 0.25.10
       escape-string-regexp: 5.0.0
-      exsolve: 1.0.7
+      exsolve: 1.0.8
       get-port-please: 3.2.0
       h3: 1.15.4
       jiti: 2.6.0
@@ -12789,7 +12793,7 @@ snapshots:
       defu: 6.1.4
       esbuild: 0.25.10
       escape-string-regexp: 5.0.0
-      exsolve: 1.0.7
+      exsolve: 1.0.8
       get-port-please: 3.2.0
       h3: 1.15.4
       jiti: 2.6.0
@@ -12839,7 +12843,17 @@ snapshots:
       '@nuxt/kit': 3.19.2(magicast@0.3.5)
       pathe: 1.1.2
       pkg-types: 1.3.1
-      semver: 7.7.2
+      semver: 7.7.3
+    transitivePeerDependencies:
+      - magicast
+
+  '@nuxtjs/color-mode@4.0.0(magicast@0.3.5)':
+    dependencies:
+      '@nuxt/kit': 4.2.2(magicast@0.3.5)
+      exsolve: 1.0.8
+      pathe: 2.0.3
+      pkg-types: 2.3.0
+      semver: 7.7.3
     transitivePeerDependencies:
       - magicast
 
@@ -14659,7 +14673,7 @@ snapshots:
       fast-glob: 3.3.3
       is-glob: 4.0.3
       minimatch: 9.0.5
-      semver: 7.7.2
+      semver: 7.7.3
       ts-api-utils: 2.1.0(typescript@5.9.2)
       typescript: 5.9.2
     transitivePeerDependencies:
@@ -14675,7 +14689,7 @@ snapshots:
       fast-glob: 3.3.3
       is-glob: 4.0.3
       minimatch: 9.0.5
-      semver: 7.7.2
+      semver: 7.7.3
       ts-api-utils: 2.1.0(typescript@5.9.3)
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -14691,7 +14705,7 @@ snapshots:
       fast-glob: 3.3.3
       is-glob: 4.0.3
       minimatch: 9.0.5
-      semver: 7.7.2
+      semver: 7.7.3
       ts-api-utils: 2.1.0(typescript@5.9.2)
       typescript: 5.9.2
     transitivePeerDependencies:
@@ -17021,7 +17035,7 @@ snapshots:
       '@one-ini/wasm': 0.1.1
       commander: 10.0.1
       minimatch: 9.0.1
-      semver: 7.7.2
+      semver: 7.7.3
 
   ee-first@1.1.1: {}
 
@@ -17316,12 +17330,12 @@ snapshots:
   eslint-compat-utils@0.5.1(eslint@9.39.1(jiti@2.6.0)):
     dependencies:
       eslint: 9.39.1(jiti@2.6.0)
-      semver: 7.7.2
+      semver: 7.7.3
 
   eslint-compat-utils@0.6.5(eslint@9.39.1(jiti@2.6.0)):
     dependencies:
       eslint: 9.39.1(jiti@2.6.0)
-      semver: 7.7.2
+      semver: 7.7.3
 
   eslint-config-flat-gitignore@2.1.0(eslint@9.39.1(jiti@2.6.0)):
     dependencies:
@@ -17429,7 +17443,7 @@ snapshots:
       globals: 15.15.0
       globrex: 0.1.2
       ignore: 5.3.2
-      semver: 7.7.2
+      semver: 7.7.3
       ts-declaration-location: 1.0.7(typescript@5.9.2)
     transitivePeerDependencies:
       - typescript
@@ -17512,7 +17526,7 @@ snapshots:
       natural-compare: 1.4.0
       nth-check: 2.1.1
       postcss-selector-parser: 6.1.2
-      semver: 7.7.2
+      semver: 7.7.3
       vue-eslint-parser: 10.2.0(eslint@9.39.1(jiti@2.6.0))
       xml-name-validator: 4.0.0
     optionalDependencies:
@@ -18354,7 +18368,7 @@ snapshots:
 
   impound@1.0.0:
     dependencies:
-      exsolve: 1.0.7
+      exsolve: 1.0.8
       mocked-exports: 0.1.1
       pathe: 2.0.3
       unplugin: 2.3.10
@@ -18743,7 +18757,7 @@ snapshots:
       acorn: 8.15.0
       eslint-visitor-keys: 3.4.3
       espree: 9.6.1
-      semver: 7.7.2
+      semver: 7.7.3
 
   jsonc-parser@3.3.1: {}
 
@@ -19514,7 +19528,7 @@ snapshots:
       esbuild: 0.25.10
       escape-string-regexp: 5.0.0
       etag: 1.8.1
-      exsolve: 1.0.7
+      exsolve: 1.0.8
       globby: 14.1.0
       gzip-size: 7.0.0
       h3: 1.15.4
@@ -19541,7 +19555,7 @@ snapshots:
       rollup: 4.52.5
       rollup-plugin-visualizer: 6.0.3(rollup@4.52.5)
       scule: 1.3.0
-      semver: 7.7.2
+      semver: 7.7.3
       serve-placeholder: 2.0.2
       serve-static: 2.2.0
       source-map: 0.7.6
@@ -19589,7 +19603,7 @@ snapshots:
 
   node-abi@3.77.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.3
 
   node-addon-api@7.1.1: {}
 
@@ -20399,7 +20413,7 @@ snapshots:
   pkg-types@2.3.0:
     dependencies:
       confbox: 0.2.2
-      exsolve: 1.0.7
+      exsolve: 1.0.8
       pathe: 2.0.3
 
   playwright-core@1.57.0: {}
@@ -21972,7 +21986,7 @@ snapshots:
   unenv@2.0.0-rc.21:
     dependencies:
       defu: 6.1.4
-      exsolve: 1.0.7
+      exsolve: 1.0.8
       ohash: 2.0.11
       pathe: 2.0.3
       ufo: 1.6.1
@@ -22567,7 +22581,7 @@ snapshots:
   vite-plugin-vue-tracer@1.0.1(vite@7.1.11(@types/node@24.10.1)(jiti@2.6.0)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2))(vue@3.5.22(typescript@5.9.2)):
     dependencies:
       estree-walker: 3.0.3
-      exsolve: 1.0.7
+      exsolve: 1.0.8
       magic-string: 0.30.21
       pathe: 2.0.3
       source-map-js: 1.2.1
@@ -22577,7 +22591,7 @@ snapshots:
   vite-plugin-vue-tracer@1.0.1(vite@7.2.4(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.2))(vue@3.5.22(typescript@5.9.3)):
     dependencies:
       estree-walker: 3.0.3
-      exsolve: 1.0.7
+      exsolve: 1.0.8
       magic-string: 0.30.21
       pathe: 2.0.3
       source-map-js: 1.2.1
@@ -22743,7 +22757,7 @@ snapshots:
       eslint-visitor-keys: 4.2.1
       espree: 10.4.0
       esquery: 1.6.0
-      semver: 7.7.2
+      semver: 7.7.3
     transitivePeerDependencies:
       - supports-color
 

@@ -136,7 +136,7 @@
     "ws": "^8.15.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^6.2.0",
+    "@antfu/eslint-config": "^6.7.3",
     "@types/chroma-js": "^3.1.1",
     "@types/file-saver": "^2.0.7",
     "@types/fnando__sparkline": "^0.3.7",
@@ -148,12 +148,12 @@
     "@vue/test-utils": "2.4.6",
     "bumpp": "^10.2.3",
     "consola": "^3.4.2",
-    "eslint": "^9.39.1",
+    "eslint": "^9.39.2",
     "eslint-plugin-format": "^1.0.1",
     "flat": "^6.0.1",
     "fs-extra": "^11.3.1",
     "lint-staged": "^16.1.6",
-    "prettier": "^3.6.2",
+    "prettier": "^3.7.4",
     "sharp": "^0.34.3",
     "sharp-ico": "^0.1.5",
     "simple-git-hooks": "^2.13.1",

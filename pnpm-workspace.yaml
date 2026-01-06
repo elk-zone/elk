@@ -1,7 +1,13 @@
+ignoreWorkspaceRootCheck: true
+
+packageManagerStrict: false
+
+shellEmulator: true
+
+trustPolicy: no-downgrade
+
 packages:
   - docs
-
-ignoreWorkspaceRootCheck: true
 
 ignoredBuiltDependencies:
   - '@parcel/watcher'
@@ -13,9 +19,5 @@ onlyBuiltDependencies:
   - better-sqlite3
   - sharp
   - simple-git-hooks
-
-packageManagerStrict: false
-
-shellEmulator: true
 
 verifyDepsBeforeRun: install

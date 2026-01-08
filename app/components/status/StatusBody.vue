@@ -55,4 +55,8 @@ const vnode = computed(() => {
 .status-body.with-action p {
   cursor: pointer;
 }
+
+.status-body .quote-inline {
+  display: none;
+}
 </style>

@@ -142,3 +142,26 @@ exports[`html-parse > link + mention > html 1`] = `
 `;
 
 exports[`html-parse > link + mention > text 1`] = `"Happy 🤗 we’re now using @vitest (migrated from chai+mocha) https://github.com/ayoayco/astro-reactive-library/pull/203"`;
+
+exports[`html-parse > quote-inline > html 1`] = `
+"<p class="quote-inline" dir="auto">
+  RE:
+  <a
+    href="https://tapbots.social/@example/123"
+    rel="nofollow noopener noreferrer"
+    target="_blank"
+    ><span class="invisible">https://</span
+    ><span class="ellipsis">tapbots.social/@example/123</span
+    ><span class="invisible">123</span></a
+  >
+</p>
+<p></p>
+<p>Quoting post!</p>
+"
+`;
+
+exports[`html-parse > quote-inline > text 1`] = `
+"RE: https://tapbots.social/@example/123123
+
+Quoting post!"
+`;

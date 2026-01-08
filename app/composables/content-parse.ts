@@ -23,7 +23,9 @@ const sanitizerBasicClasses = filterClasses(/^h-\S*|p-\S*|u-\S*|dt-\S*|e-\S*|men
 const sanitizer = sanitize({
   // Allow basic elements as seen in https://github.com/mastodon/mastodon/blob/17f79082b098e05b68d6f0d38fabb3ac121879a9/lib/sanitize_ext/sanitize_config.rb
   br: {},
-  p: {},
+  p: {
+    class: filterClasses(/^quote-inline$/),
+  },
   a: {
     href: filterHref(),
     class: sanitizerBasicClasses,

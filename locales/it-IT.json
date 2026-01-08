@@ -61,6 +61,7 @@
     "clear": "Cancella",
     "clear_publish_failed": "Cancella errori di pubblicazione",
     "clear_save_failed": "Cancella errori di salvataggio",
+    "clear_schedule_failed": "Cancella errori di programmazione",
     "clear_upload_failed": "Cancella errori di caricamento file",
     "close": "Chiudi",
     "compose": "Componi",
@@ -72,16 +73,20 @@
     "favourite_count": "{0}",
     "favourited": "Apprezzato",
     "more": "Altro",
-    "next": "Successivo",
+    "next": "Avanti",
     "open_image_preview_dialog": "Apri finestra di anteprima",
-    "prev": "Precedente",
+    "prev": "Indietro",
     "publish": "Pubblica",
     "publish_thread": "Pubblica discussione",
+    "quote": "Quote",
+    "quote_count": "{0}",
+    "remove_quote": "Rimuovi citazione",
     "reply": "Rispondi",
     "reply_count": "{0}",
-    "reset": "Reset",
+    "reset": "Ripristina",
     "save": "Salva",
     "save_changes": "Salva modifiche",
+    "schedule": "Programma",
     "sign_in": "Accedi",
     "sign_in_to": "Accedi a {0}",
     "switch_account": "Cambia account",
@@ -109,10 +114,11 @@
   "common": {
     "end_of_list": "Fine della lista",
     "error": "ERRORE",
-    "fetching": "Carico...",
+    "fetching": "Carico…",
     "in": "in",
     "no_bookmarks": "Non hai ancora aggiunto nessun post ai segnalibri",
     "no_favourites": "Non hai ancora apprezzato nessun post",
+    "no_scheduled_posts": "Nessun post in programma al momento",
     "not_found": "404 non trovato",
     "offline_desc": "Sembra che tu sia offline. Controlla la tua connessione."
   },
@@ -187,6 +193,7 @@
     "account_not_found": "Account {0} non trovato",
     "explore_list_empty": "Non c'è niente in tendenza al momento. Torna più tardi!",
     "file_size_cannot_exceed_n_mb": "La dimensione del file non può superare {0}MB",
+    "quote_fetch_error": "Impossibile ottenere il post citato",
     "sign_in_error": "Impossibile connettersi al server.",
     "status_not_found": "Post non trovato",
     "unsupported_file_format": "Formato file non supportato"
@@ -238,6 +245,7 @@
         "command_mode": "Modalità comando",
         "compose": "Componi",
         "favourite": "Apprezza",
+        "quote": "Cita",
         "search": "Cerca",
         "show_new_items": "Mostra nuovi elementi",
         "title": "Azioni"
@@ -274,7 +282,6 @@
     "copy_original_link_to_post": "Copia link originale a questo post",
     "delete": "Elimina",
     "delete_and_redraft": "Elimina e riscrivi",
-    "direct_message_account": "Scrivi in privato a {0}",
     "edit": "Modifica",
     "hide_reblogs": "Nascondi reblog da {0}",
     "mention_account": "Menziona {0}",
@@ -282,11 +289,13 @@
     "mute_conversation": "Silenzia questo post",
     "open_in_original_site": "Apri nel sito originale",
     "pin_on_profile": "Fissa in cima al profilo",
+    "private_mention_account": "Menziona privatamente {0}",
     "remove_personal_note": "Rimuovi nota personale da {0}",
     "report_account": "Segnala {0}",
     "share_account": "Condividi {0}",
     "share_post": "Condividi questo post",
     "show_favourited_and_boosted_by": "Mostra chi ha apprezzato e rebloggato",
+    "show_reacted_by": "Mostra chi ha reagito",
     "show_reblogs": "Mostra reblog da {0}",
     "show_untranslated": "Mostra versione originale",
     "toggle_theme": {
@@ -326,6 +335,7 @@
     "notifications": "Notifiche",
     "privacy": "Privacy",
     "profile": "Profilo",
+    "scheduled_posts": "Post programmati",
     "search": "Cerca",
     "select_feature_flags": "Attiva funzioni di prova",
     "select_font_size": "Dimensione testo",
@@ -400,6 +410,14 @@
       }
     }
   },
+  "quote_approval_policy": {
+    "followers": "Solo seguaci",
+    "followers_desc": "I tuoi seguaci possono citare",
+    "nobody": "Nessuno",
+    "nobody_desc": "Solo tu puoi citare",
+    "public": "Pubblico",
+    "public_desc": "Chiunque può citare"
+  },
   "report": {
     "additional_comments": "Altri commenti",
     "another_server": "L'utente che stai segnalando è di un'altra istanza",
@@ -431,7 +449,7 @@
     "spam": "È spam",
     "spam_desc": "Link ingannevoli, interazioni false o risposte ripetitive ",
     "submit": "Invia rapporto",
-    "unfollow_desc": "Non vedrai più post di questo utente nella tua cronologia. Potresti vedere comunque i suoi post altrove.",
+    "unfollow_desc": "Non vedrai più post di questo utente nella tua timeline. Potresti vedere comunque i suoi post altrove.",
     "violation": "Viola una o più regole dell'istanza",
     "whats_wrong_account": "Dicci cosa c'è che non va con questo profilo",
     "whats_wrong_post": "Dicci cosa c'è che non va con questo post"
@@ -551,15 +569,20 @@
       "hide_account_hover_card": "Nascondi anteprima profilo al passaggio del mouse",
       "hide_alt_indi_on_posts": "Nascondi indicatore testo alternativo sui post",
       "hide_boost_count": "Nascondi contatore reblog",
+      "hide_boosts_in_timeline": "Nascondi i reblog nella timeline",
+      "hide_boosts_in_timeline_description": "Nascondi i post rebloggati nella home e nelle timeline pubbliche.",
       "hide_favorite_count": "Nascondi contatore apprezzamenti",
       "hide_follower_count": "Nascondi contatore seguaci/seguiti",
       "hide_gif_indi_on_posts": "Nascondi indicatore gif sui post",
       "hide_news": "Nascondi notizie",
+      "hide_quote_count": "Nascondi contatore citazioni",
+      "hide_replies_in_timeline": "Nascondi risposte nella timeline",
+      "hide_replies_in_timeline_description": "Nascondi le risposte ai post delle altre persone nella home e nelle timeline pubbliche. Le tue risposte verranno mostrate comunque.",
       "hide_reply_count": "Nascondi contatore risposte",
       "hide_tag_hover_card": "Nascondi anteprima tag al passaggio del mouse",
       "hide_translation": "Nascondi traduzione",
       "hide_username_emojis": "Nascondi emoji dai nomi utente",
-      "hide_username_emojis_description": "Nasconde le emoji all'interno dei nomi utente nella cronologia. Le emoji saranno comunque visibili nelle pagine dei profili.",
+      "hide_username_emojis_description": "Nasconde le emoji all'interno dei nomi utente nella timeline. Le emoji saranno comunque visibili nelle pagine dei profili.",
       "label": "Preferenze",
       "optimize_for_low_performance_device": "Ottimizza per i dispositivi a basse prestazioni",
       "title": "Funzionalità sperimentali",
@@ -568,10 +591,10 @@
       "user_picker": "Selettore utente",
       "user_picker_description": "Mostra gli avatar di tutti gli account connessi in basso a sinistra così da poter cambiare account in un attimo.",
       "virtual_scroll": "Scorrimento virtuale",
-      "virtual_scroll_description": "Usa una lista virtuale nelle cronologie, così da caricare velocemente un maggior numero di elementi.",
+      "virtual_scroll_description": "Usa una lista virtuale nelle timeline, così da caricare velocemente un maggior numero di elementi.",
       "wellbeing": "Benessere",
       "zen_mode": "Modalità zen",
-      "zen_mode_description": "Nasconde l'interfaccia laterale a meno che il mouse non ci passi sopra. Nasconde anche certi elementi della cronologia."
+      "zen_mode_description": "Nasconde l'interfaccia laterale a meno che il mouse non ci passi sopra. Nasconde anche certi elementi della timeline."
     },
     "profile": {
       "appearance": {
@@ -613,12 +636,15 @@
     "attachments_limit_video_error": "Dimensione massima video superata: {0}",
     "edited": "(Modificato)",
     "editing": "Modifica",
-    "loading": "Carico...",
+    "loading": "Carico…",
     "publish_failed": "Pubblicazione fallita",
-    "publishing": "Pubblico",
+    "publishing": "Pubblico…",
     "save_failed": "Salvataggio fallito",
+    "schedule_failed": "Programmazione fallita",
+    "schedule_time_invalid": "Non è possibile programmare un post tra meno di 5 minuti nel futuro. Imposta su {0} o più tardi.",
+    "scheduling": "Programmo…",
     "upload_failed": "Caricamento fallito",
-    "uploading": "Caricamento in corso..."
+    "uploading": "Caricamento in corso…"
   },
   "status": {
     "account": {
@@ -645,6 +671,7 @@
       "finished": "terminato {0}",
       "update": "Aggiorna sondaggio"
     },
+    "quoted_by": "Citato da",
     "replying_to": "In risposta a {0}",
     "show_full_thread": "Mostra discussione",
     "someone": "qualcuno",
@@ -726,8 +753,8 @@
     "view_older_posts": "Non è possibile mostrare post passati di altre istanze"
   },
   "title": {
-    "federated_timeline": "Cronologia federata",
-    "local_timeline": "Cronologia locale"
+    "federated_timeline": "Timeline federata",
+    "local_timeline": "Timeline locale"
   },
   "tooltip": {
     "add_content_warning": "Aggiungi avviso contenuto",
@@ -737,6 +764,7 @@
     "add_thread_item": "Aggiungi elemento alla discussione",
     "change_content_visibility": "Cambia visibilità contenuto",
     "change_language": "Cambia lingua",
+    "change_quote_approval_policy": "Modifica politica di approvazione delle citazioni",
     "emoji": "Emoji",
     "explore_links_intro": "Queste novità stanno venendo discusse da persone di questa e di altre istanze della rete decentralizzata in questo momento.",
     "explore_posts_intro": "Questi post da questa e da altre istanze della rete decentralizzata stanno acquistando popolarità in questo momento.",
@@ -745,6 +773,8 @@
     "pick_an_icon": "Scegli un'icona",
     "publish_failed": "Chiudi i messaggi falliti in cima all'editor per ripubblicare i post",
     "remove_thread_item": "Rimuovi elemento dalla discussione",
+    "schedule_failed": "Chiudi i messaggi di errore sopra all'editor per riprogrammare i post",
+    "schedule_post": "Programma post",
     "start_thread": "Avvia discussione",
     "toggle_bold": "Grassetto",
     "toggle_code_block": "Blocco di codice",

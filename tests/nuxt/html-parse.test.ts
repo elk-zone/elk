@@ -62,6 +62,12 @@ describe('html-parse', () => {
     expect(formatted).toMatchSnapshot('html')
     expect(serializedText).toMatchSnapshot('text')
   })
+
+  it('quote-inline', async () => {
+    const { formatted, serializedText } = await render('<p class="quote-inline">RE: <a href="https://tapbots.social/@example/123" rel="nofollow noopener" translate="no" target="_blank"><span class="invisible">https://</span><span class="ellipsis">tapbots.social/@example/123</span><span class="invisible">123</span></a></p><p>Quoting post!</p>')
+    expect(formatted).toMatchSnapshot('html')
+    expect(serializedText).toMatchSnapshot('text')
+  })
 })
 
 async function render(input: string, options?: ContentParseOptions) {

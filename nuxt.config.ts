@@ -1,7 +1,7 @@
 import type { BuildInfo } from './shared/types'
 import { resolveModulePath } from 'exsolve'
 import { createResolver, useNuxt } from 'nuxt/kit'
-import { isCI, isDevelopment, isWindows } from 'std-env'
+import { isCI, isDevelopment, isTest, isWindows } from 'std-env'
 import { isPreview } from './config/env'
 import { currentLocales } from './config/i18n'
 import { pwa } from './config/pwa'
@@ -31,7 +31,9 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vue-macros/nuxt',
     '@nuxtjs/i18n',
-    '@nuxtjs/color-mode',
+    // temporary disable module during test
+    // ref. https://github.com/nuxt-modules/color-mode/issues/335
+    ...isTest ? [] : ['@nuxtjs/color-mode'],
     '@unlazy/nuxt',
     '@nuxt/test-utils/module',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],

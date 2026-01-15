@@ -1,7 +1,46 @@
+ignoreWorkspaceRootCheck: true
+
+packageManagerStrict: false
+
+shellEmulator: true
+
+trustPolicy: no-downgrade
+trustPolicyExclude:
+  - chokidar@4.0.3 # https://github.com/paulmillr/chokidar/issues/1440
+  - semver@6.3.1
+  - oxc-parser/binding-win32-x64-msvc@0.81.0
+  - oxc-parser/binding-win32-arm64-msvc@0.81.0
+  - oxc-parser/binding-linux-x64-gnu@0.81.0
+  - oxc-parser/binding-linux-x64-musl@0.81.0
+  - oxc-parser/binding-linux-arm64-gnu@0.81.0
+  - oxc-parser/binding-linux-arm-gnueabihf@0.81.0
+  - oxc-parser/binding-linux-arm64-musl@0.81.0
+  - oxc-parser/binding-darwin-x64@0.81.0
+  - oxc-parser/binding-darwin-arm64@0.81.0
+  - oxc-parser/binding-wasm32-wasi@0.81.0
+  - '@oxc-transform/binding-win32-x64-msvc@0.81.0'
+  - '@oxc-transform/binding-win32-arm64-msvc@0.81.0'
+  - '@oxc-transform/binding-linux-x64-gnu@0.81.0'
+  - '@oxc-transform/binding-linux-x64-musl@0.81.0'
+  - '@oxc-transform/binding-linux-arm64-gnu@0.81.0'
+  - '@oxc-transform/binding-linux-arm-gnueabihf@0.81.0'
+  - '@oxc-transform/binding-linux-arm64-musl@0.81.0'
+  - '@oxc-transform/binding-darwin-x64@0.81.0'
+  - '@oxc-transform/binding-darwin-arm64@0.81.0'
+  - '@oxc-transform/binding-wasm32-wasi@0.81.0'
+  - '@oxc-parser/binding-win32-x64-msvc@0.81.0'
+  - '@oxc-parser/binding-win32-arm64-msvc@0.81.0'
+  - '@oxc-parser/binding-linux-x64-gnu@0.81.0'
+  - '@oxc-parser/binding-linux-x64-musl@0.81.0'
+  - '@oxc-parser/binding-linux-arm64-gnu@0.81.0'
+  - '@oxc-parser/binding-linux-arm-gnueabihf@0.81.0'
+  - '@oxc-parser/binding-linux-arm64-musl@0.81.0'
+  - '@oxc-parser/binding-darwin-x64@0.81.0'
+  - '@oxc-parser/binding-darwin-arm64@0.81.0'
+  - '@oxc-parser/binding-wasm32-wasi@0.81.0'
+
 packages:
   - docs
-
-ignoreWorkspaceRootCheck: true
 
 ignoredBuiltDependencies:
   - '@parcel/watcher'
@@ -13,9 +52,5 @@ onlyBuiltDependencies:
   - better-sqlite3
   - sharp
   - simple-git-hooks
-
-packageManagerStrict: false
-
-shellEmulator: true
 
 verifyDepsBeforeRun: install

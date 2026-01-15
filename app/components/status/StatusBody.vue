@@ -13,6 +13,8 @@ const {
   isNested?: boolean
 }>()
 
+const hasQuote = computed(() => 'quote' in status && !!status.quote)
+
 const { translation } = await useTranslation(status, getLanguageCode())
 
 const emojisObject = useEmojisFallback(() => status.emojis)
@@ -31,10 +33,17 @@ const vnode = computed(() => {
 </script>
 
 <template>
-  <div class="status-body" whitespace-pre-wrap break-words :class="{ 'with-action': withAction }" relative>
+  <div
+    class="status-body"
+    whitespace-pre-wrap
+    break-words
+    :class="{ 'with-action': withAction, 'has-quote': hasQuote }"
+    relative
+  >
     <span
       v-if="status.content"
-      class="content-rich line-compact" dir="auto"
+      class="content-rich line-compact"
+      dir="auto"
       :lang="('language' in status && status.language) || undefined"
     >
       <component :is="vnode" v-if="vnode" />
@@ -43,7 +52,12 @@ const vnode = computed(() => {
     <StatusQuote :status="status" :is-nested="isNested" />
     <template v-if="translation.visible">
       <div my2 h-px border="b base" bg-base />
-      <ContentRich v-if="translation.success" class="line-compact" :content="translation.text" :emojis="status.emojis" />
+      <ContentRich
+        v-if="translation.success"
+        class="line-compact"
+        :content="translation.text"
+        :emojis="status.emojis"
+      />
       <div v-else text-red-4>
         Error: {{ translation.error }}
       </div>
@@ -54,5 +68,9 @@ const vnode = computed(() => {
 <style>
 .status-body.with-action p {
   cursor: pointer;
+}
+
+.status-body.has-quote .quote-inline {
+  display: none;
 }
 </style>

@@ -69,6 +69,10 @@ trustPolicyExclude:
   - '@tiptap/suggestion@2.27.2'
   - '@tiptap/vue-3@2.27.2'
 
+  # provenance was added from v0.11.0 this is backport security fix
+  # ref. https://www.npmjs.com/package/synckit?activeTab=versions
+  - synckit@0.9.3
+
 packages:
   - docs
 

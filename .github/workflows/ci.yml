@@ -22,7 +22,7 @@ jobs:
       # ref. `pnpm@10.1.0` / `pnpm@9.15.4` cannot be installed due to key id mismatch · Issue #612 · nodejs/corepack
       # - https://github.com/nodejs/corepack/issues/612#issuecomment-2629496091
       - run: npm i -g corepack@latest && corepack enable
-      - uses: actions/setup-node@v6.1.0
+      - uses: actions/setup-node@v6.2.0
         with:
           node-version-file: .nvmrc
 

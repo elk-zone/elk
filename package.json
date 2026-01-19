@@ -2,7 +2,7 @@
   "name": "@elk-zone/elk",
   "type": "module",
   "version": "0.17.3",
-  "packageManager": "pnpm@10.28.0",
+  "packageManager": "pnpm@10.28.1",
   "license": "MIT",
   "homepage": "https://elk.zone/",
   "main": "./nuxt.config.ts",
@@ -162,8 +162,8 @@
     "vue-tsc": "^2.1.6"
   },
   "resolutions": {
-    "nuxt-component-meta": "0.16.0",
-    "unstorage": "^1.17.3",
+    "nuxt-component-meta": "0.17.1",
+    "unstorage": "^1.17.4",
     "vitest": "4.0.17",
     "vue": "^3.5.4"
   },

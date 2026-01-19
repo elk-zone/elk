@@ -73,6 +73,10 @@ trustPolicyExclude:
   # ref. https://www.npmjs.com/package/synckit?activeTab=versions
   - synckit@0.9.3
 
+  # provenance for v6 is introduced from v6.23+
+  # ref. https://github.com/nodejs/undici/issues/4666
+  - undici-types@6.21.0
+
 packages:
   - docs
 

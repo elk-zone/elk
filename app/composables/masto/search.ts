@@ -1,5 +1,5 @@
-import type { MaybeRefOrGetter } from '@vueuse/core'
 import type { mastodon } from 'masto'
+import type { MaybeRefOrGetter } from 'vue'
 import type { RouteLocation } from 'vue-router'
 
 export type UseSearchOptions = MaybeRefOrGetter<
@@ -28,7 +28,7 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
   const hashtags = ref<HashTagSearchResult[]>([])
   const statuses = ref<StatusSearchResult[]>([])
 
-  const q = computed(() => resolveUnref(query).trim())
+  const q = computed(() => toValue(query).trim())
 
   let paginator: mastodon.Paginator<mastodon.v2.Search, mastodon.rest.v2.SearchParams> | undefined
 
@@ -58,11 +58,11 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
     }))]
   }
 
-  watch(() => resolveUnref(query), () => {
+  watch(() => toValue(query), () => {
     loading.value = !!(q.value && isHydrated.value)
   })
 
-  debouncedWatch(() => resolveUnref(query), async () => {
+  debouncedWatch(() => toValue(query), async () => {
     if (!q.value || !isHydrated.value)
       return
 
@@ -74,7 +74,7 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
      */
     paginator = client.value.v2.search.list({
       q: q.value,
-      ...resolveUnref(options),
+      ...toValue(options),
       resolve: !!currentUser.value,
     })
     const nextResults = await paginator.values().next()

@@ -68,6 +68,12 @@ describe('html-parse', () => {
     expect(formatted).toMatchSnapshot('html')
     expect(serializedText).toMatchSnapshot('text')
   })
+
+  it('hollo trailing newline', async () => {
+    const { formatted, serializedText } = await render('<p>Hello World</p>\n')
+    expect(formatted).toMatchSnapshot('html')
+    expect(serializedText).toMatchSnapshot('text')
+  })
 })
 
 async function render(input: string, options?: ContentParseOptions) {

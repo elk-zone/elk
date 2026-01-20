@@ -86,6 +86,7 @@ export function parseMastodonHTML(
   html: string,
   options: ContentParseOptions = {},
 ) {
+  html = html.trim()
   const {
     markdown = true,
     replaceUnicodeEmoji = true,

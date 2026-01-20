@@ -12,7 +12,9 @@ describe('html-parse', () => {
 
   it('link + mention', async () => {
     // https://fosstodon.org/@ayo/109383002937620723
-    const { formatted, serializedText } = await render('<p>Happy 🤗 we’re now using <span class="h-card"><a href="https://webtoo.ls/@vitest" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>vitest</span></a></span> (migrated from chai+mocha) <a href="https://github.com/ayoayco/astro-reactive-library/pull/203" rel="nofollow noopener noreferrer" target="_blank"><span class="invisible">https://</span><span class="ellipsis">github.com/ayoayco/astro-react</span><span class="invisible">ive-library/pull/203</span></a></p>')
+    const { formatted, serializedText } = await render(
+      '<p>Happy 🤗 we’re now using <span class="h-card"><a href="https://webtoo.ls/@vitest" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>vitest</span></a></span> (migrated from chai+mocha) <a href="https://github.com/ayoayco/astro-reactive-library/pull/203" rel="nofollow noopener noreferrer" target="_blank"><span class="invisible">https://</span><span class="ellipsis">github.com/ayoayco/astro-react</span><span class="invisible">ive-library/pull/203</span></a></p>',
+    )
     expect(formatted).toMatchSnapshot('html')
     expect(serializedText).toMatchSnapshot('text')
   })
@@ -23,7 +25,8 @@ describe('html-parse', () => {
         nuxt: {
           shortcode: 'nuxt',
           url: 'https://media.webtoo.ls/custom_emojis/images/000/000/366/original/73330dfc9dda4078.png',
-          staticUrl: 'https://media.webtoo.ls/custom_emojis/images/000/000/366/original/73330dfc9dda4078.png',
+          staticUrl:
+            'https://media.webtoo.ls/custom_emojis/images/000/000/366/original/73330dfc9dda4078.png',
           visibleInPicker: true,
         },
       },
@@ -40,31 +43,47 @@ describe('html-parse', () => {
 
   it('code frame', async () => {
     // https://webtoo.ls/@antfu/109396489827394721
-    const { formatted, serializedText } = await render('<p>Testing code block</p><p>```ts<br />import { useMouse, usePreferredDark } from &#39;@vueuse/core&#39;</p><p>// tracks mouse position<br />const { x, y } = useMouse()</p><p>// is the user prefers dark theme<br />const isDark = usePreferredDark()<br />```</p>')
+    const { formatted, serializedText } = await render(
+      '<p>Testing code block</p><p>```ts<br />import { useMouse, usePreferredDark } from &#39;@vueuse/core&#39;</p><p>// tracks mouse position<br />const { x, y } = useMouse()</p><p>// is the user prefers dark theme<br />const isDark = usePreferredDark()<br />```</p>',
+    )
     expect(formatted).toMatchSnapshot('html')
     expect(serializedText).toMatchSnapshot('text')
   })
 
   it('code frame 2', async () => {
-    const { formatted, serializedText } = await render('<p><span class=\"h-card\"><a href=\"https://webtoo.ls/@antfu\" class=\"u-url mention\">@<span>antfu</span></a></span> Testing<br />```ts<br />const a = hello<br />```</p>')
+    const { formatted, serializedText } = await render(
+      '<p><span class=\"h-card\"><a href=\"https://webtoo.ls/@antfu\" class=\"u-url mention\">@<span>antfu</span></a></span> Testing<br />```ts<br />const a = hello<br />```</p>',
+    )
     expect(formatted).toMatchSnapshot('html')
     expect(serializedText).toMatchSnapshot('text')
   })
 
   it('inline markdown', async () => {
-    const { formatted, serializedText } = await render('<p>text `code` **bold** *italic* ~~del~~</p><p>```js<br />code block<br />```</p>')
+    const { formatted, serializedText } = await render(
+      '<p>text `code` **bold** *italic* ~~del~~</p><p>```js<br />code block<br />```</p>',
+    )
     expect(formatted).toMatchSnapshot('html')
     expect(serializedText).toMatchSnapshot('text')
   })
 
   it('html entities', async () => {
-    const { formatted, serializedText } = await render('<p>Hello &lt;World /&gt;.</p>')
+    const { formatted, serializedText } = await render(
+      '<p>Hello &lt;World /&gt;.</p>',
+    )
     expect(formatted).toMatchSnapshot('html')
     expect(serializedText).toMatchSnapshot('text')
   })
 
   it('quote-inline', async () => {
-    const { formatted, serializedText } = await render('<p class="quote-inline">RE: <a href="https://tapbots.social/@example/123" rel="nofollow noopener" translate="no" target="_blank"><span class="invisible">https://</span><span class="ellipsis">tapbots.social/@example/123</span><span class="invisible">123</span></a></p><p>Quoting post!</p>')
+    const { formatted, serializedText } = await render(
+      '<p class="quote-inline">RE: <a href="https://tapbots.social/@example/123" rel="nofollow noopener" translate="no" target="_blank"><span class="invisible">https://</span><span class="ellipsis">tapbots.social/@example/123</span><span class="invisible">123</span></a></p><p>Quoting post!</p>',
+    )
+    expect(formatted).toMatchSnapshot('html')
+    expect(serializedText).toMatchSnapshot('text')
+  })
+
+  it('hollo trailing newline', async () => {
+    const { formatted, serializedText } = await render('<p>Hello World</p>\n')
     expect(formatted).toMatchSnapshot('html')
     expect(serializedText).toMatchSnapshot('text')
   })

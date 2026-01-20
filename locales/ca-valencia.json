@@ -75,6 +75,7 @@
   },
   "notification": {
     "favourited_post": "ha marcat com a preferida la teua publicació",
+    "reblogged_post": "ha impulsat la teua publicació",
     "update_status": "ha actualitzat la seua publicació"
   },
   "placeholder": {

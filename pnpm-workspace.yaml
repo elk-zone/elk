@@ -77,6 +77,9 @@ trustPolicyExclude:
   # ref. https://github.com/nodejs/undici/issues/4666
   - undici-types@6.21.0
 
+  # avoid no-downgrade check against usage of @vueuse/integrations@14 in docs workspace
+  # ref. https://github.com/elk-zone/elk/pull/3441
+  - '@vueuse/integrations@13.9.0'
 packages:
   - docs
 

@@ -107,6 +107,7 @@
     "prosemirror-highlight": "^0.13.0",
     "prosemirror-state": "^1.4.3",
     "punycode": "^2.3.1",
+    "rollup-plugin-node-polyfills": "^0.2.1",
     "shiki": "^3.20.0",
     "simple-git": "^3.19.1",
     "slimeform": "^0.10.0",

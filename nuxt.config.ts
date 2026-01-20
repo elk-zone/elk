@@ -8,7 +8,9 @@ import { pwa } from './config/pwa'
 
 const { resolve } = createResolver(import.meta.url)
 
-const mockProxy = resolveModulePath('mocked-exports/proxy', { from: import.meta.url })
+const mockProxy = resolveModulePath('mocked-exports/proxy', {
+  from: import.meta.url,
+})
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-11',
@@ -33,10 +35,10 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     // temporary disable module during test
     // ref. https://github.com/nuxt-modules/color-mode/issues/335
-    ...isTest ? [] : ['@nuxtjs/color-mode'],
+    ...(isTest ? [] : ['@nuxtjs/color-mode']),
     '@unlazy/nuxt',
     '@nuxt/test-utils/module',
-    ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
+    ...(isDevelopment || isWindows ? [] : ['nuxt-security']),
   ],
   vue: {
     propsDestructure: true,
@@ -71,7 +73,6 @@ export default defineNuxtConfig({
     '~/styles/dropdown.css',
   ],
   alias: {
-    'querystring': 'rollup-plugin-node-polyfills/polyfills/qs',
     'change-case': 'scule',
     'semver': resolve('./mocks/semver'),
   },
@@ -82,17 +83,20 @@ export default defineNuxtConfig({
       './composables/settings',
       './composables/tiptap/index.ts',
     ],
-    imports: [{
-      name: 'useI18n',
-      from: '~/utils/i18n',
-      priority: 100,
-    }],
+    imports: [
+      {
+        name: 'useI18n',
+        from: '~/utils/i18n',
+        priority: 100,
+      },
+    ],
     injectAtEnd: true,
   },
   vite: {
     define: {
       'process.env.VSCODE_TEXTMATE_DEBUG': 'false',
-      'process.mock': ((!isCI || isPreview) && process.env.MOCK_USER) || 'false',
+      'process.mock':
+        ((!isCI || isPreview) && process.env.MOCK_USER) || 'false',
       'process.test': 'false',
     },
     build: {
@@ -227,15 +231,15 @@ export default defineNuxtConfig({
     'nitro:config': function (config) {
       const nuxt = useNuxt()
       config.virtual = config.virtual || {}
-      config.virtual['#storage-config'] = `export const driver = ${JSON.stringify(nuxt.options.appConfig.storage.driver)}`
+      config.virtual['#storage-config']
+        = `export const driver = ${JSON.stringify(nuxt.options.appConfig.storage.driver)}`
     },
     'vite:extendConfig': function (config, { isServer }) {
       if (isServer) {
         const alias = config.resolve!.alias as Record<string, string>
         for (const dep of ['eventemitter3', 'isomorphic-ws'])
           alias[dep] = resolve('./mocks/class')
-        for (const dep of ['fuse.js'])
-          alias[dep] = mockProxy
+        for (const dep of ['fuse.js']) alias[dep] = mockProxy
         const resolver = createResolver(import.meta.url)
 
         config.plugins!.unshift({
@@ -250,7 +254,12 @@ export default defineNuxtConfig({
         })
 
         const noExternal = config.ssr!.noExternal as string[]
-        noExternal.push('masto', '@fnando/sparkline', 'vue-i18n', '@mastojs/ponyfills')
+        noExternal.push(
+          'masto',
+          '@fnando/sparkline',
+          'vue-i18n',
+          '@mastojs/ponyfills',
+        )
       }
     },
   },

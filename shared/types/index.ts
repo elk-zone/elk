@@ -64,14 +64,18 @@ export interface ConfirmDialogOptions {
   description?: string
   confirm?: string
   cancel?: string
-  extraOptionType?: 'mute'
+  extraOptionType?: 'mute' | 'block_domain'
+  domainToBlock?: string
 }
 export interface ConfirmDialogChoice {
   choice: 'confirm' | 'cancel'
   extraOptions?: {
-    mute: {
+    mute?: {
       duration: number
       notifications: boolean
+    }
+    block_domain?: {
+      confirmed: boolean
     }
   }
 }

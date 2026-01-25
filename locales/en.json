@@ -136,8 +136,9 @@
     "block_domain": {
       "cancel": "Cancel",
       "confirm": "Block",
-      "description": "Are you sure you want to block {0}?",
-      "title": "Block domain"
+      "description": "Are you sure you want to block {0}? This will block all users on this domain and permanently remove follows/followers.",
+      "title": "Block domain",
+      "type_to_confirm": "Type {0} to confirm"
     },
     "common": {
       "cancel": "No",

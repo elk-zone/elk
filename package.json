@@ -151,7 +151,7 @@
     "flat": "^6.0.1",
     "fs-extra": "^11.3.1",
     "lint-staged": "^16.1.6",
-    "prettier": "^3.7.4",
+    "prettier": "^3.8.1",
     "sharp": "^0.34.3",
     "sharp-ico": "^0.1.5",
     "simple-git-hooks": "^2.13.1",

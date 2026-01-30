@@ -10,9 +10,9 @@
     "authorize": "Yêu cầu cấp quyền",
     "authorized": "Bạn cần cấp quyền yêu cầu",
     "avatar_description": "Ảnh đại diện {0}",
-    "blocked_by": "Bạn bị người này chặn.",
+    "blocked_by": "Bạn bị người/trang này chặn.",
     "blocked_domains": "Máy chủ đã chặn",
-    "blocked_users": "Người đã chặn",
+    "blocked_users": "Người/trang đã chặn",
     "blocking": "Đã chặn",
     "bot": "BOT",
     "copy_account_name": "Sao chép tên tài khoản",
@@ -23,13 +23,13 @@
     "followers": "Người theo dõi",
     "followers_count": "{0} Người theo dõi|{0} Người theo dõi|{0} Người theo dõi",
     "following": "Đang theo dõi",
-    "following_count": "{0} Đang theo dõi",
+    "following_count": "{0} Theo dõi",
     "follows_you": "Đang theo dõi bạn",
     "go_to_profile": "Xem hồ sơ",
     "joined": "Đã tham gia",
     "lock": "Riêng tư",
     "moved_title": "đã chuyển sang máy chủ khác",
-    "muted_users": "Người đã ẩn",
+    "muted_users": "Người/trang đã ẩn",
     "muting": "Đã ẩn",
     "mutuals": "Theo dõi nhau",
     "notifications_on_post_disable": "Ngừng thông báo khi {username} đăng tút mới",
@@ -38,17 +38,17 @@
     "posts": "Tút",
     "posts_count": "{0} Tút|{0} Tút|{0} Tút",
     "profile_description": "Ảnh bìa {0}",
-    "profile_personal_note": "Ghi chú về người này",
+    "profile_personal_note": "Thêm ghi chú",
     "profile_unavailable": "Hồ sơ không khả dụng",
     "reject": "Từ chối theo dõi",
     "rejected": "Bạn đã từ chối yêu cầu",
     "request_follow": "Yêu cầu theo dõi",
-    "requested": "{0} người yêu cầu theo dõi bạn",
+    "requested": "{0} yêu cầu theo dõi bạn",
     "unblock": "Bỏ chặn",
     "unfollow": "Bỏ theo dõi",
     "unmute": "Bỏ ẩn",
-    "view_other_followers": "Người theo dõi từ các máy chủ khác có thể không hiển thị đủ.",
-    "view_other_following": "Người đang theo dõi từ các máy chủ khác có thể không hiển thị đủ.",
+    "view_other_followers": "Người/trang theo dõi từ các máy chủ khác có thể không hiển thị đủ.",
+    "view_other_following": "Người/trang mà bạn theo dõi từ các máy chủ khác có thể không hiển thị đủ.",
     "withdraw_follow_request": "Rút lại yêu cầu theo dõi"
   },
   "action": {
@@ -131,13 +131,14 @@
       "cancel": "Hủy bỏ",
       "confirm": "Chặn",
       "description": "Bạn có chắc muốn chặn {0}?",
-      "title": "Chặn người"
+      "title": "Chặn người/trang"
     },
     "block_domain": {
       "cancel": "Hủy bỏ",
       "confirm": "Chặn",
-      "description": "Bạn có chắc muốn chặn {0}?",
-      "title": "Chặn máy chủ"
+      "description": "Bạn có chắc muốn chặn {0}? Tất cả người/trang trên máy chủ này sẽ bị chặn và người/trang theo dõi bạn cũng sẽ bị xóa vĩnh viễn.",
+      "title": "Chặn máy chủ",
+      "type_to_confirm": "Nhập {0} để xác nhận"
     },
     "common": {
       "cancel": "Không",
@@ -164,7 +165,7 @@
       "minute": "phút|phút|phút",
       "notifications": "Ẩn thông báo",
       "specify_duration": "Ẩn có thời hạn",
-      "title": "Ẩn người"
+      "title": "Ẩn người/trang"
     },
     "show_reblogs": {
       "cancel": "Hủy bỏ",
@@ -231,11 +232,11 @@
     "error_prefix": "Lỗi: ",
     "list_title_placeholder": "Tên danh sách",
     "manage": "Quản lý danh sách",
-    "modify_account": "Sửa danh sách có người này",
-    "remove_account": "Xóa người ra khỏi danh sách",
+    "modify_account": "Sửa danh sách có người/trang này",
+    "remove_account": "Xóa người/trang ra khỏi danh sách",
     "save": "Lưu thay đổi",
-    "search_following_desc": "Tìm trong những người bạn theo dõi",
-    "search_following_placeholder": "Tìm trong những người bạn theo dõi"
+    "search_following_desc": "Tìm trong những người/trang bạn theo dõi",
+    "search_following_placeholder": "Tìm trong những người/trang mà bạn theo dõi"
   },
   "magic_keys": {
     "dialog_header": "Phím tắt",
@@ -316,7 +317,7 @@
   "nav": {
     "back": "Quay về",
     "blocked_domains": "Máy chủ đã chặn",
-    "blocked_users": "Người đã chặn",
+    "blocked_users": "Người/trang đã chặn",
     "bookmarks": "Đã lưu",
     "built_at": "Bản dựng {0}",
     "compose": "Soạn tút",
@@ -331,7 +332,7 @@
     "lists": "Danh sách",
     "local": "Máy chủ",
     "more_menu": "Thêm",
-    "muted_users": "Người đã ẩn",
+    "muted_users": "Người/trang đã ẩn",
     "notifications": "Thông báo",
     "privacy": "Bảo mật",
     "profile": "Hồ sơ",
@@ -420,13 +421,13 @@
   },
   "report": {
     "additional_comments": "Thêm lưu ý",
-    "another_server": "Người bạn báo cáo thuộc ở máy chủ khác",
+    "another_server": "Người/trang mà bạn báo cáo thuộc ở máy chủ khác",
     "anything_else": "Có điều gì mà chúng tôi cần biết không?",
-    "block_desc": "Bạn sẽ không còn thấy tút của người này. Họ sẽ không thể thấy tút của bạn hoặc theo dõi bạn. Họ biết là bạn đã chặn họ.",
+    "block_desc": "Bạn sẽ không còn thấy tút của người/trang này. Họ sẽ không thể thấy tút của bạn hoặc theo dõi bạn. Họ biết là bạn đã chặn họ.",
     "dontlike": "Tôi không thích",
     "dontlike_desc": "Đây không phải thứ mà bạn muốn thấy",
     "forward": "Gửi luôn báo cáo đến {0}",
-    "forward_question": "Bạn có chắc muốn gửi luôn báo cáo đến máy chủ của người này?",
+    "forward_question": "Bạn có chắc muốn gửi luôn báo cáo đến máy chủ của người/trang này?",
     "further_actions": {
       "limit": {
         "description": "Đây là cách kiểm soát những thứ mà bạn thấy:",
@@ -438,7 +439,7 @@
       }
     },
     "limiting": "Hạn chế {0}",
-    "mute_desc": "Bạn sẽ không còn thấy tút của người này. Họ vẫn có thể thấy tút của bạn hoặc theo dõi bạn. Họ không biết là bạn đã chặn họ.",
+    "mute_desc": "Bạn sẽ không còn thấy tút của người/trang này. Họ vẫn có thể thấy tút của bạn hoặc theo dõi bạn. Họ không biết là bạn đã chặn họ.",
     "other": "Lý do khác",
     "other_desc": "Vấn đề không thuộc những mục trên",
     "reporting": "Báo cáo {0}",
@@ -449,13 +450,13 @@
     "spam": "Đây là spam",
     "spam_desc": "Liên kết độc hại, giả tương tác, hoặc trả lời lặp đi lặp lại",
     "submit": "Gửi báo cáo",
-    "unfollow_desc": "Bạn sẽ không còn thấy tút của người này trên bảng tin. Tút của họ vẫn có thể xuất hiện ở những nơi khác.",
+    "unfollow_desc": "Bạn sẽ không còn thấy tút của người/trang này trên bảng tin. Tút của họ vẫn có thể xuất hiện ở những nơi khác.",
     "violation": "Vi phạm nội quy máy chủ",
-    "whats_wrong_account": "Người này có vấn đề gì?",
+    "whats_wrong_account": "Người/trang này có vấn đề gì?",
     "whats_wrong_post": "Tút này có vấn đề gì?"
   },
   "search": {
-    "search_desc": "Tìm người hoặc hashtag",
+    "search_desc": "Tìm người/trang hoặc hashtag",
     "search_empty": "Không tìm thấy gì với cụm từ này"
   },
   "settings": {
@@ -520,8 +521,8 @@
         "label": "Cài đặt thông báo đẩy",
         "policy": {
           "all": "Từ bất kỳ ai",
-          "followed": "Từ người bạn theo dõi",
-          "follower": "Từ người theo dõi bạn",
+          "followed": "Từ người/trang bạn theo dõi",
+          "follower": "Từ người/trang mà theo dõi bạn",
           "none": "Không ai cả",
           "title": "Bạn muốn nhận thông báo từ ai?"
         },
@@ -648,7 +649,7 @@
   },
   "status": {
     "account": {
-      "suspended_message": "Người này đã bị vô hiệu hóa.",
+      "suspended_message": "Người/trang này đã bị vô hiệu hóa.",
       "suspended_show": "Vẫn xem nội dung chứ?"
     },
     "boosted_by": "Đăng lại bởi",
@@ -686,7 +687,7 @@
     "edited": "sửa {0}"
   },
   "tab": {
-    "accounts": "Người",
+    "accounts": "Người/trang",
     "for_you": "Cho bạn",
     "hashtags": "Hashtag",
     "list": "Danh sách",
@@ -783,7 +784,7 @@
   "user": {
     "add_existing": "Thêm một tài khoản khác",
     "server_address_label": "Địa chỉ máy chủ Mastodon",
-    "sign_in_desc": "Đăng nhập để theo dõi người dùng hoặc hashtag, thích, chia sẻ và trả lời tút hoặc tương tác từ tài khoản của bạn trên một máy chủ khác.",
+    "sign_in_desc": "Đăng nhập để theo dõi người/trang hoặc hashtag, thích, chia sẻ và trả lời tút hoặc tương tác từ tài khoản của bạn trên một máy chủ khác.",
     "sign_in_notice_title": "Đang xem {0} công khai",
     "sign_out_account": "Đăng xuất {0}",
     "single_instance_sign_in_desc": "Đăng nhập để theo dõi người dùng hoặc hashtag, thích, chia sẻ và trả lời tút",

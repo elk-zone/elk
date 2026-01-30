@@ -1,9 +1,12 @@
 <script setup lang="ts">
-defineProps<{
+const { back = false } = defineProps<{
+  /**
+   * Should we show a back button?
+   * Note: this will be forced to false on xl screens to avoid duplicating the sidebar's back button.
+   */
+  back?: boolean | 'small-only'
   /** Show the back button on small screens */
   backOnSmallScreen?: boolean
-  /** Show the back button on both small and big screens */
-  back?: boolean
   /** Do not applying overflow hidden to let use floatable components in title */
   noOverflowHidden?: boolean
 }>()
@@ -22,6 +25,17 @@ const containerClass = computed(() => {
 
   return 'lg:sticky lg:top-0'
 })
+
+const showBackButton = computed(() => {
+  switch (back) {
+    case 'small-only':
+      return isSmallOrMediumScreen.value
+    case true:
+      return !isExtraLargeScreen.value
+    default:
+      return false
+  }
+})
 </script>
 
 <template>
@@ -34,22 +48,22 @@ const containerClass = computed(() => {
         'backdrop-blur': !getPreferences(userSettings, 'optimizeForLowPerformanceDevice'),
       }"
     >
-      <div flex justify-between gap-2 min-h-53px px5 py1 :class="{ 'xl:hidden': $route.name !== 'tag' }" border="b base">
-        <div flex gap-2 items-center :overflow-hidden="!noOverflowHidden ? '' : false" w-full>
+      <div flex="~ justify-between" min-h-53px px-2 py-1 :class="{ 'xl:hidden': $route.name !== 'tag' }" border="b base">
+        <div flex="~ items-center" w-full>
           <button
-            v-if="backOnSmallScreen || back"
-            btn-text flex items-center ms="-3" p-3 xl:hidden
+            v-if="backOnSmallScreen || showBackButton"
+            btn-text flex items-center p-3 xl:hidden
             :aria-label="$t('nav.back')"
             @click="$router.go(-1)"
           >
             <div text-lg i-ri:arrow-left-line class="rtl-flip" />
           </button>
-          <div :truncate="!noOverflowHidden ? '' : false" flex w-full class="native-mac:justify-start native-mac:text-center">
+          <div flex w-full>
             <slot name="title" />
           </div>
           <div sm:hidden h-7 w-1px />
         </div>
-        <div flex items-center flex-shrink-0 gap-x-2>
+        <div flex="~ items-center shrink-0 gap-x-2" px-3>
           <slot name="actions" />
           <PwaBadge xl:hidden />
           <NavUser v-if="isHydrated" />

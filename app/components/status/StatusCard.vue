@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { actions = true, older, newer, hasOlder, hasNewer, main, account, ...props } = defineProps<{
+const { actions = true, isNested = false, disableLink = false, older, newer, hasOlder, hasNewer, main, account, ...props } = defineProps<{
   status: mastodon.v1.Status
   followedTag?: string | null
   actions?: boolean
@@ -9,6 +9,8 @@ const { actions = true, older, newer, hasOlder, hasNewer, main, account, ...prop
   hover?: boolean
   inNotification?: boolean
   isPreview?: boolean
+  isNested?: boolean
+  disableLink?: boolean
 
   // If we know the prev and next status in the timeline, we can simplify the card
   older?: mastodon.v1.Status
@@ -73,7 +75,7 @@ const forceShow = ref(false)
 </script>
 
 <template>
-  <StatusLink :status="status" :hover="hover">
+  <StatusLink :status="status" :hover="hover" :disable-link="disableLink">
     <!-- Upper border -->
     <div :h="showUpperBorder ? '1px' : '0'" w-auto bg-border mb-1 z--1 />
 
@@ -185,8 +187,6 @@ const forceShow = ref(false)
             </AccountHoverWrapper>
             <div flex-auto />
             <div v-show="!getPreferences(userSettings, 'zenMode')" text-sm text-secondary flex="~ row nowrap" hover:underline whitespace-nowrap>
-              <AccountLockIndicator v-if="status.account.locked" me-2 />
-              <AccountBotIndicator v-if="status.account.bot" me-2 />
               <div flex="~ gap1" items-center>
                 <StatusVisibilityIndicator v-if="status.visibility !== 'public'" :status="status" />
                 <div flex>
@@ -211,6 +211,7 @@ const forceShow = ref(false)
             :context="context"
             :is-preview="isPreview"
             :in-notification="inNotification"
+            :is-nested="isNested"
             mb2 :class="{ 'mt-2 mb1': isDM }"
           />
           <StatusActions v-if="actions !== false" v-show="!getPreferences(userSettings, 'zenMode')" :status="status" />

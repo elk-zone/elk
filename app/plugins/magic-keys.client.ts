@@ -71,6 +71,15 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
   }
   whenever(logicAnd(isAuthenticated, notUsingInput, keys.b), toggleBoostActiveStatus)
 
+  const composeWithQuote = () => {
+    const quotedStatusId = document.querySelector<HTMLElement>('[aria-roledescription=status-details]')
+      ?.getAttribute('id')
+      ?.replace('status-', '')
+    if (quotedStatusId)
+      navigateTo(`/compose?quote=${quotedStatusId}`)
+  }
+  whenever(logicAnd(isAuthenticated, notUsingInput, keys.q), composeWithQuote)
+
   const showNewItems = () => {
     // TODO: find a better solution than clicking buttons...
     document

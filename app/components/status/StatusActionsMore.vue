@@ -126,8 +126,8 @@ async function editStatus() {
   emit('afterEdit')
 }
 
-function showFavoritedAndBoostedBy() {
-  openFavoridedBoostedByDialog(status.value.id)
+function showReactedBy() {
+  openReactedByDialog(status.value.id)
 }
 </script>
 
@@ -194,10 +194,10 @@ function showFavoritedAndBoostedBy() {
 
         <CommonDropdownItem
           is="button"
-          :text="$t('menu.show_favourited_and_boosted_by')"
+          :text="$t('menu.show_reacted_by')"
           icon="i-ri:hearts-line"
           :command="command"
-          @click="showFavoritedAndBoostedBy()"
+          @click="showReactedBy()"
         />
 
         <CommonDropdownItem
@@ -227,7 +227,7 @@ function showFavoritedAndBoostedBy() {
 
         <CommonDropdownItem
           is="button"
-          v-if="currentUser && (status.account.id === currentUser.account.id || status.mentions.some(m => m.id === currentUser!.account.id))"
+          v-if="currentUser && (status.account.id === currentUser.account.id || status.mentions.some((m: mastodon.v1.StatusMention) => m.id === currentUser!.account.id))"
           :text="status.muted ? $t('menu.unmute_conversation') : $t('menu.mute_conversation')"
           :icon="status.muted ? 'i-ri:eye-line' : 'i-ri:eye-off-line'"
           :command="command"

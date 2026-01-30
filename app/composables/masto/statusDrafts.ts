@@ -1,19 +1,14 @@
-import type { DraftItem, DraftMap } from '#shared/types'
+import type { DraftItem, DraftKey, DraftMap } from '#shared/types'
 import type { Mutable } from '#shared/types/utils'
 import type { mastodon } from 'masto'
 import type { ComputedRef, Ref } from 'vue'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
 
 export const currentUserDrafts = (import.meta.server || process.test)
-  ? computed<DraftMap>(() => ({}))
-  : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({}))
+  ? computed<DraftMap>(() => ({ home: [], dialog: [], intent: [], quote: [] }))
+  : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({ home: [], dialog: [], intent: [], quote: [] }))
 
-export const builtinDraftKeys = [
-  'dialog',
-  'home',
-]
-
-const ALL_VISIBILITY = ['public', 'unlisted', 'private', 'direct'] as const
+const ALL_VISIBILITY: readonly mastodon.v1.StatusVisibility[] = ['public', 'unlisted', 'private', 'direct'] as const
 
 function getDefaultVisibility(currentVisibility: mastodon.v1.StatusVisibility) {
   // The default privacy only should be taken into account if it makes
@@ -25,7 +20,19 @@ function getDefaultVisibility(currentVisibility: mastodon.v1.StatusVisibility) {
     : preferredVisibility
 }
 
-export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.CreateStatusParams> & Omit<DraftItem, 'params'>> = {}): DraftItem {
+const ALL_QUOTE_APPROVAL_POLICY: readonly mastodon.rest.v1.QuoteApprovalPolicy[] = ['public', 'followers', 'nobody'] as const
+
+function getDefaultQuoteApprovalPolicy(currentQuoteApprovalPolicy: mastodon.rest.v1.QuoteApprovalPolicy) {
+  // The default quote policy only should be taken into account if it makes
+  // the quote permission more restricted
+  const preferredQuoteApprovalPolicy = currentUser.value?.account.source.quotePolicy || 'public'
+  return ALL_QUOTE_APPROVAL_POLICY.indexOf(currentQuoteApprovalPolicy)
+    > ALL_QUOTE_APPROVAL_POLICY.indexOf(preferredQuoteApprovalPolicy)
+    ? currentQuoteApprovalPolicy
+    : preferredQuoteApprovalPolicy
+}
+
+export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.CreateScheduledStatusParams> & Omit<DraftItem, 'params'>> = {}): DraftItem {
   const {
     attachments = [],
     initialText = '',
@@ -37,6 +44,9 @@ export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.Cr
     language,
     mentions,
     poll,
+    scheduledAt,
+    quotedStatusId,
+    quoteApprovalPolicy,
   } = options
 
   return {
@@ -45,7 +55,10 @@ export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.Cr
     params: {
       status: status || '',
       poll,
+      scheduledAt,
       inReplyToId,
+      quotedStatusId,
+      quoteApprovalPolicy: getDefaultQuoteApprovalPolicy(quoteApprovalPolicy || 'public'),
       visibility: getDefaultVisibility(visibility || 'public'),
       sensitive: sensitive ?? false,
       spoilerText: spoilerText || '',
@@ -97,7 +110,7 @@ function getAccountsToMention(status: mastodon.v1.Status) {
 export function getReplyDraft(status: mastodon.v1.Status) {
   const accountsToMention = getAccountsToMention(status)
   return {
-    key: `reply-${status.id}`,
+    key: `reply-${status.id}` satisfies DraftKey,
     draft: () => {
       return getDefaultDraftItem({
         initialText: '',
@@ -125,9 +138,11 @@ export function isEmptyDraft(drafts: Array<DraftItem> | DraftItem | null | undef
     const { params, attachments } = draft
     const status = params.status ?? ''
     const text = htmlToText(status).trim().replace(/^(@\S+\s?)+/, '').replaceAll(/```/g, '').trim()
+    const hasQuote = !!params.quotedStatusId
 
     return (text.length > 0)
       || (attachments.length > 0)
+      || hasQuote
   })
 
   return !anyDraftHasContent
@@ -139,7 +154,7 @@ export interface UseDraft {
 }
 
 export function useDraft(
-  draftKey: string,
+  draftKey: DraftKey,
   initial: () => DraftItem = () => getDefaultDraftItem({}),
 ): UseDraft {
   const draftItems = computed({
@@ -175,18 +190,31 @@ export function mentionUser(account: mastodon.v1.Account) {
   }))
 }
 
-export function directMessageUser(account: mastodon.v1.Account) {
+export function privateMentionUser(account: mastodon.v1.Account) {
   openPublishDialog('dialog', getDefaultDraftItem({
     status: `@${account.acct} `,
     visibility: 'direct',
   }))
 }
 
+export const builtinDraftKeys = [
+  'home',
+  'dialog',
+  'intent',
+  'quote',
+]
+
 export function clearEmptyDrafts() {
   for (const key in currentUserDrafts.value) {
-    if (builtinDraftKeys.includes(key) && !isEmptyDraft(currentUserDrafts.value[key]))
-      continue
-    if (isEmptyDraft(currentUserDrafts.value[key]))
-      delete currentUserDrafts.value[key]
+    if (isDraftKey(key)) {
+      if (builtinDraftKeys.includes(key) && !isEmptyDraft(currentUserDrafts.value[key]))
+        continue
+      if (isEmptyDraft(currentUserDrafts.value[key]))
+        delete currentUserDrafts.value[key]
+    }
   }
+}
+
+export function isDraftKey(key: string): key is DraftKey {
+  return builtinDraftKeys.includes(key) || key.startsWith('reply-')
 }

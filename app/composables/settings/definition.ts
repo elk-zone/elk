@@ -7,12 +7,13 @@ export type OldFontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export type ColorMode = 'light' | 'dark' | 'system'
 
-export type NavButtonName = 'home' | 'search' | 'notification' | 'mention' | 'favorite' | 'bookmark' | 'compose' | 'explore' | 'local' | 'federated' | 'list' | 'hashtag' | 'setting' | 'moreMenu'
+export type NavButtonName = 'home' | 'search' | 'notification' | 'mention' | 'favorite' | 'bookmark' | 'compose' | 'scheduledPosts' | 'explore' | 'local' | 'federated' | 'list' | 'hashtag' | 'setting' | 'moreMenu'
 
 export interface PreferencesSettings {
   hideAltIndicatorOnPosts: boolean
   hideGifIndicatorOnPosts: boolean
   hideBoostCount: boolean
+  hideQuoteCount: boolean
   hideReplyCount: boolean
   hideFavoriteCount: boolean
   hideFollowerCount: boolean
@@ -21,6 +22,8 @@ export interface PreferencesSettings {
   hideAccountHoverCard: boolean
   hideTagHoverCard: boolean
   hideNews: boolean
+  hideRepliesInTimeline: boolean
+  hideBoostsInTimeline: boolean
   grayscaleMode: boolean
   enableAutoplay: boolean
   unmuteVideos: boolean
@@ -70,6 +73,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideAltIndicatorOnPosts: false,
   hideGifIndicatorOnPosts: false,
   hideBoostCount: false,
+  hideQuoteCount: false,
   hideReplyCount: false,
   hideFavoriteCount: false,
   hideFollowerCount: false,
@@ -78,6 +82,8 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideAccountHoverCard: false,
   hideTagHoverCard: false,
   hideNews: false,
+  hideRepliesInTimeline: false,
+  hideBoostsInTimeline: false,
   grayscaleMode: false,
   enableAutoplay: true,
   unmuteVideos: false,

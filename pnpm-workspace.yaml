@@ -1,7 +1,87 @@
+ignoreWorkspaceRootCheck: true
+
+packageManagerStrict: false
+
+shellEmulator: true
+
+trustPolicy: no-downgrade
+trustPolicyExclude:
+  - chokidar@4.0.3 # https://github.com/paulmillr/chokidar/issues/1440
+  - semver@6.3.1
+  - oxc-parser/binding-win32-x64-msvc@0.81.0
+  - oxc-parser/binding-win32-arm64-msvc@0.81.0
+  - oxc-parser/binding-linux-x64-gnu@0.81.0
+  - oxc-parser/binding-linux-x64-musl@0.81.0
+  - oxc-parser/binding-linux-arm64-gnu@0.81.0
+  - oxc-parser/binding-linux-arm-gnueabihf@0.81.0
+  - oxc-parser/binding-linux-arm64-musl@0.81.0
+  - oxc-parser/binding-darwin-x64@0.81.0
+  - oxc-parser/binding-darwin-arm64@0.81.0
+  - oxc-parser/binding-wasm32-wasi@0.81.0
+  - '@oxc-transform/binding-win32-x64-msvc@0.81.0'
+  - '@oxc-transform/binding-win32-arm64-msvc@0.81.0'
+  - '@oxc-transform/binding-linux-x64-gnu@0.81.0'
+  - '@oxc-transform/binding-linux-x64-musl@0.81.0'
+  - '@oxc-transform/binding-linux-arm64-gnu@0.81.0'
+  - '@oxc-transform/binding-linux-arm-gnueabihf@0.81.0'
+  - '@oxc-transform/binding-linux-arm64-musl@0.81.0'
+  - '@oxc-transform/binding-darwin-x64@0.81.0'
+  - '@oxc-transform/binding-darwin-arm64@0.81.0'
+  - '@oxc-transform/binding-wasm32-wasi@0.81.0'
+  - '@oxc-parser/binding-win32-x64-msvc@0.81.0'
+  - '@oxc-parser/binding-win32-arm64-msvc@0.81.0'
+  - '@oxc-parser/binding-linux-x64-gnu@0.81.0'
+  - '@oxc-parser/binding-linux-x64-musl@0.81.0'
+  - '@oxc-parser/binding-linux-arm64-gnu@0.81.0'
+  - '@oxc-parser/binding-linux-arm-gnueabihf@0.81.0'
+  - '@oxc-parser/binding-linux-arm64-musl@0.81.0'
+  - '@oxc-parser/binding-darwin-x64@0.81.0'
+  - '@oxc-parser/binding-darwin-arm64@0.81.0'
+  - '@oxc-parser/binding-wasm32-wasi@0.81.0'
+
+  - '@tiptap/core@2.27.2'
+  - '@tiptap/extension-blockquote@2.27.2'
+  - '@tiptap/extension-bold@2.27.2'
+  - '@tiptap/extension-bubble-menu@2.27.2'
+  - '@tiptap/extension-bullet-list@2.27.2'
+  - '@tiptap/extension-character-count@2.27.2'
+  - '@tiptap/extension-code@2.27.2'
+  - '@tiptap/extension-code-block@2.27.2'
+  - '@tiptap/extension-document@2.27.2'
+  - '@tiptap/extension-dropcursor@2.27.2'
+  - '@tiptap/extension-floating-menu@2.27.2'
+  - '@tiptap/extension-gapcursor@2.27.2'
+  - '@tiptap/extension-hard-break@2.27.2'
+  - '@tiptap/extension-heading@2.27.2'
+  - '@tiptap/extension-history@2.27.2'
+  - '@tiptap/extension-horizontal-rule@2.27.2'
+  - '@tiptap/extension-italic@2.27.2'
+  - '@tiptap/extension-list-item@2.27.2'
+  - '@tiptap/extension-mention@2.27.2'
+  - '@tiptap/extension-ordered-list@2.27.2'
+  - '@tiptap/extension-paragraph@2.27.2'
+  - '@tiptap/extension-placeholder@2.27.2'
+  - '@tiptap/extension-strike@2.27.2'
+  - '@tiptap/extension-text@2.27.2'
+  - '@tiptap/extension-text-style@2.27.2'
+  - '@tiptap/pm@2.27.2'
+  - '@tiptap/starter-kit@2.27.2'
+  - '@tiptap/suggestion@2.27.2'
+  - '@tiptap/vue-3@2.27.2'
+
+  # provenance was added from v0.11.0 this is backport security fix
+  # ref. https://www.npmjs.com/package/synckit?activeTab=versions
+  - synckit@0.9.3
+
+  # provenance for v6 is introduced from v6.23+
+  # ref. https://github.com/nodejs/undici/issues/4666
+  - undici-types@6.21.0
+
+  # avoid no-downgrade check against usage of @vueuse/integrations@14 in docs workspace
+  # ref. https://github.com/elk-zone/elk/pull/3441
+  - '@vueuse/integrations@13.9.0'
 packages:
   - docs
-
-ignoreWorkspaceRootCheck: true
 
 ignoredBuiltDependencies:
   - '@parcel/watcher'
@@ -13,9 +93,5 @@ onlyBuiltDependencies:
   - better-sqlite3
   - sharp
   - simple-git-hooks
-
-packageManagerStrict: false
-
-shellEmulator: true
 
 verifyDepsBeforeRun: install

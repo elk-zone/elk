@@ -10,9 +10,9 @@
     "authorize": "Yêu cầu cấp quyền",
     "authorized": "Bạn cần cấp quyền yêu cầu",
     "avatar_description": "Ảnh đại diện {0}",
-    "blocked_by": "Bạn bị người này chặn.",
+    "blocked_by": "Bạn bị người/trang này chặn.",
     "blocked_domains": "Máy chủ đã chặn",
-    "blocked_users": "Người đã chặn",
+    "blocked_users": "Người/trang đã chặn",
     "blocking": "Đã chặn",
     "bot": "BOT",
     "copy_account_name": "Sao chép tên tài khoản",
@@ -23,13 +23,13 @@
     "followers": "Người theo dõi",
     "followers_count": "{0} Người theo dõi|{0} Người theo dõi|{0} Người theo dõi",
     "following": "Đang theo dõi",
-    "following_count": "{0} Đang theo dõi",
+    "following_count": "{0} Theo dõi",
     "follows_you": "Đang theo dõi bạn",
     "go_to_profile": "Xem hồ sơ",
     "joined": "Đã tham gia",
-    "lock": "KHÓA",
+    "lock": "Riêng tư",
     "moved_title": "đã chuyển sang máy chủ khác",
-    "muted_users": "Người đã ẩn",
+    "muted_users": "Người/trang đã ẩn",
     "muting": "Đã ẩn",
     "mutuals": "Theo dõi nhau",
     "notifications_on_post_disable": "Ngừng thông báo khi {username} đăng tút mới",
@@ -38,17 +38,17 @@
     "posts": "Tút",
     "posts_count": "{0} Tút|{0} Tút|{0} Tút",
     "profile_description": "Ảnh bìa {0}",
-    "profile_personal_note": "Ghi chú về người này",
+    "profile_personal_note": "Thêm ghi chú",
     "profile_unavailable": "Hồ sơ không khả dụng",
     "reject": "Từ chối theo dõi",
     "rejected": "Bạn đã từ chối yêu cầu",
     "request_follow": "Yêu cầu theo dõi",
-    "requested": "{0} người yêu cầu theo dõi bạn",
+    "requested": "{0} yêu cầu theo dõi bạn",
     "unblock": "Bỏ chặn",
     "unfollow": "Bỏ theo dõi",
     "unmute": "Bỏ ẩn",
-    "view_other_followers": "Người theo dõi từ các máy chủ khác có thể không hiển thị đủ.",
-    "view_other_following": "Người đang theo dõi từ các máy chủ khác có thể không hiển thị đủ.",
+    "view_other_followers": "Người/trang theo dõi từ các máy chủ khác có thể không hiển thị đủ.",
+    "view_other_following": "Người/trang mà bạn theo dõi từ các máy chủ khác có thể không hiển thị đủ.",
     "withdraw_follow_request": "Rút lại yêu cầu theo dõi"
   },
   "action": {
@@ -61,6 +61,7 @@
     "clear": "Xóa",
     "clear_publish_failed": "Xóa lỗi khi đăng tút",
     "clear_save_failed": "Xóa lỗi khi lưu tút",
+    "clear_schedule_failed": "Xóa lỗi khi lên lịch đăng",
     "clear_upload_failed": "Xóa lỗi khi xóa file",
     "close": "Đóng",
     "compose": "Soạn tút",
@@ -77,11 +78,15 @@
     "prev": "Trước đó",
     "publish": "Đăng",
     "publish_thread": "Đăng chuỗi tút",
+    "quote": "Trích dẫn",
+    "quote_count": "{0}",
+    "remove_quote": "Gỡ trích dẫn",
     "reply": "Trả lời",
     "reply_count": "{0}",
     "reset": "Đặt lại",
     "save": "Lưu",
     "save_changes": "Lưu mọi thay đổi",
+    "schedule": "Lên lịch",
     "sign_in": "Đăng nhập",
     "sign_in_to": "Đăng nhập {0}",
     "switch_account": "Chuyển sang tài khoản khác",
@@ -113,6 +118,7 @@
     "in": "trong",
     "no_bookmarks": "Chưa lưu tút nào",
     "no_favourites": "Chưa thích tút nào",
+    "no_scheduled_posts": "Chưa lên lịch tút nào",
     "not_found": "Hông tìm thấy gì hết",
     "offline_desc": "Có vẻ như rớt mạng. Hãy kiểm tra lại kết nối."
   },
@@ -125,13 +131,14 @@
       "cancel": "Hủy bỏ",
       "confirm": "Chặn",
       "description": "Bạn có chắc muốn chặn {0}?",
-      "title": "Chặn người"
+      "title": "Chặn người/trang"
     },
     "block_domain": {
       "cancel": "Hủy bỏ",
       "confirm": "Chặn",
-      "description": "Bạn có chắc muốn chặn {0}?",
-      "title": "Chặn máy chủ"
+      "description": "Bạn có chắc muốn chặn {0}? Tất cả người/trang trên máy chủ này sẽ bị chặn và người/trang theo dõi bạn cũng sẽ bị xóa vĩnh viễn.",
+      "title": "Chặn máy chủ",
+      "type_to_confirm": "Nhập {0} để xác nhận"
     },
     "common": {
       "cancel": "Không",
@@ -158,7 +165,7 @@
       "minute": "phút|phút|phút",
       "notifications": "Ẩn thông báo",
       "specify_duration": "Ẩn có thời hạn",
-      "title": "Ẩn người"
+      "title": "Ẩn người/trang"
     },
     "show_reblogs": {
       "cancel": "Hủy bỏ",
@@ -187,6 +194,7 @@
     "account_not_found": "Không tìm thấy {0}",
     "explore_list_empty": "Chưa có xu hướng. Hãy quay lại sau!",
     "file_size_cannot_exceed_n_mb": "Dung lượng file tối đa {0}MB",
+    "quote_fetch_error": "Không thể lấy tút đã trích dẫn",
     "sign_in_error": "Không thể kết nối đến máy chủ.",
     "status_not_found": "Không tìm thấy tút",
     "unsupported_file_format": "Định dạng file không được hỗ trợ"
@@ -224,11 +232,11 @@
     "error_prefix": "Lỗi: ",
     "list_title_placeholder": "Tên danh sách",
     "manage": "Quản lý danh sách",
-    "modify_account": "Sửa danh sách có người này",
-    "remove_account": "Xóa người ra khỏi danh sách",
+    "modify_account": "Sửa danh sách có người/trang này",
+    "remove_account": "Xóa người/trang ra khỏi danh sách",
     "save": "Lưu thay đổi",
-    "search_following_desc": "Tìm trong những người bạn theo dõi",
-    "search_following_placeholder": "Tìm trong những người bạn theo dõi"
+    "search_following_desc": "Tìm trong những người/trang bạn theo dõi",
+    "search_following_placeholder": "Tìm trong những người/trang mà bạn theo dõi"
   },
   "magic_keys": {
     "dialog_header": "Phím tắt",
@@ -238,6 +246,7 @@
         "command_mode": "Chế độ dòng lệnh",
         "compose": "Soạn",
         "favourite": "Thích",
+        "quote": "Trích dẫn",
         "search": "Tìm kiếm",
         "show_new_items": "Hiện những tút mới",
         "title": "Hành động"
@@ -267,14 +276,13 @@
     "sequence_then": "rồi"
   },
   "menu": {
-    "add_personal_note": "Thêm ghi chú về {0}",
+    "add_personal_note": "Ghi chú về {0}",
     "block_account": "Chặn {0}",
     "block_domain": "Chặn máy chủ {0}",
     "copy_link_to_post": "Sao chép liên kết hiện tại",
     "copy_original_link_to_post": "Sao chép liên kết gốc",
     "delete": "Xóa",
     "delete_and_redraft": "Xóa & viết lại",
-    "direct_message_account": "Nhắn riêng {0}",
     "edit": "Sửa",
     "hide_reblogs": "Ẩn đăng lại từ {0}",
     "mention_account": "Nhắc đến {0}",
@@ -282,11 +290,13 @@
     "mute_conversation": "Ẩn thông báo",
     "open_in_original_site": "Mở liên kết gốc",
     "pin_on_profile": "Ghim lên đầu",
+    "private_mention_account": "Nhắn riêng {0}",
     "remove_personal_note": "Xóa ghi chú về {0}",
     "report_account": "Báo cáo {0}",
     "share_account": "Chia sẻ {0}",
     "share_post": "Chia sẻ tút",
     "show_favourited_and_boosted_by": "Xem lượt thích & đăng lại",
+    "show_reacted_by": "Xem tương tác",
     "show_reblogs": "Xem đăng lại từ {0}",
     "show_untranslated": "Xem bản chưa dịch",
     "toggle_theme": {
@@ -307,7 +317,7 @@
   "nav": {
     "back": "Quay về",
     "blocked_domains": "Máy chủ đã chặn",
-    "blocked_users": "Người đã chặn",
+    "blocked_users": "Người/trang đã chặn",
     "bookmarks": "Đã lưu",
     "built_at": "Bản dựng {0}",
     "compose": "Soạn tút",
@@ -322,10 +332,11 @@
     "lists": "Danh sách",
     "local": "Máy chủ",
     "more_menu": "Thêm",
-    "muted_users": "Người đã ẩn",
+    "muted_users": "Người/trang đã ẩn",
     "notifications": "Thông báo",
     "privacy": "Bảo mật",
     "profile": "Hồ sơ",
+    "scheduled_posts": "Đăng tự động",
     "search": "Tìm kiếm",
     "select_feature_flags": "Tính Năng Thử Nghiệm",
     "select_font_size": "Cỡ Chữ",
@@ -337,15 +348,15 @@
   },
   "notification": {
     "and": "và",
-    "favourited_post": "đã thích tút của bạn",
-    "followed_you": "đang theo dõi bạn",
+    "favourited_post": "thích tút của bạn",
+    "followed_you": "theo dõi bạn",
     "followed_you_count": "{0} người theo dõi bạn|{0} người theo dõi bạn|{0} người theo dõi bạn",
     "missing_type": "THIẾU notification.type:",
     "others": "{0} người khác|{0} người khác|{0} người khác",
-    "reblogged_post": "đã đăng lại tút của bạn",
+    "reblogged_post": "đăng lại tút của bạn",
     "reported": "{0} báo cáo {1}",
     "request_to_follow": "yêu cầu theo dõi bạn",
-    "signed_up": "đã tham gia máy chủ",
+    "signed_up": "tham gia máy chủ",
     "update_status": "cập nhật tút"
   },
   "placeholder": {
@@ -400,15 +411,23 @@
       }
     }
   },
+  "quote_approval_policy": {
+    "followers": "Người theo dõi",
+    "followers_desc": "Chỉ người theo dõi bạn có thể trích dẫn",
+    "nobody": "Không ai",
+    "nobody_desc": "Chỉ bạn có thể trích dẫn",
+    "public": "Công khai",
+    "public_desc": "Bất kỳ ai"
+  },
   "report": {
     "additional_comments": "Thêm lưu ý",
-    "another_server": "Người bạn báo cáo thuộc ở máy chủ khác",
+    "another_server": "Người/trang mà bạn báo cáo thuộc ở máy chủ khác",
     "anything_else": "Có điều gì mà chúng tôi cần biết không?",
-    "block_desc": "Bạn sẽ không còn thấy tút của người này. Họ sẽ không thể thấy tút của bạn hoặc theo dõi bạn. Họ biết là bạn đã chặn họ.",
+    "block_desc": "Bạn sẽ không còn thấy tút của người/trang này. Họ sẽ không thể thấy tút của bạn hoặc theo dõi bạn. Họ biết là bạn đã chặn họ.",
     "dontlike": "Tôi không thích",
     "dontlike_desc": "Đây không phải thứ mà bạn muốn thấy",
     "forward": "Gửi luôn báo cáo đến {0}",
-    "forward_question": "Bạn có chắc muốn gửi luôn báo cáo đến máy chủ của người này?",
+    "forward_question": "Bạn có chắc muốn gửi luôn báo cáo đến máy chủ của người/trang này?",
     "further_actions": {
       "limit": {
         "description": "Đây là cách kiểm soát những thứ mà bạn thấy:",
@@ -420,7 +439,7 @@
       }
     },
     "limiting": "Hạn chế {0}",
-    "mute_desc": "Bạn sẽ không còn thấy tút của người này. Họ vẫn có thể thấy tút của bạn hoặc theo dõi bạn. Họ không biết là bạn đã chặn họ.",
+    "mute_desc": "Bạn sẽ không còn thấy tút của người/trang này. Họ vẫn có thể thấy tút của bạn hoặc theo dõi bạn. Họ không biết là bạn đã chặn họ.",
     "other": "Lý do khác",
     "other_desc": "Vấn đề không thuộc những mục trên",
     "reporting": "Báo cáo {0}",
@@ -431,13 +450,13 @@
     "spam": "Đây là spam",
     "spam_desc": "Liên kết độc hại, giả tương tác, hoặc trả lời lặp đi lặp lại",
     "submit": "Gửi báo cáo",
-    "unfollow_desc": "Bạn sẽ không còn thấy tút của người này trên bảng tin. Tút của họ vẫn có thể xuất hiện ở những nơi khác.",
+    "unfollow_desc": "Bạn sẽ không còn thấy tút của người/trang này trên bảng tin. Tút của họ vẫn có thể xuất hiện ở những nơi khác.",
     "violation": "Vi phạm nội quy máy chủ",
-    "whats_wrong_account": "Người này có vấn đề gì?",
+    "whats_wrong_account": "Người/trang này có vấn đề gì?",
     "whats_wrong_post": "Tút này có vấn đề gì?"
   },
   "search": {
-    "search_desc": "Tìm người hoặc hashtag",
+    "search_desc": "Tìm người/trang hoặc hashtag",
     "search_empty": "Không tìm thấy gì với cụm từ này"
   },
   "settings": {
@@ -502,8 +521,8 @@
         "label": "Cài đặt thông báo đẩy",
         "policy": {
           "all": "Từ bất kỳ ai",
-          "followed": "Từ người bạn theo dõi",
-          "follower": "Từ người theo dõi bạn",
+          "followed": "Từ người/trang bạn theo dõi",
+          "follower": "Từ người/trang mà theo dõi bạn",
           "none": "Không ai cả",
           "title": "Bạn muốn nhận thông báo từ ai?"
         },
@@ -551,10 +570,15 @@
       "hide_account_hover_card": "Ẩn popup hồ sơ",
       "hide_alt_indi_on_posts": "Ẩn văn bản thay thế trên tút",
       "hide_boost_count": "Ẩn số lượt đăng lại",
+      "hide_boosts_in_timeline": "Ẩn tút đăng lại",
+      "hide_boosts_in_timeline_description": "Ẩn tút đăng lại/trích dẫn khỏi bảng tin của bạn.",
       "hide_favorite_count": "Ẩn số lượt thích",
       "hide_follower_count": "Ẩn số người theo dõi/đang theo dõi",
       "hide_gif_indi_on_posts": "Ẩn biểu tượng GIF trên tút",
       "hide_news": "Ẩn tin tức",
+      "hide_quote_count": "Ẩn số trích dẫn",
+      "hide_replies_in_timeline": "Ẩn tút trả lời",
+      "hide_replies_in_timeline_description": "Ẩn tút trả lời khỏi bảng tin của bạn. Vẫn hiện tút trả lời của bạn.",
       "hide_reply_count": "Ẩn số trả lời",
       "hide_tag_hover_card": "Ẩn xem trước hashtag",
       "hide_translation": "Ẩn chức năng dịch",
@@ -571,7 +595,7 @@
       "virtual_scroll_description": "Dùng một danh sách ảo trong các bảng tin để có thể kết xuất số lượng mục lớn hiệu quả.",
       "wellbeing": "Chống nghiện",
       "zen_mode": "Tập Trung",
-      "zen_mode_description": "Ẩn thanh bên và một số thành phần trên bảng tin."
+      "zen_mode_description": "Ẩn thanh bên và nút tương tác trên tút."
     },
     "profile": {
       "appearance": {
@@ -617,12 +641,15 @@
     "publish_failed": "Đăng thất bại",
     "publishing": "Đăng",
     "save_failed": "Lưu thất bại",
+    "schedule_failed": "Lên lịch đăng thất bại",
+    "schedule_time_invalid": "Thời gian đăng phải cách thời điểm hiện tại ít nhất 5 phút. Đặt thành {0} hoặc xa hơn.",
+    "scheduling": "Đang lên lịch đăng",
     "upload_failed": "Tải lên thất bại",
     "uploading": "Đang tải lên..."
   },
   "status": {
     "account": {
-      "suspended_message": "Người này đã bị vô hiệu hóa.",
+      "suspended_message": "Người/trang này đã bị vô hiệu hóa.",
       "suspended_show": "Vẫn xem nội dung chứ?"
     },
     "boosted_by": "Đăng lại bởi",
@@ -645,6 +672,7 @@
       "finished": "kết thúc {0}",
       "update": "Làm mới"
     },
+    "quoted_by": "Trích dẫn bởi",
     "replying_to": "Trả lời đến {0}",
     "show_full_thread": "Chuỗi tút liên quan",
     "someone": "ai đó",
@@ -659,7 +687,7 @@
     "edited": "sửa {0}"
   },
   "tab": {
-    "accounts": "Người",
+    "accounts": "Người/trang",
     "for_you": "Cho bạn",
     "hashtags": "Hashtag",
     "list": "Danh sách",
@@ -676,6 +704,7 @@
     "notifications_mention": "Lượt nhắc",
     "notifications_more_tooltip": "Lọc theo loại thông báo",
     "notifications_poll": "Bình chọn",
+    "notifications_quote": "Trích dẫn",
     "notifications_reblog": "Đăng lại",
     "notifications_status": "Tút mới",
     "notifications_update": "Sửa tút",
@@ -736,6 +765,7 @@
     "add_thread_item": "Thêm tút vào chuỗi",
     "change_content_visibility": "Chọn kiểu tút",
     "change_language": "Đổi ngôn ngữ",
+    "change_quote_approval_policy": "Đổi chính sách duyệt trích dẫn",
     "emoji": "Emoji",
     "explore_links_intro": "Đây là những liên kết đang được chia sẻ nhiều trong mạng liên hợp của máy chủ này.",
     "explore_posts_intro": "Đây là những tút đang phổ biến trong mạng liên hợp của máy chủ này.",
@@ -744,6 +774,8 @@
     "pick_an_icon": "Chọn biểu tượng",
     "publish_failed": "Đóng các thông báo không thành công để đăng lại tút",
     "remove_thread_item": "Xóa tút khỏi chuỗi",
+    "schedule_failed": "Đóng các thông báo lỗi ở đầu trình soạn thảo để lên lịch lại tút.",
+    "schedule_post": "Lên lịch đăng",
     "start_thread": "Tạo chuỗi tút",
     "toggle_bold": "In đậm",
     "toggle_code_block": "Đoạn mã",
@@ -752,7 +784,7 @@
   "user": {
     "add_existing": "Thêm một tài khoản khác",
     "server_address_label": "Địa chỉ máy chủ Mastodon",
-    "sign_in_desc": "Đăng nhập để theo dõi người dùng hoặc hashtag, thích, chia sẻ và trả lời tút hoặc tương tác từ tài khoản của bạn trên một máy chủ khác.",
+    "sign_in_desc": "Đăng nhập để theo dõi người/trang hoặc hashtag, thích, chia sẻ và trả lời tút hoặc tương tác từ tài khoản của bạn trên một máy chủ khác.",
     "sign_in_notice_title": "Đang xem {0} công khai",
     "sign_out_account": "Đăng xuất {0}",
     "single_instance_sign_in_desc": "Đăng nhập để theo dõi người dùng hoặc hashtag, thích, chia sẻ và trả lời tút",

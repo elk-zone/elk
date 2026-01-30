@@ -1,8 +1,8 @@
 import type { UserLogin } from '#shared/types'
 import type { Overwrite } from '#shared/types/utils'
-import type { MaybeRefOrGetter, RemovableRef } from '@vueuse/core'
+import type { RemovableRef } from '@vueuse/core'
 import type { mastodon } from 'masto'
-import type { EffectScope, Ref } from 'vue'
+import type { EffectScope, MaybeRefOrGetter, Ref } from 'vue'
 import type { ElkMasto } from './masto/masto'
 import type { PushNotificationPolicy, PushNotificationRequest } from '~/composables/push-notifications/types'
 import { withoutProtocol } from 'ufo'
@@ -65,7 +65,7 @@ export function useUsers() {
   return users
 }
 export function useSelfAccount(user: MaybeRefOrGetter<mastodon.v1.Account | undefined>) {
-  return computed(() => currentUser.value && resolveUnref(user)?.id === currentUser.value.account.id)
+  return computed(() => currentUser.value && toValue(user)?.id === currentUser.value.account.id)
 }
 
 export const characterLimit = computed(() => currentInstance.value?.configuration?.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)

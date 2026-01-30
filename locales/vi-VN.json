@@ -136,7 +136,7 @@
     "block_domain": {
       "cancel": "Hủy bỏ",
       "confirm": "Chặn",
-       "description": "Bạn có chắc muốn chặn {0}? Tất cả người/trang trên máy chủ này sẽ bị chặn và người/trang theo dõi bạn cũng sẽ bị xóa vĩnh viễn.",
+      "description": "Bạn có chắc muốn chặn {0}? Tất cả người/trang trên máy chủ này sẽ bị chặn và người/trang theo dõi bạn cũng sẽ bị xóa vĩnh viễn.",
       "title": "Chặn máy chủ",
       "type_to_confirm": "Nhập {0} để xác nhận"
     },

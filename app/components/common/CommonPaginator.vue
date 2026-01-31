@@ -45,7 +45,15 @@ defineSlots<{
 const { t } = useI18n()
 const nuxtApp = useNuxtApp()
 
-const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, toRef(() => stream), eventType, preprocess)
+const {
+  items,
+  prevItems,
+  update,
+  state,
+  endAnchor,
+  error,
+  canLoadMore,
+} = usePaginator(paginator, toRef(() => stream), eventType, preprocess)
 
 nuxtApp.hook('elk-logo:click', () => {
   update()
@@ -117,5 +125,15 @@ defineExpose({ createEntry, removeEntry, updateEntry })
     <div v-else-if="state === 'error'" p5 text-secondary>
       {{ t('common.error') }}: {{ error }}
     </div>
+    <button
+      v-if="state !== 'loading' && state !== 'done'"
+      flex="~ gap-1 center" w-full my-6 py-6
+      btn-text rounded-lg bg="base"
+      filter-saturate-0 hover:filter-saturate-100
+      @click="canLoadMore = true"
+    >
+      <div i-ri:arrow-down-line />
+      {{ $t('timeline.load_more') }}
+    </button>
   </div>
 </template>

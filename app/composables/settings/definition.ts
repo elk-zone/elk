@@ -32,10 +32,10 @@ export interface PreferencesSettings {
   enablePinchToZoom: boolean
   useStarFavoriteIcon: boolean
   zenMode: boolean
+  showEmbeddedMediaPlayer: boolean
   experimentalVirtualScroller: boolean
   experimentalGitHubCards: boolean
   experimentalUserPicker: boolean
-  experimentalEmbeddedMedia: boolean
 }
 
 export interface UserSettings {
@@ -92,10 +92,10 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   enablePinchToZoom: false,
   useStarFavoriteIcon: false,
   zenMode: false,
+  showEmbeddedMediaPlayer: true,
   experimentalVirtualScroller: true,
   experimentalGitHubCards: true,
   experimentalUserPicker: true,
-  experimentalEmbeddedMedia: false,
 }
 
 export function getDefaultUserSettings(locales: string[]): UserSettings {

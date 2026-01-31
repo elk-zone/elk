@@ -10,9 +10,9 @@
     "authorize": "Yêu cầu cấp quyền",
     "authorized": "Bạn cần cấp quyền yêu cầu",
     "avatar_description": "Ảnh đại diện {0}",
-    "blocked_by": "Bạn bị người/trang này chặn.",
+    "blocked_by": "Bạn bị trạm này chặn.",
     "blocked_domains": "Máy chủ đã chặn",
-    "blocked_users": "Người/trang đã chặn",
+    "blocked_users": "Trạm đã chặn",
     "blocking": "Đã chặn",
     "bot": "BOT",
     "copy_account_name": "Sao chép tên tài khoản",
@@ -29,8 +29,8 @@
     "joined": "Đã tham gia",
     "lock": "Riêng tư",
     "moved_title": "đã chuyển sang máy chủ khác",
-    "muted_users": "Người/trang đã ẩn",
-    "muting": "Đã ẩn",
+    "muted_users": "Trạm đã phớt lờ",
+    "muting": "Đã phớt lờ",
     "mutuals": "Theo dõi nhau",
     "notifications_on_post_disable": "Ngừng thông báo khi {username} đăng tút mới",
     "notifications_on_post_enable": "Thông báo khi {username} đăng tút mới",
@@ -46,9 +46,9 @@
     "requested": "{0} yêu cầu theo dõi bạn",
     "unblock": "Bỏ chặn",
     "unfollow": "Bỏ theo dõi",
-    "unmute": "Bỏ ẩn",
-    "view_other_followers": "Người/trang theo dõi từ các máy chủ khác có thể không hiển thị đủ.",
-    "view_other_following": "Người/trang mà bạn theo dõi từ các máy chủ khác có thể không hiển thị đủ.",
+    "unmute": "Bỏ phớt lờ",
+    "view_other_followers": "Người theo dõi có thể hiển thị không đầy đủ.",
+    "view_other_following": "Người mà trạm đang theo dõi có thể hiển thị không đầy đủ.",
     "withdraw_follow_request": "Rút lại yêu cầu theo dõi"
   },
   "action": {
@@ -131,12 +131,12 @@
       "cancel": "Hủy bỏ",
       "confirm": "Chặn",
       "description": "Bạn có chắc muốn chặn {0}?",
-      "title": "Chặn người/trang"
+      "title": "Chặn trạm"
     },
     "block_domain": {
       "cancel": "Hủy bỏ",
       "confirm": "Chặn",
-      "description": "Bạn có chắc muốn chặn {0}? Tất cả người/trang trên máy chủ này sẽ bị chặn và người/trang theo dõi bạn cũng sẽ bị xóa vĩnh viễn.",
+      "description": "Bạn có chắc muốn chặn {0}? Tất cả trạm trên máy chủ này sẽ bị chặn và người theo dõi bạn cũng sẽ bị xóa vĩnh viễn.",
       "title": "Chặn máy chủ",
       "type_to_confirm": "Nhập {0} để xác nhận"
     },
@@ -158,14 +158,14 @@
     },
     "mute_account": {
       "cancel": "Hủy bỏ",
-      "confirm": "Ẩn",
+      "confirm": "Phớt lờ",
       "days": "ngày|ngày|ngày",
-      "description": "Bạn có chắc muốn ẩn {0}?",
+      "description": "Bạn có chắc muốn phớt lờ {0}?",
       "hours": "giờ|giờ|giờ",
       "minute": "phút|phút|phút",
-      "notifications": "Ẩn thông báo",
-      "specify_duration": "Ẩn có thời hạn",
-      "title": "Ẩn người/trang"
+      "notifications": "Phớt lờ thông báo",
+      "specify_duration": "Phớt có thời hạn",
+      "title": "Phớt lờ trạm"
     },
     "show_reblogs": {
       "cancel": "Hủy bỏ",
@@ -232,11 +232,11 @@
     "error_prefix": "Lỗi: ",
     "list_title_placeholder": "Tên danh sách",
     "manage": "Quản lý danh sách",
-    "modify_account": "Sửa danh sách có người/trang này",
-    "remove_account": "Xóa người/trang ra khỏi danh sách",
+    "modify_account": "Sửa danh sách có trạm này",
+    "remove_account": "Xóa trạm ra khỏi danh sách",
     "save": "Lưu thay đổi",
-    "search_following_desc": "Tìm trong những người/trang bạn theo dõi",
-    "search_following_placeholder": "Tìm trong những người/trang mà bạn theo dõi"
+    "search_following_desc": "Tìm trong những trạm bạn theo dõi",
+    "search_following_placeholder": "Tìm trong những trạm mà bạn theo dõi"
   },
   "magic_keys": {
     "dialog_header": "Phím tắt",
@@ -286,15 +286,15 @@
     "edit": "Sửa",
     "hide_reblogs": "Ẩn đăng lại từ {0}",
     "mention_account": "Nhắc đến {0}",
-    "mute_account": "Ẩn {0}",
-    "mute_conversation": "Ẩn thông báo",
+    "mute_account": "Phớt lờ {0}",
+    "mute_conversation": "Phớt lờ thông báo",
     "open_in_original_site": "Mở liên kết gốc",
     "pin_on_profile": "Ghim lên đầu",
     "private_mention_account": "Nhắn riêng {0}",
     "remove_personal_note": "Xóa ghi chú về {0}",
     "report_account": "Báo cáo {0}",
     "share_account": "Chia sẻ {0}",
-    "share_post": "Chia sẻ tút",
+    "share_post": "Chia sẻ liên kết hiện tại",
     "show_favourited_and_boosted_by": "Xem lượt thích & đăng lại",
     "show_reacted_by": "Xem tương tác",
     "show_reblogs": "Xem đăng lại từ {0}",
@@ -307,8 +307,8 @@
     "unblock_account": "Bỏ chặn {0}",
     "unblock_domain": "Bỏ chặn máy chủ {0}",
     "unfollow_account": "Bỏ theo dõi {0}",
-    "unmute_account": "Bỏ ẩn {0}",
-    "unmute_conversation": "Bỏ ẩn tút",
+    "unmute_account": "Bỏ phớt lờ {0}",
+    "unmute_conversation": "Bỏ phớt lờ tút",
     "unpin_on_profile": "Bỏ ghim khỏi hồ sơ"
   },
   "modals": {
@@ -317,7 +317,7 @@
   "nav": {
     "back": "Quay về",
     "blocked_domains": "Máy chủ đã chặn",
-    "blocked_users": "Người/trang đã chặn",
+    "blocked_users": "Trạm đã chặn",
     "bookmarks": "Đã lưu",
     "built_at": "Bản dựng {0}",
     "compose": "Soạn tút",
@@ -332,7 +332,7 @@
     "lists": "Danh sách",
     "local": "Máy chủ",
     "more_menu": "Thêm",
-    "muted_users": "Người/trang đã ẩn",
+    "muted_users": "Trạm đã phớt lờ",
     "notifications": "Thông báo",
     "privacy": "Bảo mật",
     "profile": "Hồ sơ",
@@ -421,13 +421,13 @@
   },
   "report": {
     "additional_comments": "Thêm lưu ý",
-    "another_server": "Người/trang mà bạn báo cáo thuộc ở máy chủ khác",
+    "another_server": "Trạm mà bạn báo cáo thuộc ở máy chủ khác",
     "anything_else": "Có điều gì mà chúng tôi cần biết không?",
-    "block_desc": "Bạn sẽ không còn thấy tút của người/trang này. Họ sẽ không thể thấy tút của bạn hoặc theo dõi bạn. Họ biết là bạn đã chặn họ.",
+    "block_desc": "Bạn sẽ không còn thấy tút của trạm này. Họ sẽ không thể thấy tút của bạn hoặc theo dõi bạn. Họ biết là bạn đã chặn họ.",
     "dontlike": "Tôi không thích",
     "dontlike_desc": "Đây không phải thứ mà bạn muốn thấy",
     "forward": "Gửi luôn báo cáo đến {0}",
-    "forward_question": "Bạn có chắc muốn gửi luôn báo cáo đến máy chủ của người/trang này?",
+    "forward_question": "Bạn có chắc muốn gửi luôn báo cáo đến máy chủ của trạm này?",
     "further_actions": {
       "limit": {
         "description": "Đây là cách kiểm soát những thứ mà bạn thấy:",
@@ -439,7 +439,7 @@
       }
     },
     "limiting": "Hạn chế {0}",
-    "mute_desc": "Bạn sẽ không còn thấy tút của người/trang này. Họ vẫn có thể thấy tút của bạn hoặc theo dõi bạn. Họ không biết là bạn đã chặn họ.",
+    "mute_desc": "Bạn sẽ không còn thấy tút của trạm này. Họ vẫn có thể thấy tút của bạn hoặc theo dõi bạn. Họ không biết là bạn đã chặn họ.",
     "other": "Lý do khác",
     "other_desc": "Vấn đề không thuộc những mục trên",
     "reporting": "Báo cáo {0}",
@@ -450,13 +450,13 @@
     "spam": "Đây là spam",
     "spam_desc": "Liên kết độc hại, giả tương tác, hoặc trả lời lặp đi lặp lại",
     "submit": "Gửi báo cáo",
-    "unfollow_desc": "Bạn sẽ không còn thấy tút của người/trang này trên bảng tin. Tút của họ vẫn có thể xuất hiện ở những nơi khác.",
+    "unfollow_desc": "Bạn sẽ không còn thấy tút của trạm này trên bảng tin. Tút của họ vẫn có thể xuất hiện ở những nơi khác.",
     "violation": "Vi phạm nội quy máy chủ",
-    "whats_wrong_account": "Người/trang này có vấn đề gì?",
+    "whats_wrong_account": "Trạm này có vấn đề gì?",
     "whats_wrong_post": "Tút này có vấn đề gì?"
   },
   "search": {
-    "search_desc": "Tìm người/trang hoặc hashtag",
+    "search_desc": "Tìm trạm hoặc hashtag",
     "search_empty": "Không tìm thấy gì với cụm từ này"
   },
   "settings": {
@@ -520,9 +520,9 @@
         "instructions": "Nhớ @:settings.notifications.push_notifications.save_settings sau khi chọn xong!",
         "label": "Cài đặt thông báo đẩy",
         "policy": {
-          "all": "Từ bất kỳ ai",
-          "followed": "Từ người/trang bạn theo dõi",
-          "follower": "Từ người/trang mà theo dõi bạn",
+          "all": "Bất kỳ ai",
+          "followed": "Trạm mà bạn theo dõi",
+          "follower": "Trạm theo dõi bạn",
           "none": "Không ai cả",
           "title": "Bạn muốn nhận thông báo từ ai?"
         },
@@ -560,7 +560,7 @@
     "preferences": {
       "embedded_media": "Trình Phát Media Dạng Nhúng",
       "embedded_media_description": "Khi chia sẻ một liên kết media, hiển thị trình phát dạng nhúng thay vì ảnh mặc định.",
-      "enable_autoplay": "Tự động phát video/GIF",
+      "enable_autoplay": "Phát video/GIF tự động",
       "enable_data_saving": "Tiết kiệm dữ liệu mạng",
       "enable_data_saving_description": "Không cho tự động tải file đính kèm.",
       "enable_pinch_to_zoom": "Chụm 2 ngón tay để thu phóng",
@@ -587,7 +587,7 @@
       "label": "Thiết lập",
       "optimize_for_low_performance_device": "Tối ưu cho thiết bị yếu",
       "title": "Tính năng thử nghiệm",
-      "unmute_videos": "Mặc định bật âm thanh video",
+      "unmute_videos": "Bật âm thanh video tự động",
       "use_star_favorite_icon": "Dùng biểu tượng thích ngôi sao",
       "user_picker": "Chuyển Đổi Tài Khoản",
       "user_picker_description": "Hiển thị danh sách tài khoản đã đăng nhập ở góc dưới bên trái để nhanh chóng chuyển đổi qua lại.",
@@ -601,7 +601,7 @@
       "appearance": {
         "bio": "Giới thiệu",
         "description": "Sửa ảnh đại diện, tên, giới thiệu, etc.",
-        "display_name": "Biệt danh",
+        "display_name": "Tên gọi",
         "label": "Diện mạo",
         "profile_metadata": "Metadata",
         "profile_metadata_desc": "Bạn có thể thêm {0} mục hiển thị như bảng trên hồ sơ",
@@ -649,7 +649,7 @@
   },
   "status": {
     "account": {
-      "suspended_message": "Người/trang này đã bị vô hiệu hóa.",
+      "suspended_message": "Trạm này đã bị vô hiệu hóa.",
       "suspended_show": "Vẫn xem nội dung chứ?"
     },
     "boosted_by": "Đăng lại bởi",
@@ -687,7 +687,7 @@
     "edited": "sửa {0}"
   },
   "tab": {
-    "accounts": "Người/trang",
+    "accounts": "Trạm",
     "for_you": "Cho bạn",
     "hashtags": "Hashtag",
     "list": "Danh sách",
@@ -784,7 +784,7 @@
   "user": {
     "add_existing": "Thêm một tài khoản khác",
     "server_address_label": "Địa chỉ máy chủ Mastodon",
-    "sign_in_desc": "Đăng nhập để theo dõi người/trang hoặc hashtag, thích, chia sẻ và trả lời tút hoặc tương tác từ tài khoản của bạn trên một máy chủ khác.",
+    "sign_in_desc": "Đăng nhập để theo dõi trạm hoặc hashtag, thích, chia sẻ và trả lời tút hoặc tương tác từ tài khoản của bạn trên một máy chủ khác.",
     "sign_in_notice_title": "Đang xem {0} công khai",
     "sign_out_account": "Đăng xuất {0}",
     "single_instance_sign_in_desc": "Đăng nhập để theo dõi người dùng hoặc hashtag, thích, chia sẻ và trả lời tút",

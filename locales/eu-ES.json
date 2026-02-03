@@ -136,8 +136,9 @@
     "block_domain": {
       "cancel": "Utzi",
       "confirm": "Blokeatu",
-      "description": "Ziur {0} domeinua blokeatu nahi duzula?",
-      "title": "Blokeatu domeinua"
+      "description": "Ziur {0} domeinua blokeatu nahi duzula? Domeinuko erabiltzaile guztiak blokeatuko ditu, baita jarraitzen dituzun / jarraitzen dizutenak ere.",
+      "title": "Blokeatu domeinua",
+      "type_to_confirm": "Idatzi {0} baieztatzeko"
     },
     "common": {
       "cancel": "Ez",

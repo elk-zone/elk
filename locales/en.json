@@ -558,6 +558,8 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
+      "disable_timeline_autoloading": "Disable timeline autoloading",
+      "disable_timeline_autoloading_description": "Prevent autoloading new posts in timeline views and show the \"Load more posts\" button.",
       "embedded_media": "Embedded Media Player",
       "embedded_media_description": "Display an embedded player instead of the normal preview card when expanding shared media streaming links.",
       "enable_autoplay": "Enable Autoplay",
@@ -749,6 +751,7 @@
     "year_past": "0 years ago|last year|{n} years ago"
   },
   "timeline": {
+    "load_more": "Load more posts",
     "no_posts": "No posts here!",
     "show_new_items": "Show {v} new items|Show {v} new item|Show {v} new items",
     "view_older_posts": "Older posts from other instances may not be displayed."

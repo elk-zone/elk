@@ -126,7 +126,7 @@ defineExpose({ createEntry, removeEntry, updateEntry })
       {{ t('common.error') }}: {{ error }}
     </div>
     <button
-      v-if="state !== 'loading' && state !== 'done'"
+      v-if="state !== 'loading' && state !== 'done' && !canLoadMore"
       flex="~ gap-1 center" w-full my-6 py-6
       btn-text rounded-lg bg="base"
       filter-saturate-0 hover:filter-saturate-100

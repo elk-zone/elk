@@ -100,7 +100,8 @@ export function usePaginator<T, P, U = T>(
       error.value = e
       state.value = 'error'
     }
-    canLoadMore.value = false
+    if (getPreferences(useUserSettings().value, 'disableTimelineAutoloading'))
+      canLoadMore.value = false
 
     await nextTick()
     bound.update()

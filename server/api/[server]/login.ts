@@ -2,6 +2,12 @@ import { stringifyQuery } from 'ufo'
 
 export default defineEventHandler(async (event) => {
   let { server } = getRouterParams(event)
+  if (!server) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Missing server parameter.',
+    })
+  }
   const { origin, force_login, lang } = await readBody(event)
   server = server.toLocaleLowerCase().trim()
   const app = await getApp(origin, server)

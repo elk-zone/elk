@@ -567,7 +567,6 @@
       "enable_data_saving_description": "Save data by preventing attachments from automatically loading.",
       "enable_pinch_to_zoom": "Enable pinch to zoom",
       "expand_sensitive_media": "Expand sensitive media by default",
-      "expand_sensitive_media_description": "Automatically show media marked as sensitive without requiring a click. Acts as a local fallback when the server does not support media display preferences.",
       "expand_sensitive_media_server": "Enabled by your server settings. To change this, update your media display preference on your instance.",
       "github_cards": "GitHub Cards",
       "github_cards_description": "When a GitHub link is posted, an accessible HTML card using the social graph meta is displayed instead of the social image.",

@@ -51,8 +51,8 @@ const serverExpandMedia = computed(() => currentUser.value ? getExpandMediaByDef
         @click="togglePreferences('expandSensitiveMedia')"
       >
         {{ $t('settings.preferences.expand_sensitive_media') }}
-        <template #description>
-          {{ serverExpandMedia ? $t('settings.preferences.expand_sensitive_media_server') : $t('settings.preferences.expand_sensitive_media_description') }}
+        <template v-if="serverExpandMedia" #description>
+          {{ $t('settings.preferences.expand_sensitive_media_server') }}
         </template>
       </SettingsToggleItem>
       <SettingsToggleItem

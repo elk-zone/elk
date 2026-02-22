@@ -546,7 +546,6 @@
       "enable_data_saving_description": "Economise les données en évitant le chargement automatique des médias.",
       "enable_pinch_to_zoom": "Activer le zoom par pincement",
       "expand_sensitive_media": "Afficher les médias sensibles par défaut",
-      "expand_sensitive_media_description": "Affiche automatiquement les médias marqués comme sensibles sans nécessiter un clic. Utilisé comme option locale lorsque le serveur ne supporte pas les préférences d'affichage des médias.",
       "expand_sensitive_media_server": "Activé par les paramètres de votre serveur. Pour modifier cela, changez vos préférences d'affichage des médias sur votre instance.",
       "github_cards": "Cartes GitHub",
       "github_cards_description": "Lorsqu'un lien Github est publié, une carte HTML accessible utilisant la méta du graphe social s'affiche à la place de l'image sociale.",

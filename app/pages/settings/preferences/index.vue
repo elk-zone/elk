@@ -7,6 +7,7 @@ useHydratedHead({
 
 const userSettings = useUserSettings()
 const serverExpandMedia = computed(() => currentUser.value ? getExpandMediaByDefault(currentUser.value.account) : false)
+const serverExpandSpoilers = computed(() => currentUser.value ? getExpandSpoilersByDefault(currentUser.value.account) : false)
 </script>
 
 <template>
@@ -53,6 +54,16 @@ const serverExpandMedia = computed(() => currentUser.value ? getExpandMediaByDef
         {{ $t('settings.preferences.expand_sensitive_media') }}
         <template v-if="serverExpandMedia" #description>
           {{ $t('settings.preferences.expand_sensitive_media_server') }}
+        </template>
+      </SettingsToggleItem>
+      <SettingsToggleItem
+        :checked="serverExpandSpoilers || getPreferences(userSettings, 'expandContentWarnings')"
+        :disabled="serverExpandSpoilers"
+        @click="togglePreferences('expandContentWarnings')"
+      >
+        {{ $t('settings.preferences.expand_content_warnings') }}
+        <template v-if="serverExpandSpoilers" #description>
+          {{ $t('settings.preferences.expand_content_warnings_server') }}
         </template>
       </SettingsToggleItem>
       <SettingsToggleItem

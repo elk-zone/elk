@@ -7,9 +7,11 @@ const { enabled, filter, sensitiveNonSpoiler } = defineProps<{
 }>()
 
 const clientExpandSensitive = usePreferences('expandSensitiveMedia')
+const clientExpandCW = usePreferences('expandContentWarnings')
 
 const expandSpoilers = computed(() => {
-  const expandCW = currentUser.value ? getExpandSpoilersByDefault(currentUser.value.account) : false
+  const serverExpandCW = currentUser.value ? getExpandSpoilersByDefault(currentUser.value.account) : false
+  const expandCW = serverExpandCW || clientExpandCW.value
   const serverExpandMedia = currentUser.value ? getExpandMediaByDefault(currentUser.value.account) : false
   const expandMedia = serverExpandMedia || clientExpandSensitive.value
 

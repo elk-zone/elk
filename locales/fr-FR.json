@@ -545,6 +545,8 @@
       "enable_data_saving": "Activer l'économie de données",
       "enable_data_saving_description": "Economise les données en évitant le chargement automatique des médias.",
       "enable_pinch_to_zoom": "Activer le zoom par pincement",
+      "expand_content_warnings": "Afficher les avertissements de contenu par défaut",
+      "expand_content_warnings_server": "Activé par les paramètres de votre serveur. Pour modifier cela, changez vos préférences d'avertissement de contenu sur votre instance.",
       "expand_sensitive_media": "Afficher les médias sensibles par défaut",
       "expand_sensitive_media_server": "Activé par les paramètres de votre serveur. Pour modifier cela, changez vos préférences d'affichage des médias sur votre instance.",
       "github_cards": "Cartes GitHub",

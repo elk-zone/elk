@@ -27,6 +27,7 @@ export interface PreferencesSettings {
   disableTimelineAutoloading: boolean
   grayscaleMode: boolean
   expandSensitiveMedia: boolean
+  expandContentWarnings: boolean
   enableAutoplay: boolean
   unmuteVideos: boolean
   optimizeForLowPerformanceDevice: boolean
@@ -89,6 +90,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   disableTimelineAutoloading: false,
   grayscaleMode: false,
   expandSensitiveMedia: false,
+  expandContentWarnings: false,
   enableAutoplay: false,
   unmuteVideos: false,
   optimizeForLowPerformanceDevice: false,

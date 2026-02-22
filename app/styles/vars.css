@@ -56,3 +56,11 @@
   --c-bg-btn-disabled: #2a2a2a;
   --c-text-btn-disabled: #919191;
 }
+
+.dark.oled {
+  --rgb-bg-base: 0, 0, 0;
+  --c-bg-active: #0a0a0a;
+  --c-border: #111;
+  --c-bg-card: #ffffff08;
+  --c-bg-code: #ffffff08;
+}

@@ -466,6 +466,7 @@
       "font_size": "Taille de police",
       "label": "Interface",
       "light_mode": "Mode lumineux",
+      "oled_mode": "Optimisé pour les écrans OLED",
       "system_mode": "Système",
       "theme_color": "Couleur du thème"
     },

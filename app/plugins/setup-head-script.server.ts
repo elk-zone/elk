@@ -28,6 +28,9 @@ export default defineNuxtPlugin(() => {
   if (settings.preferences.zenMode) {
     html.classList.add('zen')
   }
+  if (settings.preferences.oledMode) {
+    html.classList.add('oled')
+  }
   if (settings.themeColors) {
     Object.entries(settings.themeColors).map(i => html.style.setProperty(i[0], i[1]))
   }

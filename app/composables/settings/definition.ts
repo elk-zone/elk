@@ -35,6 +35,7 @@ export interface PreferencesSettings {
   enablePinchToZoom: boolean
   useStarFavoriteIcon: boolean
   zenMode: boolean
+  oledMode: boolean
   experimentalVirtualScroller: boolean
   experimentalGitHubCards: boolean
   experimentalUserPicker: boolean
@@ -98,6 +99,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   enablePinchToZoom: false,
   useStarFavoriteIcon: false,
   zenMode: false,
+  oledMode: false,
   experimentalVirtualScroller: true,
   experimentalGitHubCards: true,
   experimentalUserPicker: true,

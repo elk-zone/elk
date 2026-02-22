@@ -13,6 +13,9 @@ export default defineNuxtPlugin(() => {
     html.classList.toggle('zen', getPreferences(userSettings.value, 'zenMode'))
   })
   watchEffect(() => {
+    html.classList.toggle('oled', getPreferences(userSettings.value, 'oledMode'))
+  })
+  watchEffect(() => {
     Object.entries(userSettings.value.themeColors || {}).forEach(([k, v]) => html.style.setProperty(k, v))
   })
 })

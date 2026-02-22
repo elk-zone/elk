@@ -485,6 +485,7 @@
       "font_size": "Font Size",
       "label": "Interface",
       "light_mode": "Light",
+      "oled_mode": "Optimized for OLED displays",
       "system_mode": "System",
       "theme_color": "Theme Color"
     },

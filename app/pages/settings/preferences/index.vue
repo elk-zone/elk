@@ -6,6 +6,7 @@ useHydratedHead({
 })
 
 const userSettings = useUserSettings()
+const serverExpandMedia = computed(() => currentUser.value ? getExpandMediaByDefault(currentUser.value.account) : false)
 </script>
 
 <template>
@@ -43,6 +44,16 @@ const userSettings = useUserSettings()
         @click="togglePreferences('hideTagHoverCard')"
       >
         {{ $t('settings.preferences.hide_tag_hover_card') }}
+      </SettingsToggleItem>
+      <SettingsToggleItem
+        :checked="serverExpandMedia || getPreferences(userSettings, 'expandSensitiveMedia')"
+        :disabled="serverExpandMedia"
+        @click="togglePreferences('expandSensitiveMedia')"
+      >
+        {{ $t('settings.preferences.expand_sensitive_media') }}
+        <template #description>
+          {{ serverExpandMedia ? $t('settings.preferences.expand_sensitive_media_server') : $t('settings.preferences.expand_sensitive_media_description') }}
+        </template>
       </SettingsToggleItem>
       <SettingsToggleItem
         :checked="getPreferences(userSettings, 'enableAutoplay')"

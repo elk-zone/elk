@@ -34,7 +34,7 @@ const showOriginSite = computed(() =>
         :item="item"
         :active="active"
       >
-        <ScheduledStatusCard :item="item" />
+        <StatusScheduledCard :item="item" />
       </component>
     </template>
     <template v-if="context === 'account'" #done="{ items }">

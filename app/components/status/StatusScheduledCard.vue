@@ -5,7 +5,7 @@ const { item } = defineProps<{
   item: mastodon.v1.ScheduledStatus
 }>()
 
-defineEmits<{ (e: 'deleted'): void }>()
+const emit = defineEmits<{ (e: 'deleted', id: string): void }>()
 
 const scheduledAt = useFormattedDateTime(item.scheduledAt)
 const timeAgoOptions = useTimeAgoOptions(true)
@@ -26,6 +26,7 @@ async function handleDelete() {
 
   try {
     await useMastoClient().v1.scheduledStatuses.$select(item.id).remove()
+    emit('deleted', item.id)
   }
   catch (e) {
     console.error(e)

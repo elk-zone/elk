@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { CommonPaginator } from '#components'
 import type { mastodon } from 'masto'
 // @ts-expect-error missing types
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
@@ -15,6 +16,7 @@ const { account, buffer = 10, endMessage = true } = defineProps<{
 
 const { formatNumber } = useHumanReadableNumber()
 const virtualScroller = usePreferences('experimentalVirtualScroller')
+const paginatorRef = ref<InstanceType<CommonPaginator>>()
 
 const showOriginSite = computed(() =>
   account && account.id !== currentUser.value?.account.id && getServerName(account) !== currentServer.value,
@@ -22,7 +24,11 @@ const showOriginSite = computed(() =>
 </script>
 
 <template>
-  <CommonPaginator v-bind="{ paginator, stream, buffer, endMessage }" :virtual-scroller="virtualScroller">
+  <CommonPaginator
+    ref="paginatorRef"
+    v-bind="{ paginator, stream, buffer, endMessage }"
+    :virtual-scroller="virtualScroller"
+  >
     <template #updater="{ number, update }">
       <button id="elk_show_new_items" py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="update">
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
@@ -34,7 +40,10 @@ const showOriginSite = computed(() =>
         :item="item"
         :active="active"
       >
-        <StatusScheduledCard :item="item" />
+        <StatusScheduledCard
+          :item="item"
+          @deleted="paginatorRef?.removeEntry($event)"
+        />
       </component>
     </template>
     <template v-if="context === 'account'" #done="{ items }">

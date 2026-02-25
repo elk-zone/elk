@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import type { CommonPaginator } from '#components'
 import type { mastodon } from 'masto'
+import type { ComponentExposed } from 'vue-component-type-helpers'
 // @ts-expect-error missing types
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
+
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
 const { account, buffer = 10, endMessage = true } = defineProps<{
@@ -16,7 +18,9 @@ const { account, buffer = 10, endMessage = true } = defineProps<{
 
 const { formatNumber } = useHumanReadableNumber()
 const virtualScroller = usePreferences('experimentalVirtualScroller')
-const paginatorRef = ref<InstanceType<CommonPaginator>>()
+
+type PaginatorRef = ComponentExposed<typeof CommonPaginator>
+const paginatorRef = ref<PaginatorRef>()
 
 const showOriginSite = computed(() =>
   account && account.id !== currentUser.value?.account.id && getServerName(account) !== currentServer.value,

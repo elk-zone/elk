@@ -5,7 +5,7 @@
     "locale_changing": "Alterando idioma, por favor aguarde"
   },
   "account": {
-    "blocked_by": "Você foi bloqueado por esse usuário.",
+    "blocked_by": "Você foi bloqueado por este usuário.",
     "blocked_users": "Usuários bloqueados",
     "blocking": "Bloqueados",
     "follow_requested": "Solicitado",
@@ -14,7 +14,7 @@
     "follows_you": "Segue você",
     "moved_title": "indicou que a sua nova conta agora é:",
     "muted_users": "Usuários silenciados",
-    "mutuals": "Mutuals",
+    "mutuals": "Seguidores em comum",
     "view_other_following": "As pessoas que você segue de outras instâncias podem não ser exibidas."
   },
   "action": {
@@ -119,7 +119,7 @@
     "hide_reblogs": "Esconder boosts de {0}",
     "mute_conversation": "Silenciar esse post",
     "open_in_original_site": "Abrir no site original",
-    "remove_personal_note": "Removar nota pessoal de {0}",
+    "remove_personal_note": "Remover nota pessoal de {0}",
     "share_post": "Compartilhar esse post",
     "show_favourited_and_boosted_by": "Mostrar quem favoritou e compartilhou",
     "show_reblogs": "Mostrar compartilhamentos de {0}",
@@ -288,7 +288,7 @@
     "title": "Compartilhar com Elk"
   },
   "state": {
-    "attachments_exceed_server_limit": "O número de anexo excedeu o limite permitido por post.",
+    "attachments_exceed_server_limit": "O número de anexos excedeu o limite permitido por post.",
     "attachments_limit_error": "Limite por post excedido",
     "upload_failed": "Envio falhou",
     "uploading": "Enviando..."
@@ -320,8 +320,8 @@
     "posts_with_replies": "Posts & Respostas"
   },
   "time_ago_options": {
-    "month_future": "em 0 meses|next mês|em {n} meses",
-    "month_past": "0 meses atrás|last mês|{n} meses atrás",
+    "month_future": "em 0 meses|no próximo mês|em {n} meses",
+    "month_past": "0 meses atrás|no mês passado|{n} meses atrás",
     "second_future": "agora mesmo|em {n} segundo|em {n} segundos",
     "short_week_future": "em {n}sem",
     "short_week_past": "{n}sem",
@@ -361,7 +361,7 @@
     "direct": "Apenas menções",
     "direct_desc": "Visível apenas para pessoas mencionadas",
     "private_desc": "Visível apenas para seus seguidores",
-    "public_desc": "Vísivel para todas as pessoas",
+    "public_desc": "Visível para todas as pessoas",
     "unlisted": "Não listado",
     "unlisted_desc": "Visível para todas as pessoas, mas não é exibido em buscas ou recomendações"
   }

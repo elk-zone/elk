@@ -157,6 +157,7 @@
     "simple-git-hooks": "^2.13.1",
     "typescript": "^5.4.4",
     "vitest": "4.0.18",
+    "vue-component-type-helpers": "^3.2.5",
     "vue-tsc": "^2.1.6"
   },
   "resolutions": {

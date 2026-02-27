@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import type { CommonPaginator } from '#components'
 import type { mastodon } from 'masto'
+import type { ComponentExposed } from 'vue-component-type-helpers'
 // @ts-expect-error missing types
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
+
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
 const { account, buffer = 10, endMessage = true } = defineProps<{
@@ -9,7 +12,6 @@ const { account, buffer = 10, endMessage = true } = defineProps<{
   stream?: mastodon.streaming.Subscription
   context?: mastodon.v2.FilterContext
   account?: mastodon.v1.Account
-  preprocess?: (items: (mastodon.v1.ScheduledStatus | mastodon.v1.Status)[]) => mastodon.v1.Status[]
   buffer?: number
   endMessage?: boolean | string
 }>()
@@ -17,31 +19,38 @@ const { account, buffer = 10, endMessage = true } = defineProps<{
 const { formatNumber } = useHumanReadableNumber()
 const virtualScroller = usePreferences('experimentalVirtualScroller')
 
+type PaginatorRef = ComponentExposed<typeof CommonPaginator>
+const paginatorRef = ref<PaginatorRef>()
+
 const showOriginSite = computed(() =>
   account && account.id !== currentUser.value?.account.id && getServerName(account) !== currentServer.value,
 )
 </script>
 
 <template>
-  <CommonPaginator v-bind="{ paginator, stream, preprocess, buffer, endMessage }" :virtual-scroller="virtualScroller">
+  <CommonPaginator
+    ref="paginatorRef"
+    v-bind="{ paginator, stream, buffer, endMessage }"
+    :virtual-scroller="virtualScroller"
+  >
     <template #updater="{ number, update }">
       <button id="elk_show_new_items" py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="update">
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
       </button>
     </template>
-    <template #default="{ item, older, newer, active }">
+    <template #default="{ item, active }">
       <component
         :is="virtualScroller ? DynamicScrollerItem : 'article'"
         :item="item"
         :active="active"
       >
-        <StatusCard
-          :status="item" :context="context" :older="older" :newer="newer" :account="account"
-          :actions="false" :disable-link="true"
+        <StatusScheduledCard
+          :item="item"
+          @deleted="paginatorRef?.removeEntry($event)"
         />
       </component>
     </template>
-    <template v-if="context === 'account' " #done="{ items }">
+    <template v-if="context === 'account'" #done="{ items }">
       <div
         v-if="showOriginSite || items.length === 0"
         p5 text-secondary text-center flex flex-col items-center gap1

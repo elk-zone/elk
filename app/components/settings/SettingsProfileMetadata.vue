@@ -13,7 +13,7 @@ const fieldIcons = computed(() =>
 
 const fieldCount = computed(() => {
   // find last non-empty field
-  const idx = [...form.value.fieldsAttributes].reverse().findIndex(f => f.name || f.value)
+  const idx = form.value.fieldsAttributes.toReversed().findIndex(f => f.name || f.value)
   if (idx === -1)
     return 1
   return Math.min(

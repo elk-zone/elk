@@ -86,7 +86,7 @@ export async function getDraftFromStatus(status: mastodon.v1.Status): Promise<Dr
         ...info,
         poll: status.poll
           ? {
-              expiresIn: Math.abs(new Date().getTime() - new Date(status.poll.expiresAt!).getTime()) / 1000,
+              expiresIn: Math.abs(Date.now() - new Date(status.poll.expiresAt!).getTime()) / 1000,
               options: [...status.poll.options.map(({ title }) => title), ''],
               multiple: status.poll.multiple,
               hideTotals: status.poll.options[0].votesCount === null,
@@ -104,7 +104,7 @@ function getAccountsToMention(status: mastodon.v1.Status) {
     .filter(mention => mention.id !== userId)
     .map(mention => mention.acct)
     .forEach(i => accountsToMention.add(i))
-  return Array.from(accountsToMention)
+  return [...accountsToMention]
 }
 
 export function getReplyDraft(status: mastodon.v1.Status) {

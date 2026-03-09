@@ -279,7 +279,7 @@ async function handlePaste(evt: ClipboardEvent) {
     return
 
   evt.preventDefault()
-  await uploadAttachments(Array.from(files))
+  await uploadAttachments([...files])
 }
 
 function insertEmoji(name: string) {

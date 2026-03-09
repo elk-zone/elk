@@ -23,7 +23,7 @@ export function useThreadComposer(draftKey: DraftKey, initial?: () => DraftItem)
       return
     }
 
-    const lastItem = draftItems.value[draftItems.value.length - 1]
+    const lastItem = draftItems.value.at(-1)
     draftItems.value.push(getDefaultDraftItem({
       language: lastItem.params.language,
       sensitive: lastItem.params.sensitive,

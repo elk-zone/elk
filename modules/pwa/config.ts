@@ -36,7 +36,7 @@ export function configurePWAOptions(options: Partial<VitePWAOptions>, nuxt: Nuxt
   let buildAssetsDir = nuxt.options.app.buildAssetsDir ?? '_nuxt/'
   if (buildAssetsDir[0] === '/')
     buildAssetsDir = buildAssetsDir.slice(1)
-  if (buildAssetsDir[buildAssetsDir.length - 1] !== '/')
+  if (buildAssetsDir.at(-1) !== '/')
     buildAssetsDir += '/'
 
   // Vite 5 support: allow override dontCacheBustURLsMatching
@@ -70,7 +70,7 @@ function createManifestTransform(base: string, appManifestFolder?: string): impo
       }
       else {
         const parts = url.split('/')
-        parts[parts.length - 1] = parts[parts.length - 1].replace(/\.html$/, '')
+        parts[parts.length - 1] = parts.at(-1).replace(/\.html$/, '')
         e.url = parts.length > 1 ? parts.slice(0, parts.length - 1).join('/') : parts[0]
       }
     })

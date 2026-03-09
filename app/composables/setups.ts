@@ -24,7 +24,7 @@ export function setupPageHeader() {
     titleTemplate: (title?: string) => {
       let titleTemplate = title ?? ''
 
-      if (titleTemplate.match(/&[a-z0-9#]+;/gi)) {
+      if (/&[a-z0-9#]+;/i.test(titleTemplate)) {
         titleTemplate = unescapeTitleTemplate(titleTemplate, [
           ['"', ['&#34;', '&quot;']],
           ['&', ['&#38;', '&amp;']],

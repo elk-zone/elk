@@ -42,7 +42,7 @@ async function handleInput() {
 
   if (
     isValidUrl(`https://${input}`)
-    && input.match(/^[a-z0-9-]+(\.[a-z0-9-]+)+(:\d+)?$/i)
+    && /^[a-z0-9-]+(\.[a-z0-9-]+)+(:\d+)?$/i.test(input)
     // Do not hide the autocomplete if a result has an exact substring match on the input
     && !filteredServers.value.some(s => s.includes(input))
   ) {

@@ -279,7 +279,7 @@ export function treeToText(input: Node): string {
           ?? input.attributes.alt
           ?? input.attributes.title
           ?? 'unknown'
-      return id.match(emojiIdNeedsWrappingRE) ? `:${id}:` : id
+      return emojiIdNeedsWrappingRE.test(id) ? `:${id}:` : id
     }
     if (input.attributes.class?.includes('iconify-emoji'))
       return input.attributes.alt
@@ -338,7 +338,7 @@ function sanitize(allowedElements: Record<string, AttrSanitizers>): Transform {
     if (node.type !== ELEMENT_NODE)
       return node
 
-    if (!Object.prototype.hasOwnProperty.call(allowedElements, node.name))
+    if (!Object.hasOwn(allowedElements, node.name))
       return null
 
     const attrSanitizers = allowedElements[node.name]

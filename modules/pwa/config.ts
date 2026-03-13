@@ -27,9 +27,10 @@ export function configurePWAOptions(options: Partial<VitePWAOptions>, nuxt: Nuxt
     if (nuxt.options.dev) {
       // on dev force always to use the root
 
-      options.workbox.navigateFallback = nuxt.options.app.baseURL ?? '/'
+      const fallbackBaseName = nuxt.options.app.baseURL ?? '/'
+      options.workbox.navigateFallback = fallbackBaseName
       if (options.devOptions?.enabled && !options.devOptions.navigateFallbackAllowlist)
-        options.devOptions.navigateFallbackAllowlist = [new RegExp(nuxt.options.app.baseURL) ?? /\//]
+        options.devOptions.navigateFallbackAllowlist = [new RegExp(fallbackBaseName)]
     }
     config = options.workbox
   }

@@ -127,5 +127,5 @@ export async function listServers() {
     if (id)
       servers.add(id.toLocaleLowerCase())
   }
-  return servers.toSorted()
+  return servers.keys().toArray().toSorted()
 }

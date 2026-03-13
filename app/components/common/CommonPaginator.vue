@@ -1,8 +1,6 @@
 <script setup lang="ts" generic="T, O, U = T">
 import type { mastodon } from 'masto'
-// @ts-expect-error missing types
-import { DynamicScroller } from 'vue-virtual-scroller'
-import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
+import { WindowVirtualizer } from 'virtua/vue'
 
 const {
   paginator,
@@ -27,7 +25,6 @@ defineSlots<{
     items: U[]
     item: U
     index: number
-    active?: boolean
     older: U
     newer: U // newer is undefined when index === 0
   }) => void
@@ -83,23 +80,16 @@ defineExpose({ createEntry, removeEntry, updateEntry })
     <slot v-if="prevItems.length" name="updater" v-bind="{ number: prevItems.length, update }" />
     <slot name="items" :items="items as U[]">
       <template v-if="virtualScroller">
-        <DynamicScroller
-          v-slot="{ item, active, index }"
-          :items="items"
-          :min-item-size="200"
-          :key-field="keyProp"
-          page-mode
-        >
+        <WindowVirtualizer v-slot="{ item, index }" :data="items">
           <slot
-            v-bind="{ key: item[keyProp] }"
+            v-bind="{ key: (item as any)[keyProp] }"
             :item="item"
-            :active="active"
             :older="items[index + 1] as U"
             :newer="items[index - 1] as U"
             :index="index"
             :items="items as U[]"
           />
-        </DynamicScroller>
+        </WindowVirtualizer>
       </template>
       <template v-else>
         <slot

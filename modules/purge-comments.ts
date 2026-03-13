@@ -1,6 +1,8 @@
 import MagicString from 'magic-string'
 import { addVitePlugin, defineNuxtModule } from 'nuxt/kit'
 
+const MAGIC_STRING_RE = /<!--.*?-->/gs
+
 export default defineNuxtModule({
   meta: {
     name: 'purge-comments',
@@ -14,7 +16,7 @@ export default defineNuxtModule({
           return
 
         const s = new MagicString(code)
-        s.replace(/<!--.*?-->/gs, '')
+        s.replace(MAGIC_STRING_RE, '')
 
         if (s.hasChanged()) {
           return {

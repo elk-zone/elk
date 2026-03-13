@@ -6,6 +6,9 @@ import { isPreview } from './config/env'
 import { currentLocales } from './config/i18n'
 import { pwa } from './config/pwa'
 
+const TIPTAP_IMPORT_RE = /(?:^|\/)@tiptap\//
+const PROSEMIRROR_IMPORT_RE = /(?:^|\/)prosemirror/
+
 const { resolve } = createResolver(import.meta.url)
 
 const mockProxy = resolveModulePath('mocked-exports/proxy', {
@@ -246,9 +249,9 @@ export default defineNuxtConfig({
           name: 'mock',
           enforce: 'pre',
           resolveId(id) {
-            if (/(^|\/)(@tiptap)\//.test(id))
+            if (TIPTAP_IMPORT_RE.test(id))
               return resolver.resolve('./mocks/tiptap.ts')
-            if (/(^|\/)(prosemirror)/.test(id))
+            if (PROSEMIRROR_IMPORT_RE.test(id))
               return resolver.resolve('./mocks/prosemirror.ts')
           },
         })

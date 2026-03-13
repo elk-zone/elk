@@ -2,10 +2,6 @@
 import type { CommonPaginator } from '#components'
 import type { mastodon } from 'masto'
 import type { ComponentExposed } from 'vue-component-type-helpers'
-// @ts-expect-error missing types
-import { DynamicScrollerItem } from 'vue-virtual-scroller'
-
-import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
 const { account, buffer = 10, endMessage = true } = defineProps<{
   paginator: mastodon.Paginator<mastodon.v1.ScheduledStatus[], mastodon.DefaultPaginationParams>
@@ -38,11 +34,10 @@ const showOriginSite = computed(() =>
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
       </button>
     </template>
-    <template #default="{ item, active }">
+    <template #default="{ item }">
       <component
-        :is="virtualScroller ? DynamicScrollerItem : 'article'"
-        :item="item"
-        :active="active"
+        :is="virtualScroller ? 'div' : 'article'"
+        :key="item.id"
       >
         <StatusScheduledCard
           :item="item"

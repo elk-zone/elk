@@ -25,7 +25,6 @@ defineSlots<{
     items: U[]
     item: U
     index: number
-    active?: boolean
     older: U
     newer: U // newer is undefined when index === 0
   }) => void

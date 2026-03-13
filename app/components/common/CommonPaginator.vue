@@ -84,7 +84,6 @@ defineExpose({ createEntry, removeEntry, updateEntry })
           <slot
             v-bind="{ key: (item as any)[keyProp] }"
             :item="item"
-            :active="true"
             :older="items[index + 1] as U"
             :newer="items[index - 1] as U"
             :index="index"

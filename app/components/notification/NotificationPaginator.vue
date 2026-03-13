@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import type { GroupedAccountLike, NotificationSlot } from '#shared/types'
 import type { mastodon } from 'masto'
-// @ts-expect-error missing types
-import { DynamicScrollerItem } from 'vue-virtual-scroller'
 
 defineProps<{
   paginator: mastodon.Paginator<mastodon.v1.Notification[], mastodon.rest.v1.ListNotificationsParams>
@@ -186,26 +184,24 @@ const { formatNumber } = useHumanReadableNumber()
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
       </button>
     </template>
-    <template #default="{ item, active }">
+    <template #default="{ item }">
       <template v-if="virtualScroller">
-        <DynamicScrollerItem :item="item" :active="active" tag="div">
-          <NotificationGroupedFollow
-            v-if="item.type === 'grouped-follow'"
-            :items="item"
-            border="b base"
-          />
-          <NotificationGroupedLikes
-            v-else-if="item.type === 'grouped-reblogs-and-favourites'"
-            :group="item"
-            border="b base"
-          />
-          <NotificationCard
-            v-else
-            :notification="item"
-            hover:bg-active
-            border="b base"
-          />
-        </DynamicScrollerItem>
+        <NotificationGroupedFollow
+          v-if="item.type === 'grouped-follow'"
+          :items="item"
+          border="b base"
+        />
+        <NotificationGroupedLikes
+          v-else-if="item.type === 'grouped-reblogs-and-favourites'"
+          :group="item"
+          border="b base"
+        />
+        <NotificationCard
+          v-else
+          :notification="item"
+          hover:bg-active
+          border="b base"
+        />
       </template>
       <template v-else>
         <NotificationGroupedFollow

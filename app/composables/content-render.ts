@@ -12,6 +12,9 @@ import ContentMentionGroup from '~/components/content/ContentMentionGroup.vue'
 import Emoji from '~/components/emoji/Emoji.vue'
 import { parseMastodonHTML } from './content-parse'
 
+const SERVER_DOMAIN_REGEX = /(.+\.)(.+\..+)/
+const WHITESPACE_SPLIT_REGEX = /\s/g
+
 function getTextualAstComponents(astChildren: Node[]): string {
   return astChildren
     .filter(({ type }) => type === TEXT_NODE)
@@ -148,7 +151,7 @@ function handleMention(el: Node) {
       const matchUser = href.match(UserLinkRE)
       if (matchUser) {
         const [, server, username] = matchUser
-        const handle = `${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
+        const handle = `${username}@${server.replace(SERVER_DOMAIN_REGEX, '$2')}`
         el.attributes.href = `/${server}/@${username}`
         addBdiNode(el)
         return h(AccountHoverWrapper, { handle, class: 'inline-block' }, () => nodeToVNode(el))
@@ -170,10 +173,14 @@ function handleCodeBlock(el: Node) {
   if (el.name === 'pre' && el.children[0]?.name === 'code') {
     const codeEl = el.children[0] as Node
     const classes = codeEl.attributes.class as string
-    const lang = classes?.split(/\s/g).find(i => i.startsWith('language-'))?.replace('language-', '')
-    const code = (codeEl.children && codeEl.children.length > 0)
-      ? recursiveTreeToText(codeEl)
-      : ''
+    const lang = classes
+      ?.split(WHITESPACE_SPLIT_REGEX)
+      .find(i => i.startsWith('language-'))
+      ?.replace('language-', '')
+    const code
+      = codeEl.children && codeEl.children.length > 0
+        ? recursiveTreeToText(codeEl)
+        : ''
     return h(ContentCode, { lang, code: encodeURIComponent(code) })
   }
 }

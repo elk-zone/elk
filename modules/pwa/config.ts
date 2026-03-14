@@ -2,6 +2,10 @@ import type { Nuxt } from '@nuxt/schema'
 import type { VitePWAOptions } from 'vite-plugin-pwa'
 import { resolve } from 'pathe'
 
+const HTML_EXTENSION_REGEX = /\.html$/
+const UUID_JSON_REGEX
+  = /\/?[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.json$/i
+
 export function configurePWAOptions(options: Partial<VitePWAOptions>, nuxt: Nuxt) {
   if (!options.outDir) {
     const publicDir = nuxt.options.nitro?.output?.publicDir
@@ -71,13 +75,13 @@ function createManifestTransform(base: string, appManifestFolder?: string): impo
       }
       else {
         const parts = url.split('/')
-        parts[parts.length - 1] = parts.at(-1).replace(/\.html$/, '')
+        parts[parts.length - 1] = parts.at(-1).replace(HTML_EXTENSION_REGEX, '')
         e.url = parts.length > 1 ? parts.slice(0, parts.length - 1).join('/') : parts[0]
       }
     })
 
     if (appManifestFolder) {
-      const regExp = /\/?[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.json$/i
+      const regExp = UUID_JSON_REGEX
       // we need to remove the revision from the sw prechaing manifest, UUID is enough:
       // we don't use dontCacheBustURLsMatching, single regex
       entries.filter(e => e && e.url.startsWith(appManifestFolder) && regExp.test(e.url)).forEach((e) => {

@@ -4,6 +4,9 @@ import type { mastodon } from 'masto'
 import type { ComputedRef, Ref } from 'vue'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
 
+const MENTION_REGEX = /^(@\S+\s?)+/
+const CODE_BLOCK_REGEX = /```/g
+
 export const currentUserDrafts = (import.meta.server || process.test)
   ? computed<DraftMap>(() => ({ home: [], dialog: [], intent: [], quote: [] }))
   : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({ home: [], dialog: [], intent: [], quote: [] }))
@@ -137,7 +140,11 @@ export function isEmptyDraft(drafts: Array<DraftItem> | DraftItem | null | undef
   const anyDraftHasContent = draftsArray.some((draft) => {
     const { params, attachments } = draft
     const status = params.status ?? ''
-    const text = htmlToText(status).trim().replace(/^(@\S+\s?)+/, '').replaceAll(/```/g, '').trim()
+    const text = htmlToText(status)
+      .trim()
+      .replace(MENTION_REGEX, '')
+      .replaceAll(CODE_BLOCK_REGEX, '')
+      .trim()
     const hasQuote = !!params.quotedStatusId
 
     return (text.length > 0)

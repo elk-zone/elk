@@ -21,6 +21,9 @@ const filteredServers = computed(() => {
   return results
 })
 
+const SERVER_PATH_REGEX = /^[a-z0-9-]+(?:\.[a-z0-9-]+)+(?::\d+)?$/i
+const SERVER_SELECTOR_REGEX = /[^\w-]/g
+
 async function handleInput() {
   const input = server.value.trim()
   if (input.startsWith('https://'))
@@ -31,7 +34,7 @@ async function handleInput() {
 
   if (
     URL.canParse(`https://${input}`)
-    && /^[a-z0-9-]+(\.[a-z0-9-]+)+(:\d+)?$/i.test(input)
+    && SERVER_PATH_REGEX.test(input)
     // Do not hide the autocomplete if a result has an exact substring match on the input
     && !filteredServers.value.some(s => s.includes(input))
   ) {
@@ -44,7 +47,7 @@ async function handleInput() {
 }
 
 function toSelector(server: string) {
-  return server.replace(/[^\w-]/g, '-')
+  return server.replace(SERVER_SELECTOR_REGEX, '-')
 }
 function move(delta: number) {
   if (filteredServers.value.length === 0) {

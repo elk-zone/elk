@@ -14,7 +14,7 @@ import {
 import { emojiRegEx, getEmojiAttributes } from '~~/config/emojis'
 
 const NEWLINE_TAG_REGEX = /\n(<[^>]+>)/g
-const CODE_BLOCK_REGEX = />(?<fence>```|~~~)(?<lang>\w*)\n(?<code>[\s\S]+?)\k<fence>/g
+const CODE_BLOCK_REGEX = />(?<fence>```|~~~)(?<lang>[^\s<]*)(?=[<\s])(?<code>[\s\S]+?)\k<fence>/g
 const HTML_ESCAPE_REGEX = {
   LESS_THAN: /</g,
   GREATER_THAN: />/g,

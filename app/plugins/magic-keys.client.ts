@@ -121,7 +121,7 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
     }
 
     function getNextOrPreviousStatusId(currentStatusId: string | undefined, direction: 'next' | 'previous'): string | undefined {
-      const statusIds = [...document.querySelectorAll(statusSelector)].map(s => s.id)
+      const statusIds = Array.from(document.querySelectorAll(statusSelector), s => s.id)
       if (currentStatusId === undefined) {
         // if there is no selection, always focus on the first status
         return statusIds[0]

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { STORAGE_KEY_HIDE_EXPLORE_TAGS_TIPS, STORAGE_KEY_LAST_ACCESSED_EXPLORE_ROUTE } from '~/constants'
 
+const EXPLORE_ROUTE_REGEX = /(.*\/explore\/?)/
+
 const { t } = useI18n()
 const route = useRoute()
 const { client } = useMasto()
@@ -16,10 +18,10 @@ useHydratedHead({
 })
 
 const lastAccessedExploreRoute = useLocalStorage(STORAGE_KEY_LAST_ACCESSED_EXPLORE_ROUTE, '')
-lastAccessedExploreRoute.value = route.path.replace(/(.*\/explore\/?)/, '')
+lastAccessedExploreRoute.value = route.path.replace(EXPLORE_ROUTE_REGEX, '')
 
 onActivated(() => {
-  lastAccessedExploreRoute.value = route.path.replace(/(.*\/explore\/?)/, '')
+  lastAccessedExploreRoute.value = route.path.replace(EXPLORE_ROUTE_REGEX, '')
 })
 </script>
 

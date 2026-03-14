@@ -52,7 +52,7 @@ export function usePublish(options: {
           || params.poll.options.findLastIndex(option => option.trim().length > 0) + 1 < 2
           || (new Set(params.poll.options).size !== params.poll.options.length)
           || (currentInstance.value?.configuration?.polls.maxCharactersPerOption !== undefined
-            && params.poll.options.find(option => option.length > currentInstance.value!.configuration!.polls.maxCharactersPerOption) !== undefined
+            && params.poll.options.some(option => option.length > currentInstance.value!.configuration!.polls.maxCharactersPerOption)
           )
         ))
   })
@@ -78,7 +78,7 @@ export function usePublish(options: {
       if (currentInstance.value?.configuration !== undefined
         && (
           options.length < currentInstance.value.configuration.polls.maxOptions
-          || options[options.length - 1].trim().length === 0
+          || options.at(-1)?.trim().length === 0
         )) {
         options = options.slice(0, options.length - 1)
       }

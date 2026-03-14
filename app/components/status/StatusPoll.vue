@@ -6,9 +6,11 @@ const { status } = defineProps<{
 }>()
 const poll = reactive({ ...status.poll! })
 
+const PERCENTAGE_FORMAT_REGEX = /\.?0+$/
+
 function toPercentage(num: number) {
   const percentage = 100 * num
-  return `${percentage.toFixed(1).replace(/\.?0+$/, '')}%`
+  return `${percentage.toFixed(1).replace(PERCENTAGE_FORMAT_REGEX, '')}%`
 }
 const timeAgoOptions = useTimeAgoOptions()
 const expiredTimeAgo = useTimeAgo(poll.expiresAt!, timeAgoOptions)

@@ -13,6 +13,23 @@ import {
 } from 'ultrahtml'
 import { emojiRegEx, getEmojiAttributes } from '~~/config/emojis'
 
+const NEWLINE_TAG_REGEX = /\n(<[^>]+>)/g
+const CODE_BLOCK_REGEX = />(?<fence>```|~~~)(?<lang>[^\s<]*)(?=[<\s])(?<code>[\s\S]+?)\k<fence>/g
+const HTML_ESCAPE_REGEX = {
+  LESS_THAN: /</g,
+  GREATER_THAN: />/g,
+  BACKTICK: /`/g,
+  ASTERISK: /\*/g,
+}
+const INLINE_CODE_REGEX = /`([^`\n]*)`/g
+const WHITESPACE_SPLIT_REGEX = /\s/g
+const AMPERSAND_REGEX = /&amp;/g
+const EMOJI_SPLIT_REGEX = {
+  WITH_COLON: /\s?:([\w-]+):/g,
+  WITHOUT_COLON: /:([\w-]+):/g,
+}
+const SERVER_DOMAIN_REGEX = /(.+\.)(.+\..+)/
+
 export interface ContentParseOptions {
   emojis?: Record<string, mastodon.v1.CustomEmoji>
   hideEmojis?: boolean
@@ -108,29 +125,26 @@ export function parseMastodonHTML(
   } = options
 
   // remove newline before Tags
-  html = html.replace(/\n(<[^>]+>)/g, (_1, raw) => {
+  html = html.replace(NEWLINE_TAG_REGEX, (_1, raw) => {
     return raw
   })
 
   if (markdown) {
     // Handle code blocks
     html = html
-      /* eslint-disable regexp/no-super-linear-backtracking, regexp/no-misleading-capturing-group */
-      .replace(
-        />(```|~~~)(\w*)([\s\S]+?)\1/g,
-        (_1, _2, lang: string, raw: string) => {
-          const code = htmlToText(raw)
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/`/g, '&#96;')
-            .replace(/\*/g, '&ast;')
-          const classes = lang ? ` class="language-${lang}"` : ''
-          return `><pre><code${classes}>${code}</code></pre>`
-        },
-      )
-      .replace(/`([^`\n]*)`/g, (_1, raw) => {
+
+      .replace(CODE_BLOCK_REGEX, (_match, _fence, lang: string, raw: string) => {
+        const code = htmlToText(raw)
+          .replace(HTML_ESCAPE_REGEX.LESS_THAN, '&lt;')
+          .replace(HTML_ESCAPE_REGEX.GREATER_THAN, '&gt;')
+          .replace(HTML_ESCAPE_REGEX.BACKTICK, '&#96;')
+          .replace(HTML_ESCAPE_REGEX.ASTERISK, '&ast;')
+        const classes = lang ? ` class="language-${lang}"` : ''
+        return `><pre><code${classes}>${code}</code></pre>`
+      })
+      .replace(INLINE_CODE_REGEX, (_1, raw) => {
         return raw
-          ? `<code>${htmlToText(raw).replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\*/g, '&ast;')}</code>`
+          ? `<code>${htmlToText(raw).replace(HTML_ESCAPE_REGEX.LESS_THAN, '&lt;').replace(HTML_ESCAPE_REGEX.GREATER_THAN, '&gt;').replace(HTML_ESCAPE_REGEX.ASTERISK, '&ast;')}</code>`
           : ''
       })
   }
@@ -222,7 +236,7 @@ export function recursiveTreeToText(input: Node): string {
   else return treeToText(input)
 }
 
-const emojiIdNeedsWrappingRE = /^([\w\-])+$/
+const emojiIdNeedsWrappingRE = /^[\w-]+$/
 
 export function treeToText(input: Node): string {
   let pre = ''
@@ -279,7 +293,7 @@ export function treeToText(input: Node): string {
           ?? input.attributes.alt
           ?? input.attributes.title
           ?? 'unknown'
-      return id.match(emojiIdNeedsWrappingRE) ? `:${id}:` : id
+      return emojiIdNeedsWrappingRE.test(id) ? `:${id}:` : id
     }
     if (input.attributes.class?.includes('iconify-emoji'))
       return input.attributes.alt
@@ -338,7 +352,7 @@ function sanitize(allowedElements: Record<string, AttrSanitizers>): Transform {
     if (node.type !== ELEMENT_NODE)
       return node
 
-    if (!Object.prototype.hasOwnProperty.call(allowedElements, node.name))
+    if (!Object.hasOwn(allowedElements, node.name))
       return null
 
     const attrSanitizers = allowedElements[node.name]
@@ -359,7 +373,7 @@ function filterClasses(allowed: RegExp) {
       return undefined
 
     return c
-      .split(/\s/g)
+      .split(WHITESPACE_SPLIT_REGEX)
       .filter(cls => allowed.test(cls))
       .join(' ')
   }
@@ -396,7 +410,7 @@ function filterHref() {
     if (href.startsWith('/') || href.startsWith('.'))
       return href
 
-    href = href.replace(/&amp;/g, '&')
+    href = href.replace(AMPERSAND_REGEX, '&')
 
     let url
     try {
@@ -463,7 +477,7 @@ function removeCustomEmoji(
     if (node.type !== TEXT_NODE)
       return node
 
-    const split = node.value.split(/\s?:([\w-]+):/g)
+    const split = node.value.split(EMOJI_SPLIT_REGEX.WITH_COLON)
     if (split.length === 1)
       return node
 
@@ -489,7 +503,7 @@ function replaceCustomEmoji(
     if (node.type !== TEXT_NODE)
       return node
 
-    const split = node.value.split(/:([\w-]+):/g)
+    const split = node.value.split(EMOJI_SPLIT_REGEX.WITHOUT_COLON)
     if (split.length === 1)
       return node
 
@@ -733,7 +747,7 @@ function hrefToHandle(href: string): string | undefined {
   const matchUser = href.match(UserLinkRE)
   if (matchUser) {
     const [, server, username] = matchUser
-    return `${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
+    return `${username}@${server.replace(SERVER_DOMAIN_REGEX, '$2')}`
   }
 }
 

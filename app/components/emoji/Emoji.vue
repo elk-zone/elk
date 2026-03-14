@@ -5,15 +5,18 @@ const { alt, dataEmojiId } = defineProps<{
   dataEmojiId?: string
 }>()
 
+const COLON_REGEX = /:/g
+const UNDERSCORE_REGEX = /_/g
+
 const title = ref<string | undefined>()
 
 if (alt) {
   if (alt.startsWith(':')) {
-    title.value = alt.replace(/:/g, '')
+    title.value = alt.replace(COLON_REGEX, '')
   }
   else {
     import('node-emoji').then(({ find }) => {
-      title.value = find(alt)?.key.replace(/_/g, ' ')
+      title.value = find(alt)?.key.replace(UNDERSCORE_REGEX, ' ')
     })
   }
 }

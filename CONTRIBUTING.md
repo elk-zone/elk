@@ -6,7 +6,7 @@ Refer also to https://github.com/antfu/contribute.
 
 For guidelines on contributing to the documentation, refer to the [docs README](./docs/README.md).
 
-### Local Setup
+## Local Setup
 
 To develop and test the Elk package:
 
@@ -35,7 +35,7 @@ ni
 nr dev
 ```
 
-### Testing
+## Testing
 
 Elk uses [Vitest](https://vitest.dev). You can run the test suite with:
 
@@ -43,7 +43,7 @@ Elk uses [Vitest](https://vitest.dev). You can run the test suite with:
 nr test
 ```
 
-### Running PWA on dev server
+## Running PWA on dev server
 
 In order to run Elk with PWA enabled, run `pnpm dev:pwa` in Elk's root folder to start dev server or `pnpm dev:mocked:pwa` to start dev server with `@elkdev@universeodon.com` user.
 
@@ -141,25 +141,26 @@ Additionally, Elk will use [compact notation for numbers](https://developer.mozi
 
 You can run this code in your browser console to see how it works:
 ```ts
+/* eslint-disable no-unexpected-multiline, no-sequences */
 [1, 12, 123, 1234, 12345, 123456, 1234567].forEach((n) => {
   const acc = {}
 
-  Array.from(['en-US', 'en-GB', 'de-DE', 'zh-CN', 'ja-JP', 'es-ES', 'fr-FR', 'cs-CZ', 'ar-EG']).forEach((l) => {
-    const nf = new Intl.NumberFormat(l, {
-      style: 'decimal',
-      maximumFractionDigits: 0,
+    ['en-US', 'en-GB', 'de-DE', 'zh-CN', 'ja-JP', 'es-ES', 'fr-FR', 'cs-CZ', 'ar-EG'].forEach((l) => {
+      const nf = new Intl.NumberFormat(l, {
+        style: 'decimal',
+        maximumFractionDigits: 0,
+      })
+      const nf2 = new Intl.NumberFormat(l, {
+        notation: 'compact',
+        compactDisplay: 'short',
+        maximumFractionDigits: 1,
+      })
+      acc[l] = {
+        number: n,
+        format: nf.format(n),
+        compact: nf2.format(n),
+      }
     })
-    const nf2 = new Intl.NumberFormat(l, {
-      notation: 'compact',
-      compactDisplay: 'short',
-      maximumFractionDigits: 1,
-    })
-    acc[l] = {
-      number: n,
-      format: nf.format(n),
-      compact: nf2.format(n),
-    }
-  })
   console.table(acc)
 })
 ```

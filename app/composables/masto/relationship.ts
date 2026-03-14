@@ -30,7 +30,7 @@ export function useRelationship(account: mastodon.v1.Account): Ref<mastodon.v1.R
 }
 
 async function fetchRelationships() {
-  const requested = Array.from(requestedRelationships.entries()).filter(([, r]) => !r.value)
+  const requested = [...requestedRelationships.entries()].filter(([, r]) => !r.value)
   const relationships = await useMastoClient().v1.accounts.relationships.fetch({ id: requested.map(([id]) => id) })
   for (const relationship of relationships) {
     const requestedToUpdate = requested.find(([id]) => id === relationship.id)

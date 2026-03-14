@@ -62,7 +62,7 @@ export function createNotificationOptions(
     tag: notification_id,
 
     // @ts-expect-error error missing type, just ignore
-    timestamp: new Date().getTime(),
+    timestamp: Date.now(),
   }
 
   if (notificationInfo) {

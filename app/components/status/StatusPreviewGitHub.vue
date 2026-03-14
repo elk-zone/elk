@@ -6,6 +6,9 @@ const { card } = defineProps<{
   card: mastodon.v1.PreviewCard
 }>()
 
+const ISSUE_REGEX = /issues\/(\d+)/
+const PULL_REGEX = /pull\/(\d+)/
+
 type UrlType = 'user' | 'repo' | 'issue' | 'pull'
 interface Meta {
   type: UrlType
@@ -49,12 +52,12 @@ const meta = computed(() => {
     details = details.replace(`${repoPath}: `, '')
     const inRepoPath = path.split(`${repoPath}/`)?.[1]
     if (inRepoPath) {
-      number = inRepoPath.match(/issues\/(\d+)/)?.[1]
+      number = inRepoPath.match(ISSUE_REGEX)?.[1]
       if (number) {
         type = 'issue'
       }
       else {
-        number = inRepoPath.match(/pull\/(\d+)/)?.[1]
+        number = inRepoPath.match(PULL_REGEX)?.[1]
         if (number)
           type = 'pull'
       }

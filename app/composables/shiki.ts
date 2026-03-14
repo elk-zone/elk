@@ -52,6 +52,8 @@ function useShikiTheme() {
   return useColorMode().value === 'dark' ? 'vitesse-dark' : 'vitesse-light'
 }
 
+const HTML_ENTITY_REGEX = /[<>&'"]/g
+
 const HTML_ENTITIES = {
   '<': '&lt;',
   '>': '&gt;',
@@ -61,7 +63,7 @@ const HTML_ENTITIES = {
 } as Record<string, string>
 
 function escapeHtml(text: string) {
-  return text.replace(/[<>&'"]/g, ch => HTML_ENTITIES[ch])
+  return text.replace(HTML_ENTITY_REGEX, ch => HTML_ENTITIES[ch])
 }
 
 export function highlightCode(code: string, lang: Lang) {

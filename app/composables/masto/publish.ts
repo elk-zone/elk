@@ -78,7 +78,7 @@ export function usePublish(options: {
       if (currentInstance.value?.configuration !== undefined
         && (
           options.length < currentInstance.value.configuration.polls.maxOptions
-          || options.at(-1).trim().length === 0
+          || options.at(-1)?.trim().length === 0
         )) {
         options = options.slice(0, options.length - 1)
       }

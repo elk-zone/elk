@@ -59,7 +59,7 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
             email: newInstance.email,
           },
           configuration: {
-            ...(newInstance.configuration ?? {}),
+            ...newInstance.configuration,
             urls: {
               streaming: newInstance.urls.streamingApi,
             },

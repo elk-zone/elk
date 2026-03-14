@@ -15,7 +15,7 @@ const timeAgoOptions = useTimeAgoOptions()
 
 // TODO: rework, this is only reversing the first page of edits
 function reverseHistory(items: mastodon.v1.StatusEdit[]) {
-  return [...items].reverse()
+  return items.toReversed()
 }
 </script>
 

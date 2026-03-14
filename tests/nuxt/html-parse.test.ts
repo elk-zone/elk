@@ -1,7 +1,7 @@
 import type { ContentParseOptions } from '~/composables/content-parse'
 import { format } from 'prettier'
 import { render as renderTree } from 'ultrahtml'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vite-plus/test'
 
 describe('html-parse', () => {
   it('empty', async () => {
@@ -52,7 +52,7 @@ describe('html-parse', () => {
 
   it('code frame 2', async () => {
     const { formatted, serializedText } = await render(
-      '<p><span class=\"h-card\"><a href=\"https://webtoo.ls/@antfu\" class=\"u-url mention\">@<span>antfu</span></a></span> Testing<br />```ts<br />const a = hello<br />```</p>',
+      '<p><span class="h-card"><a href="https://webtoo.ls/@antfu" class="u-url mention">@<span>antfu</span></a></span> Testing<br />```ts<br />const a = hello<br />```</p>',
     )
     expect(formatted).toMatchSnapshot('html')
     expect(serializedText).toMatchSnapshot('text')

@@ -1,7 +1,7 @@
 /** @vitest-environment happy-dom */
 
 import type { mastodon } from 'masto'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vite-plus/test'
 import { removeFilteredItems, reorderTimeline } from '../../app/composables/timeline'
 
 function status(id: string, filtered?: mastodon.v1.FilterContext): mastodon.v1.Status {

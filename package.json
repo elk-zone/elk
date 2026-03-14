@@ -15,16 +15,16 @@
     "dev:mocked:pwa:ssl": "VITE_DEV_PWA=true nuxt dev --port 5314 --https --ssl-cert ./https-dev-config/localhost.crt --ssl-key ./https-dev-config/localhost.key --dotenv .env.mock",
     "start": "PORT=5314 node .output/server/index.mjs",
     "start:https": "PORT=5314 node ./https-dev-config/local-https-server.mjs",
-    "lint": "eslint --cache .",
-    "lint:fix": "eslint --cache --fix .",
+    "lint": "vp lint .",
+    "lint:fix": "vp lint --fix .",
     "typecheck": "nuxt typecheck",
     "prepare": "node scripts/prepare-translation-status.ts && node scripts/prepare.ts",
     "generate": "nuxt generate",
-    "test:unit": "vitest",
-    "test:unit:ci": "vitest run",
+    "test:unit": "vp test",
+    "test:unit:ci": "vp test run",
     "test:typecheck": "vue-tsc -b --noEmit",
-    "test": "vitest",
-    "test:ci": "vitest run",
+    "test": "vp test",
+    "test:ci": "vp test run",
     "update:team:avatars": "node scripts/avatars.ts",
     "cleanup-translations": "node scripts/cleanup-translations.ts",
     "prepare-translation-status": "node scripts/prepare-translation-status.ts",
@@ -117,7 +117,7 @@
     "ultrahtml": "^1.5.3",
     "unimport": "^5.6.0",
     "unstorage": "^1.17.1",
-    "vite": "^7.1.7",
+    "vite": "catalog:",
     "vite-plugin-pwa": "^1.2.0",
     "vue": "^3.5.4",
     "vue-advanced-cropper": "^2.8.9",
@@ -144,7 +144,6 @@
     "@vue/test-utils": "2.4.6",
     "bumpp": "^10.2.3",
     "consola": "^3.4.2",
-    "eslint": "^9.39.4",
     "eslint-plugin-format": "^1.0.1",
     "flat": "^6.0.1",
     "nano-staged": "^0.9.0",
@@ -153,20 +152,20 @@
     "sharp-ico": "^0.1.5",
     "simple-git-hooks": "^2.13.1",
     "typescript": "^5.4.4",
-    "vitest": "4.0.18",
+    "vitest": "catalog:",
     "vue-component-type-helpers": "^3.2.5",
-    "vue-tsc": "^2.1.6"
+    "vue-tsc": "^2.1.6",
+    "vite-plus": "catalog:"
   },
   "resolutions": {
     "nuxt-component-meta": "0.17.2",
     "unstorage": "^1.17.4",
-    "vitest": "4.0.18",
     "vue": "^3.5.4"
   },
   "simple-git-hooks": {
     "pre-commit": "npx nano-staged"
   },
   "nano-staged": {
-    "*": "eslint --fix"
+    "*": "vp lint --fix"
   }
 }

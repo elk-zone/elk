@@ -5,7 +5,7 @@
 
 import type { mastodon } from 'masto'
 import { format } from 'prettier'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vite-plus/test'
 import { mockComponent } from '@nuxt/test-utils/runtime'
 import { renderToString } from 'vue/server-renderer'
 import type { ContentParseOptions } from '~/composables/content-parse'

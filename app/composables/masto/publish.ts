@@ -105,12 +105,12 @@ export function usePublish(options: {
     } as mastodon.rest.v1.CreateScheduledStatusParams
 
     if (import.meta.dev) {
-      // eslint-disable-next-line no-console
+      // oxlint-disable-next-line no-console
       console.info({
         raw: draftItem.value.params.status,
         ...payload,
       })
-      // eslint-disable-next-line no-alert
+      // oxlint-disable-next-line no-alert
       const result = confirm('[DEV] Payload logged to console, do you want to publish it?')
       if (!result)
         return

@@ -1,6 +1,6 @@
 import { defineVitestProject } from '@nuxt/test-utils/config'
 import { isCI } from 'std-env'
-import { defineConfig } from 'vitest/config'
+import { defineConfig } from 'vite-plus'
 
 export default defineConfig({
   define: {

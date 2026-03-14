@@ -80,7 +80,7 @@ useCommands(() => command
             </CommonDropdownItem>
           </NuxtLink>
         </template>
-      </commondropdown>
+      </CommonDropdown>
     </template>
   </div>
 </template>

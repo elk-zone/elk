@@ -191,7 +191,7 @@ onActivated(() => (busy.value = false))
                     v-model="showSubscribeError"
                     :message="subscribeError"
                   />
-                </transition>
+                </Transition>
               </template>
             </NotificationEnablePushNotification>
           </template>

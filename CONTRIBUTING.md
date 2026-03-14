@@ -141,6 +141,7 @@ Additionally, Elk will use [compact notation for numbers](https://developer.mozi
 
 You can run this code in your browser console to see how it works:
 ```ts
+/* eslint-disable no-unexpected-multiline, no-sequences */
 [1, 12, 123, 1234, 12345, 123456, 1234567].forEach((n) => {
   const acc = {}
 

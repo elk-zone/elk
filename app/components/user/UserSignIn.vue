@@ -21,17 +21,6 @@ const filteredServers = computed(() => {
   return results
 })
 
-function isValidUrl(str: string) {
-  try {
-    // eslint-disable-next-line no-new
-    new URL(str)
-    return true
-  }
-  catch {
-    return false
-  }
-}
-
 async function handleInput() {
   const input = server.value.trim()
   if (input.startsWith('https://'))
@@ -41,7 +30,7 @@ async function handleInput() {
     displayError.value = false
 
   if (
-    isValidUrl(`https://${input}`)
+    URL.canParse(`https://${input}`)
     && /^[a-z0-9-]+(\.[a-z0-9-]+)+(:\d+)?$/i.test(input)
     // Do not hide the autocomplete if a result has an exact substring match on the input
     && !filteredServers.value.some(s => s.includes(input))

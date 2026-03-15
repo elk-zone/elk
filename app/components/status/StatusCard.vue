@@ -75,7 +75,13 @@ const forceShow = ref(false)
 </script>
 
 <template>
-  <StatusLink :status="status" :hover="hover" :disable-link="disableLink">
+  <StatusLink
+    cursor-pointer
+    hover-bg-active
+    rounded-3
+    transition-100
+    :status="status" :hover="hover" :disable-link="disableLink"
+  >
     <!-- Upper border -->
     <div :h="showUpperBorder ? '1px' : '0'" w-auto bg-border mb-1 z--1 />
 

@@ -1,5 +1,4 @@
-import type { Ref } from 'vue'
-import type { UnwrapNestedRefs } from 'vue'
+import type { Ref, UnwrapNestedRefs } from 'vue'
 
 export interface PwaInjection {
   isInstalled: boolean

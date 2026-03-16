@@ -1,4 +1,4 @@
-import proxy from 'unenv/runtime/mock/proxy'
+import proxy from 'mocked-exports/proxy'
 
 export const Extension = proxy
 export const useEditor = proxy

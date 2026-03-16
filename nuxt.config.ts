@@ -1,17 +1,30 @@
-import type { BuildInfo } from './types'
-import { createResolver, useNuxt } from '@nuxt/kit'
-import { isCI, isDevelopment, isWindows } from 'std-env'
+import type { BuildInfo } from './shared/types'
+import { resolveModulePath } from 'exsolve'
+import { createResolver, useNuxt } from 'nuxt/kit'
+import { isCI, isDevelopment, isTest, isWindows } from 'std-env'
 import { isPreview } from './config/env'
 import { currentLocales } from './config/i18n'
 import { pwa } from './config/pwa'
 
+const TIPTAP_IMPORT_RE = /(?:^|\/)@tiptap\//
+const PROSEMIRROR_IMPORT_RE = /(?:^|\/)prosemirror/
+
 const { resolve } = createResolver(import.meta.url)
 
+const mockProxy = resolveModulePath('mocked-exports/proxy', {
+  from: import.meta.url,
+})
+
 export default defineNuxtConfig({
-  compatibilityDate: '2024-09-11',
+  compatibilityDate: '2025-07-11',
   typescript: {
     tsConfig: {
+      include: ['../tests/nuxt'],
       exclude: ['../service-worker'],
+      compilerOptions: {
+        // TODO: enable this once we fix the issues
+        noUncheckedIndexedAccess: false,
+      },
       vueCompilerOptions: {
         target: 3.5,
       },
@@ -23,16 +36,12 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vue-macros/nuxt',
     '@nuxtjs/i18n',
-    '@nuxtjs/color-mode',
+    // temporary disable module during test
+    // ref. https://github.com/nuxt-modules/color-mode/issues/335
+    ...(isTest ? [] : ['@nuxtjs/color-mode']),
     '@unlazy/nuxt',
     '@nuxt/test-utils/module',
-    ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
-    '~/modules/emoji-mart-translation',
-    '~/modules/purge-comments',
-    '~/modules/build-env',
-    '~/modules/tauri/index',
-    '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
-    'stale-dep/nuxt',
+    ...(isDevelopment || isWindows ? [] : ['nuxt-security']),
   ],
   vue: {
     propsDestructure: true,
@@ -52,6 +61,9 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: false,
     renderJsonPayloads: true,
+    // Temporary workaround to avoid hash mismatch issue
+    // ref. https://github.com/elk-zone/elk/issues/3385#issuecomment-3335167005
+    entryImportMap: false,
   },
   css: [
     '@unocss/reset/tailwind.css',
@@ -59,14 +71,11 @@ export default defineNuxtConfig({
     '~/styles/default-theme.css',
     '~/styles/vars.css',
     '~/styles/global.css',
-    ...process.env.TAURI_PLATFORM === 'macos'
-      ? []
-      : ['~/styles/scrollbars.css'],
+    '~/styles/scrollbars.css',
     '~/styles/tiptap.css',
     '~/styles/dropdown.css',
   ],
   alias: {
-    'querystring': 'rollup-plugin-node-polyfills/polyfills/qs',
     'change-case': 'scule',
     'semver': resolve('./mocks/semver'),
   },
@@ -77,17 +86,20 @@ export default defineNuxtConfig({
       './composables/settings',
       './composables/tiptap/index.ts',
     ],
-    imports: [{
-      name: 'useI18n',
-      from: '~/utils/i18n',
-      priority: 100,
-    }],
+    imports: [
+      {
+        name: 'useI18n',
+        from: '~/utils/i18n',
+        priority: 100,
+      },
+    ],
     injectAtEnd: true,
   },
   vite: {
     define: {
       'process.env.VSCODE_TEXTMATE_DEBUG': 'false',
-      'process.mock': ((!isCI || isPreview) && process.env.MOCK_USER) || 'false',
+      'process.mock':
+        ((!isCI || isPreview) && process.env.MOCK_USER) || 'false',
       'process.test': 'false',
     },
     build: {
@@ -186,7 +198,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     alias: {
-      'isomorphic-ws': 'unenv/runtime/mock/proxy',
+      'isomorphic-ws': mockProxy,
     },
     esbuild: {
       options: {
@@ -222,30 +234,35 @@ export default defineNuxtConfig({
     'nitro:config': function (config) {
       const nuxt = useNuxt()
       config.virtual = config.virtual || {}
-      config.virtual['#storage-config'] = `export const driver = ${JSON.stringify(nuxt.options.appConfig.storage.driver)}`
+      config.virtual['#storage-config']
+        = `export const driver = ${JSON.stringify(nuxt.options.appConfig.storage.driver)}`
     },
     'vite:extendConfig': function (config, { isServer }) {
       if (isServer) {
         const alias = config.resolve!.alias as Record<string, string>
         for (const dep of ['eventemitter3', 'isomorphic-ws'])
           alias[dep] = resolve('./mocks/class')
-        for (const dep of ['fuse.js'])
-          alias[dep] = 'unenv/runtime/mock/proxy'
+        for (const dep of ['fuse.js']) alias[dep] = mockProxy
         const resolver = createResolver(import.meta.url)
 
         config.plugins!.unshift({
           name: 'mock',
           enforce: 'pre',
           resolveId(id) {
-            if (id.match(/(^|\/)(@tiptap)\//))
+            if (TIPTAP_IMPORT_RE.test(id))
               return resolver.resolve('./mocks/tiptap.ts')
-            if (id.match(/(^|\/)(prosemirror)/))
+            if (PROSEMIRROR_IMPORT_RE.test(id))
               return resolver.resolve('./mocks/prosemirror.ts')
           },
         })
 
         const noExternal = config.ssr!.noExternal as string[]
-        noExternal.push('masto', '@fnando/sparkline', 'vue-i18n', '@mastojs/ponyfills')
+        noExternal.push(
+          'masto',
+          '@fnando/sparkline',
+          'vue-i18n',
+          '@mastojs/ponyfills',
+        )
       }
     },
   },
@@ -308,47 +325,18 @@ export default defineNuxtConfig({
   colorMode: { classSuffix: '' },
   i18n: {
     locales: currentLocales,
-    lazy: true,
     strategy: 'no_prefix',
     detectBrowserLanguage: false,
     // relative to i18n dir on rootDir: not yet v4 compat layout
     langDir: '../locales',
     defaultLocale: 'en-US',
-    experimental: {
-      generatedLocaleFilePathFormat: 'relative',
-    },
-    vueI18n: './config/i18n.config.ts',
-    bundle: {
-      optimizeTranslationDirective: false,
-    },
+    vueI18n: '../config/i18n.config.ts',
   },
   pwa,
-  staleDep: {
-    packageManager: 'pnpm',
-  },
   unlazy: {
     ssr: false,
   },
 })
-
-declare global {
-  // eslint-disable-next-line ts/no-namespace
-  namespace NodeJS {
-    interface Process {
-      mock?: Record<string, any>
-    }
-  }
-}
-
-declare module '#app' {
-  interface PageMeta {
-    wideLayout?: boolean
-  }
-
-  interface RuntimeNuxtHooks {
-    'elk-logo:click': () => void
-  }
-}
 
 declare module '@nuxt/schema' {
   interface AppConfig {

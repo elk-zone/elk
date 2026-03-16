@@ -1,0 +1,772 @@
+{
+  "a11y": {
+    "loading_page": "Laddar sidan, vänligen vänta",
+    "loading_titled_page": "Laddar sida {0}, vänligen vänta",
+    "locale_changed": "Språk ändrades till {0}",
+    "locale_changing": "Byter språk, vänligen vänta",
+    "route_loaded": "Sidan {0} laddades"
+  },
+  "account": {
+    "authorize": "Tillåt att följa",
+    "authorized": "Du har tillåtit förfrågan",
+    "avatar_description": "{0}'s profilbild",
+    "blocked_by": "Du är blockerad för denna användare.",
+    "blocked_domains": "Blockerade domäner",
+    "blocked_users": "Blockerade användare",
+    "blocking": "Blockerad",
+    "bot": "BOT",
+    "copy_account_name": "Kopiera kontonamn",
+    "favourites": "Favoriter",
+    "follow": "Följ",
+    "follow_back": "Följ tillbaka",
+    "follow_requested": "Begärd",
+    "followers": "Följare",
+    "followers_count": "{0} Följare|{0} Följare|{0} Följare",
+    "following": "Följer",
+    "following_count": "{0} Följer",
+    "follows_you": "Följer dig",
+    "go_to_profile": "Gå till profil",
+    "joined": "Gick med",
+    "lock": "Lås",
+    "moved_title": "har angett att deras konto är nu:",
+    "muted_users": "Tystade användare",
+    "muting": "Tystad",
+    "mutuals": "Ömsesidiga",
+    "notifications_on_post_disable": "Sluta notifiera mig när {username} gör inlägg",
+    "notifications_on_post_enable": "Notifiera mig när {username} gör inlägg",
+    "pinned": "Fäst",
+    "posts": "Inlägg",
+    "posts_count": "{0} Inlägg|{0} Inlägg|{0} Inlägg",
+    "profile_description": "{0}s profilrubrik",
+    "profile_personal_note": "Personlig anteckning",
+    "profile_unavailable": "Profil ej tillgänlig",
+    "reject": "Neka följare",
+    "rejected": "Du har nekat begäran",
+    "request_follow": "Begär att följa",
+    "requested": "{0} har begärt att följa dig",
+    "unblock": "Avblockera",
+    "unfollow": "Avfölj",
+    "unmute": "Avtysta",
+    "view_other_followers": "Följare från andra instanser kanske inte visas.",
+    "view_other_following": "Följande från andra instanser kanske inte visas.",
+    "withdraw_follow_request": "Återkalla följförfrågan"
+  },
+  "action": {
+    "apply": "Tillämpa",
+    "bookmark": "Bokmärk",
+    "bookmarked": "Bokmärkt",
+    "boost": "Boosta",
+    "boost_count": "{0}",
+    "boosted": "Boostad",
+    "clear": "Rensa",
+    "clear_publish_failed": "Rensa publiceringsfel",
+    "clear_save_failed": "Rensa sparfel",
+    "clear_upload_failed": "Rensa filuppladdningsfel",
+    "close": "Stäng",
+    "compose": "Komponera",
+    "confirm": "Bekräfta",
+    "done": "Klar",
+    "edit": "Redigera",
+    "enter_app": "Öppna appen",
+    "favourite": "Favoritmarkera",
+    "favourite_count": "{0}",
+    "favourited": "Favoritmarkerad",
+    "more": "Mer",
+    "next": "Nästa",
+    "open_image_preview_dialog": "Öppna bildförhandsgranskning",
+    "prev": "Föregående",
+    "publish": "Publicera",
+    "publish_thread": "Publicera tråd",
+    "reply": "Svara",
+    "reply_count": "{0}",
+    "reset": "Återställ",
+    "save": "Spara",
+    "save_changes": "Spara ändringar",
+    "sign_in": "Logga in",
+    "sign_in_to": "Logga in på {0}",
+    "switch_account": "Växla konto",
+    "vote": "Rösta"
+  },
+  "app_desc_short": "En smidig Mastodon-webbklient",
+  "app_logo": "Elk-logga",
+  "app_name": "Elk",
+  "attachment": {
+    "edit_title": "Beskrivning",
+    "remove_label": "Ta bort bilaga"
+  },
+  "command": {
+    "activate": "Aktivera",
+    "complete": "Färdigställ",
+    "compose_desc": "Skriv ett nytt inlägg",
+    "n_people_in_the_past_n_days": "{0} personer de senaste {1} dagarna",
+    "select_lang": "Välj språk",
+    "sign_in_desc": "Lägg till ett befintligt konto",
+    "switch_account": "Växla till {0}",
+    "switch_account_desc": "Växla till ett annat konto",
+    "toggle_dark_mode": "Växla mörkt läge",
+    "toggle_zen_mode": "Växla zen-läge"
+  },
+  "common": {
+    "end_of_list": "Slut på listan",
+    "error": "FEL",
+    "fetching": "Hämtar...",
+    "in": "i",
+    "no_bookmarks": "Inga bokmärkta inlägg än",
+    "no_favourites": "Inga favoritmarkerade inlägg än",
+    "not_found": "404 Ej hittad",
+    "offline_desc": "Verkar som att du är offline. Vänligen kontrollera din nätverksanslutning."
+  },
+  "compose": {
+    "draft_title": "Utkast {0}",
+    "drafts": "Utkast ({v})"
+  },
+  "confirm": {
+    "block_account": {
+      "cancel": "Avbryt",
+      "confirm": "Blockera",
+      "description": "Är du säker på att du vill blockera {0}?",
+      "title": "Blockera konto"
+    },
+    "block_domain": {
+      "cancel": "Avbryt",
+      "confirm": "Blockera",
+      "description": "Är du säker på att du vill blockera {0}?",
+      "title": "Blockera domän"
+    },
+    "common": {
+      "cancel": "Nej",
+      "confirm": "Ja"
+    },
+    "delete_list": {
+      "cancel": "Avbryt",
+      "confirm": "Radera",
+      "description": "Är du säker på att du vill radera \"{0}\"-listan?",
+      "title": "Radera lista"
+    },
+    "delete_posts": {
+      "cancel": "Avbryt",
+      "confirm": "Radera",
+      "description": "Är du säker på att du vill radera detta inlägg",
+      "title": "Radera inlägg"
+    },
+    "mute_account": {
+      "cancel": "Avbryt",
+      "confirm": "Tysta",
+      "days": "dagar|dag|dagar",
+      "description": "Är du säker på att du vill tysta {0}?",
+      "hours": "timmar|timme|timmar",
+      "minute": "minuter|minut|minuter",
+      "notifications": "Tysta notiser",
+      "specify_duration": "Specifiera tyst-varaktighet",
+      "title": "Tysta konto"
+    },
+    "show_reblogs": {
+      "cancel": "Avbryt",
+      "confirm": "Visa",
+      "description": "Är du säker på att du vill visa boosts från {0}?",
+      "title": "Visa boosts"
+    },
+    "unfollow": {
+      "cancel": "Avbryt",
+      "confirm": "Avfölj",
+      "description": "Är du säker på att du vill avfölja {0}?",
+      "title": "Avfölj"
+    }
+  },
+  "conversation": {
+    "with": "med"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "Rader {0}",
+      "open": "Öppna",
+      "snippet_from": "Urklipp från {0}"
+    }
+  },
+  "error": {
+    "account_not_found": "Konto {0} hittades ej",
+    "explore_list_empty": "Inget trendar just nu. Kolla igen senare!",
+    "file_size_cannot_exceed_n_mb": "Filstorleken kan ej överstiga {0}MB",
+    "sign_in_error": "Kan ej ansluta till servern.",
+    "status_not_found": "Inlägget hittades ej",
+    "unsupported_file_format": "Filformatet stödjs ej"
+  },
+  "help": {
+    "build_preview": {
+      "desc1": "Du använder just nu en förhandsversion av Elk från communityt - {0}.",
+      "desc2": "Den kan innehålla ogranskade eller till och med illvilliga ändringar.",
+      "desc3": "Logga inte in med ditt riktiga konto.",
+      "title": "Förhandsversion"
+    },
+    "desc_highlight": "Förvänta dig buggar här och där och funktioner som saknas.",
+    "desc_para1": "Elk är en smidig Mastodon-webbklient. Du kan logga in med ditt Mastodon-konto och använda det för att interagera med fediversumet.",
+    "desc_para2": "Elk är Open Source och vi förbättrar det aktivt som ett community-projekt. Gå med och låt oss bygga det tillsammans!",
+    "desc_para3": "För att accelerera utvecklingen så kan du sponsra teamet genom GitHub Sponsors. Vi hoppas du gillar Elk!",
+    "desc_para4": "Om du vill göra en buggrapport, hjälpa oss med testning, ge oss feedback eller bidra,",
+    "desc_para5": "nå ut till oss på GitHub",
+    "desc_para6": "och involvera dig.",
+    "footer_team": "Elk-teamet",
+    "title": "Välkommen till Elk!"
+  },
+  "language": {
+    "search": "Sök"
+  },
+  "list": {
+    "add_account": "Lägg till konto i listan",
+    "cancel_edit": "Avbryt redigering",
+    "clear_error": "Rensa fel",
+    "create": "Skapa",
+    "delete": "Radera denna lista",
+    "delete_error": "Ett fel uppstod när listan skulle raderas",
+    "edit": "Redigera denna lista",
+    "edit_error": "Ett fel uppstod när listan skulle uppdateras",
+    "error": "Ett fel uppstod när listan skulle skapas",
+    "error_prefix": "Fel: ",
+    "list_title_placeholder": "Listnamn",
+    "manage": "Hantera listor",
+    "modify_account": "Modifiera listor med konto",
+    "remove_account": "Radera konto från lista",
+    "save": "Spara ändringar",
+    "search_following_desc": "Sök efter personer du följer",
+    "search_following_placeholder": "Sök bland personer du följer"
+  },
+  "magic_keys": {
+    "dialog_header": "Kortkommandon",
+    "groups": {
+      "actions": {
+        "boost": "Boosta",
+        "command_mode": "Kommandoläge",
+        "compose": "Komponera",
+        "favourite": "Favoritmarkera",
+        "search": "Sök",
+        "show_new_items": "Visa nya objekt",
+        "title": "Åtgärder"
+      },
+      "media": {
+        "title": "Media"
+      },
+      "navigation": {
+        "go_to_bookmarks": "Bokmärken",
+        "go_to_conversations": "Konversationer",
+        "go_to_explore": "Upptäck",
+        "go_to_favourites": "Favoriter",
+        "go_to_federated": "Federerat",
+        "go_to_home": "Hem",
+        "go_to_lists": "Listor",
+        "go_to_local": "Lokalt",
+        "go_to_notifications": "Notiser",
+        "go_to_profile": "Profil",
+        "go_to_search": "Sök",
+        "go_to_settings": "Inställningar",
+        "next_status": "Nästa inlägg",
+        "previous_status": "Föregående inlägg",
+        "shortcut_help": "Kortkommandon",
+        "title": "Navigering"
+      }
+    },
+    "sequence_then": "then"
+  },
+  "menu": {
+    "add_personal_note": "Lägg till personlig anteckning för {0}",
+    "block_account": "Blockera {0}",
+    "block_domain": "Blockera domän {0}",
+    "copy_link_to_post": "Kopiera länk till detta inlägg",
+    "copy_original_link_to_post": "Kopiera originallänk till detta inlägg",
+    "delete": "Radera",
+    "delete_and_redraft": "Radera & gör om",
+    "direct_message_account": "Skicka meddelande till {0}",
+    "edit": "Redigera",
+    "hide_reblogs": "Göm boosts från {0}",
+    "mention_account": "Omnämn {0}",
+    "mute_account": "Tysta {0}",
+    "mute_conversation": "Tysta detta inlägg",
+    "open_in_original_site": "Öppna på originalsidan",
+    "pin_on_profile": "Fäst i profil",
+    "remove_personal_note": "Ta bort personlig anteckning från {0}",
+    "report_account": "Anmäl {0}",
+    "share_account": "Dela {0}",
+    "share_post": "Dela detta inlägg",
+    "show_favourited_and_boosted_by": "Visa vem som favoritmarkerade och boostade",
+    "show_reblogs": "Visa boosts från {0}",
+    "show_untranslated": "Visa oöversatta",
+    "toggle_theme": {
+      "dark": "Växla mörkt läge",
+      "light": "Växla ljust läge"
+    },
+    "translate_post": "Översätt inlägg",
+    "unblock_account": "Avblockera {0}",
+    "unblock_domain": "Avblockera domain {0}",
+    "unfollow_account": "Avfölj {0}",
+    "unmute_account": "Avtysta {0}",
+    "unmute_conversation": "Avtysta detta inlägg",
+    "unpin_on_profile": "Ångra fäst i profil"
+  },
+  "modals": {
+    "aria_label_close": "Stäng"
+  },
+  "nav": {
+    "back": "Gå tillbaka",
+    "blocked_domains": "Blockerade domäner",
+    "blocked_users": "Blockerade användare",
+    "bookmarks": "Bokmärken",
+    "built_at": "Byggd {0}",
+    "compose": "Komponera",
+    "conversations": "Konversationer",
+    "docs": "Dokumentation",
+    "explore": "Upptäck",
+    "favourites": "Favoriter",
+    "federated": "Federerat",
+    "hashtags": "Hashtaggar",
+    "home": "Hem",
+    "list": "Lista",
+    "lists": "Listor",
+    "local": "Lokalt",
+    "more_menu": "Mer",
+    "muted_users": "Tystade användare",
+    "notifications": "Notiser",
+    "privacy": "Integritet",
+    "profile": "Profil",
+    "search": "Sök",
+    "select_feature_flags": "Växla funktionsflaggor",
+    "select_font_size": "Teckenstorlek",
+    "select_language": "Språk för gränssnittet",
+    "settings": "Inställningar",
+    "show_intro": "Visa introduktion",
+    "toggle_theme": "Växla tema",
+    "zen_mode": "Zen-läge"
+  },
+  "notification": {
+    "and": "och",
+    "favourited_post": "favoritmarkerade ditt inlägg",
+    "followed_you": "följde dig",
+    "followed_you_count": "{0} följde dig|{0} följde dig|{0} följde dig",
+    "missing_type": "SAKNAS notification.type:",
+    "others": "{0} andra|{0} andra|{0} andra",
+    "reblogged_post": "boostade ditt inlägg",
+    "reported": "{0} anmälde {1}",
+    "request_to_follow": "begärde att följa dig",
+    "signed_up": "registrerade sig",
+    "update_status": "uppdaterade deras inlägg"
+  },
+  "placeholder": {
+    "content_warning": "Skriv din varning här",
+    "default_1": "Vad tänker du på?",
+    "reply_to_account": "Svara till {0}",
+    "replying": "Svarar"
+  },
+  "polls": {
+    "allow_multiple": "Tillåt flera val",
+    "cancel": "Avbryt",
+    "create": "Skapa omröstning",
+    "disallow_multiple": "Tillåt ej flera val",
+    "expiration": "Omröstning upphör",
+    "hide_votes": "Dölj totala röster till slutet",
+    "option_placeholder": "Omröstningsval {current}/{max}",
+    "remove_option": "Ta bort val",
+    "settings": "Omröstningsval",
+    "show_votes": "Visa alltid totalt antal röster"
+  },
+  "pwa": {
+    "dismiss": "Avvisa",
+    "install": "Installera",
+    "install_title": "Installera Elk",
+    "screenshots": {
+      "dark": "Skärmavbild av Elk i mörkt läge",
+      "light": "Skärmavbild av Elk i ljust läge"
+    },
+    "title": "Ny Elk-uppdatering tillgänglig!",
+    "update": "Uppdatera",
+    "update_available_short": "Uppdatera Elk",
+    "webmanifest": {
+      "canary": {
+        "description": "En smidig Mastodon-webbklient (canary)",
+        "name": "Elk (canary)",
+        "short_name": "Elk (canary)"
+      },
+      "dev": {
+        "description": "En smidig Mastodon-webbklient (dev)",
+        "name": "Elk (dev)",
+        "short_name": "Elk (dev)"
+      },
+      "preview": {
+        "description": "En smidig Mastodon-webbklient (preview)",
+        "name": "Elk (preview)",
+        "short_name": "Elk (preview)"
+      },
+      "release": {
+        "description": "En smidig Mastodon-webbklient",
+        "name": "Elk",
+        "short_name": "Elk"
+      }
+    }
+  },
+  "report": {
+    "additional_comments": "Övriga kommentarer",
+    "another_server": "Användaren du anmäler är från en annan server",
+    "anything_else": "Är det något annat vi borde veta om?",
+    "block_desc": "Du kommer inte att se inlägg från den här användaren i fortsättningen. De kommer inte kunna se dina inlägg eller följa dig. De kommer kunna se att de är blockerade.",
+    "dontlike": "Jag gillar det inte",
+    "dontlike_desc": "Det är inget jag vill se",
+    "forward": "Ja, vidarebefordra denna anmälan till {0}",
+    "forward_question": "Vill du även skicka en anonymiserad kopia av denna anmälan till servern?",
+    "further_actions": {
+      "limit": {
+        "description": "Här är dina alternativ för att kontrollera vad du ser:",
+        "title": "Vill du inte se det här?"
+      },
+      "report": {
+        "description": "Medan vi granskar detta, så kan du ta följande åtgärder:",
+        "title": "Tack för din anmälan, vi kommer ta en titt på detta."
+      }
+    },
+    "limiting": "Begränsar {0}",
+    "mute_desc": "Du kommer inte att se inlägg från den här användaren i fortsättningen. De kommer fortfarande kunna följa dig och se dina inlägg. De kommer inte veta att de är tystade.",
+    "other": "Det är något annat",
+    "other_desc": "Problemet passar inte i någon av kategorierna",
+    "reporting": "Anmäler {0}",
+    "select_many": "Välj allt som stämmer in:",
+    "select_one": "Välj den bästa matchningen:",
+    "select_posts": "Finns det några inlägg som styrker denna anmälan?",
+    "select_posts_other": "Finns det några andra inlägg som styrker denna anmälan?",
+    "spam": "Det är skräppost",
+    "spam_desc": "Skadliga länkar, klicklockeri eller upprepande svar",
+    "submit": "Skicka in anmälan",
+    "unfollow_desc": "Du kommer inte att se inlägg från den här användaren i ditt flöde i fortsättningen. Du kan dock komma att se inlägg från den här användaren på andra ställen.",
+    "violation": "Det bryter mot en eller flera av serverreglerna",
+    "whats_wrong_account": "Berätta vad som är fel med det här kontot",
+    "whats_wrong_post": "Berätta vad som är fel med det här inlägget"
+  },
+  "search": {
+    "search_desc": "Sök efter personer & hashtaggar",
+    "search_empty": "Kunde inte hitta något med dessa söktermer"
+  },
+  "settings": {
+    "about": {
+      "built_at": "Byggd",
+      "label": "Om",
+      "meet_the_team": "Möt teamet",
+      "sponsor_action": "Sponsra oss",
+      "sponsor_action_desc": "Sponsra teamet som utvecklar Elk",
+      "sponsors": "Sponsorer",
+      "sponsors_body_1": "Elk möjliggörs tack vare det generösa stödet och hjälpen från:",
+      "sponsors_body_2": "Samt alla företag och individer som stödjer Elk-teamet och dess medlemmar.",
+      "sponsors_body_3": "Om du tycker om appen, överväg då att sponsra oss:",
+      "version": "Version"
+    },
+    "account_settings": {
+      "description": "Ändra dina kontoinställningar i Mastodon-gränssnittet",
+      "label": "Kontoinställningar"
+    },
+    "interface": {
+      "bottom_nav": "Nedre navigeringsfält",
+      "bottom_nav_instructions": "Välj upp till fem stycken favoritknappar för det nedre navigeringsfältet. Måste innehålla \"Mer\"-knappen",
+      "color_mode": "Färgläge",
+      "dark_mode": "Mörkt",
+      "default": " (standard)",
+      "font_size": "Teckenstorlek",
+      "label": "Gränssnitt",
+      "light_mode": "Ljust",
+      "system_mode": "System",
+      "theme_color": "Färgtema"
+    },
+    "language": {
+      "display_language": "Språk för gränssnittet",
+      "how_to_contribute": "Hur kan du bidra?",
+      "label": "Språk",
+      "post_language": "Inläggsspråk",
+      "status": "Översättningsstatus: {0}/{1} ({2}%)",
+      "translations": {
+        "add": "Lägg till",
+        "choose_language": "Välj språk",
+        "heading": "Översättningar",
+        "hide_specific": "Dölj specifika översättningar",
+        "remove": "Ta bort"
+      }
+    },
+    "notifications": {
+      "label": "Notiser",
+      "notifications": {
+        "label": "Inställningar för notiser"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Favoriter",
+          "follow": "Nya följare",
+          "mention": "Omnämnanden",
+          "poll": "Omröstningar",
+          "reblog": "Boostar",
+          "title": "Vilka notiser vill jag ta emot?"
+        },
+        "description": "Ta emot notiser även när du inte använder Elk.",
+        "instructions": "Glöm inte att spara dina ändringar med @:settings.notifications.push_notifications.save_settings -knappen!",
+        "label": "Inställningar för push-notiser",
+        "policy": {
+          "all": "Från vem som helst",
+          "followed": "Från personer jag följer",
+          "follower": "Från personer som följer mig",
+          "none": "Från ingen",
+          "title": "Vem kan jag ta emot notiser från?"
+        },
+        "save_settings": "Spara inställningar",
+        "subscription_error": {
+          "clear_error": "Rensa fel",
+          "error_hint": "Du kan konsultera en lista med vanliga frågor för att lösa problem: {0}.",
+          "invalid_vapid_key": "Den allmänna nyckeln för VAPID verkar vara ogiltig.",
+          "permission_denied": "Åtkomst nekad: aktivera notiser i din webbläsare.",
+          "repo_link": "Elks förvar på GitHub",
+          "request_error": "Ett fel inträffade när prenumerationen förfrågades. Prova igen, och om felet återstår, vänligen anmäl felet till Elks förvar på Github.",
+          "title": "Kunde inte prenumerera på push-notiser",
+          "too_many_registrations": "På grund av begränsningar i webbläsaren, kan Elk inte använda tjänsten för push-notiser för flera konton på olika servrar. Du bör avprenumerera från push-notiser på ett annat konto och försök igen.",
+          "vapid_not_supported": "Din webbläsare stödjer Web Push Notifications, men verkar inte ha implementerat VAPID-protokollet."
+        },
+        "title": "Inställningar för push-notiser",
+        "undo_settings": "Ångra ändringar",
+        "unsubscribe": "Avaktivera push-notiser",
+        "unsupported": "Din webbläsare stödjer inte push-notiser.",
+        "warning": {
+          "enable_close": "Stäng",
+          "enable_description": "För att ta emot notiser när Elk inte är öppet, aktivera push-notiser. Du kan kontrollera precis vilka typer av interaktioner som ska generera push-notiser via \"@:settings.notifications.show_btn{'\"'} -knappen ovan när det är aktiverat.",
+          "enable_description_desktop": "För att ta emot notiser när Elk inte är öppet, aktivera push-notiser. Du kan kontrollera precis vilka typer av interaktioner som ska generera push-notiser via \"Inställningar > Notiser > Inställningar för push-notiser\" när det är aktiverat.",
+          "enable_description_mobile": "Du kan även komma åt inställningarna genom att använda navigationsmenyn \"Inställningar > Notiser > Inställningar för push-notiser\".",
+          "enable_description_settings": "För att ta emot notiser när Elk inte är öppet, aktivera push-notiser. Du kan kontrollera precis vilka typer av interaktioner som ska generera push-notiser på denna sida när du aktiverat dem.",
+          "enable_desktop": "Aktivera push-notiser",
+          "enable_title": "Missa aldrig något",
+          "re_auth": "Det ser ut som att din server inte stödjer push-notiser. Prova att logga ut och logga in igen, och om detta meddelande fortfarande dyker upp så kontakta din serveradministratör."
+        }
+      },
+      "show_btn": "Gå till inställningar för notiser",
+      "under_construction": "Under uppbyggnad"
+    },
+    "notifications_settings": "Notiser",
+    "preferences": {
+      "embedded_media": "Inbäddad mediaspelare",
+      "embedded_media_description": "Visa en inbäddad mediaspelare istället för den vanliga förhandsvisningskortet när delade medialänkar öppnas.",
+      "enable_autoplay": "Aktivera automatisk uppspelning",
+      "enable_data_saving": "Aktivera datasparläge",
+      "enable_data_saving_description": "Spara på din dataförbrukning genom att förhindra att bilagor laddas automatiskt.",
+      "enable_pinch_to_zoom": "Aktivera nyp för att zooma",
+      "github_cards": "GitHub-kort",
+      "github_cards_description": "När ett inlägg har en GitHub-länk, visas ett HTML-kort med hjälp av social graph-metadata istället för bilden.",
+      "grayscale_mode": "Gråskaleläge",
+      "hide_account_hover_card": "Dölj konto-hoverkort",
+      "hide_alt_indi_on_posts": "Dölj alt-indikator på inlägg",
+      "hide_boost_count": "Dölj boost-räknare",
+      "hide_favorite_count": "Dölj favoriträknare",
+      "hide_follower_count": "Dölj följer/följarräknare",
+      "hide_gif_indi_on_posts": "Dölj gif-indikator på inlägg",
+      "hide_news": "Dölj nyheter",
+      "hide_reply_count": "Dölj svarsräknare",
+      "hide_tag_hover_card": "Dölj tagg-hoverkort",
+      "hide_translation": "Dölj översättningar",
+      "hide_username_emojis": "Dölj användarnamn-emojis",
+      "hide_username_emojis_description": "Döljer emojis på användarnamn i tidslinjer. Emojis kommer fortfarande vara synliga i deras profiler.",
+      "label": "Inställningar",
+      "optimize_for_low_performance_device": "Optimera för enhet med låg prestanda",
+      "title": "Experimentella funktioner",
+      "unmute_videos": "Videoljud på som standard",
+      "use_star_favorite_icon": "Använd stjärna som favoritikon",
+      "user_picker": "Användarväljare",
+      "user_picker_description": "Visar alla profilbilder för inloggade konton i det nedre vänstra hörnet så att du snabbt kan växla mellan dem.",
+      "virtual_scroll": "Virtuell skrollning",
+      "virtual_scroll_description": "Använder en virtuell lista i tidslinjer så att ett större antal objekt kan renderas följsamt.",
+      "wellbeing": "Välbefinnande",
+      "zen_mode": "Zen-läge",
+      "zen_mode_description": "Döljer flikar så länge muspekaren inte är över dem. Döljer även vissa element från tidslinjen."
+    },
+    "profile": {
+      "appearance": {
+        "bio": "Biografi",
+        "description": "Ändra profilbild, användarnamn, profil, etc.",
+        "display_name": "Visningsnamn",
+        "label": "Utseende",
+        "profile_metadata": "Profil-metadata",
+        "profile_metadata_desc": "Du kan ha upp till {0} objekt för visning som en tabell på din profil",
+        "profile_metadata_label": "Etikett",
+        "profile_metadata_value": "Innehåll",
+        "title": "Redigera profil"
+      },
+      "featured_tags": {
+        "description": "Folk kan bläddra bland dina offentliga inlägg under dessa hashtaggar.",
+        "label": "Utvalda hashtaggar",
+        "under_construction": "Under uppbyggnad"
+      },
+      "label": "Profil"
+    },
+    "select_a_settings": "Välj en inställning",
+    "users": {
+      "export": "Exportera användarnycklar",
+      "import": "Importera användarnycklar",
+      "label": "Inloggade användare"
+    }
+  },
+  "share_target": {
+    "description": "Elk kan konfigureras så att du kan dela innehåll från andra applikationer. Installera Elk på din enhet eller dator och logga in.",
+    "hint": "För att kunna dela innehåll med Elk så måste Elk vara installerat och du måste vara inloggad.",
+    "title": "Dela med Elk"
+  },
+  "state": {
+    "attachments_exceed_server_limit": "Antalet bilagor överstiger gränsen per inlägg.",
+    "attachments_limit_audio_error": "Maximal ljudfilsstorlek har överskridits: {0}",
+    "attachments_limit_error": "Gränsen per inlägg har överstigits",
+    "attachments_limit_image_error": "Maximal bildstorlek har överskridits: {0}",
+    "attachments_limit_unknown_error": "Maximal filstorlek har överskridits: {0}",
+    "attachments_limit_video_error": "Maximal videostorlek har överskridits: {0}",
+    "edited": "(Redigerad)",
+    "editing": "Redigerar",
+    "loading": "Laddar...",
+    "publish_failed": "Publicering misslyckades",
+    "publishing": "Publicerar",
+    "save_failed": "Sparningen misslyckades",
+    "upload_failed": "Uppladdning misslyckades",
+    "uploading": "Laddar upp..."
+  },
+  "status": {
+    "account": {
+      "suspended_message": "Kontot för detta inlägg har stängts av.",
+      "suspended_show": "Visa innehållet ändå?"
+    },
+    "boosted_by": "Boostad av",
+    "edited": "Redigerad {0}",
+    "embedded_warning": "Om du spelar detta så kan det avslöja din IP-adress för andra.",
+    "favourited_by": "Favoritmarkerad av",
+    "filter_hidden_phrase": "Filtrerad av",
+    "filter_show_anyway": "Visa ändå",
+    "gif": "GIF",
+    "img_alt": {
+      "ALT": "ALT",
+      "desc": "Beskrivning",
+      "dismiss": "Stäng",
+      "read": "Läs {0} beskrivning"
+    },
+    "pinned": "Fästa inlägg",
+    "poll": {
+      "count": "{0} röster|{0} röst|{0} röster",
+      "ends": "slutar {0}",
+      "finished": "avslutad {0}",
+      "update": "Uppdatera omröstning"
+    },
+    "replying_to": "Svarar till {0}",
+    "show_full_thread": "Visa hela tråden",
+    "someone": "någon",
+    "spoiler_media_hidden": "Media dold",
+    "spoiler_show_less": "Visa mindre",
+    "spoiler_show_more": "Visa mer",
+    "thread": "Tråd",
+    "try_original_site": "Försök på originalsidan"
+  },
+  "status_history": {
+    "created": "skapades {0}",
+    "edited": "redigerades {0}"
+  },
+  "tab": {
+    "accounts": "Konton",
+    "for_you": "För dig",
+    "hashtags": "Hashtaggar",
+    "list": "Lista",
+    "media": "Media",
+    "news": "Nyheter",
+    "notifications_admin": {
+      "report": "Anmäl",
+      "sign_up": "Registrera"
+    },
+    "notifications_all": "Alla",
+    "notifications_favourite": "Favoritmarkering",
+    "notifications_follow": "Följ",
+    "notifications_follow_request": "Följförfrågan",
+    "notifications_mention": "Omnämnanden",
+    "notifications_more_tooltip": "Filtrera notiser efter typ",
+    "notifications_poll": "Omröstning",
+    "notifications_reblog": "Boost",
+    "notifications_status": "Status",
+    "notifications_update": "Uppdatering",
+    "posts": "Inlägg",
+    "posts_with_replies": "Inlägg & svar"
+  },
+  "tag": {
+    "follow": "Följ",
+    "follow_label": "Följ {0}-taggen",
+    "unfollow": "Avfölj",
+    "unfollow_label": "Avfölj {0}-taggen"
+  },
+  "time_ago_options": {
+    "day_future": "om 0 dagar|imorgon|om {n} dagar",
+    "day_past": "0 dagar sedan|igår|{n} dagar sedan",
+    "hour_future": "om 0 timmar|om 1 timme|om {n} timmar",
+    "hour_past": "0 timmar sedan|1 timme sedan|{n} timmar sedan",
+    "just_now": "just nu",
+    "minute_future": "om 0 minuter|om 1 minut|om {n} minuter",
+    "minute_past": "0 minuter sedan|1 minut sedan|{n} minuter sedan",
+    "month_future": "om 0 månader|nästa månad|om {n} månader",
+    "month_past": "0 månader sedan|förra månaden|{n} månader sedan",
+    "second_future": "just nu|om {n} sekund|om {n} sekunder",
+    "second_past": "just nu|{n} sekund sedan|{n} sekunder sedan",
+    "short_day_future": "om {n}d",
+    "short_day_past": "{n}d",
+    "short_hour_future": "om {n}h",
+    "short_hour_past": "{n}h",
+    "short_minute_future": "om {n}min",
+    "short_minute_past": "{n}min",
+    "short_month_future": "om {n}mån",
+    "short_month_past": "{n}mån",
+    "short_second_future": "om {n}s",
+    "short_second_past": "{n}s",
+    "short_week_future": "om {n}v",
+    "short_week_past": "{n}v",
+    "short_year_future": "om {n}år",
+    "short_year_past": "{n}år",
+    "week_future": "om 0 veckor|nästa vecka|om {n} veckor",
+    "week_past": "0 veckor sedan|förra veckan|{n} veckor sedan",
+    "year_future": "om 0 år|nästa år|om {n} år",
+    "year_past": "0 år sedan|förra året|{n} år sedan"
+  },
+  "timeline": {
+    "no_posts": "Inga inlägg här!",
+    "show_new_items": "Visa {v} nya inlägg|Visa {v} nytt inlägg|Visa {v} nya inlägg",
+    "view_older_posts": "Äldre inlägg från andra instanser kanske inte visas."
+  },
+  "title": {
+    "federated_timeline": "Federerad tidslinje",
+    "local_timeline": "Lokal tidslinje"
+  },
+  "tooltip": {
+    "add_content_warning": "Lägg till innehållsvarning",
+    "add_emojis": "Lägg till emojis",
+    "add_media": "Lägg till bilder, video eller en ljudfil",
+    "add_publishable_content": "Lägg till innehåll för publicering",
+    "add_thread_item": "Lägg till inlägg i tråden",
+    "change_content_visibility": "Ändra innehållets synlighet",
+    "change_language": "Byt språk",
+    "emoji": "Emoji",
+    "explore_links_intro": "Dessa nyheter pratas det om just nu på denna och andra servrar på det decentraliserade nätverket.",
+    "explore_posts_intro": "Dessa inlägg från denna och andra servrar på det decentraliserade nätverket har fått fäste på denna server just nu.",
+    "explore_tags_intro": "Dessa hashtaggar har fått fäste bland folk på denna och andra servrar på det decentraliserade nätverket",
+    "open_editor_tools": "Redigeringsverktyg",
+    "pick_an_icon": "Välj en ikon",
+    "publish_failed": "Stäng misslyckade meddelanden på toppen av redigeringsverktyget för att åter publicera inläggen",
+    "remove_thread_item": "Ta bort inlägg från tråden",
+    "start_thread": "Starta tråd",
+    "toggle_bold": "Fet",
+    "toggle_code_block": "Kodblock",
+    "toggle_italic": "Kursiv"
+  },
+  "user": {
+    "add_existing": "Lägg till ett befintligt konto",
+    "server_address_label": "Mastodon-serveradress",
+    "sign_in_desc": "Logga in för att följa profiler eller hashtaggar samt favoritmarkera, dela och svara på inlägg, eller interagera från ditt konto på en annan server.",
+    "sign_in_notice_title": "Visar {0} offentliga data",
+    "sign_out_account": "Logga ut {0}",
+    "single_instance_sign_in_desc": "Logga in för att följa profiler eller hashtaggar, favoritmarkera, dela och svara på inlägg",
+    "tip_no_account": "Om du inte har ett Mastodon-konto än, {0}.",
+    "tip_register_account": "välj server och registrera ett"
+  },
+  "visibility": {
+    "direct": "Privat omnämnande",
+    "direct_desc": "Synligt endast för omnämnda användare",
+    "private": "Endast följare",
+    "private_desc": "Synligt endast för följare",
+    "public": "Offentlig",
+    "public_desc": "Synligt för alla",
+    "unlisted": "Offentlig (begränsad)",
+    "unlisted_desc": "Synligt för alla, men bortvald från upptäcktsfunktioner"
+  }
+}

@@ -16,10 +16,10 @@ export default defineDriver((driver: Driver = memory()) => {
 
       return driver.hasItem(key, {})
     },
-    async setItem(key: string, value: any) {
+    async setItem(key: string, value: any, opts: any = {}) {
       await Promise.all([
         memoryDriver.setItem?.(key, value, {}),
-        driver.setItem?.(key, value, {}),
+        driver.setItem?.(key, value, opts),
       ])
     },
     async getItem(key: string) {

@@ -5,7 +5,7 @@ export { version } from '../package.json'
 
 /**
  * Environment variable `PULL_REQUEST` provided by Netlify.
- * @see {@link https://docs.netlify.com/configure-builds/environment-variables/#git-metadata}
+ * @see {@link https://docs.netlify.com/build/configure-builds/environment-variables/#git-metadata}
  *
  * Whether triggered by a GitHub PR
  */
@@ -13,7 +13,7 @@ export const isPR = process.env.PULL_REQUEST === 'true'
 
 /**
  * Environment variable `BRANCH` provided by Netlify.
- * @see {@link https://docs.netlify.com/configure-builds/environment-variables/#git-metadata}
+ * @see {@link https://docs.netlify.com/build/configure-builds/environment-variables/#git-metadata}
  *
  * Git branch
  */
@@ -21,7 +21,7 @@ export const gitBranch = process.env.BRANCH
 
 /**
  * Environment variable `CONTEXT` provided by Netlify.
- * @see {@link https://docs.netlify.com/configure-builds/environment-variables/#build-metadata}
+ * @see {@link https://docs.netlify.com/build/configure-builds/environment-variables/#build-metadata}
  *
  * Whether triggered by PR, `deploy-preview` or `dev`.
  */

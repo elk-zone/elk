@@ -117,6 +117,7 @@
     "ultrahtml": "^1.5.3",
     "unimport": "^5.6.0",
     "unstorage": "^1.17.1",
+    "virtua": "^0.48.6",
     "vite": "^7.1.7",
     "vite-plugin-pwa": "^1.2.0",
     "vue": "^3.5.4",

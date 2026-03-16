@@ -209,16 +209,16 @@ function getDatetimeInputFormat(time: Date) {
   return `${year}-${month}-${day}T${hours}:${minutes}`
 }
 
+// taken from https://github.com/mastodon/mastodon/blob/07f8b4d1b19f734d04e69daeb4c3421ef9767aac/app/lib/text_formatter.rb
+const linkRegex = /(https?:\/\/|xmpp:)\S+/g
+
+// taken from https://github.com/mastodon/mastodon/blob/af578e/app/javascript/mastodon/features/compose/util/counter.js
+const countableMentionRegex = /(^|[^/\w])@((\w+)@[a-z0-9.-]+[a-z0-9])/gi
+
 const characterCount = computed(() => {
   const text = htmlToText(editor.value?.getHTML() || '')
 
   let length = stringLength(text)
-
-  // taken from https://github.com/mastodon/mastodon/blob/07f8b4d1b19f734d04e69daeb4c3421ef9767aac/app/lib/text_formatter.rb
-  const linkRegex = /(https?:\/\/|xmpp:)\S+/g
-
-  // taken from https://github.com/mastodon/mastodon/blob/af578e/app/javascript/mastodon/features/compose/util/counter.js
-  const countableMentionRegex = /(^|[^/\w])@((\w+)@[a-z0-9.-]+[a-z0-9])/gi
 
   // maximum of 23 chars per link
   // https://github.com/elk-zone/elk/issues/1651
@@ -279,7 +279,7 @@ async function handlePaste(evt: ClipboardEvent) {
     return
 
   evt.preventDefault()
-  await uploadAttachments(Array.from(files))
+  await uploadAttachments([...files])
 }
 
 function insertEmoji(name: string) {

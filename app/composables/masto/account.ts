@@ -1,10 +1,12 @@
 import type { mastodon } from 'masto'
 
+const EMOJI_REGEX = /:([\w-]+):/g
+
 export function getDisplayName(account: mastodon.v1.Account, options?: { rich?: boolean }) {
   const displayName = account.displayName || account.username || account.acct || ''
   if (options?.rich)
     return displayName
-  return displayName.replace(/:([\w-]+):/g, '')
+  return displayName.replace(EMOJI_REGEX, '')
 }
 
 export function accountToShortHandle(acct: string) {

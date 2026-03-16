@@ -45,10 +45,11 @@ export const supportedTranslationCodes = [
 const translationAPISupported = 'Translator' in globalThis && 'LanguageDetector' in globalThis
 
 const anchorMarkupRegEx = /<a[^>]*>.*?<\/a>/g
+const LANGUAGE_CODE_REGEX = /-.*$/
 
 export function getLanguageCode() {
   let code = 'en'
-  const getCode = (code: string) => code.replace(/-.*$/, '')
+  const getCode = (code: string) => code.replace(LANGUAGE_CODE_REGEX, '')
   if (import.meta.client) {
     const { locale } = useI18n()
     code = getCode(locale.value ? locale.value : navigator.language)

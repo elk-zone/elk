@@ -19,9 +19,16 @@ interface Meta {
 // Protect against long code snippets
 const maxLines = 20
 
+const STACKBLITZ_META_REGEX = /.*Code Snippet from (.+), lines (\S+)\n\n(.+)/s
+const HTML_ESCAPE_REGEX = {
+  LESS_THAN: /</g,
+  GREATER_THAN: />/g,
+  BACKTICK: /`/g,
+}
+
 const meta = computed(() => {
   const { description } = card
-  const meta = description.match(/.*Code Snippet from (.+), lines (\S+)\n\n(.+)/s)
+  const meta = description.match(STACKBLITZ_META_REGEX)
   const file = meta?.[1]
   const lines = meta?.[2]
   const code = meta?.[3].split('\n').slice(0, maxLines).join('\n')
@@ -38,9 +45,9 @@ const vnodeCode = computed(() => {
   if (!meta.value.code)
     return null
   const code = meta.value.code
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/`/g, '&#96;')
+    .replace(HTML_ESCAPE_REGEX.LESS_THAN, '&lt;')
+    .replace(HTML_ESCAPE_REGEX.GREATER_THAN, '&gt;')
+    .replace(HTML_ESCAPE_REGEX.BACKTICK, '&#96;')
 
   const vnode = contentToVNode(`<p>\`\`\`${meta.value.file?.split('.')?.[1] ?? ''}\n${code}\n\`\`\`\</p>`, {
     markdown: true,

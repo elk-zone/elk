@@ -61,6 +61,7 @@
     "clear": "Rensa",
     "clear_publish_failed": "Rensa publiceringsfel",
     "clear_save_failed": "Rensa sparfel",
+    "clear_schedule_failed": "Rensa schemafel",
     "clear_upload_failed": "Rensa filuppladdningsfel",
     "close": "Stäng",
     "compose": "Komponera",
@@ -77,11 +78,15 @@
     "prev": "Föregående",
     "publish": "Publicera",
     "publish_thread": "Publicera tråd",
+    "quote": "Citera",
+    "quote_count": "{0}",
+    "remove_quote": "Ta bort citering",
     "reply": "Svara",
     "reply_count": "{0}",
     "reset": "Återställ",
     "save": "Spara",
     "save_changes": "Spara ändringar",
+    "schedule": "Schemalägg",
     "sign_in": "Logga in",
     "sign_in_to": "Logga in på {0}",
     "switch_account": "Växla konto",
@@ -113,6 +118,7 @@
     "in": "i",
     "no_bookmarks": "Inga bokmärkta inlägg än",
     "no_favourites": "Inga favoritmarkerade inlägg än",
+    "no_scheduled_posts": "Inga schemalagda inlägg än",
     "not_found": "404 Ej hittad",
     "offline_desc": "Verkar som att du är offline. Vänligen kontrollera din nätverksanslutning."
   },
@@ -131,7 +137,8 @@
       "cancel": "Avbryt",
       "confirm": "Blockera",
       "description": "Är du säker på att du vill blockera {0}?",
-      "title": "Blockera domän"
+      "title": "Blockera domän",
+      "type_to_confirm": "Skriv {0} för att bekräfta"
     },
     "common": {
       "cancel": "Nej",
@@ -187,6 +194,7 @@
     "account_not_found": "Konto {0} hittades ej",
     "explore_list_empty": "Inget trendar just nu. Kolla igen senare!",
     "file_size_cannot_exceed_n_mb": "Filstorleken kan ej överstiga {0}MB",
+    "quote_fetch_error": "Kunde inte hämta det citerade inlägget",
     "sign_in_error": "Kan ej ansluta till servern.",
     "status_not_found": "Inlägget hittades ej",
     "unsupported_file_format": "Filformatet stödjs ej"
@@ -238,6 +246,7 @@
         "command_mode": "Kommandoläge",
         "compose": "Komponera",
         "favourite": "Favoritmarkera",
+        "quote": "Citera",
         "search": "Sök",
         "show_new_items": "Visa nya objekt",
         "title": "Åtgärder"
@@ -274,7 +283,6 @@
     "copy_original_link_to_post": "Kopiera originallänk till detta inlägg",
     "delete": "Radera",
     "delete_and_redraft": "Radera & gör om",
-    "direct_message_account": "Skicka meddelande till {0}",
     "edit": "Redigera",
     "hide_reblogs": "Göm boosts från {0}",
     "mention_account": "Omnämn {0}",
@@ -282,11 +290,13 @@
     "mute_conversation": "Tysta detta inlägg",
     "open_in_original_site": "Öppna på originalsidan",
     "pin_on_profile": "Fäst i profil",
+    "private_mention_account": "Skicka meddelande till {0}",
     "remove_personal_note": "Ta bort personlig anteckning från {0}",
     "report_account": "Anmäl {0}",
     "share_account": "Dela {0}",
     "share_post": "Dela detta inlägg",
-    "show_favourited_and_boosted_by": "Visa vem som favoritmarkerade och boostade",
+    "show_favourited_and_boosted_by": "Visa vilka som favoritmarkerade och boostade",
+    "show_reacted_by": "Visa vilka som reagerade",
     "show_reblogs": "Visa boosts från {0}",
     "show_untranslated": "Visa oöversatta",
     "toggle_theme": {
@@ -326,6 +336,7 @@
     "notifications": "Notiser",
     "privacy": "Integritet",
     "profile": "Profil",
+    "scheduled_posts": "Schemalagda inlägg",
     "search": "Sök",
     "select_feature_flags": "Växla funktionsflaggor",
     "select_font_size": "Teckenstorlek",
@@ -399,6 +410,14 @@
         "short_name": "Elk"
       }
     }
+  },
+  "quote_approval_policy": {
+    "followers": "Endast följare",
+    "followers_desc": "Dina följare kan citera",
+    "nobody": "Ingen",
+    "nobody_desc": "Bara du kan citera",
+    "public": "Offentlig",
+    "public_desc": "Vem som helst kan citera"
   },
   "report": {
     "additional_comments": "Övriga kommentarer",
@@ -539,6 +558,8 @@
     },
     "notifications_settings": "Notiser",
     "preferences": {
+      "disable_timeline_autoloading": "Inaktivera automatisk laddning av tidslinje",
+      "disable_timeline_autoloading_description": "Förhindra automatisk laddning av nya inlägg i tidslinjer och visa \"Ladda fler\"-knappen.",
       "embedded_media": "Inbäddad mediaspelare",
       "embedded_media_description": "Visa en inbäddad mediaspelare istället för den vanliga förhandsvisningskortet när delade medialänkar öppnas.",
       "enable_autoplay": "Aktivera automatisk uppspelning",
@@ -551,10 +572,15 @@
       "hide_account_hover_card": "Dölj konto-hoverkort",
       "hide_alt_indi_on_posts": "Dölj alt-indikator på inlägg",
       "hide_boost_count": "Dölj boost-räknare",
+      "hide_boosts_in_timeline": "Dölj booster i tidslinje",
+      "hide_boosts_in_timeline_description": "Dölj boostade inlägg i din hemtidslinje och offentliga tidslinjer.",
       "hide_favorite_count": "Dölj favoriträknare",
       "hide_follower_count": "Dölj följer/följarräknare",
       "hide_gif_indi_on_posts": "Dölj gif-indikator på inlägg",
       "hide_news": "Dölj nyheter",
+      "hide_quote_count": "Dölj antal citat",
+      "hide_replies_in_timeline": "Dölj svar i tidslinje",
+      "hide_replies_in_timeline_description": "Dölj svar till andras inlägg i din hemtidslinje och offentliga tidslinjer. Dina egna svar kommer fortfarande att synas.",
       "hide_reply_count": "Dölj svarsräknare",
       "hide_tag_hover_card": "Dölj tagg-hoverkort",
       "hide_translation": "Dölj översättningar",
@@ -617,6 +643,9 @@
     "publish_failed": "Publicering misslyckades",
     "publishing": "Publicerar",
     "save_failed": "Sparningen misslyckades",
+    "schedule_failed": "Schemaläggning misslyckades",
+    "schedule_time_invalid": "Den schemalagda tiden måste vara minst 5 minuter in i framtiden. Sätt till {0} eller senare.",
+    "scheduling": "Schemaläggning",
     "upload_failed": "Uppladdning misslyckades",
     "uploading": "Laddar upp..."
   },
@@ -645,6 +674,7 @@
       "finished": "avslutad {0}",
       "update": "Uppdatera omröstning"
     },
+    "quoted_by": "Citerad av",
     "replying_to": "Svarar till {0}",
     "show_full_thread": "Visa hela tråden",
     "someone": "någon",
@@ -676,6 +706,7 @@
     "notifications_mention": "Omnämnanden",
     "notifications_more_tooltip": "Filtrera notiser efter typ",
     "notifications_poll": "Omröstning",
+    "notifications_quote": "Citat",
     "notifications_reblog": "Boost",
     "notifications_status": "Status",
     "notifications_update": "Uppdatering",
@@ -720,6 +751,7 @@
     "year_past": "0 år sedan|förra året|{n} år sedan"
   },
   "timeline": {
+    "load_more": "Ladda fler inlägg",
     "no_posts": "Inga inlägg här!",
     "show_new_items": "Visa {v} nya inlägg|Visa {v} nytt inlägg|Visa {v} nya inlägg",
     "view_older_posts": "Äldre inlägg från andra instanser kanske inte visas."
@@ -736,6 +768,7 @@
     "add_thread_item": "Lägg till inlägg i tråden",
     "change_content_visibility": "Ändra innehållets synlighet",
     "change_language": "Byt språk",
+    "change_quote_approval_policy": "Ändra policy för godkännande av citat",
     "emoji": "Emoji",
     "explore_links_intro": "Dessa nyheter pratas det om just nu på denna och andra servrar på det decentraliserade nätverket.",
     "explore_posts_intro": "Dessa inlägg från denna och andra servrar på det decentraliserade nätverket har fått fäste på denna server just nu.",
@@ -744,6 +777,8 @@
     "pick_an_icon": "Välj en ikon",
     "publish_failed": "Stäng misslyckade meddelanden på toppen av redigeringsverktyget för att åter publicera inläggen",
     "remove_thread_item": "Ta bort inlägg från tråden",
+    "schedule_failed": "Stäng misslyckade meddelanden högst upp i redigeraren för att schemalägga inlägg på nytt",
+    "schedule_post": "Schemalägg inlägg",
     "start_thread": "Starta tråd",
     "toggle_bold": "Fet",
     "toggle_code_block": "Kodblock",

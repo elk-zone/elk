@@ -209,9 +209,6 @@ importers:
       nuxt-security:
         specifier: ^2.4.0
         version: 2.4.0(magicast@0.5.2)(rollup@4.59.0)
-      page-lifecycle:
-        specifier: ^0.1.2
-        version: 0.1.2
       pathe:
         specifier: ^2.0.3
         version: 2.0.3
@@ -357,6 +354,9 @@ importers:
       nano-staged:
         specifier: ^0.9.0
         version: 0.9.0
+      page-lifecycle:
+        specifier: ^0.1.2
+        version: 0.1.2
       prettier:
         specifier: ^3.8.1
         version: 3.8.1

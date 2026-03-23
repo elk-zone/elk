@@ -285,8 +285,8 @@ importers:
         specifier: ^11.1.12
         version: 11.1.12(vue@3.5.30(typescript@5.9.3))
       vue-virtual-scroller:
-        specifier: 2.0.0-beta.8
-        version: 2.0.0-beta.8(vue@3.5.30(typescript@5.9.3))
+        specifier: 2.0.0-beta.10
+        version: 2.0.0-beta.10(vue@3.5.30(typescript@5.9.3))
       workbox-build:
         specifier: ^7.1.1
         version: 7.3.0
@@ -9732,11 +9732,6 @@ packages:
     peerDependencies:
       vue: ^3.5.4
 
-  vue-observe-visibility@2.0.0-alpha.1:
-    resolution: {integrity: sha512-flFbp/gs9pZniXR6fans8smv1kDScJ8RS7rEpMjhVabiKeq7Qz3D9+eGsypncjfIyyU84saU88XZ0zjbD6Gq/g==}
-    peerDependencies:
-      vue: ^3.5.4
-
   vue-resize@2.0.0-alpha.1:
     resolution: {integrity: sha512-7+iqOueLU7uc9NrMfrzbG8hwMqchfVfSzpVlCMeJQe4pyibqyoifDNbKTZvwxZKDvGkB+PdFeKvnGZMoEb8esg==}
     peerDependencies:
@@ -9768,8 +9763,8 @@ packages:
     peerDependencies:
       typescript: '>=5.0.0'
 
-  vue-virtual-scroller@2.0.0-beta.8:
-    resolution: {integrity: sha512-b8/f5NQ5nIEBRTNi6GcPItE4s7kxNHw2AIHLtDp+2QvqdTjVN0FgONwX9cr53jWRgnu+HRLPaWDOR2JPI5MTfQ==}
+  vue-virtual-scroller@2.0.0-beta.10:
+    resolution: {integrity: sha512-eubwFXRdiT/5kNYbHKXTkNf3XCmZNSDtpTkWB7TTdOB4LYM14Ylqq/pbW6uXOEbbO/pVXQpxdhtdf2Qj2wZpQA==}
     peerDependencies:
       vue: ^3.5.4
 
@@ -21061,10 +21056,6 @@ snapshots:
       - vue-tsc
       - webpack
 
-  vue-observe-visibility@2.0.0-alpha.1(vue@3.5.30(typescript@5.9.3)):
-    dependencies:
-      vue: 3.5.30(typescript@5.9.3)
-
   vue-resize@2.0.0-alpha.1(vue@3.5.30(typescript@5.9.3)):
     dependencies:
       vue: 3.5.30(typescript@5.9.3)
@@ -21104,12 +21095,10 @@ snapshots:
       '@vue/language-core': 2.2.12(typescript@5.9.3)
       typescript: 5.9.3
 
-  vue-virtual-scroller@2.0.0-beta.8(vue@3.5.30(typescript@5.9.3)):
+  vue-virtual-scroller@2.0.0-beta.10(vue@3.5.30(typescript@5.9.3)):
     dependencies:
       mitt: 2.1.0
       vue: 3.5.30(typescript@5.9.3)
-      vue-observe-visibility: 2.0.0-alpha.1(vue@3.5.30(typescript@5.9.3))
-      vue-resize: 2.0.0-alpha.1(vue@3.5.30(typescript@5.9.3))
 
   vue@3.5.30(typescript@5.9.3):
     dependencies:

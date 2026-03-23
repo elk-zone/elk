@@ -296,7 +296,7 @@ interface UseUserLocalStorageCache {
  * @param initial
  */
 export function useUserLocalStorage<T extends object>(key: string, initial: () => T): Ref<T> {
-  if (import.meta.server || process.test)
+  if (import.meta.server || import.meta.test)
     return shallowRef(initial())
 
   // @ts-expect-error bind value to the function

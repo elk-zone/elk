@@ -120,6 +120,9 @@ export async function loginTo(
   }
 
   currentUserHandle.value = me.acct
+
+  // Fetch user filters for client-side filtering (e.g., streaming events)
+  refreshFilters()
 }
 
 const accountPreferencesMap = new Map<string, Partial<mastodon.v1.Preference>>()

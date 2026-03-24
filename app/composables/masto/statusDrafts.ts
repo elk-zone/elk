@@ -7,7 +7,7 @@ import { STORAGE_KEY_DRAFTS } from '~/constants'
 const MENTION_REGEX = /^(@\S+\s?)+/
 const CODE_BLOCK_REGEX = /```/g
 
-export const currentUserDrafts = (import.meta.server || process.test)
+export const currentUserDrafts = (import.meta.server || import.meta.test)
   ? computed<DraftMap>(() => ({ home: [], dialog: [], intent: [], quote: [] }))
   : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({ home: [], dialog: [], intent: [], quote: [] }))
 

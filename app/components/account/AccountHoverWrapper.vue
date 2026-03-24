@@ -21,7 +21,7 @@ const account = ref<mastodon.v1.Account | null | undefined>(props.account)
 watch(
   () => [props.account, props.handle, hovered.value] satisfies WatcherType,
   ([newAccount, newHandle, newVisible], oldProps) => {
-    if (!newVisible || process.test)
+    if (!newVisible || import.meta.test)
       return
 
     if (newAccount) {

@@ -94,7 +94,9 @@ useGesture({
       handleDrag(delta, movement)
   },
   onDragStart({ event }) {
-    if (event.button !== 0) {
+    const button = 'button' in event ? event.button : 0
+
+    if (button !== 0) {
       isRightClicking.value = true
       return
     }

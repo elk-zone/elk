@@ -226,7 +226,9 @@
     "manage": "Administrar listas",
     "modify_account": "Modificar listas con cuenta",
     "remove_account": "Eliminar cuenta de la lista",
-    "save": "Guardar"
+    "save": "Guardar",
+    "search_following_desc": "Buscar personas a las que sigues",
+    "search_following_placeholder": "Buscar entre las personas a las que sigues"
   },
   "magic_keys": {
     "dialog_header": "Atajos de teclado",
@@ -334,10 +336,12 @@
     "zen_mode": "Modo Zen"
   },
   "notification": {
+    "and": "y",
     "favourited_post": "marcó como favorita tu publicación",
     "followed_you": "te ha seguido",
     "followed_you_count": "{0} personas te siguieron|{0} persona te siguió|{0} personas te siguieron",
     "missing_type": "MISSING notification.type:",
+    "others": "{0} personas|{0} persona|{0} personas",
     "reblogged_post": "retooteó tu publicación",
     "reported": "{0} reportó {1}",
     "request_to_follow": "ha solicitado seguirte",
@@ -559,6 +563,7 @@
       "label": "Preferencias",
       "optimize_for_low_performance_device": "Optimizar para dispositivos de bajo rendimiento",
       "title": "Funcionalidades experimentales",
+      "unmute_videos": "Sonido de vídeo activado por defecto",
       "use_star_favorite_icon": "Utilizar icono de estrella para favoritos",
       "user_picker": "Selector de usuarios",
       "user_picker_description": "Muestra todos los avatares de las cuentas registradas en la parte inferior izquierda para que puedas cambiar rápidamente entre ellos.",
@@ -637,7 +642,8 @@
     "poll": {
       "count": "{0} votos|{0} voto|{0} votos",
       "ends": "finaliza {0}",
-      "finished": "finalizada {0}"
+      "finished": "finalizada {0}",
+      "update": "Actualizar encuesta"
     },
     "replying_to": "Respondiendo a {0}",
     "show_full_thread": "Mostrar hilo completo",

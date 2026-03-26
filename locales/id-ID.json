@@ -27,6 +27,7 @@
     "follows_you": "Mengikutimu",
     "go_to_profile": "Buka profil",
     "joined": "Bergabung",
+    "lock": "Kunci",
     "moved_title": "telah mengindikasikan bahwa akun baru mereka sekarang:",
     "muted_users": "Pengguna dibisukan",
     "muting": "Bisukan",
@@ -57,6 +58,7 @@
     "boost": "Dukung",
     "boost_count": "{0}",
     "boosted": "Didukung",
+    "clear": "Bersihkan",
     "clear_publish_failed": "Hapus error publikasi",
     "clear_save_failed": "Hapus kesalahan penyimpanan",
     "clear_upload_failed": "Hapus kesalahan pengunggahan file",
@@ -71,8 +73,10 @@
     "favourited": "Difavoritkan",
     "more": "Selengkapnya",
     "next": "Selanjutnya",
+    "open_image_preview_dialog": "Buka dialog pratinjau gambar",
     "prev": "Sebelumnya",
     "publish": "Terbitkan",
+    "publish_thread": "Terbitkan thread",
     "reply": "Balas",
     "reply_count": "{0}",
     "reset": "Atur ulang",
@@ -120,12 +124,14 @@
     "block_account": {
       "cancel": "Batalkan",
       "confirm": "Blokir",
-      "description": "Yakin ingin memblokir {0}?"
+      "description": "Yakin ingin memblokir {0}?",
+      "title": "Blokir akun"
     },
     "block_domain": {
       "cancel": "Batalkan",
       "confirm": "Blokir",
-      "description": "Yakin ingin memblokir {0}?"
+      "description": "Yakin ingin memblokir {0}?",
+      "title": "Blokir domain"
     },
     "common": {
       "cancel": "Tidak",
@@ -134,27 +140,37 @@
     "delete_list": {
       "cancel": "Batalkan",
       "confirm": "Hapus",
-      "description": "Apakah Anda yakin ingin menghapus daftar \"{0}\"?"
+      "description": "Apakah Anda yakin ingin menghapus daftar \"{0}\"?",
+      "title": "Hapus daftar"
     },
     "delete_posts": {
       "cancel": "Batalkan",
       "confirm": "Hapus",
-      "description": "Yakin ingin menghapus postingan ini?"
+      "description": "Yakin ingin menghapus postingan ini?",
+      "title": "Hapus postingan"
     },
     "mute_account": {
       "cancel": "Batalkan",
       "confirm": "Bisukan",
-      "description": "Yakin ingin membisukan {0}?"
+      "days": "hari|hari|hari",
+      "description": "Yakin ingin membisukan {0}?",
+      "hours": "jam|jam|jam",
+      "minute": "menit|menit|menit",
+      "notifications": "Bisukan notifikasi",
+      "specify_duration": "Tentukan durasi bisu",
+      "title": "Bisukan akun"
     },
     "show_reblogs": {
       "cancel": "Batalkan",
       "confirm": "Tampilkan",
-      "description": "Yakin ingin menampilkan dukungan dari {0}?"
+      "description": "Yakin ingin menampilkan dukungan dari {0}?",
+      "title": "Tampilkan dukungan"
     },
     "unfollow": {
       "cancel": "Batalkan",
       "confirm": "Berhenti mengikuti",
-      "description": "Anda yakin ingin berhenti mengikuti?"
+      "description": "Anda yakin ingin berhenti mengikuti?",
+      "title": "Berhenti mengikuti"
     }
   },
   "conversation": {
@@ -207,9 +223,12 @@
     "error": "Terjadi kesalahan saat membuat daftar",
     "error_prefix": "Kesalahan: ",
     "list_title_placeholder": "Judul daftar",
+    "manage": "Kelola daftar",
     "modify_account": "Ubah daftar dengan akun",
     "remove_account": "Hapus akun dari daftar",
-    "save": "Simpan perubahan"
+    "save": "Simpan perubahan",
+    "search_following_desc": "Cari orang yang Anda ikuti",
+    "search_following_placeholder": "Cari di antara orang yang Anda ikuti"
   },
   "magic_keys": {
     "dialog_header": "Pintasan keyboard",
@@ -220,14 +239,25 @@
         "compose": "Menyusun",
         "favourite": "Favorit",
         "search": "Cari",
+        "show_new_items": "Tampilkan item baru",
         "title": "Tindakan"
       },
       "media": {
         "title": "Media"
       },
       "navigation": {
+        "go_to_bookmarks": "Markah",
+        "go_to_conversations": "Percakapan",
+        "go_to_explore": "Jelajahi",
+        "go_to_favourites": "Favorit",
+        "go_to_federated": "Federasi",
         "go_to_home": "Beranda",
+        "go_to_lists": "Daftar",
+        "go_to_local": "Lokal",
         "go_to_notifications": "Notifikasi",
+        "go_to_profile": "Profil",
+        "go_to_search": "Cari",
+        "go_to_settings": "Pengaturan",
         "next_status": "Posting selanjutnya",
         "previous_status": "Posting sebelumnya",
         "shortcut_help": "Bantuan jalan pintas",
@@ -282,13 +312,16 @@
     "built_at": "Diperbarui {0}",
     "compose": "Menyusun",
     "conversations": "Percakapan",
+    "docs": "Dokumentasi",
     "explore": "Jelajahi",
     "favourites": "Favorit",
     "federated": "Federasi",
+    "hashtags": "Tagar",
     "home": "Beranda",
     "list": "Daftar",
     "lists": "Daftar",
     "local": "Lokal",
+    "more_menu": "Menu lainnya",
     "muted_users": "Pengguna dibisukan",
     "notifications": "Notifikasi",
     "privacy": "Privasi",
@@ -303,10 +336,12 @@
     "zen_mode": "Mode Zen"
   },
   "notification": {
+    "and": "dan",
     "favourited_post": "memfavoritkan pos Anda",
     "followed_you": "mengikutimu",
     "followed_you_count": "{0} orang mengikuti Anda|{0} orang mengikuti Anda|{0} orang mengikuti Anda",
     "missing_type": "NOTIFIKASI HILANG.jenis:",
+    "others": "{0} lainnya|{0} lainnya|{0} lainnya",
     "reblogged_post": "meningkatkan postingan Anda",
     "reported": "{0} melaporkan {1}",
     "request_to_follow": "meminta untuk mengikuti Anda",
@@ -423,6 +458,8 @@
       "label": "Pengaturan akun"
     },
     "interface": {
+      "bottom_nav": "Navigasi Bawah",
+      "bottom_nav_instructions": "Pilih tombol navigasi favorit Anda hingga lima untuk navigasi bawah. Harus menyertakan tombol \"Menu Lainnya\".",
       "color_mode": "Tema",
       "dark_mode": "Gelap",
       "default": "(bawaan)",
@@ -434,6 +471,7 @@
     },
     "language": {
       "display_language": "Bahasa tampilan",
+      "how_to_contribute": "Bagaimana cara berkontribusi?",
       "label": "Bahasa",
       "post_language": "Bahasa Postingan",
       "status": "Status terjemahan: {0}/{1} ({2}%)",
@@ -515,13 +553,17 @@
       "hide_boost_count": "Sembunyikan jumlah dukungan",
       "hide_favorite_count": "Sembunyikan jumlah favorit",
       "hide_follower_count": "Sembunyikan jumlah pengikut",
+      "hide_gif_indi_on_posts": "Sembunyikan indikator gif pada postingan",
       "hide_news": "Sembunyikan berita",
       "hide_reply_count": "Sembunyikan jumlah balasan",
+      "hide_tag_hover_card": "Sembunyikan tag kartu hover",
       "hide_translation": "Sembunyikan terjemahan",
       "hide_username_emojis": "Sembunyikan emoji di nama pengguna",
       "hide_username_emojis_description": "Sembunyikan emoji dari nama pengguna dalam timeline. Emoji tetap akan terlihat di profil mereka.",
       "label": "Preferensi",
+      "optimize_for_low_performance_device": "Optimalkan untuk perangkat berkinerja rendah",
       "title": "Fitur Eksperimental",
+      "unmute_videos": "Suara video aktif secara default",
       "use_star_favorite_icon": "Gunakan ikon bintang favorit",
       "user_picker": "Pemilih Pengguna",
       "user_picker_description": "Menampilkan semua avatar akun yang dicatat di kiri bawah sehingga Anda dapat beralih antar akun dengan cepat.",
@@ -564,7 +606,11 @@
   },
   "state": {
     "attachments_exceed_server_limit": "Jumlah lampiran melebihi batas per posting.",
+    "attachments_limit_audio_error": "Ukuran maksimal audio terlampaui: {0}",
     "attachments_limit_error": "Batas per posting terlampaui",
+    "attachments_limit_image_error": "Ukuran maksimal gambar terlampaui: {0}",
+    "attachments_limit_unknown_error": "Ukuran file maksimal terlampaui: {0}",
+    "attachments_limit_video_error": "Ukuran maksimal video terlampaui: {0}",
     "edited": "(Disunting)",
     "editing": "Menyunting",
     "loading": "Memuat...",
@@ -585,24 +631,27 @@
     "favourited_by": "Difavoritkan Oleh",
     "filter_hidden_phrase": "Difilter oleh",
     "filter_show_anyway": "Tetap tampilkan",
+    "gif": "GIF",
     "img_alt": {
       "ALT": "ALT",
       "desc": "Keterangan",
       "dismiss": "Batalkan",
       "read": "Baca deskripsi {0}"
     },
+    "pinned": "Postingan disematkan",
     "poll": {
       "count": "{0} suara|{0} suara|{0} suara",
       "ends": "berakhir {0}",
-      "finished": "selesai {0}"
+      "finished": "selesai {0}",
+      "update": "Perbarui jajak pendapat"
     },
     "replying_to": "Membalas ke {0}",
-    "show_full_thread": "Tampilkan utas Penuh",
+    "show_full_thread": "Tampilkan thread Penuh",
     "someone": "seseorang",
     "spoiler_media_hidden": "Media disembunyikan",
     "spoiler_show_less": "Tampilkan lebih sedikit",
     "spoiler_show_more": "Menampilkan lebih banyak",
-    "thread": "Utas",
+    "thread": "Thread",
     "try_original_site": "Coba situs asli"
   },
   "status_history": {
@@ -671,6 +720,7 @@
     "year_past": "0 tahun lalu|tahun lalu|{n} tahun lalu"
   },
   "timeline": {
+    "no_posts": "Tidak ada postingan di sini!",
     "show_new_items": "Tampilkan {v} item baru|Tampilkan {v} item baru|Tampilkan {v} item baru",
     "view_older_posts": "Posting lama dari contoh lain mungkin tidak ditampilkan."
   },
@@ -683,6 +733,7 @@
     "add_emojis": "Tambahkan emoji",
     "add_media": "Tambahkan gambar, video atau file audio",
     "add_publishable_content": "Tambahkan konten untuk dipublikasikan",
+    "add_thread_item": "Tambahkan item ke thread",
     "change_content_visibility": "Ubah visibilitas konten",
     "change_language": "Ubah bahasa",
     "emoji": "Emoji",
@@ -692,6 +743,8 @@
     "open_editor_tools": "Alat Editor",
     "pick_an_icon": "Pilih ikon",
     "publish_failed": "Tutup pesan yang gagal di bagian atas editor untuk mempublikasikan ulang postingan",
+    "remove_thread_item": "Hapus item dari thread",
+    "start_thread": "Mulai thread",
     "toggle_bold": "Ubah tebal",
     "toggle_code_block": "Tulis sebagai blok kode",
     "toggle_italic": "Alihkan miring"

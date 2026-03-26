@@ -11,6 +11,8 @@ import { renderToString } from 'vue/server-renderer'
 import type { ContentParseOptions } from '~/composables/content-parse'
 import { contentToVNode } from '~/composables/content-render'
 
+const SPECIAL_COMMENT_ELEMENT_RE = /<!--[[\]]-->/g
+
 beforeEach(() => {
   publicServer.value = useRuntimeConfig().public.defaultServer
 })
@@ -80,7 +82,7 @@ describe('content-rich', () => {
   })
 
   it('code frame 2', async () => {
-    const { formatted } = await render('<p><span class=\"h-card\"><a href=\"https://webtoo.ls/@antfu\" class=\"u-url mention\">@<span>antfu</span></a></span> Testing<br />```ts<br />const a = hello<br />```</p>')
+    const { formatted } = await render('<p><span class="h-card"><a href="https://webtoo.ls/@antfu" class="u-url mention">@<span>antfu</span></a></span> Testing<br />```ts<br />const a = hello<br />```</p>')
     expect(formatted).toMatchSnapshot()
   })
 
@@ -186,6 +188,16 @@ describe('content-rich', () => {
     `)
     expect(formatted).toMatchSnapshot()
   })
+
+  it ('asterisk paris in inline code', async () => {
+    const { formatted } = await render('<p>`1 * 2 * 3`</p>')
+    expect(formatted).toMatchSnapshot()
+  })
+
+  it ('asterisk paris in code block', async () => {
+    const { formatted } = await render('<p>```<br />1 * 2 * 3<br />```</p>')
+    expect(formatted).toMatchSnapshot()
+  })
 })
 
 describe('editor', () => {
@@ -199,7 +211,7 @@ describe('editor', () => {
 async function render(content: string, options?: ContentParseOptions) {
   const vnode = contentToVNode(content, options)
   const html = (await renderToString(vnode))
-    .replace(/<!--[[\]]-->/g, '')
+    .replace(SPECIAL_COMMENT_ELEMENT_RE, '')
   let formatted = ''
 
   try {

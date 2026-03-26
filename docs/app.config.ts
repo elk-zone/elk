@@ -1,35 +1,41 @@
 export default defineAppConfig({
-  docus: {
+  seo: {
     title: 'Elk',
-    description: 'A nimble Mastodon web client.',
-    image: 'https://docs.elk.zone/elk-screenshot.png',
-    socials: {
-      // twitter: 'elk_zone',
-      github: 'elk-zone/elk',
-      mastodon: {
-        label: 'Mastodon',
-        icon: 'IconMastodon',
-        href: 'https://elk.zone/@elk@webtoo.ls',
-      },
+    description: 'A nimble Mastodon web client with modern features and elegant design.',
+  },
+  header: {
+    title: 'Elk',
+    logo: {
+      alt: 'Elk',
+      light: '/logo.svg',
+      dark: '/logo.svg',
     },
-    aside: {
-      level: 0,
-      exclude: [],
-    },
-    header: {
-      logo: true,
-      showLinkIcon: true,
-      exclude: [],
-    },
-    footer: {
-      iconLinks: [
+  },
+  socials: {
+    github: 'https://github.com/elk-zone/elk',
+    mastodon: 'https://elk.zone/@elk@webtoo.ls',
+  },
+  github: {
+    url: 'https://github.com/elk-zone/elk',
+    branch: 'main',
+    rootDir: 'docs',
+  },
+  toc: {
+    title: 'On this page',
+    bottom: {
+      title: 'Community',
+      links: [
         {
-          href: 'https://nuxt.com',
-          icon: 'IconNuxtLabs',
+          icon: 'i-ph-shooting-star-duotone',
+          label: 'Star on GitHub',
+          to: 'https://github.com/elk-zone/elk',
+          target: '_blank',
         },
         {
-          href: 'https://m.webtoo.ls/@elk',
-          icon: 'IconMastodon',
+          icon: 'i-simple-icons-mastodon',
+          label: 'Follow on Mastodon',
+          to: 'https://elk.zone/@elk@webtoo.ls',
+          target: '_blank',
         },
       ],
     },

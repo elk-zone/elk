@@ -1,22 +1,30 @@
-import { defineVitestConfig } from '@nuxt/test-utils/config'
+import { defineVitestProject } from '@nuxt/test-utils/config'
 import { isCI } from 'std-env'
+import { defineConfig } from 'vitest/config'
 
-export default defineVitestConfig({
+export default defineConfig({
   define: {
     'process.test': 'true',
   },
   test: {
     reporters: isCI ? ['default', 'hanging-process'] : ['default'],
-    setupFiles: [
-      '/tests/setup.ts',
-    ],
-    environmentOptions: {
-      nuxt: {
-        mock: {
-          indexedDb: true,
-          intersectionObserver: true,
+    projects: [
+      await defineVitestProject({
+        test: {
+          name: 'nuxt',
+          setupFiles: [
+            './tests/setup.ts',
+          ],
+          environmentOptions: {
+            nuxt: {
+              mock: {
+                indexedDb: true,
+                intersectionObserver: true,
+              },
+            },
+          },
         },
-      },
-    },
+      }),
+    ],
   },
 })

@@ -1,5 +1,5 @@
 import type { MastoNotification, NotificationInfo, PushPayload, UserLogin } from './types'
-import { closeDatabases, get } from '../utils/elk-idb'
+import { closeDatabases, get } from '../app/utils/elk-idb'
 
 export async function findNotification({ access_token, notification_id/* , notification_type */ }: PushPayload): Promise<NotificationInfo | undefined> {
   const users = await get<UserLogin[]>('elk-users')
@@ -62,7 +62,7 @@ export function createNotificationOptions(
     tag: notification_id,
 
     // @ts-expect-error error missing type, just ignore
-    timestamp: new Date().getTime(),
+    timestamp: Date.now(),
   }
 
   if (notificationInfo) {

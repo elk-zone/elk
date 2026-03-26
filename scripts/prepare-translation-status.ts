@@ -1,13 +1,13 @@
 import type { LocaleEntry } from '../docs/types'
-import type { ElkTranslationStatus } from '~/types/translation-status'
+import type { ElkTranslationStatus } from '../shared/types/translation-status'
 import { Buffer } from 'node:buffer'
 import { readFile, writeFile } from 'node:fs/promises'
-import { createResolver } from '@nuxt/kit'
 import { flatten } from 'flat'
-import { countryLocaleVariants, currentLocales } from '../config/i18n'
+import { createResolver } from 'nuxt/kit'
+import { countryLocaleVariants, currentLocales } from '../config/i18n.ts'
 
 export const localeData: [code: string, file: string[], title: string][]
-    = currentLocales.map((l: any) => [l.code, l.files ? l.files : [l.file!], l.name ?? l.code])
+  = currentLocales.map((l: any) => [l.code, l.files ? l.files : [l.file!], l.name ?? l.code])
 
 function merge(src: Record<string, any>, dst: Record<string, any>) {
   for (const key in src) {
@@ -78,7 +78,7 @@ async function prepareTranslationStatus() {
 
   await Promise.all(localeData.filter(l => l[0] !== 'en-US').map(async ([code, file, title]) => {
     console.info(`Comparing ${code}...`, title)
-    let useFile = file[file.length - 1]
+    let useFile = file.at(-1)
     const entry = countryLocaleVariants[file[0].slice(0, file[0].indexOf('.'))]
     if (entry) {
       const countryFile = entry.find(e => e.code === code && e.country === true)
@@ -88,7 +88,7 @@ async function prepareTranslationStatus() {
     data[code] = {
       title,
       useFile,
-      file: Array.isArray(file) ? file[file.length - 1] : file,
+      file: Array.isArray(file) ? file.at(-1) : file,
       translated: [],
       missing: [],
       outdated: [],

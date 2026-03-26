@@ -165,7 +165,8 @@
     },
     "preferences": {
       "grayscale_mode": "Tema en escala de grises",
-      "hide_username_emojis_description": "Oculta, de la historia, los emojis en los nombres de usuario. Los emojis seguirán visibles en los perfiles."
+      "hide_username_emojis_description": "Oculta, de la historia, los emojis en los nombres de usuario. Los emojis seguirán visibles en los perfiles.",
+      "unmute_videos": "Sonido de video activado por defecto"
     },
     "profile": {
       "appearance": {

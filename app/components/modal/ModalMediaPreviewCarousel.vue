@@ -32,6 +32,7 @@ const y = ref(0)
 
 const isDragging = ref(false)
 const isPinching = ref(false)
+const isRightClicking = ref(false)
 
 const maxZoomOut = ref(1)
 const isZoomedIn = computed(() => scale.value > 1)
@@ -78,6 +79,10 @@ useGesture({
       goToFocusedSlide()
   },
   onDrag({ movement, delta, pinching, tap, last, swipe, event, xy }) {
+    // Ignore right-click events
+    if (isRightClicking.value)
+      return
+
     event.preventDefault()
 
     if (pinching)
@@ -87,6 +92,21 @@ useGesture({
       handleLastDrag(tap, swipe, movement, xy)
     else
       handleDrag(delta, movement)
+  },
+  onDragStart({ event }) {
+    const button = 'button' in event ? event.button : 0
+
+    if (button !== 0) {
+      isRightClicking.value = true
+      return
+    }
+
+    isRightClicking.value = false
+    isDragging.value = true
+  },
+  onDragEnd() {
+    isRightClicking.value = false
+    isDragging.value = false
   },
 }, {
   domTarget: view,

@@ -1,14 +1,33 @@
 import type { RouteHandlerCallback } from 'workbox-core/types'
 import type { PrecacheEntry, PrecacheRouteOptions } from 'workbox-precaching'
+import { WorkboxError } from 'workbox-core/_private/WorkboxError'
 import { PrecacheController, PrecacheRoute } from 'workbox-precaching'
 import { registerRoute } from 'workbox-routing'
 
 let precacheController: PrecacheController | undefined
 
+class CustomPrecacheController extends PrecacheController {
+  override createHandlerBoundToURL(url: string): RouteHandlerCallback {
+    const cacheKey = this.getCacheKeyForURL(url)
+    if (!cacheKey) {
+      throw new WorkboxError('non-precached-url', { url })
+    }
+    return async (options) => {
+      // check if present at precache before falling back to network
+      if (await this.matchPrecache(options.request)) {
+        options.request = new Request(url)
+        options.params = { cacheKey, ...options.params }
+      }
+
+      return await this.strategy.handle(options)
+    }
+  }
+}
 function getOrCreatePrecacheController(): PrecacheController {
   if (!precacheController) {
-    precacheController = new PrecacheController({
+    precacheController = new CustomPrecacheController({
       fallbackToNetwork: true,
+      /*
       plugins: [{
         requestWillFetch: async ({ request, state }) => {
           state ??= {}
@@ -27,26 +46,6 @@ function getOrCreatePrecacheController(): PrecacheController {
         cachedResponseWillBeUsed: async ({ cachedResponse, state }) => {
           return state?.originalCacheKey ? cachedResponse : undefined
         },
-        /* cacheKeyWillBeUsed: async ({ request, state }) => {
-          const originalCacheKey: string | undefined = state?.originalCacheKey
-          // eslint-disable-next-line no-console
-          console.info('cacheKeyWillBeUsed::originalCacheKey', originalCacheKey)
-          if (!originalCacheKey) {
-            const cacheKey = precacheController!.getCacheKeyForURL(request.url)
-            // eslint-disable-next-line no-console
-            console.info('cacheKeyWillBeUsed::cacheKey', cacheKey)
-            if (cacheKey && cacheKey !== originalCacheKey) {
-              // eslint-disable-next-line no-console
-              console.log('cacheKeyWillBeUsed::originalHeaders', state?.originalHeaders)
-              // eslint-disable-next-line no-console
-              console.log('cacheKeyWillBeUsed::headers', request.headers)
-              // this should prevent PrecacheCacheKeyPlugin match fallback the allowlist
-              // when using registerRouter(new NavigationRoute(...)) forcing network fetch
-              return new Request(originalCacheKey, { headers: request.headers })
-            }
-          }
-          return request
-        }, */
         fetchDidFail: async ({ error }) => {
           console.error('fetchDidFail', error)
         },
@@ -55,6 +54,7 @@ function getOrCreatePrecacheController(): PrecacheController {
           return undefined
         },
       }],
+         */
     })
   }
   return precacheController

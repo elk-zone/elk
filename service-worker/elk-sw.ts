@@ -1,13 +1,11 @@
 /// <reference lib="WebWorker" />
 /// <reference types="vite/client" />
-import type { RouteHandlerCallback } from 'workbox-core/types'
-import type { PrecacheEntry, PrecacheRouteOptions } from 'workbox-precaching'
 import { CacheableResponsePlugin } from 'workbox-cacheable-response'
 import { ExpirationPlugin } from 'workbox-expiration'
-import { cleanupOutdatedCaches, PrecacheController, PrecacheRoute } from 'workbox-precaching'
+import { cleanupOutdatedCaches } from 'workbox-precaching'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
 import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies'
-
+import { createHandlerBoundToURL, precacheAndRoute } from './precache'
 import { onShareTarget } from './share-target'
 import { onNotificationClick, onPush } from './web-push-notifications'
 
@@ -21,54 +19,6 @@ self.addEventListener('message', (event) => {
 const entries = self.__WB_MANIFEST
 if (import.meta.env.DEV)
   entries.push({ url: '/', revision: Math.random().toString() })
-
-/* begin: custom precache controller */
-let precacheController: PrecacheController | undefined
-
-function getOrCreatePrecacheController(): PrecacheController {
-  if (!precacheController) {
-    precacheController = new PrecacheController({
-      // cacheName: 'precache',
-      fallbackToNetwork: true,
-      /*
-      plugins: [{
-        fetchDidFail: async ({ error }) => {
-          console.error('fetchDidFail', error)
-        },
-        handlerDidError: async ({ error }) => {
-          console.error('handlerDidError', error)
-          return undefined
-        },
-      }],
-      */
-    })
-  }
-  return precacheController
-}
-
-function createHandlerBoundToURL(url: string): RouteHandlerCallback {
-  const precacheController = getOrCreatePrecacheController()
-  return precacheController.createHandlerBoundToURL(url)
-}
-function precache(entries: Array<PrecacheEntry | string>): void {
-  const precacheController = getOrCreatePrecacheController()
-  precacheController.precache(entries)
-}
-function addRoute(options?: PrecacheRouteOptions): void {
-  const precacheController = getOrCreatePrecacheController()
-
-  const precacheRoute = new PrecacheRoute(precacheController, options)
-  registerRoute(precacheRoute)
-}
-
-function precacheAndRoute(
-  entries: Array<PrecacheEntry | string>,
-  options?: PrecacheRouteOptions,
-): void {
-  precache(entries)
-  addRoute(options)
-}
-/* end: custom precache controller */
 
 precacheAndRoute(entries)
 

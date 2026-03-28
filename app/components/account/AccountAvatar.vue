@@ -25,7 +25,7 @@ const accountAvatarSrc = computed(() => {
     :alt="$t('account.avatar_description', [account.username])"
     loading="lazy"
     class="account-avatar object-cover"
-    :class="(loaded ? 'bg-base' : 'bg-gray:10') + (square ? ' ' : ' rounded-full')"
+    :class="(loaded ? 'bg-base' : 'bg-gray:10') + (true || square ? ' ' : ' rounded-full')"
     :style="{ 'clip-path': square ? `url(#avatar-mask)` : 'none' }"
     v-bind="$attrs"
     @load="loaded = true"

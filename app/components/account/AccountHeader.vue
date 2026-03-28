@@ -137,8 +137,8 @@ async function copyAccountName() {
     <div p4 mt--18 flex flex-col gap-4>
       <div relative>
         <div flex justify-between>
-          <button shrink-0 h-full :class="{ 'rounded-full': !isSelf, 'squircle': isSelf }" p1 bg-base border-bg-base z-2 @click="previewAvatar">
-            <AccountAvatar :square="isSelf" :account="account" hover:opacity-90 transition-opacity w-28 h-28 />
+          <button shrink-0 h-full :class="{ 'rounded-full': true || !isSelf, 'squircle': true || isSelf }" p1 bg-base border-bg-base z-2 @click="previewAvatar">
+            <AccountAvatar :square="true || isSelf" :account="account" hover:opacity-90 transition-opacity w-28 h-28 />
           </button>
           <div inset-ie-0 flex="~ wrap row-reverse" gap-2 items-center pt18 justify-start>
             <!-- Edit profile -->

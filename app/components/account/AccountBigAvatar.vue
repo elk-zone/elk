@@ -11,7 +11,7 @@ defineProps<{
 </script>
 
 <template>
-  <div :key="account.avatar" v-bind="$attrs" :style="{ 'clip-path': square ? `url(#avatar-mask)` : 'none' }" :class="{ 'rounded-full': !square }" bg-base w-54px h-54px flex items-center justify-center>
-    <AccountAvatar :account="account" w-48px h-48px :square="square" />
+  <div :key="account.avatar" v-bind="$attrs" :style="{ 'clip-path': true || square ? `url(#avatar-mask)` : 'none' }" :class="{ 'rounded-full': false || !square }" bg-base w-54px h-54px flex items-center justify-center>
+    <AccountAvatar :account="account" w-48px h-48px :square="true || square" />
   </div>
 </template>

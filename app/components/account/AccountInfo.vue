@@ -18,7 +18,7 @@ const { as = 'div' } = defineProps<{
 <template>
   <component :is="as" flex items-center gap-3 v-bind="$attrs">
     <AccountHoverWrapper :disabled="!hoverCard" :account="account">
-      <AccountBigAvatar :account="account" shrink-0 :square="square" />
+      <AccountBigAvatar :account="account" shrink-0 :square="true || square" />
     </AccountHoverWrapper>
     <div flex="~ col" shrink h-full overflow-hidden justify-center leading-none select-none p-1>
       <div flex="~" gap-2>

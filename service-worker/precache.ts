@@ -12,17 +12,26 @@ function getOrCreatePrecacheController(): PrecacheController {
       plugins: [{
         requestWillFetch: async ({ request, state }) => {
           state ??= {}
+          // store original cache to prevent hit fallback via allowlist
+          // this should prevent PrecacheCacheKeyPlugin match fallback the allowlist
+          // when using registerRouter(new NavigationRoute(...)) forcing network fetch
+          // since we'll return undefined at cachedResponseWillBeUsed
           state.originalCacheKey = precacheController!.getCacheKeyForURL(request.url)
           // eslint-disable-next-line no-console
           console.info('requestWillFetch', state)
-          state.originalHeaders = request.headers
           return request
         },
-        cacheKeyWillBeUsed: async ({ request, state }) => {
+        cacheWillUpdate: async ({ response, state }) => {
+          return state?.originalCacheKey ? response : undefined
+        },
+        cachedResponseWillBeUsed: async ({ cachedResponse, state }) => {
+          return state?.originalCacheKey ? cachedResponse : undefined
+        },
+        /* cacheKeyWillBeUsed: async ({ request, state }) => {
           const originalCacheKey: string | undefined = state?.originalCacheKey
           // eslint-disable-next-line no-console
           console.info('cacheKeyWillBeUsed::originalCacheKey', originalCacheKey)
-          if (originalCacheKey) {
+          if (!originalCacheKey) {
             const cacheKey = precacheController!.getCacheKeyForURL(request.url)
             // eslint-disable-next-line no-console
             console.info('cacheKeyWillBeUsed::cacheKey', cacheKey)
@@ -37,7 +46,7 @@ function getOrCreatePrecacheController(): PrecacheController {
             }
           }
           return request
-        },
+        }, */
         fetchDidFail: async ({ error }) => {
           console.error('fetchDidFail', error)
         },

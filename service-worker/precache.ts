@@ -15,8 +15,8 @@ class CustomPrecacheController extends PrecacheController {
     }
     const networkOnlyHandler = new NetworkOnly()
     return async (options) => {
-      // check if present at precache before falling back to network
-      if (options.request.mode !== 'navigate' || await this.matchPrecache(options.request)) {
+      // check if present at precache before using network only
+      if (options.request.mode !== 'navigate' || this.getCacheKeyForURL(options.request.url)) {
         options.request = new Request(url)
         options.params = { cacheKey, ...options.params }
         return await this.strategy.handle(options)
@@ -29,9 +29,7 @@ class CustomPrecacheController extends PrecacheController {
         // fallback with 404
         options.request = new Request(url)
         options.params = { cacheKey, ...options.params }
-        const response = await this.strategy.handle(options)
-        const { body, ...rest } = response
-        return new Response(response.body, { ...rest, status: 404, statusText: 'Not Found' })
+        return await this.strategy.handle(options)
       }
     }
   }
@@ -40,34 +38,6 @@ function getOrCreatePrecacheController(): PrecacheController {
   if (!precacheController) {
     precacheController = new CustomPrecacheController({
       fallbackToNetwork: false,
-      /*
-      plugins: [{
-        requestWillFetch: async ({ request, state }) => {
-          state ??= {}
-          // store original cache to prevent hit fallback via allowlist
-          // this should prevent PrecacheCacheKeyPlugin match fallback the allowlist
-          // when using registerRouter(new NavigationRoute(...)) forcing network fetch
-          // since we'll return undefined at cachedResponseWillBeUsed
-          state.originalCacheKey = precacheController!.getCacheKeyForURL(request.url)
-          // eslint-disable-next-line no-console
-          console.info('requestWillFetch', state)
-          return request
-        },
-        cacheWillUpdate: async ({ response, state }) => {
-          return state?.originalCacheKey ? response : undefined
-        },
-        cachedResponseWillBeUsed: async ({ cachedResponse, state }) => {
-          return state?.originalCacheKey ? cachedResponse : undefined
-        },
-        fetchDidFail: async ({ error }) => {
-          console.error('fetchDidFail', error)
-        },
-        handlerDidError: async ({ error }) => {
-          console.error('handlerDidError', error)
-          return undefined
-        },
-      }],
-         */
     })
   }
   return precacheController

@@ -14,7 +14,7 @@ class CustomPrecacheController extends PrecacheController {
     }
     return async (options) => {
       // check if present at precache before falling back to network
-      if (await this.matchPrecache(options.request)) {
+      if (options.request.mode !== 'navigate' || !await this.matchPrecache(options.request)) {
         options.request = new Request(url)
         options.params = { cacheKey, ...options.params }
       }

@@ -104,7 +104,9 @@ let precacheController: PrecacheController | undefined
 function getOrCreatePrecacheController(): PrecacheController {
   if (!precacheController) {
     precacheController = new PrecacheController({
+      cacheName: 'precache',
       fallbackToNetwork: true,
+      /*
       plugins: [{
         fetchDidFail: async ({ error }) => {
           console.error('fetchDidFail', error)
@@ -114,6 +116,7 @@ function getOrCreatePrecacheController(): PrecacheController {
           return undefined
         },
       }],
+      */
     })
   }
   return precacheController

@@ -3,6 +3,7 @@ import type { PrecacheEntry, PrecacheRouteOptions } from 'workbox-precaching'
 import { WorkboxError } from 'workbox-core/_private/WorkboxError'
 import { PrecacheController, PrecacheRoute } from 'workbox-precaching'
 import { registerRoute } from 'workbox-routing'
+import { NetworkOnly } from 'workbox-strategies'
 
 let precacheController: PrecacheController | undefined
 
@@ -12,6 +13,7 @@ class CustomPrecacheController extends PrecacheController {
     if (!cacheKey) {
       throw new WorkboxError('non-precached-url', { url })
     }
+    const networkOnlyHandler = new NetworkOnly()
     return async (options) => {
       // check if present at precache before falling back to network
       if (options.request.mode !== 'navigate' || await this.matchPrecache(options.request)) {
@@ -21,7 +23,7 @@ class CustomPrecacheController extends PrecacheController {
       }
 
       try {
-        return await this.strategy.handle(options)
+        return await networkOnlyHandler.handle(options)
       }
       catch {
         // fallback with 404

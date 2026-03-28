@@ -1,8 +1,9 @@
 /// <reference lib="WebWorker" />
 /// <reference types="vite/client" />
+import type { RouteHandlerCallback } from 'workbox-core/types'
 import { CacheableResponsePlugin } from 'workbox-cacheable-response'
 import { ExpirationPlugin } from 'workbox-expiration'
-import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching'
+import { cleanupOutdatedCaches, precacheAndRoute, PrecacheController } from 'workbox-precaching'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
 import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies'
 
@@ -96,6 +97,33 @@ if (import.meta.env.PROD) {
   )
 */
 }
+
+/* begin: custom precache controller */
+let precacheController: PrecacheController | undefined
+
+function getOrCreatePrecacheController(): PrecacheController {
+  if (!precacheController) {
+    precacheController = new PrecacheController({
+      fallbackToNetwork: true,
+      plugins: [{
+        fetchDidFail: async ({ error }) => {
+          console.error('fetchDidFail', error)
+        },
+        handlerDidError: async ({ error }) => {
+          console.error('handlerDidError', error)
+          return undefined
+        },
+      }],
+    })
+  }
+  return precacheController
+}
+
+function createHandlerBoundToURL(url: string): RouteHandlerCallback {
+  const precacheController = getOrCreatePrecacheController()
+  return precacheController.createHandlerBoundToURL(url)
+}
+/* end: custom precache controller */
 
 // to allow work offline
 registerRoute(new NavigationRoute(

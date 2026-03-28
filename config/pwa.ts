@@ -13,6 +13,8 @@ export const pwa: VitePWANuxtOptions = {
   includeManifestIcons: false,
   manifest: false,
   injectManifest: {
+    minify: false,
+    enableWorkboxModulesLogs: true,
     globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
     globIgnores: ['emojis/**', 'manifest**.webmanifest'],
   },

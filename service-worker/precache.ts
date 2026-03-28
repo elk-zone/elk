@@ -14,19 +14,30 @@ class CustomPrecacheController extends PrecacheController {
     }
     return async (options) => {
       // check if present at precache before falling back to network
-      if (options.request.mode !== 'navigate' || !await this.matchPrecache(options.request)) {
+      if (options.request.mode !== 'navigate' || await this.matchPrecache(options.request)) {
         options.request = new Request(url)
         options.params = { cacheKey, ...options.params }
+        return await this.strategy.handle(options)
       }
 
-      return await this.strategy.handle(options)
+      try {
+        return await this.strategy.handle(options)
+      }
+      catch {
+        // fallback with 404
+        options.request = new Request(url)
+        options.params = { cacheKey, ...options.params }
+        const response = await this.strategy.handle(options)
+        const { body, ...rest } = response
+        return new Response(response.body, { ...rest, status: 404, statusText: 'Not Found' })
+      }
     }
   }
 }
 function getOrCreatePrecacheController(): PrecacheController {
   if (!precacheController) {
     precacheController = new CustomPrecacheController({
-      fallbackToNetwork: true,
+      fallbackToNetwork: false,
       /*
       plugins: [{
         requestWillFetch: async ({ request, state }) => {

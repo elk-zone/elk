@@ -137,7 +137,8 @@
       "cancel": "Annulla",
       "confirm": "Blocca",
       "description": "Bloccare {0}?",
-      "title": "Blocca dominio"
+      "title": "Blocca dominio",
+      "type_to_confirm": "Digita {0} per confermare"
     },
     "common": {
       "cancel": "Annulla",

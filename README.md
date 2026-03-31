@@ -149,7 +149,7 @@ You can consult the [PWA documentation](https://docs.elk.zone/pwa) to learn more
 ## 👨‍💻 Contributors
 
 <a href="https://github.com/elk-zone/elk/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=elk-zone/elk" />
+  <img src="https://contrib.rocks/image?repo=elk-zone/elk" alt="list of contributors icons" />
 </a>
 
 ## 📄 License

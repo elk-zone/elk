@@ -4,7 +4,11 @@ const { code, lang } = defineProps<{
   lang?: string
 }>()
 
-const raw = computed(() => decodeURIComponent(code).replace(/&#39;/g, '\''))
+const APOSTROPHE_REGEX = /&#39;/g
+
+const raw = computed(() =>
+  decodeURIComponent(code).replace(APOSTROPHE_REGEX, '\''),
+)
 
 const langMap: Record<string, string> = {
   js: 'javascript',

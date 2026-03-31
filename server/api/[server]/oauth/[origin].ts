@@ -4,6 +4,12 @@ import { defaultUserAgent, invalidateApp } from '~~/server/utils/shared'
 
 export default defineEventHandler(async (event) => {
   let { server, origin } = getRouterParams(event)
+  if (!server || !origin) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Missing server or origin parameter.',
+    })
+  }
   server = server.toLocaleLowerCase().trim()
   origin = decodeURIComponent(origin)
   const app = await getApp(origin, server)

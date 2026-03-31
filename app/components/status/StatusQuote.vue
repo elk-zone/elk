@@ -51,43 +51,43 @@ const quotedStatus = computed(() => {
     <template v-if="isNested && quoteState">
       <div
         v-if="quoteState === 'pending'"
-        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+        flex border="~ 1" rounded-lg bg-card mt-3 p-3
       >
         Post pending for approval by author
       </div>
       <div
         v-else-if="quoteState === 'revoked'"
-        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+        flex border="~ 1" rounded-lg bg-card mt-3 p-3
       >
         Post removed by author
       </div>
       <div
         v-else-if="quoteState === 'blocked_account'"
-        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+        flex border="~ 1" rounded-lg bg-card mt-3 p-3
       >
         Post by blocked author
       </div>
       <div
         v-else-if="quoteState === 'blocked_domain'"
-        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+        flex border="~ 1" rounded-lg bg-card mt-3 p-3
       >
         Post from blocked server
       </div>
       <div
         v-else-if="quoteState === 'muted_account'"
-        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+        flex border="~ 1" rounded-lg bg-card mt-3 p-3
       >
         Post by muted author
       </div>
       <div
         v-else-if="quoteState === 'deleted' || quoteState === 'rejected' || quoteState === 'unauthorized'"
-        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+        flex border="~ 1" rounded-lg bg-card mt-3 p-3
       >
         Post is unavailable
       </div>
       <div
         v-else-if="quoteState === 'accepted'"
-        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+        flex border="~ 1" rounded-lg bg-card mt-3 p-3
       >
         Post by
         <AccountInlineInfo :account="quotedStatus.account" :link="false" mx-1 />
@@ -96,19 +96,19 @@ const quotedStatus = computed(() => {
     <template v-else>
       <div
         v-if="quoteState === 'pending'"
-        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+        flex border="~ 1" rounded-lg bg-card mt-3 p-3
       >
         Post pending for approval by author
       </div>
       <div
         v-else-if="quoteState === 'revoked'"
-        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+        flex border="~ 1" rounded-lg bg-card mt-3 p-3
       >
         Post removed by author
       </div>
       <div
         v-else-if="quoteState === 'deleted' || quoteState === 'rejected' || quoteState === 'unauthorized'"
-        flex b="~ 1" rounded-lg bg-card mt-3 p-3
+        flex border="~ 1" rounded-lg bg-card mt-3 p-3
       >
         Post is unavailable
       </div>
@@ -120,7 +120,7 @@ const quotedStatus = computed(() => {
           :status="quotedStatus"
           :actions="false"
           :is-nested="true"
-          b="base 1" rounded-lg hover:bg-active my-3
+          border="base 1" rounded-lg hover:bg-active my-3
         />
       </blockquote>
     </template>

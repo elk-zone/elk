@@ -30,7 +30,7 @@ export function useRelationship(account: mastodon.v1.Account): Ref<mastodon.v1.R
 }
 
 async function fetchRelationships() {
-  const requested = Array.from(requestedRelationships.entries()).filter(([, r]) => !r.value)
+  const requested = [...requestedRelationships.entries()].filter(([, r]) => !r.value)
   const relationships = await useMastoClient().v1.accounts.relationships.fetch({ id: requested.map(([id]) => id) })
   for (const relationship of relationships) {
     const requestedToUpdate = requested.find(([id]) => id === relationship.id)
@@ -88,8 +88,8 @@ export async function toggleMuteAccount(relationship: mastodon.v1.Relationship, 
     if (confirmMute.choice !== 'confirm')
       return
 
-    duration = confirmMute.extraOptions!.mute.duration
-    notifications = confirmMute.extraOptions!.mute.notifications
+    duration = confirmMute.extraOptions?.mute?.duration ?? 0
+    notifications = confirmMute.extraOptions?.mute?.notifications ?? true
   }
 
   relationship!.muting = !relationship!.muting
@@ -125,11 +125,14 @@ export async function toggleBlockDomain(relationship: mastodon.v1.Relationship, 
   const i18n = useNuxtApp().$i18n
 
   if (!relationship!.domainBlocking) {
+    const domain = getServerName(account)
     const confirmDomainBlock = await openConfirmDialog({
       title: i18n.t('confirm.block_domain.title'),
-      description: i18n.t('confirm.block_domain.description', [getServerName(account)]),
+      description: i18n.t('confirm.block_domain.description', [domain]),
       confirm: i18n.t('confirm.block_domain.confirm'),
       cancel: i18n.t('confirm.block_domain.cancel'),
+      extraOptionType: 'block_domain',
+      domainToBlock: domain,
     })
     if (confirmDomainBlock.choice !== 'confirm')
       return

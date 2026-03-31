@@ -92,6 +92,13 @@ exports[`html-parse > empty > html 1`] = `""`;
 
 exports[`html-parse > empty > text 1`] = `""`;
 
+exports[`html-parse > hollo trailing newline > html 1`] = `
+"<p>Hello World</p>
+"
+`;
+
+exports[`html-parse > hollo trailing newline > text 1`] = `"Hello World"`;
+
 exports[`html-parse > html entities > html 1`] = `
 "<p>Hello &lt;World /&gt;.</p>
 "

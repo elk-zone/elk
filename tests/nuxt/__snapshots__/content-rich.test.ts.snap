@@ -202,7 +202,6 @@ exports[`content-rich > hashtag adds bdi 1`] = `
     ></span
   >
 </p>
-<p></p>
 "
 `;
 
@@ -222,7 +221,6 @@ exports[`content-rich > hashtag doesn't add 2 bdi 1`] = `
         ><bdi></bdi></a></VMenu
   ></span>
 </p>
-<p></p>
 "
 `;
 
@@ -291,7 +289,6 @@ exports[`content-rich > p moved to div and text children replaced with p[dir="au
   one is mistranslated and I&#39;m trying to find how to fix it. Also, the form
   for 0 needs to be fixed.
 </p>
-<p></p>
 "
 `;
 
@@ -424,7 +421,6 @@ exports[`content-rich > root p includes dir="auto" attr when mixed content 1`] =
   >
   .
 </p>
-<p></p>
 "
 `;
 

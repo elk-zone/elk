@@ -1,5 +1,8 @@
-import type { MaybeRefOrGetter, RemovableRef } from '@vueuse/core'
-import type { UseIDBOptions } from '@vueuse/integrations/useIDBKeyval'
+import type { RemovableRef } from '@vueuse/core'
+import type {
+  UseIDBOptions,
+} from '@vueuse/integrations/useIDBKeyval'
+import type { MaybeRefOrGetter } from 'vue'
 import { del, get, set, update } from '~/utils/elk-idb'
 
 export interface UseAsyncIDBKeyvalReturn<T> {
@@ -11,7 +14,7 @@ export async function useAsyncIDBKeyval<T>(
   key: IDBValidKey,
   initialValue: MaybeRefOrGetter<T>,
   source: RemovableRef<T>,
-  options: Omit<UseIDBOptions, 'shallow'> = {},
+  options: Omit<UseIDBOptions<T>, 'shallow'> = {},
 ): Promise<UseAsyncIDBKeyvalReturn<T>> {
   const {
     flush = 'pre',

@@ -4,7 +4,10 @@ import type { mastodon } from 'masto'
 import type { ComputedRef, Ref } from 'vue'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
 
-export const currentUserDrafts = (import.meta.server || process.test)
+const MENTION_REGEX = /^(@\S+\s?)+/
+const CODE_BLOCK_REGEX = /```/g
+
+export const currentUserDrafts = (import.meta.server || import.meta.test)
   ? computed<DraftMap>(() => ({ home: [], dialog: [], intent: [], quote: [] }))
   : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({ home: [], dialog: [], intent: [], quote: [] }))
 
@@ -86,7 +89,7 @@ export async function getDraftFromStatus(status: mastodon.v1.Status): Promise<Dr
         ...info,
         poll: status.poll
           ? {
-              expiresIn: Math.abs(new Date().getTime() - new Date(status.poll.expiresAt!).getTime()) / 1000,
+              expiresIn: Math.abs(Date.now() - new Date(status.poll.expiresAt!).getTime()) / 1000,
               options: [...status.poll.options.map(({ title }) => title), ''],
               multiple: status.poll.multiple,
               hideTotals: status.poll.options[0].votesCount === null,
@@ -104,7 +107,7 @@ function getAccountsToMention(status: mastodon.v1.Status) {
     .filter(mention => mention.id !== userId)
     .map(mention => mention.acct)
     .forEach(i => accountsToMention.add(i))
-  return Array.from(accountsToMention)
+  return [...accountsToMention]
 }
 
 export function getReplyDraft(status: mastodon.v1.Status) {
@@ -137,7 +140,11 @@ export function isEmptyDraft(drafts: Array<DraftItem> | DraftItem | null | undef
   const anyDraftHasContent = draftsArray.some((draft) => {
     const { params, attachments } = draft
     const status = params.status ?? ''
-    const text = htmlToText(status).trim().replace(/^(@\S+\s?)+/, '').replaceAll(/```/g, '').trim()
+    const text = htmlToText(status)
+      .trim()
+      .replace(MENTION_REGEX, '')
+      .replaceAll(CODE_BLOCK_REGEX, '')
+      .trim()
     const hasQuote = !!params.quotedStatusId
 
     return (text.length > 0)

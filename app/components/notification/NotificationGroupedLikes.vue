@@ -18,7 +18,13 @@ const likesTimeAgo = useTimeAgo(() => likesTimeAgoCreatedAt.value ?? '', timeAgo
 
 <template>
   <article flex flex-col relative>
-    <StatusLink :status="group.status!" pb4 pt5>
+    <StatusLink
+      cursor-pointer
+      hover-bg-active
+      rounded-3
+      transition-100
+      :status="group.status!" pb4 pt5
+    >
       <div flex flex-col gap-3>
         <div v-if="reblogs.length" flex="~ gap-1">
           <div i-ri:repeat-fill text-xl me-2 color-green />

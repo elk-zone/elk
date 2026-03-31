@@ -6,7 +6,7 @@ import { onActivated, onDeactivated, ref } from 'vue'
 export const isHydrated = ref(false)
 
 export function onHydrated(cb: () => unknown) {
-  watchOnce(isHydrated, () => cb(), { immediate: isHydrated.value })
+  watchOnce(isHydrated, () => cb(), { immediate: isHydrated.value as any })
 }
 
 /**
@@ -58,6 +58,6 @@ export function useHydratedHead<T extends SchemaAugmentations>(input: UseHeadInp
   return useHead((() => {
     if (!isHydrated.value)
       return {}
-    return resolveUnref(input)
+    return toValue(input)
   }) as UseHeadInput<T>, options)
 }

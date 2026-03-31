@@ -16,12 +16,14 @@ const paginator = useMastoClient().v1.notifications.list(options)
 
 const stream = useStreaming(client => client.user.notification.subscribe())
 
-lastAccessedNotificationRoute.value = route.path.replace(/\/notifications\/?/, '')
+const NOTIFICATIONS_PATH_REGEX = /\/notifications\/?/
+
+lastAccessedNotificationRoute.value = route.path.replace(NOTIFICATIONS_PATH_REGEX, '')
 
 const { clearNotifications } = useNotifications()
 onActivated(() => {
   clearNotifications()
-  lastAccessedNotificationRoute.value = route.path.replace(/\/notifications\/?/, '')
+  lastAccessedNotificationRoute.value = route.path.replace(NOTIFICATIONS_PATH_REGEX, '')
 })
 </script>
 

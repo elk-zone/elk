@@ -4,6 +4,7 @@ seo:
   description: A nimble Mastodon web client that provides a fresh and intuitive social media experience with modern features and elegant design.
   ogImage: https://docs.elk.zone/elk-screenshot.png
 ---
+<!-- eslint-disable markdown/no-missing-atx-heading-space -->
 
 ::u-page-hero
 ---

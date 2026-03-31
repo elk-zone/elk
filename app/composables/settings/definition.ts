@@ -24,6 +24,7 @@ export interface PreferencesSettings {
   hideNews: boolean
   hideRepliesInTimeline: boolean
   hideBoostsInTimeline: boolean
+  disableTimelineAutoloading: boolean
   grayscaleMode: boolean
   enableAutoplay: boolean
   unmuteVideos: boolean
@@ -84,8 +85,9 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideNews: false,
   hideRepliesInTimeline: false,
   hideBoostsInTimeline: false,
+  disableTimelineAutoloading: false,
   grayscaleMode: false,
-  enableAutoplay: true,
+  enableAutoplay: false,
   unmuteVideos: false,
   optimizeForLowPerformanceDevice: false,
   enableDataSaving: false,

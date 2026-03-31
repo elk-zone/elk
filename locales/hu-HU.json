@@ -137,7 +137,8 @@
       "cancel": "Mégsem",
       "confirm": "Blokkol",
       "description": "Biztosan blokkolod {0}?",
-      "title": "Domain blokkolása"
+      "title": "Domain blokkolása",
+      "type_to_confirm": "Típus {0} megerősítése"
     },
     "common": {
       "cancel": "Nem",

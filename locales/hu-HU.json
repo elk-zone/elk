@@ -137,7 +137,8 @@
       "cancel": "Mégsem",
       "confirm": "Blokkol",
       "description": "Biztosan blokkolod {0}?",
-      "title": "Domain blokkolása"
+      "title": "Domain blokkolása",
+      "type_to_confirm": "Típus {0} megerősítése"
     },
     "common": {
       "cancel": "Nem",
@@ -282,7 +283,6 @@
     "copy_original_link_to_post": "A bejegyzés eredeti hivatkozásának másolása",
     "delete": "Törlés",
     "delete_and_redraft": "Törlés és jegyzezbe helyezés",
-    "direct_message_account": "Direkt hivatkozás {0}",
     "edit": "Szerkesztés",
     "hide_reblogs": "Kiemelés elrejtése: {0}",
     "mention_account": "Megjegyzés {0}",
@@ -296,6 +296,7 @@
     "share_account": "Megosztás {0}",
     "share_post": "A bejegyzés megosztása",
     "show_favourited_and_boosted_by": "Kedvencek és kiemelések megjelenítése",
+    "show_reacted_by": "Válaszolók megjelenítése",
     "show_reblogs": "Kiemelések megjelenítése tőle: {0}",
     "show_untranslated": "Eredeti nyelven",
     "toggle_theme": {
@@ -557,6 +558,8 @@
     },
     "notifications_settings": "Értesítések",
     "preferences": {
+      "disable_timeline_autoloading": "Idővonal automatikus betöltésének kikapcsolása",
+      "disable_timeline_autoloading_description": "Az előtöltött bejgyzések megelőzése az idővonalon a \"További bejegyzések\" gomb segítségével.",
       "embedded_media": "Beágyazott Médialejátszó",
       "embedded_media_description": "A beágyazott lejátszó megjelenítése a normál előnézeti kártya helyett mikor kinagyításra kerül a megosztott áramló média hivatkozás.",
       "enable_autoplay": "Automatikus lejátszás engedélyezése",
@@ -748,6 +751,7 @@
     "year_past": "0 évvel ezelőtt|múlt évben|{n} évvel ezelőtt"
   },
   "timeline": {
+    "load_more": "Több bejegyzés betöltése",
     "no_posts": "Itt nincsenek bejegyzések.",
     "show_new_items": "{v} új elemek megjelenítése|{v} új elemek megjelenítése|{v} új elemek megjelenítése",
     "view_older_posts": "Előfordulhat, hogy más instancekről származó régebbi bejegyzések nem jelennek meg."

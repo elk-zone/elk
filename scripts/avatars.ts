@@ -1,4 +1,4 @@
-import { writeFile } from 'node:fs/promises'
+import { mkdir, writeFile } from 'node:fs/promises'
 import { ofetch } from 'ofetch'
 import { join, resolve } from 'pathe'
 import { elkTeamMembers } from '../app/composables/about.ts'

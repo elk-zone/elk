@@ -148,6 +148,7 @@
     "eslint-plugin-format": "^1.5.0",
     "flat": "^6.0.1",
     "nano-staged": "^0.9.0",
+    "ofetch": "^1.5.1",
     "page-lifecycle": "^0.1.2",
     "prettier": "^3.8.1",
     "sharp": "^0.34.5",

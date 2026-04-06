@@ -18,16 +18,14 @@ export const elkTeamMembers: Team[] = [
     link: '/m.webtoo.ls/@antfu',
   },
   {
-    github: 'patak-dev',
+    github: 'patak-cat',
     display: 'Patak',
-    twitter: 'patak_dev',
     mastodon: 'patak@webtoo.ls',
     link: '/m.webtoo.ls/@patak',
   },
   {
     github: 'danielroe',
     display: 'Daniel Roe',
-    twitter: 'danielcroe',
     mastodon: 'daniel@roe.dev',
     link: '/mastodon.roe.dev/@daniel',
   },

@@ -51,7 +51,13 @@ export const elkTeamMembers: Team[] = [
     display: 'TAKAHASHI Shuuji',
     mastodon: 'shuuji3@webtoo.ls',
     link: '/m.webtoo.ls/@shuuji3',
-    sponsors: 'elk-zone', // sponsors/shuuji3 isn't enabled
+  },
+  {
+    github: 'ayo-run',
+    display: 'ayo',
+    mastodon: 'ayo@ayco.io',
+    link: '/social.ayco.io/@ayo',
+    sponsors: 'elk-zone', // sponsors/ayo-run isn't enabled
   },
 ].sort(() => Math.random() - 0.5)
 

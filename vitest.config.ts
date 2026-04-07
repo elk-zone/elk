@@ -13,7 +13,7 @@ export default defineConfig({
         test: {
           name: 'nuxt',
           setupFiles: [
-            './tests/setup.ts',
+            '../tests/setup.ts',
           ],
           environmentOptions: {
             nuxt: {

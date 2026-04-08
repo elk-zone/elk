@@ -283,7 +283,6 @@
     "copy_original_link_to_post": "Kopiatu bidalketa honen jatorrizko esteka",
     "delete": "Ezabatu",
     "delete_and_redraft": "Ezabatu eta berridatzi",
-    "direct_message_account": "Mezu zuzena {0}",
     "edit": "Editatu",
     "hide_reblogs": "Ezkutatu {0}(r)en bultzadak",
     "mention_account": "Aipatu {0}",
@@ -297,6 +296,7 @@
     "share_account": "Partekatu {0}",
     "share_post": "Partekatu bidalketa",
     "show_favourited_and_boosted_by": "Erakutsi nork egin duen gogoko eta nork bultzatu duen",
+    "show_reacted_by": "Erakutsi interakzioak",
     "show_reblogs": "Erakutsi {0}(r)en bultzadak",
     "show_untranslated": "Erakutsi jatorrizko hizkuntzan",
     "toggle_theme": {

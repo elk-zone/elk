@@ -28,9 +28,8 @@ onReactivated(() => {
 
 let followedTags: mastodon.v1.Tag[]
 if (currentUser.value !== undefined) {
-  const { client } = useMasto()
-  const paginator = client.value.v1.followedTags.list()
-  followedTags = (await paginator.values().next()).value ?? []
+  const paginator = client.value?.v1.followedTags.list()
+  followedTags = paginator ? (await paginator.values().next()).value ?? [] : []
 }
 </script>
 

@@ -18,16 +18,14 @@ export const elkTeamMembers: Team[] = [
     link: '/m.webtoo.ls/@antfu',
   },
   {
-    github: 'patak-dev',
+    github: 'patak-cat',
     display: 'Patak',
-    twitter: 'patak_dev',
     mastodon: 'patak@webtoo.ls',
     link: '/m.webtoo.ls/@patak',
   },
   {
     github: 'danielroe',
     display: 'Daniel Roe',
-    twitter: 'danielcroe',
     mastodon: 'daniel@roe.dev',
     link: '/mastodon.roe.dev/@daniel',
   },
@@ -51,7 +49,13 @@ export const elkTeamMembers: Team[] = [
     display: 'TAKAHASHI Shuuji',
     mastodon: 'shuuji3@webtoo.ls',
     link: '/m.webtoo.ls/@shuuji3',
-    sponsors: 'elk-zone', // sponsors/shuuji3 isn't enabled
+  },
+  {
+    github: 'ayo-run',
+    display: 'ayo',
+    mastodon: 'ayo@ayco.io',
+    link: '/social.ayco.io/@ayo',
+    sponsors: 'elk-zone', // sponsors/ayo-run isn't enabled
   },
 ].sort(() => Math.random() - 0.5)
 

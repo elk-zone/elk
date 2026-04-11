@@ -358,6 +358,9 @@ importers:
       nano-staged:
         specifier: ^0.9.0
         version: 0.9.0
+      ofetch:
+        specifier: ^1.5.1
+        version: 1.5.1
       page-lifecycle:
         specifier: ^0.1.2
         version: 0.1.2

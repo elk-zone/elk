@@ -9,9 +9,9 @@ const params = useRoute().params
 const tagName = computed(() => params.tag as string)
 
 const { client } = useMasto()
-const { data: tag, refresh } = await useAsyncData(() => `tag-${tagName.value}`, () => client.value.v1.tags.$select(tagName.value).fetch(), { default: () => shallowRef() })
+const { data: tag, refresh } = await useAsyncData(() => `tag-${tagName.value}`, () => client.value?.v1.tags.$select(tagName.value).fetch(), { default: () => shallowRef() })
 
-const paginator = client.value.v1.timelines.tag.$select(tagName.value).list()
+const paginator = client.value?.v1.timelines.tag.$select(tagName.value).list()
 const stream = useStreaming(client => client.hashtag.subscribe({ tag: tagName.value }))
 
 if (tag.value) {
@@ -47,7 +47,7 @@ if (currentUser.value !== undefined) {
     </template>
 
     <slot>
-      <TimelinePaginator :followed-tags="followedTags" v-bind="{ paginator, stream }" context="public" />
+      <TimelinePaginator v-if="isHydrated && paginator" :followed-tags="followedTags" v-bind="{ paginator, stream }" context="public" />
     </slot>
   </MainContent>
 </template>

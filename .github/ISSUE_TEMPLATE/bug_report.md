@@ -19,6 +19,7 @@ What did you expect to happen but did not?
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
+
 ### Technical information
 
 To help us debug the problem, please complete relevant information as much as you can:

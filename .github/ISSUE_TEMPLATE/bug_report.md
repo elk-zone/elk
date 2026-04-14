@@ -23,21 +23,25 @@ If applicable, add screenshots to help explain your problem.
 
 To help us debug the problem, please complete relevant information as much as you can:
 
+**Elk information**
+ - Elk URL: (e.g.: https://elk.zone, https://main.elk.zone, )
+ - Elk version:
+
 **Server information**
- - Server URL: [e.g. https://mastodon.social]
- - Server software version: [e.g. v4.5.7]
- - URL to relevant post: [e.g. https://mastodon.social/@Gargron/1]
+ - Server URL: (e.g. https://mastodon.social)
+ - Server software version: (e.g. v4.5.7)
+ - URL to relevant post: (e.g. https://mastodon.social/@Gargron/1)
 
-**Desktop (please complete the following):**
- - OS: [e.g. MacOS]
- - Browser [e.g. chrome, safari]
- - Browser version [e.g. 22]
+**Desktop:**
+ - OS: (e.g. MacOS)
+ - Browser: (e.g. Chrome, Safari)
+ - Browser version (e.g. 22)
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. Chrome, Safari]
- - Version [e.g. 22]
+**Smartphone:**
+ - Device: (e.g. iPhone6)
+ - OS: (e.g. iOS8.1)
+ - Browser: (e.g. Chrome, Safari)
+ - Version: (e.g. 22)
 
 **Additional context**
 Add any other context about the problem here.

@@ -60,6 +60,8 @@ export const currentServer = computed<string>(() => currentUser.value?.server ||
 export const currentNodeInfo = computed<null | Record<string, any>>(() => nodes.value[currentServer.value] || null)
 export const isGotoSocial = computed(() => currentNodeInfo.value?.software?.name === 'gotosocial')
 export const isGlitchEdition = computed(() => currentInstance.value?.version?.includes('+glitch'))
+// TODO: currentNodeInfo is null for qoto instance
+// export const isQoto = computed(() => currentNodeInfo.value?.software?.version?.includes('qoto'))
 
 export function useUsers() {
   return users

@@ -14,8 +14,14 @@ function preprocess(items: mastodon.v1.Status[]) {
 let followedTags: mastodon.v1.Tag[]
 if (currentUser.value !== undefined) {
   const { client } = useMasto()
-  const paginator = client.value.v1.followedTags.list()
-  followedTags = (await paginator.values().next()).value ?? []
+  try {
+    const paginator = client.value.v1.followedTags.list()
+    followedTags = (await paginator.values().next()).value ?? []
+  }
+  catch (e) {
+    console.error('Failed to fetch followed tags', e)
+    followedTags = []
+  }
 }
 </script>
 

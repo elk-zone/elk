@@ -24,7 +24,7 @@ If applicable, add screenshots to help explain your problem.
 To help us debug the problem, please complete relevant information as much as you can:
 
 **Elk information**
- - Elk URL: (e.g.: https://elk.zone, https://main.elk.zone, )
+ - Elk URL: (e.g.: https://elk.zone, https://main.elk.zone)
  - Elk version:
 
 **Server information**

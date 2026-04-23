@@ -7,6 +7,8 @@
     "route_loaded": "Page {0} chargée"
   },
   "account": {
+    "authorize": "Autoriser l'abonnement",
+    "authorized": "Vous avez autorisé la demande",
     "avatar_description": "Avatar de {0}",
     "blocked_by": "Ce compte vous a bloqué",
     "blocked_domains": "Domaines bloqués",
@@ -25,6 +27,7 @@
     "follows_you": "@:account.follow_back",
     "go_to_profile": "Aller à son profil",
     "joined": "a rejoint",
+    "lock": "Verrouiller",
     "moved_title": "a indiqué que son nouveau compte est désormais :",
     "muted_users": "Comptes masqués",
     "muting": "Masqué·e",
@@ -37,7 +40,10 @@
     "profile_description": "En-tête du profil de {0}",
     "profile_personal_note": "Note personnelle",
     "profile_unavailable": "Profil non accessible",
+    "reject": "Rejeter l'abonnement",
+    "rejected": "Vous avez rejeté la demande",
     "request_follow": "Demander à suivre",
+    "requested": "{0} a demandé à vous suivre",
     "unblock": "Débloquer",
     "unfollow": "Ne plus suivre",
     "unmute": "Réafficher",
@@ -52,6 +58,7 @@
     "boost": "Partager",
     "boost_count": "{0}",
     "boosted": "Partagé",
+    "clear": "Effacer",
     "clear_publish_failed": "Effacer les erreurs de publication",
     "clear_save_failed": "Effacer les erreurs de sauvegarde",
     "clear_upload_failed": "Effacer les erreurs de téléversement de fichier",
@@ -66,8 +73,10 @@
     "favourited": "J'aime",
     "more": "Plus",
     "next": "Suivant",
+    "open_image_preview_dialog": "Ouvrir le dialogue d'aperçu de l'image",
     "prev": "Précédent",
     "publish": "Publier",
+    "publish_thread": "Publier le fil",
     "reply": "Répondre",
     "reply_count": "{0}",
     "reset": "Réinitialiser",
@@ -115,12 +124,14 @@
     "block_account": {
       "cancel": "Annuler",
       "confirm": "Bloquer",
-      "description": "Voulez-vous vraiment bloquer {0} ?"
+      "description": "Voulez-vous vraiment bloquer {0} ?",
+      "title": "Bloquer le compte"
     },
     "block_domain": {
       "cancel": "Annuler",
       "confirm": "Bloquer",
-      "description": "Voulez-vous vraiment bloquer {0} ?"
+      "description": "Voulez-vous vraiment bloquer {0} ?",
+      "title": "Bloquer le domaine"
     },
     "common": {
       "cancel": "Non",
@@ -129,27 +140,37 @@
     "delete_list": {
       "cancel": "Annuler",
       "confirm": "Supprimer",
-      "description": "Voulez-vous vraiment supprimer la liste \"{0}\" ?"
+      "description": "Voulez-vous vraiment supprimer la liste \"{0}\" ?",
+      "title": "Supprimer la liste"
     },
     "delete_posts": {
       "cancel": "Annuler",
       "confirm": "Supprimer",
-      "description": "Voulez-vous vraiment supprimer ce message ?"
+      "description": "Voulez-vous vraiment supprimer ce message ?",
+      "title": "Supprimer le message"
     },
     "mute_account": {
       "cancel": "Annuler",
       "confirm": "Mettre en sourdine",
-      "description": "Voulez-vous vraiment mettre en sourdine {0} ?"
+      "days": "jour|jour|jour",
+      "description": "Voulez-vous vraiment mettre en sourdine {0} ?",
+      "hours": "heures|heures|heures",
+      "minute": "minutes|minutes|minutes",
+      "notifications": "Mettre en sourdine les notifications",
+      "specify_duration": "Spécifier la durée de la mise en sourdine",
+      "title": "Mettre en sourdine le compte"
     },
     "show_reblogs": {
       "cancel": "Annuler",
       "confirm": "Afficher",
-      "description": "Voulez-vous vraiment afficher les partages de {0} ?"
+      "description": "Voulez-vous vraiment afficher les partages de {0} ?",
+      "title": "Afficher les partages"
     },
     "unfollow": {
       "cancel": "Annuler",
       "confirm": "Se désabonner",
-      "description": "Voulez-vous vraiment vous désabonner ?"
+      "description": "Voulez-vous vraiment vous désabonner ?",
+      "title": "Se désabonner"
     }
   },
   "conversation": {
@@ -202,9 +223,12 @@
     "error": "Il y a eu une erreur lors de la création de la liste",
     "error_prefix": "Erreur :",
     "list_title_placeholder": "Nom de la liste",
+    "manage": "Gérer les listes",
     "modify_account": "Modifier les listes de ce compte",
     "remove_account": "Supprimer ce compte de listes",
-    "save": "Enregistrer les changements"
+    "save": "Enregistrer les changements",
+    "search_following_desc": "Chercher des personnes que vous suivez",
+    "search_following_placeholder": "Chercher parmi les personnes que vous suivez"
   },
   "magic_keys": {
     "dialog_header": "Raccourcis clavier",
@@ -214,14 +238,26 @@
         "command_mode": "Mode commande",
         "compose": "Composer",
         "favourite": "J'aime",
+        "search": "Rechercher",
+        "show_new_items": "Afficher les nouveaux éléments",
         "title": "Actions"
       },
       "media": {
         "title": "Média"
       },
       "navigation": {
+        "go_to_bookmarks": "Signets",
+        "go_to_conversations": "Conversations",
+        "go_to_explore": "Explorer",
+        "go_to_favourites": "Favoris",
+        "go_to_federated": "Fédérés",
         "go_to_home": "Accueil",
+        "go_to_lists": "Listes",
+        "go_to_local": "Local",
         "go_to_notifications": "Notifications",
+        "go_to_profile": "Profil",
+        "go_to_search": "Rechercher",
+        "go_to_settings": "Paramètres",
         "next_status": "Message suivant",
         "previous_status": "Message précédent",
         "shortcut_help": "Aide sur les raccourcis",
@@ -276,13 +312,16 @@
     "built_at": "Dernière compilation {0}",
     "compose": "Composer",
     "conversations": "Conversations",
+    "docs": "Documentation",
     "explore": "Explorer",
     "favourites": "Aimés",
     "federated": "Fédérés",
+    "hashtags": "Hashtags",
     "home": "Accueil",
     "list": "Liste",
     "lists": "Listes",
     "local": "Local",
+    "more_menu": "Plus d'options",
     "muted_users": "Comptes masqués",
     "notifications": "Notifications",
     "privacy": "Données privées",
@@ -297,10 +336,12 @@
     "zen_mode": "Mode Zen"
   },
   "notification": {
+    "and": "et",
     "favourited_post": "a aimé votre message",
     "followed_you": "vous suit",
     "followed_you_count": "{0} personnes vous suivent|{0} personne vous suit|{0} personnes vous suivent",
     "missing_type": "MISSING notification.type:",
+    "others": "{0} personnes|{0} personne|{0} personnes",
     "reblogged_post": "a relayé votre message",
     "reported": "{0} a signalé {1}",
     "request_to_follow": "vous demande de le suivre",
@@ -417,6 +458,8 @@
       "label": "Paramètres de compte"
     },
     "interface": {
+      "bottom_nav": "Navigation inférieure",
+      "bottom_nav_instructions": "Choisissez jusqu'à cinq boutons de navigation inférieure favoris. Doit inclure le bouton \"Plus d'options\".",
       "color_mode": "Couleur de thème",
       "dark_mode": "Mode sombre",
       "default": " (par défaut)",
@@ -428,6 +471,7 @@
     },
     "language": {
       "display_language": "Langue d'affichage",
+      "how_to_contribute": "Comment contribuer ?",
       "label": "Langue",
       "post_language": "Langue de publication",
       "status": "État de la traduction : {0}/{1} ({2} %)",
@@ -495,6 +539,8 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
+      "embedded_media": "Lecteur multimédia intégré",
+      "embedded_media_description": "Affichez un lecteur intégré au lieu de la carte d'aperçu normale lors de l'expansion des liens de streaming de supports partagés.",
       "enable_autoplay": "Activer la lecture automatique",
       "enable_data_saving": "Activer l'économie de données",
       "enable_data_saving_description": "Economise les données en évitant le chargement automatique des médias.",
@@ -507,13 +553,16 @@
       "hide_boost_count": "Masquer les compteurs de partages",
       "hide_favorite_count": "Masquer les compteurs de favoris",
       "hide_follower_count": "Masquer les compteurs d'abonné·e·s",
+      "hide_gif_indi_on_posts": "Masquer l'indicateur de gif sur les messages",
       "hide_news": "Masquer les actualités",
       "hide_reply_count": "Masquer les compteurs de réponses",
       "hide_translation": "Masquer traduction",
       "hide_username_emojis": "Masquer les emojis sur le nom d'utilisateur",
       "hide_username_emojis_description": "Masque les emojis des noms d'utilisateur dans la timeline. \nLes emojis seront toujours visibles sur leurs profils.",
       "label": "Préférences",
+      "optimize_for_low_performance_device": "Optimiser pour un dispositif à faible performance",
       "title": "Fonctionnalités expérimentales",
+      "unmute_videos": "Son de vidéo par défaut",
       "use_star_favorite_icon": "Utiliser l'icône de l'étoile en favoris",
       "user_picker": "User Picker",
       "user_picker_description": "Affiche tous les avatars des comptes connectés en bas à gauche afin que vous puissiez basculer rapidement entre eux.",
@@ -556,7 +605,11 @@
   },
   "state": {
     "attachments_exceed_server_limit": "Le nombre de pièces jointes a dépassé la limite par message.",
+    "attachments_limit_audio_error": "Taille maximum d'audio dépassée : {0}",
     "attachments_limit_error": "Limite par publication dépassée",
+    "attachments_limit_image_error": "Taille maximum d'image dépassée : {0}",
+    "attachments_limit_unknown_error": "Taille maximum de fichier dépassée : {0}",
+    "attachments_limit_video_error": "Taille maximum de vidéo dépassée : {0}",
     "edited": "(Édité)",
     "editing": "Édition",
     "loading": "Chargement...",
@@ -573,19 +626,23 @@
     },
     "boosted_by": "Partagé par",
     "edited": "Edité {0}",
+    "embedded_warning": "Lire ceci peut révéler votre adresse IP à d'autres.",
     "favourited_by": "Aimé par",
     "filter_hidden_phrase": "Filtré par",
     "filter_show_anyway": "Montrer coûte que coûte",
+    "gif": "GIF",
     "img_alt": {
       "ALT": "ALT",
       "desc": "Description",
       "dismiss": "Fermer",
       "read": "Lire la description de {0}"
     },
+    "pinned": "Messages épinglés",
     "poll": {
       "count": "{0} votes",
       "ends": "se clôt {0}",
-      "finished": "clos {0}"
+      "finished": "clos {0}",
+      "update": "Mettre à jour les résultats"
     },
     "replying_to": "Répondre à {0}",
     "show_full_thread": "Voir le fil de discussion complet",
@@ -662,6 +719,7 @@
     "year_past": "il y a 0 année|l'année dernière|il y a {n} années"
   },
   "timeline": {
+    "no_posts": "Pas de messages ici !",
     "show_new_items": "Voir le nouveau message|Voir les {v} nouveaux messages",
     "view_older_posts": "Les messages plus anciens d'autres instances peuvent ne pas être affichés."
   },
@@ -674,6 +732,7 @@
     "add_emojis": "Ajouter des émoticônes",
     "add_media": "Ajouter des images, une vidéo ou un fichier audio",
     "add_publishable_content": "Ajouter du contenu à publier",
+    "add_thread_item": "Ajouter un message au fil",
     "change_content_visibility": "Ajuster la confidentialité du message",
     "change_language": "Changer la langue",
     "emoji": "Emoji",
@@ -683,6 +742,8 @@
     "open_editor_tools": "Outils d'édition",
     "pick_an_icon": "Choisir une icône",
     "publish_failed": "Fermez les messages ayant échoué en haut de l'éditeur pour republier les messages",
+    "remove_thread_item": "Supprimer le message du fil",
+    "start_thread": "Commencer un fil",
     "toggle_bold": "Appliquer/retirer le gras",
     "toggle_code_block": "Ajouter un bloc de code",
     "toggle_italic": "Appliquer/retirer l'italique"

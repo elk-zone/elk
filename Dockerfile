@@ -6,7 +6,10 @@ WORKDIR /elk
 FROM base AS builder
 
 # Prepare pnpm https://pnpm.io/installation#using-corepack
-RUN corepack enable
+# workaround for npm registry key change
+# ref. `pnpm@10.1.0` / `pnpm@9.15.4` cannot be installed due to key id mismatch · Issue #612 · nodejs/corepack
+# - https://github.com/nodejs/corepack/issues/612#issuecomment-2629496091
+RUN npm i -g corepack@latest && corepack enable
 
 # Prepare deps
 RUN apk update
@@ -14,13 +17,12 @@ RUN apk add git --no-cache
 
 # Prepare build deps ( ignore postinstall scripts for now )
 COPY package.json ./
-COPY .npmrc ./
 COPY pnpm-lock.yaml ./
-COPY patches ./patches
 RUN pnpm i --frozen-lockfile --ignore-scripts
 
 # Copy all source files
 COPY . ./
+RUN pnpm nuxt prepare
 
 # Run full install with every postinstall script ( This needs project file )
 RUN pnpm i --frozen-lockfile

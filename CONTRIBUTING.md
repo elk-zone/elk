@@ -6,19 +6,13 @@ Refer also to https://github.com/antfu/contribute.
 
 For guidelines on contributing to the documentation, refer to the [docs README](./docs/README.md).
 
-### Online
-
-You can use [StackBlitz Codeflow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a Codeflow button on PRs to review them without a local setup. Once the elk repo has been cloned in Codeflow, the dev server will start automatically and print the URL to open the App. You should receive a prompt in the bottom-right suggesting to open it in the Editor or in another Tab. To learn more, check out the [Codeflow docs](https://developer.stackblitz.com/codeflow/what-is-codeflow).
-
-[![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https://pr.new/elk-zone/elk)
-
-### Local Setup
+## Local Setup
 
 To develop and test the Elk package:
 
 1. Fork the Elk repository to your own GitHub account and then clone it to your local device.
 
-2. Ensure using the latest Node.js (20.x).
+2. Ensure using the LTS version of Node.js.
 If you have [nvm](https://github.com/nvm-sh/nvm), you can run `nvm i` to install the required version.
 
 3. The package manager used to install and link dependencies must be [pnpm](https://pnpm.io/) v9. To use it you must first enable [Corepack](https://github.com/nodejs/corepack) by running `corepack enable`. (Note: on Linux in a standard Node 20+ environment, you should follow the instructions to install via Node's `corepack` rather than using the `curl` command)
@@ -41,7 +35,7 @@ ni
 nr dev
 ```
 
-### Testing
+## Testing
 
 Elk uses [Vitest](https://vitest.dev). You can run the test suite with:
 
@@ -49,7 +43,7 @@ Elk uses [Vitest](https://vitest.dev). You can run the test suite with:
 nr test
 ```
 
-### Running PWA on dev server
+## Running PWA on dev server
 
 In order to run Elk with PWA enabled, run `pnpm dev:pwa` in Elk's root folder to start dev server or `pnpm dev:mocked:pwa` to start dev server with `@elkdev@universeodon.com` user.
 
@@ -92,7 +86,7 @@ We've added some `UnoCSS` utilities styles to help you with that:
 
 We are using [vue-i18n](https://vue-i18n.intlify.dev/) via [nuxt-i18n](https://i18n.nuxtjs.org/) to handle internationalization.
 
-You can check the current [translation status](https://docs.elk.zone/docs/guide/contributing#translation-status): more instructions on the table caption.
+You can check the current [translation status](https://docs.elk.zone/guide/contributing#translation-status): more instructions on the table caption.
 
 If you are updating a translation in your local environment, you can run the following commands to check the status:
 - from root folder: `nr prepare-translation-status`
@@ -147,25 +141,26 @@ Additionally, Elk will use [compact notation for numbers](https://developer.mozi
 
 You can run this code in your browser console to see how it works:
 ```ts
+/* eslint-disable no-unexpected-multiline, no-sequences */
 [1, 12, 123, 1234, 12345, 123456, 1234567].forEach((n) => {
   const acc = {}
 
-  Array.from(['en-US', 'en-GB', 'de-DE', 'zh-CN', 'ja-JP', 'es-ES', 'fr-FR', 'cs-CZ', 'ar-EG']).forEach((l) => {
-    const nf = new Intl.NumberFormat(l, {
-      style: 'decimal',
-      maximumFractionDigits: 0,
+    ['en-US', 'en-GB', 'de-DE', 'zh-CN', 'ja-JP', 'es-ES', 'fr-FR', 'cs-CZ', 'ar-EG'].forEach((l) => {
+      const nf = new Intl.NumberFormat(l, {
+        style: 'decimal',
+        maximumFractionDigits: 0,
+      })
+      const nf2 = new Intl.NumberFormat(l, {
+        notation: 'compact',
+        compactDisplay: 'short',
+        maximumFractionDigits: 1,
+      })
+      acc[l] = {
+        number: n,
+        format: nf.format(n),
+        compact: nf2.format(n),
+      }
     })
-    const nf2 = new Intl.NumberFormat(l, {
-      notation: 'compact',
-      compactDisplay: 'short',
-      maximumFractionDigits: 1,
-    })
-    acc[l] = {
-      number: n,
-      format: nf.format(n),
-      compact: nf2.format(n),
-    }
-  })
   console.table(acc)
 })
 ```

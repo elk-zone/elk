@@ -1,8 +1,7 @@
-import { writeFile } from 'node:fs/promises'
-import fs from 'fs-extra'
+import { mkdir, writeFile } from 'node:fs/promises'
 import { ofetch } from 'ofetch'
 import { join, resolve } from 'pathe'
-import { elkTeamMembers } from '../composables/about'
+import { elkTeamMembers } from '../app/composables/about.ts'
 
 const avatarsDir = resolve('./public/avatars/')
 
@@ -20,7 +19,7 @@ async function download(url: string, fileName: string) {
 }
 
 async function fetchAvatars() {
-  await fs.ensureDir(avatarsDir)
+  await mkdir(avatarsDir, { recursive: true })
 
   await Promise.all(elkTeamMembers.reduce((acc, { github }) => {
     acc.push(...sizes.map(s => download(`https://github.com/${github}.png?size=${s}`, join(avatarsDir, `${github}-${s}x${s}.png`))))

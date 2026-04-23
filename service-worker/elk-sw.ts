@@ -2,10 +2,10 @@
 /// <reference types="vite/client" />
 import { CacheableResponsePlugin } from 'workbox-cacheable-response'
 import { ExpirationPlugin } from 'workbox-expiration'
-import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching'
+import { cleanupOutdatedCaches } from 'workbox-precaching'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
 import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies'
-
+import { createHandlerBoundToURL, precacheAndRoute } from './precache'
 import { onShareTarget } from './share-target'
 import { onNotificationClick, onPush } from './web-push-notifications'
 

@@ -1,5 +1,6 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../.nuxt/tsconfig.app.json",
+  "noEmit": true,
   "compilerOptions": {
     "lib": ["ESNext", "WebWorker", "DOM.Iterable"],
     "types": ["vite/client"]

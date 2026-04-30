@@ -7,6 +7,7 @@ import type { mastodon } from 'masto'
 import { format } from 'prettier'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { mockComponent } from '@nuxt/test-utils/runtime'
+import { h } from 'vue'
 import { renderToString } from 'vue/server-renderer'
 import type { ContentParseOptions } from '~/composables/content-parse'
 import { contentToVNode } from '~/composables/content-render'
@@ -242,8 +243,9 @@ vi.mock('vue-router', async () => {
   }
 })
 
-vi.mock('@vueuse/shared', async () => {
-  const vueuseShared = await import('@vueuse/shared')
+vi.mock('@vueuse/shared', async (importOriginal) => {
+  const vueuseShared = await importOriginal<typeof import('@vueuse/shared')>()
+  const { readonly, ref } = await import('vue')
   // mock pausableWatch and watchPausable: vitest process hangs from time to time
   return {
     ...vueuseShared,

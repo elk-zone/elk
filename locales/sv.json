@@ -298,7 +298,7 @@
     "show_favourited_and_boosted_by": "Visa vilka som favoritmarkerade och boostade",
     "show_reacted_by": "Visa vilka som reagerade",
     "show_reblogs": "Visa boosts från {0}",
-    "show_untranslated": "Visa oöversatta",
+    "show_untranslated": "Visa oöversatt",
     "toggle_theme": {
       "dark": "Växla mörkt läge",
       "light": "Växla ljust läge"

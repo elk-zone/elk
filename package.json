@@ -151,21 +151,14 @@
     "nano-staged": "^0.9.0",
     "ofetch": "^1.5.1",
     "page-lifecycle": "^0.1.2",
-    "prettier": "^3.8.2",
+    "prettier": "^3.8.3",
     "sharp": "^0.34.5",
     "sharp-ico": "^0.1.5",
     "simple-git-hooks": "^2.13.1",
     "typescript": "^5.4.4",
-    "vitest": "4.1.2",
+    "vitest": "4.1.5",
     "vue-component-type-helpers": "^3.2.6",
     "vue-tsc": "^2.1.6"
-  },
-  "resolutions": {
-    "nuxt-component-meta": "0.17.2",
-    "serialize-javascript": "7.0.5",
-    "unstorage": "^1.17.5",
-    "vitest": "4.1.2",
-    "vue": "^3.5.4"
   },
   "simple-git-hooks": {
     "pre-commit": "npx nano-staged"

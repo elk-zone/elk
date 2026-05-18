@@ -48,11 +48,13 @@ export default defineEventHandler(async (event) => {
 
     const url = `/signin/callback?${stringifyQuery({ server, token: result.access_token, vapid_key: app.vapid_key })}`
     await sendRedirect(event, url, 302)
-  }
-  catch (error: any) {
+  } catch (error: any) {
     // Check for invalid client error (OAuth app deleted)
-    if (error?.data?.error === 'invalid_client'
-      || (error?.statusCode === 401 && error?.data?.error_description?.includes('Client authentication failed'))) {
+    if (
+      error?.data?.error === 'invalid_client' ||
+      (error?.statusCode === 401 &&
+        error?.data?.error_description?.includes('Client authentication failed'))
+    ) {
       // Invalidate cached app and retry once
       await invalidateApp(origin, server)
 
@@ -84,8 +86,7 @@ export default defineEventHandler(async (event) => {
         const url = `/signin/callback?${stringifyQuery({ server, token: retryResult.access_token, vapid_key: newApp.vapid_key })}`
         await sendRedirect(event, url, 302)
         return
-      }
-      catch {
+      } catch {
         throw createError({
           statusCode: 400,
           statusMessage: 'OAuth application recovery failed. Please try again.',

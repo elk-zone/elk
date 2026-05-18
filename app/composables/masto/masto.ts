@@ -23,13 +23,19 @@ export function useMastoClient() {
 export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'token'>) {
   const server = user.server
   const url = `https://${server}`
-  const instance: ElkInstance = reactive(getInstanceCache(server) || { uri: server, accountDomain: server })
+  const instance: ElkInstance = reactive(
+    getInstanceCache(server) || { uri: server, accountDomain: server },
+  )
   const accessToken = user.token
 
   const createStreamingClient = (streamingApiUrl: string | undefined) => {
     // Only create the streaming client when there is a user session
     return streamingApiUrl && currentUser.value
-      ? createStreamingAPIClient({ streamingApiUrl, accessToken, implementation: globalThis.WebSocket })
+      ? createStreamingAPIClient({
+          streamingApiUrl,
+          accessToken,
+          implementation: globalThis.WebSocket,
+        })
       : undefined
   }
 
@@ -38,45 +44,58 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
   masto.streamingClient.value = createStreamingClient(streamingApiUrl)
 
   // Refetch instance info in the background on login
-  masto.client.value.v2.instance.fetch().catch(error => new Promise<mastodon.v2.Instance>((resolve, reject) => {
-    if (error instanceof MastoHttpError && error.statusCode === 404) {
-      return masto.client.value.v1.instance.fetch().then((newInstance) => {
-        console.warn(`Instance ${server} on version ${newInstance.version} does not support "GET /api/v2/instance" API, try converting to v2 instance... expect some errors`)
-        const v2Instance = {
-          ...newInstance,
-          domain: newInstance.uri,
-          sourceUrl: '',
-          usage: {
-            users: {
-              activeMonth: 0,
-            },
-          },
-          icon: [],
-          apiVersions: {
-            mastodon: newInstance.version,
-          },
-          contact: {
-            email: newInstance.email,
-          },
-          configuration: {
-            ...newInstance.configuration,
-            urls: {
-              streaming: newInstance.urls.streamingApi,
-            },
-          },
-        } as unknown as mastodon.v2.Instance
-        return resolve(v2Instance)
-      }).catch(reject)
-    }
+  masto.client.value.v2.instance
+    .fetch()
+    .catch(
+      (error) =>
+        new Promise<mastodon.v2.Instance>((resolve, reject) => {
+          if (error instanceof MastoHttpError && error.statusCode === 404) {
+            return masto.client.value.v1.instance
+              .fetch()
+              .then((newInstance) => {
+                console.warn(
+                  `Instance ${server} on version ${newInstance.version} does not support "GET /api/v2/instance" API, try converting to v2 instance... expect some errors`,
+                )
+                const v2Instance = {
+                  ...newInstance,
+                  domain: newInstance.uri,
+                  sourceUrl: '',
+                  usage: {
+                    users: {
+                      activeMonth: 0,
+                    },
+                  },
+                  icon: [],
+                  apiVersions: {
+                    mastodon: newInstance.version,
+                  },
+                  contact: {
+                    email: newInstance.email,
+                  },
+                  configuration: {
+                    ...newInstance.configuration,
+                    urls: {
+                      streaming: newInstance.urls.streamingApi,
+                    },
+                  },
+                } as unknown as mastodon.v2.Instance
+                return resolve(v2Instance)
+              })
+              .catch(reject)
+          }
 
-    return reject(error)
-  })).then((newInstance) => {
-    Object.assign(instance, newInstance)
-    if (newInstance.configuration.urls.streaming !== streamingApiUrl)
-      masto.streamingClient.value = createStreamingClient(newInstance.configuration.urls.streaming)
+          return reject(error)
+        }),
+    )
+    .then((newInstance) => {
+      Object.assign(instance, newInstance)
+      if (newInstance.configuration.urls.streaming !== streamingApiUrl)
+        masto.streamingClient.value = createStreamingClient(
+          newInstance.configuration.urls.streaming,
+        )
 
-    instanceStorage.value[server] = newInstance
-  })
+      instanceStorage.value[server] = newInstance
+    })
 
   return instance
 }
@@ -107,7 +126,9 @@ export function useStreaming(
 export function useStreaming(
   cb: (client: mastodon.streaming.Client) => mastodon.streaming.Subscription,
   { immediate = true, controls }: UseStreamingOptions<boolean> = {},
-): ({ stream: Ref<mastodon.streaming.Subscription | undefined> } & Pausable) | Ref<mastodon.streaming.Subscription | undefined> {
+):
+  | ({ stream: Ref<mastodon.streaming.Subscription | undefined> } & Pausable)
+  | Ref<mastodon.streaming.Subscription | undefined> {
   const { streamingClient } = useMasto()
 
   const isActive = ref(immediate)
@@ -130,17 +151,14 @@ export function useStreaming(
 
   watchEffect(() => {
     cleanup()
-    if (streamingClient.value && isActive.value)
-      stream.value = cb(streamingClient.value)
+    if (streamingClient.value && isActive.value) stream.value = cb(streamingClient.value)
   })
 
   if (import.meta.client && !import.meta.test)
     useNuxtApp().$pageLifecycle.addFrozenListener(cleanup)
 
-  tryOnBeforeUnmount(() => isActive.value = false)
+  tryOnBeforeUnmount(() => (isActive.value = false))
 
-  if (controls)
-    return { stream, isActive, pause, resume }
-  else
-    return stream
+  if (controls) return { stream, isActive, pause, resume }
+  else return stream
 }

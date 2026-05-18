@@ -17,7 +17,12 @@ export function usePublish(options: {
   const { client } = useMasto()
   const settings = useUserSettings()
 
-  const preferredLanguage = computed(() => (currentUser.value?.account.source.language || settings.value?.language || 'en').split('-')[0])
+  const preferredLanguage = computed(
+    () =>
+      (currentUser.value?.account.source.language || settings.value?.language || 'en').split(
+        '-',
+      )[0],
+  )
 
   const isSending = ref(false)
   const isExpanded = ref(false)
@@ -28,58 +33,64 @@ export function usePublish(options: {
       return draftItem.value.params.sensitive ? draftItem.value.params.spoilerText : ''
     },
     set(val) {
-      if (!draftItem.value.params.sensitive)
-        return
+      if (!draftItem.value.params.sensitive) return
       draftItem.value.params.spoilerText = val
     },
   })
 
-  const shouldExpanded = computed(() => options.expanded.value || isExpanded.value || !isEmpty.value)
+  const shouldExpanded = computed(
+    () => options.expanded.value || isExpanded.value || !isEmpty.value,
+  )
   const isPublishDisabled = computed(() => {
     const { params, attachments } = draftItem.value
-    const firstEmptyInputIndex = params.poll?.options.findIndex(option => option.trim().length === 0)
-    return isEmpty.value
-      || options.isUploading.value
-      || isSending.value
-      || (attachments.length === 0 && !params.status)
-      || failedMessages.value.length > 0
-      || (attachments.length > 0 && params.poll !== null && params.poll !== undefined)
-      || ((params.poll !== null && params.poll !== undefined)
-        && (
-          (firstEmptyInputIndex !== -1
-            && firstEmptyInputIndex !== params.poll.options.length - 1
-          )
-          || params.poll.options.findLastIndex(option => option.trim().length > 0) + 1 < 2
-          || (new Set(params.poll.options).size !== params.poll.options.length)
-          || (currentInstance.value?.configuration?.polls.maxCharactersPerOption !== undefined
-            && params.poll.options.some(option => option.length > currentInstance.value!.configuration!.polls.maxCharactersPerOption)
-          )
-        ))
+    const firstEmptyInputIndex = params.poll?.options.findIndex(
+      (option) => option.trim().length === 0,
+    )
+    return (
+      isEmpty.value ||
+      options.isUploading.value ||
+      isSending.value ||
+      (attachments.length === 0 && !params.status) ||
+      failedMessages.value.length > 0 ||
+      (attachments.length > 0 && params.poll !== null && params.poll !== undefined) ||
+      (params.poll !== null &&
+        params.poll !== undefined &&
+        ((firstEmptyInputIndex !== -1 && firstEmptyInputIndex !== params.poll.options.length - 1) ||
+          params.poll.options.findLastIndex((option) => option.trim().length > 0) + 1 < 2 ||
+          new Set(params.poll.options).size !== params.poll.options.length ||
+          (currentInstance.value?.configuration?.polls.maxCharactersPerOption !== undefined &&
+            params.poll.options.some(
+              (option) =>
+                option.length > currentInstance.value!.configuration!.polls.maxCharactersPerOption,
+            ))))
+    )
   })
 
-  watch(draftItem, () => {
-    if (failedMessages.value.length > 0)
-      failedMessages.value.length = 0
-  }, { deep: true })
+  watch(
+    draftItem,
+    () => {
+      if (failedMessages.value.length > 0) failedMessages.value.length = 0
+    },
+    { deep: true },
+  )
 
   async function publishDraft(): Promise<mastodon.v1.Status | undefined> {
-    if (isPublishDisabled.value)
-      return
+    if (isPublishDisabled.value) return
 
     let content = htmlToText(draftItem.value.params.status || '')
     if (draftItem.value.mentions?.length) {
-      content = `${draftItem.value.mentions.map(i => `@${i}`).join(' ')} ${content}`
+      content = `${draftItem.value.mentions.map((i) => `@${i}`).join(' ')} ${content}`
     }
 
     let poll
     if (draftItem.value.params.poll) {
       let options = draftItem.value.params.poll.options
 
-      if (currentInstance.value?.configuration !== undefined
-        && (
-          options.length < currentInstance.value.configuration.polls.maxOptions
-          || options.at(-1)?.trim().length === 0
-        )) {
+      if (
+        currentInstance.value?.configuration !== undefined &&
+        (options.length < currentInstance.value.configuration.polls.maxOptions ||
+          options.at(-1)?.trim().length === 0)
+      ) {
         options = options.slice(0, options.length - 1)
       }
 
@@ -95,7 +106,7 @@ export function usePublish(options: {
       ...draftItem.value.params,
       spoilerText: publishSpoilerText.value,
       status: content,
-      mediaIds: draftItem.value.attachments.map(a => a.id),
+      mediaIds: draftItem.value.attachments.map((a) => a.id),
       language: draftItem.value.params.language || preferredLanguage.value,
       poll,
       scheduledAt,
@@ -105,15 +116,14 @@ export function usePublish(options: {
     } as mastodon.rest.v1.CreateScheduledStatusParams
 
     if (import.meta.dev) {
-      // eslint-disable-next-line no-console
+      // oxlint-disable-next-line no-console
       console.info({
         raw: draftItem.value.params.status,
         ...payload,
       })
-      // eslint-disable-next-line no-alert
+      // oxlint-disable-next-line no-alert
       const result = confirm('[DEV] Payload logged to console, do you want to publish it?')
-      if (!result)
-        return
+      if (!result) return
     }
 
     try {
@@ -122,11 +132,10 @@ export function usePublish(options: {
       let status: mastodon.v1.Status
       if (!draftItem.value.editingStatus) {
         status = await client.value.v1.statuses.create(payload)
-      }
-      else {
+      } else {
         status = await client.value.v1.statuses.$select(draftItem.value.editingStatus.id).update({
           ...payload,
-          mediaAttributes: draftItem.value.attachments.map(media => ({
+          mediaAttributes: draftItem.value.attachments.map((media) => ({
             id: media.id,
             description: media.description,
           })),
@@ -144,12 +153,10 @@ export function usePublish(options: {
         return
 
       return status
-    }
-    catch (err) {
+    } catch (err) {
       console.error(err)
       failedMessages.value.push((err as Error).message)
-    }
-    finally {
+    } finally {
       isSending.value = false
     }
   }
@@ -179,19 +186,19 @@ export function useUploadMediaAttachment(draft: Ref<DraftItem>) {
   const dropZoneRef = ref<HTMLDivElement>()
 
   const maxPixels = computed(() => {
-    return currentInstance.value?.configuration?.mediaAttachments?.imageMatrixLimit
-      ?? 4096 ** 2
+    return currentInstance.value?.configuration?.mediaAttachments?.imageMatrixLimit ?? 4096 ** 2
   })
 
-  const loadImage = (inputFile: Blob) => new Promise<HTMLImageElement>((resolve, reject) => {
-    const url = URL.createObjectURL(inputFile)
-    const img = new Image()
+  const loadImage = (inputFile: Blob) =>
+    new Promise<HTMLImageElement>((resolve, reject) => {
+      const url = URL.createObjectURL(inputFile)
+      const img = new Image()
 
-    img.onerror = err => reject(err)
-    img.onload = () => resolve(img)
+      img.onerror = (err) => reject(err)
+      img.onload = () => resolve(img)
 
-    img.src = url
-  })
+      img.src = url
+    })
 
   function resizeImage(img: HTMLImageElement, type = 'image/png'): Promise<Blob | null> {
     const { width, height } = img
@@ -200,8 +207,8 @@ export function useUploadMediaAttachment(draft: Ref<DraftItem>) {
 
     const canvas = document.createElement('canvas')
 
-    const resizedWidth = canvas.width = Math.round(Math.sqrt(maxPixels.value * aspectRatio))
-    const resizedHeight = canvas.height = Math.round(Math.sqrt(maxPixels.value / aspectRatio))
+    const resizedWidth = (canvas.width = Math.round(Math.sqrt(maxPixels.value * aspectRatio)))
+    const resizedHeight = (canvas.height = Math.round(Math.sqrt(maxPixels.value / aspectRatio)))
 
     const context = canvas.getContext('2d')
 
@@ -214,14 +221,13 @@ export function useUploadMediaAttachment(draft: Ref<DraftItem>) {
 
   async function processImageFile(file: File) {
     try {
-      const image = await loadImage(file) as HTMLImageElement
+      const image = (await loadImage(file)) as HTMLImageElement
 
       if (image.width * image.height > maxPixels.value)
-        file = await resizeImage(image, file.type) as File
+        file = (await resizeImage(image, file.type)) as File
 
       return file
-    }
-    catch (e) {
+    } catch (e) {
       // Resize failed, just use the original file
       console.error(e)
       return file
@@ -229,8 +235,7 @@ export function useUploadMediaAttachment(draft: Ref<DraftItem>) {
   }
 
   async function processFile(file: File) {
-    if (file.type.startsWith('image/'))
-      return await processImageFile(file)
+    if (file.type.startsWith('image/')) return await processImageFile(file)
 
     return file
   }
@@ -247,23 +252,21 @@ export function useUploadMediaAttachment(draft: Ref<DraftItem>) {
       if (draft.value.attachments.length < limit) {
         if (file.type.startsWith('image/')) {
           if (maxImageSize > 0 && file.size > maxImageSize) {
-            failedAttachments.value = [...failedAttachments.value, [file.name, t('state.attachments_limit_image_error', [formatFileSize(maxImageSize)])]]
-            continue
-          }
-        }
-        else {
-          if (maxVideoSize > 0 && file.size > maxVideoSize) {
-            const key
-              = file.type.startsWith('audio/')
-                ? 'state.attachments_limit_audio_error'
-                : file.type.startsWith('video/')
-                  ? 'state.attachments_limit_video_error'
-                  : 'state.attachments_limit_unknown_error'
-            const errorMessage = t(key, [formatFileSize(maxVideoSize)])
             failedAttachments.value = [
               ...failedAttachments.value,
-              [file.name, errorMessage],
+              [file.name, t('state.attachments_limit_image_error', [formatFileSize(maxImageSize)])],
             ]
+            continue
+          }
+        } else {
+          if (maxVideoSize > 0 && file.size > maxVideoSize) {
+            const key = file.type.startsWith('audio/')
+              ? 'state.attachments_limit_audio_error'
+              : file.type.startsWith('video/')
+                ? 'state.attachments_limit_video_error'
+                : 'state.attachments_limit_unknown_error'
+            const errorMessage = t(key, [formatFileSize(maxVideoSize)])
+            failedAttachments.value = [...failedAttachments.value, [file.name, errorMessage]]
             continue
           }
         }
@@ -273,24 +276,24 @@ export function useUploadMediaAttachment(draft: Ref<DraftItem>) {
             file: await processFile(file),
           })
           draft.value.attachments.push(attachment)
-        }
-        catch (e) {
+        } catch (e) {
           // TODO: add some human-readable error message, problem is that masto api will not return response code
           console.error(e)
           failedAttachments.value = [...failedAttachments.value, [file.name, (e as Error).message]]
         }
-      }
-      else {
+      } else {
         isExceedingAttachmentLimit.value = true
-        failedAttachments.value = [...failedAttachments.value, [file.name, t('state.attachments_limit_error')]]
+        failedAttachments.value = [
+          ...failedAttachments.value,
+          [file.name, t('state.attachments_limit_error')],
+        ]
       }
     }
     isUploading.value = false
   }
 
   async function pickAttachments() {
-    if (import.meta.server)
-      return
+    if (import.meta.server) return
     const mimeTypes = currentInstance.value!.configuration?.mediaAttachments.supportedMimeTypes
     const files = await fileOpen({
       description: 'Attachments',
@@ -311,8 +314,7 @@ export function useUploadMediaAttachment(draft: Ref<DraftItem>) {
   }
 
   async function onDrop(files: File[] | null) {
-    if (files)
-      await uploadAttachments(files)
+    if (files) await uploadAttachments(files)
   }
 
   const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)

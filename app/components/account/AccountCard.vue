@@ -13,7 +13,10 @@ cacheAccount(account)
 <template>
   <div flex justify-between hover:bg-active transition-100>
     <AccountInfo
-      :account="account" hover p1 as="router-link"
+      :account="account"
+      hover
+      p1
+      as="router-link"
       :hover-card="hoverCard"
       shrink
       overflow-hidden

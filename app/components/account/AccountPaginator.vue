@@ -11,8 +11,11 @@ const { account, context } = defineProps<{
 const fallbackContext = computed(() => {
   return ['following', 'followers'].includes(context!)
 })
-const showOriginSite = computed(() =>
-  account && account.id !== currentUser.value?.account.id && getServerName(account) !== currentServer.value,
+const showOriginSite = computed(
+  () =>
+    account &&
+    account.id !== currentUser.value?.account.id &&
+    getServerName(account) !== currentServer.value,
 )
 </script>
 
@@ -23,15 +26,21 @@ const showOriginSite = computed(() =>
         :account="item"
         :relationship-context="relationshipContext"
         hover-card
-        border="b base" py2 px4
+        border="b base"
+        py2
+        px4
       />
     </template>
     <template v-if="fallbackContext && showOriginSite" #done>
       <div p5 text-secondary text-center flex flex-col items-center gap1>
         <span italic>{{ $t(`account.view_other_${context}`) }}</span>
         <NuxtLink
-          :href="account!.url" target="_blank" external
-          flex="~ gap-1" items-center text-primary
+          :href="account!.url"
+          target="_blank"
+          external
+          flex="~ gap-1"
+          items-center
+          text-primary
           hover="underline text-primary-active"
         >
           <div i-ri:external-link-fill />

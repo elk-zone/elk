@@ -1,6 +1,6 @@
 import { defineVitestProject } from '@nuxt/test-utils/config'
 import { isCI } from 'std-env'
-import { defineConfig } from 'vitest/config'
+import { defineConfig } from 'vite-plus'
 
 export default defineConfig({
   define: {
@@ -12,9 +12,7 @@ export default defineConfig({
       await defineVitestProject({
         test: {
           name: 'nuxt',
-          setupFiles: [
-            '../tests/setup.ts',
-          ],
+          setupFiles: ['../tests/setup.ts'],
           environmentOptions: {
             nuxt: {
               mock: {

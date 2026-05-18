@@ -6,12 +6,14 @@ const { as = 'div', active } = defineProps<{
 
 const el = ref()
 
-watch(() => active, (active) => {
-  const _el = unrefElement(el)
+watch(
+  () => active,
+  (active) => {
+    const _el = unrefElement(el)
 
-  if (active && _el)
-    _el.scrollIntoView({ block: 'nearest', inline: 'start' })
-})
+    if (active && _el) _el.scrollIntoView({ block: 'nearest', inline: 'start' })
+  },
+)
 </script>
 
 <template>

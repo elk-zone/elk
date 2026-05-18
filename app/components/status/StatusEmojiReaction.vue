@@ -22,15 +22,29 @@ function emojiCode(emoji: mastodon.v1.FedibirdEmojiReaction) {
     <button
       v-for="(emoji, i) in status.emojiReactions ?? []"
       :key="i"
-      flex gap-1 p="block-1 inline-2" text-secondary btn-base rounded-1
-      :class="emoji.me ? 'b-1 b-primary bg-primary-fade' : 'b b-white bg-gray-1 hover:bg-gray-1 hover:b-gray'"
+      flex
+      gap-1
+      p="block-1 inline-2"
+      text-secondary
+      btn-base
+      rounded-1
+      :class="
+        emoji.me
+          ? 'b-1 b-primary bg-primary-fade'
+          : 'b b-white bg-gray-1 hover:bg-gray-1 hover:b-gray'
+      "
     >
-      <picture v-if="isCustomEmoji(emoji)" class="custom-emoji" :data-emoji-id="emoji.name" :title="emojiCode(emoji)">
-        <source :srcset="emoji.staticUrl" media="(prefers-reduced-motion: reduce)">
-        <img :src="emoji.url" :alt="emojiCode(emoji)">
+      <picture
+        v-if="isCustomEmoji(emoji)"
+        class="custom-emoji"
+        :data-emoji-id="emoji.name"
+        :title="emojiCode(emoji)"
+      >
+        <source :srcset="emoji.staticUrl" media="(prefers-reduced-motion: reduce)" />
+        <img :src="emoji.url" :alt="emojiCode(emoji)" />
       </picture>
       <picture v-else class="custom-emoji" :data-emoji-id="emoji.name" :title="emojiCode(emoji)">
-        <img v-bind="getEmojiAttributes(emoji.name)" :alt="emojiCode(emoji)">
+        <img v-bind="getEmojiAttributes(emoji.name)" :alt="emojiCode(emoji)" />
       </picture>
       <CommonLocalizedNumber :keypath="emoji.count.toString()" :count="emoji.count" />
     </button>

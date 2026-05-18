@@ -1,10 +1,9 @@
 {
   "name": "@elk-zone/elk",
-  "type": "module",
   "version": "0.17.3",
-  "packageManager": "pnpm@10.33.4",
-  "license": "MIT",
   "homepage": "https://elk.zone/",
+  "license": "MIT",
+  "type": "module",
   "main": "./nuxt.config.ts",
   "scripts": {
     "build": "nuxt build",
@@ -15,16 +14,16 @@
     "dev:mocked:pwa:ssl": "VITE_DEV_PWA=true nuxt dev --port 5314 --https --ssl-cert ./https-dev-config/localhost.crt --ssl-key ./https-dev-config/localhost.key --dotenv .env.mock",
     "start": "PORT=5314 node .output/server/index.mjs",
     "start:https": "PORT=5314 node ./https-dev-config/local-https-server.mjs",
-    "lint": "eslint --cache .",
-    "lint:fix": "eslint --cache --fix .",
+    "lint": "vp lint .",
+    "lint:fix": "vp lint --fix .",
     "typecheck": "nuxt typecheck",
     "prepare": "node scripts/prepare-translation-status.ts && node scripts/prepare.ts",
     "generate": "nuxt generate",
-    "test:unit": "vitest",
-    "test:unit:ci": "vitest run",
+    "test:unit": "vp test",
+    "test:unit:ci": "vp test run",
     "test:typecheck": "vue-tsc -b --noEmit",
-    "test": "vitest",
-    "test:ci": "vitest run",
+    "test": "vp test",
+    "test:ci": "vp test run",
     "update:team:avatars": "node scripts/avatars.ts",
     "cleanup-translations": "node scripts/cleanup-translations.ts",
     "prepare-translation-status": "node scripts/prepare-translation-status.ts",
@@ -117,7 +116,6 @@
     "unimport": "^5.6.0",
     "unstorage": "^1.17.1",
     "virtua": "^0.48.6",
-    "vite": "^7.1.7",
     "vite-plugin-pwa": "^1.2.0",
     "vue": "^3.5.4",
     "vue-advanced-cropper": "^2.8.9",
@@ -135,6 +133,8 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^7.7.3",
+    "@eslint/markdown": "^8.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
     "@types/chroma-js": "^3.1.2",
     "@types/file-saver": "^2.0.7",
     "@types/fnando__sparkline": "^0.3.7",
@@ -145,8 +145,18 @@
     "@vue/test-utils": "2.4.10",
     "bumpp": "^11.1.0",
     "consola": "^3.4.2",
-    "eslint": "^9.39.4",
+    "eslint-plugin-antfu": "^3.2.3",
+    "eslint-plugin-command": "^3.5.2",
+    "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-format": "^2.0.1",
+    "eslint-plugin-jsonc": "^3.1.2",
+    "eslint-plugin-markdown": "^5.1.0",
+    "eslint-plugin-perfectionist": "^5.9.0",
+    "eslint-plugin-pnpm": "^1.6.0",
+    "eslint-plugin-regexp": "^3.1.0",
+    "eslint-plugin-toml": "^1.3.1",
+    "eslint-plugin-unused-imports": "^4.4.1",
+    "eslint-plugin-yml": "^3.3.2",
     "flat": "^6.0.1",
     "nano-staged": "^1.0.2",
     "ofetch": "^1.5.1",
@@ -156,7 +166,9 @@
     "sharp-ico": "^0.1.5",
     "simple-git-hooks": "^2.13.1",
     "typescript": "^5.4.4",
-    "vitest": "4.1.5",
+    "vite": "catalog:",
+    "vite-plus": "catalog:",
+    "vitest": "catalog:",
     "vue-component-type-helpers": "^3.2.9",
     "vue-tsc": "^2.1.6"
   },
@@ -164,6 +176,7 @@
     "pre-commit": "npx nano-staged"
   },
   "nano-staged": {
-    "*": "eslint --fix"
-  }
+    "*": "vp check --fix"
+  },
+  "packageManager": "pnpm@10.33.4"
 }

@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { STORAGE_KEY_HIDE_EXPLORE_POSTS_TIPS, STORAGE_KEY_LAST_ACCESSED_EXPLORE_ROUTE } from '~/constants'
+import {
+  STORAGE_KEY_HIDE_EXPLORE_POSTS_TIPS,
+  STORAGE_KEY_LAST_ACCESSED_EXPLORE_ROUTE,
+} from '~/constants'
 
 const EXPLORE_ROUTE_REGEX = /(.*\/explore\/?)/
 

@@ -7,7 +7,9 @@ const handle = computed(() => params.account as string)
 
 const account = await fetchAccountByHandle(handle.value)
 
-const paginator = useMastoClient().v1.accounts.$select(account.id).statuses.list({ excludeReplies: false })
+const paginator = useMastoClient()
+  .v1.accounts.$select(account.id)
+  .statuses.list({ excludeReplies: false })
 
 if (account) {
   useHydratedHead({
@@ -19,6 +21,11 @@ if (account) {
 <template>
   <div>
     <AccountTabs />
-    <TimelinePaginator :paginator="paginator" :preprocess="filterAndReorderTimeline" context="account" :account="account" />
+    <TimelinePaginator
+      :paginator="paginator"
+      :preprocess="filterAndReorderTimeline"
+      context="account"
+      :account="account"
+    />
   </div>
 </template>

@@ -32,10 +32,13 @@ const isLegacyAccount = computed(() => !currentUser.value?.vapidKey)
       </h2>
       <button
         v-if="closeableHeader"
-        flex rounded-4
+        flex
+        rounded-4
         type="button"
         :title="$t('settings.notifications.push_notifications.warning.enable_close')"
-        hover:bg-active cursor-pointer transition-100
+        hover:bg-active
+        cursor-pointer
+        transition-100
         :disabled="busy"
         @click="$emit('hide')"
       >
@@ -60,7 +63,12 @@ const isLegacyAccount = computed(() => !currentUser.value?.vapidKey)
       {{ $t('settings.notifications.push_notifications.warning.re_auth') }}
     </p>
     <button
-      btn-outline rounded-full font-bold py4 flex="~ gap2 center" m5
+      btn-outline
+      rounded-full
+      font-bold
+      py4
+      flex="~ gap2 center"
+      m5
       type="button"
       :class="busy || isLegacyAccount ? 'border-transparent' : null"
       :disabled="busy || isLegacyAccount"

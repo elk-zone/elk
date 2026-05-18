@@ -19,13 +19,7 @@ const scrollOnClick = computed(() => to && !(target === '_blank' || external))
 useCommand({
   scope: 'Settings',
 
-  name: () => text
-    ?? (to
-      ? typeof to === 'string'
-        ? to
-        : to.name
-      : ''
-    ),
+  name: () => text ?? (to ? (typeof to === 'string' ? to : to.name) : ''),
   description: () => description,
   icon: () => icon || '',
   visible: () => command && to,
@@ -44,19 +38,32 @@ useCommand({
     :target="target"
     exact-active-class="text-primary"
     :class="disabled ? 'op25 pointer-events-none ' : match ? 'text-primary' : ''"
-    block w-full group focus:outline-none
+    block
+    w-full
+    group
+    focus:outline-none
     :tabindex="disabled ? -1 : undefined"
     @click="scrollOnClick ? $scrollToTop() : undefined"
   >
     <div
-      w-full flex px5 py3 md:gap2 gap4 items-center
-      transition-250 group-hover:bg-active
+      w-full
+      flex
+      px5
+      py3
+      md:gap2
+      gap4
+      items-center
+      transition-250
+      group-hover:bg-active
       group-focus-visible:ring="2 current"
     >
       <div flex-1 flex items-center md:gap2 gap4>
         <div
           v-if="$slots.icon || icon"
-          flex items-center justify-center flex-shrink-0
+          flex
+          items-center
+          justify-center
+          flex-shrink-0
           :class="$slots.description ? 'w-12 h-12' : ''"
         >
           <slot name="icon">
@@ -84,7 +91,13 @@ useCommand({
           {{ content }}
         </slot>
       </p>
-      <div v-if="to" :class="!external ? 'i-ri:arrow-right-s-line' : 'i-ri:external-link-line'" text-xl text-secondary-light class="rtl-flip" />
+      <div
+        v-if="to"
+        :class="!external ? 'i-ri:arrow-right-s-line' : 'i-ri:external-link-line'"
+        text-xl
+        text-secondary-light
+        class="rtl-flip"
+      />
     </div>
   </NuxtLink>
 </template>

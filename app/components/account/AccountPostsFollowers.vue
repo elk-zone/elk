@@ -30,12 +30,11 @@ const userSettings = useUserSettings()
       v-if="!(isHoverCard && getPreferences(userSettings, 'hideFollowerCount'))"
       :to="getAccountFollowingRoute(account)"
       replace
-      text-secondary exact-active-class="text-primary"
+      text-secondary
+      exact-active-class="text-primary"
     >
       <template #default="{ isExactActive }">
-        <template
-          v-if="!getPreferences(userSettings, 'hideFollowerCount')"
-        >
+        <template v-if="!getPreferences(userSettings, 'hideFollowerCount')">
           <CommonLocalizedNumber
             v-if="account.followingCount >= 0"
             keypath="account.following_count"
@@ -54,7 +53,8 @@ const userSettings = useUserSettings()
     <NuxtLink
       v-if="!(isHoverCard && getPreferences(userSettings, 'hideFollowerCount'))"
       :to="getAccountFollowersRoute(account)"
-      replace text-secondary
+      replace
+      text-secondary
       exact-active-class="text-primary"
     >
       <template #default="{ isExactActive }">

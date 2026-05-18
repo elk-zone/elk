@@ -39,12 +39,14 @@ When you are ready to submit work back to the main Elk repo, create a PR.
 6. Go to your fork of the Elk project in your GitHub account
 7. Select the **Pull Request** tab
 8. Select **New Pull Request**
-9.  Confirm the repo/branches to compare
-   - Base repo should be **elk-zone/elk**
-   - base branch should be **main**
-   - Head repository should be your fork
-   - Compare branch should be your working branch you want to submit
-   If you don't see four drop-downs, be sure you are comparing across forks.
+9. Confirm the repo/branches to compare
+
+- Base repo should be **elk-zone/elk**
+- base branch should be **main**
+- Head repository should be your fork
+- Compare branch should be your working branch you want to submit
+  If you don't see four drop-downs, be sure you are comparing across forks.
+
 10. Add a description of the changes your request makes
 11. Select **Add Pull Request**
 

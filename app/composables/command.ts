@@ -20,7 +20,7 @@ const scopes = [
   'Users',
 ] as const
 
-export type CommandScopeNames = typeof scopes[number]
+export type CommandScopeNames = (typeof scopes)[number]
 
 export interface CommandScope {
   id: string
@@ -45,7 +45,10 @@ export interface CommandProvider {
   onComplete?: () => CommandScope
 }
 
-export type ResolvedCommand = Exclude<CommandProvider, 'icon' | 'name' | 'description' | 'bindings'> & {
+export type ResolvedCommand = Exclude<
+  CommandProvider,
+  'icon' | 'name' | 'description' | 'bindings'
+> & {
   icon: string
   name: string
   description: string | undefined
@@ -82,7 +85,7 @@ export interface QueryResult {
 }
 
 function resolveFunction<T>(i: T): T extends (...args: never) => infer R ? R : T {
-  return typeof i === 'function' ? i() : i as T extends ((...args: never) => infer R) ? R : T
+  return typeof i === 'function' ? i() : (i as T extends (...args: never) => infer R ? R : T)
 }
 
 export const useCommandRegistry = defineStore('command', () => {
@@ -90,14 +93,15 @@ export const useCommandRegistry = defineStore('command', () => {
 
   const commands = computed<ResolvedCommand[]>(() =>
     [...providers]
-      .filter(command => command.visible ? command.visible() : true)
-      .map(provider => ({
+      .filter((command) => (command.visible ? command.visible() : true))
+      .map((provider) => ({
         ...provider,
         icon: resolveFunction(provider.icon),
         name: resolveFunction(provider.name),
         description: resolveFunction(provider.description),
         bindings: resolveFunction(provider.bindings),
-      })))
+      })),
+  )
 
   let lastScope = ''
   let lastFuse: Fuse<ResolvedCommand> | undefined
@@ -115,39 +119,35 @@ export const useCommandRegistry = defineStore('command', () => {
     },
 
     query: (scope: string, query: string): QueryResult => {
-      const cmds = commands.value
-        .filter(cmd => (cmd.parent ?? '') === scope)
+      const cmds = commands.value.filter((cmd) => (cmd.parent ?? '') === scope)
 
       if (query) {
-        const fuse = (lastScope === scope && lastFuse)
-          ? lastFuse
-          : new Fuse(cmds, {
-              keys: ['scope', 'name', 'description'],
-              includeScore: true,
-            })
+        const fuse =
+          lastScope === scope && lastFuse
+            ? lastFuse
+            : new Fuse(cmds, {
+                keys: ['scope', 'name', 'description'],
+                includeScore: true,
+              })
 
         lastScope = scope
         lastFuse = fuse
 
-        const res = fuse.search(query)
-          .map(({ item }) => ({ ...item }))
+        const res = fuse.search(query).map(({ item }) => ({ ...item }))
 
         // group by scope
         const grouped = new Map<CommandScopeNames, CommandQueryResultItem[]>()
         for (const cmd of res) {
           const scope = cmd.scope ?? ''
-          if (!grouped.has(scope))
-            grouped.set(scope, [])
-          grouped
-            .get(scope)!
-            .push({
-              index: 0,
-              type: 'command',
-              scope,
-              cmd,
-              onActivate: cmd.onActivate,
-              onComplete: cmd.onComplete,
-            })
+          if (!grouped.has(scope)) grouped.set(scope, [])
+          grouped.get(scope)!.push({
+            index: 0,
+            type: 'command',
+            scope,
+            cmd,
+            onActivate: cmd.onActivate,
+            onComplete: cmd.onComplete,
+          })
         }
 
         let index = 0
@@ -164,13 +164,11 @@ export const useCommandRegistry = defineStore('command', () => {
           items: indexed,
           grouped,
         }
-      }
-
-      else {
+      } else {
         const indexed = cmds.map((cmd, index) => ({ ...cmd, index }))
 
         const grouped = new Map<CommandScopeNames, CommandQueryResultItem[]>(
-          scopes.map(scope => [scope, []]),
+          scopes.map((scope) => [scope, []]),
         )
         for (const cmd of indexed) {
           const scope = cmd.scope ?? ''
@@ -189,8 +187,7 @@ export const useCommandRegistry = defineStore('command', () => {
         for (const [scope, items] of grouped) {
           if (items.length === 0) {
             grouped.delete(scope)
-          }
-          else {
+          } else {
             const o = (item: CommandQueryResultItem) => (item.cmd.order ?? 0) * 100 + item.index
             items.sort((a, b) => o(a) - o(b))
             for (const cmd of items) {
@@ -227,15 +224,17 @@ export function useCommands(cmds: () => CommandProvider[]) {
 
   const commands = computed(cmds)
 
-  watch(commands, (n, o = []) => {
-    for (const cmd of o)
-      registry.remove(cmd)
-    for (const cmd of n)
-      registry.register(cmd)
-  }, { deep: true, immediate: true })
+  watch(
+    commands,
+    (n, o = []) => {
+      for (const cmd of o) registry.remove(cmd)
+      for (const cmd of n) registry.register(cmd)
+    },
+    { deep: true, immediate: true },
+  )
 
   const cleanup = () => {
-    commands.value.forEach(cmd => registry.remove(cmd))
+    commands.value.forEach((cmd) => registry.remove(cmd))
   }
 
   onDeactivated(cleanup)
@@ -255,7 +254,7 @@ export function provideGlobalCommands() {
     scope: 'Preferences',
 
     name: () => t('command.toggle_dark_mode'),
-    icon: () => colorMode.value === 'light' ? 'i-ri:sun-line' : 'i-ri:moon-line',
+    icon: () => (colorMode.value === 'light' ? 'i-ri:sun-line' : 'i-ri:moon-line'),
 
     onActivate() {
       colorMode.preference = colorMode.value === 'light' ? 'dark' : 'light'
@@ -266,7 +265,10 @@ export function provideGlobalCommands() {
     scope: 'Preferences',
 
     name: () => t('command.toggle_zen_mode'),
-    icon: () => userSettings.value.preferences.zenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line',
+    icon: () =>
+      userSettings.value.preferences.zenMode
+        ? 'i-ri:layout-right-2-line'
+        : 'i-ri:layout-right-line',
 
     onActivate() {
       togglePreferences('zenMode')
@@ -284,17 +286,19 @@ export function provideGlobalCommands() {
       display: 'Languages',
     }),
   })
-  useCommands(() => locales.value.map(l => ({
-    parent: 'language',
-    scope: 'Languages',
+  useCommands(() =>
+    locales.value.map((l) => ({
+      parent: 'language',
+      scope: 'Languages',
 
-    name: l.name!,
-    icon: 'i-ri:earth-line',
+      name: l.name!,
+      icon: 'i-ri:earth-line',
 
-    onActivate() {
-      locale.value = l.code
-    },
-  })))
+      onActivate() {
+        locale.value = l.code
+      },
+    })),
+  )
 
   useCommand({
     scope: 'Account',
@@ -304,10 +308,8 @@ export function provideGlobalCommands() {
     icon: 'i-ri:user-add-line',
 
     onActivate() {
-      if (singleInstanceServer)
-        oauth()
-      else
-        openSigninDialog()
+      if (singleInstanceServer) oauth()
+      else openSigninDialog()
     },
   })
   useCommand({
@@ -324,19 +326,21 @@ export function provideGlobalCommands() {
       display: 'Accounts',
     }),
   })
-  useCommands(() => users.value.map(user => ({
-    parent: 'account-switch',
-    scope: 'Switch account',
+  useCommands(() =>
+    users.value.map((user) => ({
+      parent: 'account-switch',
+      scope: 'Switch account',
 
-    visible: () => user.account.id !== currentUser.value?.account.id,
+      visible: () => user.account.id !== currentUser.value?.account.id,
 
-    name: () => t('command.switch_account', [getFullHandle(user.account)]),
-    icon: 'i-ri:user-shared-line',
+      name: () => t('command.switch_account', [getFullHandle(user.account)]),
+      icon: 'i-ri:user-shared-line',
 
-    onActivate() {
-      loginTo(masto, user)
-    },
-  })))
+      onActivate() {
+        loginTo(masto, user)
+      },
+    })),
+  )
   useCommand({
     scope: 'Account',
 

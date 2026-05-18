@@ -22,11 +22,9 @@ export function useMagicSequence(keys: string[]): ComputedRef<boolean> {
       if (magicKeys[keys[i.value]].value && !down) {
         down = true
         i.value += 1
-      }
-      else if (i.value > 0 && !magicKeys[keys[i.value - 1]].value && down) {
+      } else if (i.value > 0 && !magicKeys[keys[i.value - 1]].value && down) {
         down = false
-      }
-      else {
+      } else {
         i.value = 0
         down = false
         success.value = false

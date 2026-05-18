@@ -58,45 +58,36 @@ defineExpose({
 
 /** close the dialog */
 function close() {
-  if (!visible.value)
-    return
+  if (!visible.value) return
   visible.value = false
   emit('close')
 }
 
 function clickMask() {
-  if (closeByMask)
-    close()
+  if (closeByMask) close()
 }
 
 const routePath = ref(route.path)
 watch(visible, (value) => {
-  if (value)
-    routePath.value = route.path
+  if (value) routePath.value = route.path
 })
 
 const notInCurrentPage = computed(() => deactivated.value || routePath.value !== route.path)
 watch(notInCurrentPage, (value) => {
-  if (keepAlive)
-    return
-  if (value)
-    close()
+  if (keepAlive) return
+  if (value) close()
 })
 
 // controls the state of v-if.
 // when useVIf is toggled, v-if has the same state as modelValue, otherwise v-if is true
 const isVIf = computed(() => {
-  return useVIf
-    ? visible.value
-    : true
+  return useVIf ? visible.value : true
 })
 
 // controls the state of v-show.
 // when useVIf is toggled, v-show is true, otherwise it has the same state as modelValue
 const isVShow = computed(() => {
-  return !useVIf
-    ? visible.value
-    : true
+  return !useVIf ? visible.value : true
 })
 
 function bindTypeToAny($attrs: any) {
@@ -104,13 +95,11 @@ function bindTypeToAny($attrs: any) {
 }
 
 function trapFocusDialog() {
-  if (isVShow.value)
-    nextTick().then(() => activate())
+  if (isVShow.value) nextTick().then(() => activate())
 }
 
 useEventListener('keydown', (e: KeyboardEvent) => {
-  if (!visible.value)
-    return
+  if (!visible.value) return
   if (e.key === 'Escape') {
     close()
     e.preventDefault()
@@ -131,7 +120,11 @@ useEventListener('keydown', (e: KeyboardEvent) => {
         :style="{
           'z-index': zIndex,
         }"
-        fixed inset-0 of-y-auto scrollbar-hide overscroll-none
+        fixed
+        inset-0
+        of-y-auto
+        scrollbar-hide
+        overscroll-none
       >
         <!-- The style `scrollbar-hide overscroll-none overflow-y-scroll` and `h="[calc(100%+0.5px)]"` is used to implement scroll locking, -->
         <!-- corresponding to issue: #106, so please don't remove it. -->
@@ -142,10 +135,26 @@ useEventListener('keydown', (e: KeyboardEvent) => {
           :class="{
             'backdrop-blur-sm': !getPreferences(userSettings, 'optimizeForLowPerformanceDevice'),
           }"
-          absolute inset-0 z-0 bg-transparent opacity-100 backdrop-filter touch-none
+          absolute
+          inset-0
+          z-0
+          bg-transparent
+          opacity-100
+          backdrop-filter
+          touch-none
         />
         <!-- Mask layer: dimming -->
-        <div class="dialog-mask" absolute inset-0 z-0 bg-black opacity-48 touch-none h="[calc(100%+0.5px)]" @click="clickMask" />
+        <div
+          class="dialog-mask"
+          absolute
+          inset-0
+          z-0
+          bg-black
+          opacity-48
+          touch-none
+          h="[calc(100%+0.5px)]"
+          @click="clickMask"
+        />
         <!-- Dialog container -->
         <div class="p-safe-area" absolute inset-0 z-1 pointer-events-none opacity-100 flex>
           <div flex-1 flex items-center justify-center p-4>
@@ -174,7 +183,9 @@ useEventListener('keydown', (e: KeyboardEvent) => {
   }
 
   .dialog-main {
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
   }
 }
 

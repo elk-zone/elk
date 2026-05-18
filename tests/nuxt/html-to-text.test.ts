@@ -1,9 +1,10 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'vite-plus/test'
 
 describe('html-to-text', () => {
   it('inline code', () => {
-    expect(htmlToText('<p>text <code>code</code> inline</p>'))
-      .toMatchInlineSnapshot('"text `code` inline"')
+    expect(htmlToText('<p>text <code>code</code> inline</p>')).toMatchInlineSnapshot(
+      '"text `code` inline"',
+    )
   })
 
   it('code block', () => {
@@ -17,7 +18,8 @@ describe('html-to-text', () => {
   })
 
   it('bold & italic', () => {
-    expect(htmlToText('<p>text <b>bold</b> <em>italic</em></p>'))
-      .toMatchInlineSnapshot('"text **bold** *italic*"')
+    expect(htmlToText('<p>text <b>bold</b> <em>italic</em></p>')).toMatchInlineSnapshot(
+      '"text **bold** *italic*"',
+    )
   })
 })

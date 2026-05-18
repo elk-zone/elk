@@ -1,9 +1,10 @@
-:root, :root::selection {
+:root,
+:root::selection {
   --c-border: #eee;
   --c-border-dark: #dccfcf;
   --c-border-code: #ddd;
-  --c-danger: #FF3C1B;
-  --c-danger-active: #B50900;
+  --c-danger: #ff3c1b;
+  --c-danger-active: #b50900;
 
   --rgb-bg-base: 250, 250, 250;
 
@@ -24,9 +25,9 @@
   --c-text-btn-disabled: #fff;
   --c-text-btn-disabled-deeper: #a1a1a1;
 
-  --c-success: #67C23A;
-  --c-warning: #E6A23C;
-  --c-error: #F56C6C;
+  --c-success: #67c23a;
+  --c-warning: #e6a23c;
+  --c-error: #f56c6c;
 }
 
 .dark {
@@ -34,8 +35,8 @@
   --c-primary-active: var(--c-dark-primary-active);
   --c-primary-light: var(--c-dark-primary-light);
   --c-primary-fade: var(--c-dark-primary-fade);
-  --c-danger: #FF2810;
-  --c-danger-active: #E02F00;
+  --c-danger: #ff2810;
+  --c-danger-active: #e02f00;
 
   --c-border: #222;
   --c-border-code: #333;

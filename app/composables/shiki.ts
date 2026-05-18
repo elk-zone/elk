@@ -10,29 +10,21 @@ export function useHighlighter(lang: Lang): {
   highlighter?: Highlighter
 } {
   if (!shikiImport) {
-    shikiImport = import('shiki')
-      .then(async ({ createHighlighter }) => {
-        highlighter.value = await createHighlighter({
-          themes: [
-            'vitesse-dark',
-            'vitesse-light',
-          ],
-          langs: [
-            'js',
-            'css',
-            'html',
-          ],
-        })
+    shikiImport = import('shiki').then(async ({ createHighlighter }) => {
+      highlighter.value = await createHighlighter({
+        themes: ['vitesse-dark', 'vitesse-light'],
+        langs: ['js', 'css', 'html'],
       })
+    })
 
     return { promise: shikiImport }
   }
 
-  if (!highlighter.value)
-    return { promise: shikiImport }
+  if (!highlighter.value) return { promise: shikiImport }
 
   if (!registeredLang.value.get(lang)) {
-    const promise = highlighter.value.loadLanguage(lang)
+    const promise = highlighter.value
+      .loadLanguage(lang)
       .then(() => {
         registeredLang.value.set(lang, true)
       })
@@ -58,18 +50,17 @@ const HTML_ENTITIES = {
   '<': '&lt;',
   '>': '&gt;',
   '&': '&amp;',
-  '\'': '&apos;',
+  "'": '&apos;',
   '"': '&quot;',
 } as Record<string, string>
 
 function escapeHtml(text: string) {
-  return text.replace(HTML_ENTITY_REGEX, ch => HTML_ENTITIES[ch])
+  return text.replace(HTML_ENTITY_REGEX, (ch) => HTML_ENTITIES[ch])
 }
 
 export function highlightCode(code: string, lang: Lang) {
   const { highlighter } = useHighlighter(lang)
-  if (!highlighter)
-    return escapeHtml(code)
+  if (!highlighter) return escapeHtml(code)
 
   return highlighter.codeToHtml(code, {
     lang,

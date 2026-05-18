@@ -12,8 +12,7 @@ export default defineNuxtModule({
       name: 'purge-comments',
       enforce: 'pre',
       transform: (code, id) => {
-        if (!id.endsWith('.vue') || !code.includes('<!--'))
-          return
+        if (!id.endsWith('.vue') || !code.includes('<!--')) return
 
         const s = new MagicString(code)
         s.replace(MAGIC_STRING_RE, '')

@@ -1,8 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   middleware: () => {
-    if (!useAppConfig().pwaEnabled)
-      return navigateTo('/')
+    if (!useAppConfig().pwaEnabled) return navigateTo('/')
   },
 })
 
@@ -26,7 +25,8 @@ const pwaIsInstalled = import.meta.client && !!useNuxtApp().$pwa?.isInstalled
           role="alert"
           gap-1
           p-2
-          text-red-600 dark:text-red-400
+          text-red-600
+          dark:text-red-400
           border="~ base rounded red-600 dark:red-400"
         >
           {{ $t('share_target.hint') }}

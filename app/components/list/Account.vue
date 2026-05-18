@@ -17,11 +17,9 @@ async function edit() {
   try {
     if (isRemoved.value)
       await client.v1.lists.$select(list).accounts.create({ accountIds: [account.id] })
-    else
-      await client.v1.lists.$select(list).accounts.remove({ accountIds: [account.id] })
+    else await client.v1.lists.$select(list).accounts.remove({ accountIds: [account.id] })
     isRemoved.value = !isRemoved.value
-  }
-  catch (err) {
+  } catch (err) {
     console.error(err)
   }
 }
@@ -30,7 +28,10 @@ async function edit() {
 <template>
   <div flex justify-between hover:bg-active transition-100 items-center>
     <AccountInfo
-      :account="account" hover p1 as="router-link"
+      :account="account"
+      hover
+      p1
+      as="router-link"
       :hover-card="hoverCard"
       shrink
       overflow-hidden
@@ -42,7 +43,10 @@ async function edit() {
         :hover="isRemoved ? 'text-green' : 'text-red'"
       >
         <button
-          text-sm p2 border-1 transition-colors
+          text-sm
+          p2
+          border-1
+          transition-colors
           border-dark
           bg-base
           btn-action-icon

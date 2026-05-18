@@ -16,7 +16,11 @@ import { Plugin } from 'prosemirror-state'
 import { TiptapPluginCustomEmoji } from './tiptap/custom-emoji'
 import { TiptapPluginEmoji } from './tiptap/emoji'
 import { TiptapPluginCodeBlockShiki } from './tiptap/shiki'
-import { TiptapEmojiSuggestion, TiptapHashtagSuggestion, TiptapMentionSuggestion } from './tiptap/suggestion'
+import {
+  TiptapEmojiSuggestion,
+  TiptapHashtagSuggestion,
+  TiptapMentionSuggestion,
+} from './tiptap/suggestion'
 
 export interface UseTiptapOptions {
   content: Ref<string>
@@ -28,14 +32,9 @@ export interface UseTiptapOptions {
 }
 
 export function useTiptap(options: UseTiptapOptions) {
-  if (import.meta.server)
-    return { editor: ref<Editor | undefined>() }
+  if (import.meta.server) return { editor: ref<Editor | undefined>() }
 
-  const {
-    autofocus,
-    content,
-    placeholder,
-  } = options
+  const { autofocus, content, placeholder } = options
 
   const editor = useEditor({
     content: content.value,
@@ -56,23 +55,27 @@ export function useTiptap(options: UseTiptapOptions) {
       }),
       Mention.configure({
         renderHTML({ options, node }) {
-          return ['span', { 'data-type': 'mention', 'data-id': node.attrs.id }, `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`]
+          return [
+            'span',
+            { 'data-type': 'mention', 'data-id': node.attrs.id },
+            `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`,
+          ]
         },
         suggestion: TiptapMentionSuggestion,
       }),
-      Mention
-        .extend({ name: 'hashtag' })
-        .configure({
-          renderHTML({ options, node }) {
-            return ['span', { 'data-type': 'hashtag', 'data-id': node.attrs.id }, `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`]
-          },
-          suggestion: TiptapHashtagSuggestion,
-        }),
-      Mention
-        .extend({ name: 'emoji' })
-        .configure({
-          suggestion: TiptapEmojiSuggestion,
-        }),
+      Mention.extend({ name: 'hashtag' }).configure({
+        renderHTML({ options, node }) {
+          return [
+            'span',
+            { 'data-type': 'hashtag', 'data-id': node.attrs.id },
+            `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`,
+          ]
+        },
+        suggestion: TiptapHashtagSuggestion,
+      }),
+      Mention.extend({ name: 'emoji' }).configure({
+        suggestion: TiptapEmojiSuggestion,
+      }),
       Placeholder.configure({
         placeholder: () => placeholder.value!,
       }),
@@ -124,8 +127,7 @@ export function useTiptap(options: UseTiptapOptions) {
   })
 
   watch(content, (value) => {
-    if (editor.value?.getHTML() === value)
-      return
+    if (editor.value?.getHTML() === value) return
     editor.value?.commands.setContent(value || '', false)
   })
   watch(placeholder, () => {

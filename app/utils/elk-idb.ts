@@ -5,7 +5,6 @@ import {
   promisifyRequest,
   set as setIdb,
   update as updateIdb,
-
 } from 'idb-keyval'
 
 const databases: IDBOpenDBRequest[] = []
@@ -16,13 +15,13 @@ function createStore(): UseStore {
   databases.push(request)
   request.onupgradeneeded = () => request.result.createObjectStore(storeName)
   const dbp = promisifyRequest(request)
-  return (txMode, callback) => dbp.then(db => callback(db.transaction(storeName, txMode).objectStore(storeName)))
+  return (txMode, callback) =>
+    dbp.then((db) => callback(db.transaction(storeName, txMode).objectStore(storeName)))
 }
 
 let defaultGetStoreFunc: UseStore | undefined
 function defaultGetStore() {
-  if (!defaultGetStoreFunc)
-    defaultGetStoreFunc = createStore()
+  if (!defaultGetStoreFunc) defaultGetStoreFunc = createStore()
 
   return defaultGetStoreFunc
 }
@@ -45,8 +44,7 @@ export function del(key: IDBValidKey) {
 
 export function closeDatabases() {
   databases.forEach((db) => {
-    if (db.result)
-      db.result.close()
+    if (db.result) db.result.close()
   })
   defaultGetStoreFunc = undefined
 }

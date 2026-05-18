@@ -22,7 +22,14 @@ const { as = 'div' } = defineProps<{
     </AccountHoverWrapper>
     <div flex="~ col" shrink h-full overflow-hidden justify-center leading-none select-none p-1>
       <div flex="~" gap-2>
-        <AccountDisplayName :account="account" font-bold line-clamp-1 ws-pre-wrap break-all text-lg />
+        <AccountDisplayName
+          :account="account"
+          font-bold
+          line-clamp-1
+          ws-pre-wrap
+          break-all
+          text-lg
+        />
         <AccountLockIndicator v-if="account.locked" text-xs />
         <AccountBotIndicator v-if="account.bot" text-xs />
       </div>

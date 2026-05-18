@@ -8,11 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <div
-    flex="~ gap1" items-center
-    class="border border-base rounded-md px-1"
-    text-secondary-light
-  >
+  <div flex="~ gap1" items-center class="border border-base rounded-md px-1" text-secondary-light>
     <slot name="prepend" />
     <div v-for="role in account.roles?.slice(0, limit)" :key="role.id" flex>
       <div :style="`color: ${role.color}; border-color: ${role.color}`">
@@ -22,7 +18,8 @@ defineProps<{
   </div>
   <div
     v-if="limit && account.roles?.length > limit"
-    flex="~ gap1" items-center
+    flex="~ gap1"
+    items-center
     class="border border-base rounded-md px-1"
     text-secondary-light
   >

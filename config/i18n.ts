@@ -1,4 +1,9 @@
-import type { DateTimeFormats, NumberFormats, PluralizationRule, PluralizationRules } from '@intlify/core-base'
+import type {
+  DateTimeFormats,
+  NumberFormats,
+  PluralizationRule,
+  PluralizationRules,
+} from '@intlify/core-base'
 import type { LocaleObject } from '@nuxtjs/i18n'
 
 interface LocaleObjectData extends LocaleObject {
@@ -7,7 +12,7 @@ interface LocaleObjectData extends LocaleObject {
   pluralRule?: PluralizationRule
 }
 
-export const countryLocaleVariants: Record<string, (LocaleObjectData & { country?: boolean }) []> = {
+export const countryLocaleVariants: Record<string, (LocaleObjectData & { country?: boolean })[]> = {
   ar: [
     // ar.json contains ar-EG translations
     // { code: 'ar-DZ', name: 'Arabic (Algeria)' },
@@ -170,7 +175,9 @@ const locales: LocaleObjectData[] = [
     name: 'Русский',
     pluralRule: (choice: number) => {
       const name = new Intl.PluralRules('ru-RU').select(choice)
-      return { zero: 2 /* not used */, one: 0, two: 1 /* not used */, few: 1, many: 2, other: 3 }[name]
+      return { zero: 2 /* not used */, one: 0, two: 1 /* not used */, few: 1, many: 2, other: 3 }[
+        name
+      ]
     },
   },
   {
@@ -178,8 +185,7 @@ const locales: LocaleObjectData[] = [
     file: 'uk-UA.json',
     name: 'Українська',
     pluralRule: (choice: number) => {
-      if (choice === 0)
-        return 0
+      if (choice === 0) return 0
 
       const name = new Intl.PluralRules('uk-UA').select(choice)
       return { zero: 0, one: 1, two: 0 /* not used */, few: 2, many: 3, other: 4 }[name]
@@ -195,8 +201,7 @@ const locales: LocaleObjectData[] = [
     file: 'pl-PL.json',
     name: 'Polski',
     pluralRule: (choice: number) => {
-      if (choice === 0)
-        return 0
+      if (choice === 0) return 0
 
       const name = new Intl.PluralRules('pl-PL').select(choice)
       return { zero: 0, one: 1, two: 0 /* not used */, few: 2, many: 3, other: 4 }[name]
@@ -278,8 +283,7 @@ function buildLocales() {
         delete entry.file
         acc.push(entry)
       })
-    }
-    else {
+    } else {
       acc.push(data)
     }
     return acc
@@ -295,8 +299,7 @@ export const datetimeFormats = Object.values(currentLocales).reduce((acc, data) 
   if (dateTimeFormats) {
     acc[data.code] = { ...dateTimeFormats }
     delete data.dateTimeFormats
-  }
-  else {
+  } else {
     acc[data.code] = {
       shortDate: {
         dateStyle: 'short',
@@ -320,8 +323,7 @@ export const numberFormats = Object.values(currentLocales).reduce((acc, data) =>
   if (numberFormats) {
     acc[data.code] = { ...numberFormats }
     delete data.numberFormats
-  }
-  else {
+  } else {
     acc[data.code] = {
       percentage: {
         style: 'percent',

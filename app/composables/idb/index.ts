@@ -1,7 +1,5 @@
 import type { RemovableRef } from '@vueuse/core'
-import type {
-  UseIDBOptions,
-} from '@vueuse/integrations/useIDBKeyval'
+import type { UseIDBOptions } from '@vueuse/integrations/useIDBKeyval'
 import type { MaybeRefOrGetter } from 'vue'
 import { del, get, set, update } from '~/utils/elk-idb'
 
@@ -34,12 +32,10 @@ export async function useAsyncIDBKeyval<T>(
         await set(key, rawInit)
         source.value = rawInit
       }
-    }
-    else {
+    } else {
       source.value = rawValue
     }
-  }
-  catch (e) {
+  } catch (e) {
     onError(e)
   }
 
@@ -47,29 +43,26 @@ export async function useAsyncIDBKeyval<T>(
     try {
       if (data == null) {
         await del(key)
-      }
-      else {
+      } else {
         // IndexedDB does not support saving proxies, convert from proxy before saving
         await update(key, () => toRaw(data))
       }
-    }
-    catch (e) {
+    } catch (e) {
       onError(e)
     }
   }
 
-  const {
-    pause: pauseWatch,
-    resume: resumeWatch,
-  } = watchPausable(source, data => write(data), { flush, deep })
+  const { pause: pauseWatch, resume: resumeWatch } = watchPausable(source, (data) => write(data), {
+    flush,
+    deep,
+  })
 
   async function setData(value: T): Promise<void> {
     pauseWatch()
     try {
       await write(value)
       source.value = value
-    }
-    finally {
+    } finally {
       resumeWatch()
     }
   }

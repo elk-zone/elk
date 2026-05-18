@@ -12,7 +12,7 @@ const count = computed(() => follows.value.length)
 const countPlus = computed(() => Math.max(count.value - maxVisibleFollows, 0))
 const isExpanded = ref(false)
 const lang = computed(() => {
-  return (count.value > 1 || count.value === 0) ? undefined : items.items[0].status?.language
+  return count.value > 1 || count.value === 0 ? undefined : items.items[0].status?.language
 })
 
 const timeAgoOptions = useTimeAgoOptions(true)
@@ -23,15 +23,24 @@ const timeAgo = useTimeAgo(() => timeAgoCreatedAt.value, timeAgoOptions)
 <template>
   <article flex flex-col relative :lang="lang ?? undefined">
     <div flex items-center top-0 left-2 pt-2 px-3>
-      <div :class="count > 1 ? 'i-ri-group-line' : 'i-ri-user-3-line'" me-3 color-blue text-xl aria-hidden="true" />
+      <div
+        :class="count > 1 ? 'i-ri-group-line' : 'i-ri-user-3-line'"
+        me-3
+        color-blue
+        text-xl
+        aria-hidden="true"
+      />
       <template v-if="count > 1">
-        <AccountHoverWrapper
-          :account="follows[0].account"
-        >
+        <AccountHoverWrapper :account="follows[0].account">
           <NuxtLink :to="getAccountRoute(follows[0].account)">
             <AccountDisplayName
               :account="follows[0].account"
-              text-primary font-bold line-clamp-1 ws-pre-wrap break-all hover:underline
+              text-primary
+              font-bold
+              line-clamp-1
+              ws-pre-wrap
+              break-all
+              hover:underline
             />
           </NuxtLink>
         </AccountHoverWrapper>
@@ -39,32 +48,41 @@ const timeAgo = useTimeAgo(() => timeAgoCreatedAt.value, timeAgoOptions)
         <CommonLocalizedNumber
           keypath="notification.others"
           :count="count - 1"
-          text-primary font-bold line-clamp-1 ws-pre-wrap break-all
+          text-primary
+          font-bold
+          line-clamp-1
+          ws-pre-wrap
+          break-all
         />
         &nbsp;{{ $t('notification.followed_you') }}
-        <time text-secondary :datetime="timeAgoCreatedAt">
-          ・{{ timeAgo }}
-        </time>
+        <time text-secondary :datetime="timeAgoCreatedAt"> ・{{ timeAgo }} </time>
       </template>
       <template v-else-if="count === 1">
         <NuxtLink :to="getAccountRoute(follows[0].account)">
           <AccountDisplayName
             :account="follows[0].account"
-            text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all hover:underline
+            text-primary
+            me-1
+            font-bold
+            line-clamp-1
+            ws-pre-wrap
+            break-all
+            hover:underline
           />
         </NuxtLink>
         <span me-1 ws-nowrap>
           {{ $t('notification.followed_you') }}
-          <time text-secondary :datetime="timeAgoCreatedAt">
-            ・{{ timeAgo }}
-          </time>
+          <time text-secondary :datetime="timeAgoCreatedAt"> ・{{ timeAgo }} </time>
         </span>
       </template>
     </div>
     <div pb-2 ps8>
       <div
         v-if="!isExpanded && count > 1"
-        flex="~ wrap gap-1.75" p4 items-center cursor-pointer
+        flex="~ wrap gap-1.75"
+        p4
+        items-center
+        cursor-pointer
         @click="isExpanded = !isExpanded"
       >
         <AccountHoverWrapper
@@ -86,11 +104,7 @@ const timeAgo = useTimeAgo(() => timeAgoCreatedAt.value, timeAgoOptions)
           <div i-ri:arrow-up-s-line ms-2 text-secondary text-xl aria-hidden="true" />
           <span ps-2 text-base>Hide</span>
         </div>
-        <AccountHoverWrapper
-          v-for="follow in follows"
-          :key="follow.id"
-          :account="follow.account"
-        >
+        <AccountHoverWrapper v-for="follow in follows" :key="follow.id" :account="follow.account">
           <NuxtLink :to="getAccountRoute(follow.account)" flex gap-4 px-4 py-2>
             <AccountAvatar :account="follow.account" w-12 h-12 />
             <StatusAccountDetails :account="follow.account" />

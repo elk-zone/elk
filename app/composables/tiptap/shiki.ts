@@ -14,9 +14,7 @@ export const TiptapPluginCodeBlockShiki = CodeBlock.extend({
   },
 
   addProseMirrorPlugins() {
-    return [
-      createHighlightPlugin({ parser: shikiParser, nodeTypes: ['codeBlock'] }),
-    ]
+    return [createHighlightPlugin({ parser: shikiParser, nodeTypes: ['codeBlock'] })]
   },
 
   addNodeView() {

@@ -1,8 +1,4 @@
-import {
-  mergeAttributes,
-  Node,
-  nodeInputRule,
-} from '@tiptap/core'
+import { mergeAttributes, Node, nodeInputRule } from '@tiptap/core'
 
 export interface EmojiOptions {
   inline: boolean
@@ -16,11 +12,7 @@ declare module '@tiptap/core' {
       /**
        * Insert a custom emoji.
        */
-      insertCustomEmoji: (options: {
-        src: string
-        alt?: string
-        title?: string
-      }) => ReturnType
+      insertCustomEmoji: (options: { src: string; alt?: string; title?: string }) => ReturnType
       /**
        * Insert a emoji.
        */
@@ -54,19 +46,19 @@ export const TiptapPluginCustomEmoji = Node.create<EmojiOptions>({
 
   addAttributes() {
     return {
-      'src': {
+      src: {
         default: null,
       },
-      'alt': {
+      alt: {
         default: null,
       },
-      'title': {
+      title: {
         default: null,
       },
-      'width': {
+      width: {
         default: null,
       },
-      'height': {
+      height: {
         default: null,
       },
       'data-emoji-id': {
@@ -78,9 +70,7 @@ export const TiptapPluginCustomEmoji = Node.create<EmojiOptions>({
   parseHTML() {
     return [
       {
-        tag: this.options.allowBase64
-          ? 'img[src]'
-          : 'img[src]:not([src^="data:"])',
+        tag: this.options.allowBase64 ? 'img[src]' : 'img[src]:not([src^="data:"])',
       },
     ]
   },
@@ -91,12 +81,14 @@ export const TiptapPluginCustomEmoji = Node.create<EmojiOptions>({
 
   addCommands() {
     return {
-      insertCustomEmoji: options => ({ commands }) => {
-        return commands.insertContent({
-          type: this.name,
-          attrs: options,
-        })
-      },
+      insertCustomEmoji:
+        (options) =>
+        ({ commands }) => {
+          return commands.insertContent({
+            type: this.name,
+            attrs: options,
+          })
+        },
     }
   },
 
@@ -106,7 +98,7 @@ export const TiptapPluginCustomEmoji = Node.create<EmojiOptions>({
         find: inputRegex,
         type: this.type,
         getAttributes: (match) => {
-          const [,, alt, src, title] = match
+          const [, , alt, src, title] = match
 
           return { src, alt, title }
         },

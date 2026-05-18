@@ -2,13 +2,20 @@ import type { UserLogin } from '#shared/types'
 
 import type { mastodon } from 'masto'
 
-export type SubscriptionResult = 'subscribed' | 'notification-denied' | 'not-supported' | 'invalid-vapid-key' | 'no-user'
+export type SubscriptionResult =
+  | 'subscribed'
+  | 'notification-denied'
+  | 'not-supported'
+  | 'invalid-vapid-key'
+  | 'no-user'
 export interface PushManagerSubscriptionInfo {
   registration: ServiceWorkerRegistration
   subscription: PushSubscription | null
 }
 
-export interface RequiredUserLogin extends Required<Omit<UserLogin, 'account' | 'pushSubscription'>> {
+export interface RequiredUserLogin extends Required<
+  Omit<UserLogin, 'account' | 'pushSubscription'>
+> {
   pushSubscription?: mastodon.v1.WebPushSubscription
 }
 
@@ -25,7 +32,10 @@ export interface CustomEmojisInfo {
   emojis: mastodon.v1.CustomEmoji[]
 }
 
-export type PushSubscriptionErrorCode = 'too_many_registrations' | 'vapid_not_supported' | 'invalid_vapid_key'
+export type PushSubscriptionErrorCode =
+  | 'too_many_registrations'
+  | 'vapid_not_supported'
+  | 'invalid_vapid_key'
 
 export class PushSubscriptionError extends Error {
   code: PushSubscriptionErrorCode

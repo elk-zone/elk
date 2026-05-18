@@ -4,14 +4,8 @@ const { busy, oauth, singleInstanceServer } = useSignIn()
 
 <template>
   <VDropdown v-if="isHydrated && currentUser" sm:hidden>
-    <div style="-webkit-touch-callout: none;">
-      <AccountAvatar
-        :account="currentUser.account"
-        h-8
-        w-8
-        :draggable="false"
-        square
-      />
+    <div style="-webkit-touch-callout: none">
+      <AccountAvatar :account="currentUser.account" h-8 w-8 :draggable="false" square />
     </div>
 
     <template #popper="{ hide }">
@@ -22,7 +16,14 @@ const { busy, oauth, singleInstanceServer } = useSignIn()
     <button
       v-if="singleInstanceServer"
       flex="~ row"
-      gap-x-1 items-center justify-center btn-solid text-sm px-2 py-1 xl:hidden
+      gap-x-1
+      items-center
+      justify-center
+      btn-solid
+      text-sm
+      px-2
+      py-1
+      xl:hidden
       :disabled="busy"
       @click="oauth()"
     >
@@ -37,7 +38,14 @@ const { busy, oauth, singleInstanceServer } = useSignIn()
     <button
       v-else
       flex="~ row"
-      gap-x-1 items-center justify-center btn-solid text-sm px-2 py-1 xl:hidden
+      gap-x-1
+      items-center
+      justify-center
+      btn-solid
+      text-sm
+      px-2
+      py-1
+      xl:hidden
       @click="openSigninDialog()"
     >
       <span aria-hidden="true" block i-ri:login-circle-line class="rtl-flip" />

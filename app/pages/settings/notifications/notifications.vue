@@ -6,7 +6,8 @@ definePageMeta({
 const { t } = useI18n()
 
 useHydratedHead({
-  title: () => `${t('settings.notifications.notifications.label')} | ${t('settings.notifications.label')} | ${t('nav.settings')}`,
+  title: () =>
+    `${t('settings.notifications.notifications.label')} | ${t('settings.notifications.label')} | ${t('nav.settings')}`,
 })
 </script>
 

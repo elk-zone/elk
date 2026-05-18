@@ -3,7 +3,9 @@ import type { ElkTranslationStatus } from '#shared/types/translation-status'
 
 const { t, locale } = useI18n()
 
-const translationStatus: ElkTranslationStatus = await import('~~/elk-translation-status.json').then(m => m.default)
+const translationStatus: ElkTranslationStatus = await import('~~/elk-translation-status.json').then(
+  (m) => m.default,
+)
 
 useHydratedHead({
   title: () => `${t('settings.language.label')} | ${t('nav.settings')}`,
@@ -33,7 +35,11 @@ const status = computed(() => {
         <NuxtLink
           href="https://docs.elk.zone/guide/contributing"
           target="_blank"
-          hover:underline text-primary inline-flex items-center gap-1
+          hover:underline
+          text-primary
+          inline-flex
+          items-center
+          gap-1
         >
           <span inline-block i-ri:information-line />
           {{ $t('settings.language.how_to_contribute') }}
@@ -45,12 +51,14 @@ const status = computed(() => {
         </h2>
         <SettingsItem
           v-if="currentUser"
-          command large
+          command
+          large
           icon="i-ri:quill-pen-line"
           :text="$t('settings.language.post_language')"
           :description="$t('settings.account_settings.description')"
           :to="`https://${currentUser!.server}/settings/preferences/other`"
-          external target="_blank"
+          external
+          target="_blank"
         />
       </section>
       <section>

@@ -38,65 +38,77 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
       hashtags.value = []
       statuses.value = []
     }
-    accounts.value = [...accounts.value, ...results.accounts.map<AccountSearchResult>(account => ({
-      type: 'account',
-      id: account.id,
-      data: account,
-      to: getAccountRoute(account),
-    }))]
-    hashtags.value = [...hashtags.value, ...results.hashtags.map<HashTagSearchResult>(hashtag => ({
-      type: 'hashtag',
-      id: `hashtag-${hashtag.name}`,
-      data: hashtag,
-      to: getTagRoute(hashtag.name),
-    }))]
-    statuses.value = [...statuses.value, ...results.statuses.map<StatusSearchResult>(status => ({
-      type: 'status',
-      id: status.id,
-      data: status,
-      to: getStatusRoute(status),
-    }))]
+    accounts.value = [
+      ...accounts.value,
+      ...results.accounts.map<AccountSearchResult>((account) => ({
+        type: 'account',
+        id: account.id,
+        data: account,
+        to: getAccountRoute(account),
+      })),
+    ]
+    hashtags.value = [
+      ...hashtags.value,
+      ...results.hashtags.map<HashTagSearchResult>((hashtag) => ({
+        type: 'hashtag',
+        id: `hashtag-${hashtag.name}`,
+        data: hashtag,
+        to: getTagRoute(hashtag.name),
+      })),
+    ]
+    statuses.value = [
+      ...statuses.value,
+      ...results.statuses.map<StatusSearchResult>((status) => ({
+        type: 'status',
+        id: status.id,
+        data: status,
+        to: getStatusRoute(status),
+      })),
+    ]
   }
 
-  watch(() => toValue(query), () => {
-    loading.value = !!(q.value && isHydrated.value)
-  })
+  watch(
+    () => toValue(query),
+    () => {
+      loading.value = !!(q.value && isHydrated.value)
+    },
+  )
 
-  debouncedWatch(() => toValue(query), async () => {
-    if (!q.value || !isHydrated.value)
-      return
+  debouncedWatch(
+    () => toValue(query),
+    async () => {
+      if (!q.value || !isHydrated.value) return
 
-    loading.value = true
+      loading.value = true
 
-    /**
-     * Based on the source it seems like modifying the params when calling next would result in a new search,
-     * but that doesn't seem to be the case. So instead we just create a new paginator with the new params.
-     */
-    paginator = client.value.v2.search.list({
-      q: q.value,
-      ...toValue(options),
-      resolve: !!currentUser.value,
-    })
-    const nextResults = await paginator.values().next()
+      /**
+       * Based on the source it seems like modifying the params when calling next would result in a new search,
+       * but that doesn't seem to be the case. So instead we just create a new paginator with the new params.
+       */
+      paginator = client.value.v2.search.list({
+        q: q.value,
+        ...toValue(options),
+        resolve: !!currentUser.value,
+      })
+      const nextResults = await paginator.values().next()
 
-    done.value = !!nextResults.done
-    if (!nextResults.done)
-      appendResults(nextResults.value, true)
+      done.value = !!nextResults.done
+      if (!nextResults.done) appendResults(nextResults.value, true)
 
-    loading.value = false
-  }, { debounce: 300 })
+      loading.value = false
+    },
+    { debounce: 300 },
+  )
 
   const next = async () => {
-    if (!q.value || !isHydrated.value || !paginator)
-      return
+    if (!q.value || !isHydrated.value || !paginator) return
 
     loading.value = true
     const nextResults = await paginator.values().next()
     loading.value = false
 
     done.value = !!nextResults.done
-    if (!nextResults.done)
-      appendResults(nextResults.value)
+    if (!nextResults.done) appendResults(nextResults.value)
   }
 
   return {

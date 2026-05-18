@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { account, buffer = 10, endMessage = true, followedTags = [] } = defineProps<{
+const {
+  account,
+  buffer = 10,
+  endMessage = true,
+  followedTags = [],
+} = defineProps<{
   paginator: mastodon.Paginator<mastodon.v1.Status[], mastodon.rest.v1.ListAccountStatusesParams>
   stream?: mastodon.streaming.Subscription
   context?: mastodon.v2.FilterContext
@@ -15,42 +20,82 @@ const { account, buffer = 10, endMessage = true, followedTags = [] } = definePro
 const { formatNumber } = useHumanReadableNumber()
 const virtualScroller = usePreferences('experimentalVirtualScroller')
 
-const showOriginSite = computed(() =>
-  account && account.id !== currentUser.value?.account.id && getServerName(account) !== currentServer.value,
+const showOriginSite = computed(
+  () =>
+    account &&
+    account.id !== currentUser.value?.account.id &&
+    getServerName(account) !== currentServer.value,
 )
 
 function getFollowedTag(status: mastodon.v1.Status): string | null {
-  const followedTagNames = followedTags.map(tag => tag.name)
-  const followedStatusTags = status.tags.filter(tag => followedTagNames.includes(tag.name))
+  const followedTagNames = followedTags.map((tag) => tag.name)
+  const followedStatusTags = status.tags.filter((tag) => followedTagNames.includes(tag.name))
   return followedStatusTags.length > 0 ? followedStatusTags[0]?.name : null
 }
 </script>
 
 <template>
-  <CommonPaginator v-bind="{ paginator, stream, preprocess, buffer, endMessage }" :virtual-scroller="virtualScroller">
+  <CommonPaginator
+    v-bind="{ paginator, stream, preprocess, buffer, endMessage }"
+    :virtual-scroller="virtualScroller"
+  >
     <template #updater="{ number, update }">
-      <button id="elk_show_new_items" py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="update">
+      <button
+        id="elk_show_new_items"
+        py-4
+        border="b base"
+        flex="~ col"
+        p-3
+        w-full
+        text-primary
+        font-bold
+        @click="update"
+      >
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
       </button>
     </template>
     <template #default="{ item, older, newer }">
       <template v-if="virtualScroller">
-        <StatusCard :followed-tag="getFollowedTag(item)" :status="item" :context="context" :older="older" :newer="newer" :account="account" />
+        <StatusCard
+          :followed-tag="getFollowedTag(item)"
+          :status="item"
+          :context="context"
+          :older="older"
+          :newer="newer"
+          :account="account"
+        />
       </template>
       <template v-else>
-        <StatusCard :followed-tag="getFollowedTag(item)" :status="item" :context="context" :older="older" :newer="newer" :account="account" />
+        <StatusCard
+          :followed-tag="getFollowedTag(item)"
+          :status="item"
+          :context="context"
+          :older="older"
+          :newer="newer"
+          :account="account"
+        />
       </template>
     </template>
     <template v-if="context === 'account'" #done="{ items }">
       <div
         v-if="showOriginSite || items.length === 0"
-        p5 text-secondary text-center flex flex-col items-center gap1
+        p5
+        text-secondary
+        text-center
+        flex
+        flex-col
+        items-center
+        gap1
       >
         <template v-if="showOriginSite">
           <span italic>{{ $t('timeline.view_older_posts') }}</span>
           <NuxtLink
-            :href="account!.url" target="_blank" external
-            flex="~ gap-1" items-center text-primary
+            :href="account!.url"
+            target="_blank"
+            external
+            flex="~ gap-1"
+            items-center
+            text-primary
             hover="underline text-primary-active"
           >
             <div i-ri:external-link-fill />

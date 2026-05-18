@@ -15,27 +15,25 @@ const fuse = new Fuse(languagesNameList, {
 
 const languages = computed(() =>
   languageKeyword.value.trim()
-    ? fuse.search(languageKeyword.value).map(r => r.item)
-    : [...languagesNameList].filter(entry => !userSettings.value.disabledTranslationLanguages.includes(entry.code)).sort(({ code: a }, { code: b }) => {
-        // Put English on the top
-        if (a === 'en')
-          return -1
+    ? fuse.search(languageKeyword.value).map((r) => r.item)
+    : [...languagesNameList]
+        .filter((entry) => !userSettings.value.disabledTranslationLanguages.includes(entry.code))
+        .sort(({ code: a }, { code: b }) => {
+          // Put English on the top
+          if (a === 'en') return -1
 
-        return a === modelValue.value ? -1 : b === modelValue.value ? 1 : a.localeCompare(b)
-      }),
+          return a === modelValue.value ? -1 : b === modelValue.value ? 1 : a.localeCompare(b)
+        }),
 )
 
 const preferredLanguages = computed(() => {
   const result = []
   for (const langCode of userSettings.value.disabledTranslationLanguages) {
-    const completeLang = languagesNameList.find(listEntry => listEntry.code === langCode)
-    if (completeLang)
-      result.push(completeLang)
+    const completeLang = languagesNameList.find((listEntry) => listEntry.code === langCode)
+    if (completeLang) result.push(completeLang)
   }
   return result
-},
-
-)
+})
 
 function chooseLanguage(language: string) {
   modelValue.value = language
@@ -48,9 +46,13 @@ function chooseLanguage(language: string) {
       <input
         v-model="languageKeyword"
         :placeholder="t('language.search')"
-        p2 border-rounded w-full bg-transparent
-        outline-none border="~ base"
-      >
+        p2
+        border-rounded
+        w-full
+        bg-transparent
+        outline-none
+        border="~ base"
+      />
     </div>
     <div max-h-40vh overflow-auto>
       <template v-if="!languageKeyword.trim()">
@@ -62,7 +64,7 @@ function chooseLanguage(language: string) {
           :checked="code === modelValue"
           @click="chooseLanguage(code)"
         />
-        <hr class="border-base ">
+        <hr class="border-base" />
       </template>
 
       <CommonDropdownItem

@@ -9,8 +9,8 @@ const modelValue = defineModel<string>({
   required: true,
 })
 
-const currentVisibility = computed(() =>
-  statusVisibilities.find(v => v.value === modelValue.value) || statusVisibilities[0],
+const currentVisibility = computed(
+  () => statusVisibilities.find((v) => v.value === modelValue.value) || statusVisibilities[0],
 )
 
 function chooseVisibility(visibility: mastodon.v1.StatusVisibility) {
@@ -19,7 +19,14 @@ function chooseVisibility(visibility: mastodon.v1.StatusVisibility) {
 </script>
 
 <template>
-  <CommonTooltip placement="top" :content="editing ? $t(`visibility.${currentVisibility.value}`) : $t('tooltip.change_content_visibility')">
+  <CommonTooltip
+    placement="top"
+    :content="
+      editing
+        ? $t(`visibility.${currentVisibility.value}`)
+        : $t('tooltip.change_content_visibility')
+    "
+  >
     <CommonDropdown placement="bottom">
       <slot :visibility="currentVisibility" />
       <template #popper>

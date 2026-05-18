@@ -11,7 +11,15 @@ const relationship = useRelationship(account)
 <template>
   <div v-show="relationship" flex="~ col gap2" rounded min-w-90 max-w-120 z-100 overflow-hidden p-4>
     <div flex="~ gap2" items-center>
-      <NuxtLink :to="getAccountRoute(account)" flex-auto rounded-full hover:bg-active transition-100 pe5 me-a>
+      <NuxtLink
+        :to="getAccountRoute(account)"
+        flex-auto
+        rounded-full
+        hover:bg-active
+        transition-100
+        pe5
+        me-a
+      >
         <AccountInfo :account="account" :hover-card="false" />
       </NuxtLink>
       <AccountFollowButton text-sm :account="account" :relationship="relationship" />

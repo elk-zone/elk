@@ -24,25 +24,32 @@ const storage = useStorage<AppInfo>()
 if (driver === 'fs') {
   const config = useRuntimeConfig()
   storage.mount('servers', fs({ base: config.storage.fsBase }))
-}
-else if (driver === 'cloudflare') {
+} else if (driver === 'cloudflare') {
   const config = useRuntimeConfig()
-  storage.mount('servers', cached(kv({
-    accountId: config.cloudflare.accountId,
-    namespaceId: config.cloudflare.namespaceId,
-    apiToken: config.cloudflare.apiToken,
-  })))
-}
-else if (driver === 'vercel') {
+  storage.mount(
+    'servers',
+    cached(
+      kv({
+        accountId: config.cloudflare.accountId,
+        namespaceId: config.cloudflare.namespaceId,
+        apiToken: config.cloudflare.apiToken,
+      }),
+    ),
+  )
+} else if (driver === 'vercel') {
   const config = useRuntimeConfig()
-  storage.mount('servers', cached(vercelKVDriver({
-    url: config.vercel.url,
-    token: config.vercel.token,
-    env: config.vercel.env,
-    base: config.vercel.base,
-  })))
-}
-else if (driver === 'memory') {
+  storage.mount(
+    'servers',
+    cached(
+      vercelKVDriver({
+        url: config.vercel.url,
+        token: config.vercel.token,
+        env: config.vercel.env,
+        base: config.vercel.base,
+      }),
+    ),
+  )
+} else if (driver === 'memory') {
   storage.mount('servers', memory())
 }
 
@@ -71,8 +78,7 @@ async function fetchAppInfo(origin: string, server: string) {
       headers: {
         'user-agent': defaultUserAgent,
       },
-    })
-      .catch(() => null),
+    }).catch(() => null),
   ])
 
   // vapid.public_key prop is only available on Mastodon v4.3+
@@ -83,38 +89,41 @@ async function fetchAppInfo(origin: string, server: string) {
     // since `vapid_key` from `/api/v1/apps` was deprecated on Mastodon v4.3.0+
     // ref. apps API methods - Mastodon documentation
     // - https://docs.joinmastodon.org/methods/apps/#create
-    ...v2InstanceVapidKey ? { vapid_key: v2InstanceVapidKey } : {},
+    ...(v2InstanceVapidKey ? { vapid_key: v2InstanceVapidKey } : {}),
   }
 
   return app
 }
 
 export async function getApp(origin: string, server: string) {
-  const host = origin.replace(HTTP_PROTOCOL_RE, '').replace(NON_ASCII_RE, '-').replace(URL_PARAMS_RE, '')
+  const host = origin
+    .replace(HTTP_PROTOCOL_RE, '')
+    .replace(NON_ASCII_RE, '-')
+    .replace(URL_PARAMS_RE, '')
   const key = `servers:v4:${server}:${host}.json`.toLowerCase()
 
   try {
-    if (await storage.hasItem(key))
-      return (storage.getItem(key, {}) as Promise<AppInfo>)
+    if (await storage.hasItem(key)) return storage.getItem(key, {}) as Promise<AppInfo>
     const appInfo = await fetchAppInfo(origin, server)
     // cache `appInfo` for 1 week to prevent permanent lockout
     // note that `unstorage` supports `ttl` only for some storage drivers like cloudflare
     await storage.setItem(key, appInfo, { ttl: 60 * 60 * 24 * 7 /* 1 week */ })
     return appInfo
-  }
-  catch {
+  } catch {
     return null
   }
 }
 
 export async function deleteApp(server: string) {
-  const keys = (await storage.getKeys(`servers:v4:${server}:`))
-  for (const key of keys)
-    await storage.removeItem(key)
+  const keys = await storage.getKeys(`servers:v4:${server}:`)
+  for (const key of keys) await storage.removeItem(key)
 }
 
 export async function invalidateApp(origin: string, server: string) {
-  const host = origin.replace(HTTP_PROTOCOL_RE, '').replace(NON_ASCII_RE, '-').replace(URL_PARAMS_RE, '')
+  const host = origin
+    .replace(HTTP_PROTOCOL_RE, '')
+    .replace(NON_ASCII_RE, '-')
+    .replace(URL_PARAMS_RE, '')
   const key = `servers:v4:${server}:${host}.json`.toLowerCase()
   await storage.removeItem(key)
 }
@@ -124,8 +133,7 @@ export async function listServers() {
   const servers = new Set<string>()
   for (const key of keys) {
     const id = key.split(':')[2]
-    if (id)
-      servers.add(id.toLocaleLowerCase())
+    if (id) servers.add(id.toLocaleLowerCase())
   }
   return servers.keys().toArray().toSorted()
 }

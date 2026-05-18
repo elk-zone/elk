@@ -21,14 +21,12 @@ async function handleDelete() {
     confirm: $t('confirm.delete_posts.confirm'),
     cancel: $t('confirm.delete_posts.cancel'),
   })
-  if (confirmDelete.choice !== 'confirm')
-    return
+  if (confirmDelete.choice !== 'confirm') return
 
   try {
     await useMastoClient().v1.scheduledStatuses.$select(item.id).remove()
     emit('deleted', item.id)
-  }
-  catch (e) {
+  } catch (e) {
     console.error(e)
   }
 }
@@ -79,7 +77,7 @@ async function handleDelete() {
           max-w-xs
           rounded
           :alt="media.description ?? undefined"
-        >
+        />
       </div>
     </div>
   </article>

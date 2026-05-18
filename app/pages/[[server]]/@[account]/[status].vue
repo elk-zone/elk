@@ -4,7 +4,7 @@ import { WindowVirtualizer } from 'virtua/vue'
 
 definePageMeta({
   name: 'status',
-  key: route => route.path,
+  key: (route) => route.path,
   // GoToSocial
   alias: ['/:server?/@:account/statuses/:status'],
 })
@@ -13,30 +13,35 @@ const route = useRoute()
 const id = computed(() => route.params.status as string)
 const main = ref<ComponentPublicInstance | null>(null)
 
-const { data: status, pending, refresh: refreshStatus } = useAsyncData(
-  `status:${id.value}`,
-  () => fetchStatus(id.value, true),
-  { watch: [isHydrated], immediate: isHydrated.value, default: () => shallowRef() },
-)
+const {
+  data: status,
+  pending,
+  refresh: refreshStatus,
+} = useAsyncData(`status:${id.value}`, () => fetchStatus(id.value, true), {
+  watch: [isHydrated],
+  immediate: isHydrated.value,
+  default: () => shallowRef(),
+})
 const { client } = useMasto()
-const { data: context, pending: pendingContext, refresh: refreshContext } = useAsyncData(
+const {
+  data: context,
+  pending: pendingContext,
+  refresh: refreshContext,
+} = useAsyncData(
   `context:${id.value}`,
   async () => client.value.v1.statuses.$select(id.value).context.fetch(),
   { watch: [isHydrated], immediate: isHydrated.value, lazy: true, default: () => shallowRef() },
 )
 
-if (pendingContext)
-  watchOnce(pendingContext, scrollTo)
+if (pendingContext) watchOnce(pendingContext, scrollTo)
 
-if (pending)
-  watchOnce(pending, scrollTo)
+if (pending) watchOnce(pending, scrollTo)
 
 async function scrollTo() {
   await nextTick()
 
   const statusElement = unrefElement(main)
-  if (!statusElement)
-    return
+  if (!statusElement) return
 
   statusElement.scrollIntoView(true)
 }
@@ -49,11 +54,10 @@ function focusEditor() {
 provide('focus-editor', focusEditor)
 
 watch(publishWidget, () => {
-  if (window.history.state.focusReply)
-    focusEditor()
+  if (window.history.state.focusReply) focusEditor()
 })
 
-const replyDraft = computed(() => status.value ? getReplyDraft(status.value) : null)
+const replyDraft = computed(() => (status.value ? getReplyDraft(status.value) : null))
 
 onReactivated(() => {
   // Silently update data when reentering the page
@@ -70,9 +74,13 @@ onReactivated(() => {
         <div xl:mt-4 mb="50vh" border="b base">
           <template v-if="!pendingContext">
             <StatusCard
-              v-for="(comment, i) of context?.ancestors" :key="comment.id"
-              :status="comment" :actions="comment.visibility !== 'direct'" context="account"
-              :has-older="true" :newer="context?.ancestors[Number(i) - 1]"
+              v-for="(comment, i) of context?.ancestors"
+              :key="comment.id"
+              :status="comment"
+              :actions="comment.visibility !== 'direct'"
+              context="account"
+              :has-older="true"
+              :newer="context?.ancestors[Number(i) - 1]"
             />
           </template>
 
@@ -94,10 +102,7 @@ onReactivated(() => {
           />
 
           <template v-if="!pendingContext">
-            <WindowVirtualizer
-              v-slot="{ item, index }"
-              :data="context?.descendants || []"
-            >
+            <WindowVirtualizer v-slot="{ item, index }" :data="context?.descendants || []">
               <StatusCard
                 :key="item.id"
                 :status="item"

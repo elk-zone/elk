@@ -13,11 +13,9 @@ export const shikiParser: Parser = (options) => {
   // If the highlighter or the language is not available, return a promise that
   // will resolve when it's ready. When the promise resolves, the editor will
   // re-parse the code block.
-  if (!highlighter)
-    return promise ?? []
+  if (!highlighter) return promise ?? []
 
-  if (!parser)
-    parser = createParser(highlighter)
+  if (!parser) parser = createParser(highlighter)
 
   return parser(options)
 }

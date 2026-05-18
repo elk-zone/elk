@@ -8,20 +8,20 @@ const { client } = useMasto()
 
 function load() {
   if (type.value !== 'quoted-by') {
-    const accounts = client.value.v1.statuses.$select(reactedByStatusId.value!)[type.value === 'favourited-by' ? 'favouritedBy' : 'rebloggedBy'].list()
+    const accounts = client.value.v1.statuses
+      .$select(reactedByStatusId.value!)
+      [type.value === 'favourited-by' ? 'favouritedBy' : 'rebloggedBy'].list()
     return accounts
-  }
-  else {
+  } else {
     const quotes = client.value.v1.statuses.$select(reactedByStatusId.value!).quotes.list()
     return quotes
   }
 }
 
 function preprocess(items: mastodon.v1.Status[] | mastodon.v1.Account[]): mastodon.v1.Account[] {
-  if (type.value !== 'quoted-by')
-    return items as mastodon.v1.Account[]
+  if (type.value !== 'quoted-by') return items as mastodon.v1.Account[]
 
-  return (items as mastodon.v1.Status[]).map(quote => quote.account)
+  return (items as mastodon.v1.Status[]).map((quote) => quote.account)
 }
 
 const paginator = computed(() => load())
@@ -60,22 +60,38 @@ const tabs = [
 
 <template>
   <div flex w-full items-center lg:text-lg of-x-auto scrollbar-hide>
-    <template
-      v-for="option in tabs"
-      :key="option.name"
-    >
+    <template v-for="option in tabs" :key="option.name">
       <div
-        relative flex flex-auto cursor-pointer sm:px6 px2 rounded transition-all
+        relative
+        flex
+        flex-auto
+        cursor-pointer
+        sm:px6
+        px2
+        rounded
+        transition-all
         tabindex="0"
-        hover:bg-active transition-100
+        hover:bg-active
+        transition-100
         @click="option.onClick"
       >
         <span
-          ws-nowrap mxa sm:px2 sm:py3 xl:pb4 xl:pt5 py2 text-center border-b-3
-          :class="option.name === type ? 'border-primary op100 text-base' : 'border-transparent text-secondary-light hover:text-secondary op50'"
-        >{{
-          option.display
-        }}</span>
+          ws-nowrap
+          mxa
+          sm:px2
+          sm:py3
+          xl:pb4
+          xl:pt5
+          py2
+          text-center
+          border-b-3
+          :class="
+            option.name === type
+              ? 'border-primary op100 text-base'
+              : 'border-transparent text-secondary-light hover:text-secondary op50'
+          "
+          >{{ option.display }}</span
+        >
       </div>
     </template>
   </div>

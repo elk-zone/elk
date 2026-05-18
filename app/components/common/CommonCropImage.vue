@@ -29,15 +29,14 @@ function stencilSize({ boundaries }: { boundaries: Boundaries }) {
 
 watch(file, (file, _, onCleanup) => {
   let expired = false
-  onCleanup(() => expired = true)
+  onCleanup(() => (expired = true))
 
   if (file && !cropperFlag.value) {
     cropperDialog.value = true
     const reader = new FileReader()
     reader.readAsDataURL(file)
     reader.onload = (e) => {
-      if (expired)
-        return
+      if (expired) return
       cropperImage.src = e.target?.result as string
       cropperImage.type = file.type
     }
@@ -51,7 +50,9 @@ function cropImage() {
     cropperDialog.value = false
     const { canvas } = cropper.value.getResult()
     canvas?.toBlob((blob) => {
-      file.value = new File([blob as any], `cropped${file.value?.name}` as string, { type: blob?.type })
+      file.value = new File([blob as any], `cropped${file.value?.name}` as string, {
+        type: blob?.type,
+      })
     }, cropperImage.type)
   }
 }
@@ -84,10 +85,7 @@ function cropImage() {
         />
       </div>
       <div m-4>
-        <button
-          btn-solid w-full rounded text-sm
-          @click="cropImage()"
-        >
+        <button btn-solid w-full rounded text-sm @click="cropImage()">
           {{ $t('action.confirm') }}
         </button>
       </div>

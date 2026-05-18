@@ -19,8 +19,7 @@ const { translation } = await useTranslation(status, getLanguageCode())
 
 const emojisObject = useEmojisFallback(() => status.emojis)
 const vnode = computed(() => {
-  if (!status.content)
-    return null
+  if (!status.content) return null
   return contentToVNode(status.content, {
     emojis: emojisObject.value,
     mentions: 'mentions' in status ? status.mentions : undefined,
@@ -58,9 +57,7 @@ const vnode = computed(() => {
         :content="translation.text"
         :emojis="status.emojis"
       />
-      <div v-else text-red-4>
-        Error: {{ translation.error }}
-      </div>
+      <div v-else text-red-4>Error: {{ translation.error }}</div>
     </template>
   </div>
 </template>

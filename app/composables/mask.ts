@@ -8,11 +8,7 @@ export interface UseMaskOptions {
 }
 
 export function useMask(options: UseMaskOptions = {}) {
-  const {
-    background = 'transparent',
-    getContainer = () => document.body,
-    zIndex = 100,
-  } = options
+  const { background = 'transparent', getContainer = () => document.body, zIndex = 100 } = options
   const wrapperEl = (import.meta.server ? null : document.createElement('div')) as HTMLDivElement
 
   function show() {

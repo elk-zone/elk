@@ -156,7 +156,7 @@
     "sharp-ico": "^0.1.5",
     "simple-git-hooks": "^2.13.1",
     "typescript": "^5.4.4",
-    "vitest": "4.1.5",
+    "vitest": "4.1.6",
     "vue-component-type-helpers": "^3.2.9",
     "vue-tsc": "^2.1.6"
   },

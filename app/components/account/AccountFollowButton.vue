@@ -90,7 +90,7 @@ const buttonStyle = computed(() => {
         <span elk-group-hover="hidden">{{ $t('account.blocking') }}</span>
         <span hidden elk-group-hover="inline">{{ $t('account.unblock') }}</span>
       </template>
-      <template v-if="relationship?.muting">
+      <template v-else-if="relationship?.muting">
         <span elk-group-hover="hidden">{{ $t('account.muting') }}</span>
         <span hidden elk-group-hover="inline">{{ $t('account.unmute') }}</span>
       </template>

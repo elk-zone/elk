@@ -83,7 +83,7 @@ defineExpose({ createEntry, removeEntry, updateEntry })
         <WindowVirtualizer v-slot="{ item, index }" :data="items">
           <slot
             v-bind="{ key: (item as any)[keyProp] }"
-            :item="item"
+            :item="item as U"
             :older="items[index + 1] as U"
             :newer="items[index - 1] as U"
             :index="index"

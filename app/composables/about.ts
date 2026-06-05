@@ -55,7 +55,7 @@ export const elkTeamMembers: Team[] = [
     display: 'Ayo',
     mastodon: 'ayo@webtoo.ls',
     link: '/m.webtoo.ls/@ayo',
-    sponsors: 'elk-zone', // sponsors/ayo-run isn't enabled
+    sponsors: 'elk-zone', // sponsors/ayo-run is not enabled
   },
 ].sort(() => Math.random() - 0.5)
 

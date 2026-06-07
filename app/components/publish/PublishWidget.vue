@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DraftItem } from '#shared/types'
+import type { DraftItem, DraftKey } from '#shared/types'
 import type { mastodon } from 'masto'
 import { EditorContent } from '@tiptap/vue-3'
 import { useNow } from '@vueuse/core'
@@ -13,7 +13,7 @@ const {
   placeholder,
   initial = getDefaultDraftItem,
 } = defineProps<{
-  draftKey: string
+  draftKey: DraftKey
   draftItemIndex: number
   initial?: () => DraftItem
   threadComposer?: ReturnType<typeof useThreadComposer>
@@ -209,16 +209,16 @@ function getDatetimeInputFormat(time: Date) {
   return `${year}-${month}-${day}T${hours}:${minutes}`
 }
 
+// taken from https://github.com/mastodon/mastodon/blob/07f8b4d1b19f734d04e69daeb4c3421ef9767aac/app/lib/text_formatter.rb
+const linkRegex = /(https?:\/\/|xmpp:)\S+/g
+
+// taken from https://github.com/mastodon/mastodon/blob/af578e/app/javascript/mastodon/features/compose/util/counter.js
+const countableMentionRegex = /(^|[^/\w])@((\w+)@[a-z0-9.-]+[a-z0-9])/gi
+
 const characterCount = computed(() => {
   const text = htmlToText(editor.value?.getHTML() || '')
 
   let length = stringLength(text)
-
-  // taken from https://github.com/mastodon/mastodon/blob/07f8b4d1b19f734d04e69daeb4c3421ef9767aac/app/lib/text_formatter.rb
-  const linkRegex = /(https?:\/\/|xmpp:)\S+/g
-
-  // taken from https://github.com/mastodon/mastodon/blob/af578e/app/javascript/mastodon/features/compose/util/counter.js
-  const countableMentionRegex = /(^|[^/\w])@((\w+)@[a-z0-9.-]+[a-z0-9])/gi
 
   // maximum of 23 chars per link
   // https://github.com/elk-zone/elk/issues/1651
@@ -251,13 +251,35 @@ const postLanguageDisplay = computed(() => languagesNameList.find(i => i.code ==
 
 const isDM = computed(() => draft.value.params.visibility === 'direct')
 
+const hasQuote = computed(() => !!draft.value.params.quotedStatusId)
+const quotedStatus = ref<mastodon.v1.Status | null>(null)
+const quoteFetchError = ref<string | null>(null)
+watchEffect(async () => {
+  if (hasQuote.value) {
+    try {
+      quotedStatus.value = await fetchStatus(draft.value.params.quotedStatusId!)
+    }
+    catch (err) {
+      console.error(err)
+      quoteFetchError.value = (err as Error).message
+    }
+  }
+})
+
+function removeQuote() {
+  draft.value.params.quotedStatusId = undefined
+  draft.value.params.quoteApprovalPolicy = undefined
+  quotedStatus.value = null
+  quoteFetchError.value = null
+}
+
 async function handlePaste(evt: ClipboardEvent) {
   const files = evt.clipboardData?.files
   if (!files || files.length === 0)
     return
 
   evt.preventDefault()
-  await uploadAttachments(Array.from(files))
+  await uploadAttachments([...files])
 }
 
 function insertEmoji(name: string) {
@@ -552,6 +574,33 @@ const detectLanguage = useDebounceFn(async () => {
               }}</span>
             </div>
           </form>
+
+          <template v-if="hasQuote">
+            <div flex justify-end mt-2>
+              <button
+                text-sm px-2 py-1 rounded-3 hover:bg-gray-300
+                flex="~ gap1" items-center
+                :aria-label="$t('action.remove_quote')"
+                @click="removeQuote"
+              >
+                <div i-ri:close-line />
+                {{ $t('action.remove_quote') }}
+              </button>
+            </div>
+            <blockquote v-if="quotedStatus" border="~ base 1" rounded-lg overflow-hidden my-3>
+              <StatusCard
+                :status="quotedStatus"
+                :actions="false"
+                :is-nested="true"
+              />
+            </blockquote>
+            <div v-else-if="quoteFetchError" text-danger border="base 1" rounded-lg hover:bg-active my-3 p-3>
+              {{ $t('error.quote_fetch_error') }} ({{ quoteFetchError }})
+            </div>
+            <StatusCardSkeleton v-else border="base 1" rounded-lg hover:bg-active my-3 />
+          </template>
+
+          <!-- toolbar -->
           <div v-if="shouldExpanded" flex="~ gap-1 1 wrap" m="s--1" pt-2 justify="end" max-w-full border="t base">
             <PublishEmojiPicker @select="insertEmoji" @select-custom="insertCustomEmoji">
               <button btn-action-icon :title="$t('tooltip.emojis')" :aria-label="$t('tooltip.add_emojis')">
@@ -684,6 +733,18 @@ const detectLanguage = useDebounceFn(async () => {
                 </button>
               </template>
             </PublishVisibilityPicker>
+
+            <PublishQuoteApprovalPicker v-if="hasQuote" v-model="draft.params.quoteApprovalPolicy" :editing="!!draft.editingStatus">
+              <template #default="{ quoteApprovalPolicy }">
+                <button
+                  :disabled="!!draft.editingStatus" :aria-label="$t('tooltip.change_content_visibility')"
+                  btn-action-icon :class="{ 'w-12': !draft.editingStatus }"
+                >
+                  <div :class="quoteApprovalPolicy.icon" />
+                  <div v-if="!draft.editingStatus" i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+                </button>
+              </template>
+            </PublishQuoteApprovalPicker>
 
             <PublishThreadTools :draft-item-index="draftItemIndex" :draft-key="draftKey" />
 

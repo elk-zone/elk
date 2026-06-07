@@ -21,16 +21,8 @@ const filteredServers = computed(() => {
   return results
 })
 
-function isValidUrl(str: string) {
-  try {
-    // eslint-disable-next-line no-new
-    new URL(str)
-    return true
-  }
-  catch {
-    return false
-  }
-}
+const SERVER_PATH_REGEX = /^[a-z0-9-]+(?:\.[a-z0-9-]+)+(?::\d+)?$/i
+const SERVER_SELECTOR_REGEX = /[^\w-]/g
 
 async function handleInput() {
   const input = server.value.trim()
@@ -41,8 +33,8 @@ async function handleInput() {
     displayError.value = false
 
   if (
-    isValidUrl(`https://${input}`)
-    && input.match(/^[a-z0-9-]+(\.[a-z0-9-]+)+(:\d+)?$/i)
+    URL.canParse(`https://${input}`)
+    && SERVER_PATH_REGEX.test(input)
     // Do not hide the autocomplete if a result has an exact substring match on the input
     && !filteredServers.value.some(s => s.includes(input))
   ) {
@@ -55,7 +47,7 @@ async function handleInput() {
 }
 
 function toSelector(server: string) {
-  return server.replace(/[^\w-]/g, '-')
+  return server.replace(SERVER_SELECTOR_REGEX, '-')
 }
 function move(delta: number) {
   if (filteredServers.value.length === 0) {

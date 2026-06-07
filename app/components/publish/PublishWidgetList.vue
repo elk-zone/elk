@@ -7,7 +7,7 @@ const {
   initial = getDefaultDraftItem,
   expanded = false,
 } = defineProps<{
-  draftKey: string
+  draftKey: DraftKey
   initial?: () => DraftItem
   placeholder?: string
   inReplyToId?: string

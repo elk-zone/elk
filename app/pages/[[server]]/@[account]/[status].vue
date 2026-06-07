@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import type { mastodon } from 'masto'
 import type { ComponentPublicInstance } from 'vue'
-// @ts-expect-error missing types
-import { DynamicScroller, DynamicScrollerItem } from 'vue-virtual-scroller'
+import { WindowVirtualizer } from 'virtua/vue'
 
 definePageMeta({
   name: 'status',
@@ -73,7 +73,7 @@ onReactivated(() => {
             <StatusCard
               v-for="(comment, i) of context?.ancestors" :key="comment.id"
               :status="comment" :actions="comment.visibility !== 'direct'" context="account"
-              :has-older="true" :newer="context?.ancestors[i - 1]"
+              :has-older="true" :newer="context?.ancestors[Number(i) - 1]"
             />
           </template>
 
@@ -95,26 +95,20 @@ onReactivated(() => {
           />
 
           <template v-if="!pendingContext">
-            <DynamicScroller
-              v-slot="{ item, index, active }"
-              :items="context?.descendants || []"
-              :min-item-size="200"
-              :buffer="800"
-              key-field="id"
-              page-mode
+            <WindowVirtualizer
+              v-slot="{ item, index }"
+              :data="(context?.descendants ?? []) as mastodon.v1.Status[]"
             >
-              <DynamicScrollerItem :item="item" :active="active">
-                <StatusCard
-                  :key="item.id"
-                  :status="item"
-                  context="account"
-                  :older="context?.descendants[index + 1]"
-                  :newer="index > 0 ? context?.descendants[index - 1] : status"
-                  :has-newer="index === 0"
-                  :main="status"
-                />
-              </DynamicScrollerItem>
-            </DynamicScroller>
+              <StatusCard
+                :key="item.id"
+                :status="item"
+                context="account"
+                :older="context?.descendants[index + 1]"
+                :newer="index > 0 ? context?.descendants[index - 1] : status"
+                :has-newer="index === 0"
+                :main="status"
+              />
+            </WindowVirtualizer>
           </template>
         </div>
       </template>

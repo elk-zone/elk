@@ -1,7 +1,7 @@
 import type { mastodon } from 'masto'
 
 type Action = 'reblogged' | 'favourited' | 'bookmarked' | 'pinned' | 'muted'
-type CountField = 'reblogsCount' | 'favouritesCount'
+type CountField = 'reblogsCount' | 'favouritesCount' | 'quotesCount'
 
 export interface StatusActionsProps {
   status: mastodon.v1.Status
@@ -54,6 +54,12 @@ export function useStatusActions(props: StatusActionsProps) {
       status.value[countField] += status.value[action] ? 1 : -1
   }
 
+  const toggleFavourite = () => toggleStatusAction(
+    'favourited',
+    () => client.value.v1.statuses.$select(status.value.id)[status.value.favourited ? 'unfavourite' : 'favourite'](),
+    'favouritesCount',
+  )
+
   const canReblog = computed(() =>
     status.value.visibility !== 'direct'
     && (status.value.visibility !== 'private' || status.value.account.id === currentUser.value?.account.id),
@@ -61,21 +67,23 @@ export function useStatusActions(props: StatusActionsProps) {
 
   const toggleReblog = () => toggleStatusAction(
     'reblogged',
-    // @ts-expect-error this method should not take any argument, but it expects 1-2 arguments since masto.js v7.7.0 (potential issue)
     () => client.value.v1.statuses.$select(status.value.id)[status.value.reblogged ? 'unreblog' : 'reblog']().then((res) => {
       if (status.value.reblogged)
-      // returns the original status
+        // returns the original status
         return res.reblog!
       return res
     }),
     'reblogsCount',
   )
 
-  const toggleFavourite = () => toggleStatusAction(
-    'favourited',
-    () => client.value.v1.statuses.$select(status.value.id)[status.value.favourited ? 'unfavourite' : 'favourite'](),
-    'favouritesCount',
-  )
+  const canQuote = computed(() => {
+    if (status.value.visibility === 'private' || status.value.visibility === 'direct')
+      return false
+
+    return status.value.quoteApproval?.currentUser === 'automatic' || status.value.quoteApproval?.currentUser === 'manual'
+  })
+
+  const composeWithQuote = () => navigateTo(`/compose?quote=${status.value.id}`)
 
   const toggleBookmark = () => toggleStatusAction(
     'bookmarked',
@@ -95,11 +103,13 @@ export function useStatusActions(props: StatusActionsProps) {
   return {
     status,
     isLoading,
+    canQuote,
     canReblog,
     toggleMute,
     toggleReblog,
     toggleFavourite,
     toggleBookmark,
     togglePin,
+    composeWithQuote,
   }
 }

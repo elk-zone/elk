@@ -6,6 +6,11 @@ import type {
 } from '~/composables/push-notifications/types'
 import { PushSubscriptionError } from '~/composables/push-notifications/types'
 
+const BASE64_REGEX = {
+  DASH_TO_PLUS: /-/g,
+  UNDERSCORE_TO_SLASH: /_/g,
+}
+
 export async function createPushSubscription(
   user: RequiredUserLogin,
   notificationData: CreatePushNotification,
@@ -68,8 +73,8 @@ export async function createPushSubscription(
 function urlBase64ToUint8Array(base64String: string) {
   const padding = '='.repeat((4 - base64String.length % 4) % 4)
   const base64 = `${base64String}${padding}`
-    .replace(/-/g, '+')
-    .replace(/_/g, '/')
+    .replace(BASE64_REGEX.DASH_TO_PLUS, '+')
+    .replace(BASE64_REGEX.UNDERSCORE_TO_SLASH, '/')
 
   const rawData = window.atob(base64)
   const outputArray = new Uint8Array(rawData.length)

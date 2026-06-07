@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
-// @ts-expect-error missing types
-import { DynamicScrollerItem } from 'vue-virtual-scroller'
-import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
 const { account, buffer = 10, endMessage = true, followedTags = [] } = defineProps<{
   paginator: mastodon.Paginator<mastodon.v1.Status[], mastodon.rest.v1.ListAccountStatusesParams>
@@ -36,17 +33,15 @@ function getFollowedTag(status: mastodon.v1.Status): string | null {
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
       </button>
     </template>
-    <template #default="{ item, older, newer, active }">
+    <template #default="{ item, older, newer }">
       <template v-if="virtualScroller">
-        <DynamicScrollerItem :item="item" :active="active" tag="article">
-          <StatusCard :followed-tag="getFollowedTag(item)" :status="item" :context="context" :older="older" :newer="newer" :account="account" />
-        </DynamicScrollerItem>
+        <StatusCard :followed-tag="getFollowedTag(item)" :status="item" :context="context" :older="older" :newer="newer" :account="account" />
       </template>
       <template v-else>
         <StatusCard :followed-tag="getFollowedTag(item)" :status="item" :context="context" :older="older" :newer="newer" :account="account" />
       </template>
     </template>
-    <template v-if="context === 'account' " #done="{ items }">
+    <template v-if="context === 'account'" #done="{ items }">
       <div
         v-if="showOriginSite || items.length === 0"
         p5 text-secondary text-center flex flex-col items-center gap1

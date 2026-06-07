@@ -187,42 +187,26 @@ exports[`content-rich > handles html within code blocks 1`] = `
 exports[`content-rich > hashtag adds bdi 1`] = `
 "<p dir="auto">
   Testing bdi is added
-  <span
-    ><VMenu
-      placement="bottom-start"
-      class="inline-block"
-      close-on-content-click="false"
-      no-auto-focus
-      ><a
-        class="mention hashtag"
-        rel="nofollow noopener noreferrer"
-        to="/m.webtoo.ls/tags/turkey"
-        ><bdi>#<span>turkey</span></bdi></a
-      ></VMenu
-    ></span
+  <a
+    class="mention hashtag"
+    rel="nofollow noopener noreferrer"
+    to="/m.webtoo.ls/tags/turkey"
+    ><bdi>#<span>turkey</span></bdi></a
   >
 </p>
-<p></p>
 "
 `;
 
 exports[`content-rich > hashtag doesn't add 2 bdi 1`] = `
 "<p dir="auto">
   Testing bdi not added
-  <span
-    ><VMenu
-      placement="bottom-start"
-      class="inline-block"
-      close-on-content-click="false"
-      no-auto-focus
-      ><a
-        class="mention hashtag"
-        rel="nofollow noopener noreferrer"
-        to="/m.webtoo.ls/tags/turkey"
-        ><bdi></bdi></a></VMenu
-  ></span>
+  <a
+    class="mention hashtag"
+    rel="nofollow noopener noreferrer"
+    to="/m.webtoo.ls/tags/turkey"
+    ><bdi></bdi
+  ></a>
 </p>
-<p></p>
 "
 `;
 
@@ -291,7 +275,6 @@ exports[`content-rich > p moved to div and text children replaced with p[dir="au
   one is mistranslated and I&#39;m trying to find how to fix it. Also, the form
   for 0 needs to be fixed.
 </p>
-<p></p>
 "
 `;
 
@@ -332,33 +315,17 @@ exports[`content-rich > root p includes dir="auto" attr when mixed content 1`] =
     alt="🐤"
   />
   ;). كما أن النموذج الخاص بـ 0 يحتاج إلى إصلاح
-  <span
-    ><VMenu
-      placement="bottom-start"
-      class="inline-block"
-      close-on-content-click="false"
-      no-auto-focus
-      ><a
-        class="mention hashtag"
-        rel="nofollow noopener noreferrer"
-        to="/m.webtoo.ls/tags/turkey"
-        ><bdi>#<span>turkey</span></bdi></a
-      ></VMenu
-    ></span
+  <a
+    class="mention hashtag"
+    rel="nofollow noopener noreferrer"
+    to="/m.webtoo.ls/tags/turkey"
+    ><bdi>#<span>turkey</span></bdi></a
   >
-  <span
-    ><VMenu
-      placement="bottom-start"
-      class="inline-block"
-      close-on-content-click="false"
-      no-auto-focus
-      ><a
-        class="mention hashtag"
-        rel="nofollow noopener noreferrer"
-        to="/m.webtoo.ls/tags/%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9"
-        ><bdi>#<span>العربية</span></bdi></a
-      ></VMenu
-    ></span
+  <a
+    class="mention hashtag"
+    rel="nofollow noopener noreferrer"
+    to="/m.webtoo.ls/tags/%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9"
+    ><bdi>#<span>العربية</span></bdi></a
   >
   .
 </p>
@@ -394,37 +361,20 @@ exports[`content-rich > root p includes dir="auto" attr when mixed content 1`] =
     alt="🐤"
   />
   ;). Also, the form for 0 needs to be fixed
-  <span
-    ><VMenu
-      placement="bottom-start"
-      class="inline-block"
-      close-on-content-click="false"
-      no-auto-focus
-      ><a
-        class="mention hashtag"
-        rel="nofollow noopener noreferrer"
-        to="/m.webtoo.ls/tags/turkey"
-        ><bdi>#<span>turkey</span></bdi></a
-      ></VMenu
-    ></span
+  <a
+    class="mention hashtag"
+    rel="nofollow noopener noreferrer"
+    to="/m.webtoo.ls/tags/turkey"
+    ><bdi>#<span>turkey</span></bdi></a
   >
-  <span
-    ><VMenu
-      placement="bottom-start"
-      class="inline-block"
-      close-on-content-click="false"
-      no-auto-focus
-      ><a
-        class="mention hashtag"
-        rel="nofollow noopener noreferrer"
-        to="/m.webtoo.ls/tags/%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9"
-        ><bdi>#<span>العربية</span></bdi></a
-      ></VMenu
-    ></span
+  <a
+    class="mention hashtag"
+    rel="nofollow noopener noreferrer"
+    to="/m.webtoo.ls/tags/%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9"
+    ><bdi>#<span>العربية</span></bdi></a
   >
   .
 </p>
-<p></p>
 "
 `;
 

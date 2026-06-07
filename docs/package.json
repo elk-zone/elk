@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "better-sqlite3": "^12.4.1",
-    "docus": "^4.0.0",
+    "docus": "^5.4.1",
     "nuxt": "^4.1.2"
   }
 }

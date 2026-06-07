@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { status } = defineProps<{
+const { status, disableLink } = defineProps<{
   status: mastodon.v1.Status
   hover?: boolean
+  disableLink?: boolean
 }>()
 
 const el = ref<HTMLElement>()
@@ -11,6 +12,9 @@ const router = useRouter()
 const statusRoute = computed(() => getStatusRoute(status))
 
 function onclick(evt: MouseEvent | KeyboardEvent) {
+  if (disableLink)
+    return
+
   const path = evt.composedPath() as HTMLElement[]
   const el = path.find(el => ['A', 'BUTTON', 'IMG', 'VIDEO'].includes(el.tagName?.toUpperCase()))
   const text = window.getSelection()?.toString()

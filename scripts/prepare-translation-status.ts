@@ -78,7 +78,7 @@ async function prepareTranslationStatus() {
 
   await Promise.all(localeData.filter(l => l[0] !== 'en-US').map(async ([code, file, title]) => {
     console.info(`Comparing ${code}...`, title)
-    let useFile = file[file.length - 1]
+    let useFile = file.at(-1)
     const entry = countryLocaleVariants[file[0].slice(0, file[0].indexOf('.'))]
     if (entry) {
       const countryFile = entry.find(e => e.code === code && e.country === true)
@@ -88,7 +88,7 @@ async function prepareTranslationStatus() {
     data[code] = {
       title,
       useFile,
-      file: Array.isArray(file) ? file[file.length - 1] : file,
+      file: Array.isArray(file) ? file.at(-1) : file,
       translated: [],
       missing: [],
       outdated: [],

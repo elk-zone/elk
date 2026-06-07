@@ -15,11 +15,11 @@ const status = computed(() => {
 </script>
 
 <template>
-  <MainContent back-on-small-screen>
+  <MainContent back="small-only">
     <template #title>
-      <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
-        <span>{{ $t('settings.language.label') }}</span>
-      </div>
+      <MainTitle as="h1" secondary>
+        {{ $t('settings.language.label') }}
+      </MainTitle>
     </template>
     <div p6>
       <section space-y-2>

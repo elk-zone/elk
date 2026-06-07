@@ -25,10 +25,9 @@ watch(keys['/'], (v) => {
 <template>
   <MainContent>
     <template #title>
-      <NuxtLink to="/search" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
-        <div i-ri:search-line class="rtl-flip" />
-        <span>{{ $t('nav.search') }}</span>
-      </NuxtLink>
+      <MainTitle as="router-link" to="/search" icon="i-ri:search-line rtl-flip">
+        {{ $t('nav.search') }}
+      </MainTitle>
     </template>
 
     <div px2 mt3>

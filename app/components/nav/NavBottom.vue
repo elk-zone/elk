@@ -15,6 +15,7 @@ import {
   NavButtonMention,
   NavButtonMoreMenu,
   NavButtonNotification,
+  NavButtonScheduledPosts,
   NavButtonSearch,
 } from '#components'
 
@@ -33,6 +34,7 @@ const navButtons: NavButton[] = [
   { name: 'favorite', component: NavButtonFavorite },
   { name: 'bookmark', component: NavButtonBookmark },
   { name: 'compose', component: NavButtonCompose },
+  { name: 'scheduledPosts', component: NavButtonScheduledPosts },
   { name: 'explore', component: NavButtonExplore },
   { name: 'local', component: NavButtonLocal },
   { name: 'federated', component: NavButtonFederated },

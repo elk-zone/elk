@@ -83,7 +83,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideAccountHoverCard: false,
   hideTagHoverCard: false,
   hideNews: false,
-  hideRepliesInTimeline: false,
+  hideRepliesInTimeline: true,
   hideBoostsInTimeline: false,
   disableTimelineAutoloading: false,
   grayscaleMode: false,

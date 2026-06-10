@@ -23,24 +23,16 @@ export function removeUserPreferenceItems(items: mastodon.v1.Status[], context: 
     return items
 
   const userSettings = useUserSettings()
-  const hideReplies = getPreferences(userSettings.value, 'hideRepliesInTimeline')
   const hideBoosts = getPreferences(userSettings.value, 'hideBoostsInTimeline')
-
-  // No filters enabled, return as-is
-  if (!hideReplies && !hideBoosts)
-    return items
 
   return items.filter((item) => {
     // Filter boosts if enabled
     if (hideBoosts && item.reblog !== null)
       return false
 
-    // Filter replies if enabled (preserve self-replies)
-    if (hideReplies && item.inReplyToId !== null) {
-      const isSelfReply = item.inReplyToAccountId === item.account.id
-      if (!isSelfReply)
-        return false
-    }
+    // Always hide replies from the timeline — they appear inline under the parent post.
+    if (item.inReplyToId !== null)
+      return false
 
     return true
   })

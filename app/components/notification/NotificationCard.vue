@@ -139,7 +139,7 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
           || notification.type === 'quote'
       "
     >
-      <StatusCard :status="notification.status!" />
+      <StatusCard :status="notification.status!" :in-notification="true" :actions="false" />
     </template>
     <template v-else-if="notification.type === 'annual_report'">
       <div flex p4 items-center bg-shaded>

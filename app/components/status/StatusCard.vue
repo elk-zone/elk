@@ -221,6 +221,7 @@ const forceShow = ref(false)
             mb2 :class="{ 'mt-2 mb1': isDM }"
           />
           <StatusActions v-if="actions !== false" v-show="!getPreferences(userSettings, 'zenMode')" :status="status" />
+          <StatusInlineComments v-if="actions !== false && !main && !isNested && !inNotification" :status="status" />
         </div>
       </template>
     </div>

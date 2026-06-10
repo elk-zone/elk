@@ -12,7 +12,6 @@ const showUserPicker = logicAnd(
 )
 
 const isGrayscale = usePreferences('grayscaleMode')
-const instance = computed(() => instanceStorage.value[currentServer.value])
 </script>
 
 <template>
@@ -26,9 +25,6 @@ const instance = computed(() => instanceStorage.value[currentServer.value])
               <NavSide command />
               <div flex-auto />
               <div v-if="isHydrated" flex flex-col sticky bottom-0 bg-base>
-                <div hidden xl:block>
-                  <UserSignInEntry v-if="!currentUser" />
-                </div>
                 <div v-if="currentUser" p6 pb8 w-full>
                   <div hidden xl-block>
                     <UserPicker v-if="showUserPicker" />
@@ -63,16 +59,8 @@ const instance = computed(() => instanceStorage.value[currentServer.value])
       <aside v-if="isHydrated && !wideLayout" class="hidden lg:w-1/5 xl:w-1/4 sm:none xl:block zen-hide">
         <div sticky top-0 h-100dvh flex="~ col" gap-2 py3 ms-2>
           <slot name="right">
+            <NavWelcomeCard v-if="!currentUser" hidden xl:block />
             <SearchWidget mt-4 mx-1 hidden xl:block />
-
-            <!-- server info -->
-            <div v-if="!currentUser && instance" grid gap-3 m3>
-              <span text-size-lg text-primary font-bold>{{ instance.title }}</span>
-              <img rounded-3 :src="instance.thumbnail?.url">
-              <p text-secondary>
-                {{ instance.description }}
-              </p>
-            </div>
 
             <div flex-auto />
             <PwaPrompt />

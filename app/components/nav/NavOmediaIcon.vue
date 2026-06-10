@@ -1,0 +1,63 @@
+<template>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="82 65 230 225"
+    aria-hidden="true"
+    w-1.2em h-1.2em
+  >
+    <defs>
+      <clipPath id="omedia-clip-1" transform="translate(83.457 63.764)">
+        <path d="M3,122.525a99.832,99.832,0,1,0,99.832-99.832A99.832,99.832,0,0,0,3,122.525" />
+      </clipPath>
+      <linearGradient
+        id="omedia-grad-1"
+        x1="-2017.442"
+        y1="839.772"
+        x2="-2016.518"
+        y2="839.772"
+        gradientTransform="matrix(216.036, 0, 0, -216.036, 435843.247, 181543.516)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset="0" stop-color="#ff917b" />
+        <stop offset="0.8" stop-color="#f5322d" />
+        <stop offset="1" stop-color="#ea2d2d" />
+      </linearGradient>
+      <clipPath id="omedia-clip-2" transform="translate(83.457 63.764)">
+        <circle cx="203.126" cy="23.155" r="19.874" />
+      </clipPath>
+      <linearGradient
+        id="omedia-grad-2"
+        x1="-1979.4"
+        y1="830.739"
+        x2="-1978.475"
+        y2="830.739"
+        gradientTransform="matrix(43.007, 0, 0, -43.007, 85311.643, 35750.91)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset="0" stop-color="#ed2e2e" />
+        <stop offset="0.2" stop-color="#f5322d" />
+        <stop offset="1" stop-color="#ff917b" />
+      </linearGradient>
+    </defs>
+    <g clip-path="url(#omedia-clip-1)">
+      <rect
+        fill="url(#omedia-grad-1)"
+        x="-33.541"
+        y="-13.848"
+        width="272.746"
+        height="272.746"
+        transform="translate(35.971 131.595) rotate(-30)"
+      />
+    </g>
+    <g clip-path="url(#omedia-clip-2)">
+      <rect
+        fill="url(#omedia-grad-2)"
+        x="175.978"
+        y="-3.993"
+        width="54.297"
+        height="54.297"
+        transform="translate(99.093 168.429) rotate(-30)"
+      />
+    </g>
+  </svg>
+</template>

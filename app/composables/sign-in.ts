@@ -1,19 +1,27 @@
 import type { Ref } from 'vue'
 
 export function useSignIn(input?: Ref<HTMLInputElement | undefined>) {
-  const singleInstanceServer = useRuntimeConfig().public.singleInstance
+  const runtimeConfig = useRuntimeConfig()
+  const singleInstanceServer = runtimeConfig.public.singleInstance
+  const defaultServer = runtimeConfig.public.defaultServer
   const userSettings = useUserSettings()
   const users = useUsers()
   const { t } = useI18n()
 
   const busy = ref(false)
   const error = ref(false)
-  const server = ref('')
+  const server = ref(singleInstanceServer ? '' : (defaultServer || ''))
   const displayError = ref(false)
 
   async function oauth() {
     if (busy.value)
       return
+
+    // Open a new tab synchronously to preserve user-gesture context (avoids popup blockers).
+    // Will be navigated to the real OAuth URL once we have it.
+    let popup: Window | null = null
+    if (typeof window !== 'undefined')
+      popup = window.open('about:blank', '_blank')
 
     busy.value = true
     error.value = false
@@ -35,7 +43,6 @@ export function useSignIn(input?: Ref<HTMLInputElement | undefined>) {
             lang: userSettings.value.language,
           },
         })
-        busy.value = false
       }
       else {
         href = await (globalThis.$fetch as any)(`/api/${server.value || publicServer.value}/login`, {
@@ -47,9 +54,26 @@ export function useSignIn(input?: Ref<HTMLInputElement | undefined>) {
           },
         })
       }
-      location.href = href
+
+      if (popup && !popup.closed) {
+        popup.location.href = href
+        const interval = setInterval(() => {
+          if (popup!.closed) {
+            clearInterval(interval)
+            busy.value = false
+            // Reload so the parent picks up the new user from localStorage.
+            location.reload()
+          }
+        }, 500)
+      }
+      else {
+        // Popup was blocked — fall back to full-page redirect (original behavior).
+        location.href = href
+      }
     }
     catch (err) {
+      if (popup && !popup.closed)
+        popup.close()
       if (singleInstanceServer) {
         console.error(err)
         busy.value = false

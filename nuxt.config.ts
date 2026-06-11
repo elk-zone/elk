@@ -176,6 +176,7 @@ export default defineNuxtConfig({
       translateApi: '',
       defaultServer: 'omedia.social',
       singleInstance: true,
+      giphyApiKey: '',
     },
     storage: {
       fsBase: 'node_modules/.cache/app',

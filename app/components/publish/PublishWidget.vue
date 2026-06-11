@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DraftItem, DraftKey } from '#shared/types'
 import type { mastodon } from 'masto'
+import type { GiphyGif } from '~/composables/giphy'
 import { EditorContent } from '@tiptap/vue-3'
 import { useNow } from '@vueuse/core'
 import stringLength from 'string-length'
@@ -284,6 +285,17 @@ async function handlePaste(evt: ClipboardEvent) {
 
 function insertEmoji(name: string) {
   editor.value?.chain().focus().insertEmoji(name).run()
+}
+
+const { downloadAsFile } = useGiphy()
+async function insertGif(gif: GiphyGif) {
+  try {
+    const file = await downloadAsFile(gif)
+    await uploadAttachments([file])
+  }
+  catch (e) {
+    console.error('[PublishWidget] GIF upload failed', e)
+  }
 }
 
 function insertCustomEmoji(image: any) {
@@ -615,6 +627,12 @@ const detectLanguage = useDebounceFn(async () => {
                 <div i-ri:image-add-line />
               </button>
             </CommonTooltip>
+
+            <PublishGifPicker v-if="draft.params.poll === undefined" @select="insertGif">
+              <button btn-action-icon aria-label="Add GIF">
+                <div i-ri:file-gif-line />
+              </button>
+            </PublishGifPicker>
 
             <template v-if="draft.attachments.length === 0">
               <CommonTooltip v-if="!draft.params.poll" placement="top" :content="$t('polls.create')">

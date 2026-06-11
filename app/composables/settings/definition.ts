@@ -87,7 +87,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideBoostsInTimeline: false,
   disableTimelineAutoloading: false,
   grayscaleMode: false,
-  enableAutoplay: false,
+  enableAutoplay: true,
   unmuteVideos: false,
   optimizeForLowPerformanceDevice: false,
   enableDataSaving: false,

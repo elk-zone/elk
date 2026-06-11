@@ -20,7 +20,9 @@ function applyPinned(statuses: mastodon.v1.Status[]) {
 }
 
 function preprocess(items: mastodon.v1.Status[]) {
-  return filterAndReorderTimeline(items, 'account')
+  // Hide self-replies on the Posts tab — they appear inline as comments under the parent.
+  const withoutReplies = items.filter(item => item.inReplyToId === null)
+  return filterAndReorderTimeline(withoutReplies, 'account')
 }
 
 const pinnedPaginator = useMastoClient().v1.accounts.$select(account.id).statuses.list({ pinned: true })

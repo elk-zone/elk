@@ -22,49 +22,51 @@ const timeAgo = useTimeAgo(() => timeAgoCreatedAt.value, timeAgoOptions)
 
 <template>
   <article flex flex-col relative :lang="lang ?? undefined">
-    <div flex items-center top-0 left-2 pt-2 px-3>
-      <div :class="count > 1 ? 'i-ri-group-line' : 'i-ri-user-3-line'" me-3 color-blue text-xl aria-hidden="true" />
-      <template v-if="count > 1">
-        <AccountHoverWrapper
+    <NuxtLink
+      v-if="count === 1"
+      :to="getAccountRoute(follows[0].account)"
+      flex items-center gap-3 px-3 py-3
+    >
+      <AccountBigAvatar :account="follows[0].account" />
+      <div flex-1 min-w-0 flex items-baseline gap-1 flex-wrap>
+        <AccountDisplayName
           :account="follows[0].account"
-        >
-          <NuxtLink :to="getAccountRoute(follows[0].account)">
-            <AccountDisplayName
-              :account="follows[0].account"
-              text-primary font-bold line-clamp-1 ws-pre-wrap break-all hover:underline
-            />
-          </NuxtLink>
-        </AccountHoverWrapper>
-        &nbsp;{{ $t('notification.and') }}&nbsp;
-        <CommonLocalizedNumber
-          keypath="notification.others"
-          :count="count - 1"
-          text-primary font-bold line-clamp-1 ws-pre-wrap break-all
+          text-primary font-bold line-clamp-1 ws-pre-wrap break-all hover:underline
         />
-        &nbsp;{{ $t('notification.followed_you') }}
-        <time text-secondary :datetime="timeAgoCreatedAt">
-          ・{{ timeAgo }}
-        </time>
-      </template>
-      <template v-else-if="count === 1">
-        <NuxtLink :to="getAccountRoute(follows[0].account)">
-          <AccountDisplayName
-            :account="follows[0].account"
-            text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all hover:underline
-          />
-        </NuxtLink>
-        <span me-1 ws-nowrap>
+        <span ws-nowrap>
           {{ $t('notification.followed_you') }}
           <time text-secondary :datetime="timeAgoCreatedAt">
             ・{{ timeAgo }}
           </time>
         </span>
-      </template>
+      </div>
+    </NuxtLink>
+    <div v-else flex items-center pt-3 px-3>
+      <AccountHoverWrapper
+        :account="follows[0].account"
+      >
+        <NuxtLink :to="getAccountRoute(follows[0].account)">
+          <AccountDisplayName
+            :account="follows[0].account"
+            text-primary font-bold line-clamp-1 ws-pre-wrap break-all hover:underline
+          />
+        </NuxtLink>
+      </AccountHoverWrapper>
+      &nbsp;{{ $t('notification.and') }}&nbsp;
+      <CommonLocalizedNumber
+        keypath="notification.others"
+        :count="count - 1"
+        text-primary font-bold line-clamp-1 ws-pre-wrap break-all
+      />
+      &nbsp;{{ $t('notification.followed_you') }}
+      <time text-secondary :datetime="timeAgoCreatedAt">
+        ・{{ timeAgo }}
+      </time>
     </div>
-    <div pb-2 ps8>
+    <div v-if="count > 1" pb-3 px-3>
       <div
-        v-if="!isExpanded && count > 1"
-        flex="~ wrap gap-1.75" p4 items-center cursor-pointer
+        v-if="!isExpanded"
+        flex="~ wrap gap-1.75" pt-3 items-center cursor-pointer
         @click="isExpanded = !isExpanded"
       >
         <AccountHoverWrapper
@@ -82,8 +84,8 @@ const timeAgo = useTimeAgo(() => timeAgoCreatedAt.value, timeAgoOptions)
         </div>
       </div>
       <div v-else>
-        <div v-if="count > 1" flex p-4 pb-2 cursor-pointer @click="isExpanded = !isExpanded">
-          <div i-ri:arrow-up-s-line ms-2 text-secondary text-xl aria-hidden="true" />
+        <div flex pt-3 pb-2 cursor-pointer @click="isExpanded = !isExpanded">
+          <div i-ri:arrow-up-s-line text-secondary text-xl aria-hidden="true" />
           <span ps-2 text-base>Hide</span>
         </div>
         <AccountHoverWrapper
@@ -91,7 +93,7 @@ const timeAgo = useTimeAgo(() => timeAgoCreatedAt.value, timeAgoOptions)
           :key="follow.id"
           :account="follow.account"
         >
-          <NuxtLink :to="getAccountRoute(follow.account)" flex gap-4 px-4 py-2>
+          <NuxtLink :to="getAccountRoute(follow.account)" flex gap-3 py-2>
             <AccountAvatar :account="follow.account" w-12 h-12 />
             <StatusAccountDetails :account="follow.account" />
           </NuxtLink>

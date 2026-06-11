@@ -27,7 +27,7 @@ const likesTimeAgo = useTimeAgo(() => likesTimeAgoCreatedAt.value ?? '', timeAgo
     >
       <div flex flex-col gap-3>
         <div v-if="reblogs.length" flex="~ gap-1">
-          <div i-ri:repeat-fill text-xl me-2 color-green />
+          <div i-ri:repeat-fill text-xl me-2 text-secondary />
           <template v-for="i, idx of reblogs" :key="idx">
             <AccountHoverWrapper :account="i.account">
               <NuxtLink :to="getAccountRoute(i.account)">
@@ -43,7 +43,7 @@ const likesTimeAgo = useTimeAgo(() => likesTimeAgoCreatedAt.value ?? '', timeAgo
           </div>
         </div>
         <div v-if="likes.length" flex="~ gap-1 wrap">
-          <div :class="useStarFavoriteIcon ? 'i-ri:star-line color-yellow' : 'i-ri:heart-line color-red'" text-xl me-2 />
+          <div :class="useStarFavoriteIcon ? 'i-ri:star-line' : 'i-ri:heart-line'" text-xl me-2 text-secondary />
           <template v-for="i, idx of likes" :key="idx">
             <AccountHoverWrapper :account="i.account" relative me--4 border="2 bg-base" rounded-full hover:z-1 focus-within:z-1>
               <NuxtLink :to="getAccountRoute(i.account)">

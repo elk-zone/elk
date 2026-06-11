@@ -189,11 +189,13 @@ const { formatNumber } = useHumanReadableNumber()
         <NotificationGroupedFollow
           v-if="item.type === 'grouped-follow'"
           :items="item"
+          hover:bg-active
           border="b base"
         />
         <NotificationGroupedLikes
           v-else-if="item.type === 'grouped-reblogs-and-favourites'"
           :group="item"
+          hover:bg-active
           border="b base"
         />
         <NotificationCard
@@ -207,11 +209,13 @@ const { formatNumber } = useHumanReadableNumber()
         <NotificationGroupedFollow
           v-if="item.type === 'grouped-follow'"
           :items="item"
+          hover:bg-active
           border="b base"
         />
         <NotificationGroupedLikes
           v-else-if="item.type === 'grouped-reblogs-and-favourites'"
           :group="item"
+          hover:bg-active
           border="b base"
         />
         <NotificationCard

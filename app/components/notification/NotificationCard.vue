@@ -42,15 +42,10 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
 <template>
   <article flex flex-col relative>
     <template v-if="notification.type === 'follow'">
-      <NuxtLink :to="getAccountRoute(notification.account)">
-        <div
-          flex items-center absolute
-          ps-3 pe-4 inset-is-0
-          rounded-ie-be-3
-          py-3 bg-base top-0
-        >
-          <div i-ri-user-3-line text-xl me-3 color-blue />
-          <AccountDisplayName :account="notification.account" text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all />
+      <NuxtLink :to="getAccountRoute(notification.account)" flex items-center gap-3 px-3 py-3>
+        <AccountBigAvatar :account="notification.account" />
+        <div flex-1 min-w-0 flex items-baseline gap-1 flex-wrap>
+          <AccountDisplayName :account="notification.account" text-primary font-bold line-clamp-1 ws-pre-wrap break-all />
           <span ws-nowrap>
             {{ $t('notification.followed_you') }}
             <time text-secondary :datetime="notification.createdAt">
@@ -58,19 +53,15 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
             </time>
           </span>
         </div>
-        <AccountBigCard
-          ms10
-          :account="notification.account"
-        />
       </NuxtLink>
     </template>
     <template v-else-if="notification.type === 'admin.sign_up'">
       <NuxtLink :to="getAccountRoute(notification.account)">
         <div flex p4 items-center bg-shaded>
-          <div i-ri:user-add-line text-xl me-2 color-purple />
+          <div i-ri:user-add-line text-xl me-2 text-secondary />
           <AccountDisplayName
             :account="notification.account"
-            text-purple me-1 font-bold line-clamp-1 ws-pre-wrap break-all
+            text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all
           />
           <span>{{ $t("notification.signed_up") }}
             <time text-secondary :datetime="notification.createdAt">
@@ -83,15 +74,15 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
     <template v-else-if="notification.type === 'admin.report'">
       <NuxtLink :to="getReportRoute(notification.report?.id!)">
         <div flex p4 items-center bg-shaded>
-          <div i-ri:flag-line text-xl me-2 color-purple />
+          <div i-ri:flag-line text-xl me-2 text-secondary />
           <i18n-t keypath="notification.reported">
             <AccountDisplayName
               :account="notification.account"
-              text-purple me-1 font-bold line-clamp-1 ws-pre-wrap break-all
+              text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all
             />
             <AccountDisplayName
               :account="notification.report?.targetAccount!"
-              text-purple ms-1 font-bold line-clamp-1 ws-pre-wrap break-all
+              text-primary ms-1 font-bold line-clamp-1 ws-pre-wrap break-all
             />
           </i18n-t>
         </div>
@@ -99,10 +90,10 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
     </template>
     <template v-else-if="notification.type === 'follow_request'">
       <div flex px-3 py-2>
-        <div i-ri-user-shared-line text-xl me-3 color-blue />
+        <div i-ri-user-shared-line text-xl me-3 text-secondary />
         <AccountDisplayName
           :account="notification.account"
-          text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all
+          me-1 font-bold line-clamp-1 ws-pre-wrap break-all
         />
         <span me-1 ws-nowrap>
           {{ $t('notification.request_to_follow') }}
@@ -143,7 +134,7 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
     </template>
     <template v-else-if="notification.type === 'annual_report'">
       <div flex p4 items-center bg-shaded>
-        <div i-mdi:party-popper text-xl me-4 color-purple />
+        <div i-mdi:party-popper text-xl me-4 text-secondary />
         <div class="content-rich">
           <p>
             Your 2024 <NuxtLink to="/tags/Wrapstodon">

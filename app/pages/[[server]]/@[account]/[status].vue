@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { mastodon } from 'masto'
 import type { ComponentPublicInstance } from 'vue'
 import { WindowVirtualizer } from 'virtua/vue'
 
@@ -96,7 +97,7 @@ onReactivated(() => {
           <template v-if="!pendingContext">
             <WindowVirtualizer
               v-slot="{ item, index }"
-              :data="context?.descendants || []"
+              :data="(context?.descendants ?? []) as mastodon.v1.Status[]"
             >
               <StatusCard
                 :key="item.id"

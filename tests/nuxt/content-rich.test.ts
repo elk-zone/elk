@@ -280,3 +280,10 @@ mockComponent('AccountHoverWrapper', {
     return () => slots?.default?.()
   },
 })
+
+mockComponent('AccountTagHoverWrapper', {
+  props: ['tagName', 'class'],
+  setup(_, { slots }) {
+    return () => slots?.default?.()
+  },
+})

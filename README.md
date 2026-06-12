@@ -154,4 +154,4 @@ You can consult the [PWA documentation](https://docs.elk.zone/pwa) to learn more
 
 ## 📄 License
 
-[MIT](./LICENSE) &copy; 2022-PRESENT Elk contributors
+[MIT](./LICENSE) &copy; 2022-PRESENT Elk contributors :)

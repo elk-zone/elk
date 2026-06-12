@@ -52,10 +52,10 @@ export const elkTeamMembers: Team[] = [
   },
   {
     github: 'ayo-run',
-    display: 'ayo',
-    mastodon: 'ayo@ayco.io',
-    link: '/social.ayco.io/@ayo',
-    sponsors: 'elk-zone', // sponsors/ayo-run isn't enabled
+    display: 'Ayo',
+    mastodon: 'ayo@webtoo.ls',
+    link: '/m.webtoo.ls/@ayo',
+    sponsors: 'elk-zone', // sponsors/ayo-run is not enabled
   },
 ].sort(() => Math.random() - 0.5)
 

@@ -22,11 +22,11 @@ If you have [nvm](https://github.com/nvm-sh/nvm), you can run `nvm i` to install
 git checkout -b my-new-branch
 ```
 
-1. Run `pnpm i` in Elk's root folder
+5. Run `pnpm i` in Elk's root folder
 
-2. Run `pnpm nuxi prepare` in Elk's root folder
+6. Run `pnpm nuxi prepare` in Elk's root folder
 
-3. Run `pnpm dev` in Elk's root folder to start dev server or `pnpm dev:mocked` to start dev server with `@elkdev@universeodon.com` user.
+7. Run `pnpm dev` in Elk's root folder to start dev server or `pnpm dev:mocked` to start dev server with `@elkdev@universeodon.com` user.
 
 We recommend installing [ni](https://github.com/antfu/ni#ni), that will use the right package manager in each of your projects. If `ni` is installed, you can instead run:
 
@@ -39,7 +39,10 @@ nr dev
 
 Elk uses [Vitest](https://vitest.dev). You can run the test suite with:
 
-```
+```shell
+pnpm test
+
+# or if you installed ni
 nr test
 ```
 
@@ -58,15 +61,15 @@ If not using private browsing mode, you will need to uninstall the PWA applicati
 - Click on `Clear site data` button
 - Go to `Application > Service Workers` and check if the current `service worker` is missing or has the state `deleted` or `redundant`
 
-## CI errors
+## Before Submitting Pull Requests
 
-Sometimes when you push your changes to create a new pull request (PR), the CI can fail, but we cannot check the logs to see what went wrong.
-
-If you are getting **Semantic Pull Request** error, please check the [Semantic Pull Request](https://www.conventionalcommits.org/en/v1.0.0/#summary) documentation.
-
-You can run the following commands on your local environment to fix CI errors:
+When you are ready to submit a Pull Request (PR), run the following commands on your local environment to fix CI errors:
 - `pnpm test:unit` to run unit tests, maybe you also need to update snapshots
 - `pnpm test:typecheck` to run TypeScript checks run on CI
+
+Sometimes when you push your changes to create a new pull request (PR), the CI can fail, but the reviewers cannot see the logs to check what went wrong.
+
+If you get a **Semantic Pull Request** error, please check the [Semantic Pull Request](https://www.conventionalcommits.org/en/v1.0.0/#summary) documentation.
 
 ## RTL Support
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { GroupedAccountLike, NotificationSlot } from '#shared/types'
 import type { mastodon } from 'masto'
+import type { GroupedAccountLike, NotificationSlot } from '#shared/types'
 
 defineProps<{
   paginator: mastodon.Paginator<mastodon.v1.Notification[], mastodon.rest.v1.ListNotificationsParams>

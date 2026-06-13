@@ -1,7 +1,7 @@
-import type { DraftItem, DraftKey, DraftMap } from '#shared/types'
-import type { Mutable } from '#shared/types/utils'
 import type { mastodon } from 'masto'
 import type { ComputedRef, Ref } from 'vue'
+import type { DraftItem, DraftKey, DraftMap } from '#shared/types'
+import type { Mutable } from '#shared/types/utils'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
 
 const MENTION_REGEX = /^(@\S+\s?)+/

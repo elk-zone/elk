@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { CommonRouteTabMoreOption, CommonRouteTabOption } from '#shared/types'
 import type { mastodon } from 'masto'
+import type { CommonRouteTabMoreOption, CommonRouteTabOption } from '#shared/types'
 import { NOTIFICATION_FILTER_TYPES } from '~/constants'
 
 definePageMeta({

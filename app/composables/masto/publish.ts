@@ -1,6 +1,6 @@
-import type { DraftItem } from '#shared/types'
 import type { mastodon } from 'masto'
 import type { Ref } from 'vue'
+import type { DraftItem } from '#shared/types'
 import { fileOpen } from 'browser-fs-access'
 
 export function usePublish(options: {

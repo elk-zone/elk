@@ -1,6 +1,6 @@
-import type { UserLogin } from '#shared/types'
-
 import type { mastodon } from 'masto'
+
+import type { UserLogin } from '#shared/types'
 
 export type SubscriptionResult = 'subscribed' | 'notification-denied' | 'not-supported' | 'invalid-vapid-key' | 'no-user'
 export interface PushManagerSubscriptionInfo {

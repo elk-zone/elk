@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { DraftItem, DraftKey } from '#shared/types'
 import type { mastodon } from 'masto'
+import type { DraftItem, DraftKey } from '#shared/types'
 import { EditorContent } from '@tiptap/vue-3'
 import { useNow } from '@vueuse/core'
 import stringLength from 'string-length'

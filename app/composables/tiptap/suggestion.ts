@@ -1,11 +1,10 @@
 import type { Emoji, EmojiMartData } from '@emoji-mart/data'
 import type { SuggestionOptions } from '@tiptap/suggestion'
 import type { mastodon } from 'masto'
-import type { GetReferenceClientRect, Instance } from 'tippy.js'
 import type { Component } from 'vue'
+import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
 import { PluginKey } from '@tiptap/pm/state'
 import { VueRenderer } from '@tiptap/vue-3'
-import tippy from 'tippy.js'
 import TiptapEmojiList from '~/components/tiptap/TiptapEmojiList.vue'
 import TiptapHashtagList from '~/components/tiptap/TiptapHashtagList.vue'
 import TiptapMentionList from '~/components/tiptap/TiptapMentionList.vue'
@@ -94,7 +93,24 @@ export const TiptapEmojiSuggestion: Partial<SuggestionOptions> = {
 function createSuggestionRenderer(component: Component): SuggestionOptions['render'] {
   return () => {
     let renderer: VueRenderer
-    let popup: Instance
+    let popup: HTMLDivElement | null = null
+    let cleanup: (() => void) | null = null
+
+    function updatePosition(clientRect: () => DOMRect) {
+      if (!popup)
+        return
+      computePosition(
+        { getBoundingClientRect: clientRect },
+        popup,
+        {
+          placement: 'bottom-start',
+          middleware: [offset(6), flip(), shift()],
+        },
+      ).then(({ x, y }) => {
+        popup!.style.left = `${x}px`
+        popup!.style.top = `${y}px`
+      })
+    }
 
     return {
       onStart(props) {
@@ -106,15 +122,21 @@ function createSuggestionRenderer(component: Component): SuggestionOptions['rend
         if (!props.clientRect)
           return
 
-        popup = tippy(document.body, {
-          getReferenceClientRect: props.clientRect as GetReferenceClientRect,
-          appendTo: () => document.body,
-          content: renderer.renderedComponent.el!,
-          showOnCreate: true,
-          interactive: true,
-          trigger: 'manual',
-          placement: 'bottom-start',
-        })
+        const clientRect = props.clientRect as () => DOMRect
+
+        popup = document.createElement('div')
+        popup.style.position = 'absolute'
+        popup.style.zIndex = '9999'
+        popup.appendChild(renderer.renderedComponent.el!)
+        document.body.appendChild(popup)
+
+        cleanup = autoUpdate(
+          { getBoundingClientRect: clientRect },
+          popup,
+          () => updatePosition(clientRect),
+        )
+
+        updatePosition(clientRect)
       },
 
       // Use arrow function here because Nuxt will transform it incorrectly as Vue hook causing the build to fail
@@ -132,21 +154,21 @@ function createSuggestionRenderer(component: Component): SuggestionOptions['rend
         if (!props.clientRect)
           return
 
-        popup?.setProps({
-          getReferenceClientRect: props.clientRect as GetReferenceClientRect,
-        })
+        updatePosition(props.clientRect as () => DOMRect)
       },
 
       onKeyDown(props) {
         if (props.event.key === 'Escape') {
-          popup?.hide()
+          popup?.style.setProperty('display', 'none')
           return true
         }
         return renderer?.ref?.onKeyDown(props.event)
       },
 
       onExit() {
-        popup?.destroy()
+        cleanup?.()
+        popup?.remove()
+        popup = null
         renderer?.destroy()
       },
     }

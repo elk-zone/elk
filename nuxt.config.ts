@@ -120,7 +120,7 @@ export default defineNuxtConfig({
         '@tiptap/extension-bold',
         '@tiptap/extension-italic',
         '@tiptap/extension-code',
-        '@tiptap/pm',
+
         'browser-fs-access',
         'blurhash',
         '@vueuse/integrations/useFocusTrap',

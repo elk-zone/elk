@@ -102,6 +102,8 @@
     "pinia": "^3.0.3",
     "postcss-nested": "^7.0.0",
     "prosemirror-highlight": "^0.15.0",
+    "prosemirror-model": "^1.25.7",
+    "prosemirror-state": "^1.4.4",
     "shiki": "^3.20.0",
     "simple-git": "^3.19.1",
     "slimeform": "^0.10.0",

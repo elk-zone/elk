@@ -156,7 +156,7 @@
     "typescript": "^5.4.4",
     "vitest": "4.1.8",
     "vue-component-type-helpers": "^3.3.3",
-    "vue-tsc": "^2.1.6"
+    "vue-tsc": "^2.2.12"
   },
   "simple-git-hooks": {
     "pre-commit": "npx nano-staged"

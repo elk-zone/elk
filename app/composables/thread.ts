@@ -1,5 +1,5 @@
-import type { DraftItem, DraftKey } from '#shared/types'
 import type { mastodon } from 'masto'
+import type { DraftItem, DraftKey } from '#shared/types'
 
 const maxThreadLength = 99
 

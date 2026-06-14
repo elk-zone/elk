@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { ConfirmDialogChoice } from '#shared/types'
 import type { mastodon } from 'masto'
+import type { ConfirmDialogChoice } from '#shared/types'
 import {
   isCommandPanelOpen,
   isConfirmDialogOpen,

@@ -1,6 +1,6 @@
-import type { PaginatorState } from '#shared/types'
 import type { mastodon } from 'masto'
 import type { Ref } from 'vue'
+import type { PaginatorState } from '#shared/types'
 
 export function usePaginator<T, P, U = T>(
   paginator: mastodon.Paginator<T[], P>,

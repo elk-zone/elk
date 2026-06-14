@@ -1,16 +1,16 @@
 import type { AppInfo } from '#shared/types'
-// @ts-expect-error virtual import
-import { env } from '#build-info'
-// @ts-expect-error virtual import
-import { driver } from '#storage-config'
 import { $fetch } from 'ofetch'
-
 import kv from 'unstorage/drivers/cloudflare-kv-http'
 import fs from 'unstorage/drivers/fs'
+
 import memory from 'unstorage/drivers/memory'
 import vercelKVDriver from 'unstorage/drivers/vercel-kv'
-
 import { version } from '~~/config/env'
+// @ts-expect-error virtual import
+import { env } from '#build-info'
+
+// @ts-expect-error virtual import
+import { driver } from '#storage-config'
 import { APP_NAME } from '~/constants'
 
 import cached from '../cache-driver'

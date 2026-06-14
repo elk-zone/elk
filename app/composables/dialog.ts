@@ -1,5 +1,5 @@
-import type { ConfirmDialogChoice, ConfirmDialogOptions, DraftItem, DraftKey, ErrorDialogData } from '#shared/types'
 import type { mastodon } from 'masto'
+import type { ConfirmDialogChoice, ConfirmDialogOptions, DraftItem, DraftKey, ErrorDialogData } from '#shared/types'
 
 export const confirmDialogChoice = ref<ConfirmDialogChoice>()
 export const confirmDialogLabel = ref<ConfirmDialogOptions>()

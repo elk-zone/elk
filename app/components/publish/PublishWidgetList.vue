@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { DraftItem } from '#shared/types'
 import type { mastodon } from 'masto'
+import type { DraftItem } from '#shared/types'
 
 const {
   draftKey,

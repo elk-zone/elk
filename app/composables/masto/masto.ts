@@ -1,7 +1,7 @@
-import type { UserLogin } from '#shared/types'
 import type { Pausable } from '@vueuse/core'
 import type { mastodon } from 'masto'
 import type { Ref } from 'vue'
+import type { UserLogin } from '#shared/types'
 import type { ElkInstance } from '../users'
 import { createRestAPIClient, createStreamingAPIClient, MastoHttpError } from 'masto'
 

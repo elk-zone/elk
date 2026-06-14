@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { CommonPaginator } from '#components'
 import type { mastodon } from 'masto'
 import type { ComponentExposed } from 'vue-component-type-helpers'
+import type { CommonPaginator } from '#components'
 
 const { account, buffer = 10, endMessage = true } = defineProps<{
   paginator: mastodon.Paginator<mastodon.v1.ScheduledStatus[], mastodon.DefaultPaginationParams>

@@ -5,7 +5,10 @@ const { account } = defineProps<{
   account: mastodon.v1.Account
 }>()
 
-const serverName = computed(() => getServerName(account))
+// For local accounts (acct has no `@server` suffix) on the same instance,
+// suppress the redundant `@omedia.social` tail. Federated accounts still show the full handle.
+const isLocal = computed(() => !account.acct?.includes('@'))
+const serverName = computed(() => isLocal.value ? '' : getServerName(account))
 </script>
 
 <template>

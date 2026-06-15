@@ -61,6 +61,7 @@ const isGrayscale = usePreferences('grayscaleMode')
           <slot name="right">
             <NavWelcomeCard v-if="!currentUser" hidden xl:block />
             <SearchWidget mt-4 mx-1 hidden xl:block />
+            <NavNewMembers v-if="currentUser" hidden xl:block />
 
             <div flex-auto />
             <PwaPrompt />

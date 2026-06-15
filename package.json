@@ -150,7 +150,7 @@
     "nano-staged": "^1.0.2",
     "ofetch": "^1.5.1",
     "page-lifecycle": "^0.1.2",
-    "prettier": "^3.8.3",
+    "prettier": "^3.8.4",
     "sharp": "^0.34.5",
     "sharp-ico": "^0.1.5",
     "simple-git-hooks": "^2.13.1",

@@ -113,6 +113,34 @@ function clearGif() {
   pendingGif.value = null
 }
 
+const commentInputRef = ref<HTMLInputElement>()
+
+function insertAtCursor(text: string) {
+  const el = commentInputRef.value
+  if (!el) {
+    commentText.value = commentText.value + text
+    return
+  }
+  const start = el.selectionStart ?? commentText.value.length
+  const end = el.selectionEnd ?? commentText.value.length
+  commentText.value = commentText.value.slice(0, start) + text + commentText.value.slice(end)
+  nextTick(() => {
+    el.focus()
+    const pos = start + text.length
+    el.setSelectionRange(pos, pos)
+  })
+}
+
+function onPickEmoji(code: string) {
+  insertAtCursor(code)
+}
+
+function onPickCustomEmoji(image: { 'data-emoji-id'?: string }) {
+  const shortcode = image['data-emoji-id']
+  if (shortcode)
+    insertAtCursor(`:${shortcode}:`)
+}
+
 const el = ref<HTMLElement>()
 onMounted(() => {
   if (!props.status.repliesCount || !el.value)
@@ -200,6 +228,7 @@ function timeSince(dateStr: string): string {
         </div>
         <div flex="~ gap-1" items-center w-full>
           <input
+            ref="commentInputRef"
             v-model="commentText"
             type="text"
             placeholder="Write a comment…"
@@ -207,6 +236,17 @@ function timeSince(dateStr: string): string {
             :disabled="posting || uploadingGif"
             @keydown.enter.prevent="postComment"
           >
+          <PublishEmojiPicker @select="onPickEmoji" @select-custom="onPickCustomEmoji">
+            <button
+              type="button"
+              flex items-center justify-center w-8 h-8 rounded-full
+              hover:bg-active cursor-pointer disabled:opacity-50 disabled:pointer-events-none
+              aria-label="Add emoji"
+              :disabled="posting || uploadingGif"
+            >
+              <div i-ri:emotion-line text-lg text-secondary />
+            </button>
+          </PublishEmojiPicker>
           <PublishGifPicker @select="onPickGif">
             <button
               type="button"

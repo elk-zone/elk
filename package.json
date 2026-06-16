@@ -140,7 +140,7 @@
     "@types/fs-extra": "^11.0.4",
     "@types/wicg-file-system-access": "^2023.10.7",
     "@types/ws": "^8.18.1",
-    "@unocss/eslint-config": "^66.7.0",
+    "@unocss/eslint-config": "^66.7.2",
     "@vue/test-utils": "2.4.11",
     "bumpp": "^11.1.0",
     "consola": "^3.4.2",
@@ -151,12 +151,12 @@
     "ofetch": "^1.5.1",
     "page-lifecycle": "^0.1.2",
     "prettier": "^3.8.4",
-    "sharp": "^0.34.5",
+    "sharp": "^0.35.1",
     "sharp-ico": "^0.1.5",
     "simple-git-hooks": "^2.13.1",
     "typescript": "^5.4.4",
     "vitest": "4.1.8",
-    "vue-component-type-helpers": "^3.3.3",
+    "vue-component-type-helpers": "^3.3.5",
     "vue-tsc": "^2.1.6"
   },
   "simple-git-hooks": {

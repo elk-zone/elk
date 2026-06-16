@@ -322,7 +322,7 @@ export default defineNuxtConfig({
     },
     rateLimiter: false,
   },
-  colorMode: { classSuffix: '' },
+  colorMode: { classSuffix: '', preference: 'light', fallback: 'light' },
   i18n: {
     locales: currentLocales,
     strategy: 'no_prefix',

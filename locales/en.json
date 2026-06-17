@@ -93,8 +93,8 @@
     "vote": "Vote"
   },
   "app_desc_short": "A nimble Mastodon web client",
-  "app_logo": "Elk Logo",
-  "app_name": "Elk",
+  "app_logo": "Omedia Social Logo",
+  "app_name": "Omedia Social",
   "attachment": {
     "edit_title": "Description",
     "remove_label": "Remove attachment"

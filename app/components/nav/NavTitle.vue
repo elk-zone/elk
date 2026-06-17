@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const { env } = useBuildInfo()
 const router = useRouter()
 const back = ref<any>('')
 
@@ -32,7 +31,7 @@ router.afterEach(() => {
         <NavOmediaIcon w-full h-full />
       </span>
       <div v-show="isHydrated" hidden xl:block text-secondary>
-        {{ $t('app_name') }} <sup v-if="env !== 'release'" text-sm italic mt-1>{{ env }}</sup>
+        {{ $t('app_name') }}
       </div>
     </NuxtLink>
     <div hidden xl:flex items-center me-6 mt-2 gap-1>

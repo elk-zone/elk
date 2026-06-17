@@ -5,7 +5,6 @@ const HTML_ENTITY_REGEX = /&[a-z0-9#]+;/i
 export function setupPageHeader() {
   const { locale, locales, t } = useI18n()
   const colorMode = useColorMode()
-  const buildInfo = useBuildInfo()
   const enablePinchToZoom = usePreferences('enablePinchToZoom')
 
   const localeMap = (locales.value as LocaleObject[]).reduce((acc, l) => {
@@ -48,8 +47,6 @@ export function setupPageHeader() {
         titleTemplate += ' | '
 
       titleTemplate += t('app_name')
-      if (buildInfo.env !== 'release')
-        titleTemplate += ` (${buildInfo.env})`
 
       return titleTemplate
     },

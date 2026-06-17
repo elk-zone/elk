@@ -28,7 +28,9 @@ router.afterEach(() => {
       to="/home"
       @click.prevent="onClickLogo"
     >
-      <NavLogo shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip" />
+      <span shrink-0 aspect="1/1" sm:h-8 xl:h-10 sm:w-8 xl:w-10 class="rtl-flip">
+        <NavOmediaIcon w-full h-full />
+      </span>
       <div v-show="isHydrated" hidden xl:block text-secondary>
         {{ $t('app_name') }} <sup v-if="env !== 'release'" text-sm italic mt-1>{{ env }}</sup>
       </div>

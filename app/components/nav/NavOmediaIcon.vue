@@ -3,7 +3,7 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="82 65 230 225"
     aria-hidden="true"
-    w-1.2em h-1.2em
+    w-full h-full
   >
     <defs>
       <clipPath id="omedia-clip-1" transform="translate(83.457 63.764)">

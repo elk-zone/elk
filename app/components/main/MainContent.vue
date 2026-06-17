@@ -74,7 +74,6 @@ const showBackButton = computed(() => {
         <div hidden />
       </slot>
     </div>
-    <PwaInstallPrompt xl:hidden />
     <div :class="isHydrated && wideLayout ? 'xl:w-full sm:max-w-600px' : 'sm:max-w-600px md:shrink-0'" m-auto>
       <div hidden :class="{ 'xl:block': $route.name !== 'tag' && !$slots.header }" h-6 />
       <slot />

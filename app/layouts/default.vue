@@ -64,8 +64,6 @@ const isGrayscale = usePreferences('grayscaleMode')
             <NavNewMembers v-if="currentUser" hidden xl:block />
 
             <div flex-auto />
-            <PwaPrompt />
-            <PwaInstallPrompt />
             <LazyCommonPreviewPrompt v-if="info.env === 'preview'" />
             <NavFooter />
           </slot>

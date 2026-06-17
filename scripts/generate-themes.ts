@@ -2,10 +2,14 @@ import type { ThemeColors } from '../app/composables/settings'
 import chroma from 'chroma-js'
 
 // #cc7d24 -> hcl(67.14,62.19,59.56)
-export const themesColor = Array.from(
-  { length: 9 },
-  (_, i) => chroma.hcl((67.14 + i * 40) % 360, 62.19, 59.56).hex(),
-)
+// The first color is the brand/default theme (omedia.social).
+export const themesColor = [
+  '#f5322d',
+  ...Array.from(
+    { length: 9 },
+    (_, i) => chroma.hcl((67.14 + i * 40) % 360, 62.19, 59.56).hex(),
+  ),
+]
 
 export function getThemeColors(primary: string): ThemeColors {
   const c = chroma(primary)

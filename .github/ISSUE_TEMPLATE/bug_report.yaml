@@ -59,11 +59,6 @@ body:
       label: Mastodon Server version
       placeholder: v4.6.0
   - type: input
-    id: server-version
-    attributes:
-      label: Mastodon Server version
-      placeholder: v4.6.0
-  - type: input
     id: relevant-post
     attributes:
       label: Link to relevant posts (separate by comma)

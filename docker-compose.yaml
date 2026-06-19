@@ -3,6 +3,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      NUXT_PUBLIC_DEFAULT_SERVER: omedia.social
+      NUXT_PUBLIC_SINGLE_INSTANCE: 'true'
+      NUXT_STORAGE_DRIVER: fs
+      # Optional: set this (or define it in a .env file next to this compose file)
+      # to enable the GIF picker. Leave empty to disable it.
+      NUXT_PUBLIC_GIPHY_API_KEY: ${NUXT_PUBLIC_GIPHY_API_KEY:-}
     volumes:
       # make sure this directory has the same ownership as the elk user from the Dockerfile
       # otherwise Elk will not be able to store configs for accounts

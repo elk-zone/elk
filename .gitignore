@@ -6,6 +6,10 @@ dist
 .nuxt
 .data
 .env
+
+# Docker persistent storage volume (runtime account/login data)
+elk-storage/
+
 .DS_Store
 .idea/
 .vite-inspect

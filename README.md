@@ -1,157 +1,150 @@
-<p align="center">
-  <a href="https://elk.zone" target="_blank" rel="noopener noreferrer">
-    <img width="160" height="160" src="./public/logo.svg" alt="Elk logo">
-  </a>
-</p>
+# Omedia Social (Elk Fork)
 
-<h1 align="center"/>Elk</h1>
+Internal Mastodon web client for the Omedia team.
 
-<p align="center">
-A nimble Mastodon web client
-</p>
+This repository is a fork of Elk and includes Omedia-specific customizations:
+- Omedia branding (logo, colors, naming)
+- single-instance defaults (`omedia.social`)
+- additional UI customizations
 
-<br/>
-<p align="center">
-  <a href="https://chat.elk.zone"><img src="https://img.shields.io/badge/chat-discord-blue?style=flat&logo=discord" alt="discord chat"></a>
-  <a href="https://volta.net/elk-zone/elk?utm_source=elk_readme"><img src="https://user-images.githubusercontent.com/904724/209143798-32345f6c-3cf8-4e06-9659-f4ace4a6acde.svg" alt="Open board on Volta"></a>
-</p>
-<br/>
+---
 
-<p align="center">
-  <a href="https://elk.zone/" target="_blank" rel="noopener noreferrer" >
-    <img src="./public/elk-og.png" alt="Elk screenshots" width="600" height="auto">
-  </a>
-</p>
+## Quick Start (Local Development)
 
-We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
+### Requirements
+- Node.js `lts/*`
+- `pnpm` (`pnpm@11.5.2`)
+- `corepack` enabled
 
-## Deployment
-
-### Official Deployment
-
-The Elk team maintains a deployment at:
-
-- 🦌 Production: [elk.zone](https://elk.zone)
-- 🐙 Canary: [main.elk.zone](https://main.elk.zone) (deploys on every commit to `main` branch)
-
-### Self-Host Docker Deployment
-
-In order to host Elk yourself you can use the provided Dockerfile to build a container with elk. Be aware, that Elk only loads properly if the connection is done via SSL/TLS. The Docker container itself does not provide any SSL/TLS handling. You'll have to add this bit yourself.
-One could put Elk behind popular reverse proxies with SSL Handling like Traefik, NGINX etc.
-
-1. checkout source ```git clone https://github.com/elk-zone/elk.git```
-1. got into new source dir: ```cd elk```
-1. create local storage directory for settings: ```mkdir elk-storage```
-1. adjust permissions of storage dir: ```sudo chown 911:911 ./elk-storage```
-1. start container: ```docker compose up --build -d```
-
-> [!NOTE]
-> The provided Dockerfile creates a container which will eventually run Elk as non-root user and create a persistent named Docker volume upon first start (if that volume does not yet exist). This volume is always created with root permission. Failing to change the permissions of ```/elk/data``` inside this volume to UID:GID 911 (as specified for Elk in the Dockerfile) will prevent Elk from storing it's config for user accounts. You either have to fix the permission in the created named volume, or mount a directory with the correct permission to ```/elk/data``` into the container.
-
-### Ecosystem
-
-These are known deployments using Elk as an alternative Web client for Mastodon servers or as a base for other projects in the fediverse:
-
-- [elk.fedified.com](https://elk.fedified.com) - Use Elk to log into any compatible instance
-- [elk.mastodon.com.pl](https://elk.mastodon.com.pl) - Use Elk for the `mastodon.com.pl` Server
-- [elk.me.uk](https://elk.me.uk) - Use Elk to log into any compatible instance, hosted on Google Cloud Run with no Cloudflare proxy
-- [elk.h4.io](https://elk.h4.io) - Use Elk for the `h4.io` Server
-- [elk.universeodon.com](https://elk.universeodon.com) - Use Elk for the Universeodon Server
-- [elk.vmst.io](https://elk.vmst.io) - Use Elk for the `vmst.io` Server
-- [elk.hostux.social](https://elk.hostux.social) - Use Elk for the `hostux.social` Server
-- [elk.cupoftea.social](https://elk.cupoftea.social) - Use Elk for the `cupoftea.social` Server
-- [elk.aus.social](https://elk.aus.social) - Use Elk for the `aus.social` Server
-- [elk.mstdn.ca](https://elk.mstdn.ca) - Use Elk for the `mstdn.ca` Server
-- [elk.mastodonapp.uk](https://elk.mastodonapp.uk) - Use Elk for the `mastodonapp.uk` Server
-- [elk.bolha.us](https://elk.bolha.us) - Use Elk for the `bolha.us` Server
-- [crab.bumscode.com](https://crab.bumscode.com) - Use [crab](https://github.com/maybeanerd/crab) - a soft fork of Elk - for the `bumscode.com` Server
-
-> **Note**: Community deployments are **NOT** maintained by the Elk team. It may not be synced with Elk's source code. Please do your own research about the host servers before using them.
-
-## 💖 Sponsors
-
-We are grateful for the generous sponsorship and help of:
-
-<a href="https://nuxtlabs.com/" target="_blank" rel="noopener noreferrer" >
-  <img src="./images/nuxtlabs.svg" alt="NuxtLabs" height="85">
-</a>
-<br><br>
-<a href="https://stackblitz.com/" target="_blank" rel="noopener noreferrer" >
-  <img src="./images/stackblitz.svg" alt="StackBlitz" height="85">
-</a>
-<br><br>
-
-And all the companies and individuals sponsoring Elk Team and the members. If you're enjoying the app, consider sponsoring us:
-
-- [Elk Team's GitHub Sponsors](https://github.com/sponsors/elk-zone)
-
-Or you can sponsor our core team members individually:
-
-- [Anthony Fu](https://github.com/sponsors/antfu)
-- [Daniel Roe](https://github.com/sponsors/danielroe)
-- [三咲智子 Kevin Deng](https://github.com/sponsors/sxzz)
-- [Patak](https://github.com/sponsors/patak-dev)
-
-We would also appreciate sponsoring other contributors to the Elk project. If someone helps you solve an issue or implement a feature you wanted, supporting them would help make this project and OS more sustainable.
-
-## 📍 Roadmap
-
-[Open board on Volta](https://volta.net/elk-zone/elk)
-
-## 🧑‍💻 Contributing
-
-We're really excited that you're interested in contributing to Elk! Before submitting your contribution, please read through the following guide.
-
-### Local Setup
-
-Clone the repository and run on the root folder:
-
-```
-pnpm i
-pnpm run dev
+### Run locally
+```bash
+corepack enable
+pnpm install
+pnpm dev
 ```
 
-`Warning`: you will need `corepack` enabled, check out the [Elk Contributing Guide](./CONTRIBUTING.md) for a detailed guide on how to set up the project locally.
+App runs on: `http://localhost:5314`
 
-We recommend installing [ni](https://github.com/antfu/ni#ni), that will use the right package manager in each of your projects. If `ni` is installed, you can instead run:
-
-```
-ni
-nr dev
+### Mocked mode (no real login required)
+```bash
+pnpm dev:mocked
 ```
 
-### Testing
+---
 
-Elk uses [Vitest](https://vitest.dev). You can run the test suite with:
+## Environment Variables
 
+Copy and edit:
+```bash
+cp .env.example .env
 ```
-nr test
+
+### Most important variables
+
+#### Public (client)
+- `NUXT_PUBLIC_DEFAULT_SERVER`
+  Default server shown to users.
+  Recommended: `omedia.social`
+
+- `NUXT_PUBLIC_SINGLE_INSTANCE`
+  Restrict app to one instance.
+  Recommended: `true`
+
+- `NUXT_PUBLIC_GIPHY_API_KEY`
+  Needed for GIF picker.
+
+- `NUXT_PUBLIC_TRANSLATE_API`
+  Optional translation API URL.
+
+- `NUXT_PUBLIC_PRIVACY_POLICY_URL`
+  Optional privacy policy link.
+
+#### Storage / server
+- `NUXT_STORAGE_DRIVER`
+  One of: `fs`, `vercel`, `cloudflare`
+  - Local dev: `fs`
+  - Self-hosted / Docker production: `fs` (must be backed by a **persistent volume**)
+  - Serverless production: `vercel` or `cloudflare` (use these only on those platforms)
+
+- `NUXT_STORAGE_FS_BASE`
+  Path for filesystem storage (used when driver = `fs`). In Docker this is `/elk/data`, mounted to a persistent volume.
+
+#### Admin / integration (optional)
+- `NUXT_ADMIN_KEY`
+- `NUXT_GITHUB_CLIENT_ID`
+- `NUXT_GITHUB_CLIENT_SECRET`
+- `NUXT_GITHUB_INVITE_TOKEN`
+
+### Production note (important)
+Login flow and server state require persistent storage.
+Do **not** use ephemeral `memory` storage in production.
+
+---
+
+## Docker
+
+This repo already includes:
+- `Dockerfile`
+- `docker-compose.yaml`
+
+### Run with Docker Compose
+```bash
+mkdir -p elk-storage
+sudo chown 911:911 ./elk-storage
+docker compose up --build -d
 ```
 
-## 📲 PWA
+App will be available on port `5314`.
 
-You can consult the [PWA documentation](https://docs.elk.zone/pwa) to learn more about the PWA capabilities on Elk, how to install Elk PWA in your desktop or mobile device and some hints about PWA stuff on Elk.
+### Why `chown 911:911`?
+Container runs as non-root user `elk` (`UID/GID 911`) and needs write access to `/elk/data` for persistent app data.
 
-## 🦄 Stack
+### Environment in Docker
+You can pass env vars via:
+- `.env` file
+- `environment:` block in `docker-compose.yaml`
+- runtime `-e` flags
 
-- [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
-- [Nuxt](https://nuxt.com/) - The Intuitive Web Framework
-- [Vue](https://vuejs.org/) - The Progressive JavaScript Framework
-- [VueUse](https://vueuse.org/) - Collection of Vue Composition Utilities
-- [Pinia](https://pinia.vuejs.org/) - The Vue Store that you will enjoy using
-- [Vue Macros](https://vue-macros.sxzz.moe/) - More macros and syntax sugar for Vue
-- [UnoCSS](https://uno.antfu.me/) - The instant on-demand atomic CSS engine
-- [Iconify](https://github.com/iconify/icon-sets#iconify-icon-sets-in-json-format) - Iconify icon sets in JSON format
-- [Masto.js](https://neet.github.io/masto.js) - Mastodon API client in TypeScript
-- [shiki](https://shiki.style/) - A beautiful yet powerful syntax highlighter
-- [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa) - Prompt for update, Web Push Notifications and Web Share Target API
+Example minimum set:
+```env
+NUXT_PUBLIC_DEFAULT_SERVER=omedia.social
+NUXT_PUBLIC_SINGLE_INSTANCE=true
+NUXT_STORAGE_DRIVER=fs
+NUXT_STORAGE_FS_BASE=/elk/data
+```
 
-## 👨‍💻 Contributors
+---
 
-<a href="https://github.com/elk-zone/elk/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=elk-zone/elk" alt="list of contributors icons" />
-</a>
+## Build and Run (without Docker)
 
-## 📄 License
+```bash
+pnpm build
+pnpm start
+```
 
-[MIT](./LICENSE) &copy; 2022-PRESENT Elk contributors :)
+---
+
+## Useful Scripts
+
+- `pnpm dev` - development server
+- `pnpm dev:mocked` - development with mocked user
+- `pnpm build` - production build
+- `pnpm start` - run built output
+- `pnpm lint` - lint project
+- `pnpm typecheck` - Nuxt type checks
+- `pnpm test` - run tests
+
+---
+
+## Tech Stack
+- Nuxt 3 + Nitro
+- Vue 3
+- UnoCSS
+- Masto.js
+- pnpm
+
+---
+
+## License
+
+MIT (inherits from upstream Elk fork licensing model).

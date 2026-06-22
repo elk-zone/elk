@@ -39,12 +39,12 @@ async function edit(listId: string) {
           :hover="indexOfUserInList(item.id) === -1 ? 'text-green' : 'text-red'"
         >
           <button
-            text-sm p2 border-1 transition-colors
+            p2 border-1 transition-colors
             border-dark
             btn-action-icon
             @click="() => edit(item.id)"
           >
-            <span :class="indexOfUserInList(item.id) === -1 ? 'i-ri:user-add-line' : 'i-ri:user-unfollow-line'" />
+            <span :class="indexOfUserInList(item.id) === -1 ? 'i-ri:add-line' : 'i-ri:check-line'" />
           </button>
         </CommonTooltip>
       </div>

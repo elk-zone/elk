@@ -48,7 +48,7 @@ async function edit() {
           btn-action-icon
           @click="edit"
         >
-          <span :class="isRemoved ? 'i-ri:user-add-line' : 'i-ri:user-unfollow-line'" />
+          <span :class="isRemoved ? 'i-ri:add-line' : 'i-ri:check-line'" />
         </button>
       </CommonTooltip>
     </div>

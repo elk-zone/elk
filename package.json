@@ -151,7 +151,7 @@
     "ofetch": "^1.5.1",
     "page-lifecycle": "^0.1.2",
     "prettier": "^3.8.4",
-    "sharp": "^0.35.1",
+    "sharp": "^0.35.2",
     "sharp-ico": "^0.1.5",
     "simple-git-hooks": "^2.13.1",
     "typescript": "^5.4.4",

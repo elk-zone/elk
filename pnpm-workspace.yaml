@@ -85,7 +85,7 @@ overrides:
   nuxt-component-meta: 0.17.2
   serialize-javascript: 7.0.5
   unstorage: ^1.17.5
-  vitest: 4.1.8
+  vitest: 4.1.9
   vue: ^3.5.4
 
 verifyDepsBeforeRun: install

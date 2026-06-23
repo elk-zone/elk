@@ -110,6 +110,21 @@ const locales: LocaleObjectData[] = [
     },
   } satisfies LocaleObjectData,
   {
+    code: 'he',
+    file: 'he.json',
+    name: 'עברית',
+    dir: 'rtl',
+    pluralRule: (choice: number) => {
+      if (choice === 0)
+        return 0
+
+      if (choice === 1)
+        return 1
+
+      return 2
+    },
+  } satisfies LocaleObjectData,
+  {
     code: 'ca',
     file: 'ca.json',
     name: 'Català',

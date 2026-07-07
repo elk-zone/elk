@@ -61,11 +61,25 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
     src: 'screenshots/dark-1.webp',
     sizes: '3840x2400',
     type: 'image/webp',
+    form_factor: 'wide',
     label: pwa.screenshots.dark,
   }, {
     src: 'screenshots/light-1.webp',
     sizes: '3840x2400',
     type: 'image/webp',
+    form_factor: 'wide',
+    label: pwa.screenshots.light,
+  }, {
+    src: 'screenshots/dark-2.webp',
+    sizes: '1080x2400',
+    type: 'image/webp',
+    form_factor: 'narrow',
+    label: pwa.screenshots.dark,
+  }, {
+    src: 'screenshots/light-2.webp',
+    sizes: '1080x2400',
+    type: 'image/webp',
+    form_factor: 'narrow',
     label: pwa.screenshots.light,
   }]
 

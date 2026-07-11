@@ -25,7 +25,7 @@ pnpm build                    # production build
 Quality gates (run both before opening a PR — CI enforces them):
 
 ```bash
-pnpm test:unit                # vitest run (unit + nuxt-env tests); may need to update snapshots
+pnpm test:unit:ci             # the script that will run vitest once
 pnpm test:typecheck           # vue-tsc -b --noEmit — the TS check CI runs (NOT `nuxt typecheck`)
 pnpm lint                     # eslint (antfu config); `pnpm lint:fix` to autofix
 ```

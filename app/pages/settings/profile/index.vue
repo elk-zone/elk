@@ -11,11 +11,11 @@ useHydratedHead({
 </script>
 
 <template>
-  <MainContent back-on-small-screen>
+  <MainContent back="small-only">
     <template #title>
-      <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
-        <span>{{ $t('settings.profile.label') }}</span>
-      </div>
+      <MainTitle as="h1" secondary>
+        {{ $t('settings.profile.label') }}
+      </MainTitle>
     </template>
 
     <SettingsItem

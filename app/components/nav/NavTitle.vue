@@ -30,7 +30,7 @@ router.afterEach(() => {
     >
       <NavLogo shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip" />
       <div v-show="isHydrated" hidden xl:block text-secondary>
-        crab  <sup text-sm italic mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
+        crab <sup v-if="env !== 'release'" text-sm italic mt-1>{{ env }}</sup>
       </div>
     </NuxtLink>
     <div hidden xl:flex items-center me-6 mt-2 gap-1>

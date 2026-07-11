@@ -45,7 +45,7 @@ useCommand({
     exact-active-class="text-primary"
     :class="disabled ? 'op25 pointer-events-none ' : match ? 'text-primary' : ''"
     block w-full group focus:outline-none
-    :tabindex="disabled ? -1 : null"
+    :tabindex="disabled ? -1 : undefined"
     @click="scrollOnClick ? $scrollToTop() : undefined"
   >
     <div

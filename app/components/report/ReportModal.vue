@@ -42,8 +42,8 @@ async function loadStatuses() {
       minId: status.id,
       limit: 5,
     })
-    availableStatuses.value = availableStatuses.value.concat(prevStatuses)
-    availableStatuses.value = availableStatuses.value.concat(nextStatuses)
+    availableStatuses.value = [...availableStatuses.value, ...prevStatuses]
+    availableStatuses.value = [...availableStatuses.value, ...nextStatuses]
   }
   else {
     // Reporting an account directly

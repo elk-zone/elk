@@ -16,9 +16,11 @@ const {
   status,
   isLoading,
   canReblog,
+  canQuote,
   toggleBookmark,
   toggleFavourite,
   toggleReblog,
+  composeWithQuote,
 } = useStatusActions({ status: props.status })
 
 function reply() {
@@ -68,6 +70,27 @@ function reply() {
           <CommonLocalizedNumber
             keypath="action.boost_count"
             :count="status.reblogsCount"
+          />
+        </template>
+      </StatusActionButton>
+    </div>
+
+    <div flex-1>
+      <StatusActionButton
+        :content="$t('action.quote')"
+        :text="!getPreferences(userSettings, 'hideQuoteCount') && status.quotesCount ? status.quotesCount : ''"
+        color="text-purple" hover="text-purple" elk-group-hover="bg-purple/10"
+        icon="i-ri:double-quotes-l"
+        active-icon="i-ri:double-quotes-l"
+        inactive-icon="i-ri:double-quotes-l"
+        :disabled="!canQuote"
+        :command="command"
+        @click="composeWithQuote()"
+      >
+        <template v-if="status.quotesCount && !getPreferences(userSettings, 'hideQuoteCount')" #text>
+          <CommonLocalizedNumber
+            keypath="action.quote_count"
+            :count="status.quotesCount"
           />
         </template>
       </StatusActionButton>

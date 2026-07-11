@@ -59,7 +59,7 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
             email: newInstance.email,
           },
           configuration: {
-            ...(newInstance.configuration ?? {}),
+            ...newInstance.configuration,
             urls: {
               streaming: newInstance.urls.streamingApi,
             },
@@ -134,7 +134,7 @@ export function useStreaming(
       stream.value = cb(streamingClient.value)
   })
 
-  if (import.meta.client && !process.test)
+  if (import.meta.client && !import.meta.test)
     useNuxtApp().$pageLifecycle.addFrozenListener(cleanup)
 
   tryOnBeforeUnmount(() => isActive.value = false)

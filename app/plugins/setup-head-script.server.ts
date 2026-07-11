@@ -1,6 +1,8 @@
 import { STORAGE_KEY_CURRENT_USER_HANDLE, STORAGE_KEY_SETTINGS } from '~/constants'
 import { oldFontSizeMap } from '~/constants/options'
 
+const WHITESPACE_REGEX = /\s*\n\s*/g
+
 /**
  * Injecting scripts before renders
  */
@@ -31,7 +33,7 @@ export default defineNuxtPlugin(() => {
   if (settings.themeColors) {
     Object.entries(settings.themeColors).map(i => html.style.setProperty(i[0], i[1]))
   }
-})()`.trim().replace(/\s*\n\s*/g, ';'),
+})()`.trim().replace(WHITESPACE_REGEX, ';'),
       },
     ],
   })

@@ -74,10 +74,9 @@ const moreOptions = computed<CommonRouteTabMoreOption>(() => ({
 <template>
   <MainContent>
     <template #title>
-      <NuxtLink to="/notifications" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
-        <div i-ri:notification-4-line />
-        <span>{{ t('nav.notifications') }}</span>
-      </NuxtLink>
+      <MainTitle as="router-link" to="/notifications" icon="i-ri:notification-4-line">
+        {{ t('nav.notifications') }}
+      </MainTitle>
     </template>
 
     <template #actions>

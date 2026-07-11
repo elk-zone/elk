@@ -1,5 +1,7 @@
 import type { Directions, LocaleObject } from '@nuxtjs/i18n'
 
+const HTML_ENTITY_REGEX = /&[a-z0-9#]+;/i
+
 export function setupPageHeader() {
   const { locale, locales, t } = useI18n()
   const colorMode = useColorMode()
@@ -24,7 +26,7 @@ export function setupPageHeader() {
     titleTemplate: (title?: string) => {
       let titleTemplate = title ?? ''
 
-      if (titleTemplate.match(/&[a-z0-9#]+;/gi)) {
+      if (HTML_ENTITY_REGEX.test(titleTemplate)) {
         titleTemplate = unescapeTitleTemplate(titleTemplate, [
           ['"', ['&#34;', '&quot;']],
           ['&', ['&#38;', '&amp;']],

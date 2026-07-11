@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<h1 align="center"/>crab <sup><em>alpha</em></sup></h1>
+<h1 align="center"/>crab</h1>
 
 A nimble Mastodon web client, based on [elk](https://github.com/elk-zone/elk) and customized for [bumscode.com](https://bumscode.com).
 
@@ -16,7 +16,6 @@ A nimble Mastodon web client, based on [elk](https://github.com/elk-zone/elk) an
   </a>
 </p>
 
-## ⚠️ Crab and its parent Elk are in Alpha
 
 If you want to contribute to the parent project, check out [its repo](https://github.com/elk-zone/elk).
 
@@ -94,7 +93,7 @@ You can consult the [PWA documentation](https://docs.elk.zone/pwa) to learn more
 
 ## 👨‍💻 Contributors
 <a href="https://github.com/maybeanerd/crab/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=maybeanerd/crab" />
+  <img src="https://contrib.rocks/image?repo=maybeanerd/crab" alt="list of contributors icons" />
 </a>
 
 ## 📄 License

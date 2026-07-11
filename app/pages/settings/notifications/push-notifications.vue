@@ -16,9 +16,9 @@ useHydratedHead({
 <template>
   <MainContent back>
     <template #title>
-      <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
-        <span>{{ $t('settings.notifications.push_notifications.label') }}</span>
-      </div>
+      <MainTitle as="h1" secondary>
+        {{ $t('settings.notifications.push_notifications.label') }}
+      </MainTitle>
     </template>
     <NotificationPreferences show />
   </MainContent>

@@ -4,13 +4,10 @@ import { fileOpen } from 'browser-fs-access'
 
 const {
   original,
-  allowedFileTypes = ['image/jpeg', 'image/png'],
   allowedFileSize = 1024 * 1024 * 5, // 5 MB
 } = defineProps<{
   /** The image src before change */
   original?: string
-  /** Allowed file types */
-  allowedFileTypes?: string[]
   /** Allowed file size */
   allowedFileSize?: number
   imgClass?: string
@@ -32,15 +29,18 @@ const previewImage = ref('')
 /** The current images on display */
 const imageSrc = computed<string>(() => previewImage.value || defaultImage.value)
 
+const mimeTypes = currentInstance.value!.configuration?.mediaAttachments.supportedMimeTypes.filter(mime => mime.startsWith('image/'))
+  ?? ['image/jpeg', 'image/png']
+
 async function pickImage() {
   if (import.meta.server)
     return
   const image = await fileOpen({
     description: 'Image',
-    mimeTypes: allowedFileTypes,
+    mimeTypes,
   })
 
-  if (!allowedFileTypes.includes(image.type)) {
+  if (!mimeTypes.includes(image.type)) {
     emit('error', 1, t('error.unsupported_file_format'))
     return
   }

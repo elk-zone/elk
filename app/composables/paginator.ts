@@ -18,6 +18,7 @@ export function usePaginator<T, P, U = T>(
   const items = ref<U[]>([])
   const nextItems = ref<U[]>([])
   const prevItems = ref<T[]>([])
+  const canLoadMore = ref<boolean>(true)
 
   const endAnchor = ref<HTMLDivElement>()
   const bound = useElementBounding(endAnchor)
@@ -70,7 +71,7 @@ export function usePaginator<T, P, U = T>(
   }, { immediate: true })
 
   async function loadNext() {
-    if (state.value !== 'idle')
+    if (state.value !== 'idle' || !canLoadMore.value)
       return
 
     state.value = 'loading'
@@ -99,6 +100,8 @@ export function usePaginator<T, P, U = T>(
       error.value = e
       state.value = 'error'
     }
+    if (getPreferences(useUserSettings().value, 'disableTimelineAutoloading'))
+      canLoadMore.value = false
 
     await nextTick()
     bound.update()
@@ -123,6 +126,7 @@ export function usePaginator<T, P, U = T>(
           && state.value === 'idle'
           // No new content is loaded when the keepAlive page enters the background
           && deactivated.value === false
+          && canLoadMore.value
         ) {
           loadNext()
         }
@@ -137,5 +141,6 @@ export function usePaginator<T, P, U = T>(
     state,
     error,
     endAnchor,
+    canLoadMore,
   }
 }

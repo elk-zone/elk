@@ -1,9 +1,9 @@
-import type { DraftItem } from '#shared/types'
+import type { DraftItem, DraftKey } from '#shared/types'
 import type { mastodon } from 'masto'
 
 const maxThreadLength = 99
 
-export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
+export function useThreadComposer(draftKey: DraftKey, initial?: () => DraftItem) {
   const { draftItems } = useDraft(draftKey, initial)
 
   /**
@@ -23,7 +23,10 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
       return
     }
 
-    const lastItem = draftItems.value[draftItems.value.length - 1]
+    const lastItem = draftItems.value.at(-1)
+    if (!lastItem)
+      return
+
     draftItems.value.push(getDefaultDraftItem({
       language: lastItem.params.language,
       sensitive: lastItem.params.sensitive,

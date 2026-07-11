@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
+import punycode from 'punycode/'
 
 const { card, smallPictureOnly } = defineProps<{
   card: mastodon.v1.PreviewCard
@@ -15,11 +16,12 @@ const ogImageWidth = 400
 const alt = computed(() => `${card.title} - ${card.title}`)
 const isSquare = computed(() => (
   smallPictureOnly
+  || !card.image
   || card.width === card.height
   || Number(card.width || 0) < ogImageWidth
   || Number(card.height || 0) < ogImageWidth / 2
 ))
-const providerName = computed(() => card.providerName ? card.providerName : new URL(card.url).hostname)
+const providerName = computed(() => card.providerName ? card.providerName : punycode.toUnicode(new URL(card.url).hostname))
 
 // TODO: handle card.type: 'photo' | 'video' | 'rich';
 const cardTypeIconMap: Record<mastodon.v1.PreviewCardType, string> = {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { draftKey, draftItemIndex } = defineProps<{
-  draftKey: string
+  draftKey: DraftKey
   draftItemIndex: number
 }>()
 

@@ -27,7 +27,7 @@ export function useAriaLog() {
   }
 
   const appendLogs = (messages: any[]) => {
-    logs.value = logs.value.concat(messages)
+    logs.value = [...logs.value, ...messages]
   }
 
   const clearLogs = () => {

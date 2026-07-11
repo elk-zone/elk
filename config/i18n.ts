@@ -37,8 +37,8 @@ export const countryLocaleVariants: Record<string, (LocaleObjectData & { country
   ca: [
     // ca.json contains ca-ES translations
     // { code: 'ca-AD', name: 'Català (Andorra)' },
-    { country: true, code: 'ca-ES', name: 'Català (Espanya)' },
-    { code: 'ca-valencia', name: 'Català (valencià)' },
+    { country: true, code: 'ca-ES', name: 'Català' },
+    { code: 'ca-valencia', name: 'Valencià' },
     // { code: 'ca-FR', name: 'Català (França)' },
     // { code: 'ca-IT', name: 'Català (Itàlia)' },
   ],

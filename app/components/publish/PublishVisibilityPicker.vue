@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { mastodon } from 'masto'
+
 defineProps<{
   editing?: boolean
 }>()
@@ -11,7 +13,7 @@ const currentVisibility = computed(() =>
   statusVisibilities.find(v => v.value === modelValue.value) || statusVisibilities[0],
 )
 
-function chooseVisibility(visibility: string) {
+function chooseVisibility(visibility: mastodon.v1.StatusVisibility) {
   modelValue.value = visibility
 }
 </script>

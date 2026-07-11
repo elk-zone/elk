@@ -57,6 +57,7 @@ const exploreLink = computed(() => {
 
     <div class="spacer" shrink hidden sm:block />
     <NavSideItem :text="$t('action.compose')" to="/compose" icon="i-ri:quill-pen-line" user-only :command="command" />
+    <NavSideItem :text="$t('nav.scheduled_posts')" to="/scheduled-posts" icon="i-ri:calendar-schedule-line" user-only :command="command" />
 
     <div class="spacer" shrink hidden sm:block />
     <NavSideItem :text="$t('nav.explore')" :to="exploreLink" icon="i-ri:compass-3-line" :command="command" />

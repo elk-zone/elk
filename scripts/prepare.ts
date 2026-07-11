@@ -1,11 +1,28 @@
+import { cp, mkdir, writeFile } from 'node:fs/promises'
+import { dirname } from 'node:path'
 import process from 'node:process'
-import fs from 'fs-extra'
 import { emojiPrefix, iconifyEmojiPackage } from '../config/emojis.ts'
 import { colorsMap } from './generate-themes.ts'
 
-const dereference = process.platform === 'win32' ? true : undefined
+const dereference = process.platform === 'win32'
 
-await fs.copy(`node_modules/${iconifyEmojiPackage}/icons`, `public/emojis/${emojiPrefix}`, { overwrite: true, dereference })
+const destEmojis = `public/emojis/${emojiPrefix}`
+await mkdir(dirname(destEmojis), { recursive: true })
+await cp(`node_modules/${iconifyEmojiPackage}/icons`, destEmojis, {
+  force: true,
+  dereference,
+  recursive: true,
+})
 
-await fs.writeJSON('app/constants/themes.json', colorsMap, { spaces: 2, EOL: '\n' })
-await fs.writeFile('app/styles/default-theme.css', `:root {\n${Object.entries(colorsMap[0][1]).map(([k, v]) => `  ${k}: ${v};`).join('\n')}\n}\n`, { encoding: 'utf-8' })
+await writeFile(
+  'app/constants/themes.json',
+  `${JSON.stringify(colorsMap, null, 2)}\n`,
+  { encoding: 'utf-8' },
+)
+await writeFile(
+  'app/styles/default-theme.css',
+  `:root {\n${Object.entries(colorsMap[0][1])
+    .map(([k, v]) => `  ${k}: ${v};`)
+    .join('\n')}\n}\n`,
+  { encoding: 'utf-8' },
+)

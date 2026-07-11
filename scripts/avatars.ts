@@ -1,5 +1,4 @@
-import { writeFile } from 'node:fs/promises'
-import fs from 'fs-extra'
+import { mkdir, writeFile } from 'node:fs/promises'
 import { ofetch } from 'ofetch'
 import { join, resolve } from 'pathe'
 import { crabTeamMembers, elkTeamMembers } from '../app/composables/about.ts'
@@ -20,7 +19,7 @@ async function download(url: string, fileName: string) {
 }
 
 async function fetchAvatars() {
-  await fs.ensureDir(avatarsDir)
+  await mkdir(avatarsDir, { recursive: true })
 
   const allTeamMembers = [...elkTeamMembers, ...crabTeamMembers]
 

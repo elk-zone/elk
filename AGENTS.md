@@ -34,7 +34,7 @@ Running a single test:
 
 ```bash
 pnpm vitest tests/unit/language.test.ts       # one file
-pnpm vitest -t "reorders timeline"            # by test name
+pnpm vitest -t "timeline reordering"          # by test name (matches the describe block)
 ```
 
 Tests live in `tests/unit/` (plain vitest) and `tests/nuxt/` (run in the `nuxt` vitest project with a Nuxt environment + IndexedDB/IntersectionObserver mocks; see `vitest.config.ts` and `tests/setup.ts`). Content-rendering tests use snapshots in `tests/nuxt/__snapshots__/`.

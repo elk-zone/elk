@@ -15,6 +15,7 @@
 - [ ] `pnpm test:typecheck` passes
 - [ ] _(Recommended)_ I [signed off](../blob/main/CONTRIBUTING.md#signing-off-your-work-recommended) each commit myself (e.g., using `git commit -s`)
 
-> [!IMPORTANT]
-> **Used an AI coding agent for any part of this change?** 🤖👋
-> That's welcome — but you still need to read, understand, and take responsibility for every edit an agent made before it lands here. See the our guidance for [AI-assistance](../blob/main/CONTRIBUTING.md#using-ai-assistance) for the details. Thanks for keeping Elk in good hands!
+<!--
+IMPORTANT: Used an AI coding agent for any part of this change? 🤖👋
+- That's welcome — but you still need to read, understand, and take responsibility for every edit an agent made before it lands here. See the our guidance for [AI-assistance](../blob/main/CONTRIBUTING.md#using-ai-assistance) for the details. Thanks for keeping Elk in good hands!
+-->

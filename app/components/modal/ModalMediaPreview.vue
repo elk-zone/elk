@@ -10,6 +10,8 @@ const current = computed(() => mediaPreviewList.value[mediaPreviewIndex.value])
 const hasNext = computed(() => index.value < mediaPreviewList.value.length - 1)
 const hasPrev = computed(() => index.value > 0)
 
+const descriptionExpanded = ref(false)
+
 const keys = useMagicKeys()
 
 whenever(keys.arrowLeft, prev)
@@ -56,13 +58,15 @@ onUnmounted(() => locked.value = false)
     <div flex="~ col center" h-full w-full>
       <ModalMediaPreviewCarousel v-model="index" :media="mediaPreviewList" @close="emit('close')" />
 
-      <div bg="black/30" dark:bg="white/10" mb-6 mt-4 text-white rounded-full flex="~ center shrink-0" overflow-hidden>
+      <div bg="black/30" dark:bg="white/10" mb-6 mt-4 text-white rounded-5 flex="~ center shrink-0" overflow-hidden>
         <div v-if="mediaPreviewList.length > 1" p="y-1 x-3" rounded-r-0 shrink-0>
           {{ index + 1 }} / {{ mediaPreviewList.length }}
         </div>
         <p
-          v-if="current.description" bg="dark/30" dark:bg="white/10" p="y-1 x-3" rounded-ie-full line-clamp-1
-          ws-pre-wrap break-all :title="current.description" w-full
+          v-if="current.description" bg="dark/30" dark:bg="white/10" p="y-1 x-3"
+          ws-pre-wrap break-all :title="current.description" max-w-200
+          :class="descriptionExpanded ? '' : 'line-clamp-1'"
+          @click="descriptionExpanded = !descriptionExpanded"
         >
           {{ current.description }}
         </p>

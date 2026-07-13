@@ -74,13 +74,13 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
     sizes: '1080x2400',
     type: 'image/webp',
     form_factor: 'narrow',
-    label: pwa.screenshots.dark,
+    label: pwa.screenshots.dark_mobile,
   }, {
     src: 'screenshots/light-2.webp',
     sizes: '1080x2400',
     type: 'image/webp',
     form_factor: 'narrow',
-    label: pwa.screenshots.light,
+    label: pwa.screenshots.light_mobile,
   }]
 
   const manifestEntries: Partial<ManifestOptions> = {

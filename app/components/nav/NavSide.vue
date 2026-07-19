@@ -65,6 +65,7 @@ const exploreLink = computed(() => {
     <NavSideItem :text="$t('nav.federated')" :to="isHydrated ? `/${currentServer}/public` : '/public'" icon="i-ri:earth-line" :command="command" />
     <NavSideItem :text="$t('nav.lists')" :to="isHydrated ? `/${currentServer}/lists` : '/lists'" icon="i-ri:list-check" user-only :command="command" />
     <NavSideItem :text="$t('nav.hashtags')" to="/hashtags" icon="i-ri:hashtag" user-only :command="command" />
+    <NavSideItem :text="$t('nav.collections')" :to="isHydrated ? `/${currentServer}/collections` : '/collections'" icon="i-ri:shapes-line" user-only :command="command" />
 
     <div class="spacer" shrink hidden sm:block />
     <NavSideItem :text="$t('nav.settings')" to="/settings" icon="i-ri:settings-3-line" :command="command" />

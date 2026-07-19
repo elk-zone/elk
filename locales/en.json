@@ -99,6 +99,12 @@
     "edit_title": "Description",
     "remove_label": "Remove attachment"
   },
+  "collection": {
+    "created_by": "Created by",
+    "empty": "No accounts in this collection yet.",
+    "item_count": "{0} accounts|{0} account|{0} accounts",
+    "no_collections": "No collections yet."
+  },
   "command": {
     "activate": "Activate",
     "complete": "Complete",
@@ -192,6 +198,7 @@
   },
   "error": {
     "account_not_found": "Account {0} not found",
+    "collection_not_found": "Collection not found",
     "explore_list_empty": "Nothing is trending right now. Check back later!",
     "file_size_cannot_exceed_n_mb": "File size cannot exceed {0}MB",
     "quote_fetch_error": "Could not fetch the quoted post",
@@ -320,6 +327,7 @@
     "blocked_users": "Blocked users",
     "bookmarks": "Bookmarks",
     "built_at": "Built {0}",
+    "collections": "Collections",
     "compose": "Compose",
     "conversations": "Conversations",
     "docs": "Documentation",
@@ -347,7 +355,9 @@
     "zen_mode": "Zen Mode"
   },
   "notification": {
+    "added_you_to_collection": "added you to a collection",
     "and": "and",
+    "collection_updated": "updated a collection you're in",
     "favourited_post": "favorited your post",
     "followed_you": "followed you",
     "followed_you_count": "{0} people followed you|{0} person followed you|{0} people followed you",
@@ -692,10 +702,13 @@
   },
   "tab": {
     "accounts": "Accounts",
+    "collections": "Collections",
     "for_you": "For you",
     "hashtags": "Hashtags",
+    "in_collections": "Featuring you",
     "list": "List",
     "media": "Media",
+    "my_collections": "My collection",
     "news": "News",
     "notifications_admin": {
       "report": "Report",

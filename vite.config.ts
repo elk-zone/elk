@@ -578,7 +578,7 @@ export default defineConfig({
       },
       {
         files: [
-          "**/scripts/**/*.?([cm])[jt]s?(x)",
+          "**/scripts/**/*.ts",
           "**/cli/**/*.?([cm])[jt]s?(x)",
           "**/cli.?([cm])[jt]s?(x)",
         ],

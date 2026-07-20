@@ -345,7 +345,7 @@ export default defineConfig({
       ],
       "import/consistent-type-specifier-style": [
         "error",
-        "top-level"
+        "prefer-top-level"
       ],
       "import/first": "error",
       "import/no-duplicates": "error",

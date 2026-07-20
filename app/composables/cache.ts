@@ -6,7 +6,7 @@ const cache = new LRUCache<string, any>({
 })
 
 if (import.meta.dev && import.meta.client)
-  // eslint-disable-next-line no-console
+  // oxlint-disable-next-line no-console
   console.log({ cache })
 
 export function setCached(key: string, value: any, override = false) {

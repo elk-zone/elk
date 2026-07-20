@@ -91,7 +91,7 @@ async function deleteAndRedraft() {
     return
 
   if (import.meta.dev) {
-    // eslint-disable-next-line no-alert
+    // oxlint-disable-next-line no-alert
     const result = confirm('[DEV] Are you sure you want to delete and re-draft this post?')
     if (!result)
       return

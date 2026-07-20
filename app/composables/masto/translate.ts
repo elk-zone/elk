@@ -151,7 +151,7 @@ export async function useTranslation(status: mastodon.v1.Status | mastodon.v1.St
           // Make sure HTML markup doesn't derail language detection.
           const div = document.createElement('div')
           div.innerHTML = status.content
-          // eslint-disable-next-line unicorn/prefer-dom-node-text-content
+          // oxlint-disable-next-line unicorn/prefer-dom-node-text-content
           const detectedLanguages = await languageDetector.detect(div.innerText)
           sourceLanguage = detectedLanguages[0].detectedLanguage
           if (sourceLanguage === 'und') {

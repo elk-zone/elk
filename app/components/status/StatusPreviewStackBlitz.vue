@@ -49,7 +49,7 @@ const vnodeCode = computed(() => {
     .replace(HTML_ESCAPE_REGEX.GREATER_THAN, '&gt;')
     .replace(HTML_ESCAPE_REGEX.BACKTICK, '&#96;')
 
-  const vnode = contentToVNode(`<p>\`\`\`${meta.value.file?.split('.')?.[1] ?? ''}\n${code}\n\`\`\`\</p>`, {
+  const vnode = contentToVNode(`<p>\`\`\`${meta.value.file?.split('.')?.[1] ?? ''}\n${code}\n\`\`\`</p>`, {
     markdown: true,
   })
   return vnode

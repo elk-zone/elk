@@ -169,8 +169,8 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
           entry.description = app_desc_short
 
         // clone default screenshots and shortcuts
-        const useScreenshots = [...defaultScreenshots.map(screenshot => ({ ...screenshot }))]
-        const useShortcuts = [...defaultShortcuts.map(shortcut => ({ ...shortcut }))]
+        const useScreenshots = defaultScreenshots.map(screenshot => ({ ...screenshot }))
+        const useShortcuts = defaultShortcuts.map(shortcut => ({ ...shortcut }))
 
         const pwaScreenshots = pwa?.screenshots
         if (pwaScreenshots) {

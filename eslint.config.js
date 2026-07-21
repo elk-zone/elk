@@ -27,6 +27,15 @@ export default await antfu(
       'node/prefer-global/process': 'off',
     },
   },
+  {
+    files: ['docs/content/**/*.md'],
+    rules: {
+      // the markdown plugin misreads `#slot` as a malformed heading
+      // MDC components (https://content.nuxt.com/docs/files/markdown#vue-components)
+      // use this `#slot` syntax
+      'markdown/no-missing-atx-heading-space': 'off',
+    },
+  },
   // Sort local files
   {
     files: ['locales/**.json'],

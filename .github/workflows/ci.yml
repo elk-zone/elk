@@ -41,3 +41,32 @@ jobs:
 
       - name: 💪 Type check
         run: pnpm test:typecheck
+
+  browser:
+    name: 🖥️ Browser tests
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.61.1-noble
+
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+
+      - name: 👑 Fix Git ownership
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - run: npm i -g corepack@latest && corepack enable
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version-file: .nvmrc
+
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🚧 Set up project
+        run: pnpm nuxi prepare
+
+      - name: 🏗️ Build project
+        run: pnpm build
+
+      - name: 🖥️ Test project (browser)
+        run: pnpm test:browser:prebuilt

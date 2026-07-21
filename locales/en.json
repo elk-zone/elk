@@ -461,6 +461,9 @@
     "search_desc": "Search for people & hashtags",
     "search_empty": "Could not find anything for these search terms"
   },
+  "server": {
+    "thumbnail_description": "Thumbnail for {0} server"
+  },
   "settings": {
     "about": {
       "built_at": "Built",

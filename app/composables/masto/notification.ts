@@ -47,19 +47,15 @@ export function useNotifications() {
     const paginator = client.value.v1.notifications.list({ limit: 30 })
     const paginatorValues = paginator.values()
 
-    do {
-      const result = await paginatorValues.next()
-      if (!result.done && result.value.length) {
-        for (const notification of result.value) {
-          if (notification.id === position.notifications.lastReadId)
-            return
-          notifications[id]![1].push(notification.id)
-        }
-      }
-      else {
+    for await (const page of paginatorValues) {
+      if (!page.length)
         break
+      for (const notification of page) {
+        if (notification.id === position.notifications.lastReadId)
+          return
+        notifications[id]![1].push(notification.id)
       }
-    } while (true)
+    }
   }
 
   function disconnect(): void {

@@ -64,10 +64,13 @@ const {
   preferredLanguage,
   publishSpoilerText,
 } = usePublish(
-  {
-    draftItem: draft,
-    ...{ expanded: toRef(() => expanded), isUploading, initialDraft: initial, isPartOfThread: false },
-  },
+  ({
+	draftItem: draft,
+	expanded: toRef(() => expanded),
+	isUploading,
+	initialDraft: initial,
+	isPartOfThread: false
+}),
 )
 
 const { editor } = useTiptap({

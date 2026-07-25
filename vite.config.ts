@@ -88,7 +88,7 @@ export default defineConfig({
       '**/*.min.*',
       '**/LICENSE*',
       '**/__snapshots__',
-      '**/auto-import?(s).d.ts',
+      '**/auto-imports.d.ts',
       '**/components.d.ts',
       'public/**',
       'public-dev/**',
@@ -735,7 +735,7 @@ export default defineConfig({
     },
     overrides: [
       {
-        files: ['**/*.?([cm])[jt]s?(x)'],
+        files: ['**/*.{js,mjs,ts}'],
         rules: {
           'node/handle-callback-err': ['error', '^(err|error)$'],
           'node/no-exports-assign': 'error',
@@ -755,7 +755,7 @@ export default defineConfig({
         plugins: ['node', 'jsdoc'],
       },
       {
-        files: ['**/*.?([cm])ts', '**/*.?([cm])tsx', '**/*.vue'],
+        files: ['**/*.ts', '**/*.tsx', '**/*.vue'],
         rules: {
           'constructor-super': 'off',
           'getter-return': 'off',
@@ -839,11 +839,11 @@ export default defineConfig({
       },
       {
         files: [
-          '**/__tests__/**/*.?([cm])[jt]s?(x)',
-          '**/*.spec.?([cm])[jt]s?(x)',
-          '**/*.test.?([cm])[jt]s?(x)',
-          '**/*.bench.?([cm])[jt]s?(x)',
-          '**/*.benchmark.?([cm])[jt]s?(x)',
+          '**/__tests__/**/*.{js,mjs,ts}',
+          '**/*.spec.{js,mjs,ts}',
+          '**/*.test.{js,mjs,ts}',
+          '**/*.bench.{js,mjs,ts}',
+          '**/*.benchmark.{js,mjs,ts}',
         ],
         rules: {
           'vitest/consistent-test-it': [
@@ -1271,7 +1271,7 @@ export default defineConfig({
         jsPlugins: ['eslint-plugin-pnpm', 'eslint-plugin-yml'],
       },
       {
-        files: ['**/*.y?(a)ml'],
+        files: ['**/*.{yml,yaml}'],
         rules: {
           '@stylistic/spaced-comment': 'off',
           'yml/block-mapping': 'error',
@@ -1361,7 +1361,7 @@ export default defineConfig({
       //   jsPlugins: ['eslint-plugin-antfu', 'eslint-plugin-regexp', '@stylistic/eslint-plugin'],
       // },
       {
-        files: ['**/*.md/**/*.?([cm])[jt]s?(x)', '**/*.md/**/*.vue'],
+        files: ['**/*.md/**/*.{js,mjs,ts}', '**/*.md/**/*.vue'],
         rules: {
           'antfu/no-top-level-await': 'off',
           'no-alert': 'off',
@@ -1389,11 +1389,7 @@ export default defineConfig({
         ],
       },
       {
-        files: [
-          '**/scripts/**/*.?([cm])[jt]s?(x)',
-          '**/cli/**/*.?([cm])[jt]s?(x)',
-          '**/cli.?([cm])[jt]s?(x)',
-        ],
+        files: ['**/scripts/**/*.{js,mjs,ts}', '**/cli/**/*.{js,mjs,ts}', '**/cli.{js,mjs,ts}'],
         rules: {
           'antfu/no-top-level-await': 'off',
           'no-console': 'off',
@@ -1401,7 +1397,7 @@ export default defineConfig({
         jsPlugins: ['eslint-plugin-antfu'],
       },
       {
-        files: ['**/bin/**/*', '**/bin.?([cm])[jt]s?(x)'],
+        files: ['**/bin/**/*', '**/bin.{js,mjs,ts}'],
         rules: {
           'antfu/no-import-dist': 'off',
           'antfu/no-import-node-modules-by-path': 'off',
@@ -1409,7 +1405,7 @@ export default defineConfig({
         jsPlugins: ['eslint-plugin-antfu'],
       },
       {
-        files: ['**/*.d.?([cm])ts'],
+        files: ['**/*.d.{ts,mts,cts}'],
         rules: {
           'eslint-comments/no-unlimited-disable': 'off',
           'unused-imports/no-unused-vars': 'off',
@@ -1417,7 +1413,7 @@ export default defineConfig({
         jsPlugins: ['eslint-plugin-eslint-comments', 'eslint-plugin-unused-imports'],
       },
       {
-        files: ['**/*.config.?([cm])[jt]s?(x)', '**/*.config.*.?([cm])[jt]s?(x)'],
+        files: ['**/*.config.{js,mjs,ts}', '**/*.config.*.{js,mjs,ts}'],
         rules: {
           'antfu/no-top-level-await': 'off',
           'no-console': 'off',

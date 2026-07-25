@@ -8,6 +8,7 @@ export default defineConfig({
   },
   test: {
     reporters: isCI ? ['default', 'hanging-process'] : ['default'],
+    exclude: ['../tests/e2e/**'],
     projects: [
       await defineVitestProject({
         test: {

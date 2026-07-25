@@ -1,31 +1,34 @@
 import type { MastoNotification, NotificationInfo, PushPayload, UserLogin } from './types'
 import { closeDatabases, get } from '../app/utils/elk-idb'
 
-export async function findNotification({ access_token, notification_id/* , notification_type */ }: PushPayload): Promise<NotificationInfo | undefined> {
+export async function findNotification({
+  access_token,
+  notification_id /* , notification_type */,
+}: PushPayload): Promise<NotificationInfo | undefined> {
   const users = await get<UserLogin[]>('elk-users')
-  if (!users)
-    return undefined
+  if (!users) return undefined
 
-  const filteredUsers = users.filter(user => user.token === access_token)
-  if (!filteredUsers || filteredUsers.length === 0)
-    return undefined
+  const filteredUsers = users.filter((user) => user.token === access_token)
+  if (!filteredUsers || filteredUsers.length === 0) return undefined
 
   for (const user of filteredUsers) {
     try {
-      const response = await fetch(`https://${user.server}/api/v1/notifications/${notification_id}`, {
-        method: 'get',
-        headers: {
-          'Authorization': `Bearer ${user.token}`,
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        `https://${user.server}/api/v1/notifications/${notification_id}`,
+        {
+          method: 'get',
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+            'Content-Type': 'application/json',
+          },
         },
-      })
+      )
       // assume it is ok to return the first notification: backend should return 404 if not found
       if (response && response.ok) {
         const notification: MastoNotification = await response.json()
         return { user, notification }
       }
-    }
-    catch {
+    } catch {
       // just ignore
     }
   }
@@ -37,14 +40,8 @@ export function createNotificationOptions(
   pushPayload: PushPayload,
   notificationInfo?: NotificationInfo,
 ): NotificationOptions {
-  const {
-    access_token,
-    body,
-    icon,
-    notification_id,
-    notification_type,
-    preferred_locale,
-  } = pushPayload
+  const { access_token, body, icon, notification_id, notification_type, preferred_locale } =
+    pushPayload
 
   const url = notification_type === 'mention' ? 'notifications/mention' : 'notifications'
 
@@ -87,15 +84,22 @@ export function createNotificationOptions(
     */
     if (notification.status) {
       // notificationOptions.body = htmlToPlainText(notification.status.content)
-      if (notification.status.media_attachments && notification.status.media_attachments.length > 0 && notification.status.media_attachments[0].preview_url) {
+      if (
+        notification.status.media_attachments &&
+        notification.status.media_attachments.length > 0 &&
+        notification.status.media_attachments[0].preview_url
+      ) {
         // @ts-expect-error error missing type, just ignore
         notificationOptions.image = notification.status.media_attachments[0].preview_url
       }
 
-      if (notification.type === 'favourite' || notification.type === 'reblog' || notification.type === 'mention')
+      if (
+        notification.type === 'favourite' ||
+        notification.type === 'reblog' ||
+        notification.type === 'mention'
+      )
         notificationOptions.data.url = `${user.server}/@${user.account.username}/${notification.status.id}`
-    }
-    else if (notification.type === 'follow') {
+    } else if (notification.type === 'follow') {
       notificationOptions.data.url = `${user.server}/@${notification.account.acct}`
     }
   }

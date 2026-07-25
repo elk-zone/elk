@@ -40,12 +40,19 @@ const selectedLanguage = computed({
       <select
         v-model="selectedLanguage"
         contenteditable="false"
-        absolute top-1 right-1 rounded px2 op0 hover:op100 focus:op100 transition
-        outline-none border="~ base"
+        absolute
+        top-1
+        right-1
+        rounded
+        px2
+        op0
+        hover:op100
+        focus:op100
+        transition
+        outline-none
+        border="~ base"
       >
-        <option :value="null">
-          plain
-        </option>
+        <option :value="null">plain</option>
         <option v-for="(language, index) in languages" :key="index" :value="language">
           {{ language }}
         </option>

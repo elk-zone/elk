@@ -9,10 +9,7 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <span
-    v-if="relationship.followedBy"
-    border border-base rounded-md px-2 text-secondary-light
-  >
+  <span v-if="relationship.followedBy" border border-base rounded-md px-2 text-secondary-light>
     {{ relationship.following ? t('account.mutuals') : t('account.follows_you') }}
   </span>
 </template>

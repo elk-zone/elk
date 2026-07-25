@@ -18,7 +18,14 @@ const instance = computed(() => instanceStorage.value[currentServer.value])
 <template>
   <div h-full :data-mode="isHydrated && isGrayscale ? 'grayscale' : ''">
     <main flex w-full mxa lg:max-w-80rem>
-      <aside class="w-1/8 md:w-1/6 lg:w-1/5 xl:w-1/4 zen-hide" hidden sm:flex justify-end xl:me-4 relative>
+      <aside
+        class="w-1/8 md:w-1/6 lg:w-1/5 xl:w-1/4 zen-hide"
+        hidden
+        sm:flex
+        justify-end
+        xl:me-4
+        relative
+      >
         <div sticky top-0 w-20 xl:w-100 h-100dvh flex="~ col" lt-xl-items-center>
           <slot name="left">
             <div flex="~ col" overflow-y-auto justify-between h-full max-w-full overflow-x-hidden>
@@ -34,9 +41,15 @@ const instance = computed(() => instanceStorage.value[currentServer.value])
                     <UserPicker v-if="showUserPicker" />
                     <div v-else flex="~" items-center justify-between>
                       <NuxtLink
-                        hidden xl:block
-                        rounded-3 text-primary text-start w-full
-                        hover:bg-active cursor-pointer transition-100
+                        hidden
+                        xl:block
+                        rounded-3
+                        text-primary
+                        text-start
+                        w-full
+                        hover:bg-active
+                        cursor-pointer
+                        transition-100
                         :to="getAccountRoute(currentUser.account)"
                       >
                         <AccountInfo :account="currentUser.account" md:break-words square />
@@ -51,16 +64,33 @@ const instance = computed(() => instanceStorage.value[currentServer.value])
           </slot>
         </div>
       </aside>
-      <div w-full min-h-screen :class="isHydrated && wideLayout ? 'xl:w-full sm:w-600px' : 'sm:w-600px md:shrink-0'" border-base>
+      <div
+        w-full
+        min-h-screen
+        :class="isHydrated && wideLayout ? 'xl:w-full sm:w-600px' : 'sm:w-600px md:shrink-0'"
+        border-base
+      >
         <div min-h="[calc(100vh-3.5rem)]" sm:min-h-screen>
           <slot />
         </div>
-        <div sticky left-0 right-0 bottom-0 z-10 bg-base pb="[env(safe-area-inset-bottom)]" transition="padding 20">
+        <div
+          sticky
+          left-0
+          right-0
+          bottom-0
+          z-10
+          bg-base
+          pb="[env(safe-area-inset-bottom)]"
+          transition="padding 20"
+        >
           <CommonOfflineChecker v-if="isHydrated" />
           <NavBottom v-if="isHydrated" sm:hidden />
         </div>
       </div>
-      <aside v-if="isHydrated && !wideLayout" class="hidden lg:w-1/5 xl:w-1/4 sm:none xl:block zen-hide">
+      <aside
+        v-if="isHydrated && !wideLayout"
+        class="hidden lg:w-1/5 xl:w-1/4 sm:none xl:block zen-hide"
+      >
         <div sticky top-0 h-100dvh flex="~ col" gap-2 py3 ms-2>
           <slot name="right">
             <SearchWidget mt-4 mx-1 hidden xl:block />
@@ -68,7 +98,12 @@ const instance = computed(() => instanceStorage.value[currentServer.value])
             <!-- server info -->
             <div v-if="!currentUser && instance" grid gap-3 m3>
               <span text-size-lg text-primary font-bold>{{ instance.title }}</span>
-              <img v-if="instance.thumbnail?.url" rounded-3 :src="instance.thumbnail.url" :alt="$t('server.thumbnail_description', [instance.title])">
+              <img
+                v-if="instance.thumbnail?.url"
+                rounded-3
+                :src="instance.thumbnail.url"
+                :alt="$t('server.thumbnail_description', [instance.title])"
+              />
               <p text-secondary>
                 {{ instance.description }}
               </p>

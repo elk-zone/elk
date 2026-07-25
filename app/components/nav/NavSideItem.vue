@@ -1,5 +1,11 @@
 <script setup lang="ts">
-const { text, icon, to, userOnly = false, command } = defineProps<{
+const {
+  text,
+  icon,
+  to,
+  userOnly = false,
+  command,
+} = defineProps<{
   text?: string
   icon: string
   to: string | Record<string, string>
@@ -17,7 +23,7 @@ const router = useRouter()
 useCommand({
   scope: 'Navigation',
 
-  name: () => text ?? (typeof to === 'string' ? to as string : to.name),
+  name: () => text ?? (typeof to === 'string' ? (to as string) : to.name),
   icon: () => icon,
   visible: () => command,
 
@@ -47,29 +53,36 @@ const noUserVisual = computed(() => isHydrated.value && userOnly && !currentUser
     :disabled="noUserDisable"
     :class="noUserVisual ? 'op25 pointer-events-none ' : ''"
     :active-class="activeClass"
-    group focus:outline-none disabled:pointer-events-none
+    group
+    focus:outline-none
+    disabled:pointer-events-none
     :tabindex="noUserDisable ? -1 : undefined"
     @click="$scrollToTop"
   >
     <CommonTooltip :disabled="!isMediumOrLargeScreen" :content="text" placement="right">
       <div
         class="item"
-        flex items-center gap4
+        flex
+        items-center
+        gap4
         xl="ml0 mr5 px5 w-auto"
-        :class="isSmallScreen
-          ? `
+        :class="
+          isSmallScreen
+            ? `
             w-full
             px5 sm:mxa
             transition-colors duration-200 transform
             hover-bg-gray-100 hover-dark:(bg-gray-700 text-white)
-          ` : `
+          `
+            : `
             w-fit rounded-3
             px2 mx3 sm:mxa
             transition-100
             elk-group-hover-bg-active
             group-focus-visible:ring-2
             group-focus-visible:ring-current
-          `"
+          `
+        "
       >
         <slot name="icon">
           <div :class="icon" text-xl />
@@ -83,26 +96,26 @@ const noUserVisual = computed(() => isHydrated.value && userOnly && !currentUser
 </template>
 
 <style scoped>
+.item {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+@media screen and (max-height: 820px) and (min-width: 1280px) {
   .item {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
   }
-  @media screen and ( max-height: 820px ) and ( min-width: 1280px ) {
-    .item {
-      padding-top: 0.25rem;
-      padding-bottom: 0.25rem;
-    }
+}
+@media screen and (max-height: 780px) and (min-width: 640px) {
+  .item {
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
   }
-  @media screen and ( max-height: 780px ) and ( min-width: 640px ) {
-    .item {
-      padding-top: 0.35rem;
-      padding-bottom: 0.35rem;
-    }
+}
+@media screen and (max-height: 780px) and (min-width: 1280px) {
+  .item {
+    padding-top: 0.05rem;
+    padding-bottom: 0.05rem;
   }
-  @media screen and ( max-height: 780px ) and ( min-width: 1280px ) {
-    .item {
-      padding-top: 0.05rem;
-      padding-bottom: 0.05rem;
-    }
-  }
+}
 </style>

@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
-import { toggleBlockAccount, toggleFollowAccount, toggleMuteAccount, useRelationship } from '~/composables/masto/relationship'
+import {
+  toggleBlockAccount,
+  toggleFollowAccount,
+  toggleMuteAccount,
+  useRelationship,
+} from '~/composables/masto/relationship'
 
 const { account, status } = defineProps<{
   account: mastodon.v1.Account
@@ -44,8 +49,7 @@ async function loadStatuses() {
     })
     availableStatuses.value = [...availableStatuses.value, ...prevStatuses]
     availableStatuses.value = [...availableStatuses.value, ...nextStatuses]
-  }
-  else {
+  } else {
     // Reporting an account directly
     // Load the 10 most recent statuses
     const mostRecentStatuses = await client.value.v1.accounts.$select(account.id).statuses.list({
@@ -53,7 +57,9 @@ async function loadStatuses() {
     })
     availableStatuses.value = mostRecentStatuses
   }
-  availableStatuses.value.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+  availableStatuses.value.sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+  )
 }
 
 async function submitReport() {
@@ -62,7 +68,12 @@ async function submitReport() {
     statusIds: selectedStatusIds.value,
     comment: additionalComments.value,
     forward: forwardReport.value,
-    category: reportReason.value === 'spam' ? 'spam' : reportReason.value === 'violation' ? 'violation' : 'other',
+    category:
+      reportReason.value === 'spam'
+        ? 'spam'
+        : reportReason.value === 'violation'
+          ? 'violation'
+          : 'other',
     ruleIds: reportReason.value === 'violation' ? selectedRuleIds.value : null,
   })
   step.value = 'furtherActions'
@@ -97,7 +108,16 @@ function resetModal() {
         <b text-primary>@{{ account.acct }}</b>
       </i18n-t>
     </h2>
-    <button ref="dismissButton" btn-action-icon absolute top--8 right-0 m1 :aria-label="$t('action.close')" @click="emit('close')">
+    <button
+      ref="dismissButton"
+      btn-action-icon
+      absolute
+      top--8
+      right-0
+      m1
+      :aria-label="$t('action.close')"
+      @click="emit('close')"
+    >
       <div i-ri:close-line />
     </button>
 
@@ -110,7 +130,7 @@ function resetModal() {
       </p>
 
       <div>
-        <input id="dontlike" v-model="reportReason" type="radio" value="dontlike">
+        <input id="dontlike" v-model="reportReason" type="radio" value="dontlike" />
         <label pl-2 for="dontlike" font-bold>{{ $t('report.dontlike') }}</label>
         <p pl-6>
           {{ $t('report.dontlike_desc') }}
@@ -118,7 +138,7 @@ function resetModal() {
       </div>
 
       <div>
-        <input id="spam" v-model="reportReason" type="radio" value="spam">
+        <input id="spam" v-model="reportReason" type="radio" value="spam" />
         <label pl-2 for="spam" font-bold>{{ $t('report.spam') }}</label>
         <p pl-6>
           {{ $t('report.spam_desc') }}
@@ -126,7 +146,7 @@ function resetModal() {
       </div>
 
       <div v-if="serverRules.length > 0">
-        <input id="violation" v-model="reportReason" type="radio" value="violation">
+        <input id="violation" v-model="reportReason" type="radio" value="violation" />
         <label pl-2 for="violation" font-bold>{{ $t('report.violation') }}</label>
         <p v-if="reportReason === 'violation'" pl-6 pt-2 text-primary font-bold>
           {{ $t('report.select_many') }}
@@ -139,14 +159,14 @@ function resetModal() {
               type="checkbox"
               :value="rule.id"
               :disabled="reportReason !== 'violation'"
-            >
+            />
             <label pl-2 :for="rule.id">{{ rule.text }}</label>
           </li>
         </ul>
       </div>
 
       <div>
-        <input id="other" v-model="reportReason" type="radio" value="other">
+        <input id="other" v-model="reportReason" type="radio" value="other" />
         <label pl-2 for="other" font-bold>{{ $t('report.other') }}</label>
         <p pl-6>
           {{ $t('report.other_desc') }}
@@ -157,7 +177,14 @@ function resetModal() {
         <h3 mt-8 mb-4 font-bold>
           {{ $t('report.anything_else') }}
         </h3>
-        <textarea v-model="additionalComments" w-full h-20 p-3 border :placeholder="$t('report.additional_comments')" />
+        <textarea
+          v-model="additionalComments"
+          w-full
+          h-20
+          p-3
+          border
+          :placeholder="$t('report.additional_comments')"
+        />
         <div v-if="getServerName(account) && getServerName(account) !== currentServer">
           <h3 mt-8 mb-2 font-bold>
             {{ $t('report.another_server') }}
@@ -165,13 +192,17 @@ function resetModal() {
           <p pb-1>
             {{ $t('report.forward_question') }}
           </p>
-          <input id="forward" v-model="forwardReport" type="checkbox" value="rule.id">
-          <label pl-2 for="forward"><b>{{ $t('report.forward', [getServerName(account)]) }}</b></label>
+          <input id="forward" v-model="forwardReport" type="checkbox" value="rule.id" />
+          <label pl-2 for="forward"
+            ><b>{{ $t('report.forward', [getServerName(account)]) }}</b></label
+          >
         </div>
       </div>
 
       <button
-        btn-solid mxa mt-10
+        btn-solid
+        mxa
+        mt-10
         :disabled="!reportReason || (reportReason === 'violation' && selectedRuleIds.length < 1)"
         @click="categoryChosen()"
       >
@@ -194,7 +225,7 @@ function resetModal() {
               v-model="selectedStatusIds"
               type="checkbox"
               :value="availableStatus.id"
-            >
+            />
           </td>
           <td>
             <label :for="availableStatus.id">
@@ -203,44 +234,49 @@ function resetModal() {
           </td>
         </tr>
       </table>
-      <button
-        btn-solid mxa mt-5
-        @click="submitReport()"
-      >
+      <button btn-solid mxa mt-5 @click="submitReport()">
         {{ $t('report.submit') }}
       </button>
     </template>
 
     <template v-else-if="step === 'furtherActions'">
       <h1 mxa text-4xl mb4>
-        {{ reportReason === 'dontlike' ? $t('report.further_actions.limit.title') : $t('report.further_actions.report.title') }}
+        {{
+          reportReason === 'dontlike'
+            ? $t('report.further_actions.limit.title')
+            : $t('report.further_actions.report.title')
+        }}
       </h1>
       <p text-xl>
-        {{ reportReason === 'dontlike' ? $t('report.further_actions.limit.description') : $t('report.further_actions.report.description') }}
+        {{
+          reportReason === 'dontlike'
+            ? $t('report.further_actions.limit.description')
+            : $t('report.further_actions.report.description')
+        }}
       </p>
 
       <div v-if="useRelationship(account).value?.following">
         <button btn-outline mxa mt-4 mb-2 @click="unfollow()">
           <i18n-t keypath="menu.unfollow_account">
             <b>@{{ account.acct }}</b>
-          </i18n-t>
-        </button><br>
+          </i18n-t></button
+        ><br />
         {{ $t('report.unfollow_desc') }}
       </div>
       <div v-if="!useRelationship(account).value?.muting">
         <button btn-outline mxa mt-4 mb-2 @click="mute()">
           <i18n-t keypath="menu.mute_account">
             <b>@{{ account.acct }}</b>
-          </i18n-t>
-        </button><br>
+          </i18n-t></button
+        ><br />
         {{ $t('report.mute_desc') }}
       </div>
       <div v-if="!useRelationship(account).value?.blocking">
         <button btn-outline mxa mt-4 mb-2 @click="block()">
           <i18n-t keypath="menu.block_account">
             <b>@{{ account.acct }}</b>
-          </i18n-t>
-        </button><br>
+          </i18n-t></button
+        ><br />
         {{ $t('report.block_desc') }}
       </div>
       <button btn-solid mxa mt-10 @click="emit('close')">

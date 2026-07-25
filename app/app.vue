@@ -8,18 +8,21 @@ if (import.meta.server && !route.path.startsWith('/settings')) {
   const url = useRequestURL()
 
   useHead({
-    meta: [
-      { property: 'og:url', content: `${url.origin}${route.path}` },
-    ],
+    meta: [{ property: 'og:url', content: `${url.origin}${route.path}` }],
   })
 }
 
 // We want to trigger rerendering the page when account changes
-const key = computed(() => `${currentUser.value?.server ?? currentServer.value}:${currentUser.value?.account.id || ''}`)
+const key = computed(
+  () =>
+    `${currentUser.value?.server ?? currentServer.value}:${currentUser.value?.account.id || ''}`,
+)
 </script>
 
 <template>
-  <NuxtLoadingIndicator color="repeating-linear-gradient(to right,var(--c-primary) 0%,var(--c-primary-active) 100%)" />
+  <NuxtLoadingIndicator
+    color="repeating-linear-gradient(to right,var(--c-primary) 0%,var(--c-primary-active) 100%)"
+  />
   <NuxtLayout :key="key">
     <NuxtPage />
   </NuxtLayout>

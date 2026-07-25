@@ -15,7 +15,8 @@ useHydratedHead({
   <MainContent>
     <template #title>
       <MainTitle
-        as="router-link" to="/favourites"
+        as="router-link"
+        to="/favourites"
         :icon="useStarFavoriteIcon ? 'i-ri:star-line' : 'i-ri:heart-3-line'"
       >
         {{ t('nav.favourites') }}

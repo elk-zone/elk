@@ -67,9 +67,7 @@ describe('html-parse', () => {
   })
 
   it('html entities', async () => {
-    const { formatted, serializedText } = await render(
-      '<p>Hello &lt;World /&gt;.</p>',
-    )
+    const { formatted, serializedText } = await render('<p>Hello &lt;World /&gt;.</p>')
     expect(formatted).toMatchSnapshot('html')
     expect(serializedText).toMatchSnapshot('text')
   })
@@ -99,8 +97,7 @@ async function render(input: string, options?: ContentParseOptions) {
     formatted = await format(html, {
       parser: 'html',
     })
-  }
-  catch {
+  } catch {
     formatted = html
   }
 

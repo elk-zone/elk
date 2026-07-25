@@ -21,8 +21,7 @@ const account = ref<mastodon.v1.Account | null | undefined>(props.account)
 watch(
   () => [props.account, props.handle, hovered.value] satisfies WatcherType,
   ([newAccount, newHandle, newVisible], oldProps) => {
-    if (!newVisible || import.meta.test)
-      return
+    if (!newVisible || import.meta.test) return
 
     if (newAccount) {
       account.value = newAccount
@@ -34,8 +33,7 @@ watch(
       if (!oldHandle || newHandle !== oldHandle || !account.value) {
         // new handle can be wrong: using server instead of webDomain
         fetchAccountByHandle(newHandle).then((acc) => {
-          if (newHandle === props.handle)
-            account.value = acc
+          if (newHandle === props.handle) account.value = acc
         })
       }
 

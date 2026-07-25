@@ -11,12 +11,9 @@ defineProps<{
 
 <template>
   <div flex="~ gap3" items-center text-base>
-    <img
-      width="20"
-      height="20"
-      :src="emoji.src"
-      loading="lazy"
+    <img width="20" height="20" :src="emoji.src" loading="lazy" />
+    <span shrink overflow-hidden leading-none text-base
+      ><span text-secondary>:</span>{{ emoji.title }}<span text-secondary>:</span></span
     >
-    <span shrink overflow-hidden leading-none text-base><span text-secondary>:</span>{{ emoji.title }}<span text-secondary>:</span></span>
   </div>
 </template>

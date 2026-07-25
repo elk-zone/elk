@@ -9,9 +9,7 @@ watchEffect(() => {
   if (isMediumOrLargeScreen && route.name === 'explore' && search.value?.input)
     search.value?.input?.focus()
 })
-onActivated(() =>
-  search.value?.input?.focus(),
-)
+onActivated(() => search.value?.input?.focus())
 onDeactivated(() => search.value?.input?.blur())
 
 const userSettings = useUserSettings()

@@ -13,7 +13,7 @@ import { currentCustomEmojis, updateCustomEmojis } from '~/composables/emojis'
 
 export type { Emoji }
 
-export type CustomEmoji = (mastodon.v1.CustomEmoji & { custom: true })
+export type CustomEmoji = mastodon.v1.CustomEmoji & { custom: true }
 export function isCustomEmoji(emoji: CustomEmoji | Emoji): emoji is CustomEmoji {
   return !!(emoji as CustomEmoji).custom
 }
@@ -24,10 +24,14 @@ export const TiptapMentionSuggestion: Partial<SuggestionOptions> = import.meta.s
       pluginKey: new PluginKey('mention'),
       char: '@',
       async items({ query }) {
-        if (query.length === 0)
-          return []
+        if (query.length === 0) return []
 
-        const paginator = useMastoClient().v2.search.list({ q: query, type: 'accounts', limit: 25, resolve: true })
+        const paginator = useMastoClient().v2.search.list({
+          q: query,
+          type: 'accounts',
+          limit: 25,
+          resolve: true,
+        })
         return (await paginator.values().next()).value?.accounts ?? []
       },
       render: createSuggestionRenderer(TiptapMentionList),
@@ -37,8 +41,7 @@ export const TiptapHashtagSuggestion: Partial<SuggestionOptions> = {
   pluginKey: new PluginKey('hashtag'),
   char: '#',
   async items({ query }) {
-    if (query.length === 0)
-      return []
+    if (query.length === 0) return []
 
     const paginator = useMastoClient().v2.search.list({
       q: query,
@@ -56,20 +59,22 @@ export const TiptapEmojiSuggestion: Partial<SuggestionOptions> = {
   pluginKey: new PluginKey('emoji'),
   char: ':',
   async items({ query }): Promise<(CustomEmoji | Emoji)[]> {
-    if (import.meta.server || query.length === 0)
-      return []
+    if (import.meta.server || query.length === 0) return []
 
-    if (currentCustomEmojis.value.emojis.length === 0)
-      await updateCustomEmojis()
+    if (currentCustomEmojis.value.emojis.length === 0) await updateCustomEmojis()
 
     const lowerCaseQuery = query.toLowerCase()
 
-    const { data } = await useAsyncData<EmojiMartData>('emoji-data', () => import('@emoji-mart/data').then(r => r.default as EmojiMartData))
-    const emojis: Emoji[] = Object.values(data.value?.emojis || []).filter(({ id }) => id.toLowerCase().startsWith(lowerCaseQuery))
+    const { data } = await useAsyncData<EmojiMartData>('emoji-data', () =>
+      import('@emoji-mart/data').then((r) => r.default as EmojiMartData),
+    )
+    const emojis: Emoji[] = Object.values(data.value?.emojis || []).filter(({ id }) =>
+      id.toLowerCase().startsWith(lowerCaseQuery),
+    )
 
     const customEmojis: CustomEmoji[] = currentCustomEmojis.value.emojis
-      .filter(emoji => emoji.shortcode.toLowerCase().startsWith(lowerCaseQuery))
-      .map(emoji => ({ ...emoji, custom: true }))
+      .filter((emoji) => emoji.shortcode.toLowerCase().startsWith(lowerCaseQuery))
+      .map((emoji) => ({ ...emoji, custom: true }))
 
     return [...emojis, ...customEmojis]
   },
@@ -81,11 +86,9 @@ export const TiptapEmojiSuggestion: Partial<SuggestionOptions> = {
         title: emoji.shortcode,
         src: emoji.url,
       })
-    }
-    else {
-      const skin = emoji.skins.find(skin => skin.native !== undefined)
-      if (skin)
-        editor.commands.insertEmoji(skin.native)
+    } else {
+      const skin = emoji.skins.find((skin) => skin.native !== undefined)
+      if (skin) editor.commands.insertEmoji(skin.native)
     }
   },
   render: createSuggestionRenderer(TiptapEmojiList),
@@ -103,8 +106,7 @@ function createSuggestionRenderer(component: Component): SuggestionOptions['rend
           editor: props.editor,
         })
 
-        if (!props.clientRect)
-          return
+        if (!props.clientRect) return
 
         popup = tippy(document.body, {
           getReferenceClientRect: props.clientRect as GetReferenceClientRect,
@@ -119,18 +121,15 @@ function createSuggestionRenderer(component: Component): SuggestionOptions['rend
 
       // Use arrow function here because Nuxt will transform it incorrectly as Vue hook causing the build to fail
       onBeforeUpdate: (props) => {
-        if (props.editor.isFocused)
-          renderer.updateProps({ ...props, isPending: true })
+        if (props.editor.isFocused) renderer.updateProps({ ...props, isPending: true })
       },
 
       onUpdate(props) {
-        if (!props.editor.isFocused)
-          return
+        if (!props.editor.isFocused) return
 
         renderer.updateProps({ ...props, isPending: false })
 
-        if (!props.clientRect)
-          return
+        if (!props.clientRect) return
 
         popup?.setProps({
           getReferenceClientRect: props.clientRect as GetReferenceClientRect,

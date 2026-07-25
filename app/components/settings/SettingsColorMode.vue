@@ -36,7 +36,13 @@ const modes = [
         v-for="{ icon, label, mode } in modes"
         :key="mode"
         type="button"
-        btn-text flex-1 flex="~ gap-1 center" p4 border="~ base rounded" bg-base ws-nowrap
+        btn-text
+        flex-1
+        flex="~ gap-1 center"
+        p4
+        border="~ base rounded"
+        bg-base
+        ws-nowrap
         :aria-pressed="colorMode.preference === mode ? 'true' : 'false'"
         :class="colorMode.preference === mode ? 'pointer-events-none' : 'filter-saturate-0'"
         @click="setColorMode(mode)"

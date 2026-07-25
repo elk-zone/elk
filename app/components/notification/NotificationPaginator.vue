@@ -3,7 +3,10 @@ import type { GroupedAccountLike, NotificationSlot } from '#shared/types'
 import type { mastodon } from 'masto'
 
 defineProps<{
-  paginator: mastodon.Paginator<mastodon.v1.Notification[], mastodon.rest.v1.ListNotificationsParams>
+  paginator: mastodon.Paginator<
+    mastodon.v1.Notification[],
+    mastodon.rest.v1.ListNotificationsParams
+  >
   stream?: mastodon.streaming.Subscription
 }>()
 
@@ -35,7 +38,7 @@ function groupId(item: mastodon.v1.Notification): string {
   const id = item.status
     ? {
         status: item.status?.id,
-        type: (item.type === 'reblog' || item.type === 'favourite') ? 'like' : item.type,
+        type: item.type === 'reblog' || item.type === 'favourite' ? 'like' : item.type,
       }
     : {
         type: item.type,
@@ -53,8 +56,7 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
   let currentGroupId = ''
   let currentGroup: mastodon.v1.Notification[] = []
   const processGroup = () => {
-    if (currentGroup.length === 0)
-      return
+    if (currentGroup.length === 0) return
 
     const group = currentGroup
     currentGroup = []
@@ -68,10 +70,8 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
       processedGroup.sort((a, b) => {
         const aHasHeader = hasHeader(a.account)
         const bHasHeader = hasHeader(b.account)
-        if (bHasHeader && !aHasHeader)
-          return 1
-        if (aHasHeader && !bHasHeader)
-          return -1
+        if (bHasHeader && !aHasHeader) return 1
+        if (aHasHeader && !bHasHeader) return -1
         return b.account.followersCount - a.account.followersCount
       })
 
@@ -89,8 +89,7 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
         })
       }
       return
-    }
-    else if (group.length && (group[0].type === 'reblog' || group[0].type === 'favourite')) {
+    } else if (group.length && (group[0].type === 'reblog' || group[0].type === 'favourite')) {
       if (!group[0].status) {
         // Ignore favourite or reblog if status is null, sometimes the API is sending these
         // notifications
@@ -99,18 +98,14 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
       // All notifications in these group are reblogs or favourites of the same status
       const likes: GroupedAccountLike[] = []
       for (const notification of group) {
-        let like = likes.find(like => like.account.id === notification.account.id)
+        let like = likes.find((like) => like.account.id === notification.account.id)
         if (!like) {
           like = { account: notification.account }
           likes.push(like)
         }
         like[notification.type === 'reblog' ? 'reblog' : 'favourite'] = notification
       }
-      likes.sort((a, b) => a.reblog
-        ? (!b.reblog || (a.favourite && !b.favourite))
-            ? -1
-            : 0
-        : 0)
+      likes.sort((a, b) => (a.reblog ? (!b.reblog || (a.favourite && !b.favourite) ? -1 : 0) : 0))
       results.push({
         id: `grouped-${id++}`,
         type: 'grouped-reblogs-and-favourites',
@@ -126,8 +121,7 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
   for (const item of items.filter(includeNotificationsForStatusCard)) {
     const itemId = groupId(item)
     // Finalize the group if it already has too many notifications
-    if (currentGroupId !== itemId || currentGroup.length >= groupCapacity)
-      processGroup()
+    if (currentGroupId !== itemId || currentGroup.length >= groupCapacity) processGroup()
 
     currentGroup.push(item)
     currentGroupId = itemId
@@ -139,9 +133,13 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
 }
 
 function removeFiltered(items: mastodon.v1.Notification[]): mastodon.v1.Notification[] {
-  return items.filter(item => !item.status?.filtered?.find(
-    filter => filter.filter.filterAction === 'hide' && filter.filter.context.includes('notifications'),
-  ))
+  return items.filter(
+    (item) =>
+      !item.status?.filtered?.find(
+        (filter) =>
+          filter.filter.filterAction === 'hide' && filter.filter.context.includes('notifications'),
+      ),
+  )
 }
 
 function preprocess(items: NotificationSlot[]): NotificationSlot[] {
@@ -150,16 +148,12 @@ function preprocess(items: NotificationSlot[]): NotificationSlot[] {
     if (item.type === 'grouped-reblogs-and-favourites') {
       const group = item
       for (const like of group.likes) {
-        if (like.reblog)
-          flattenedNotifications.push(like.reblog)
-        if (like.favourite)
-          flattenedNotifications.push(like.favourite)
+        if (like.reblog) flattenedNotifications.push(like.reblog)
+        if (like.favourite) flattenedNotifications.push(like.favourite)
       }
-    }
-    else if (item.type === 'grouped-follow') {
+    } else if (item.type === 'grouped-follow') {
       flattenedNotifications.push(...item.items)
-    }
-    else {
+    } else {
       flattenedNotifications.push(item)
     }
   }
@@ -180,7 +174,22 @@ const { formatNumber } = useHumanReadableNumber()
     :virtualScroller="virtualScroller"
   >
     <template #updater="{ number, update }">
-      <button id="elk_show_new_items" py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="() => { update(); clearNotifications() }">
+      <button
+        id="elk_show_new_items"
+        py-4
+        border="b base"
+        flex="~ col"
+        p-3
+        w-full
+        text-primary
+        font-bold
+        @click="
+          () => {
+            update()
+            clearNotifications()
+          }
+        "
+      >
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
       </button>
     </template>
@@ -196,12 +205,7 @@ const { formatNumber } = useHumanReadableNumber()
           :group="item"
           border="b base"
         />
-        <NotificationCard
-          v-else
-          :notification="item"
-          hover:bg-active
-          border="b base"
-        />
+        <NotificationCard v-else :notification="item" hover:bg-active border="b base" />
       </template>
       <template v-else>
         <NotificationGroupedFollow
@@ -214,12 +218,7 @@ const { formatNumber } = useHumanReadableNumber()
           :group="item"
           border="b base"
         />
-        <NotificationCard
-          v-else
-          :notification="item"
-          hover:bg-active
-          border="b base"
-        />
+        <NotificationCard v-else :notification="item" hover:bg-active border="b base" />
       </template>
     </template>
   </CommonPaginator>

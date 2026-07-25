@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const {
-  history,
-  maxDay = 2,
-} = defineProps<{
+const { history, maxDay = 2 } = defineProps<{
   history: mastodon.v1.TagHistory[]
   maxDay?: number
 }>()

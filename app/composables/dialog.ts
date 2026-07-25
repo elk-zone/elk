@@ -1,4 +1,10 @@
-import type { ConfirmDialogChoice, ConfirmDialogOptions, DraftItem, DraftKey, ErrorDialogData } from '#shared/types'
+import type {
+  ConfirmDialogChoice,
+  ConfirmDialogOptions,
+  DraftItem,
+  DraftKey,
+  ErrorDialogData,
+} from '#shared/types'
 import type { mastodon } from 'masto'
 
 export const confirmDialogChoice = ref<ConfirmDialogChoice>()
@@ -36,7 +42,9 @@ export function openSigninDialog() {
   isSigninDialogOpen.value = true
 }
 
-export async function openConfirmDialog(label: ConfirmDialogOptions | string): Promise<ConfirmDialogChoice> {
+export async function openConfirmDialog(
+  label: ConfirmDialogOptions | string,
+): Promise<ConfirmDialogChoice> {
   confirmDialogLabel.value = typeof label === 'string' ? { title: label } : label
   confirmDialogChoice.value = undefined
   isConfirmDialogOpen.value = true
@@ -46,7 +54,11 @@ export async function openConfirmDialog(label: ConfirmDialogOptions | string): P
   return confirmDialogChoice.value!
 }
 
-export async function openPublishDialog(draftKey: DraftKey = 'dialog', draft?: DraftItem, overwrite = false): Promise<void> {
+export async function openPublishDialog(
+  draftKey: DraftKey = 'dialog',
+  draft?: DraftItem,
+  overwrite = false,
+): Promise<void> {
   dialogDraftKey.value = draftKey
 
   if (draft) {
@@ -56,13 +68,11 @@ export async function openPublishDialog(draftKey: DraftKey = 'dialog', draft?: D
       if (import.meta.dev) {
         // oxlint-disable-next-line no-alert
         const result = confirm('[DEV] Are you sure you overwrite draft content?')
-        if (!result)
-          return
+        if (!result) return
       }
     }
 
-    if (overwrite || !currentUserDrafts.value[draftKey])
-      currentUserDrafts.value[draftKey] = [draft]
+    if (overwrite || !currentUserDrafts.value[draftKey]) currentUserDrafts.value[draftKey] = [draft]
   }
   isPublishDialogOpen.value = true
 
@@ -91,12 +101,15 @@ export function openMediaPreview(attachments: mastodon.v1.MediaAttachment[], ind
   mediaPreviewIndex.value = index
   isMediaPreviewOpen.value = true
 
-  history.pushState({
-    ...history.state,
-    mediaPreview: true,
-    mediaPreviewList: JSON.stringify(attachments),
-    mediaPreviewIndex: index,
-  }, '')
+  history.pushState(
+    {
+      ...history.state,
+      mediaPreview: true,
+      mediaPreviewList: JSON.stringify(attachments),
+      mediaPreviewIndex: index,
+    },
+    '',
+  )
 }
 
 export async function openErrorDialog(data: ErrorDialogData) {

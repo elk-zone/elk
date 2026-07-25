@@ -1,19 +1,20 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const {
-  status,
-  isNested = false,
-} = defineProps<{
+const { status, isNested = false } = defineProps<{
   status: mastodon.v1.Status | mastodon.v1.StatusEdit
   isNested?: boolean
 }>()
 
-function isQuoteType(quote: mastodon.v1.Status['quote']): quote is mastodon.v1.Quote | mastodon.v1.ShallowQuote {
+function isQuoteType(
+  quote: mastodon.v1.Status['quote'],
+): quote is mastodon.v1.Quote | mastodon.v1.ShallowQuote {
   return !!quote
 }
 
-function isShallowQuoteType(quote: mastodon.v1.Quote | mastodon.v1.ShallowQuote): quote is mastodon.v1.ShallowQuote {
+function isShallowQuoteType(
+  quote: mastodon.v1.Quote | mastodon.v1.ShallowQuote,
+): quote is mastodon.v1.ShallowQuote {
   return 'quotedStatusId' in quote
 }
 
@@ -25,7 +26,12 @@ const quoteState = computed<mastodon.v1.QuoteState | null>(() => {
 })
 const shallowQuotedStatus = ref<mastodon.v1.Status | null>(null)
 watchEffect(async () => {
-  if (!isQuoteType(status.quote) || !isShallowQuoteType(status.quote) || quoteState.value === 'deleted' || !status.quote.quotedStatusId) {
+  if (
+    !isQuoteType(status.quote) ||
+    !isShallowQuoteType(status.quote) ||
+    quoteState.value === 'deleted' ||
+    !status.quote.quotedStatusId
+  ) {
     shallowQuotedStatus.value = null
     return
   }
@@ -49,78 +55,84 @@ const quotedStatus = computed(() => {
 <template>
   <template v-if="quotedStatus">
     <template v-if="isNested && quoteState">
-      <div
-        v-if="quoteState === 'pending'"
-        flex border="~ 1" rounded-lg bg-card mt-3 p-3
-      >
+      <div v-if="quoteState === 'pending'" flex border="~ 1" rounded-lg bg-card mt-3 p-3>
         Post pending for approval by author
       </div>
-      <div
-        v-else-if="quoteState === 'revoked'"
-        flex border="~ 1" rounded-lg bg-card mt-3 p-3
-      >
+      <div v-else-if="quoteState === 'revoked'" flex border="~ 1" rounded-lg bg-card mt-3 p-3>
         Post removed by author
       </div>
       <div
         v-else-if="quoteState === 'blocked_account'"
-        flex border="~ 1" rounded-lg bg-card mt-3 p-3
+        flex
+        border="~ 1"
+        rounded-lg
+        bg-card
+        mt-3
+        p-3
       >
         Post by blocked author
       </div>
       <div
         v-else-if="quoteState === 'blocked_domain'"
-        flex border="~ 1" rounded-lg bg-card mt-3 p-3
+        flex
+        border="~ 1"
+        rounded-lg
+        bg-card
+        mt-3
+        p-3
       >
         Post from blocked server
       </div>
-      <div
-        v-else-if="quoteState === 'muted_account'"
-        flex border="~ 1" rounded-lg bg-card mt-3 p-3
-      >
+      <div v-else-if="quoteState === 'muted_account'" flex border="~ 1" rounded-lg bg-card mt-3 p-3>
         Post by muted author
       </div>
       <div
-        v-else-if="quoteState === 'deleted' || quoteState === 'rejected' || quoteState === 'unauthorized'"
-        flex border="~ 1" rounded-lg bg-card mt-3 p-3
+        v-else-if="
+          quoteState === 'deleted' || quoteState === 'rejected' || quoteState === 'unauthorized'
+        "
+        flex
+        border="~ 1"
+        rounded-lg
+        bg-card
+        mt-3
+        p-3
       >
         Post is unavailable
       </div>
-      <div
-        v-else-if="quoteState === 'accepted'"
-        flex border="~ 1" rounded-lg bg-card mt-3 p-3
-      >
+      <div v-else-if="quoteState === 'accepted'" flex border="~ 1" rounded-lg bg-card mt-3 p-3>
         Post by
         <AccountInlineInfo :account="quotedStatus.account" :link="false" mx-1 />
       </div>
     </template>
     <template v-else>
-      <div
-        v-if="quoteState === 'pending'"
-        flex border="~ 1" rounded-lg bg-card mt-3 p-3
-      >
+      <div v-if="quoteState === 'pending'" flex border="~ 1" rounded-lg bg-card mt-3 p-3>
         Post pending for approval by author
       </div>
-      <div
-        v-else-if="quoteState === 'revoked'"
-        flex border="~ 1" rounded-lg bg-card mt-3 p-3
-      >
+      <div v-else-if="quoteState === 'revoked'" flex border="~ 1" rounded-lg bg-card mt-3 p-3>
         Post removed by author
       </div>
       <div
-        v-else-if="quoteState === 'deleted' || quoteState === 'rejected' || quoteState === 'unauthorized'"
-        flex border="~ 1" rounded-lg bg-card mt-3 p-3
+        v-else-if="
+          quoteState === 'deleted' || quoteState === 'rejected' || quoteState === 'unauthorized'
+        "
+        flex
+        border="~ 1"
+        rounded-lg
+        bg-card
+        mt-3
+        p-3
       >
         Post is unavailable
       </div>
-      <blockquote
-        v-else-if="quoteState === 'accepted'"
-        :cite="quotedStatus.uri"
-      >
+      <blockquote v-else-if="quoteState === 'accepted'" :cite="quotedStatus.uri">
         <StatusCard
           :status="quotedStatus"
           :actions="false"
           :is-nested="true"
-          border="base 1" rounded-lg hover:bg-active my-3
+          border="base 1"
+          rounded-lg
+          hover:bg-active
+          my-3
         />
       </blockquote>
     </template>

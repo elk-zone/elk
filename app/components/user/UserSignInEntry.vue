@@ -14,7 +14,13 @@ const { busy, oauth, singleInstanceServer } = useSignIn()
     </p>
     <button
       v-if="singleInstanceServer"
-      flex="~ row" gap-x-2 items-center justify-center btn-solid text-center rounded-3
+      flex="~ row"
+      gap-x-2
+      items-center
+      justify-center
+      btn-solid
+      text-center
+      rounded-3
       :disabled="busy"
       @click="oauth()"
     >

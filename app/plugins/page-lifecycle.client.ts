@@ -16,9 +16,8 @@ export default defineNuxtPlugin(() => {
 
     if (evt.newState === 'frozen') {
       frozenState.value = true
-      frozenListeners.forEach(listener => listener())
-    }
-    else {
+      frozenListeners.forEach((listener) => listener())
+    } else {
       state.value = evt.newState
     }
   })

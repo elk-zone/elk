@@ -30,15 +30,15 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 
-const { threadItems, threadIsActive, publishThread, threadIsSending } = threadComposer ?? useThreadComposer(draftKey)
+const { threadItems, threadIsActive, publishThread, threadIsSending } =
+  threadComposer ?? useThreadComposer(draftKey)
 
 const draft = computed({
   get: () => threadItems.value[draftItemIndex],
   set: (updatedDraft: DraftItem) => {
     threadItems.value[draftItemIndex] = updatedDraft
   },
-},
-)
+})
 
 const isFinalItemOfThread = computed(() => draftItemIndex === threadItems.value.length - 1)
 
@@ -63,15 +63,13 @@ const {
   failedMessages,
   preferredLanguage,
   publishSpoilerText,
-} = usePublish(
-  ({
-	draftItem: draft,
-	expanded: toRef(() => expanded),
-	isUploading,
-	initialDraft: initial,
-	isPartOfThread: false
-}),
-)
+} = usePublish({
+  draftItem: draft,
+  expanded: toRef(() => expanded),
+  isUploading,
+  initialDraft: initial,
+  isPartOfThread: false,
+})
 
 const { editor } = useTiptap({
   content: computed({
@@ -81,7 +79,11 @@ const { editor } = useTiptap({
       draft.value.lastUpdated = Date.now()
     },
   }),
-  placeholder: computed(() => placeholder ?? draft.value.params.inReplyToId ? t('placeholder.replying') : t('placeholder.default_1')),
+  placeholder: computed(() =>
+    (placeholder ?? draft.value.params.inReplyToId)
+      ? t('placeholder.replying')
+      : t('placeholder.default_1'),
+  ),
   autofocus: shouldExpanded.value,
   onSubmit: publish,
   onFocus() {
@@ -95,20 +97,25 @@ const { editor } = useTiptap({
 })
 
 function trimPollOptions() {
-  const indexLastNonEmpty = draft.value.params.poll!.options.findLastIndex(option => option.trim().length > 0)
+  const indexLastNonEmpty = draft.value.params.poll!.options.findLastIndex(
+    (option) => option.trim().length > 0,
+  )
   const trimmedOptions = draft.value.params.poll!.options.slice(0, indexLastNonEmpty + 1)
 
-  if (currentInstance.value?.configuration
-    && trimmedOptions.length >= currentInstance.value?.configuration?.polls.maxOptions) {
+  if (
+    currentInstance.value?.configuration &&
+    trimmedOptions.length >= currentInstance.value?.configuration?.polls.maxOptions
+  ) {
     draft.value.params.poll!.options = trimmedOptions
-  }
-  else {
+  } else {
     draft.value.params.poll!.options = [...trimmedOptions, '']
   }
 }
 
 function editPollOptionDraft(event: Event, index: number) {
-  draft.value.params.poll!.options = Object.assign(draft.value.params.poll!.options.slice(), { [index]: (event.target as HTMLInputElement).value })
+  draft.value.params.poll!.options = Object.assign(draft.value.params.poll!.options.slice(), {
+    [index]: (event.target as HTMLInputElement).value,
+  })
 
   trimPollOptions()
 }
@@ -150,8 +157,7 @@ const now = useNow({ interval: 1000 })
 const minimumScheduledTime = computed(() => getMinimumScheduledTime(now.value))
 
 const isValidScheduledTime = computed(() => {
-  if (scheduledTime.value === '')
-    return true
+  if (scheduledTime.value === '') return true
 
   const scheduledTimeDate = new Date(scheduledTime.value)
   return minimumScheduledTime.value.getTime() <= scheduledTimeDate.getTime()
@@ -171,8 +177,7 @@ watchEffect(() => {
   if (scheduledTime.value) {
     const localDate = new Date(scheduledTime.value)
     draft.value.params.scheduledAt = localDate.toISOString()
-  }
-  else {
+  } else {
     draft.value.params.scheduledAt = ''
   }
 })
@@ -195,8 +200,7 @@ watchEffect(() => {
 function getMinimumScheduledTime(now: Date): Date {
   const bufferInSec = 5 + 5 * 60 // + 5 minutes and 5 seconds
   const nowInSec = Math.floor(now.getTime() / 1000)
-  const bufferedTimeInSec
-    = Math.ceil((nowInSec + bufferInSec) / 60) * 60
+  const bufferedTimeInSec = Math.ceil((nowInSec + bufferInSec) / 60) * 60
   return new Date(bufferedTimeInSec * 1000)
 }
 
@@ -235,10 +239,13 @@ const characterCount = computed(() => {
 
   if (draft.value.mentions) {
     // + 1 is needed as mentions always need a space separator at the end
-    length += draft.value.mentions.map((mention) => {
-      const [handle] = mention.split('@')
-      return `@${handle}`
-    }).join(' ').length + 1
+    length +=
+      draft.value.mentions
+        .map((mention) => {
+          const [handle] = mention.split('@')
+          return `@${handle}`
+        })
+        .join(' ').length + 1
   }
 
   length += stringLength(publishSpoilerText.value)
@@ -250,7 +257,12 @@ const isExceedingCharacterLimit = computed(() => {
   return characterCount.value > characterLimit.value
 })
 
-const postLanguageDisplay = computed(() => languagesNameList.find(i => i.code === (draft.value.params.language || preferredLanguage.value))?.nativeName)
+const postLanguageDisplay = computed(
+  () =>
+    languagesNameList.find(
+      (i) => i.code === (draft.value.params.language || preferredLanguage.value),
+    )?.nativeName,
+)
 
 const isDM = computed(() => draft.value.params.visibility === 'direct')
 
@@ -261,8 +273,7 @@ watchEffect(async () => {
   if (hasQuote.value) {
     try {
       quotedStatus.value = await fetchStatus(draft.value.params.quotedStatusId!)
-    }
-    catch (err) {
+    } catch (err) {
       console.error(err)
       quoteFetchError.value = (err as Error).message
     }
@@ -278,8 +289,7 @@ function removeQuote() {
 
 async function handlePaste(evt: ClipboardEvent) {
   const files = evt.clipboardData?.files
-  if (!files || files.length === 0)
-    return
+  if (!files || files.length === 0) return
 
   evt.preventDefault()
   await uploadAttachments([...files])
@@ -298,21 +308,17 @@ async function toggleSensitive() {
 }
 
 async function publish() {
-  if (isPublishDisabled.value || isExceedingCharacterLimit.value)
-    return
+  if (isPublishDisabled.value || isExceedingCharacterLimit.value) return
 
   const publishResult = await (threadIsActive.value ? publishThread() : publishDraft())
   if (publishResult) {
-    if (Array.isArray(publishResult))
-      failedMessages.value = publishResult
-    else
-      emit('published', publishResult)
+    if (Array.isArray(publishResult)) failedMessages.value = publishResult
+    else emit('published', publishResult)
   }
 }
 
 useWebShareTarget(async ({ data: { data, action } }: any) => {
-  if (action !== 'compose-with-shared-data')
-    return
+  if (action !== 'compose-with-shared-data') return
 
   editor.value?.commands.focus('end')
 
@@ -325,8 +331,7 @@ useWebShareTarget(async ({ data: { data, action } }: any) => {
     }
   }
 
-  if (data.files.length !== 0)
-    await uploadAttachments(data.files)
+  if (data.files.length !== 0) await uploadAttachments(data.files)
 })
 
 defineExpose({
@@ -336,24 +341,30 @@ defineExpose({
 })
 
 function stopQuestionMarkPropagation(e: KeyboardEvent) {
-  if (e.key === '?')
-    e.stopImmediatePropagation()
+  if (e.key === '?') e.stopImmediatePropagation()
 }
 
 const userSettings = useUserSettings()
 
-const optimizeForLowPerformanceDevice = computed(() => getPreferences(userSettings.value, 'optimizeForLowPerformanceDevice'))
+const optimizeForLowPerformanceDevice = computed(() =>
+  getPreferences(userSettings.value, 'optimizeForLowPerformanceDevice'),
+)
 
 const languageDetectorInGlobalThis = 'LanguageDetector' in globalThis
-let supportsLanguageDetector = !optimizeForLowPerformanceDevice.value && languageDetectorInGlobalThis && await (globalThis as any).LanguageDetector.availability() === 'available'
+let supportsLanguageDetector =
+  !optimizeForLowPerformanceDevice.value &&
+  languageDetectorInGlobalThis &&
+  (await (globalThis as any).LanguageDetector.availability()) === 'available'
 let languageDetector: { detect: (arg0: string, option: { signal: AbortSignal }) => any }
 // If the API is supported, but the model not loaded yet…
 if (languageDetectorInGlobalThis && !supportsLanguageDetector) {
   // …trigger the model download
-  (globalThis as any).LanguageDetector.create().then((_languageDetector: { detect: (arg0: string) => any }) => {
-    supportsLanguageDetector = true
-    languageDetector = _languageDetector
-  })
+  ;(globalThis as any).LanguageDetector.create().then(
+    (_languageDetector: { detect: (arg0: string) => any }) => {
+      supportsLanguageDetector = true
+      languageDetector = _languageDetector
+    },
+  )
 }
 
 function countLetters(text: string) {
@@ -381,10 +392,12 @@ const detectLanguage = useDebounceFn(async () => {
     return
   }
   try {
-    const detectedLanguage = (await languageDetector.detect(text, { signal: detectLanguageAbortController.signal }))[0].detectedLanguage
-    draft.value.params.language = detectedLanguage === 'und' ? preferredLanguage.value : detectedLanguage.substring(0, 2)
-  }
-  catch (e) {
+    const detectedLanguage = (
+      await languageDetector.detect(text, { signal: detectLanguageAbortController.signal })
+    )[0].detectedLanguage
+    draft.value.params.language =
+      detectedLanguage === 'und' ? preferredLanguage.value : detectedLanguage.substring(0, 2)
+  } catch (e) {
     // if error or abort we end up there
     if ((e as Error).name !== 'AbortError') {
       console.error(e)
@@ -395,7 +408,14 @@ const detectLanguage = useDebounceFn(async () => {
 </script>
 
 <template>
-  <div v-if="isHydrated && currentUser" flex="~ col gap-4" py3 px2 sm:px4 aria-roledescription="publish-widget">
+  <div
+    v-if="isHydrated && currentUser"
+    flex="~ col gap-4"
+    py3
+    px2
+    sm:px4
+    aria-roledescription="publish-widget"
+  >
     <template v-if="draft.editingStatus">
       <div id="state-editing" text-secondary self-center>
         {{ $t('state.editing') }}
@@ -415,12 +435,24 @@ const detectLanguage = useDebounceFn(async () => {
         <div flex gap-3 flex-1>
           <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->
           <div
-            ref="dropZoneRef" flex w-0 flex-col gap-3 flex-1 border="2 dashed transparent"
-            :class="[isSending ? 'pointer-events-none' : '', isOverDropZone ? '!border-primary' : '']"
+            ref="dropZoneRef"
+            flex
+            w-0
+            flex-col
+            gap-3
+            flex-1
+            border="2 dashed transparent"
+            :class="[
+              isSending ? 'pointer-events-none' : '',
+              isOverDropZone ? '!border-primary' : '',
+            ]"
           >
             <ContentMentionGroup v-if="draft.mentions?.length && shouldExpanded" replying>
               <button
-                v-for="m, i of draft.mentions" :key="m" text-primary hover:color-red
+                v-for="(m, i) of draft.mentions"
+                :key="m"
+                text-primary
+                hover:color-red
                 @click="draft.mentions?.splice(i, 1)"
               >
                 {{ accountToShortHandle(m) }}
@@ -429,9 +461,16 @@ const detectLanguage = useDebounceFn(async () => {
 
             <div v-if="draft.params.sensitive">
               <input
-                v-model="publishSpoilerText" type="text" :placeholder="$t('placeholder.content_warning')" p2
-                border-rounded w-full bg-transparent outline-none border="~ base"
-              >
+                v-model="publishSpoilerText"
+                type="text"
+                :placeholder="$t('placeholder.content_warning')"
+                p2
+                border-rounded
+                w-full
+                bg-transparent
+                outline-none
+                border="~ base"
+              />
             </div>
 
             <CommonErrorMessage v-if="failedMessages.length > 0" described-by="publish-failed">
@@ -442,15 +481,27 @@ const detectLanguage = useDebounceFn(async () => {
                 </div>
                 <CommonTooltip placement="bottom" :content="$t('action.clear_publish_failed')">
                   <button
-                    flex rounded-4 p1 hover:bg-active cursor-pointer transition-100
-                    :aria-label="$t('action.clear_publish_failed')" @click="failedMessages = []"
+                    flex
+                    rounded-4
+                    p1
+                    hover:bg-active
+                    cursor-pointer
+                    transition-100
+                    :aria-label="$t('action.clear_publish_failed')"
+                    @click="failedMessages = []"
                   >
                     <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
                   </button>
                 </CommonTooltip>
               </header>
               <ol ps-2 sm:ps-1>
-                <li v-for="(error, i) in failedMessages" :key="i" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
+                <li
+                  v-for="(error, i) in failedMessages"
+                  :key="i"
+                  flex="~ col sm:row"
+                  gap-y-1
+                  sm:gap-x-2
+                >
                   <strong>{{ i + 1 }}.</strong>
                   <span>{{ error }}</span>
                 </li>
@@ -460,15 +511,30 @@ const detectLanguage = useDebounceFn(async () => {
               <header id="publish-failed" flex justify-between>
                 <div flex items-center gap-x-2 font-bold>
                   <div aria-hidden="true" i-ri:error-warning-fill />
-                  <p>{{ scheduledTime ? $t('state.schedule_failed') : $t('state.publish_failed') }}</p>
+                  <p>
+                    {{ scheduledTime ? $t('state.schedule_failed') : $t('state.publish_failed') }}
+                  </p>
                 </div>
                 <CommonTooltip
                   placement="bottom"
-                  :content="scheduledTime ? $t('action.clear_schedule_failed') : $t('action.clear_publish_failed')"
+                  :content="
+                    scheduledTime
+                      ? $t('action.clear_schedule_failed')
+                      : $t('action.clear_publish_failed')
+                  "
                 >
                   <button
-                    flex rounded-4 p1 hover:bg-active cursor-pointer transition-100
-                    :aria-label="scheduledTime ? $t('action.clear_schedule_failed') : $t('action.clear_publish_failed')"
+                    flex
+                    rounded-4
+                    p1
+                    hover:bg-active
+                    cursor-pointer
+                    transition-100
+                    :aria-label="
+                      scheduledTime
+                        ? $t('action.clear_schedule_failed')
+                        : $t('action.clear_publish_failed')
+                    "
                     @click="failedMessages = []"
                   >
                     <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
@@ -476,27 +542,42 @@ const detectLanguage = useDebounceFn(async () => {
                 </CommonTooltip>
               </header>
               <ol ps-2 sm:ps-1>
-                <li v-for="(error, i) in failedMessages" :key="i" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
+                <li
+                  v-for="(error, i) in failedMessages"
+                  :key="i"
+                  flex="~ col sm:row"
+                  gap-y-1
+                  sm:gap-x-2
+                >
                   <strong>{{ i + 1 }}.</strong>
                   <span>{{ error }}</span>
                 </li>
               </ol>
             </CommonErrorMessage>
 
-            <CommonErrorMessage v-if="!isValidScheduledTime" described-by="scheduled-time-invalid" pt-2>
+            <CommonErrorMessage
+              v-if="!isValidScheduledTime"
+              described-by="scheduled-time-invalid"
+              pt-2
+            >
               <header id="scheduled-time-invalid" flex justify-between>
                 <div flex items-center gap-x-2 font-bold>
                   <div aria-hidden="true" i-ri:error-warning-fill />
-                  <p>{{ $t('state.schedule_time_invalid', [minimumScheduledTime.toLocaleString()]) }}</p>
+                  <p>
+                    {{ $t('state.schedule_time_invalid', [minimumScheduledTime.toLocaleString()]) }}
+                  </p>
                 </div>
               </header>
             </CommonErrorMessage>
 
             <div relative flex-1 flex flex-col :class="shouldExpanded ? 'min-h-30' : ''">
               <EditorContent
-                :editor="editor" flex max-w-full
+                :editor="editor"
+                flex
+                max-w-full
                 :class="{
-                  'md:max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-400px)] max-h-35 of-y-auto overscroll-contain': shouldExpanded,
+                  'md:max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-400px)] max-h-35 of-y-auto overscroll-contain':
+                    shouldExpanded,
                   'py2 px3.5 bg-dm rounded-4 me--1 ms--1 mt--1': isDM,
                 }"
                 @keydown="stopQuestionMarkPropagation"
@@ -513,7 +594,9 @@ const detectLanguage = useDebounceFn(async () => {
             </div>
             <CommonErrorMessage
               v-else-if="failedAttachments.length > 0"
-              :described-by="isExceedingAttachmentLimit ? 'upload-failed uploads-per-post' : 'upload-failed'"
+              :described-by="
+                isExceedingAttachmentLimit ? 'upload-failed uploads-per-post' : 'upload-failed'
+              "
             >
               <header id="upload-failed" flex justify-between>
                 <div flex items-center gap-x-2 font-bold>
@@ -522,8 +605,14 @@ const detectLanguage = useDebounceFn(async () => {
                 </div>
                 <CommonTooltip placement="bottom" :content="$t('action.clear_upload_failed')">
                   <button
-                    flex rounded-4 p1 hover:bg-active cursor-pointer transition-100
-                    :aria-label="$t('action.clear_upload_failed')" @click="failedAttachments = []"
+                    flex
+                    rounded-4
+                    p1
+                    hover:bg-active
+                    cursor-pointer
+                    transition-100
+                    :aria-label="$t('action.clear_upload_failed')"
+                    @click="failedAttachments = []"
                   >
                     <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
                   </button>
@@ -533,7 +622,13 @@ const detectLanguage = useDebounceFn(async () => {
                 {{ $t('state.attachments_exceed_server_limit') }}
               </div>
               <ol ps-2 sm:ps-1>
-                <li v-for="error in failedAttachments" :key="error[0]" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
+                <li
+                  v-for="error in failedAttachments"
+                  :key="error[0]"
+                  flex="~ col sm:row"
+                  gap-y-1
+                  sm:gap-x-2
+                >
                   <strong>{{ error[1] }}:</strong>
                   <span>{{ error[0] }}</span>
                 </li>
@@ -542,9 +637,14 @@ const detectLanguage = useDebounceFn(async () => {
 
             <div v-if="draft.attachments.length" flex="~ col gap-2" overflow-auto>
               <PublishAttachment
-                v-for="(att, idx) in draft.attachments" :key="att.id" :attachment="att"
-                :dialog-labelled-by="dialogLabelledBy ?? (draft.editingStatus ? 'state-editing' : undefined)"
-                @remove="removeAttachment(idx)" @set-description="setDescription(att, $event)"
+                v-for="(att, idx) in draft.attachments"
+                :key="att.id"
+                :attachment="att"
+                :dialog-labelled-by="
+                  dialogLabelledBy ?? (draft.editingStatus ? 'state-editing' : undefined)
+                "
+                @remove="removeAttachment(idx)"
+                @set-description="setDescription(att, $event)"
               />
             </div>
           </div>
@@ -552,37 +652,78 @@ const detectLanguage = useDebounceFn(async () => {
 
         <div flex="~ col 1" max-w-full>
           <form v-if="isExpanded && draft.params.poll" my-4 flex="~ 1 col" gap-3 m="s--1">
-            <div v-for="(option, index) in draft.params.poll.options" :key="index" flex="~ row" gap-3>
+            <div
+              v-for="(option, index) in draft.params.poll.options"
+              :key="index"
+              flex="~ row"
+              gap-3
+            >
               <input
-                :value="option" bg-base border="~ base" flex-1 h10 pe-4 rounded-2 w-full flex="~ row" items-center
-                relative focus-within:box-shadow-outline gap-3 px-4 py-2
-                :placeholder="$t('polls.option_placeholder', { current: index + 1, max: currentInstance?.configuration?.polls.maxOptions })"
-                class="option-input" @input="editPollOptionDraft($event, index)"
+                :value="option"
+                bg-base
+                border="~ base"
+                flex-1
+                h10
+                pe-4
+                rounded-2
+                w-full
+                flex="~ row"
+                items-center
+                relative
+                focus-within:box-shadow-outline
+                gap-3
+                px-4
+                py-2
+                :placeholder="
+                  $t('polls.option_placeholder', {
+                    current: index + 1,
+                    max: currentInstance?.configuration?.polls.maxOptions,
+                  })
+                "
+                class="option-input"
+                @input="editPollOptionDraft($event, index)"
+              />
+              <CommonTooltip
+                placement="top"
+                :content="$t('polls.remove_option')"
+                class="delete-button"
               >
-              <CommonTooltip placement="top" :content="$t('polls.remove_option')" class="delete-button">
                 <button
-                  btn-action-icon class="hover:bg-red/75"
-                  :disabled="index === draft.params.poll!.options.length - 1 && (index + 1 !== currentInstance?.configuration?.polls.maxOptions || draft.params.poll!.options[index].length === 0)"
+                  btn-action-icon
+                  class="hover:bg-red/75"
+                  :disabled="
+                    index === draft.params.poll!.options.length - 1 &&
+                    (index + 1 !== currentInstance?.configuration?.polls.maxOptions ||
+                      draft.params.poll!.options[index].length === 0)
+                  "
                   @click.prevent="deletePollOption(index)"
                 >
                   <div i-ri:delete-bin-line />
                 </button>
               </CommonTooltip>
               <span
-                v-if="currentInstance?.configuration?.polls.maxCharactersPerOption" class="char-limit-radial"
-                aspect-ratio-1 h-10
-                :style="{ background: `radial-gradient(closest-side, rgba(var(--rgb-bg-base)) 79%, transparent 80% 100%), conic-gradient(${draft.params.poll!.options[index].length / currentInstance?.configuration?.polls.maxCharactersPerOption > 1 ? 'var(--c-danger)' : 'var(--c-primary)'} ${draft.params.poll!.options[index].length / currentInstance?.configuration?.polls.maxCharactersPerOption * 100}%, var(--c-primary-fade) 0)` }"
-              >{{
-                draft.params.poll!.options[index].length
-              }}</span>
+                v-if="currentInstance?.configuration?.polls.maxCharactersPerOption"
+                class="char-limit-radial"
+                aspect-ratio-1
+                h-10
+                :style="{
+                  background: `radial-gradient(closest-side, rgba(var(--rgb-bg-base)) 79%, transparent 80% 100%), conic-gradient(${draft.params.poll!.options[index].length / currentInstance?.configuration?.polls.maxCharactersPerOption > 1 ? 'var(--c-danger)' : 'var(--c-primary)'} ${(draft.params.poll!.options[index].length / currentInstance?.configuration?.polls.maxCharactersPerOption) * 100}%, var(--c-primary-fade) 0)`,
+                }"
+                >{{ draft.params.poll!.options[index].length }}</span
+              >
             </div>
           </form>
 
           <template v-if="hasQuote">
             <div flex justify-end mt-2>
               <button
-                text-sm px-2 py-1 rounded-3 hover:bg-gray-300
-                flex="~ gap1" items-center
+                text-sm
+                px-2
+                py-1
+                rounded-3
+                hover:bg-gray-300
+                flex="~ gap1"
+                items-center
                 :aria-label="$t('action.remove_quote')"
                 @click="removeQuote"
               >
@@ -591,39 +732,71 @@ const detectLanguage = useDebounceFn(async () => {
               </button>
             </div>
             <blockquote v-if="quotedStatus" border="~ base 1" rounded-lg overflow-hidden my-3>
-              <StatusCard
-                :status="quotedStatus"
-                :actions="false"
-                :is-nested="true"
-              />
+              <StatusCard :status="quotedStatus" :actions="false" :is-nested="true" />
             </blockquote>
-            <div v-else-if="quoteFetchError" text-danger border="base 1" rounded-lg hover:bg-active my-3 p-3>
+            <div
+              v-else-if="quoteFetchError"
+              text-danger
+              border="base 1"
+              rounded-lg
+              hover:bg-active
+              my-3
+              p-3
+            >
               {{ $t('error.quote_fetch_error') }} ({{ quoteFetchError }})
             </div>
             <StatusCardSkeleton v-else border="base 1" rounded-lg hover:bg-active my-3 />
           </template>
 
           <!-- toolbar -->
-          <div v-if="shouldExpanded" flex="~ gap-1 1 wrap" m="s--1" pt-2 justify="end" max-w-full border="t base">
+          <div
+            v-if="shouldExpanded"
+            flex="~ gap-1 1 wrap"
+            m="s--1"
+            pt-2
+            justify="end"
+            max-w-full
+            border="t base"
+          >
             <PublishEmojiPicker @select="insertEmoji" @select-custom="insertCustomEmoji">
-              <button btn-action-icon :title="$t('tooltip.emojis')" :aria-label="$t('tooltip.add_emojis')">
+              <button
+                btn-action-icon
+                :title="$t('tooltip.emojis')"
+                :aria-label="$t('tooltip.add_emojis')"
+              >
                 <div i-ri:emotion-line />
               </button>
             </PublishEmojiPicker>
 
             <CommonTooltip
-              v-if="draft.params.poll === undefined" placement="top" :content="$t('tooltip.add_media')"
+              v-if="draft.params.poll === undefined"
+              placement="top"
+              :content="$t('tooltip.add_media')"
             >
-              <button btn-action-icon :aria-label="$t('tooltip.add_media')" @click="pickAttachments">
+              <button
+                btn-action-icon
+                :aria-label="$t('tooltip.add_media')"
+                @click="pickAttachments"
+              >
                 <div i-ri:image-add-line />
               </button>
             </CommonTooltip>
 
             <template v-if="draft.attachments.length === 0">
-              <CommonTooltip v-if="!draft.params.poll" placement="top" :content="$t('polls.create')">
+              <CommonTooltip
+                v-if="!draft.params.poll"
+                placement="top"
+                :content="$t('polls.create')"
+              >
                 <button
-                  btn-action-icon :aria-label="$t('polls.create')"
-                  @click="draft.params.poll = { options: [''], expiresIn: expiresInOptions[expiresInDefaultOptionIndex].seconds }"
+                  btn-action-icon
+                  :aria-label="$t('polls.create')"
+                  @click="
+                    draft.params.poll = {
+                      options: [''],
+                      expiresIn: expiresInOptions[expiresInDefaultOptionIndex].seconds,
+                    }
+                  "
                 >
                   <div i-ri:chat-poll-line />
                 </button>
@@ -631,7 +804,10 @@ const detectLanguage = useDebounceFn(async () => {
               <div v-else rounded-full b-1 border-dark flex="~ row" gap-1>
                 <CommonTooltip placement="top" :content="$t('polls.cancel')">
                   <button
-                    btn-action-icon b-r border-dark :aria-label="$t('polls.cancel')"
+                    btn-action-icon
+                    b-r
+                    border-dark
+                    :aria-label="$t('polls.cancel')"
                     @click="draft.params.poll = undefined"
                   >
                     <div i-ri:close-line />
@@ -648,16 +824,36 @@ const detectLanguage = useDebounceFn(async () => {
                     <div flex="~ col" gap-1 p-2>
                       <CommonCheckbox
                         v-model="draft.params.poll.multiple"
-                        :label="draft.params.poll.multiple ? $t('polls.disallow_multiple') : $t('polls.allow_multiple')"
-                        px-2 gap-3 h-9 flex justify-center hover:bg-active rounded-full
+                        :label="
+                          draft.params.poll.multiple
+                            ? $t('polls.disallow_multiple')
+                            : $t('polls.allow_multiple')
+                        "
+                        px-2
+                        gap-3
+                        h-9
+                        flex
+                        justify-center
+                        hover:bg-active
+                        rounded-full
                         icon-checked="i-ri:checkbox-multiple-blank-line"
                         icon-unchecked="i-ri:checkbox-blank-circle-line"
                       />
                       <CommonCheckbox
                         v-model="draft.params.poll.hideTotals"
-                        :label="draft.params.poll.hideTotals ? $t('polls.show_votes') : $t('polls.hide_votes')" px-2
+                        :label="
+                          draft.params.poll.hideTotals
+                            ? $t('polls.show_votes')
+                            : $t('polls.hide_votes')
+                        "
+                        px-2
                         gap-3
-                        h-9 flex justify-center hover:bg-active rounded-full icon-checked="i-ri:eye-close-line"
+                        h-9
+                        flex
+                        justify-center
+                        hover:bg-active
+                        rounded-full
+                        icon-checked="i-ri:eye-close-line"
                         icon-unchecked="i-ri:eye-line"
                       />
                     </div>
@@ -672,7 +868,8 @@ const detectLanguage = useDebounceFn(async () => {
                   </CommonTooltip>
                   <template #popper>
                     <CommonDropdownItem
-                      v-for="expiresInOption in expiresInOptions" :key="expiresInOption.seconds"
+                      v-for="expiresInOption in expiresInOptions"
+                      :key="expiresInOption.seconds"
                       :text="expiresInOption.label"
                       :checked="draft.params.poll!.expiresIn === expiresInOption.seconds"
                       @click="draft.params.poll!.expiresIn = expiresInOption.seconds"
@@ -686,7 +883,10 @@ const detectLanguage = useDebounceFn(async () => {
             <CommonDropdown placement="bottom" @click="setInitialScheduledTime">
               <CommonTooltip placement="top" :content="$t('tooltip.schedule_post')" no-auto-focus>
                 <button btn-action-icon :aria-label="$t('tooltip.schedule_post')">
-                  <div i-ri:calendar-schedule-line :class="scheduledTime !== '' ? 'text-primary' : ''" />
+                  <div
+                    i-ri:calendar-schedule-line
+                    :class="scheduledTime !== '' ? 'text-primary' : ''"
+                  />
                 </button>
               </CommonTooltip>
               <template #popper>
@@ -696,7 +896,7 @@ const detectLanguage = useDebounceFn(async () => {
                   type="datetime-local"
                   name="schedule-datetime"
                   :min="getDatetimeInputFormat(minimumScheduledTime)"
-                >
+                />
               </template>
             </CommonDropdown>
 
@@ -707,7 +907,9 @@ const detectLanguage = useDebounceFn(async () => {
             <CommonTooltip placement="top" :content="$t('tooltip.change_language')">
               <CommonDropdown placement="bottom" auto-boundary-max-size>
                 <button btn-action-icon :aria-label="$t('tooltip.change_language')" w-max mr1>
-                  <span v-if="postLanguageDisplay" text-secondary text-sm ml1>{{ postLanguageDisplay }}</span>
+                  <span v-if="postLanguageDisplay" text-secondary text-sm ml1>{{
+                    postLanguageDisplay
+                  }}</span>
                   <div v-else i-ri:translate-2 />
                   <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
                 </button>
@@ -719,32 +921,59 @@ const detectLanguage = useDebounceFn(async () => {
             </CommonTooltip>
 
             <CommonTooltip placement="top" :content="$t('tooltip.add_content_warning')">
-              <button btn-action-icon :aria-label="$t('tooltip.add_content_warning')" @click="toggleSensitive">
+              <button
+                btn-action-icon
+                :aria-label="$t('tooltip.add_content_warning')"
+                @click="toggleSensitive"
+              >
                 <div v-if="draft.params.sensitive" i-ri:alarm-warning-fill text-orange />
                 <div v-else i-ri:alarm-warning-line />
               </button>
             </CommonTooltip>
 
-            <PublishVisibilityPicker v-model="draft.params.visibility" :editing="!!draft.editingStatus">
+            <PublishVisibilityPicker
+              v-model="draft.params.visibility"
+              :editing="!!draft.editingStatus"
+            >
               <template #default="{ visibility }">
                 <button
-                  :disabled="!!draft.editingStatus" :aria-label="$t('tooltip.change_content_visibility')"
-                  btn-action-icon :class="{ 'w-12': !draft.editingStatus }"
+                  :disabled="!!draft.editingStatus"
+                  :aria-label="$t('tooltip.change_content_visibility')"
+                  btn-action-icon
+                  :class="{ 'w-12': !draft.editingStatus }"
                 >
                   <div :class="visibility.icon" />
-                  <div v-if="!draft.editingStatus" i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+                  <div
+                    v-if="!draft.editingStatus"
+                    i-ri:arrow-down-s-line
+                    text-sm
+                    text-secondary
+                    me--1
+                  />
                 </button>
               </template>
             </PublishVisibilityPicker>
 
-            <PublishQuoteApprovalPicker v-if="hasQuote" v-model="draft.params.quoteApprovalPolicy" :editing="!!draft.editingStatus">
+            <PublishQuoteApprovalPicker
+              v-if="hasQuote"
+              v-model="draft.params.quoteApprovalPolicy"
+              :editing="!!draft.editingStatus"
+            >
               <template #default="{ quoteApprovalPolicy }">
                 <button
-                  :disabled="!!draft.editingStatus" :aria-label="$t('tooltip.change_content_visibility')"
-                  btn-action-icon :class="{ 'w-12': !draft.editingStatus }"
+                  :disabled="!!draft.editingStatus"
+                  :aria-label="$t('tooltip.change_content_visibility')"
+                  btn-action-icon
+                  :class="{ 'w-12': !draft.editingStatus }"
                 >
                   <div :class="quoteApprovalPolicy.icon" />
-                  <div v-if="!draft.editingStatus" i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+                  <div
+                    v-if="!draft.editingStatus"
+                    i-ri:arrow-down-s-line
+                    text-sm
+                    text-secondary
+                    me--1
+                  />
                 </button>
               </template>
             </PublishQuoteApprovalPicker>
@@ -752,30 +981,60 @@ const detectLanguage = useDebounceFn(async () => {
             <PublishThreadTools :draft-item-index="draftItemIndex" :draft-key="draftKey" />
 
             <CommonTooltip
-              v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top"
+              v-if="failedMessages.length > 0"
+              id="publish-failed-tooltip"
+              placement="top"
               :content="scheduledTime ? $t('state.schedule_failed') : $t('tooltip.publish_failed')"
             >
               <button
-                btn-danger rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit
+                btn-danger
+                rounded-3
+                text-sm
+                w-full
+                flex="~ gap1"
+                items-center
+                md:w-fit
                 aria-describedby="publish-failed-tooltip"
               >
                 <span block>
                   <div block i-carbon:face-dizzy-filled />
                 </span>
-                <span>{{ scheduledTime ? $t('state.schedule_failed') : $t('state.publish_failed') }}</span>
+                <span>{{
+                  scheduledTime ? $t('state.schedule_failed') : $t('state.publish_failed')
+                }}</span>
               </button>
             </CommonTooltip>
 
             <CommonTooltip
-              v-else id="publish-tooltip" placement="top" :content="$t('tooltip.add_publishable_content')"
+              v-else
+              id="publish-tooltip"
+              placement="top"
+              :content="$t('tooltip.add_publishable_content')"
               :disabled="!(isPublishDisabled || isExceedingCharacterLimit)"
             >
               <button
                 v-if="!threadIsActive || isFinalItemOfThread"
-                btn-solid rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit class="publish-button"
-                :aria-disabled="isPublishDisabled || isExceedingCharacterLimit || threadIsSending || !isValidScheduledTime"
+                btn-solid
+                rounded-3
+                text-sm
+                w-full
+                flex="~ gap1"
+                items-center
+                md:w-fit
+                class="publish-button"
+                :aria-disabled="
+                  isPublishDisabled ||
+                  isExceedingCharacterLimit ||
+                  threadIsSending ||
+                  !isValidScheduledTime
+                "
                 aria-describedby="publish-tooltip"
-                :disabled="isPublishDisabled || isExceedingCharacterLimit || threadIsSending || !isValidScheduledTime"
+                :disabled="
+                  isPublishDisabled ||
+                  isExceedingCharacterLimit ||
+                  threadIsSending ||
+                  !isValidScheduledTime
+                "
                 @click="publish"
               >
                 <span v-if="isSending || threadIsSending" block animate-spin preserve-3d>
@@ -785,7 +1044,9 @@ const detectLanguage = useDebounceFn(async () => {
                   <div block i-carbon:face-dizzy-filled />
                 </span>
                 <template v-if="threadIsActive">
-                  <span>{{ !threadIsSending ? $t('action.publish_thread') : $t('state.publishing') }} </span>
+                  <span
+                    >{{ !threadIsSending ? $t('action.publish_thread') : $t('state.publishing') }}
+                  </span>
                 </template>
                 <template v-else>
                   <span v-if="draft.editingStatus">{{ $t('action.save_changes') }}</span>
@@ -793,7 +1054,9 @@ const detectLanguage = useDebounceFn(async () => {
                     !isSending ? $t('action.schedule') : $t('state.scheduling')
                   }}</span>
                   <span v-else-if="draft.params.inReplyToId">{{ $t('action.reply') }}</span>
-                  <span v-else>{{ !isSending ? $t('action.publish') : $t('state.publishing') }}</span>
+                  <span v-else>{{
+                    !isSending ? $t('action.publish') : $t('state.publishing')
+                  }}</span>
                 </template>
               </button>
             </CommonTooltip>
@@ -805,13 +1068,13 @@ const detectLanguage = useDebounceFn(async () => {
 </template>
 
 <style scoped>
-.publish-button[aria-disabled=true] {
+.publish-button[aria-disabled='true'] {
   cursor: not-allowed;
   background-color: var(--c-bg-btn-disabled);
   color: var(--c-text-btn-disabled);
 }
 
-.publish-button[aria-disabled=true]:hover {
+.publish-button[aria-disabled='true']:hover {
   background-color: var(--c-bg-btn-disabled);
   color: var(--c-text-btn-disabled);
 }
@@ -831,7 +1094,7 @@ const detectLanguage = useDebounceFn(async () => {
   border-radius: 50%;
 }
 
-input[name="schedule-datetime"]:invalid {
+input[name='schedule-datetime']:invalid {
   color: var(--c-danger);
 }
 </style>

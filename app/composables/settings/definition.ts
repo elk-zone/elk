@@ -7,7 +7,22 @@ export type OldFontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export type ColorMode = 'light' | 'dark' | 'system'
 
-export type NavButtonName = 'home' | 'search' | 'notification' | 'mention' | 'favorite' | 'bookmark' | 'compose' | 'scheduledPosts' | 'explore' | 'local' | 'federated' | 'list' | 'hashtag' | 'setting' | 'moreMenu'
+export type NavButtonName =
+  | 'home'
+  | 'search'
+  | 'notification'
+  | 'mention'
+  | 'favorite'
+  | 'bookmark'
+  | 'compose'
+  | 'scheduledPosts'
+  | 'explore'
+  | 'local'
+  | 'federated'
+  | 'list'
+  | 'hashtag'
+  | 'setting'
+  | 'moreMenu'
 
 export interface PreferencesSettings {
   hideAltIndicatorOnPosts: boolean
@@ -65,8 +80,7 @@ export interface ThemeColors {
 }
 
 export function getDefaultLanguage(languages: string[]) {
-  if (import.meta.server)
-    return 'en-US'
+  if (import.meta.server) return 'en-US'
   return matchLanguages(languages, navigator.languages) || 'en-US'
 }
 

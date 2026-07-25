@@ -8,7 +8,8 @@ const { t } = useI18n()
 
 <template>
   <div
-    flex="~ gap1" items-center
+    flex="~ gap1"
+    items-center
     :class="{ 'border border-base rounded-md px-1': showLabel }"
     text-secondary-light
   >

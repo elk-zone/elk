@@ -1,7 +1,18 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { actions = true, isNested = false, disableLink = false, older, newer, hasOlder, hasNewer, main, account, ...props } = defineProps<{
+const {
+  actions = true,
+  isNested = false,
+  disableLink = false,
+  older,
+  newer,
+  hasOlder,
+  hasNewer,
+  main,
+  account,
+  ...props
+} = defineProps<{
   status: mastodon.v1.Status
   followedTag?: string | null
   actions?: boolean
@@ -28,19 +39,32 @@ const { actions = true, isNested = false, disableLink = false, older, newer, has
 const userSettings = useUserSettings()
 
 const status = computed(() => {
-  if (props.status.reblog && (!props.status.content || props.status.content === props.status.reblog.content))
+  if (
+    props.status.reblog &&
+    (!props.status.content || props.status.content === props.status.reblog.content)
+  )
     return props.status.reblog
   return props.status
 })
 
 // Use original status, avoid connecting a reblog
-const directReply = computed(() => hasNewer || (!!status.value.inReplyToId && (status.value.inReplyToId === newer?.id || status.value.inReplyToId === newer?.reblog?.id)))
+const directReply = computed(
+  () =>
+    hasNewer ||
+    (!!status.value.inReplyToId &&
+      (status.value.inReplyToId === newer?.id || status.value.inReplyToId === newer?.reblog?.id)),
+)
 // Use reblogged status, connect it to further replies
-const connectReply = computed(() => hasOlder || status.value.id === older?.inReplyToId || status.value.id === older?.reblog?.inReplyToId)
+const connectReply = computed(
+  () =>
+    hasOlder ||
+    status.value.id === older?.inReplyToId ||
+    status.value.id === older?.reblog?.inReplyToId,
+)
 // Open a detailed status, the replies directly to it
 const replyToMain = computed(() => main && main.id === status.value.inReplyToId)
 
-const rebloggedBy = computed(() => props.status.reblog ? props.status.account : null)
+const rebloggedBy = computed(() => (props.status.reblog ? props.status.account : null))
 
 const statusRoute = computed(() => getStatusRoute(status.value))
 
@@ -49,8 +73,7 @@ const router = useRouter()
 function go(evt: MouseEvent | KeyboardEvent) {
   if (evt.metaKey || evt.ctrlKey) {
     window.open(statusRoute.value.href)
-  }
-  else {
+  } else {
     cacheStatus(status.value)
     router.push(statusRoute.value)
   }
@@ -63,10 +86,7 @@ const timeago = useTimeAgo(() => status.value.createdAt, timeAgoOptions)
 const isSelfReply = computed(() => status.value.inReplyToAccountId === status.value.account.id)
 const collapseRebloggedBy = computed(() => rebloggedBy.value?.id === status.value.account.id)
 const isDM = computed(() => status.value.visibility === 'direct')
-const isPinned = computed(
-  () =>
-    !!props.status.pinned && account?.id === status.value.account.id,
-)
+const isPinned = computed(() => !!props.status.pinned && account?.id === status.value.account.id)
 
 const showUpperBorder = computed(() => newer && !directReply.value)
 const showReplyTo = computed(() => !replyToMain.value && !directReply.value)
@@ -80,7 +100,9 @@ const forceShow = ref(false)
     hover-bg-active
     rounded-3
     transition-100
-    :status="status" :hover="hover" :disable-link="disableLink"
+    :status="status"
+    :hover="hover"
+    :disable-link="disableLink"
   >
     <!-- Upper border -->
     <div :h="showUpperBorder ? '1px' : '0'" w-auto bg-border mb-1 z--1 />
@@ -90,9 +112,16 @@ const forceShow = ref(false)
       <div flex="~ col" justify-between>
         <div
           v-if="!!followedTag && followedTag !== ''"
-          flex="~ gap2" items-center h-auto text-sm text-orange
-          m="is-5" p="t-1 is-5"
-          relative text-secondary ws-nowrap
+          flex="~ gap2"
+          items-center
+          h-auto
+          text-sm
+          text-orange
+          m="is-5"
+          p="t-1 is-5"
+          relative
+          text-secondary
+          ws-nowrap
         >
           <div i-ri:hashtag />
           <!-- show first hit followed tag -->
@@ -104,9 +133,16 @@ const forceShow = ref(false)
       <div flex="~ col" justify-between>
         <div
           v-if="isPinned"
-          flex="~ gap2" items-center h-auto text-sm text-orange
-          m="is-5" p="t-1 is-5"
-          relative text-secondary ws-nowrap
+          flex="~ gap2"
+          items-center
+          h-auto
+          text-sm
+          text-orange
+          m="is-5"
+          p="t-1 is-5"
+          relative
+          text-secondary
+          ws-nowrap
         >
           <div i-ri:pushpin-line />
           <span>{{ $t('status.pinned') }}</span>
@@ -117,7 +153,8 @@ const forceShow = ref(false)
       <template v-if="status.inReplyToAccountId">
         <StatusReplyingTo
           v-if="showReplyTo"
-          m="is-5" p="t-1 is-5"
+          m="is-5"
+          p="t-1 is-5"
           :status="status"
           :is-self-reply="isSelfReply"
           :class="inNotification ? 'text-secondary-light' : ''"
@@ -136,9 +173,12 @@ const forceShow = ref(false)
       <div flex="~ col" justify-between>
         <div
           v-if="rebloggedBy && !collapseRebloggedBy"
-          flex="~" items-center
+          flex="~"
+          items-center
           p="t-1 b-0.5 x-1px"
-          relative text-secondary ws-nowrap
+          relative
+          text-secondary
+          ws-nowrap
         >
           <div i-ri:repeat-fill me-46px text-green w-16px h-16px class="status-boosted" />
           <div absolute top-1 ms-24px w-32px h-32px rounded-full>
@@ -170,7 +210,18 @@ const forceShow = ref(false)
       <template v-else>
         <!-- Avatar -->
         <div relative>
-          <div v-if="collapseRebloggedBy" absolute flex items-center justify-center top--6px px-2px py-3px rounded-full bg-base>
+          <div
+            v-if="collapseRebloggedBy"
+            absolute
+            flex
+            items-center
+            justify-center
+            top--6px
+            px-2px
+            py-3px
+            rounded-full
+            bg-base
+          >
             <div i-ri:repeat-fill text-green w-16px h-16px />
           </div>
           <AccountHoverWrapper :account="status.account">
@@ -192,12 +243,23 @@ const forceShow = ref(false)
               <StatusAccountDetails :account="status.account" />
             </AccountHoverWrapper>
             <div flex-auto />
-            <div v-show="!getPreferences(userSettings, 'zenMode')" text-sm text-secondary flex="~ row nowrap" hover:underline whitespace-nowrap>
+            <div
+              v-show="!getPreferences(userSettings, 'zenMode')"
+              text-sm
+              text-secondary
+              flex="~ row nowrap"
+              hover:underline
+              whitespace-nowrap
+            >
               <div flex="~ gap1" items-center>
                 <StatusVisibilityIndicator v-if="status.visibility !== 'public'" :status="status" />
                 <div flex>
                   <CommonTooltip :content="createdAt">
-                    <NuxtLink :title="status.createdAt" :href="statusRoute.href" @click.prevent="go($event)">
+                    <NuxtLink
+                      :title="status.createdAt"
+                      :href="statusRoute.href"
+                      @click.prevent="go($event)"
+                    >
                       <time text-sm ws-nowrap hover:underline :datetime="status.createdAt">
                         {{ timeago }}
                       </time>
@@ -218,9 +280,14 @@ const forceShow = ref(false)
             :is-preview="isPreview"
             :in-notification="inNotification"
             :is-nested="isNested"
-            mb2 :class="{ 'mt-2 mb1': isDM }"
+            mb2
+            :class="{ 'mt-2 mb1': isDM }"
           />
-          <StatusActions v-if="actions !== false" v-show="!getPreferences(userSettings, 'zenMode')" :status="status" />
+          <StatusActions
+            v-if="actions !== false"
+            v-show="!getPreferences(userSettings, 'zenMode')"
+            :status="status"
+          />
         </div>
       </template>
     </div>

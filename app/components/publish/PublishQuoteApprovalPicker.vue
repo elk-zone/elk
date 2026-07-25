@@ -10,8 +10,10 @@ const modelValue = defineModel<string | null | undefined>({
   required: true,
 })
 
-const currentQuoteApprovalPolicy = computed(() =>
-  statusQuoteApprovalPolicies.find(v => v.value === modelValue.value) || statusQuoteApprovalPolicies[0],
+const currentQuoteApprovalPolicy = computed(
+  () =>
+    statusQuoteApprovalPolicies.find((v) => v.value === modelValue.value) ||
+    statusQuoteApprovalPolicies[0],
 )
 
 function chooseQuoteApprovalPolicy(quoteApprovalPolicy: mastodon.rest.v1.QuoteApprovalPolicy) {
@@ -22,7 +24,14 @@ function chooseQuoteApprovalPolicy(quoteApprovalPolicy: mastodon.rest.v1.QuoteAp
 <template>
   <div flex items-center>
     <div i-ri:double-quotes-l me--2 />
-    <CommonTooltip placement="top" :content="editing ? $t(`quote_approval_policy.${currentQuoteApprovalPolicy.value}`) : $t('tooltip.change_quote_approval_policy')">
+    <CommonTooltip
+      placement="top"
+      :content="
+        editing
+          ? $t(`quote_approval_policy.${currentQuoteApprovalPolicy.value}`)
+          : $t('tooltip.change_quote_approval_policy')
+      "
+    >
       <CommonDropdown placement="bottom">
         <slot :quote-approval-policy="currentQuoteApprovalPolicy" />
         <template #popper>

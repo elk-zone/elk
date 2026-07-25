@@ -16,8 +16,8 @@ export function onHydrated(cb: () => unknown) {
  */
 export function useDeactivated() {
   const deactivated = ref(false)
-  onActivated(() => deactivated.value = false)
-  onDeactivated(() => deactivated.value = true)
+  onActivated(() => (deactivated.value = false))
+  onDeactivated(() => (deactivated.value = true))
 
   return deactivated
 }
@@ -33,31 +33,36 @@ export function useDeactivated() {
 export function onReactivated(hook: () => void, target?: ComponentInternalInstance | null): void {
   const initial = ref(true)
   onActivated(() => {
-    if (initial.value)
-      return
+    if (initial.value) return
     hook()
   }, target)
-  onDeactivated(() => initial.value = false)
+  onDeactivated(() => (initial.value = false))
 }
 
-export function useHydratedHead<T extends SchemaAugmentations>(input: UseHeadInput<T>, options?: UseHeadOptions): ActiveHeadEntry<UseHeadInput<T>> | void {
+export function useHydratedHead<T extends SchemaAugmentations>(
+  input: UseHeadInput<T>,
+  options?: UseHeadOptions,
+): ActiveHeadEntry<UseHeadInput<T>> | void {
   if (input && typeof input === 'object' && !('value' in input)) {
     const title = 'title' in input ? input.title : undefined
     if (import.meta.server && title) {
       input.meta = input.meta || []
       if (Array.isArray(input.meta)) {
-        input.meta.push(
-          { property: 'og:title', content: (typeof input.title === 'function' ? input.title() : input.title) as string },
-        )
+        input.meta.push({
+          property: 'og:title',
+          content: (typeof input.title === 'function' ? input.title() : input.title) as string,
+        })
       }
-    }
-    else if (title) {
-      (input as any).title = () => isHydrated.value ? typeof title === 'function' ? title() : title : ''
+    } else if (title) {
+      ;(input as any).title = () =>
+        isHydrated.value ? (typeof title === 'function' ? title() : title) : ''
     }
   }
-  return useHead((() => {
-    if (!isHydrated.value)
-      return {}
-    return toValue(input)
-  }) as UseHeadInput<T>, options)
+  return useHead(
+    (() => {
+      if (!isHydrated.value) return {}
+      return toValue(input)
+    }) as UseHeadInput<T>,
+    options,
+  )
 }

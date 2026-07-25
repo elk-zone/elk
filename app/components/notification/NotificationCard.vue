@@ -31,8 +31,13 @@ const supportedNotificationTypes: NotificationType[] = [
 // well-known emoji reactions types Elk does not support yet
 const unsupportedEmojiReactionTypes = ['pleroma:emoji_reaction', 'reaction']
 
-if (unsupportedEmojiReactionTypes.includes(notification.type) || !supportedNotificationTypes.includes(notification.type)) {
-  console.warn(`[DEV] ${t('notification.missing_type')} '${notification.type}' (notification.id: ${notification.id})`)
+if (
+  unsupportedEmojiReactionTypes.includes(notification.type) ||
+  !supportedNotificationTypes.includes(notification.type)
+) {
+  console.warn(
+    `[DEV] ${t('notification.missing_type')} '${notification.type}' (notification.id: ${notification.id})`,
+  )
 }
 
 const timeAgoOptions = useTimeAgoOptions(true)
@@ -43,25 +48,23 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
   <article flex flex-col relative>
     <template v-if="notification.type === 'follow'">
       <NuxtLink :to="getAccountRoute(notification.account)">
-        <div
-          flex items-center absolute
-          ps-3 pe-4 inset-is-0
-          rounded-ie-be-3
-          py-3 bg-base top-0
-        >
+        <div flex items-center absolute ps-3 pe-4 inset-is-0 rounded-ie-be-3 py-3 bg-base top-0>
           <div i-ri-user-3-line text-xl me-3 color-blue />
-          <AccountDisplayName :account="notification.account" text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all />
+          <AccountDisplayName
+            :account="notification.account"
+            text-primary
+            me-1
+            font-bold
+            line-clamp-1
+            ws-pre-wrap
+            break-all
+          />
           <span ws-nowrap>
             {{ $t('notification.followed_you') }}
-            <time text-secondary :datetime="notification.createdAt">
-              ・{{ timeAgo }}
-            </time>
+            <time text-secondary :datetime="notification.createdAt"> ・{{ timeAgo }} </time>
           </span>
         </div>
-        <AccountBigCard
-          ms10
-          :account="notification.account"
-        />
+        <AccountBigCard ms10 :account="notification.account" />
       </NuxtLink>
     </template>
     <template v-else-if="notification.type === 'admin.sign_up'">
@@ -70,12 +73,16 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
           <div i-ri:user-add-line text-xl me-2 color-purple />
           <AccountDisplayName
             :account="notification.account"
-            text-purple me-1 font-bold line-clamp-1 ws-pre-wrap break-all
+            text-purple
+            me-1
+            font-bold
+            line-clamp-1
+            ws-pre-wrap
+            break-all
           />
-          <span>{{ $t("notification.signed_up") }}
-            <time text-secondary :datetime="notification.createdAt">
-              ・{{ timeAgo }}
-            </time>
+          <span
+            >{{ $t('notification.signed_up') }}
+            <time text-secondary :datetime="notification.createdAt"> ・{{ timeAgo }} </time>
           </span>
         </div>
       </NuxtLink>
@@ -87,11 +94,21 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
           <i18n-t keypath="notification.reported">
             <AccountDisplayName
               :account="notification.account"
-              text-purple me-1 font-bold line-clamp-1 ws-pre-wrap break-all
+              text-purple
+              me-1
+              font-bold
+              line-clamp-1
+              ws-pre-wrap
+              break-all
             />
             <AccountDisplayName
               :account="notification.report?.targetAccount!"
-              text-purple ms-1 font-bold line-clamp-1 ws-pre-wrap break-all
+              text-purple
+              ms-1
+              font-bold
+              line-clamp-1
+              ws-pre-wrap
+              break-all
             />
           </i18n-t>
         </div>
@@ -102,13 +119,16 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
         <div i-ri-user-shared-line text-xl me-3 color-blue />
         <AccountDisplayName
           :account="notification.account"
-          text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all
+          text-primary
+          me-1
+          font-bold
+          line-clamp-1
+          ws-pre-wrap
+          break-all
         />
         <span me-1 ws-nowrap>
           {{ $t('notification.request_to_follow') }}
-          <time text-secondary :datetime="notification.createdAt">
-            ・{{ timeAgo }}
-          </time>
+          <time text-secondary :datetime="notification.createdAt"> ・{{ timeAgo }} </time>
         </span>
       </div>
       <AccountCard p="s-2 e-4 b-2" hover-card :account="notification.account">
@@ -123,9 +143,7 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
             <AccountInlineInfo :account="notification.account" me1 />
             <span ws-nowrap>
               {{ $t('notification.update_status') }}
-              <time text-secondary :datetime="notification.createdAt">
-                ・{{ timeAgo }}
-              </time>
+              <time text-secondary :datetime="notification.createdAt"> ・{{ timeAgo }} </time>
             </span>
           </div>
         </template>
@@ -133,10 +151,10 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
     </template>
     <template
       v-else-if="
-        notification.type === 'mention'
-          || notification.type === 'poll'
-          || notification.type === 'status'
-          || notification.type === 'quote'
+        notification.type === 'mention' ||
+        notification.type === 'poll' ||
+        notification.type === 'status' ||
+        notification.type === 'quote'
       "
     >
       <StatusCard :status="notification.status!" />
@@ -146,9 +164,8 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
         <div i-mdi:party-popper text-xl me-4 color-purple />
         <div class="content-rich">
           <p>
-            Your 2024 <NuxtLink to="/tags/Wrapstodon">
-              #Wrapstodon
-            </NuxtLink> awaits! Unveil your year's highlights and memorable moments on Mastodon!
+            Your 2024 <NuxtLink to="/tags/Wrapstodon"> #Wrapstodon </NuxtLink> awaits! Unveil your
+            year's highlights and memorable moments on Mastodon!
           </p>
           <p>
             <NuxtLink :to="`https://${currentServer}/notifications`" target="_blank">

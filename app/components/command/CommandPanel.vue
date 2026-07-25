@@ -22,7 +22,7 @@ onMounted(() => {
 
 const commandMode = computed(() => input.value.startsWith('>'))
 
-const query = computed(() => commandMode.value ? '' : input.value.trim())
+const query = computed(() => (commandMode.value ? '' : input.value.trim()))
 
 const { accounts, hashtags, loading } = useSearch(query)
 
@@ -36,8 +36,7 @@ function toSearchQueryResultItem(search: SearchResultType): QueryResultItem {
 }
 
 const searchResult = computed<QueryResult>(() => {
-  if (query.value.length === 0 || loading.value)
-    return { length: 0, items: [], grouped: {} as any }
+  if (query.value.length === 0 || loading.value) return { length: 0, items: [], grouped: {} as any }
 
   // TODO extract this scope
   // duplicate in SearchWidget.vue
@@ -50,8 +49,7 @@ const searchResult = computed<QueryResult>(() => {
 
   let index = 0
   for (const items of grouped.values()) {
-    for (const item of items)
-      item.index = index++
+    for (const item of items) item.index = index++
   }
 
   return {
@@ -61,18 +59,18 @@ const searchResult = computed<QueryResult>(() => {
   }
 })
 
-const result = computed<QueryResult>(() => commandMode.value
-  ? registry.query(scopes.value.map(s => s.id).join('.'), input.value.slice(1).trim())
-  : searchResult.value,
+const result = computed<QueryResult>(() =>
+  commandMode.value
+    ? registry.query(scopes.value.map((s) => s.id).join('.'), input.value.slice(1).trim())
+    : searchResult.value,
 )
 
 const isMac = useIsMac()
-const modifierKeyName = computed(() => isMac.value ? '⌘' : 'Ctrl')
+const modifierKeyName = computed(() => (isMac.value ? '⌘' : 'Ctrl'))
 
 const active = ref(0)
 watch(result, (n, o) => {
-  if (n.length !== o.length || !n.items.every((i, idx) => i === o.items[idx]))
-    active.value = 0
+  if (n.length !== o.length || !n.items.every((i, idx) => i === o.items[idx])) active.value = 0
 })
 
 function findItemEl(index: number) {
@@ -82,8 +80,7 @@ function onCommandActivate(item: QueryResultItem) {
   if (item.onActivate) {
     item.onActivate()
     emit('close')
-  }
-  else if (item.onComplete) {
+  } else if (item.onComplete) {
     scopes.value.push(item.onComplete())
     input.value = '> '
   }
@@ -92,16 +89,14 @@ function onCommandComplete(item: QueryResultItem) {
   if (item.onComplete) {
     scopes.value.push(item.onComplete())
     input.value = '> '
-  }
-  else if (item.onActivate) {
+  } else if (item.onActivate) {
     item.onActivate()
     emit('close')
   }
 }
 function intoView(index: number) {
   const el = findItemEl(index)
-  if (el)
-    el.scrollIntoView({ block: 'nearest' })
+  if (el) el.scrollIntoView({ block: 'nearest' })
 }
 
 function setActive(index: number) {
@@ -114,8 +109,7 @@ function onKeyDown(e: KeyboardEvent) {
   switch (e.key) {
     case 'p':
     case 'ArrowUp': {
-      if (e.key === 'p' && !e.ctrlKey)
-        break
+      if (e.key === 'p' && !e.ctrlKey) break
       e.preventDefault()
 
       setActive(active.value - 1)
@@ -124,8 +118,7 @@ function onKeyDown(e: KeyboardEvent) {
     }
     case 'n':
     case 'ArrowDown': {
-      if (e.key === 'n' && !e.ctrlKey)
-        break
+      if (e.key === 'n' && !e.ctrlKey) break
       e.preventDefault()
 
       setActive(active.value + 1)
@@ -155,8 +148,7 @@ function onKeyDown(e: KeyboardEvent) {
       e.preventDefault()
 
       const cmd = result.value.items[active.value]
-      if (cmd)
-        onCommandActivate(cmd)
+      if (cmd) onCommandActivate(cmd)
 
       break
     }
@@ -165,8 +157,7 @@ function onKeyDown(e: KeyboardEvent) {
       e.preventDefault()
 
       const cmd = result.value.items[active.value]
-      if (cmd)
-        onCommandComplete(cmd)
+      if (cmd) onCommandComplete(cmd)
 
       break
     }
@@ -199,7 +190,7 @@ function onKeyDown(e: KeyboardEvent) {
         class="focus:outline-none flex-1 p-2 rounded bg-base"
         placeholder="Search"
         @keydown="onKeyDown"
-      >
+      />
 
       <CommandKey name="Escape" />
     </label>
@@ -220,17 +211,23 @@ function onKeyDown(e: KeyboardEvent) {
           </div>
 
           <template v-for="item in group" :key="item.index">
-            <SearchResult v-if="item.type === 'search'" :active="active === item.index" :result="item.search" />
-            <CommandItem v-else :index="item.index" :cmd="item.cmd" :active="active === item.index" @activate="onCommandActivate(item)" />
+            <SearchResult
+              v-if="item.type === 'search'"
+              :active="active === item.index"
+              :result="item.search"
+            />
+            <CommandItem
+              v-else
+              :index="item.index"
+              :cmd="item.cmd"
+              :active="active === item.index"
+              @activate="onCommandActivate(item)"
+            />
           </template>
         </template>
       </template>
       <div v-else p5 text-center text-secondary italic>
-        {{
-          input.trim().length
-            ? $t('common.not_found')
-            : $t('search.search_desc')
-        }}
+        {{ input.trim().length ? $t('common.not_found') : $t('search.search_desc') }}
       </div>
     </div>
 
@@ -238,8 +235,8 @@ function onKeyDown(e: KeyboardEvent) {
 
     <!-- Footer -->
     <div class="flex items-center px-3 py-1 text-xs">
-      <div i-ri:lightbulb-flash-line /> Tip: Use
-      <CommandKey :name="`${modifierKeyName}+K`" /> to search,
+      <div i-ri:lightbulb-flash-line />
+      Tip: Use <CommandKey :name="`${modifierKeyName}+K`" /> to search,
       <CommandKey :name="`${modifierKeyName}+/`" /> to activate command mode.
     </div>
   </div>

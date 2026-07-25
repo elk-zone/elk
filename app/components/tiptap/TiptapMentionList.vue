@@ -10,23 +10,23 @@ const { items, command } = defineProps<{
 
 const selectedIndex = ref(0)
 
-watch(() => items, () => {
-  selectedIndex.value = 0
-})
+watch(
+  () => items,
+  () => {
+    selectedIndex.value = 0
+  },
+)
 
 function onKeyDown(event: KeyboardEvent) {
-  if (items.length === 0)
-    return false
+  if (items.length === 0) return false
 
   if (event.key === 'ArrowUp') {
-    selectedIndex.value = ((selectedIndex.value + items.length) - 1) % items.length
+    selectedIndex.value = (selectedIndex.value + items.length - 1) % items.length
     return true
-  }
-  else if (event.key === 'ArrowDown') {
+  } else if (event.key === 'ArrowDown') {
     selectedIndex.value = (selectedIndex.value + 1) % items.length
     return true
-  }
-  else if (event.key === 'Enter') {
+  } else if (event.key === 'Enter') {
     selectItem(selectedIndex.value)
     return true
   }
@@ -36,8 +36,7 @@ function onKeyDown(event: KeyboardEvent) {
 
 function selectItem(index: number) {
   const item = items[index]
-  if (item)
-    command({ id: item.acct })
+  if (item) command({ id: item.acct })
 }
 
 defineExpose({
@@ -46,7 +45,19 @@ defineExpose({
 </script>
 
 <template>
-  <div v-if="isPending || items.length" relative bg-base text-base shadow border="~ base rounded" text-sm py-2 overflow-x-hidden overflow-y-auto max-h-100>
+  <div
+    v-if="isPending || items.length"
+    relative
+    bg-base
+    text-base
+    shadow
+    border="~ base rounded"
+    text-sm
+    py-2
+    overflow-x-hidden
+    overflow-y-auto
+    max-h-100
+  >
     <template v-if="isPending">
       <div flex gap-1 items-center p2 animate-pulse>
         <div animate-spin preserve-3d>
@@ -57,11 +68,17 @@ defineExpose({
     </template>
     <template v-if="items.length">
       <CommonScrollIntoView
-        v-for="(item, index) in items" :key="index"
+        v-for="(item, index) in items"
+        :key="index"
         :active="index === selectedIndex"
         as="button"
         :class="index === selectedIndex ? 'bg-active' : 'text-secondary'"
-        block m0 w-full text-left px2 py1
+        block
+        m0
+        w-full
+        text-left
+        px2
+        py1
         @click="selectItem(index)"
       >
         <AccountInfo :account="item" />

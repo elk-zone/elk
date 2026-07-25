@@ -23,5 +23,3 @@ declare module 'vue' {
     $pwa?: UnwrapNestedRefs<PwaInjection>
   }
 }
-
-

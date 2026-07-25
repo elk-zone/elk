@@ -2,9 +2,8 @@ import type { ThemeColors } from '../app/composables/settings'
 import chroma from 'chroma-js'
 
 // #cc7d24 -> hcl(67.14,62.19,59.56)
-export const themesColor = Array.from(
-  { length: 9 },
-  (_, i) => chroma.hcl((67.14 + i * 40) % 360, 62.19, 59.56).hex(),
+export const themesColor = Array.from({ length: 9 }, (_, i) =>
+  chroma.hcl((67.14 + i * 40) % 360, 62.19, 59.56).hex(),
 )
 
 export function getThemeColors(primary: string): ThemeColors {
@@ -28,4 +27,4 @@ export function getThemeColors(primary: string): ThemeColors {
   }
 }
 
-export const colorsMap = themesColor.map(color => [color, getThemeColors(color)])
+export const colorsMap = themesColor.map((color) => [color, getThemeColors(color)])

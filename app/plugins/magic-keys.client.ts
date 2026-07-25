@@ -12,10 +12,11 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
   // disable shortcuts when focused on inputs (https://vueuse.org/core/usemagickeys/#conditionally-disable)
   const activeElement = useActiveElement()
 
-  const notUsingInput = computed(() =>
-    activeElement.value?.tagName !== 'INPUT'
-    && activeElement.value?.tagName !== 'TEXTAREA'
-    && !activeElement.value?.isContentEditable,
+  const notUsingInput = computed(
+    () =>
+      activeElement.value?.tagName !== 'INPUT' &&
+      activeElement.value?.tagName !== 'TEXTAREA' &&
+      !activeElement.value?.isContentEditable,
   )
   const isAuthenticated = currentUser.value !== undefined
 
@@ -31,27 +32,59 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
     const current = keys.current
     // exclusive 'c' - not apply in combination
     // TODO: bugfix -> create PR for vueuse, reset `current` ref on window focus|blur
-    if (!current.has('shift') && !current.has('meta') && !current.has('control') && !current.has('alt')) {
+    if (
+      !current.has('shift') &&
+      !current.has('meta') &&
+      !current.has('control') &&
+      !current.has('alt')
+    ) {
       // TODO: is this the correct way of using openPublishDialog()?
       void openPublishDialog('dialog', getDefaultDraftItem())
     }
   }
   whenever(logicAnd(isAuthenticated, notUsingInput, keys.c), defaultPublishDialog)
 
-  const instanceDomain = currentInstance.value ? getInstanceDomain(currentInstance.value) : 'm.webtoo.ls'
+  const instanceDomain = currentInstance.value
+    ? getInstanceDomain(currentInstance.value)
+    : 'm.webtoo.ls'
   whenever(logicAnd(notUsingInput, useMagicSequence(['g', 'h'])), () => navigateTo('/home'))
-  whenever(logicAnd(isAuthenticated, notUsingInput, useMagicSequence(['g', 'n'])), () => navigateTo('/notifications'))
+  whenever(logicAnd(isAuthenticated, notUsingInput, useMagicSequence(['g', 'n'])), () =>
+    navigateTo('/notifications'),
+  )
   // TODO: always overridden by 'c' (compose) shortcut
-  whenever(logicAnd(isAuthenticated, notUsingInput, useMagicSequence(['g', 'c'])), () => navigateTo('/conversations'))
-  whenever(logicAnd(isAuthenticated, notUsingInput, useMagicSequence(['g', 'f'])), () => navigateTo('/favourites'))
-  whenever(logicAnd(isAuthenticated, notUsingInput, useMagicSequence(['g', 'b'])), () => navigateTo('/bookmarks'))
-  whenever(logicAnd(notUsingInput, useMagicSequence(['g', 'e'])), () => navigateTo(`/${instanceDomain}/explore`))
-  whenever(logicAnd(notUsingInput, useMagicSequence(['g', 'l'])), () => navigateTo(`/${instanceDomain}/public/local`))
-  whenever(logicAnd(notUsingInput, useMagicSequence(['g', 't'])), () => navigateTo(`/${instanceDomain}/public`))
-  whenever(logicAnd(isAuthenticated, notUsingInput, useMagicSequence(['g', 'i'])), () => navigateTo('/lists'))
+  whenever(logicAnd(isAuthenticated, notUsingInput, useMagicSequence(['g', 'c'])), () =>
+    navigateTo('/conversations'),
+  )
+  whenever(logicAnd(isAuthenticated, notUsingInput, useMagicSequence(['g', 'f'])), () =>
+    navigateTo('/favourites'),
+  )
+  whenever(logicAnd(isAuthenticated, notUsingInput, useMagicSequence(['g', 'b'])), () =>
+    navigateTo('/bookmarks'),
+  )
+  whenever(logicAnd(notUsingInput, useMagicSequence(['g', 'e'])), () =>
+    navigateTo(`/${instanceDomain}/explore`),
+  )
+  whenever(logicAnd(notUsingInput, useMagicSequence(['g', 'l'])), () =>
+    navigateTo(`/${instanceDomain}/public/local`),
+  )
+  whenever(logicAnd(notUsingInput, useMagicSequence(['g', 't'])), () =>
+    navigateTo(`/${instanceDomain}/public`),
+  )
+  whenever(logicAnd(isAuthenticated, notUsingInput, useMagicSequence(['g', 'i'])), () =>
+    navigateTo('/lists'),
+  )
   whenever(logicAnd(notUsingInput, useMagicSequence(['g', 's'])), () => navigateTo('/settings'))
-  whenever(logicAnd(isAuthenticated, notUsingInput, useMagicSequence(['g', 'p'])), () => navigateTo(`/${instanceDomain}/@${currentUser.value?.account.username}`))
-  whenever(logicAnd(notUsingInput, computed(() => keys.current.size === 1), keys['/']), () => navigateTo('/search'))
+  whenever(logicAnd(isAuthenticated, notUsingInput, useMagicSequence(['g', 'p'])), () =>
+    navigateTo(`/${instanceDomain}/@${currentUser.value?.account.username}`),
+  )
+  whenever(
+    logicAnd(
+      notUsingInput,
+      computed(() => keys.current.size === 1),
+      keys['/'],
+    ),
+    () => navigateTo('/search'),
+  )
 
   const toggleFavouriteActiveStatus = () => {
     // TODO: find a better solution than clicking buttons...
@@ -72,19 +105,17 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
   whenever(logicAnd(isAuthenticated, notUsingInput, keys.b), toggleBoostActiveStatus)
 
   const composeWithQuote = () => {
-    const quotedStatusId = document.querySelector<HTMLElement>('[aria-roledescription=status-details]')
+    const quotedStatusId = document
+      .querySelector<HTMLElement>('[aria-roledescription=status-details]')
       ?.getAttribute('id')
       ?.replace('status-', '')
-    if (quotedStatusId)
-      navigateTo(`/compose?quote=${quotedStatusId}`)
+    if (quotedStatusId) navigateTo(`/compose?quote=${quotedStatusId}`)
   }
   whenever(logicAnd(isAuthenticated, notUsingInput, keys.q), composeWithQuote)
 
   const showNewItems = () => {
     // TODO: find a better solution than clicking buttons...
-    document
-      ?.querySelector<HTMLElement>('button#elk_show_new_items')
-      ?.click()
+    document?.querySelector<HTMLElement>('button#elk_show_new_items')?.click()
   }
   whenever(logicAnd(isAuthenticated, notUsingInput, keys['.']), showNewItems)
 
@@ -98,17 +129,17 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
     // `activeElement` can be some of an element within a status element
     // otherwise, reach to the root `<html>`
     function getActiveStatueId(element: HTMLElement): string | undefined {
-      if (element.nodeName === 'HTML')
-        return undefined
+      if (element.nodeName === 'HTML') return undefined
 
-      if (element.matches(statusSelector))
-        return element.id
+      if (element.matches(statusSelector)) return element.id
 
       return getActiveStatueId(element.parentNode as HTMLElement)
     }
 
     function focusNextOrPreviousStatus(direction: 'next' | 'previous') {
-      const activeStatusId = activeElement.value ? getActiveStatueId(activeElement.value) : undefined
+      const activeStatusId = activeElement.value
+        ? getActiveStatueId(activeElement.value)
+        : undefined
       const nextOrPreviousStatusId = getNextOrPreviousStatusId(activeStatusId, direction)
       if (nextOrPreviousStatusId) {
         const status = document.getElementById(nextOrPreviousStatusId)
@@ -120,17 +151,21 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
       }
     }
 
-    function getNextOrPreviousStatusId(currentStatusId: string | undefined, direction: 'next' | 'previous'): string | undefined {
-      const statusIds = Array.from(document.querySelectorAll(statusSelector), s => s.id)
+    function getNextOrPreviousStatusId(
+      currentStatusId: string | undefined,
+      direction: 'next' | 'previous',
+    ): string | undefined {
+      const statusIds = Array.from(document.querySelectorAll(statusSelector), (s) => s.id)
       if (currentStatusId === undefined) {
         // if there is no selection, always focus on the first status
         return statusIds[0]
       }
 
-      const currentIndex = statusIds.findIndex(id => id === currentStatusId)
-      const statusId = direction === 'next'
-        ? statusIds[Math.min(currentIndex + 1, statusIds.length)]
-        : statusIds[Math.max(0, currentIndex - 1)]
+      const currentIndex = statusIds.findIndex((id) => id === currentStatusId)
+      const statusId =
+        direction === 'next'
+          ? statusIds[Math.min(currentIndex + 1, statusIds.length)]
+          : statusIds[Math.max(0, currentIndex - 1)]
       return statusId
     }
 

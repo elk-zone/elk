@@ -83,18 +83,12 @@ class CustomPrecacheController extends PrecacheController {
 
       // check if present at precache before using network only
       // <host>/<page> => check for /<page> at cache = if present get it
-      const response = await getCacheResponse(
-        this,
-        options.request.url,
-        options,
-      )
-      if (response)
-        return response
+      const response = await getCacheResponse(this, options.request.url, options)
+      if (response) return response
 
       try {
         return await networkOnlyHandler.handle(options)
-      }
-      catch {
+      } catch {
         // fallback
         options.request = new Request(url)
         options.params = { cacheKey, ...options.params }
@@ -105,10 +99,9 @@ class CustomPrecacheController extends PrecacheController {
 }
 function getOrCreatePrecacheController(): PrecacheController {
   if (!precacheController) {
-    precacheController
-      = import.meta.env.DEV
-        ? new PrecacheController()
-        : new CustomPrecacheController()
+    precacheController = import.meta.env.DEV
+      ? new PrecacheController()
+      : new CustomPrecacheController()
   }
   return precacheController
 }

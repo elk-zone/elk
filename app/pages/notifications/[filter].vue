@@ -5,13 +5,11 @@ const route = useRoute()
 const { t } = useI18n()
 
 const filter = computed<mastodon.v1.NotificationType | undefined>(() => {
-  if (!isHydrated.value)
-    return undefined
+  if (!isHydrated.value) return undefined
 
   const rawFilter = route.params?.filter
   const actualFilter = Array.isArray(rawFilter) ? rawFilter[0] : rawFilter
-  if (isNotification(actualFilter))
-    return actualFilter
+  if (isNotification(actualFilter)) return actualFilter
 
   return undefined
 })

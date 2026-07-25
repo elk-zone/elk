@@ -14,11 +14,9 @@ await cp(`node_modules/${iconifyEmojiPackage}/icons`, destEmojis, {
   recursive: true,
 })
 
-await writeFile(
-  'app/constants/themes.json',
-  `${JSON.stringify(colorsMap, null, 2)}\n`,
-  { encoding: 'utf-8' },
-)
+await writeFile('app/constants/themes.json', `${JSON.stringify(colorsMap, null, 2)}\n`, {
+  encoding: 'utf-8',
+})
 await writeFile(
   'app/styles/default-theme.css',
   `:root {\n${Object.entries(colorsMap[0][1])

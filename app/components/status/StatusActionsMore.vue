@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
-import { toggleBlockAccount, toggleMuteAccount, useRelationship } from '~/composables/masto/relationship'
+import {
+  toggleBlockAccount,
+  toggleMuteAccount,
+  useRelationship,
+} from '~/composables/masto/relationship'
 
 const { details, ...props } = defineProps<{
   status: mastodon.v1.Status
@@ -14,15 +18,8 @@ const emit = defineEmits<{
 
 const focusEditor = inject<typeof noop>('focus-editor', noop)
 
-const {
-  status,
-  isLoading,
-  toggleBookmark,
-  toggleFavourite,
-  togglePin,
-  toggleReblog,
-  toggleMute,
-} = useStatusActions({ status: props.status })
+const { status, isLoading, toggleBookmark, toggleFavourite, togglePin, toggleReblog, toggleMute } =
+  useStatusActions({ status: props.status })
 
 const clipboard = useClipboard()
 const router = useRouter()
@@ -37,28 +34,24 @@ const { client } = useMasto()
 
 function getPermalinkUrl(status: mastodon.v1.Status) {
   const url = getStatusPermalinkRoute(status)
-  if (url)
-    return `${location.origin}/${url}`
+  if (url) return `${location.origin}/${url}`
   return null
 }
 
 async function copyLink(status: mastodon.v1.Status) {
   const url = getPermalinkUrl(status)
-  if (url)
-    await clipboard.copy(url)
+  if (url) await clipboard.copy(url)
 }
 
 async function copyOriginalLink(status: mastodon.v1.Status) {
   const url = status.url
-  if (url)
-    await clipboard.copy(url)
+  if (url) await clipboard.copy(url)
 }
 
 const { share, isSupported: isShareSupported } = useShare()
 async function shareLink(status: mastodon.v1.Status) {
   const url = getPermalinkUrl(status)
-  if (url)
-    await share({ url })
+  if (url) await share({ url })
 }
 
 async function deleteStatus() {
@@ -68,14 +61,12 @@ async function deleteStatus() {
     confirm: t('confirm.delete_posts.confirm'),
     cancel: t('confirm.delete_posts.cancel'),
   })
-  if (confirmDelete.choice !== 'confirm')
-    return
+  if (confirmDelete.choice !== 'confirm') return
 
   removeCachedStatus(status.value.id)
   await client.value.v1.statuses.$select(status.value.id).remove()
 
-  if (route.name === 'status')
-    router.back()
+  if (route.name === 'status') router.back()
 
   // TODO when timeline, remove this item
 }
@@ -87,14 +78,12 @@ async function deleteAndRedraft() {
     confirm: t('confirm.delete_posts.confirm'),
     cancel: t('confirm.delete_posts.cancel'),
   })
-  if (confirmDelete.choice !== 'confirm')
-    return
+  if (confirmDelete.choice !== 'confirm') return
 
   if (import.meta.dev) {
     // oxlint-disable-next-line no-alert
     const result = confirm('[DEV] Are you sure you want to delete and re-draft this post?')
-    if (!result)
-      return
+    if (!result) return
   }
 
   removeCachedStatus(status.value.id)
@@ -107,22 +96,24 @@ async function deleteAndRedraft() {
 }
 
 function reply() {
-  if (!checkLogin())
-    return
+  if (!checkLogin()) return
   if (details) {
     focusEditor()
-  }
-  else {
+  } else {
     const { key, draft } = getReplyDraft(status.value)
     openPublishDialog(key, draft())
   }
 }
 
 async function editStatus() {
-  await openPublishDialog(`edit-${status.value.id}`, {
-    ...await getDraftFromStatus(status.value),
-    editingStatus: status.value,
-  }, true)
+  await openPublishDialog(
+    `edit-${status.value.id}`,
+    {
+      ...(await getDraftFromStatus(status.value)),
+      editingStatus: status.value,
+    },
+    true,
+  )
   emit('afterEdit')
 }
 
@@ -166,13 +157,16 @@ function showReactedBy() {
           <CommonDropdownItem
             is="button"
             :text="status.favourited ? $t('action.favourited') : $t('action.favourite')"
-            :icon="useStarFavoriteIcon
-              ? status.favourited ? 'i-ri:star-fill' : 'i-ri:star-line'
-              : status.favourited ? 'i-ri:heart-3-fill' : 'i-ri:heart-3-line'"
-            :class="status.favourited
-              ? useStarFavoriteIcon ? 'text-yellow' : 'text-rose'
-              : ''
+            :icon="
+              useStarFavoriteIcon
+                ? status.favourited
+                  ? 'i-ri:star-fill'
+                  : 'i-ri:star-line'
+                : status.favourited
+                  ? 'i-ri:heart-3-fill'
+                  : 'i-ri:heart-3-line'
             "
+            :class="status.favourited ? (useStarFavoriteIcon ? 'text-yellow' : 'text-rose') : ''"
             :command="command"
             :disabled="isLoading.favourited"
             @click="toggleFavourite()"
@@ -182,10 +176,7 @@ function showReactedBy() {
             is="button"
             :text="status.bookmarked ? $t('action.bookmarked') : $t('action.bookmark')"
             :icon="status.bookmarked ? 'i-ri:bookmark-fill' : 'i-ri:bookmark-line'"
-            :class="status.bookmarked
-              ? useStarFavoriteIcon ? 'text-rose' : 'text-yellow'
-              : ''
-            "
+            :class="status.bookmarked ? (useStarFavoriteIcon ? 'text-rose' : 'text-yellow') : ''"
             :command="command"
             :disabled="isLoading.bookmarked"
             @click="toggleBookmark()"
@@ -227,7 +218,13 @@ function showReactedBy() {
 
         <CommonDropdownItem
           is="button"
-          v-if="currentUser && (status.account.id === currentUser.account.id || status.mentions.some((m: mastodon.v1.StatusMention) => m.id === currentUser!.account.id))"
+          v-if="
+            currentUser &&
+            (status.account.id === currentUser.account.id ||
+              status.mentions.some(
+                (m: mastodon.v1.StatusMention) => m.id === currentUser!.account.id,
+              ))
+          "
           :text="status.muted ? $t('menu.unmute_conversation') : $t('menu.mute_conversation')"
           :icon="status.muted ? 'i-ri:eye-line' : 'i-ri:eye-off-line'"
           :command="command"
@@ -322,7 +319,11 @@ function showReactedBy() {
               @click="toggleBlockAccount(useRelationship(status.account).value!, status.account)"
             />
 
-            <template v-if="getServerName(status.account) && getServerName(status.account) !== currentServer">
+            <template
+              v-if="
+                getServerName(status.account) && getServerName(status.account) !== currentServer
+              "
+            >
               <CommonDropdownItem
                 is="button"
                 v-if="!useRelationship(status.account).value?.domainBlocking"

@@ -1,10 +1,9 @@
 {
   "name": "@elk-zone/elk",
-  "type": "module",
   "version": "1.0.0",
-  "packageManager": "pnpm@11.6.0",
-  "license": "MIT",
   "homepage": "https://elk.zone/",
+  "license": "MIT",
+  "type": "module",
   "main": "./nuxt.config.ts",
   "scripts": {
     "build": "nuxt build",
@@ -16,7 +15,7 @@
     "start": "PORT=5314 node .output/server/index.mjs",
     "start:https": "PORT=5314 node ./https-dev-config/local-https-server.mjs",
     "lint": "vp lint .",
-    "lint:fix": "vp lint --fix .",
+    "lint:fix": "vp lint --fix && vp fmt",
     "typecheck": "nuxt typecheck",
     "prepare": "node scripts/prepare-translation-status.ts && node scripts/prepare.ts",
     "generate": "nuxt generate",
@@ -151,15 +150,16 @@
     "sharp-ico": "^0.1.5",
     "simple-git-hooks": "^2.13.1",
     "typescript": "^5.4.4",
+    "vite-plus": "catalog:",
     "vitest": "catalog:",
     "vue-component-type-helpers": "^3.3.5",
-    "vue-tsc": "^2.1.6",
-    "vite-plus": "catalog:"
+    "vue-tsc": "^2.1.6"
   },
   "simple-git-hooks": {
     "pre-commit": "npx nano-staged"
   },
   "nano-staged": {
     "*": "eslint --fix"
-  }
+  },
+  "packageManager": "pnpm@11.6.0"
 }

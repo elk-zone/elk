@@ -19,14 +19,11 @@ async function toggleFollowTag() {
   tag.following = !tag.following
 
   try {
-    if (previousFollowingState)
-      await client.value.v1.tags.$select(tag.name).unfollow()
-    else
-      await client.value.v1.tags.$select(tag.name).follow()
+    if (previousFollowingState) await client.value.v1.tags.$select(tag.name).unfollow()
+    else await client.value.v1.tags.$select(tag.name).follow()
 
     emit('change')
-  }
-  catch {
+  } catch {
     // eslint-disable-next-line vue/no-mutating-props
     tag.following = previousFollowingState
   }
@@ -35,13 +32,27 @@ async function toggleFollowTag() {
 
 <template>
   <button
-    rounded group focus:outline-none
-    hover:text-primary focus-visible:text-primary
-    :aria-label="tag.following ? $t('tag.unfollow_label', [tag.name]) : $t('tag.follow_label', [tag.name])"
+    rounded
+    group
+    focus:outline-none
+    hover:text-primary
+    focus-visible:text-primary
+    :aria-label="
+      tag.following ? $t('tag.unfollow_label', [tag.name]) : $t('tag.follow_label', [tag.name])
+    "
     @click="toggleFollowTag()"
   >
-    <CommonTooltip placement="bottom" :content="tag.following ? $t('tag.unfollow') : $t('tag.follow')">
-      <div rounded-full p2 elk-group-hover="bg-orange/10" group-focus-visible="bg-orange/10" group-focus-visible:ring="2 current">
+    <CommonTooltip
+      placement="bottom"
+      :content="tag.following ? $t('tag.unfollow') : $t('tag.follow')"
+    >
+      <div
+        rounded-full
+        p2
+        elk-group-hover="bg-orange/10"
+        group-focus-visible="bg-orange/10"
+        group-focus-visible:ring="2 current"
+      >
         <div :class="[tag.following ? 'i-ri:star-fill' : 'i-ri:star-line']" />
       </div>
     </CommonTooltip>

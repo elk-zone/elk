@@ -28,15 +28,19 @@ const tabs = computed<CommonRouteTabOption[]>(() => [
     display: t('tab.accounts'),
     icon: 'i-ri:user-line',
   },
-],
-)
+])
 
 const { client } = useMasto()
-const { data: listInfo, refresh } = await useAsyncData(() => `list-${list.value}`, () => client.value.v1.lists.$select(list.value).fetch(), { default: () => shallowRef() })
+const { data: listInfo, refresh } = await useAsyncData(
+  () => `list-${list.value}`,
+  () => client.value.v1.lists.$select(list.value).fetch(),
+  { default: () => shallowRef() },
+)
 
 if (listInfo) {
   useHydratedHead({
-    title: () => `${listInfo.value.title} | ${route.fullPath.endsWith('/accounts') ? t('tab.accounts') : t('tab.posts')} | ${t('nav.lists')}`,
+    title: () =>
+      `${listInfo.value.title} | ${route.fullPath.endsWith('/accounts') ? t('tab.accounts') : t('tab.posts')} | ${t('nav.lists')}`,
   })
 }
 

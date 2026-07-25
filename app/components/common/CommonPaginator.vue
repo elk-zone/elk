@@ -28,13 +28,8 @@ defineSlots<{
     older: U
     newer: U // newer is undefined when index === 0
   }) => void
-  items: (props: {
-    items: U[]
-  }) => void
-  updater: (props: {
-    number: number
-    update: () => void
-  }) => void
+  items: (props: { items: U[] }) => void
+  updater: (props: { number: number; update: () => void }) => void
   loading: (props: object) => void
   done: (props: { items: U[] }) => void
 }>()
@@ -42,15 +37,12 @@ defineSlots<{
 const { t } = useI18n()
 const nuxtApp = useNuxtApp()
 
-const {
-  items,
-  prevItems,
-  update,
-  state,
-  endAnchor,
-  error,
-  canLoadMore,
-} = usePaginator(paginator, toRef(() => stream), eventType, preprocess)
+const { items, prevItems, update, state, endAnchor, error, canLoadMore } = usePaginator(
+  paginator,
+  toRef(() => stream),
+  eventType,
+  preprocess,
+)
 
 nuxtApp.hook('elk-logo:click', () => {
   update()
@@ -63,13 +55,17 @@ function createEntry(item: any) {
 
 function updateEntry(item: any) {
   const id = item[keyProp]
-  const index = items.value.findIndex(i => (i as any)[keyProp] === id)
+  const index = items.value.findIndex((i) => (i as any)[keyProp] === id)
   if (index > -1)
-    items.value = [...items.value.slice(0, index), preprocess?.([item]) ?? item, ...items.value.slice(index + 1)]
+    items.value = [
+      ...items.value.slice(0, index),
+      preprocess?.([item]) ?? item,
+      ...items.value.slice(index + 1),
+    ]
 }
 
 function removeEntry(entryId: any) {
-  items.value = items.value.filter(i => (i as any)[keyProp] !== entryId)
+  items.value = items.value.filter((i) => (i as any)[keyProp] !== entryId)
 }
 
 defineExpose({ createEntry, removeEntry, updateEntry })
@@ -109,17 +105,23 @@ defineExpose({ createEntry, removeEntry, updateEntry })
     </slot>
     <slot v-else-if="state === 'done' && endMessage !== false" name="done" :items="items as U[]">
       <div p5 text-secondary italic text-center>
-        {{ t(typeof endMessage === 'string' && items.length <= 0 ? endMessage : 'common.end_of_list') }}
+        {{
+          t(typeof endMessage === 'string' && items.length <= 0 ? endMessage : 'common.end_of_list')
+        }}
       </div>
     </slot>
-    <div v-else-if="state === 'error'" p5 text-secondary>
-      {{ t('common.error') }}: {{ error }}
-    </div>
+    <div v-else-if="state === 'error'" p5 text-secondary>{{ t('common.error') }}: {{ error }}</div>
     <button
       v-if="state !== 'loading' && state !== 'done' && !canLoadMore"
-      flex="~ gap-1 center" w-full my-6 py-6
-      btn-text rounded-lg bg="base"
-      filter-saturate-0 hover:filter-saturate-100
+      flex="~ gap-1 center"
+      w-full
+      my-6
+      py-6
+      btn-text
+      rounded-lg
+      bg="base"
+      filter-saturate-0
+      hover:filter-saturate-100
       @click="canLoadMore = true"
     >
       <div i-ri:arrow-down-line />

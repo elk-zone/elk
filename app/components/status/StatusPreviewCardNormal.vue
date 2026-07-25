@@ -14,14 +14,17 @@ const { card, smallPictureOnly } = defineProps<{
 const ogImageWidth = 400
 
 const alt = computed(() => `${card.title} - ${card.title}`)
-const isSquare = computed(() => (
-  smallPictureOnly
-  || !card.image
-  || card.width === card.height
-  || Number(card.width || 0) < ogImageWidth
-  || Number(card.height || 0) < ogImageWidth / 2
-))
-const providerName = computed(() => card.providerName ? card.providerName : punycode.toUnicode(new URL(card.url).hostname))
+const isSquare = computed(
+  () =>
+    smallPictureOnly ||
+    !card.image ||
+    card.width === card.height ||
+    Number(card.width || 0) < ogImageWidth ||
+    Number(card.height || 0) < ogImageWidth / 2,
+)
+const providerName = computed(() =>
+  card.providerName ? card.providerName : punycode.toUnicode(new URL(card.url).hostname),
+)
 
 // TODO: handle card.type: 'photo' | 'video' | 'rich';
 const cardTypeIconMap: Record<mastodon.v1.PreviewCardType, string> = {
@@ -58,8 +61,10 @@ function loadAttachment() {
       <!-- image -->
       <div
         v-if="card.image"
-        flex flex-col
-        display-block of-hidden
+        flex
+        flex-col
+        display-block
+        of-hidden
         :class="{
           'sm:(min-w-32 w-32 h-32) min-w-24 w-24 h-24': isSquare,
           'w-full aspect-[1.91]': !isSquare,
@@ -74,7 +79,9 @@ function loadAttachment() {
           :height="card.height"
           :alt="alt"
           :should-load-image="shouldLoadAttachment"
-          w-full h-full object-cover
+          w-full
+          h-full
+          object-cover
           :class="!shouldLoadAttachment ? 'brightness-60' : ''"
         />
         <button
@@ -92,23 +99,38 @@ function loadAttachment() {
           <span
             text-sm
             text-white
-            flex flex-col justify-center items-center
-            gap-3 w-6 h-6
+            flex
+            flex-col
+            justify-center
+            items-center
+            gap-3
+            w-6
+            h-6
             i-ri:file-download-line
           />
         </button>
       </div>
       <div
         v-else
-        min-w-24 w-24 h-24 sm="min-w-32 w-32 h-32" bg="slate-500/10" flex justify-center items-center
-        :class="[
-          root ? 'rounded-lg' : '',
-        ]"
+        min-w-24
+        w-24
+        h-24
+        sm="min-w-32 w-32 h-32"
+        bg="slate-500/10"
+        flex
+        justify-center
+        items-center
+        :class="[root ? 'rounded-lg' : '']"
       >
         <div :class="cardTypeIconMap[card.type]" w="30%" h="30%" text-secondary />
       </div>
       <!-- description -->
-      <StatusPreviewCardInfo :p="isSquare ? 'x-4' : '4'" :root="root" :card="card" :provider="providerName" />
+      <StatusPreviewCardInfo
+        :p="isSquare ? 'x-4' : '4'"
+        :root="root"
+        :card="card"
+        :provider="providerName"
+      />
     </div>
     <StatusPreviewCardMoreFromAuthor
       v-if="card?.authors?.[0]?.account"

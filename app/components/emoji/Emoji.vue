@@ -13,8 +13,7 @@ const title = ref<string | undefined>()
 if (alt) {
   if (alt.startsWith(':')) {
     title.value = alt.replace(COLON_REGEX, '')
-  }
-  else {
+  } else {
     import('node-emoji').then(({ find }) => {
       title.value = find(alt)?.key.replace(UNDERSCORE_REGEX, ' ')
     })
@@ -22,8 +21,7 @@ if (alt) {
 }
 
 // if it has a data-emoji-id, use that as the title instead
-if (dataEmojiId)
-  title.value = dataEmojiId
+if (dataEmojiId) title.value = dataEmojiId
 </script>
 
 <template>

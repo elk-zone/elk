@@ -20,17 +20,15 @@ const modelValue = defineModel<boolean | null>()
     <span v-if="label && !prependCheckbox" flex-1 ms-2 pointer-events-none>{{ label }}</span>
     <span
       :class="[
-        modelValue ? (iconChecked ?? 'i-ri:checkbox-line') : (iconUnchecked ?? 'i-ri:checkbox-blank-line'),
+        modelValue
+          ? (iconChecked ?? 'i-ri:checkbox-line')
+          : (iconUnchecked ?? 'i-ri:checkbox-blank-line'),
         modelValue && checkedIconColor,
       ]"
       text-lg
       aria-hidden="true"
     />
-    <input
-      v-model="modelValue"
-      type="checkbox"
-      sr-only
-    >
+    <input v-model="modelValue" type="checkbox" sr-only />
     <span v-if="label && prependCheckbox" flex-1 ms-2 pointer-events-none>{{ label }}</span>
   </label>
 </template>

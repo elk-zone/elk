@@ -78,7 +78,7 @@ export async function translateText(text: string, from: string | null | undefine
     text: '',
   })
   try {
-    const response = await ($fetch as any)(config.public.translateApi, {
+    const response = (await ($fetch as any)(config.public.translateApi, {
       method: 'POST',
       body: {
         q: text,
@@ -87,29 +87,33 @@ export async function translateText(text: string, from: string | null | undefine
         format: 'html',
         api_key: '',
       },
-    }) as TranslationResponse
+    })) as TranslationResponse
     status.value.success = true
     status.value.text = replaceTranslatedLinksWithOriginal(response.translatedText)
-  }
-  catch (err) {
+  } catch (err) {
     // TODO: improve type
     if ((err as TranslationErr).data?.error)
       status.value.error = (err as TranslationErr).data!.error!
-    else
-      status.value.error = 'Unknown Error, Please check your console in browser devtool.'
+    else status.value.error = 'Unknown Error, Please check your console in browser devtool.'
     console.error('Translate Post Error: ', err)
   }
   return status
 }
 
-const translations = new WeakMap<mastodon.v1.Status | mastodon.v1.StatusEdit, {
-  visible: boolean
-  text: string
-  success: boolean
-  error: string
-}>()
+const translations = new WeakMap<
+  mastodon.v1.Status | mastodon.v1.StatusEdit,
+  {
+    visible: boolean
+    text: string
+    success: boolean
+    error: string
+  }
+>()
 
-export async function useTranslation(status: mastodon.v1.Status | mastodon.v1.StatusEdit, to: string) {
+export async function useTranslation(
+  status: mastodon.v1.Status | mastodon.v1.StatusEdit,
+  to: string,
+) {
   if (!translations.has(status))
     translations.set(status, reactive({ visible: false, text: '', success: false, error: '' }))
 
@@ -118,23 +122,28 @@ export async function useTranslation(status: mastodon.v1.Status | mastodon.v1.St
 
   let shouldTranslate = false
   if ('language' in status) {
-    shouldTranslate = typeof status.language === 'string' && status.language !== to && !userSettings.value.disabledTranslationLanguages.includes(status.language)
+    shouldTranslate =
+      typeof status.language === 'string' &&
+      status.language !== to &&
+      !userSettings.value.disabledTranslationLanguages.includes(status.language)
     if (!translationAPISupported) {
-      shouldTranslate = shouldTranslate && supportedTranslationCodes.includes(to as any)
-        && supportedTranslationCodes.includes(status.language as any)
-    }
-    else {
-      shouldTranslate = shouldTranslate && (await (globalThis as any).Translator.availability({
-        sourceLanguage: status.language,
-        targetLanguage: to,
-      })) !== 'unavailable'
+      shouldTranslate =
+        shouldTranslate &&
+        supportedTranslationCodes.includes(to as any) &&
+        supportedTranslationCodes.includes(status.language as any)
+    } else {
+      shouldTranslate =
+        shouldTranslate &&
+        (await (globalThis as any).Translator.availability({
+          sourceLanguage: status.language,
+          targetLanguage: to,
+        })) !== 'unavailable'
     }
   }
   const enabled = /*! !useRuntimeConfig().public.translateApi && */ shouldTranslate
 
   async function toggle() {
-    if (!shouldTranslate)
-      return
+    if (!shouldTranslate) return
 
     if (!translation.text) {
       let translated = {
@@ -170,16 +179,14 @@ export async function useTranslation(status: mastodon.v1.Status | mastodon.v1.St
             text,
             success: true,
           }
-        }
-        catch (error) {
+        } catch (error) {
           translated.value = {
             error: (error as Error).message,
             text: '',
             success: false,
           }
         }
-      }
-      else {
+      } else {
         if ('language' in status) {
           translated = await translateText(status.content, status.language, to)
         }

@@ -6,8 +6,7 @@ definePageMeta({
 
 const route = useRoute()
 const router = useRouter()
-if (import.meta.client && route.path === '/signin/callback')
-  router.push('/home')
+if (import.meta.client && route.path === '/signin/callback') router.push('/home')
 
 const { t } = useI18n()
 useHydratedHead({

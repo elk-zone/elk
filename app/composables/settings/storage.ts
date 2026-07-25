@@ -6,19 +6,25 @@ import { oldFontSizeMap } from '~/constants/options'
 
 export function useUserSettings() {
   const { locales } = useNuxtApp().$i18n
-  const supportLanguages = (unref(locales) as LocaleObject[]).map(locale => locale.code)
-  const settingsStorage = useUserLocalStorage<UserSettings>(STORAGE_KEY_SETTINGS, () => getDefaultUserSettings(supportLanguages))
+  const supportLanguages = (unref(locales) as LocaleObject[]).map((locale) => locale.code)
+  const settingsStorage = useUserLocalStorage<UserSettings>(STORAGE_KEY_SETTINGS, () =>
+    getDefaultUserSettings(supportLanguages),
+  )
 
   // Backward compatibility, font size was xs, sm, md, lg, xl before
   if (settingsStorage.value.fontSize && !settingsStorage.value.fontSize.includes('px'))
-    settingsStorage.value.fontSize = oldFontSizeMap[settingsStorage.value.fontSize as OldFontSize] as FontSize
+    settingsStorage.value.fontSize = oldFontSizeMap[
+      settingsStorage.value.fontSize as OldFontSize
+    ] as FontSize
 
   return settingsStorage
 }
 
 // TODO: refactor & simplify this
 
-export function usePreferences<T extends keyof PreferencesSettings>(name: T): Ref<PreferencesSettings[T]> {
+export function usePreferences<T extends keyof PreferencesSettings>(
+  name: T,
+): Ref<PreferencesSettings[T]> {
   const userSettings = useUserSettings()
   return computed({
     get() {
@@ -30,7 +36,10 @@ export function usePreferences<T extends keyof PreferencesSettings>(name: T): Re
   })
 }
 
-export function getPreferences<T extends keyof PreferencesSettings>(userSettings: UserSettings, name: T): PreferencesSettings[T] {
+export function getPreferences<T extends keyof PreferencesSettings>(
+  userSettings: UserSettings,
+  name: T,
+): PreferencesSettings[T] {
   const preference = userSettings?.preferences?.[name] ?? DEFAULT__PREFERENCES_SETTINGS[name]
 
   if (name === 'enableAutoplay')

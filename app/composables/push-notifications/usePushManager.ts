@@ -8,10 +8,11 @@ import type {
 } from '~/composables/push-notifications/types'
 import { STORAGE_KEY_NOTIFICATION, STORAGE_KEY_NOTIFICATION_POLICY } from '~/constants'
 
-const supportsPushNotifications = typeof window !== 'undefined'
-  && 'serviceWorker' in navigator
-  && 'PushManager' in window
-  && 'getKey' in PushSubscription.prototype
+const supportsPushNotifications =
+  typeof window !== 'undefined' &&
+  'serviceWorker' in navigator &&
+  'PushManager' in window &&
+  'getKey' in PushSubscription.prototype
 
 export function usePushManager() {
   const { client } = useMasto()
@@ -27,53 +28,69 @@ export function usePushManager() {
   )
   const isSupported = computed(() => supportsPushNotifications)
   const hiddenNotification = useLocalStorage<PushNotificationRequest>(STORAGE_KEY_NOTIFICATION, {})
-  const configuredPolicy = useLocalStorage<PushNotificationPolicy>(STORAGE_KEY_NOTIFICATION_POLICY, {})
-  const pushNotificationData = ref(createRawSettings(
-    currentUser.value?.pushSubscription,
-    configuredPolicy.value[currentUser.value?.account?.acct ?? ''],
-  ))
-  const oldPushNotificationData = ref(createRawSettings(
-    currentUser.value?.pushSubscription,
-    configuredPolicy.value[currentUser.value?.account?.acct ?? ''],
-  ))
+  const configuredPolicy = useLocalStorage<PushNotificationPolicy>(
+    STORAGE_KEY_NOTIFICATION_POLICY,
+    {},
+  )
+  const pushNotificationData = ref(
+    createRawSettings(
+      currentUser.value?.pushSubscription,
+      configuredPolicy.value[currentUser.value?.account?.acct ?? ''],
+    ),
+  )
+  const oldPushNotificationData = ref(
+    createRawSettings(
+      currentUser.value?.pushSubscription,
+      configuredPolicy.value[currentUser.value?.account?.acct ?? ''],
+    ),
+  )
   const saveEnabled = computed(() => {
     const current = pushNotificationData.value
     const previous = oldPushNotificationData.value
-    return current.favourite !== previous.favourite
-      || current.reblog !== previous.reblog
-      || current.mention !== previous.mention
-      || current.follow !== previous.follow
-      || current.poll !== previous.poll
-      || current.policy !== previous.policy
+    return (
+      current.favourite !== previous.favourite ||
+      current.reblog !== previous.reblog ||
+      current.mention !== previous.mention ||
+      current.follow !== previous.follow ||
+      current.poll !== previous.poll ||
+      current.policy !== previous.policy
+    )
   })
 
-  watch(() => currentUser.value?.pushSubscription, (subscription) => {
-    isSubscribed.value = !!subscription
-    pushNotificationData.value = createRawSettings(
-      subscription,
-      configuredPolicy.value[currentUser.value?.account?.acct ?? ''],
-    )
-    oldPushNotificationData.value = createRawSettings(
-      subscription,
-      configuredPolicy.value[currentUser.value?.account?.acct ?? ''],
-    )
-  }, { immediate: true, flush: 'post' })
+  watch(
+    () => currentUser.value?.pushSubscription,
+    (subscription) => {
+      isSubscribed.value = !!subscription
+      pushNotificationData.value = createRawSettings(
+        subscription,
+        configuredPolicy.value[currentUser.value?.account?.acct ?? ''],
+      )
+      oldPushNotificationData.value = createRawSettings(
+        subscription,
+        configuredPolicy.value[currentUser.value?.account?.acct ?? ''],
+      )
+    },
+    { immediate: true, flush: 'post' },
+  )
 
   const subscribe = async (
     notificationData?: CreatePushNotification,
     policy?: mastodon.v1.WebPushSubscriptionPolicy,
     force?: boolean,
   ): Promise<SubscriptionResult> => {
-    if (!isSupported.value)
-      return 'not-supported'
+    if (!isSupported.value) return 'not-supported'
 
-    if (!currentUser.value)
-      return 'no-user'
+    if (!currentUser.value) return 'no-user'
 
-    const { pushSubscription, server, token, vapidKey, account: { acct } } = currentUser.value
+    const {
+      pushSubscription,
+      server,
+      token,
+      vapidKey,
+      account: { acct },
+    } = currentUser.value
 
-    if (!token || !server || !vapidKey)
-      return 'invalid-vapid-key'
+    if (!token || !server || !vapidKey) return 'invalid-vapid-key'
 
     // always request permission, browsers should remember user decision
     const permission = await Promise.resolve(Notification.requestPermission()).then((p) => {
@@ -112,16 +129,14 @@ export function usePushManager() {
   }
 
   const unsubscribe = async () => {
-    if (!isSupported.value || !isSubscribed.value || !currentUser.value)
-      return false
+    if (!isSupported.value || !isSubscribed.value || !currentUser.value) return false
 
     await removePushNotifications(currentUser.value)
     await removePushNotificationData(currentUser.value)
   }
 
   const saveSettings = async (policy?: mastodon.v1.WebPushSubscriptionPolicy) => {
-    if (policy)
-      pushNotificationData.value.policy = policy
+    if (policy) pushNotificationData.value.policy = policy
 
     const current = pushNotificationData.value
     oldPushNotificationData.value = {
@@ -133,10 +148,10 @@ export function usePushManager() {
       policy: current.policy,
     }
 
-    if (policy)
-      configuredPolicy.value[currentUser.value!.account.acct ?? ''] = policy
+    if (policy) configuredPolicy.value[currentUser.value!.account.acct ?? ''] = policy
     else
-      configuredPolicy.value[currentUser.value!.account.acct ?? ''] = pushNotificationData.value.policy
+      configuredPolicy.value[currentUser.value!.account.acct ?? ''] =
+        pushNotificationData.value.policy
 
     await nextTick()
   }
@@ -173,13 +188,13 @@ export function usePushManager() {
       const policyChanged = previous.policy !== policy
 
       // to change policy we need to resubscribe
-      if (policyChanged)
-        await subscribe(data, policy, true)
+      if (policyChanged) await subscribe(data, policy, true)
       else
-        currentUser.value.pushSubscription = await client.value.v1.push.subscription.update({ data })
+        currentUser.value.pushSubscription = await client.value.v1.push.subscription.update({
+          data,
+        })
 
-      if (policyChanged)
-        await nextTick()
+      if (policyChanged) await nextTick()
 
       // force change policy when changed: watch is resetting it on push subscription update
       await saveSettings(policyChanged ? policy : undefined)

@@ -25,44 +25,45 @@ const tabs = computed<CommonRouteTabOption[]>(() => [
 ])
 
 const filter = computed<mastodon.v1.NotificationType | undefined>(() => {
-  if (!isHydrated.value)
-    return undefined
+  if (!isHydrated.value) return undefined
 
   const rawFilter = route.params?.filter
   const actualFilter = Array.isArray(rawFilter) ? rawFilter[0] : rawFilter
-  if (isNotificationFilter(actualFilter))
-    return actualFilter
+  if (isNotificationFilter(actualFilter)) return actualFilter
 
   return undefined
 })
 
 const filterIconMap: Record<mastodon.v1.NotificationType, string> = {
-  'mention': 'i-ri:at-line',
-  'status': 'i-ri:account-pin-circle-line',
-  'reblog': 'i-ri:repeat-fill',
-  'quote': 'i-ri:double-quotes-l',
-  'quoted_update': 'i-ri:double-quotes-l',
-  'follow': 'i-ri:user-follow-line',
-  'follow_request': 'i-ri:user-shared-line',
-  'favourite': 'i-ri:heart-3-line',
-  'poll': 'i-ri:chat-poll-line',
-  'update': 'i-ri:edit-2-line',
+  mention: 'i-ri:at-line',
+  status: 'i-ri:account-pin-circle-line',
+  reblog: 'i-ri:repeat-fill',
+  quote: 'i-ri:double-quotes-l',
+  quoted_update: 'i-ri:double-quotes-l',
+  follow: 'i-ri:user-follow-line',
+  follow_request: 'i-ri:user-shared-line',
+  favourite: 'i-ri:heart-3-line',
+  poll: 'i-ri:chat-poll-line',
+  update: 'i-ri:edit-2-line',
   'admin.sign_up': 'i-ri:user-add-line',
   'admin.report': 'i-ri:flag-line',
-  'severed_relationships': 'i-ri:user-unfollow-line',
-  'moderation_warning': 'i-ri:error-warning-line',
+  severed_relationships: 'i-ri:user-unfollow-line',
+  moderation_warning: 'i-ri:error-warning-line',
 }
 
-const filterText = computed(() => `${t('tab.notifications_more_tooltip')}${filter.value ? `: ${t(`tab.notifications_${filter.value}`)}` : ''}`)
-const notificationFilterRoutes = computed<CommonRouteTabOption[]>(() => NOTIFICATION_FILTER_TYPES.map(
-  name => ({
+const filterText = computed(
+  () =>
+    `${t('tab.notifications_more_tooltip')}${filter.value ? `: ${t(`tab.notifications_${filter.value}`)}` : ''}`,
+)
+const notificationFilterRoutes = computed<CommonRouteTabOption[]>(() =>
+  NOTIFICATION_FILTER_TYPES.map((name) => ({
     name,
     to: `/notifications/${name}`,
     display: t(`tab.notifications_${name}`),
     icon: filterIconMap[name],
     match: name === filter.value,
-  }),
-))
+  })),
+)
 const moreOptions = computed<CommonRouteTabMoreOption>(() => ({
   options: notificationFilterRoutes.value,
   icon: 'i-ri:filter-2-line',
@@ -81,8 +82,12 @@ const moreOptions = computed<CommonRouteTabMoreOption>(() => ({
 
     <template #actions>
       <NuxtLink
-        flex rounded-4 p1
-        hover:bg-active cursor-pointer transition-100
+        flex
+        rounded-4
+        p1
+        hover:bg-active
+        cursor-pointer
+        transition-100
         :title="t('settings.notifications.show_btn')"
         to="/settings/notifications"
       >

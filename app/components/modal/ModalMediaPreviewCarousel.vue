@@ -55,65 +55,67 @@ watch(modelValue, goToFocusedSlide)
 
 let lastOrigin = [0, 0]
 let initialScale = 0
-useGesture({
-  onPinch({ first, initial: [initialDistance], movement: [deltaDistance], da: [distance], origin, touches }) {
-    isPinching.value = true
+useGesture(
+  {
+    onPinch({
+      first,
+      initial: [initialDistance],
+      movement: [deltaDistance],
+      da: [distance],
+      origin,
+      touches,
+    }) {
+      isPinching.value = true
 
-    if (first) {
-      initialScale = scale.value
-    }
-    else {
-      if (touches === 0)
-        handleMouseWheelZoom(initialScale, deltaDistance, origin)
-      else
-        handlePinchZoom(initialScale, initialDistance, distance, origin)
-    }
+      if (first) {
+        initialScale = scale.value
+      } else {
+        if (touches === 0) handleMouseWheelZoom(initialScale, deltaDistance, origin)
+        else handlePinchZoom(initialScale, initialDistance, distance, origin)
+      }
 
-    lastOrigin = origin
+      lastOrigin = origin
+    },
+    onPinchEnd() {
+      isPinching.value = false
+      isDragging.value = false
+
+      if (!isZoomedIn.value) goToFocusedSlide()
+    },
+    onDrag({ movement, delta, pinching, tap, last, swipe, event, xy }) {
+      // Ignore right-click events
+      if (isRightClicking.value) return
+
+      event.preventDefault()
+
+      if (pinching) return
+
+      if (last) handleLastDrag(tap, swipe, movement, xy)
+      else handleDrag(delta, movement)
+    },
+    onDragStart({ event }) {
+      const button = 'button' in event ? event.button : 0
+
+      if (button !== 0) {
+        isRightClicking.value = true
+        return
+      }
+
+      isRightClicking.value = false
+      isDragging.value = true
+    },
+    onDragEnd() {
+      isRightClicking.value = false
+      isDragging.value = false
+    },
   },
-  onPinchEnd() {
-    isPinching.value = false
-    isDragging.value = false
-
-    if (!isZoomedIn.value)
-      goToFocusedSlide()
+  {
+    domTarget: view,
+    eventOptions: {
+      passive: false,
+    },
   },
-  onDrag({ movement, delta, pinching, tap, last, swipe, event, xy }) {
-    // Ignore right-click events
-    if (isRightClicking.value)
-      return
-
-    event.preventDefault()
-
-    if (pinching)
-      return
-
-    if (last)
-      handleLastDrag(tap, swipe, movement, xy)
-    else
-      handleDrag(delta, movement)
-  },
-  onDragStart({ event }) {
-    const button = 'button' in event ? event.button : 0
-
-    if (button !== 0) {
-      isRightClicking.value = true
-      return
-    }
-
-    isRightClicking.value = false
-    isDragging.value = true
-  },
-  onDragEnd() {
-    isRightClicking.value = false
-    isDragging.value = false
-  },
-}, {
-  domTarget: view,
-  eventOptions: {
-    passive: false,
-  },
-})
+)
 
 const shiftRestrictions = computed(() => {
   const focusedImage = image.value[modelValue.value]
@@ -135,7 +137,12 @@ const shiftRestrictions = computed(() => {
   }
 })
 
-function handlePinchZoom(initialScale: number, initialDistance: number, distance: number, [originX, originY]: Vector2) {
+function handlePinchZoom(
+  initialScale: number,
+  initialDistance: number,
+  distance: number,
+  [originX, originY]: Vector2,
+) {
   scale.value = initialScale * (distance / initialDistance)
   scale.value = Math.max(maxZoomOut.value, scale.value)
 
@@ -145,8 +152,12 @@ function handlePinchZoom(initialScale: number, initialDistance: number, distance
   handleZoomDrag([deltaCenterX, deltaCenterY])
 }
 
-function handleMouseWheelZoom(initialScale: number, deltaDistance: number, [originX, originY]: Vector2) {
-  scale.value = initialScale + (deltaDistance / 1000)
+function handleMouseWheelZoom(
+  initialScale: number,
+  deltaDistance: number,
+  [originX, originY]: Vector2,
+) {
+  scale.value = initialScale + deltaDistance / 1000
   scale.value = Math.max(maxZoomOut.value, scale.value)
 
   const deltaCenterX = lastOrigin[0] - originX
@@ -158,12 +169,9 @@ function handleMouseWheelZoom(initialScale: number, deltaDistance: number, [orig
 function handleLastDrag(tap: boolean, swipe: Vector2, movement: Vector2, position: Vector2) {
   isDragging.value = false
 
-  if (tap)
-    handleTap(position)
-  else if (swipe[0] || swipe[1])
-    handleSwipe(swipe, movement)
-  else if (!isZoomedIn.value)
-    slideToClosestSlide()
+  if (tap) handleTap(position)
+  else if (swipe[0] || swipe[1]) handleSwipe(swipe, movement)
+  else if (!isZoomedIn.value) slideToClosestSlide()
 }
 
 let lastTapAt = 0
@@ -172,13 +180,11 @@ function handleTap([positionX, positionY]: Vector2) {
   const isDoubleTap = now - lastTapAt < doubleTapThreshold
   lastTapAt = now
 
-  if (!isDoubleTap)
-    return
+  if (!isDoubleTap) return
 
   if (isZoomedIn.value) {
     goToFocusedSlide()
-  }
-  else {
+  } else {
     const focusedSlideBounding = slide.value[modelValue.value]?.getBoundingClientRect()
     if (focusedSlideBounding) {
       const slideCenterX = focusedSlideBounding.left + focusedSlideBounding.width / 2
@@ -193,18 +199,18 @@ function handleTap([positionX, positionY]: Vector2) {
 }
 
 function handleSwipe([horiz, vert]: Vector2, [movementX, movementY]: Vector2) {
-  if (isZoomedIn.value || isPinching.value)
-    return
+  if (isZoomedIn.value || isPinching.value) return
 
   const isHorizontalDrag = Math.abs(movementX) >= Math.abs(movementY)
 
   if (isHorizontalDrag) {
-    if (horiz === 1) // left
+    if (horiz === 1)
+      // left
       modelValue.value = Math.max(0, modelValue.value - 1)
-    if (horiz === -1) // right
+    if (horiz === -1)
+      // right
       modelValue.value = Math.min(media.length - 1, modelValue.value + 1)
-  }
-  else if (vert === 1 || vert === -1) {
+  } else if (vert === 1 || vert === -1) {
     emit('close')
   }
 
@@ -226,10 +232,8 @@ function slideToClosestSlide() {
 function handleDrag(delta: Vector2, movement: Vector2) {
   isDragging.value = true
 
-  if (isZoomedIn.value)
-    handleZoomDrag(delta)
-  else
-    handleSlideDrag(movement)
+  if (isZoomedIn.value) handleZoomDrag(delta)
+  else handleSlideDrag(movement)
 }
 
 function handleZoomDrag([deltaX, deltaY]: Vector2) {
@@ -242,13 +246,12 @@ function handleZoomDrag([deltaX, deltaY]: Vector2) {
 function handleSlideDrag([movementX, movementY]: Vector2) {
   goToFocusedSlide()
 
-  if (Math.abs(movementY) > Math.abs(movementX)) // vertical movement is more than horizontal
+  if (Math.abs(movementY) > Math.abs(movementX))
+    // vertical movement is more than horizontal
     y.value -= movementY / scale.value
-  else
-    x.value -= movementX / scale.value
+  else x.value -= movementX / scale.value
 
-  if (media.length === 1)
-    x.value = 0
+  if (media.length === 1) x.value = 0
 }
 
 function restrictShiftToInsideSlide() {
@@ -263,8 +266,7 @@ const sliderStyle = computed(() => {
     gap: `${slideGap}px`,
   }
 
-  if (canAnimate.value && !isDragging.value && !isPinching.value)
-    style.transition = 'all 0.3s ease'
+  if (canAnimate.value && !isDragging.value && !isPinching.value) style.transition = 'all 0.3s ease'
 
   return style
 })

@@ -8,10 +8,7 @@ const validPermalinks = [
   'webtoo.ls/@elk',
 ]
 
-const invalidPermalinks = [
-  'https://webtoo.ls',
-  'https://webtoo.ls/elk/123',
-]
+const invalidPermalinks = ['https://webtoo.ls', 'https://webtoo.ls/elk/123']
 
 describe('permalinks', () => {
   it.each(validPermalinks)('should recognise %s', (url) => {

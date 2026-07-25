@@ -18,7 +18,13 @@ cacheAccount(account)
     <!-- Banner -->
     <div px2 pt2>
       <div rounded of-hidden bg="gray-500/20" aspect="3.19">
-        <img h-full w-full object-cover :src="account.header" :alt="$t('account.profile_description', [account.username])">
+        <img
+          h-full
+          w-full
+          object-cover
+          :src="account.header"
+          :alt="$t('account.profile_description', [account.username])"
+        />
       </div>
     </div>
     <div px-4 pb-4 space-y-2>
@@ -33,15 +39,20 @@ cacheAccount(account)
           </NuxtLink>
         </div>
         <div sm:mt-2>
-          <AccountDisplayName :account="account" font-bold text-lg line-clamp-1 ws-pre-wrap break-all />
+          <AccountDisplayName
+            :account="account"
+            font-bold
+            text-lg
+            line-clamp-1
+            ws-pre-wrap
+            break-all
+          />
           <AccountHandle text-sm :account="account" />
         </div>
       </div>
       <!-- Note -->
       <div v-if="account.note" max-h-100 overflow-y-auto>
-        <ContentRich
-          :content="account.note" :emojis="account.emojis"
-        />
+        <ContentRich :content="account.note" :emojis="account.emojis" />
       </div>
       <!-- Follow info -->
       <div flex justify-between items-center>

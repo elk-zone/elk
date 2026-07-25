@@ -12,8 +12,7 @@ export function useSignIn(input?: Ref<HTMLInputElement | undefined>) {
   const displayError = ref(false)
 
   async function oauth() {
-    if (busy.value)
-      return
+    if (busy.value) return
 
     busy.value = true
     error.value = false
@@ -21,8 +20,7 @@ export function useSignIn(input?: Ref<HTMLInputElement | undefined>) {
 
     await nextTick()
 
-    if (!singleInstanceServer && server.value)
-      server.value = server.value.split('/')[0]
+    if (!singleInstanceServer && server.value) server.value = server.value.split('/')[0]
 
     try {
       let href: string
@@ -36,20 +34,21 @@ export function useSignIn(input?: Ref<HTMLInputElement | undefined>) {
           },
         })
         busy.value = false
-      }
-      else {
-        href = await (globalThis.$fetch as any)(`/api/${server.value || publicServer.value}/login`, {
-          method: 'POST',
-          body: {
-            force_login: users.value.some(u => u.server === server.value),
-            origin: location.origin,
-            lang: userSettings.value.language,
+      } else {
+        href = await (globalThis.$fetch as any)(
+          `/api/${server.value || publicServer.value}/login`,
+          {
+            method: 'POST',
+            body: {
+              force_login: users.value.some((u) => u.server === server.value),
+              origin: location.origin,
+              lang: userSettings.value.language,
+            },
           },
-        })
+        )
       }
       location.href = href
-    }
-    catch (err) {
+    } catch (err) {
       if (singleInstanceServer) {
         console.error(err)
         busy.value = false
@@ -58,8 +57,7 @@ export function useSignIn(input?: Ref<HTMLInputElement | undefined>) {
           messages: [t('error.sign_in_error')],
           close: t('action.close'),
         })
-      }
-      else {
+      } else {
         displayError.value = true
         error.value = true
         await nextTick()

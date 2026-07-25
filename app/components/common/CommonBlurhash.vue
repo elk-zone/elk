@@ -12,5 +12,12 @@ const { blurhash = '', shouldLoadImage = true } = defineProps<{
 </script>
 
 <template>
-  <UnLazyImage v-bind="$attrs" :blurhash="blurhash" :src="src" :src-set="srcset" :lazy-load="shouldLoadImage" auto-sizes />
+  <UnLazyImage
+    v-bind="$attrs"
+    :blurhash="blurhash"
+    :src="src"
+    :src-set="srcset"
+    :lazy-load="shouldLoadImage"
+    auto-sizes
+  />
 </template>

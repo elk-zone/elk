@@ -13,17 +13,15 @@ const {
 }>()
 
 const historyNum = computed(() => {
-  if (!history)
-    return [1, 1, 1, 1, 1, 1, 1]
-  return history.toReversed().map(item => Number(item.accounts) || 0)
+  if (!history) return [1, 1, 1, 1, 1, 1, 1]
+  return history.toReversed().map((item) => Number(item.accounts) || 0)
 })
 
 const sparklineEl = ref<SVGSVGElement>()
 const sparklineFn = typeof sparkline !== 'function' ? (sparkline as any).default : sparkline
 
 watch([historyNum, sparklineEl], ([historyNum, sparklineEl]) => {
-  if (!sparklineEl)
-    return
+  if (!sparklineEl) return
   sparklineFn(sparklineEl, historyNum)
 })
 </script>

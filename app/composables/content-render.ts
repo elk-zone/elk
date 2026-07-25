@@ -29,10 +29,7 @@ function getTextualAstComponents(astChildren: Node[]): string {
  * @param content HTML content.
  * @param options Options.
  */
-export function contentToVNode(
-  content: string,
-  options?: ContentParseOptions,
-): VNode {
+export function contentToVNode(content: string, options?: ContentParseOptions): VNode {
   let tree = parseMastodonHTML(content, options)
 
   const textContents = getTextualAstComponents(tree.children)
@@ -41,12 +38,14 @@ export function contentToVNode(
   if (options?.hideEmojis && textContents.length === 0)
     tree = parseMastodonHTML(content, { ...options, hideEmojis: false })
 
-  return h(Fragment, (tree.children as Node[] || []).map(n => treeToVNode(n)))
+  return h(
+    Fragment,
+    ((tree.children as Node[]) || []).map((n) => treeToVNode(n)),
+  )
 }
 
 export function nodeToVNode(node: Node): VNode | string | null {
-  if (node.type === TEXT_NODE)
-    return node.value
+  if (node.type === TEXT_NODE) return node.value
 
   if (node.name === 'mention-group')
     return h(ContentMentionGroup, node.attributes, () => node.children.map(treeToVNode))
@@ -55,11 +54,7 @@ export function nodeToVNode(node: Node): VNode | string | null {
   if (node.name === 'picture' || (node.name === 'img' && node.attributes?.alt)) {
     const props = node.attributes ?? {}
     props.as = node.name
-    return h(
-      Emoji,
-      props,
-      () => node.children.map(treeToVNode),
-    )
+    return h(Emoji, props, () => node.children.map(treeToVNode))
   }
 
   if ('children' in node) {
@@ -68,11 +63,7 @@ export function nodeToVNode(node: Node): VNode | string | null {
         node.attributes.to = node.attributes.href
 
         const { href: _href, target: _target, ...attrs } = node.attributes
-        return h(
-          RouterLink as any,
-          attrs,
-          () => node.children.map(treeToVNode),
-        )
+        return h(RouterLink as any, attrs, () => node.children.map(treeToVNode))
       }
 
       // fix #3122
@@ -81,14 +72,19 @@ export function nodeToVNode(node: Node): VNode | string | null {
         node.attributes,
         node.children.map((n: Node) => {
           // replace span.ellipsis with bdi.ellipsis inside links
-          if (n && n.type === ELEMENT_NODE && n.name !== 'bdi' && n.attributes?.class?.includes('ellipsis')) {
+          if (
+            n &&
+            n.type === ELEMENT_NODE &&
+            n.name !== 'bdi' &&
+            n.attributes?.class?.includes('ellipsis')
+          ) {
             const children = n.children.splice(0, n.children.length)
             const bdi = {
               ...n,
               name: 'bdi',
               children,
             } satisfies ElementNode
-            children.forEach((n: Node) => n.parent = bdi)
+            children.forEach((n: Node) => (n.parent = bdi))
             return treeToVNode(bdi)
           }
 
@@ -97,37 +93,31 @@ export function nodeToVNode(node: Node): VNode | string | null {
       )
     }
 
-    return h(
-      node.name,
-      node.attributes,
-      node.children.map(treeToVNode),
-    )
+    return h(node.name, node.attributes, node.children.map(treeToVNode))
   }
   return null
 }
 
-function treeToVNode(
-  input: Node,
-): VNode | string | null {
-  if (!input)
-    return null
+function treeToVNode(input: Node): VNode | string | null {
+  if (!input) return null
 
-  if (input.type === TEXT_NODE)
-    return decode(input.value)
+  if (input.type === TEXT_NODE) return decode(input.value)
 
   if ('children' in input) {
     const node = handleNode(input)
-    if (node == null)
-      return null
-    if (isVNode(node))
-      return node
+    if (node == null) return null
+    if (isVNode(node)) return node
     return nodeToVNode(node)
   }
   return null
 }
 
 function addBdiNode(node: Node) {
-  if (node.children.length === 1 && node.children[0].type === ELEMENT_NODE && node.children[0].name === 'bdi')
+  if (
+    node.children.length === 1 &&
+    node.children[0].type === ELEMENT_NODE &&
+    node.children[0].name === 'bdi'
+  )
     return
 
   const children = node.children.splice(0, node.children.length)
@@ -139,7 +129,7 @@ function addBdiNode(node: Node) {
     attributes: {},
     children,
   } satisfies ElementNode
-  children.forEach((n: Node) => n.parent = bdi)
+  children.forEach((n: Node) => (n.parent = bdi))
   node.children.push(bdi)
 }
 
@@ -175,12 +165,9 @@ function handleCodeBlock(el: Node) {
     const classes = codeEl.attributes.class as string
     const lang = classes
       ?.split(WHITESPACE_SPLIT_REGEX)
-      .find(i => i.startsWith('language-'))
+      .find((i) => i.startsWith('language-'))
       ?.replace('language-', '')
-    const code
-      = codeEl.children && codeEl.children.length > 0
-        ? recursiveTreeToText(codeEl)
-        : ''
+    const code = codeEl.children && codeEl.children.length > 0 ? recursiveTreeToText(codeEl) : ''
     return h(ContentCode, { lang, code: encodeURIComponent(code) })
   }
 }

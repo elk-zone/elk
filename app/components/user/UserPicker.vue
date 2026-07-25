@@ -7,8 +7,7 @@ const router = useRouter()
 function clickUser(user: UserLogin) {
   if (user.account.acct === currentUser.value?.account.acct)
     router.push(getAccountRoute(user.account))
-  else
-    switchUser(user)
+  else switchUser(user)
 }
 </script>
 
@@ -18,7 +17,8 @@ function clickUser(user: UserLogin) {
       <template v-for="user of all" :key="user.id">
         <CommonTooltip :distance="8" :delay="{ show: 300, hide: 100 }">
           <button
-            flex rounded
+            flex
+            rounded
             cursor-pointer
             :aria-label="$t('action.switch_account')"
             :class="user.account.acct === currentUser?.account.acct ? '' : 'op25 grayscale'"

@@ -53,9 +53,23 @@ function handleChoice(choice: ConfirmDialogChoice['choice']) {
       {{ description }}
     </div>
     <div v-if="isMute" flex-col flex gap-4>
-      <CommonCheckbox v-model="hasDuration" :label="$t('confirm.mute_account.specify_duration')" prepend-checkbox checked-icon-color="text-primary" />
-      <ModalDurationPicker v-if="hasDuration" v-model="duration" v-model:is-valid="isValidDuration" />
-      <CommonCheckbox v-model="shouldMuteNotifications" :label="$t('confirm.mute_account.notifications')" prepend-checkbox checked-icon-color="text-primary" />
+      <CommonCheckbox
+        v-model="hasDuration"
+        :label="$t('confirm.mute_account.specify_duration')"
+        prepend-checkbox
+        checked-icon-color="text-primary"
+      />
+      <ModalDurationPicker
+        v-if="hasDuration"
+        v-model="duration"
+        v-model:is-valid="isValidDuration"
+      />
+      <CommonCheckbox
+        v-model="shouldMuteNotifications"
+        :label="$t('confirm.mute_account.notifications')"
+        prepend-checkbox
+        checked-icon-color="text-primary"
+      />
     </div>
 
     <div v-if="isBlockDomain" flex-col flex gap-2>
@@ -68,14 +82,18 @@ function handleChoice(choice: ConfirmDialogChoice['choice']) {
         :placeholder="domainToBlock"
         class="px-3 py-2 border border-base rounded"
         autocomplete="off"
-      >
+      />
     </div>
 
     <div flex justify-end gap-2>
       <button btn-text @click="handleChoice('cancel')">
         {{ cancel || $t('confirm.common.cancel') }}
       </button>
-      <button btn-solid :disabled="!isValidDuration || (isBlockDomain && !isDomainConfirmed)" @click="handleChoice('confirm')">
+      <button
+        btn-solid
+        :disabled="!isValidDuration || (isBlockDomain && !isDomainConfirmed)"
+        @click="handleChoice('confirm')"
+      >
         {{ confirm || $t('confirm.common.confirm') }}
       </button>
     </div>

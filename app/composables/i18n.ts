@@ -13,11 +13,7 @@ export function useHumanReadableNumber() {
   const fn = (num: number) => {
     return n(
       num,
-      num < 10000
-        ? 'smallCounting'
-        : num < 1000000
-          ? 'kiloCounting'
-          : 'millionCounting',
+      num < 10000 ? 'smallCounting' : num < 1000000 ? 'kiloCounting' : 'millionCounting',
       locale.value,
     )
   }
@@ -61,9 +57,9 @@ export function useTimeAgoOptions(short = false): UseTimeAgoOptions<false> {
     messages: {
       justNow: t('time_ago_options.just_now'),
       // just return the value
-      past: n => n,
+      past: (n) => n,
       // just return the value
-      future: n => n,
+      future: (n) => n,
       second: (n, p) => fn(n, p, 'second'),
       minute: (n, p) => fn(n, p, 'minute'),
       hour: (n, p) => fn(n, p, 'hour'),
@@ -82,7 +78,7 @@ export function useTimeAgoOptions(short = false): UseTimeAgoOptions<false> {
 export function useFileSizeFormatter() {
   const { locale } = useI18n()
 
-  const formatters = computed(() => ([
+  const formatters = computed(() => [
     Intl.NumberFormat(locale.value, {
       style: 'unit',
       unit: 'megabyte',
@@ -95,7 +91,7 @@ export function useFileSizeFormatter() {
       unitDisplay: 'narrow',
       maximumFractionDigits: 0,
     }),
-  ]))
+  ])
 
   const megaByte = 1024 * 1024
 

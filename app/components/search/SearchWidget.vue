@@ -14,8 +14,7 @@ defineExpose({
 })
 
 const results = computed(() => {
-  if (query.value.length === 0)
-    return []
+  if (query.value.length === 0) return []
 
   const results = [
     ...hashtags.value.slice(0, 3),
@@ -36,17 +35,17 @@ const results = computed(() => {
 })
 
 // Reset index when results change
-watch([results, focused], () => index.value = -1)
+watch([results, focused], () => (index.value = -1))
 
 function shift(delta: number) {
-  return index.value = (index.value + delta % results.value.length + results.value.length) % results.value.length
+  return (index.value =
+    (index.value + (delta % results.value.length) + results.value.length) % results.value.length)
 }
 
 function activate() {
   const currentIndex = index.value
 
-  if (query.value.length === 0)
-    return
+  if (query.value.length === 0) return
 
   // Disable redirection until search page is implemented
   if (currentIndex === -1) {
@@ -55,7 +54,7 @@ function activate() {
     return
   }
 
-  (document.activeElement as HTMLElement).blur()
+  ;(document.activeElement as HTMLElement).blur()
   index.value = -1
 
   router.push(results.value[currentIndex].to)
@@ -64,7 +63,18 @@ function activate() {
 
 <template>
   <div ref="el" relative group>
-    <div bg-base border="~ base" h10 ps-4 pe-1 rounded-3 flex="~ row" items-center relative focus-within:box-shadow-outline>
+    <div
+      bg-base
+      border="~ base"
+      h10
+      ps-4
+      pe-1
+      rounded-3
+      flex="~ row"
+      items-center
+      relative
+      focus-within:box-shadow-outline
+    >
       <div i-ri:search-2-line pointer-events-none text-secondary mt="1px" class="rtl-flip" />
       <input
         ref="input"
@@ -84,21 +94,47 @@ function activate() {
         @keydown.up.prevent="shift(-1)"
         @keydown.esc.prevent="input?.blur()"
         @keypress.enter="activate"
+      />
+      <button
+        v-if="query.length"
+        btn-action-icon
+        text-secondary
+        @click="
+          query = ''
+          input?.focus()
+        "
       >
-      <button v-if="query.length" btn-action-icon text-secondary @click="query = ''; input?.focus()">
         <span aria-hidden="true" class="i-ri:close-line" />
       </button>
     </div>
     <!-- Results -->
-    <div left-0 top-11 absolute w-full z-10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
-      <div w-full bg-base border="~ base" rounded-3 max-h-100 overflow-auto :class="results.length === 0 ? 'py2' : null">
+    <div
+      left-0
+      top-11
+      absolute
+      w-full
+      z-10
+      group-focus-within="pointer-events-auto visible"
+      invisible
+      pointer-events-none
+    >
+      <div
+        w-full
+        bg-base
+        border="~ base"
+        rounded-3
+        max-h-100
+        overflow-auto
+        :class="results.length === 0 ? 'py2' : null"
+      >
         <span v-if="query.trim().length === 0" block text-center text-sm text-secondary>
           {{ t('search.search_desc') }}
         </span>
         <template v-else-if="!loading">
           <template v-if="results.length > 0">
             <SearchResult
-              v-for="(result, i) in results" :key="result.id"
+              v-for="(result, i) in results"
+              :key="result.id"
               :active="index === parseInt(i.toString())"
               :result="result"
               :tabindex="focused ? 0 : -1"

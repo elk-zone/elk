@@ -9,10 +9,7 @@ defineProps<{
 <template>
   <CommonTooltip placement="top" :content="$t('tooltip.open_editor_tools')">
     <VDropdown v-if="editor" placement="bottom">
-      <button
-        btn-action-icon
-        :aria-label="$t('tooltip.open_editor_tools')"
-      >
+      <button btn-action-icon :aria-label="$t('tooltip.open_editor_tools')">
         <div i-ri:font-size-2 />
       </button>
       <template #popper>

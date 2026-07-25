@@ -9,12 +9,7 @@ defineProps<Props>()
 </script>
 
 <template>
-  <VTooltip
-    v-if="isHydrated"
-    v-bind="$attrs"
-    auto-hide
-    no-auto-focus
-  >
+  <VTooltip v-if="isHydrated" v-bind="$attrs" auto-hide no-auto-focus>
     <slot />
     <template #popper>
       <div text-3>

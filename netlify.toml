@@ -5,6 +5,12 @@ command = "pnpm run build"
 [build.environment]
 NODE_OPTIONS = '--max-old-space-size=4096'
 
+# Deploy Previews from forks don't receive the Cloudflare KV
+# credentials, and the storage driver defaults to `cloudflare` in CI —
+# without them the build crashes while initializing the prerenderer.
+[context.deploy-preview.environment]
+NUXT_STORAGE_DRIVER = 'memory'
+
 # Redirect to Discord server
 [[redirects]]
 from = "https://chat.elk.zone"

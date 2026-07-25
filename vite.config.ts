@@ -85,7 +85,7 @@ export default defineConfig({
       "**/*.min.*",
       "**/LICENSE*",
       "**/__snapshots__",
-      "**/auto-import?(s).d.ts",
+      "**/auto-imports.d.ts",
       "**/components.d.ts",
       "public/**",
       "public-dev/**",
@@ -361,7 +361,7 @@ export default defineConfig({
     },
     overrides: [
       {
-        files: ["**/*.?([cm])[jt]s?(x)"],
+        files: ["**/*.{js,mjs,ts}"],
         rules: {
           "node/handle-callback-err": ["error", "^(err|error)$"],
           "node/no-exports-assign": "error",
@@ -381,7 +381,7 @@ export default defineConfig({
         plugins: ["node", "jsdoc"],
       },
       {
-        files: ["**/*.?([cm])ts", "**/*.?([cm])tsx", "**/*.vue"],
+        files: ["**/*.ts", "**/*.vue"],
         rules: {
           "constructor-super": "off",
           "getter-return": "off",
@@ -465,11 +465,11 @@ export default defineConfig({
       },
       {
         files: [
-          "**/__tests__/**/*.?([cm])[jt]s?(x)",
-          "**/*.spec.?([cm])[jt]s?(x)",
-          "**/*.test.?([cm])[jt]s?(x)",
-          "**/*.bench.?([cm])[jt]s?(x)",
-          "**/*.benchmark.?([cm])[jt]s?(x)",
+          "**/__tests__/**/*.ts",
+          "**/*.spec.ts",
+          "**/*.test.ts",
+          "**/*.bench.ts",
+          "**/*.benchmark.ts",
         ],
         rules: {
           "no-unused-expressions": "off",
@@ -545,7 +545,7 @@ export default defineConfig({
         jsPlugins: [],
       },
       {
-        files: ["**/*.y?(a)ml"],
+        files: ["**/*.{yaml,yml}"],
         rules: {},
         jsPlugins: [],
       },
@@ -562,7 +562,7 @@ export default defineConfig({
         jsPlugins: [],
       },
       {
-        files: ["**/*.md/**/*.?([cm])[jt]s?(x)", "**/*.md/**/*.vue"],
+        files: ["**/*.md/**/*.{js,mjs,ts}", "**/*.md/**/*.vue"],
         rules: {
           "no-alert": "off",
           "no-console": "off",
@@ -577,28 +577,19 @@ export default defineConfig({
         jsPlugins: [],
       },
       {
-        files: [
-          "**/scripts/**/*.ts",
-          "**/cli/**/*.?([cm])[jt]s?(x)",
-          "**/cli.?([cm])[jt]s?(x)",
-        ],
+        files: ["**/scripts/**/*.ts"],
         rules: {
           "no-console": "off",
         },
         jsPlugins: [],
       },
       {
-        files: ["**/bin/**/*", "**/bin.?([cm])[jt]s?(x)"],
+        files: ["**/*.d.ts"],
         rules: {},
         jsPlugins: [],
       },
       {
-        files: ["**/*.d.?([cm])ts"],
-        rules: {},
-        jsPlugins: [],
-      },
-      {
-        files: ["**/*.config.?([cm])[jt]s?(x)", "**/*.config.*.?([cm])[jt]s?(x)"],
+        files: ["**/*.config.ts", "**/*.config.*.ts"],
         rules: {
           "no-console": "off",
         },

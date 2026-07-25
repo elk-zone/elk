@@ -1327,7 +1327,8 @@ export default defineConfig({
         },
         jsPlugins: ['@stylistic/eslint-plugin', 'eslint-plugin-toml'],
       },
-      // FIXME: markdown plugin not available in oxlint. We might need to wait this extension and its markdown support (RFC: Embedded Framework Support for Oxlint (Language Plugins) · oxc-project/oxc · Discussion #21936 - https://github.com/oxc-project/oxc/discussions/21936)
+      // FIXME: markdown plugin not available in oxlint. We might need to wait this extension and its markdown support
+      // ref. RFC: Embedded Framework Support for Oxlint (Language Plugins) · oxc-project/oxc · Discussion #21936 - https://github.com/oxc-project/oxc/discussions/21936
       // {
       //   files: ['**/*.md'],
       //   rules: {

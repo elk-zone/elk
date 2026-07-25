@@ -115,7 +115,7 @@ export function usePaginator<T, P, U = T>(
     if (!isHydrated.value) {
       onHydrated(() => {
         state.value = 'idle'
-        loadNext()
+        void loadNext()
       })
     }
 
@@ -128,7 +128,7 @@ export function usePaginator<T, P, U = T>(
           && deactivated.value === false
           && canLoadMore.value
         ) {
-          loadNext()
+          void loadNext()
         }
       },
     )

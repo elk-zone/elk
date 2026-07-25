@@ -13,7 +13,7 @@ declare const self: ServiceWorkerGlobalScope
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING')
-    self.skipWaiting()
+    void self.skipWaiting()
 })
 
 const entries = self.__WB_MANIFEST

@@ -192,13 +192,13 @@ export function useDraft(
 }
 
 export function mentionUser(account: mastodon.v1.Account) {
-  openPublishDialog('dialog', getDefaultDraftItem({
+  void openPublishDialog('dialog', getDefaultDraftItem({
     status: `@${account.acct} `,
   }))
 }
 
 export function privateMentionUser(account: mastodon.v1.Account) {
-  openPublishDialog('dialog', getDefaultDraftItem({
+  void openPublishDialog('dialog', getDefaultDraftItem({
     status: `@${account.acct} `,
     visibility: 'direct',
   }))

@@ -27,4 +27,4 @@ async function fetchAvatars() {
   }, [] as Promise<void>[]))
 }
 
-fetchAvatars()
+void fetchAvatars()

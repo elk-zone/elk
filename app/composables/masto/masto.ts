@@ -38,7 +38,7 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
   masto.streamingClient.value = createStreamingClient(streamingApiUrl)
 
   // Refetch instance info in the background on login
-  masto.client.value.v2.instance.fetch().catch(error => new Promise<mastodon.v2.Instance>((resolve, reject) => {
+  void masto.client.value.v2.instance.fetch().catch(error => new Promise<mastodon.v2.Instance>((resolve, reject) => {
     if (error instanceof MastoHttpError && error.statusCode === 404) {
       return masto.client.value.v1.instance.fetch().then((newInstance) => {
         console.warn(`Instance ${server} on version ${newInstance.version} does not support "GET /api/v2/instance" API, try converting to v2 instance... expect some errors`)

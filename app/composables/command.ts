@@ -305,7 +305,7 @@ export function provideGlobalCommands() {
 
     onActivate() {
       if (singleInstanceServer)
-        oauth()
+        void oauth()
       else
         openSigninDialog()
     },
@@ -334,7 +334,7 @@ export function provideGlobalCommands() {
     icon: 'i-ri:user-shared-line',
 
     onActivate() {
-      loginTo(masto, user)
+      void loginTo(masto, user)
     },
   })))
   useCommand({
@@ -346,7 +346,7 @@ export function provideGlobalCommands() {
     icon: 'i-ri:logout-box-line',
 
     onActivate() {
-      signOut()
+      void signOut()
     },
   })
 }

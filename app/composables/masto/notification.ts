@@ -41,7 +41,7 @@ export function useNotifications() {
     const stream = streamingClient.value!.user.subscribe()
     resolveStream!(stream)
 
-    processNotifications(stream, id)
+    void processNotifications(stream, id)
 
     const position = await client.value.v1.markers.fetch({ timeline: ['notifications'] })
     const paginator = client.value.v1.notifications.list({ limit: 30 })
@@ -61,14 +61,14 @@ export function useNotifications() {
   function disconnect(): void {
     if (!id || !notifications[id])
       return
-    notifications[id]![0].then(stream => stream.unsubscribe())
+    void notifications[id]![0].then(stream => stream.unsubscribe())
     notifications[id] = undefined
   }
 
   watch(currentUser, disconnect)
 
   onHydrated(() => {
-    connect()
+    void connect()
   })
 
   return {

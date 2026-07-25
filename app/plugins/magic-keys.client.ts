@@ -22,7 +22,7 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
   const navigateTo = (to: string | RouteLocationRaw) => {
     closeKeyboardShortcuts()
     ;($scrollToTop as () => void)() // is this really required?
-    router.push(to)
+    void router.push(to)
   }
 
   whenever(logicAnd(notUsingInput, keys['?']), toggleKeyboardShortcuts)
@@ -33,7 +33,7 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
     // TODO: bugfix -> create PR for vueuse, reset `current` ref on window focus|blur
     if (!current.has('shift') && !current.has('meta') && !current.has('control') && !current.has('alt')) {
       // TODO: is this the correct way of using openPublishDialog()?
-      openPublishDialog('dialog', getDefaultDraftItem())
+      void openPublishDialog('dialog', getDefaultDraftItem())
     }
   }
   whenever(logicAnd(isAuthenticated, notUsingInput, keys.c), defaultPublishDialog)

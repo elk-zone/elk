@@ -36,7 +36,7 @@ export function useStatusActions(props: StatusActionsProps) {
 
     isLoading.value[action] = true
     const isCancel = status.value[action]
-    fetchNewStatus().then((newStatus) => {
+    void fetchNewStatus().then((newStatus) => {
       // when the action is cancelled, the count is not updated highly likely (if they're the same)
       // issue of Mastodon API
       if (isCancel && countField && prevCount === newStatus[countField])

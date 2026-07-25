@@ -86,7 +86,7 @@ export function useThreadComposer(draftKey: DraftKey, initial?: () => DraftItem)
 
     // If the thread was a reply and all items were published, jump to it
     if (isAReplyThread && lastPublishedStatus && draftItems.value.length === 0)
-      navigateToStatus({ status: lastPublishedStatus })
+      void navigateToStatus({ status: lastPublishedStatus })
 
     return lastPublishedStatus
   }

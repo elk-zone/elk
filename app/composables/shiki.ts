@@ -38,7 +38,7 @@ export function useHighlighter(lang: Lang): {
       })
       .catch(() => {
         const fallbackLang = 'md'
-        highlighter.value?.loadLanguage(fallbackLang).then(() => {
+        void highlighter.value?.loadLanguage(fallbackLang).then(() => {
           registeredLang.value.set(fallbackLang, true)
         })
       })

@@ -62,4 +62,4 @@ async function removeOutdatedTranslations() {
   }
 }
 
-removeOutdatedTranslations()
+void removeOutdatedTranslations()

@@ -24,7 +24,7 @@ export default defineNuxtPlugin(async (nuxt) => {
 
     watch([lang, isHydrated], () => {
       if (isHydrated.value && lang.value !== i18n.locale.value)
-        setLocale(lang.value)
+        void setLocale(lang.value)
     }, { immediate: true })
   }
 })

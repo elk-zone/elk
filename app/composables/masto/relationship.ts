@@ -23,7 +23,7 @@ export function useRelationship(account: mastodon.v1.Account): Ref<mastodon.v1.R
     clearTimeout(timeoutHandle)
   timeoutHandle = setTimeout(() => {
     timeoutHandle = undefined
-    fetchRelationships()
+    void fetchRelationships()
   }, 100)
 
   return relationship

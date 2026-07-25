@@ -29,7 +29,7 @@ export default defineDriver((driver: Driver = memory()) => {
         return value
 
       value = await driver.getItem(key)
-      memoryDriver.setItem?.(key, value as string, {})
+      void memoryDriver.setItem?.(key, value as string, {})
 
       return value
     },

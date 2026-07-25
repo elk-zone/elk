@@ -11,7 +11,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   if (!user) {
     const fromServer = from.params.server || currentServer.value
     if (fromServer !== server)
-      loginTo(masto, { server })
+      void loginTo(masto, { server })
     return
   }
 

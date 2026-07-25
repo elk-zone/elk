@@ -6,7 +6,7 @@ export default defineConfig({
     semi: false,
   },
   lint: {
-    plugins: ['oxc', 'typescript', 'unicorn', 'react', 'import'],
+    plugins: ['oxc', 'typescript', 'unicorn', 'react', 'import', 'vitest'],
     jsPlugins: [
       'eslint-plugin-antfu',
       'eslint-plugin-unused-imports',
@@ -846,18 +846,18 @@ export default defineConfig({
           '**/*.benchmark.?([cm])[jt]s?(x)',
         ],
         rules: {
-          'test/consistent-test-it': [
+          'vitest/consistent-test-it': [
             'error',
             {
               fn: 'it',
               withinDescribe: 'it',
             },
           ],
-          'test/no-identical-title': 'error',
-          'test/no-import-node-test': 'error',
-          'test/no-only-tests': 'error',
-          'test/prefer-hooks-in-order': 'error',
-          'test/prefer-lowercase-title': 'error',
+          'vitest/no-identical-title': 'error',
+          'vitest/no-import-node-test': 'error',
+          'vitest/no-focused-tests': 'error',
+          'vitest/prefer-hooks-in-order': 'error',
+          'vitest/prefer-lowercase-title': 'error',
           'antfu/no-top-level-await': 'off',
           'no-unused-expressions': 'off',
         },

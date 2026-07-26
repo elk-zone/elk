@@ -68,6 +68,11 @@ function removeAccount(account: mastodon.v1.Account) {
     console.error(err)
   }
 }
+
+function clearQuery() {
+  query.value = ''
+  inputRef.value?.focus()
+}
 </script>
 
 <template>
@@ -106,15 +111,7 @@ function removeAccount(account: mastodon.v1.Account) {
           @keydown.esc.prevent="inputRef?.blur()"
           @keydown.enter.prevent
         />
-        <button
-          v-if="query.length"
-          btn-action-icon
-          text-secondary
-          @click="
-            query = ''
-            inputRef?.focus()
-          "
-        >
+        <button v-if="query.length" btn-action-icon text-secondary @click="clearQuery">
           <span aria-hidden="true" class="i-ri:close-line" />
         </button>
       </div>

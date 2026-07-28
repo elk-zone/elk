@@ -24,6 +24,7 @@ const HTML_ESCAPE_REGEX = {
 const INLINE_CODE_REGEX = /`([^`\n]*)`/g
 const WHITESPACE_SPLIT_REGEX = /\s/g
 const AMPERSAND_REGEX = /&amp;/g
+const BIDI_CONTROL_CHARS_REGEX = /[\u061C\u200E\u200F\u202A-\u202E\u2066-\u2069]/g
 const EMOJI_SPLIT_REGEX = {
   WITH_COLON: /\s?:([\w-]+):/g,
   WITHOUT_COLON: /:([\w-]+):/g,
@@ -405,6 +406,9 @@ function filterHref() {
   return (href: string | undefined) => {
     if (href === undefined)
       return undefined
+
+    // Strip bidirectional control characters that can be used for domain spoofing
+    href = href.replace(BIDI_CONTROL_CHARS_REGEX, '')
 
     // Allow relative links
     if (href.startsWith('/') || href.startsWith('.'))

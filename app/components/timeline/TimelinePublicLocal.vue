@@ -2,7 +2,7 @@
 import type { mastodon } from 'masto'
 
 const paginator = useMastoClient().v1.timelines.public.list({ limit: 30, local: true })
-const stream = useStreaming(client => client.public.local.subscribe())
+const stream = useStreaming((client) => client.public.local.subscribe())
 function preprocess(items: mastodon.v1.Status[]) {
   return filterAndReorderTimeline(items, 'public')
 }
@@ -17,6 +17,11 @@ if (currentUser.value !== undefined) {
 
 <template>
   <div>
-    <TimelinePaginator :followed-tags="followedTags" v-bind="{ paginator, stream }" :preprocess="preprocess" context="public" />
+    <TimelinePaginator
+      :followed-tags="followedTags"
+      v-bind="{ paginator, stream }"
+      :preprocess="preprocess"
+      context="public"
+    />
   </div>
 </template>

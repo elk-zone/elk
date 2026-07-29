@@ -13,7 +13,7 @@ export function useStatusActions(props: StatusActionsProps) {
 
   watch(
     () => props.status,
-    val => status.value = { ...val },
+    (val) => (status.value = { ...val }),
     { deep: true, immediate: true },
   )
 
@@ -27,78 +27,97 @@ export function useStatusActions(props: StatusActionsProps) {
     muted: false,
   })
 
-  async function toggleStatusAction(action: Action, fetchNewStatus: () => Promise<mastodon.v1.Status>, countField?: CountField) {
+  async function toggleStatusAction(
+    action: Action,
+    fetchNewStatus: () => Promise<mastodon.v1.Status>,
+    countField?: CountField,
+  ) {
     // check login
-    if (!checkLogin())
-      return
+    if (!checkLogin()) return
 
     const prevCount = countField ? status.value[countField] : undefined
 
     isLoading.value[action] = true
     const isCancel = status.value[action]
-    fetchNewStatus().then((newStatus) => {
-      // when the action is cancelled, the count is not updated highly likely (if they're the same)
-      // issue of Mastodon API
-      if (isCancel && countField && prevCount === newStatus[countField])
-        newStatus[countField] -= 1
+    void fetchNewStatus()
+      .then((newStatus) => {
+        // when the action is cancelled, the count is not updated highly likely (if they're the same)
+        // issue of Mastodon API
+        if (isCancel && countField && prevCount === newStatus[countField])
+          newStatus[countField] -= 1
 
-      Object.assign(status.value, newStatus)
-      cacheStatus(newStatus, undefined, true)
-    }).finally(() => {
-      isLoading.value[action] = false
-    })
+        Object.assign(status.value, newStatus)
+        cacheStatus(newStatus, undefined, true)
+      })
+      .finally(() => {
+        isLoading.value[action] = false
+      })
     // Optimistic update
     status.value[action] = !status.value[action]
     cacheStatus(status.value, undefined, true)
-    if (countField)
-      status.value[countField] += status.value[action] ? 1 : -1
+    if (countField) status.value[countField] += status.value[action] ? 1 : -1
   }
 
-  const toggleFavourite = () => toggleStatusAction(
-    'favourited',
-    () => client.value.v1.statuses.$select(status.value.id)[status.value.favourited ? 'unfavourite' : 'favourite'](),
-    'favouritesCount',
+  const toggleFavourite = () =>
+    toggleStatusAction(
+      'favourited',
+      () =>
+        client.value.v1.statuses
+          .$select(status.value.id)
+          [status.value.favourited ? 'unfavourite' : 'favourite'](),
+      'favouritesCount',
+    )
+
+  const canReblog = computed(
+    () =>
+      status.value.visibility !== 'direct' &&
+      (status.value.visibility !== 'private' ||
+        status.value.account.id === currentUser.value?.account.id),
   )
 
-  const canReblog = computed(() =>
-    status.value.visibility !== 'direct'
-    && (status.value.visibility !== 'private' || status.value.account.id === currentUser.value?.account.id),
-  )
-
-  const toggleReblog = () => toggleStatusAction(
-    'reblogged',
-    () => client.value.v1.statuses.$select(status.value.id)[status.value.reblogged ? 'unreblog' : 'reblog']().then((res) => {
-      if (status.value.reblogged)
-        // returns the original status
-        return res.reblog!
-      return res
-    }),
-    'reblogsCount',
-  )
+  const toggleReblog = () =>
+    toggleStatusAction(
+      'reblogged',
+      () =>
+        client.value.v1.statuses
+          .$select(status.value.id)
+          [status.value.reblogged ? 'unreblog' : 'reblog']()
+          .then((res) => {
+            if (status.value.reblogged)
+              // returns the original status
+              return res.reblog!
+            return res
+          }),
+      'reblogsCount',
+    )
 
   const canQuote = computed(() => {
-    if (status.value.visibility === 'private' || status.value.visibility === 'direct')
-      return false
+    if (status.value.visibility === 'private' || status.value.visibility === 'direct') return false
 
-    return status.value.quoteApproval?.currentUser === 'automatic' || status.value.quoteApproval?.currentUser === 'manual'
+    return (
+      status.value.quoteApproval?.currentUser === 'automatic' ||
+      status.value.quoteApproval?.currentUser === 'manual'
+    )
   })
 
   const composeWithQuote = () => navigateTo(`/compose?quote=${status.value.id}`)
 
-  const toggleBookmark = () => toggleStatusAction(
-    'bookmarked',
-    () => client.value.v1.statuses.$select(status.value.id)[status.value.bookmarked ? 'unbookmark' : 'bookmark'](),
-  )
+  const toggleBookmark = () =>
+    toggleStatusAction('bookmarked', () =>
+      client.value.v1.statuses
+        .$select(status.value.id)
+        [status.value.bookmarked ? 'unbookmark' : 'bookmark'](),
+    )
 
-  const togglePin = async () => toggleStatusAction(
-    'pinned',
-    () => client.value.v1.statuses.$select(status.value.id)[status.value.pinned ? 'unpin' : 'pin'](),
-  )
+  const togglePin = async () =>
+    toggleStatusAction('pinned', () =>
+      client.value.v1.statuses.$select(status.value.id)[status.value.pinned ? 'unpin' : 'pin'](),
+    )
 
-  const toggleMute = async () => toggleStatusAction(
-    'muted',
-    () => client.value.v1.statuses.$select(status.value.id)[status.value.muted ? 'unmute' : 'mute'](),
-  )
+  const toggleMute = async () =>
+    toggleStatusAction('muted', () =>
+      client.value.v1.statuses.$select(status.value.id)[status.value.muted ? 'unmute' : 'mute'](),
+    )
 
   return {
     status,

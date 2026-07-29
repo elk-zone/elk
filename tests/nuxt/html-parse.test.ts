@@ -52,7 +52,7 @@ describe('html-parse', () => {
 
   it('code frame 2', async () => {
     const { formatted, serializedText } = await render(
-      '<p><span class=\"h-card\"><a href=\"https://webtoo.ls/@antfu\" class=\"u-url mention\">@<span>antfu</span></a></span> Testing<br />```ts<br />const a = hello<br />```</p>',
+      '<p><span class="h-card"><a href="https://webtoo.ls/@antfu" class="u-url mention">@<span>antfu</span></a></span> Testing<br />```ts<br />const a = hello<br />```</p>',
     )
     expect(formatted).toMatchSnapshot('html')
     expect(serializedText).toMatchSnapshot('text')
@@ -67,9 +67,7 @@ describe('html-parse', () => {
   })
 
   it('html entities', async () => {
-    const { formatted, serializedText } = await render(
-      '<p>Hello &lt;World /&gt;.</p>',
-    )
+    const { formatted, serializedText } = await render('<p>Hello &lt;World /&gt;.</p>')
     expect(formatted).toMatchSnapshot('html')
     expect(serializedText).toMatchSnapshot('text')
   })
@@ -99,8 +97,7 @@ async function render(input: string, options?: ContentParseOptions) {
     formatted = await format(html, {
       parser: 'html',
     })
-  }
-  catch {
+  } catch {
     formatted = html
   }
 

@@ -25,7 +25,7 @@ function handleShowCommit() {
     </template>
 
     <div flex="~ col gap4" w-full items-center justify-center my5>
-      <img :alt="$t('app_logo')" :src="`${''}/logo.svg`" w-24 h-24 class="rtl-flip">
+      <img :alt="$t('app_logo')" :src="`${''}/logo.svg`" w-24 h-24 class="rtl-flip" />
       <p text-lg>
         {{ $t('app_desc_short') }}
       </p>
@@ -35,7 +35,8 @@ function handleShowCommit() {
       <SettingsItem
         :text="$t('settings.about.version')"
         :to="showCommit ? `https://github.com/elk-zone/elk/commit/${buildInfo.commit}` : undefined"
-        external target="_blank"
+        external
+        target="_blank"
         @click="handleShowCommit"
       >
         <template #content>
@@ -54,7 +55,8 @@ function handleShowCommit() {
     <SettingsItem
       :text="$t('nav.show_intro')"
       icon="i-ri:article-line"
-      cursor-pointer large
+      cursor-pointer
+      large
       @click="openPreviewHelp"
     />
 
@@ -62,26 +64,32 @@ function handleShowCommit() {
       :text="$t('nav.docs')"
       icon="i-ri:book-open-line"
       to="https://docs.elk.zone/"
-      large target="_blank"
+      large
+      target="_blank"
     />
 
     <SettingsItem
       text="Mastodon"
       icon="i-ri:mastodon-line"
       to="/m.webtoo.ls/@elk"
-      large target="_blank"
+      large
+      target="_blank"
     />
     <SettingsItem
       text="Discord"
       icon="i-ri:discord-fill"
       to="https://chat.elk.zone"
-      external large target="_blank"
+      external
+      large
+      target="_blank"
     />
     <SettingsItem
       text="GitHub"
       icon="i-ri:github-fill"
       to="https://github.com/elk-zone/elk"
-      external large target="_blank"
+      external
+      large
+      target="_blank"
     />
 
     <div h-1px bg-border my2 />
@@ -107,7 +115,9 @@ function handleShowCommit() {
       :text="$t('settings.about.sponsor_action')"
       to="https://github.com/sponsors/elk-zone"
       :description="$t('settings.about.sponsor_action_desc')"
-      external large target="_blank"
+      external
+      large
+      target="_blank"
     >
       <template #icon>
         <div i-ri-heart-3-fill text-rose rounded-full w-8 h-8 height="32" width="32" />
@@ -122,13 +132,23 @@ function handleShowCommit() {
       </p>
 
       <SettingsItem
-        v-for="team in elkTeamMembers" :key="team.github"
+        v-for="team in elkTeamMembers"
+        :key="team.github"
         :text="team.display"
         :to="team.link"
-        external target="_blank"
+        external
+        target="_blank"
       >
         <template #icon>
-          <img :src="`/avatars/${team.github}-60x60.png`" :alt="team.display" rounded-full w-8 h-8 height="32" width="32">
+          <img
+            :src="`/avatars/${team.github}-60x60.png`"
+            :alt="team.display"
+            rounded-full
+            w-8
+            h-8
+            height="32"
+            width="32"
+          />
         </template>
       </SettingsItem>
     </template>

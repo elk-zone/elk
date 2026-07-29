@@ -44,8 +44,7 @@ const { submit, submitting } = submitter(async () => {
       title: form.title,
     })
     cancelEdit()
-  }
-  catch (err) {
+  } catch (err) {
     console.error(err)
     actionError.value = (err as Error).message
     await nextTick()
@@ -54,8 +53,7 @@ const { submit, submitting } = submitter(async () => {
 })
 
 async function removeList() {
-  if (deleting.value)
-    return
+  if (deleting.value) return
 
   const confirmDelete = await openConfirmDialog({
     title: t('confirm.delete_list.title'),
@@ -73,18 +71,15 @@ async function removeList() {
     try {
       await client.v1.lists.$select(list.value.id).remove()
       emit('listRemoved', list.value.id)
-    }
-    catch (err) {
+    } catch (err) {
       console.error(err)
       actionError.value = (err as Error).message
       await nextTick()
       deleteBtn.value?.focus()
-    }
-    finally {
+    } finally {
       deleting.value = false
     }
-  }
-  else {
+  } else {
     deleting.value = false
   }
 }
@@ -92,10 +87,8 @@ async function removeList() {
 async function clearError() {
   actionError.value = undefined
   await nextTick()
-  if (isEditing.value)
-    input.value?.focus()
-  else
-    deleteBtn.value?.focus()
+  if (isEditing.value) input.value?.focus()
+  else deleteBtn.value?.focus()
 }
 
 onDeactivated(cancelEdit)
@@ -103,20 +96,42 @@ onDeactivated(cancelEdit)
 
 <template>
   <form
-    hover:bg-active flex justify-between items-center gap-x-2
+    hover:bg-active
+    flex
+    justify-between
+    items-center
+    gap-x-2
     :aria-describedby="actionError ? `action-list-error-${list.id}` : undefined"
-    :class="actionError ? 'border border-base border-rounded rounded-be-is-0 rounded-be-ie-0 border-b-unset border-$c-danger-active' : null"
+    :class="
+      actionError
+        ? 'border border-base border-rounded rounded-be-is-0 rounded-be-ie-0 border-b-unset border-$c-danger-active'
+        : null
+    "
     @submit.prevent="submit"
   >
     <div
       v-if="isEditing"
-      bg-base border="~ base" h10 m2 ps-1 pe-4 rounded-3 w-full flex="~ row"
-      items-center relative focus-within:box-shadow-outline gap-3
+      bg-base
+      border="~ base"
+      h10
+      m2
+      ps-1
+      pe-4
+      rounded-3
+      w-full
+      flex="~ row"
+      items-center
+      relative
+      focus-within:box-shadow-outline
+      gap-3
     >
       <CommonTooltip v-if="isEditing" :content="$t('list.cancel_edit')">
         <button
           type="button"
-          rounded-full text-sm p2 transition-colors
+          rounded-full
+          text-sm
+          p2
+          transition-colors
           hover:text-primary
           @click="cancelEdit()"
         >
@@ -126,11 +141,16 @@ onDeactivated(cancelEdit)
       <input
         ref="input"
         v-model="form.title"
-        rounded-3 w-full bg-transparent
-        outline="focus:none" pe-4 pb="1px"
-        flex-1 placeholder-text-secondary
+        rounded-3
+        w-full
+        bg-transparent
+        outline="focus:none"
+        pe-4
+        pb="1px"
+        flex-1
+        placeholder-text-secondary
         @keydown.esc="cancelEdit()"
-      >
+      />
     </div>
     <NuxtLink v-else :to="`list/${list.id}`" block grow p4>
       {{ form.title }}
@@ -139,13 +159,25 @@ onDeactivated(cancelEdit)
       <CommonTooltip v-if="isEditing" :content="$t('list.save')">
         <button
           type="submit"
-          text-sm p2 border-1 transition-colors
-          border-dark hover:text-primary
+          text-sm
+          p2
+          border-1
+          transition-colors
+          border-dark
+          hover:text-primary
           btn-action-icon
           :disabled="deleting || !isDirty || submitting"
         >
           <template v-if="isEditing">
-            <span v-if="submitting" aria-hidden="true" block animate animate-spin preserve-3d class="rtl-flip">
+            <span
+              v-if="submitting"
+              aria-hidden="true"
+              block
+              animate
+              animate-spin
+              preserve-3d
+              class="rtl-flip"
+            >
               <span block i-ri:loader-2-fill aria-hidden="true" />
             </span>
             <span v-else block text-current i-ri:save-2-fill class="rtl-flip" />
@@ -156,8 +188,12 @@ onDeactivated(cancelEdit)
         <button
           ref="editBtn"
           type="button"
-          text-sm p2 border-1 transition-colors
-          border-dark hover:text-primary
+          text-sm
+          p2
+          border-1
+          transition-colors
+          border-dark
+          hover:text-primary
           btn-action-icon
           @click.prevent="prepareEdit"
         >
@@ -167,13 +203,25 @@ onDeactivated(cancelEdit)
       <CommonTooltip :content="$t('list.delete')">
         <button
           type="button"
-          text-sm p2 border-1 transition-colors
-          border-dark hover:text-primary
+          text-sm
+          p2
+          border-1
+          transition-colors
+          border-dark
+          hover:text-primary
           btn-action-icon
           :disabled="isEditing"
           @click.prevent="removeList"
         >
-          <span v-if="deleting" aria-hidden="true" block animate animate-spin preserve-3d class="rtl-flip">
+          <span
+            v-if="deleting"
+            aria-hidden="true"
+            block
+            animate
+            animate-spin
+            preserve-3d
+            class="rtl-flip"
+          >
             <span block i-ri:loader-2-fill aria-hidden="true" />
           </span>
           <span v-else block text-current i-ri:delete-bin-2-line class="rtl-flip" />
@@ -194,7 +242,13 @@ onDeactivated(cancelEdit)
       </div>
       <CommonTooltip placement="bottom" :content="$t('list.clear_error')">
         <button
-          flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="$t('list.clear_error')"
+          flex
+          rounded-4
+          p1
+          hover:bg-active
+          cursor-pointer
+          transition-100
+          :aria-label="$t('list.clear_error')"
           @click="clearError"
         >
           <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />

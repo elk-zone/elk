@@ -26,15 +26,16 @@ export default defineComponent({
   setup(props) {
     const emojisObject = useEmojisFallback(() => props.emojis)
 
-    return () => h(
-      'span',
-      { class: 'content-rich', dir: 'auto' },
-      contentToVNode(props.content, {
-        emojis: emojisObject.value,
-        hideEmojis: props.hideEmojis,
-        markdown: props.markdown,
-      }),
-    )
+    return () =>
+      h(
+        'span',
+        { class: 'content-rich', dir: 'auto' },
+        contentToVNode(props.content, {
+          emojis: emojisObject.value,
+          hideEmojis: props.hideEmojis,
+          markdown: props.markdown,
+        }),
+      )
   },
 })
 </script>

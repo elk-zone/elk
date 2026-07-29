@@ -5,8 +5,7 @@ export const TagLinkRE = /^https?:\/\/([^/]+)\/tags\/([^/]+)\/?$/
 export const HTMLTagRE = /<[^>]+>/g
 
 export function getDataUrlFromArr(arr: Uint8ClampedArray, w: number, h: number) {
-  if (typeof w === 'undefined' || typeof h === 'undefined')
-    w = h = Math.sqrt(arr.length / 4)
+  if (typeof w === 'undefined' || typeof h === 'undefined') w = h = Math.sqrt(arr.length / 4)
 
   const canvas = document.createElement('canvas')
   const ctx = canvas.getContext('2d')!
@@ -22,15 +21,19 @@ export function getDataUrlFromArr(arr: Uint8ClampedArray, w: number, h: number) 
 }
 
 export function emojisArrayToObject(emojis: mastodon.v1.CustomEmoji[]) {
-  return Object.fromEntries(emojis.map(i => [i.shortcode, i]))
+  return Object.fromEntries(emojis.map((i) => [i.shortcode, i]))
 }
 
 export function noop() {}
 
 export function useIsMac() {
   const headers = useRequestHeaders(['user-agent'])
-  return computed(() => headers['user-agent']?.includes('Macintosh')
-    ?? navigator?.userAgent?.includes('Mac') ?? false)
+  return computed(
+    () =>
+      headers['user-agent']?.includes('Macintosh') ??
+      navigator?.userAgent?.includes('Mac') ??
+      false,
+  )
 }
 
 export function isEmptyObject(object: object) {

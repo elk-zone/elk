@@ -12,9 +12,7 @@ export default defineConfig({
       await defineVitestProject({
         test: {
           name: 'nuxt',
-          setupFiles: [
-            '../tests/setup.ts',
-          ],
+          setupFiles: ['../tests/setup.ts'],
           environmentOptions: {
             nuxt: {
               mock: {

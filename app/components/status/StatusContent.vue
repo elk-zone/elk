@@ -14,22 +14,36 @@ const isDM = computed(() => status.visibility === 'direct')
 const isDetails = computed(() => context === 'details')
 
 // Content Filter logic
-const filterResult = computed(() => status.filtered?.length ? status.filtered[0] : null)
+const filterResult = computed(() => (status.filtered?.length ? status.filtered[0] : null))
 const filter = computed(() => filterResult.value?.filter)
 
 const filterPhrase = computed(() => filter.value?.title)
-const isFiltered = computed(() => status.account.id !== currentUser.value?.account.id && filterPhrase && context && context !== 'details' && !!filter.value?.context.includes(context))
+const isFiltered = computed(
+  () =>
+    status.account.id !== currentUser.value?.account.id &&
+    filterPhrase &&
+    context &&
+    context !== 'details' &&
+    !!filter.value?.context.includes(context),
+)
 
 // check spoiler text or media attachment
 // needed to handle accounts that mark all their posts as sensitive
-const spoilerTextPresent = computed(() => !!status.spoilerText && status.spoilerText.trim().length > 0)
-const hasSpoilerOrSensitiveMedia = computed(() => spoilerTextPresent.value || (status.sensitive && !!status.mediaAttachments.length))
-const isSensitiveNonSpoiler = computed(() => status.sensitive && !status.spoilerText && !!status.mediaAttachments.length)
-const hideAllMedia = computed(
-  () => {
-    return currentUser.value ? (getHideMediaByDefault(currentUser.value.account) && (!!status.mediaAttachments.length || !!status.card?.html)) : false
-  },
+const spoilerTextPresent = computed(
+  () => !!status.spoilerText && status.spoilerText.trim().length > 0,
 )
+const hasSpoilerOrSensitiveMedia = computed(
+  () => spoilerTextPresent.value || (status.sensitive && !!status.mediaAttachments.length),
+)
+const isSensitiveNonSpoiler = computed(
+  () => status.sensitive && !status.spoilerText && !!status.mediaAttachments.length,
+)
+const hideAllMedia = computed(() => {
+  return currentUser.value
+    ? getHideMediaByDefault(currentUser.value.account) &&
+        (!!status.mediaAttachments.length || !!status.card?.html)
+    : false
+})
 const embeddedMediaPreference = usePreferences('experimentalEmbeddedMedia')
 const allowEmbeddedMedia = computed(() => status.card?.html && embeddedMediaPreference.value)
 </script>
@@ -42,8 +56,20 @@ const allowEmbeddedMedia = computed(() => status.card?.html && embeddedMediaPref
       'ms--3.5 mt--1 ms--1': isDM && context !== 'details',
     }"
   >
-    <StatusBody v-if="(!isFiltered && isSensitiveNonSpoiler) || hideAllMedia" :status="status" :newer="newer" :with-action="!isDetails" :is-nested="isNested" :class="isDetails ? 'text-xl' : ''" />
-    <StatusSpoiler :enabled="hasSpoilerOrSensitiveMedia || isFiltered" :filter="isFiltered" :sensitive-non-spoiler="isSensitiveNonSpoiler || hideAllMedia" :is-d-m="isDM">
+    <StatusBody
+      v-if="(!isFiltered && isSensitiveNonSpoiler) || hideAllMedia"
+      :status="status"
+      :newer="newer"
+      :with-action="!isDetails"
+      :is-nested="isNested"
+      :class="isDetails ? 'text-xl' : ''"
+    />
+    <StatusSpoiler
+      :enabled="hasSpoilerOrSensitiveMedia || isFiltered"
+      :filter="isFiltered"
+      :sensitive-non-spoiler="isSensitiveNonSpoiler || hideAllMedia"
+      :is-d-m="isDM"
+    >
       <template v-if="spoilerTextPresent" #spoiler>
         <p>
           <ContentRich :content="status.spoilerText" :emojis="status.emojis" :markdown="false" />
@@ -52,7 +78,14 @@ const allowEmbeddedMedia = computed(() => status.card?.html && embeddedMediaPref
       <template v-else-if="filterPhrase" #spoiler>
         <p>{{ `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>
       </template>
-      <StatusBody v-if="!(isSensitiveNonSpoiler || hideAllMedia)" :status="status" :newer="newer" :with-action="!isDetails" :is-nested="isNested" :class="isDetails ? 'text-xl' : ''" />
+      <StatusBody
+        v-if="!(isSensitiveNonSpoiler || hideAllMedia)"
+        :status="status"
+        :newer="newer"
+        :with-action="!isDetails"
+        :is-nested="isNested"
+        :class="isDetails ? 'text-xl' : ''"
+      />
       <StatusTranslation :status="status" />
       <StatusPoll v-if="status.poll" :status="status" />
       <StatusMedia
@@ -68,7 +101,8 @@ const allowEmbeddedMedia = computed(() => status.card?.html && embeddedMediaPref
       <StatusEmbeddedMedia v-if="allowEmbeddedMedia" :status="status" />
       <StatusCard
         v-if="status.reblog"
-        :status="status.reblog" border="~ rounded"
+        :status="status.reblog"
+        border="~ rounded"
         :actions="false"
       />
     </StatusSpoiler>

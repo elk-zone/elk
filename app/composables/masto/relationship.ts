@@ -8,22 +8,21 @@ import type { Ref } from 'vue'
 const requestedRelationships = new Map<string, Ref<mastodon.v1.Relationship | undefined>>()
 let timeoutHandle: NodeJS.Timeout | undefined
 
-export function useRelationship(account: mastodon.v1.Account): Ref<mastodon.v1.Relationship | undefined> {
-  if (!currentUser.value)
-    return ref()
+export function useRelationship(
+  account: mastodon.v1.Account,
+): Ref<mastodon.v1.Relationship | undefined> {
+  if (!currentUser.value) return ref()
 
   let relationship = requestedRelationships.get(account.id)
-  if (relationship)
-    return relationship
+  if (relationship) return relationship
 
   // allow batch relationship requests
   relationship = ref<mastodon.v1.Relationship | undefined>()
   requestedRelationships.set(account.id, relationship)
-  if (timeoutHandle)
-    clearTimeout(timeoutHandle)
+  if (timeoutHandle) clearTimeout(timeoutHandle)
   timeoutHandle = setTimeout(() => {
     timeoutHandle = undefined
-    fetchRelationships()
+    void fetchRelationships()
   }, 100)
 
   return relationship
@@ -31,16 +30,20 @@ export function useRelationship(account: mastodon.v1.Account): Ref<mastodon.v1.R
 
 async function fetchRelationships() {
   const requested = [...requestedRelationships.entries()].filter(([, r]) => !r.value)
-  const relationships = await useMastoClient().v1.accounts.relationships.fetch({ id: requested.map(([id]) => id) })
+  const relationships = await useMastoClient().v1.accounts.relationships.fetch({
+    id: requested.map(([id]) => id),
+  })
   for (const relationship of relationships) {
     const requestedToUpdate = requested.find(([id]) => id === relationship.id)
-    if (!requestedToUpdate)
-      continue
+    if (!requestedToUpdate) continue
     requestedToUpdate[1].value = relationship
   }
 }
 
-export async function toggleFollowAccount(relationship: mastodon.v1.Relationship, account: mastodon.v1.Account) {
+export async function toggleFollowAccount(
+  relationship: mastodon.v1.Relationship,
+  account: mastodon.v1.Account,
+) {
   const { client } = useMasto()
   const i18n = useNuxtApp().$i18n
 
@@ -53,25 +56,27 @@ export async function toggleFollowAccount(relationship: mastodon.v1.Relationship
       confirm: i18n.t('confirm.unfollow.confirm'),
       cancel: i18n.t('confirm.unfollow.cancel'),
     })
-    if (confirmUnfollow.choice !== 'confirm')
-      return
+    if (confirmUnfollow.choice !== 'confirm') return
   }
 
   if (unfollow) {
     relationship!.following = false
     relationship!.requested = false
-  }
-  else if (account.locked) {
+  } else if (account.locked) {
     relationship!.requested = true
-  }
-  else {
+  } else {
     relationship!.following = true
   }
 
-  relationship = await client.value.v1.accounts.$select(account.id)[unfollow ? 'unfollow' : 'follow']()
+  relationship = await client.value.v1.accounts
+    .$select(account.id)
+    [unfollow ? 'unfollow' : 'follow']()
 }
 
-export async function toggleMuteAccount(relationship: mastodon.v1.Relationship, account: mastodon.v1.Account) {
+export async function toggleMuteAccount(
+  relationship: mastodon.v1.Relationship,
+  account: mastodon.v1.Account,
+) {
   const { client } = useMasto()
   const i18n = useNuxtApp().$i18n
 
@@ -85,8 +90,7 @@ export async function toggleMuteAccount(relationship: mastodon.v1.Relationship, 
       cancel: i18n.t('confirm.mute_account.cancel'),
       extraOptionType: 'mute',
     })
-    if (confirmMute.choice !== 'confirm')
-      return
+    if (confirmMute.choice !== 'confirm') return
 
     duration = confirmMute.extraOptions?.mute?.duration ?? 0
     notifications = confirmMute.extraOptions?.mute?.notifications ?? true
@@ -101,7 +105,10 @@ export async function toggleMuteAccount(relationship: mastodon.v1.Relationship, 
     : await client.value.v1.accounts.$select(account.id).unmute()
 }
 
-export async function toggleBlockAccount(relationship: mastodon.v1.Relationship, account: mastodon.v1.Account) {
+export async function toggleBlockAccount(
+  relationship: mastodon.v1.Relationship,
+  account: mastodon.v1.Account,
+) {
   const { client } = useMasto()
   const i18n = useNuxtApp().$i18n
 
@@ -112,15 +119,19 @@ export async function toggleBlockAccount(relationship: mastodon.v1.Relationship,
       confirm: i18n.t('confirm.block_account.confirm'),
       cancel: i18n.t('confirm.block_account.cancel'),
     })
-    if (confirmBlock.choice !== 'confirm')
-      return
+    if (confirmBlock.choice !== 'confirm') return
   }
 
   relationship!.blocking = !relationship!.blocking
-  relationship = await client.value.v1.accounts.$select(account.id)[relationship!.blocking ? 'block' : 'unblock']()
+  relationship = await client.value.v1.accounts
+    .$select(account.id)
+    [relationship!.blocking ? 'block' : 'unblock']()
 }
 
-export async function toggleBlockDomain(relationship: mastodon.v1.Relationship, account: mastodon.v1.Account) {
+export async function toggleBlockDomain(
+  relationship: mastodon.v1.Relationship,
+  account: mastodon.v1.Account,
+) {
   const { client } = useMasto()
   const i18n = useNuxtApp().$i18n
 
@@ -134,10 +145,11 @@ export async function toggleBlockDomain(relationship: mastodon.v1.Relationship, 
       extraOptionType: 'block_domain',
       domainToBlock: domain,
     })
-    if (confirmDomainBlock.choice !== 'confirm')
-      return
+    if (confirmDomainBlock.choice !== 'confirm') return
   }
 
   relationship!.domainBlocking = !relationship!.domainBlocking
-  await client.value.v1.domainBlocks[relationship!.domainBlocking ? 'create' : 'remove']({ domain: getServerName(account) })
+  await client.value.v1.domainBlocks[relationship!.domainBlocking ? 'create' : 'remove']({
+    domain: getServerName(account),
+  })
 }

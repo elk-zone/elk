@@ -15,32 +15,31 @@ export default defineNuxtPlugin(() => {
   // https://thomashunter.name/posts/2021-12-11-detecting-if-pwa-twa-is-installed
   const ua = navigator.userAgent
   const ios = ua.match(APPLE_DEVIDE_RE)
-  const standalone = window.matchMedia('(display-mode: window-controls-overlay)').matches
-    || window.matchMedia('(display-mode: standalone)').matches
+  const standalone =
+    window.matchMedia('(display-mode: window-controls-overlay)').matches ||
+    window.matchMedia('(display-mode: standalone)').matches
   const isInstalled = !!(standalone || (ios && !ua.match('Safari')))
 
   const registerPeriodicSync = (swUrl: string, r: ServiceWorkerRegistration) => {
-    setInterval(async () => {
-      if (!online.value)
-        return
+    setInterval(
+      async () => {
+        if (!online.value) return
 
-      const resp = await fetch(swUrl, {
-        cache: 'no-store',
-        headers: {
-          'cache': 'no-store',
-          'cache-control': 'no-cache',
-        },
-      })
+        const resp = await fetch(swUrl, {
+          cache: 'no-store',
+          headers: {
+            cache: 'no-store',
+            'cache-control': 'no-cache',
+          },
+        })
 
-      if (resp?.status === 200)
-        await r.update()
-    }, 60 * 60 * 1000 /* 1 hour */)
+        if (resp?.status === 200) await r.update()
+      },
+      60 * 60 * 1000 /* 1 hour */,
+    )
   }
 
-  const {
-    needRefresh,
-    updateServiceWorker,
-  } = useRegisterSW({
+  const { needRefresh, updateServiceWorker } = useRegisterSW({
     immediate: true,
     onRegisterError() {
       registrationError.value = true
@@ -50,13 +49,11 @@ export default defineNuxtPlugin(() => {
       if (r?.active?.state === 'activated') {
         swActivated.value = true
         registerPeriodicSync(swUrl, r)
-      }
-      else if (r?.installing) {
+      } else if (r?.installing) {
         r.installing.addEventListener('statechange', (e) => {
           const sw = e.target as ServiceWorker
           swActivated.value = sw.state === 'activated'
-          if (swActivated.value)
-            registerPeriodicSync(swUrl, r)
+          if (swActivated.value) registerPeriodicSync(swUrl, r)
         })
       }
     },

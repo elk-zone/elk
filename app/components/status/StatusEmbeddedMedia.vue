@@ -6,8 +6,7 @@ const { status } = defineProps<{
 }>()
 
 const vnode = computed(() => {
-  if (!status.card?.html)
-    return null
+  if (!status.card?.html) return null
   const node = sanitizeEmbeddedIframe(status.card?.html)?.children[0]
   return node ? nodeToVNode(node) : null
 })
@@ -17,12 +16,7 @@ const card = ref(status.card)
 
 <template>
   <div v-if="card">
-    <div
-      v-if="overlayToggle"
-      h-80
-      cursor-pointer
-      relative
-    >
+    <div v-if="overlayToggle" h-80 cursor-pointer relative>
       <div
         p-3
         absolute
@@ -30,19 +24,32 @@ const card = ref(status.card)
         h-full
         z-10
         rounded-lg
-        style="background: linear-gradient(black, rgba(0,0,0,0.5), transparent, transparent, rgba(0,0,0,0.20))"
+        style="
+          background: linear-gradient(
+            black,
+            rgba(0, 0, 0, 0.5),
+            transparent,
+            transparent,
+            rgba(0, 0, 0, 0.2)
+          );
+        "
       >
-        <NuxtLink flex flex-col gap-1 hover:underline text-xs text-light font-light target="_blank" :href="card?.url">
+        <NuxtLink
+          flex
+          flex-col
+          gap-1
+          hover:underline
+          text-xs
+          text-light
+          font-light
+          target="_blank"
+          :href="card?.url"
+        >
           <div flex gap-0.5>
             <p flex-row line-clamp-1>
               {{ card?.providerName }}<span v-if="card?.authorName"> • {{ card?.authorName }}</span>
             </p>
-            <span
-              flex-row
-              w-4 h-4
-              pointer-events-none
-              i-ri:arrow-right-up-line
-            />
+            <span flex-row w-4 h-4 pointer-events-none i-ri:arrow-right-up-line />
           </div>
           <p font-bold line-clamp-1 text-size-base>
             {{ card?.title }}
@@ -51,13 +58,7 @@ const card = ref(status.card)
             {{ $t('status.embedded_warning') }}
           </p>
         </NuxtLink>
-        <div
-          flex
-          h-50
-          mt-1
-          justify-center
-          flex-items-center
-        >
+        <div flex h-50 mt-1 justify-center flex-items-center>
           <button
             absolute
             bg-primary
@@ -67,13 +68,15 @@ const card = ref(status.card)
             hover:opacity-95
             transition-all
             box-shadow-outline
-            @click.stop.prevent="() => overlayToggle = !overlayToggle"
+            @click.stop.prevent="() => (overlayToggle = !overlayToggle)"
           >
             <span
               text-light
-              flex flex-col
+              flex
+              flex-col
               gap-3
-              w-27 h-27
+              w-27
+              h-27
               pointer-events-none
               i-ri:play-circle-line
             />
@@ -99,7 +102,7 @@ const card = ref(status.card)
 
 <style>
 iframe {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 </style>

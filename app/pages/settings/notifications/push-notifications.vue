@@ -1,15 +1,18 @@
 <script setup lang="ts">
 definePageMeta({
-  middleware: ['auth', () => {
-    if (!useAppConfig().pwaEnabled)
-      return navigateTo('/settings/notifications')
-  }],
+  middleware: [
+    'auth',
+    () => {
+      if (!useAppConfig().pwaEnabled) return navigateTo('/settings/notifications')
+    },
+  ],
 })
 
 const { t } = useI18n()
 
 useHydratedHead({
-  title: () => `${t('settings.notifications.push_notifications.label')} | ${t('settings.notifications.label')} | ${t('nav.settings')}`,
+  title: () =>
+    `${t('settings.notifications.push_notifications.label')} | ${t('settings.notifications.label')} | ${t('nav.settings')}`,
 })
 </script>
 

@@ -28,7 +28,7 @@ const { form, reset, submitter, isDirty, isError } = useForm({
   form: () => {
     // For complex types of objects, a deep copy is required to ensure correct comparison of initial and modified values
     const fieldsAttributes = Array.from({ length: maxAccountFieldCount.value }, (_, i) => {
-      const field = { ...account.value?.fields?.[i] || { name: '', value: '' } }
+      const field = { ...(account.value?.fields?.[i] || { name: '', value: '' }) }
 
       field.value = convertMetadata(field.value)
 
@@ -57,11 +57,11 @@ const isCanSubmit = computed(() => !isError.value && isDirty.value)
 const failedMessages = ref<string[]>([])
 
 const { submit, submitting } = submitter(async ({ dirtyFields }) => {
-  if (!isCanSubmit.value)
-    return
+  if (!isCanSubmit.value) return
 
-  const res = await client.value.v1.accounts.updateCredentials(dirtyFields.value as mastodon.rest.v1.UpdateCredentialsParams)
-    .then(account => ({ account }))
+  const res = await client.value.v1.accounts
+    .updateCredentials(dirtyFields.value as mastodon.rest.v1.UpdateCredentialsParams)
+    .then((account) => ({ account }))
     .catch((error: Error) => ({ error }))
 
   if ('error' in res) {
@@ -72,8 +72,7 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
 
   const server = currentUser.value!.server
 
-  if (!res.account.acct.includes('@'))
-    res.account.acct = `${res.account.acct}@${server}`
+  if (!res.account.acct.includes('@')) res.account.acct = `${res.account.acct}@${server}`
 
   cacheAccount(res.account, server, true)
   currentUser.value!.account = res.account
@@ -81,21 +80,17 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
 })
 
 async function refreshInfo() {
-  if (!currentUser.value)
-    return
+  if (!currentUser.value) return
   // Keep the information to be edited up to date
   await refreshAccountInfo()
-  if (!isDirty)
-    reset()
+  if (!isDirty) reset()
 }
 
 useDropZone(avatarInput, (files) => {
-  if (files?.[0])
-    form.avatar = files[0]
+  if (files?.[0]) form.avatar = files[0]
 })
 useDropZone(headerInput, (files) => {
-  if (files?.[0])
-    form.header = files[0]
+  if (files?.[0]) form.header = files[0]
 })
 
 onHydrated(refreshInfo)
@@ -118,7 +113,8 @@ onReactivated(refreshInfo)
             ref="headerInput"
             v-model="form.header"
             :original="onlineSrc.header"
-            w-full h-full
+            w-full
+            h-full
           />
         </div>
         <CommonCropImage v-model="form.header" :stencil-aspect-ratio="3 / 1" />
@@ -130,8 +126,11 @@ onReactivated(refreshInfo)
             v-model="form.avatar"
             :original="onlineSrc.avatar"
             mt--10
-            rounded-full border="bg-base 4"
-            w="sm:30 24" min-w="sm:30 24" h="sm:30 24"
+            rounded-full
+            border="bg-base 4"
+            w="sm:30 24"
+            min-w="sm:30 24"
+            h="sm:30 24"
           />
         </div>
         <CommonCropImage v-model="form.avatar" />
@@ -140,20 +139,22 @@ onReactivated(refreshInfo)
           <div flex justify-between>
             <AccountDisplayName
               :account="{ ...account, displayName: form.displayName }"
-              font-bold sm:text-2xl text-xl
+              font-bold
+              sm:text-2xl
+              text-xl
             />
             <div flex="~ row" items-center gap2>
               <label>
                 <AccountLockIndicator show-label px2 py1>
                   <template #prepend>
-                    <input v-model="form.locked" type="checkbox" cursor-pointer>
+                    <input v-model="form.locked" type="checkbox" cursor-pointer />
                   </template>
                 </AccountLockIndicator>
               </label>
               <label>
                 <AccountBotIndicator show-label px2 py1>
                   <template #prepend>
-                    <input v-model="form.bot" type="checkbox" cursor-pointer>
+                    <input v-model="form.bot" type="checkbox" cursor-pointer />
                   </template>
                 </AccountBotIndicator>
               </label>
@@ -169,7 +170,7 @@ onReactivated(refreshInfo)
           <p font-medium>
             {{ $t('settings.profile.appearance.display_name') }}
           </p>
-          <input v-model="form.displayName" type="text" input-base>
+          <input v-model="form.displayName" type="text" input-base />
         </label>
 
         <!-- note -->
@@ -188,8 +189,11 @@ onReactivated(refreshInfo)
         <div flex="~ gap2" justify-end>
           <button
             type="button"
-            btn-text text-sm
-            flex gap-x-2 items-center
+            btn-text
+            text-sm
+            flex
+            gap-x-2
+            items-center
             text-red
             @click="reset()"
           >
@@ -200,8 +204,12 @@ onReactivated(refreshInfo)
           <button
             v-if="failedMessages.length === 0"
             type="submit"
-            btn-solid rounded-full text-sm
-            flex gap-x-2 items-center
+            btn-solid
+            rounded-full
+            text-sm
+            flex
+            gap-x-2
+            items-center
             :disabled="submitting || !isCanSubmit"
           >
             <span v-if="submitting" aria-hidden="true" block animate-spin preserve-3d>
@@ -211,15 +219,8 @@ onReactivated(refreshInfo)
             {{ $t('action.save') }}
           </button>
 
-          <button
-            v-else
-            type="submit"
-            btn-danger rounded-full text-sm
-            flex gap-x-2 items-center
-          >
-            <span
-              aria-hidden="true" block i-carbon:face-dizzy-filled
-            />
+          <button v-else type="submit" btn-danger rounded-full text-sm flex gap-x-2 items-center>
+            <span aria-hidden="true" block i-carbon:face-dizzy-filled />
             <span>{{ $t('state.save_failed') }}</span>
           </button>
         </div>
@@ -232,7 +233,13 @@ onReactivated(refreshInfo)
             </div>
             <CommonTooltip placement="bottom" :content="$t('action.clear_save_failed')">
               <button
-                flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="$t('action.clear_save_failed')"
+                flex
+                rounded-4
+                p1
+                hover:bg-active
+                cursor-pointer
+                transition-100
+                :aria-label="$t('action.clear_save_failed')"
                 @click="failedMessages = []"
               >
                 <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
@@ -240,7 +247,13 @@ onReactivated(refreshInfo)
             </CommonTooltip>
           </header>
           <ol ps-2 sm:ps-1>
-            <li v-for="(error, i) in failedMessages" :key="i" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
+            <li
+              v-for="(error, i) in failedMessages"
+              :key="i"
+              flex="~ col sm:row"
+              gap-y-1
+              sm:gap-x-2
+            >
               <strong>{{ i + 1 }}.</strong>
               <span>{{ error }}</span>
             </li>

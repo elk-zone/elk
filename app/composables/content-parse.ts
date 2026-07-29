@@ -3,14 +3,7 @@ import type { mastodon } from 'masto'
 import type { Node } from 'ultrahtml'
 import { findAndReplaceEmojisInText } from '@iconify/utils'
 import { decode } from 'tiny-decode'
-import {
-  DOCUMENT_NODE,
-  ELEMENT_NODE,
-  h,
-  parse,
-  render,
-  TEXT_NODE,
-} from 'ultrahtml'
+import { DOCUMENT_NODE, ELEMENT_NODE, h, parse, render, TEXT_NODE } from 'ultrahtml'
 import { emojiRegEx, getEmojiAttributes } from '~~/config/emojis'
 
 const NEWLINE_TAG_REGEX = /\n(<[^>]+>)/g
@@ -109,10 +102,7 @@ const sanitizer = sanitize({
  * @param html The content to parse
  * @param options The parsing options
  */
-export function parseMastodonHTML(
-  html: string,
-  options: ContentParseOptions = {},
-) {
+export function parseMastodonHTML(html: string, options: ContentParseOptions = {}) {
   html = html.trim()
   const {
     markdown = true,
@@ -156,27 +146,21 @@ export function parseMastodonHTML(
   if (hideEmojis) {
     transforms.push(removeUnicodeEmoji)
     transforms.push(removeCustomEmoji(options.emojis ?? {}))
-  }
-  else {
-    if (replaceUnicodeEmoji)
-      transforms.push(transformUnicodeEmoji)
+  } else {
+    if (replaceUnicodeEmoji) transforms.push(transformUnicodeEmoji)
 
     transforms.push(replaceCustomEmoji(options.emojis ?? {}))
   }
 
-  if (markdown)
-    transforms.push(transformMarkdown)
+  if (markdown) transforms.push(transformMarkdown)
 
-  if (mentions?.length)
-    transforms.push(createTransformNamedMentions(mentions))
+  if (mentions?.length) transforms.push(createTransformNamedMentions(mentions))
 
-  if (convertMentionLink)
-    transforms.push(transformMentionLink)
+  if (convertMentionLink) transforms.push(transformMentionLink)
 
   transforms.push(transformParagraphs)
 
-  if (collapseMentionLink)
-    transforms.push(transformCollapseMentions(status, inReplyToStatus))
+  if (collapseMentionLink) transforms.push(transformCollapseMentions(status, inReplyToStatus))
 
   return transformSync(parse(html), transforms)
 }
@@ -203,8 +187,7 @@ export function sanitizeEmbeddedIframe(html: string): Node {
     sanitize({
       iframe: {
         src: (src) => {
-          if (typeof src !== 'string')
-            return undefined
+          if (typeof src !== 'string') return undefined
 
           const url = new URL(src)
           return url.protocol === 'https:' ? src : undefined
@@ -221,11 +204,10 @@ export function htmlToText(html: string) {
   try {
     const tree = parse(html)
     return (tree.children as Node[])
-      .map(n => treeToText(n))
+      .map((n) => treeToText(n))
       .join('')
       .trim()
-  }
-  catch (err) {
+  } catch (err) {
     console.error(err)
     return ''
   }
@@ -244,19 +226,15 @@ export function treeToText(input: Node): string {
   let body = ''
   let post = ''
 
-  if (input.type === TEXT_NODE)
-    return decode(input.value)
+  if (input.type === TEXT_NODE) return decode(input.value)
 
-  if (input.name === 'br')
-    return '\n'
+  if (input.name === 'br') return '\n'
 
-  if (['p', 'pre'].includes(input.name))
-    pre = '\n'
+  if (['p', 'pre'].includes(input.name)) pre = '\n'
 
   if (input.attributes?.['data-type'] === 'mention') {
     const acct = input.attributes['data-id']
-    if (acct)
-      return acct.startsWith('@') ? acct : `@${acct}`
+    if (acct) return acct.startsWith('@') ? acct : `@${acct}`
   }
 
   if (input.name === 'code') {
@@ -265,39 +243,33 @@ export function treeToText(input: Node): string {
 
       pre = `\`\`\`${lang || ''}\n`
       post = '\n```'
-    }
-    else {
+    } else {
       pre = '`'
       post = '`'
     }
-  }
-  else if (input.name === 'b' || input.name === 'strong') {
+  } else if (input.name === 'b' || input.name === 'strong') {
     pre = '**'
     post = '**'
-  }
-  else if (input.name === 'i' || input.name === 'em') {
+  } else if (input.name === 'i' || input.name === 'em') {
     pre = '*'
     post = '*'
-  }
-  else if (input.name === 'del') {
+  } else if (input.name === 'del') {
     pre = '~~'
     post = '~~'
   }
 
-  if ('children' in input)
-    body = (input.children as Node[]).map(n => treeToText(n)).join('')
+  if ('children' in input) body = (input.children as Node[]).map((n) => treeToText(n)).join('')
 
   if (input.name === 'img' || input.name === 'picture') {
     if (input.attributes.class?.includes('custom-emoji')) {
-      const id
-        = input.attributes['data-emoji-id']
-          ?? input.attributes.alt
-          ?? input.attributes.title
-          ?? 'unknown'
+      const id =
+        input.attributes['data-emoji-id'] ??
+        input.attributes.alt ??
+        input.attributes.title ??
+        'unknown'
       return emojiIdNeedsWrappingRE.test(id) ? `:${id}:` : id
     }
-    if (input.attributes.class?.includes('iconify-emoji'))
-      return input.attributes.alt
+    if (input.attributes.class?.includes('iconify-emoji')) return input.attributes.alt
   }
 
   return pre + body + post
@@ -309,10 +281,7 @@ export function treeToText(input: Node): string {
 // Strings get converted to text nodes.
 // The input node's children have been transformed before the node itself
 // gets transformed.
-type Transform = (
-  node: Node,
-  root: Node,
-) => (Node | string)[] | Node | string | null
+type Transform = (node: Node, root: Node) => (Node | string)[] | Node | string | null
 
 // Helpers for transforming (filtering, modifying, ...) a parsed HTML tree
 // by running the given chain of transform functions one-by-one.
@@ -322,15 +291,12 @@ function transformSync(doc: Node, transforms: Transform[]) {
       const children = [] as (Node | string)[]
       for (let i = 0; i < node.children.length; i++) {
         const result = visit(node.children[i], transform, root)
-        if (Array.isArray(result))
-          children.push(...result)
-        else if (result)
-          children.push(result)
+        if (Array.isArray(result)) children.push(...result)
+        else if (result) children.push(result)
       }
 
       node.children = children.map((value) => {
-        if (typeof value === 'string')
-          return { type: TEXT_NODE, value, parent: node }
+        if (typeof value === 'string') return { type: TEXT_NODE, value, parent: node }
         value.parent = node
         return value
       })
@@ -344,24 +310,18 @@ function transformSync(doc: Node, transforms: Transform[]) {
 }
 
 // A tree transform for sanitizing elements & their attributes.
-type AttrSanitizers = Record<
-  string,
-  (value: string | undefined) => string | undefined
->
+type AttrSanitizers = Record<string, (value: string | undefined) => string | undefined>
 function sanitize(allowedElements: Record<string, AttrSanitizers>): Transform {
   return (node) => {
-    if (node.type !== ELEMENT_NODE)
-      return node
+    if (node.type !== ELEMENT_NODE) return node
 
-    if (!Object.hasOwn(allowedElements, node.name))
-      return null
+    if (!Object.hasOwn(allowedElements, node.name)) return null
 
     const attrSanitizers = allowedElements[node.name]
     const attrs = {} as Record<string, string>
     for (const [name, func] of Object.entries(attrSanitizers)) {
       const value = func(node.attributes[name])
-      if (value !== undefined)
-        attrs[name] = value
+      if (value !== undefined) attrs[name] = value
     }
     node.attributes = attrs
     return node
@@ -370,12 +330,11 @@ function sanitize(allowedElements: Record<string, AttrSanitizers>): Transform {
 
 function filterClasses(allowed: RegExp) {
   return (c: string | undefined) => {
-    if (!c)
-      return undefined
+    if (!c) return undefined
 
     return c
       .split(WHITESPACE_SPLIT_REGEX)
-      .filter(cls => allowed.test(cls))
+      .filter((cls) => allowed.test(cls))
       .join(' ')
   }
 }
@@ -404,37 +363,31 @@ function filterHref() {
   ])
 
   return (href: string | undefined) => {
-    if (href === undefined)
-      return undefined
+    if (href === undefined) return undefined
 
     // Strip bidirectional control characters that can be used for domain spoofing
     href = href.replace(BIDI_CONTROL_CHARS_REGEX, '')
 
     // Allow relative links
-    if (href.startsWith('/') || href.startsWith('.'))
-      return href
+    if (href.startsWith('/') || href.startsWith('.')) return href
 
     href = href.replace(AMPERSAND_REGEX, '&')
 
     let url
     try {
       url = new URL(href)
-    }
-    catch (err) {
-      if (err instanceof TypeError)
-        return undefined
+    } catch (err) {
+      if (err instanceof TypeError) return undefined
       throw err
     }
 
-    if (LINK_PROTOCOLS.has(url.protocol))
-      return url.toString()
+    if (LINK_PROTOCOLS.has(url.protocol)) return url.toString()
     return '#'
   }
 }
 
 function removeUnicodeEmoji(node: Node) {
-  if (node.type !== TEXT_NODE)
-    return node
+  if (node.type !== TEXT_NODE) return node
 
   let start = 0
 
@@ -444,16 +397,14 @@ function removeUnicodeEmoji(node: Node) {
     start = result.length + match.match.length
     return undefined
   })
-  if (matches.length === 0)
-    return node
+  if (matches.length === 0) return node
 
   matches.push(node.value.slice(start))
   return matches.filter(Boolean)
 }
 
 function transformUnicodeEmoji(node: Node) {
-  if (node.type !== TEXT_NODE)
-    return node
+  if (node.type !== TEXT_NODE) return node
 
   let start = 0
 
@@ -461,38 +412,29 @@ function transformUnicodeEmoji(node: Node) {
   findAndReplaceEmojisInText(emojiRegEx, node.value, (match, result) => {
     const attrs = getEmojiAttributes(match)
     matches.push(result.slice(start))
-    matches.push(
-      h('img', { src: attrs.src, alt: attrs.alt, class: attrs.class }),
-    )
+    matches.push(h('img', { src: attrs.src, alt: attrs.alt, class: attrs.class }))
     start = result.length + match.match.length
     return undefined
   })
-  if (matches.length === 0)
-    return node
+  if (matches.length === 0) return node
 
   matches.push(node.value.slice(start))
   return matches.filter(Boolean)
 }
 
-function removeCustomEmoji(
-  customEmojis: Record<string, mastodon.v1.CustomEmoji>,
-): Transform {
+function removeCustomEmoji(customEmojis: Record<string, mastodon.v1.CustomEmoji>): Transform {
   return (node) => {
-    if (node.type !== TEXT_NODE)
-      return node
+    if (node.type !== TEXT_NODE) return node
 
     const split = node.value.split(EMOJI_SPLIT_REGEX.WITH_COLON)
-    if (split.length === 1)
-      return node
+    if (split.length === 1) return node
 
     return split
       .map((name, i) => {
-        if (i % 2 === 0)
-          return name
+        if (i % 2 === 0) return name
 
         const emoji = customEmojis[name] as mastodon.v1.CustomEmoji
-        if (!emoji)
-          return `:${name}:`
+        if (!emoji) return `:${name}:`
 
         return ''
       })
@@ -500,31 +442,25 @@ function removeCustomEmoji(
   }
 }
 
-function replaceCustomEmoji(
-  customEmojis: Record<string, mastodon.v1.CustomEmoji>,
-): Transform {
+function replaceCustomEmoji(customEmojis: Record<string, mastodon.v1.CustomEmoji>): Transform {
   return (node) => {
-    if (node.type !== TEXT_NODE)
-      return node
+    if (node.type !== TEXT_NODE) return node
 
     const split = node.value.split(EMOJI_SPLIT_REGEX.WITHOUT_COLON)
-    if (split.length === 1)
-      return node
+    if (split.length === 1) return node
 
     return split
       .map((name, i) => {
-        if (i % 2 === 0)
-          return name
+        if (i % 2 === 0) return name
 
         const emoji = customEmojis[name] as mastodon.v1.CustomEmoji
-        if (!emoji)
-          return `:${name}:`
+        if (!emoji) return `:${name}:`
 
         return h(
           'picture',
           {
-            'alt': `:${name}:`,
-            'class': 'custom-emoji',
+            alt: `:${name}:`,
+            class: 'custom-emoji',
             'data-emoji-id': name,
           },
           [
@@ -545,14 +481,14 @@ function replaceCustomEmoji(
 
 const _markdownReplacements: [RegExp, (c: (string | Node)[]) => Node][] = [
   [/\*\*\*(.*?)\*\*\*/g, ([c]) => h('b', null, [h('em', null, c)])],
-  [/\*\*(.*?)\*\*/g, c => h('b', null, c)],
-  [/\*(.*?)\*/g, c => h('em', null, c)],
-  [/~~(.*?)~~/g, c => h('del', null, c)],
-  [/`([^`]+)`/g, c => h('code', null, c)],
+  [/\*\*(.*?)\*\*/g, (c) => h('b', null, c)],
+  [/\*(.*?)\*/g, (c) => h('em', null, c)],
+  [/~~(.*?)~~/g, (c) => h('del', null, c)],
+  [/`([^`]+)`/g, (c) => h('code', null, c)],
   // transform @username@twitter.com as links
   [
     /\B@(\w+)@twitter\.com\b/gi,
-    c =>
+    (c) =>
       h(
         'a',
         {
@@ -573,9 +509,9 @@ function _markdownProcess(value: string) {
   while (true) {
     let found:
       | {
-        match: RegExpMatchArray
-        replacer: (c: (string | Node)[]) => Node
-      }
+          match: RegExpMatchArray
+          replacer: (c: (string | Node)[]) => Node
+        }
       | undefined
 
     for (const [re, replacer] of _markdownReplacements) {
@@ -583,13 +519,11 @@ function _markdownProcess(value: string) {
 
       const match = re.exec(value)
       if (match) {
-        if (!found || match.index < found.match.index!)
-          found = { match, replacer }
+        if (!found || match.index < found.match.index!) found = { match, replacer }
       }
     }
 
-    if (!found)
-      break
+    if (!found) break
 
     results.push(value.slice(start, found.match.index))
     results.push(found.replacer(_markdownProcess(found.match[1])))
@@ -601,17 +535,16 @@ function _markdownProcess(value: string) {
 }
 
 function transformMarkdown(node: Node) {
-  if (node.type !== TEXT_NODE)
-    return node
+  if (node.type !== TEXT_NODE) return node
   return _markdownProcess(node.value)
 }
 
 function addBdiParagraphs(node: Node) {
   if (
-    node.name === 'p'
-    && !('dir' in node.attributes)
-    && node.children?.length
-    && node.children.length > 1
+    node.name === 'p' &&
+    !('dir' in node.attributes) &&
+    node.children?.length &&
+    node.children.length > 1
   ) {
     node.attributes.dir = 'auto'
   }
@@ -625,9 +558,9 @@ function transformParagraphs(node: Node): Node | Node[] {
 
   // For top level paragraphs, inject an empty <p> to preserve status paragraphs in our editor (except for the last one)
   if (
-    node.parent?.type === DOCUMENT_NODE
-    && node.name === 'p'
-    && node.parent.children.at(-1) !== node
+    node.parent?.type === DOCUMENT_NODE &&
+    node.name === 'p' &&
+    node.parent.children.at(-1) !== node
   ) {
     return [node, h('p')]
   }
@@ -637,9 +570,7 @@ function transformParagraphs(node: Node): Node | Node[] {
 
 function isMention(node: Node) {
   const child = node.children?.length === 1 ? node.children[0] : null
-  return Boolean(
-    child?.name === 'a' && child.attributes.class?.includes('mention'),
-  )
+  return Boolean(child?.name === 'a' && child.attributes.class?.includes('mention'))
 }
 
 function isSpacing(node: Node) {
@@ -649,8 +580,8 @@ function isSpacing(node: Node) {
 // Extract the username from a known mention node
 function getMentionHandle(node: Node): string | undefined {
   return (
-    hrefToHandle(node.children?.[0].attributes.href)
-    ?? node.children?.[0]?.children?.[0]?.attributes?.['data-id']
+    hrefToHandle(node.children?.[0].attributes.href) ??
+    node.children?.[0]?.children?.[0]?.attributes?.['data-id']
   )
 }
 
@@ -661,8 +592,7 @@ function transformCollapseMentions(
   let processed = false
 
   return (node: Node, root: Node): Node | Node[] => {
-    if (processed || node.parent !== root || !node.children)
-      return node
+    if (processed || node.parent !== root || !node.children) return node
     const mentions: (Node | undefined)[] = []
     const children = node.children as Node[]
     let trimContentStart: (() => void) | undefined
@@ -683,22 +613,19 @@ function transformCollapseMentions(
           }
         }
         // remove <br> after mention
-        if (child.name === 'br')
-          mentions.push(undefined)
+        if (child.name === 'br') mentions.push(undefined)
         break
       }
     }
     processed = true
-    if (mentions.length === 0)
-      return node
+    if (mentions.length === 0) return node
 
     let mentionsCount = 0
     let contextualMentionsCount = 0
     let removeNextSpacing = false
 
     const contextualMentions = mentions.filter((mention) => {
-      if (!mention)
-        return false
+      if (!mention) return false
 
       if (removeNextSpacing && isSpacing(mention)) {
         removeNextSpacing = false
@@ -710,8 +637,8 @@ function transformCollapseMentions(
         if (inReplyToStatus) {
           const mentionHandle = getMentionHandle(mention)
           if (
-            inReplyToStatus.account.acct === mentionHandle
-            || inReplyToStatus.mentions.some(m => m.acct === mentionHandle)
+            inReplyToStatus.account.acct === mentionHandle ||
+            inReplyToStatus.mentions.some((m) => m.acct === mentionHandle)
           ) {
             removeNextSpacing = true
             return false
@@ -727,12 +654,11 @@ function transformCollapseMentions(
     // This is needed because the status doesn't include the in Reply to handle, only the account id.
     // But this covers the majority of cases.
     const showMentions = !(
-      contextualMentionsCount === 0
-      || (mentionsCount === 1 && status?.inReplyToAccountId)
+      contextualMentionsCount === 0 ||
+      (mentionsCount === 1 && status?.inReplyToAccountId)
     )
     const grouped = contextualMentionsCount > 2
-    if (!showMentions || grouped)
-      trimContentStart?.()
+    if (!showMentions || grouped) trimContentStart?.()
 
     const contextualChildren = children.slice(mentions.length)
     const mentionNodes = showMentions
@@ -755,9 +681,7 @@ function hrefToHandle(href: string): string | undefined {
   }
 }
 
-function transformMentionLink(
-  node: Node,
-): string | Node | (string | Node)[] | null {
+function transformMentionLink(node: Node): string | Node | (string | Node)[] | null {
   if (node.name === 'a' && node.attributes.class?.includes('mention')) {
     const href = node.attributes.href
     if (href) {
@@ -775,15 +699,11 @@ function createTransformNamedMentions(mentions: mastodon.v1.StatusMention[]) {
   return (node: Node): string | Node | (string | Node)[] | null => {
     if (node.name === 'a' && node.attributes.class?.includes('mention')) {
       const href = node.attributes.href
-      const mention = href && mentions.find(m => m.url === href)
+      const mention = href && mentions.find((m) => m.url === href)
       if (mention) {
         node.attributes.href = `/${currentServer.value}/@${mention.acct}`
         node.children = [
-          h(
-            'span',
-            { 'data-type': 'mention', 'data-id': mention.acct },
-            `@${mention.username}`,
-          ),
+          h('span', { 'data-type': 'mention', 'data-id': mention.acct }, `@${mention.username}`),
         ]
         return node
       }

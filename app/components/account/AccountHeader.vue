@@ -29,34 +29,41 @@ function getFieldIconTitle(fieldName: string) {
 }
 
 function getNotificationIconTitle() {
-  return relationship.value?.notifying ? t('account.notifications_on_post_disable', { username: `@${account.username}` }) : t('account.notifications_on_post_enable', { username: `@${account.username}` })
+  return relationship.value?.notifying
+    ? t('account.notifications_on_post_disable', { username: `@${account.username}` })
+    : t('account.notifications_on_post_enable', { username: `@${account.username}` })
 }
 
 function previewHeader() {
-  openMediaPreview([{
-    id: `${account.acct}:header`,
-    type: 'image',
-    previewUrl: account.header,
-    description: t('account.profile_description', [account.username]),
-  }])
+  openMediaPreview([
+    {
+      id: `${account.acct}:header`,
+      type: 'image',
+      previewUrl: account.header,
+      description: t('account.profile_description', [account.username]),
+    },
+  ])
 }
 
 function previewAvatar() {
-  openMediaPreview([{
-    id: `${account.acct}:avatar`,
-    type: 'image',
-    previewUrl: account.avatar,
-    description: t('account.avatar_description', [account.username]),
-  }])
+  openMediaPreview([
+    {
+      id: `${account.acct}:avatar`,
+      type: 'image',
+      previewUrl: account.avatar,
+      description: t('account.avatar_description', [account.username]),
+    },
+  ])
 }
 
 async function toggleNotifications() {
   relationship.value!.notifying = !relationship.value?.notifying
   try {
-    const newRel = await client.value.v1.accounts.$select(account.id).follow({ notify: relationship.value?.notifying })
+    const newRel = await client.value.v1.accounts
+      .$select(account.id)
+      .follow({ notify: relationship.value?.notifying })
     Object.assign(relationship!, newRel)
-  }
-  catch {
+  } catch {
     // TODO error handling
     relationship.value!.notifying = !relationship.value?.notifying
   }
@@ -68,10 +75,8 @@ watchEffect(() => {
 
   account.fields?.forEach((field) => {
     const icon = getAccountFieldIcon(field.name)
-    if (icon)
-      icons.push(field)
-    else
-      named.push(field)
+    if (icon) icons.push(field)
+    else named.push(field)
   })
   icons.push({
     name: 'Joined',
@@ -84,20 +89,19 @@ watchEffect(() => {
 
 const personalNoteDraft = ref(relationship.value?.note ?? '')
 watch(relationship, (relationship, oldValue) => {
-  if (!oldValue && relationship)
-    personalNoteDraft.value = relationship.note ?? ''
+  if (!oldValue && relationship) personalNoteDraft.value = relationship.note ?? ''
 })
 
 async function editNote(event: Event) {
-  if (!event.target || !('value' in event.target) || !relationship.value)
-    return
+  if (!event.target || !('value' in event.target) || !relationship.value) return
 
   const newNote = event.target?.value as string
 
-  if (relationship.value.note?.trim() === newNote.trim())
-    return
+  if (relationship.value.note?.trim() === newNote.trim()) return
 
-  const newNoteApiResult = await client.value.v1.accounts.$select(account.id).note.create({ comment: newNote })
+  const newNoteApiResult = await client.value.v1.accounts
+    .$select(account.id)
+    .note.create({ comment: newNote })
   relationship.value.note = newNoteApiResult.note
   personalNoteDraft.value = relationship.value.note ?? ''
 }
@@ -113,8 +117,7 @@ async function copyAccountName() {
     const serverName = getServerName(account)
     const accountName = `${shortHandle}@${serverName}`
     await navigator.clipboard.writeText(accountName)
-  }
-  catch (err) {
+  } catch (err) {
     console.error('Failed to copy account name:', err)
   }
 
@@ -131,21 +134,58 @@ async function copyAccountName() {
       <span text-primary font-bold>{{ $t('account.requested', [account.displayName]) }}</span>
       <AccountFollowRequestButton :account="account" :relationship="relationship" />
     </div>
-    <component :is="hasHeader ? 'button' : 'div'" border="b base" z-1 @click="hasHeader ? previewHeader() : undefined">
-      <img h-50 height="200" w-full object-cover :src="account.header" :alt="t('account.profile_description', [account.username])">
+    <component
+      :is="hasHeader ? 'button' : 'div'"
+      border="b base"
+      z-1
+      @click="hasHeader ? previewHeader() : undefined"
+    >
+      <img
+        h-50
+        height="200"
+        w-full
+        object-cover
+        :src="account.header"
+        :alt="t('account.profile_description', [account.username])"
+      />
     </component>
     <div p4 mt--18 flex flex-col gap-4>
       <div relative>
         <div flex justify-between>
-          <button shrink-0 h-full :class="{ 'rounded-full': !isSelf, 'squircle': isSelf }" p1 bg-base border-bg-base z-2 @click="previewAvatar">
-            <AccountAvatar :square="isSelf" :account="account" hover:opacity-90 transition-opacity w-28 h-28 />
+          <button
+            shrink-0
+            h-full
+            :class="{ 'rounded-full': !isSelf, squircle: isSelf }"
+            p1
+            bg-base
+            border-bg-base
+            z-2
+            @click="previewAvatar"
+          >
+            <AccountAvatar
+              :square="isSelf"
+              :account="account"
+              hover:opacity-90
+              transition-opacity
+              w-28
+              h-28
+            />
           </button>
           <div inset-ie-0 flex="~ wrap row-reverse" gap-2 items-center pt18 justify-start>
             <!-- Edit profile -->
             <NuxtLink
               v-if="isSelf"
               to="/settings/profile/appearance"
-              gap-1 items-center border="1" rounded-full flex="~ gap2 center" font-500 min-w-30 h-fit px3 py1
+              gap-1
+              items-center
+              border="1"
+              rounded-full
+              flex="~ gap2 center"
+              font-500
+              min-w-30
+              h-fit
+              px3
+              py1
               hover="border-primary text-primary bg-active"
             >
               {{ $t('settings.profile.appearance.title') }}
@@ -153,16 +193,35 @@ async function copyAccountName() {
             <AccountFollowButton :account="account" :command="command" />
             <span inset-ie-0 flex gap-2 items-center>
               <AccountMoreButton
-                :account="account" :command="command"
+                :account="account"
+                :command="command"
                 @add-note="isEditingPersonalNote = true"
-                @remove-note="() => { isEditingPersonalNote = false; personalNoteDraft = '' }"
+                @remove-note="
+                  () => {
+                    isEditingPersonalNote = false
+                    personalNoteDraft = ''
+                  }
+                "
               />
-              <CommonTooltip v-if="!isSelf && relationship?.following" :content="getNotificationIconTitle()">
+              <CommonTooltip
+                v-if="!isSelf && relationship?.following"
+                :content="getNotificationIconTitle()"
+              >
                 <button
                   :aria-pressed="isNotifiedOnPost"
-                  :aria-label="t('account.notifications_on_post_enable', { username: `@${account.username}` })"
-                  rounded-full text-sm p2 border-1 transition-colors
-                  :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
+                  :aria-label="
+                    t('account.notifications_on_post_enable', { username: `@${account.username}` })
+                  "
+                  rounded-full
+                  text-sm
+                  p2
+                  border-1
+                  transition-colors
+                  :class="
+                    isNotifiedOnPost
+                      ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red'
+                      : 'border-base hover:text-primary'
+                  "
                   @click="toggleNotifications"
                 >
                   <span v-if="isNotifiedOnPost" i-ri:notification-4-fill block text-current />
@@ -173,8 +232,13 @@ async function copyAccountName() {
                 <VDropdown v-if="!isSelf && relationship?.following">
                   <button
                     :aria-label="$t('list.modify_account')"
-                    rounded-full text-sm p2 border-1 transition-colors
-                    border-base hover:text-primary
+                    rounded-full
+                    text-sm
+                    p2
+                    border-1
+                    transition-colors
+                    border-base
+                    hover:text-primary
                   >
                     <span i-ri:play-list-add-fill block text-current />
                   </button>
@@ -197,7 +261,12 @@ async function copyAccountName() {
           <div flex items-center gap-1>
             <AccountHandle :account="account" overflow-unset line-clamp-unset />
             <CommonTooltip placement="bottom" :content="$t('account.copy_account_name')" flex>
-              <button text-secondary-light text-sm :class="isCopied ? 'i-ri:check-fill text-green' : 'i-ri:file-copy-line'" @click="copyAccountName">
+              <button
+                text-secondary-light
+                text-sm
+                :class="isCopied ? 'i-ri:check-fill text-green' : 'i-ri:file-copy-line'"
+                @click="copyAccountName"
+              >
                 <span sr-only>{{ $t('account.copy_account_name') }}</span>
               </button>
             </CommonTooltip>
@@ -219,7 +288,11 @@ async function copyAccountName() {
           <p font-medium>
             {{ $t('account.profile_personal_note') }}
           </p>
-          <p text-secondary text-sm :class="{ 'text-orange': personalNoteDraft.length > (personalNoteMaxLength - 100) }">
+          <p
+            text-secondary
+            text-sm
+            :class="{ 'text-orange': personalNoteDraft.length > personalNoteMaxLength - 100 }"
+          >
             {{ personalNoteDraft.length }} / {{ personalNoteMaxLength }}
           </p>
         </div>
@@ -258,9 +331,20 @@ async function copyAccountName() {
         </div>
       </div>
       <div v-if="iconFields.length" flex="~ wrap gap-2">
-        <div v-for="field in iconFields" :key="field.name" flex="~ gap-1" px1 items-center :class="`${field.verifiedAt ? 'border-1 rounded-full border-dark' : ''}`">
+        <div
+          v-for="field in iconFields"
+          :key="field.name"
+          flex="~ gap-1"
+          px1
+          items-center
+          :class="`${field.verifiedAt ? 'border-1 rounded-full border-dark' : ''}`"
+        >
           <CommonTooltip :content="getFieldIconTitle(field.name)">
-            <div text-secondary :class="getAccountFieldIcon(field.name)" :title="getFieldIconTitle(field.name)" />
+            <div
+              text-secondary
+              :class="getAccountFieldIcon(field.name)"
+              :title="getFieldIconTitle(field.name)"
+            />
           </CommonTooltip>
           <ContentRich text-sm :content="field.value" :emojis="account.emojis" />
         </div>

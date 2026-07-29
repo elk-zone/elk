@@ -8,7 +8,7 @@ export interface PwaInjection {
   swActivated: Ref<boolean>
   registrationError: Ref<boolean>
   needRefresh: Ref<boolean>
-  updateServiceWorker: (reloadPage?: boolean | undefined) => Promise<void>
+  updateServiceWorker: (reloadPage?: boolean) => Promise<void>
   close: () => Promise<void>
 }
 
@@ -23,5 +23,3 @@ declare module 'vue' {
     $pwa?: UnwrapNestedRefs<PwaInjection>
   }
 }
-
-export {}

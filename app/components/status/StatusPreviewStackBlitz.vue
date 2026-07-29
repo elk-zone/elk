@@ -42,16 +42,18 @@ const meta = computed(() => {
 })
 
 const vnodeCode = computed(() => {
-  if (!meta.value.code)
-    return null
+  if (!meta.value.code) return null
   const code = meta.value.code
     .replace(HTML_ESCAPE_REGEX.LESS_THAN, '&lt;')
     .replace(HTML_ESCAPE_REGEX.GREATER_THAN, '&gt;')
     .replace(HTML_ESCAPE_REGEX.BACKTICK, '&#96;')
 
-  const vnode = contentToVNode(`<p>\`\`\`${meta.value.file?.split('.')?.[1] ?? ''}\n${code}\n\`\`\`\</p>`, {
-    markdown: true,
-  })
+  const vnode = contentToVNode(
+    `<p>\`\`\`${meta.value.file?.split('.')?.[1] ?? ''}\n${code}\n\`\`\`</p>`,
+    {
+      markdown: true,
+    },
+  )
   return vnode
 })
 </script>
@@ -59,8 +61,11 @@ const vnodeCode = computed(() => {
 <template>
   <div
     v-if="meta.code"
-    flex flex-col gap-1
-    display-block of-hidden
+    flex
+    flex-col
+    gap-1
+    display-block
+    of-hidden
     w-full
     rounded-lg
     overflow-hidden
@@ -71,21 +76,25 @@ const vnodeCode = computed(() => {
         <component :is="vnodeCode" />
       </span>
     </div>
-    <div
-      flex
-      justify-between
-      display-block of-hidden
-      bg-card
-      w-full
-      p-3
-      pb-4
-    >
+    <div flex justify-between display-block of-hidden bg-card w-full p-3 pb-4>
       <div flex flex-col>
         <p flex gap-1>
-          <span>{{ $t('custom_cards.stackblitz.snippet_from', [meta.file]) }}</span><span text-secondary>{{ `- ${$t('custom_cards.stackblitz.lines', [meta.lines])}` }}</span>
+          <span>{{ $t('custom_cards.stackblitz.snippet_from', [meta.file]) }}</span
+          ><span text-secondary>{{
+            `- ${$t('custom_cards.stackblitz.lines', [meta.lines])}`
+          }}</span>
         </p>
         <div flex font-bold gap-2>
-          <span text-primary>{{ meta.project }}</span><span flex text-secondary><span flex items-center><svg h-5 width="22.27" height="32" viewBox="0 0 256 368"><path fill="currentColor" d="M109.586 217.013H0L200.34 0l-53.926 150.233H256L55.645 367.246l53.927-150.233z" /></svg></span><span>StackBlitz</span></span>
+          <span text-primary>{{ meta.project }}</span
+          ><span flex text-secondary
+            ><span flex items-center
+              ><svg h-5 width="22.27" height="32" viewBox="0 0 256 368">
+                <path
+                  fill="currentColor"
+                  d="M109.586 217.013H0L200.34 0l-53.926 150.233H256L55.645 367.246l53.927-150.233z"
+                /></svg></span
+            ><span>StackBlitz</span></span
+          >
         </div>
       </div>
       <NuxtLink external target="_blank" btn-solid pt-0 pb-1 px-2 h-fit :to="card.url">
@@ -93,7 +102,12 @@ const vnodeCode = computed(() => {
       </NuxtLink>
     </div>
   </div>
-  <StatusPreviewCardNormal v-else :card="card" :small-picture-only="smallPictureOnly" :root="root" />
+  <StatusPreviewCardNormal
+    v-else
+    :card="card"
+    :small-picture-only="smallPictureOnly"
+    :root="root"
+  />
 </template>
 
 <style scoped>

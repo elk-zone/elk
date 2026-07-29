@@ -11,22 +11,18 @@ const { singleInstanceServer, oauth } = useSignIn()
 const sorted = computed(() => {
   return [
     currentUser.value!,
-    ...all.value.filter(account => account.token !== currentUser.value?.token),
+    ...all.value.filter((account) => account.token !== currentUser.value?.token),
   ].filter(Boolean)
 })
 
 const router = useRouter()
 function clickUser(user: UserLogin) {
-  if (user.account.id === currentUser.value?.account.id)
-    router.push(getAccountRoute(user.account))
-  else
-    switchUser(user)
+  if (user.account.id === currentUser.value?.account.id) router.push(getAccountRoute(user.account))
+  else switchUser(user)
 }
 function processSignIn() {
-  if (singleInstanceServer)
-    oauth()
-  else
-    openSigninDialog()
+  if (singleInstanceServer) oauth()
+  else openSigninDialog()
 }
 </script>
 
@@ -34,8 +30,14 @@ function processSignIn() {
   <div sm:min-w-80 max-w-100vw mxa py2 flex="~ col" @click="emit('click')">
     <template v-for="user of sorted" :key="user.id">
       <button
-        flex rounded px4 py3 text-left
-        hover:bg-active cursor-pointer transition-100
+        flex
+        rounded
+        px4
+        py3
+        text-left
+        hover:bg-active
+        cursor-pointer
+        transition-100
         :aria-label="$t('action.switch_account')"
         @click="clickUser(user)"
       >

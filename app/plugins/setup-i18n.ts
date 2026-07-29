@@ -15,16 +15,18 @@ export default defineNuxtPlugin(async (nuxt) => {
     const userSettings = useUserSettings()
     const lang = computed(() => userSettings.value.language as Locale)
 
-    const supportLanguages = unref(locales).map(locale => locale.code)
+    const supportLanguages = unref(locales).map((locale) => locale.code)
     if (!supportLanguages.includes(lang.value))
       userSettings.value.language = getDefaultLanguage(supportLanguages)
 
-    if (lang.value !== i18n.locale.value)
-      await setLocale(userSettings.value.language as Locale)
+    if (lang.value !== i18n.locale.value) await setLocale(userSettings.value.language as Locale)
 
-    watch([lang, isHydrated], () => {
-      if (isHydrated.value && lang.value !== i18n.locale.value)
-        setLocale(lang.value)
-    }, { immediate: true })
+    watch(
+      [lang, isHydrated],
+      () => {
+        if (isHydrated.value && lang.value !== i18n.locale.value) void setLocale(lang.value)
+      },
+      { immediate: true },
+    )
   }
 })

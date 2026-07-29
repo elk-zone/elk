@@ -10,15 +10,14 @@ export default defineNuxtPlugin(() => {
   lifecycle.addEventListener('statechange', (evt) => {
     if (evt.newState === 'hidden' && evt.oldState === 'frozen') {
       frozenState.value = false
-      nextTick().then(() => window.location.reload())
+      void nextTick().then(() => window.location.reload())
       return
     }
 
     if (evt.newState === 'frozen') {
       frozenState.value = true
-      frozenListeners.forEach(listener => listener())
-    }
-    else {
+      frozenListeners.forEach((listener) => listener())
+    } else {
       state.value = evt.newState
     }
   })

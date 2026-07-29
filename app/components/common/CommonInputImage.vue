@@ -29,12 +29,12 @@ const previewImage = ref('')
 /** The current images on display */
 const imageSrc = computed<string>(() => previewImage.value || defaultImage.value)
 
-const mimeTypes = currentInstance.value!.configuration?.mediaAttachments.supportedMimeTypes.filter(mime => mime.startsWith('image/'))
-  ?? ['image/jpeg', 'image/png']
+const mimeTypes = currentInstance.value!.configuration?.mediaAttachments.supportedMimeTypes.filter(
+  (mime) => mime.startsWith('image/'),
+) ?? ['image/jpeg', 'image/png']
 
 async function pickImage() {
-  if (import.meta.server)
-    return
+  if (import.meta.server) return
   const image = await fileOpen({
     description: 'Image',
     mimeTypes,
@@ -43,8 +43,7 @@ async function pickImage() {
   if (!mimeTypes.includes(image.type)) {
     emit('error', 1, t('error.unsupported_file_format'))
     return
-  }
-  else if (image.size > allowedFileSize) {
+  } else if (image.size > allowedFileSize) {
     emit('error', 2, t('error.file_size_cannot_exceed_n_mb', [5]))
     return
   }
@@ -55,7 +54,7 @@ async function pickImage() {
 
 watch(file, (image, _, onCleanup) => {
   let expired = false
-  onCleanup(() => expired = true)
+  onCleanup(() => (expired = true))
 
   if (!image) {
     previewImage.value = ''
@@ -64,8 +63,7 @@ watch(file, (image, _, onCleanup) => {
   const reader = new FileReader()
   reader.readAsDataURL(image)
   reader.onload = (evt) => {
-    if (expired)
-      return
+    if (expired) return
     previewImage.value = evt.target?.result as string
   }
 })
@@ -75,29 +73,31 @@ watch(file, (image, _, onCleanup) => {
   <label
     class="bg-slate-500/10 focus-within:(outline outline-primary)"
     relative
-    flex justify-center items-center
+    flex
+    justify-center
+    items-center
     cursor-pointer
     of-hidden
     @click="pickImage"
   >
-    <img
-      v-if="imageSrc"
-      :src="imageSrc"
-      :class="imgClass || ''"
-      object-cover
-      w-full
-      h-full
+    <img v-if="imageSrc" :src="imageSrc" :class="imgClass || ''" object-cover w-full h-full />
+    <span
+      absolute
+      bg="black/50"
+      text-white
+      rounded-full
+      text-xl
+      w12
+      h12
+      flex
+      justify-center
+      items-center
+      hover="bg-black/40 text-primary"
     >
-    <span absolute bg="black/50" text-white rounded-full text-xl w12 h12 flex justify-center items-center hover="bg-black/40 text-primary">
       <span block i-ri:upload-line />
     </span>
 
-    <span
-      v-if="loading"
-      absolute inset-0
-      bg="black/30" text-white
-      flex justify-center items-center
-    >
+    <span v-if="loading" absolute inset-0 bg="black/30" text-white flex justify-center items-center>
       <span class="animate-spin animate-duration-[2.5s] preserve-3d">
         <span block i-ri:loader-4-line text-4xl />
       </span>

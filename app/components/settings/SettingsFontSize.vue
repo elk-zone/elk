@@ -4,7 +4,9 @@ import { DEFAULT_FONT_SIZE } from '~/constants'
 
 const userSettings = useUserSettings()
 
-const sizes = (Array.from({ length: 11 })).fill(0).map((x, i) => `${10 + i}px`) as FontSize[]
+const sizes = Array.from({ length: 11 })
+  .fill(0)
+  .map((x, i) => `${10 + i}px`) as FontSize[]
 
 function setFontSize(e: Event) {
   if (e.target && 'valueAsNumber' in e.target)
@@ -29,22 +31,31 @@ function setFontSize(e: Event) {
           :step="1"
           type="range"
           focus:outline-none
-          appearance-none bg-transparent
-          w-full cursor-pointer
+          appearance-none
+          bg-transparent
+          w-full
+          cursor-pointer
           @change="setFontSize"
-        >
+        />
         <div flex items-center justify-between absolute w-full pointer-events-none>
           <div
-            v-for="i in sizes.length" :key="i"
+            v-for="i in sizes.length"
+            :key="i"
             class="container-marker"
-            h-3 w-3
-            rounded-full bg-secondary-light
+            h-3
+            w-3
+            rounded-full
+            bg-secondary-light
             relative
           >
             <div
-              v-if="(sizes.indexOf(userSettings.fontSize)) === i - 1"
-              absolute rounded-full class="-top-1 -left-1"
-              bg-primary h-5 w-5
+              v-if="sizes.indexOf(userSettings.fontSize) === i - 1"
+              absolute
+              rounded-full
+              class="-top-1 -left-1"
+              bg-primary
+              h-5
+              w-5
             />
           </div>
         </div>
@@ -55,33 +66,35 @@ function setFontSize(e: Event) {
 </template>
 
 <style>
-  input:focus + div .container-marker:has(> div)::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 2rem;
-    height: 2rem;
-    border: 2px solid var(--c-primary);
-    border-radius: 50%;
-  }
-  input[type=range]::-webkit-slider-runnable-track {
-    --at-apply: bg-secondary-light rounded-full h1 op60;
-  }
-  input[type=range]:focus::-webkit-slider-runnable-track {
-    --at-apply: outline-2 outline-red;
-  }
-  input[type=range]::-webkit-slider-thumb {
-    --at-apply: w3 h3 bg-primary -mt-1 outline outline-3 outline-primary rounded-full cursor-pointer appearance-none;
-  }
-  input[type=range]::-moz-range-track {
-    --at-apply: bg-secondary-light rounded-full h1 op60;
-  }
-  input[type=range]:focus::-moz-range-track {
-    --at-apply: outline-2 outline-red;
-  }
-  input[type=range]::-moz-range-thumb {
-    --at-apply: w3 h3 bg-primary -mt-1 outline outline-3 outline-primary rounded-full cursor-pointer appearance-none border-none;
-  }
+input:focus + div .container-marker:has(> div)::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--c-primary);
+  border-radius: 50%;
+}
+input[type='range']::-webkit-slider-runnable-track {
+  --at-apply: bg-secondary-light rounded-full h1 op60;
+}
+input[type='range']:focus::-webkit-slider-runnable-track {
+  --at-apply: outline-2 outline-red;
+}
+input[type='range']::-webkit-slider-thumb {
+  --at-apply: w3 h3 bg-primary -mt-1 outline outline-3 outline-primary rounded-full cursor-pointer
+    appearance-none;
+}
+input[type='range']::-moz-range-track {
+  --at-apply: bg-secondary-light rounded-full h1 op60;
+}
+input[type='range']:focus::-moz-range-track {
+  --at-apply: outline-2 outline-red;
+}
+input[type='range']::-moz-range-thumb {
+  --at-apply: w3 h3 bg-primary -mt-1 outline outline-3 outline-primary rounded-full cursor-pointer
+    appearance-none border-none;
+}
 </style>

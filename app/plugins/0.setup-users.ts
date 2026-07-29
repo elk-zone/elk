@@ -26,8 +26,7 @@ export default defineNuxtPlugin({
       users.value = defaultUsers
     }
 
-    if (removeUsersOnLocalStorage)
-      globalThis.localStorage.removeItem(STORAGE_KEY_USERS)
+    if (removeUsersOnLocalStorage) globalThis.localStorage.removeItem(STORAGE_KEY_USERS)
 
     let callback = noop
 
@@ -38,7 +37,11 @@ export default defineNuxtPlugin({
 
       callback = () => (initialLoad.value = false)
 
-      const { readIDB } = await useAsyncIDBKeyval<UserLogin[]>(STORAGE_KEY_USERS, defaultUsers, users)
+      const { readIDB } = await useAsyncIDBKeyval<UserLogin[]>(
+        STORAGE_KEY_USERS,
+        defaultUsers,
+        users,
+      )
 
       function reload() {
         setTimeout(() => {
@@ -70,8 +73,7 @@ export default defineNuxtPlugin({
           // 1. detect account switching
           if (oldHandle) {
             sameAcct = handle === oldHandle
-          }
-          else {
+          } else {
             const acct = currentUser.value?.account?.acct
             // 2. detect sign-in?
             sameAcct = !acct || acct === handle
@@ -87,19 +89,20 @@ export default defineNuxtPlugin({
 
     const { params, query } = useRoute()
 
-    publicServer.value = params.server as string || useRuntimeConfig().public.defaultServer
+    publicServer.value = (params.server as string) || useRuntimeConfig().public.defaultServer
 
     const masto = createMasto()
-    const user = (typeof query.server === 'string' && typeof query.token === 'string')
-      ? {
-          server: query.server,
-          token: query.token,
-          vapidKey: typeof query.vapid_key === 'string' ? query.vapid_key : undefined,
-        }
-      : (currentUser.value || { server: publicServer.value })
+    const user =
+      typeof query.server === 'string' && typeof query.token === 'string'
+        ? {
+            server: query.server,
+            token: query.token,
+            vapidKey: typeof query.vapid_key === 'string' ? query.vapid_key : undefined,
+          }
+        : currentUser.value || { server: publicServer.value }
 
     if (import.meta.client) {
-      loginTo(masto, user).finally(callback)
+      void loginTo(masto, user).finally(callback)
     }
 
     return {

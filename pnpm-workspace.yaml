@@ -85,8 +85,9 @@ overrides:
   nuxt-component-meta: 0.17.2
   serialize-javascript: 7.0.5
   unstorage: ^1.17.5
-  vitest: 4.1.9
+  vitest: 'catalog:'
   vue: ^3.5.4
+  vite: 'catalog:'
 
 verifyDepsBeforeRun: install
 
@@ -98,3 +99,14 @@ allowBuilds:
   sharp: true
   simple-git-hooks: true
   vue-demi: false
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@0.2.4
+  vitest: 4.1.10
+  vite-plus: 0.2.4
+peerDependencyRules:
+  allowAny:
+    - vite
+    - vitest
+  allowedVersions:
+    vite: '*'
+    vitest: '*'

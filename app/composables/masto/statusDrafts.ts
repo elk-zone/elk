@@ -7,35 +7,55 @@ import { STORAGE_KEY_DRAFTS } from '~/constants'
 const MENTION_REGEX = /^(@\S+\s?)+/
 const CODE_BLOCK_REGEX = /```/g
 
-export const currentUserDrafts = (import.meta.server || import.meta.test)
-  ? computed<DraftMap>(() => ({ home: [], dialog: [], intent: [], quote: [] }))
-  : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({ home: [], dialog: [], intent: [], quote: [] }))
+export const currentUserDrafts =
+  import.meta.server || import.meta.test
+    ? computed<DraftMap>(() => ({ home: [], dialog: [], intent: [], quote: [] }))
+    : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({
+        home: [],
+        dialog: [],
+        intent: [],
+        quote: [],
+      }))
 
-const ALL_VISIBILITY: readonly mastodon.v1.StatusVisibility[] = ['public', 'unlisted', 'private', 'direct'] as const
+const ALL_VISIBILITY: readonly mastodon.v1.StatusVisibility[] = [
+  'public',
+  'unlisted',
+  'private',
+  'direct',
+] as const
 
 function getDefaultVisibility(currentVisibility: mastodon.v1.StatusVisibility) {
   // The default privacy only should be taken into account if it makes
   // the post more private than the replying to post
   const preferredVisibility = currentUser.value?.account.source.privacy || 'public'
-  return ALL_VISIBILITY.indexOf(currentVisibility)
-    > ALL_VISIBILITY.indexOf(preferredVisibility)
+  return ALL_VISIBILITY.indexOf(currentVisibility) > ALL_VISIBILITY.indexOf(preferredVisibility)
     ? currentVisibility
     : preferredVisibility
 }
 
-const ALL_QUOTE_APPROVAL_POLICY: readonly mastodon.rest.v1.QuoteApprovalPolicy[] = ['public', 'followers', 'nobody'] as const
+const ALL_QUOTE_APPROVAL_POLICY: readonly mastodon.rest.v1.QuoteApprovalPolicy[] = [
+  'public',
+  'followers',
+  'nobody',
+] as const
 
-function getDefaultQuoteApprovalPolicy(currentQuoteApprovalPolicy: mastodon.rest.v1.QuoteApprovalPolicy) {
+function getDefaultQuoteApprovalPolicy(
+  currentQuoteApprovalPolicy: mastodon.rest.v1.QuoteApprovalPolicy,
+) {
   // The default quote policy only should be taken into account if it makes
   // the quote permission more restricted
   const preferredQuoteApprovalPolicy = currentUser.value?.account.source.quotePolicy || 'public'
-  return ALL_QUOTE_APPROVAL_POLICY.indexOf(currentQuoteApprovalPolicy)
-    > ALL_QUOTE_APPROVAL_POLICY.indexOf(preferredQuoteApprovalPolicy)
+  return ALL_QUOTE_APPROVAL_POLICY.indexOf(currentQuoteApprovalPolicy) >
+    ALL_QUOTE_APPROVAL_POLICY.indexOf(preferredQuoteApprovalPolicy)
     ? currentQuoteApprovalPolicy
     : preferredQuoteApprovalPolicy
 }
 
-export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.CreateScheduledStatusParams> & Omit<DraftItem, 'params'>> = {}): DraftItem {
+export function getDefaultDraftItem(
+  options: Partial<
+    Mutable<mastodon.rest.v1.CreateScheduledStatusParams> & Omit<DraftItem, 'params'>
+  > = {},
+): DraftItem {
   const {
     attachments = [],
     initialText = '',
@@ -83,30 +103,31 @@ export async function getDraftFromStatus(status: mastodon.v1.Status): Promise<Dr
     inReplyToId: status.inReplyToId,
   }
 
-  return getDefaultDraftItem((status.mediaAttachments !== undefined && status.mediaAttachments.length > 0)
-    ? { ...info, mediaIds: status.mediaAttachments.map(att => att.id) }
-    : {
-        ...info,
-        poll: status.poll
-          ? {
-              expiresIn: Math.abs(Date.now() - new Date(status.poll.expiresAt!).getTime()) / 1000,
-              options: [...status.poll.options.map(({ title }) => title), ''],
-              multiple: status.poll.multiple,
-              hideTotals: status.poll.options[0].votesCount === null,
-            }
-          : undefined,
-      })
+  return getDefaultDraftItem(
+    status.mediaAttachments !== undefined && status.mediaAttachments.length > 0
+      ? { ...info, mediaIds: status.mediaAttachments.map((att) => att.id) }
+      : {
+          ...info,
+          poll: status.poll
+            ? {
+                expiresIn: Math.abs(Date.now() - new Date(status.poll.expiresAt!).getTime()) / 1000,
+                options: [...status.poll.options.map(({ title }) => title), ''],
+                multiple: status.poll.multiple,
+                hideTotals: status.poll.options[0].votesCount === null,
+              }
+            : undefined,
+        },
+  )
 }
 
 function getAccountsToMention(status: mastodon.v1.Status) {
   const userId = currentUser.value?.account.id
   const accountsToMention = new Set<string>()
-  if (status.account.id !== userId)
-    accountsToMention.add(status.account.acct)
+  if (status.account.id !== userId) accountsToMention.add(status.account.acct)
   status.mentions
-    .filter(mention => mention.id !== userId)
-    .map(mention => mention.acct)
-    .forEach(i => accountsToMention.add(i))
+    .filter((mention) => mention.id !== userId)
+    .map((mention) => mention.acct)
+    .forEach((i) => accountsToMention.add(i))
   return [...accountsToMention]
 }
 
@@ -129,13 +150,11 @@ export function getReplyDraft(status: mastodon.v1.Status) {
 }
 
 export function isEmptyDraft(drafts: Array<DraftItem> | DraftItem | null | undefined) {
-  if (!drafts)
-    return true
+  if (!drafts) return true
 
   const draftsArray: Array<DraftItem> = Array.isArray(drafts) ? drafts : [drafts]
 
-  if (draftsArray.length === 0)
-    return true
+  if (draftsArray.length === 0) return true
 
   const anyDraftHasContent = draftsArray.some((draft) => {
     const { params, attachments } = draft
@@ -147,9 +166,7 @@ export function isEmptyDraft(drafts: Array<DraftItem> | DraftItem | null | undef
       .trim()
     const hasQuote = !!params.quotedStatusId
 
-    return (text.length > 0)
-      || (attachments.length > 0)
-      || hasQuote
+    return text.length > 0 || attachments.length > 0 || hasQuote
   })
 
   return !anyDraftHasContent
@@ -166,11 +183,9 @@ export function useDraft(
 ): UseDraft {
   const draftItems = computed({
     get() {
-      if (!currentUserDrafts.value[draftKey])
-        currentUserDrafts.value[draftKey] = [initial()]
+      if (!currentUserDrafts.value[draftKey]) currentUserDrafts.value[draftKey] = [initial()]
       const drafts = currentUserDrafts.value[draftKey]
-      if (Array.isArray(drafts))
-        return drafts
+      if (Array.isArray(drafts)) return drafts
       return [drafts]
     },
     set(val) {
@@ -192,32 +207,31 @@ export function useDraft(
 }
 
 export function mentionUser(account: mastodon.v1.Account) {
-  openPublishDialog('dialog', getDefaultDraftItem({
-    status: `@${account.acct} `,
-  }))
+  void openPublishDialog(
+    'dialog',
+    getDefaultDraftItem({
+      status: `@${account.acct} `,
+    }),
+  )
 }
 
 export function privateMentionUser(account: mastodon.v1.Account) {
-  openPublishDialog('dialog', getDefaultDraftItem({
-    status: `@${account.acct} `,
-    visibility: 'direct',
-  }))
+  void openPublishDialog(
+    'dialog',
+    getDefaultDraftItem({
+      status: `@${account.acct} `,
+      visibility: 'direct',
+    }),
+  )
 }
 
-export const builtinDraftKeys = [
-  'home',
-  'dialog',
-  'intent',
-  'quote',
-]
+export const builtinDraftKeys = ['home', 'dialog', 'intent', 'quote']
 
 export function clearEmptyDrafts() {
   for (const key in currentUserDrafts.value) {
     if (isDraftKey(key)) {
-      if (builtinDraftKeys.includes(key) && !isEmptyDraft(currentUserDrafts.value[key]))
-        continue
-      if (isEmptyDraft(currentUserDrafts.value[key]))
-        delete currentUserDrafts.value[key]
+      if (builtinDraftKeys.includes(key) && !isEmptyDraft(currentUserDrafts.value[key])) continue
+      if (isEmptyDraft(currentUserDrafts.value[key])) delete currentUserDrafts.value[key]
     }
   }
 }

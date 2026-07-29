@@ -18,10 +18,7 @@ function doScroll({ currentTarget, metaKey, ctrlKey }: MouseEvent | KeyboardEven
 <template>
   <component
     :is="as"
-    class="
-      flex items-center gap-2 min-h-10 px-3
-      text-start text-lg lh-tight font-bold cursor-pointer
-    "
+    class="flex items-center gap-2 min-h-10 px-3 text-start text-lg lh-tight font-bold cursor-pointer"
     :class="{ 'text-primary': !secondary }"
     @click="doScroll($event)"
   >

@@ -1,6 +1,8 @@
 import type { mastodon } from 'masto'
 
-const notifications = reactive<Record<string, undefined | [Promise<mastodon.streaming.Subscription>, string[]]>>({})
+const notifications = reactive<
+  Record<string, undefined | [Promise<mastodon.streaming.Subscription>, string[]]>
+>({})
 
 export function useNotifications() {
   const id = currentUser.value?.account.id
@@ -8,8 +10,7 @@ export function useNotifications() {
   const { client, streamingClient } = useMasto()
 
   async function clearNotifications() {
-    if (!id || !notifications[id])
-      return
+    if (!id || !notifications[id]) return
 
     const lastReadId = notifications[id]![1][0]
     notifications[id]![1] = []
@@ -32,8 +33,14 @@ export function useNotifications() {
     if (!isHydrated.value || !id || notifications[id] !== undefined || !currentUser.value?.token)
       return
 
-    let resolveStream: ((value: mastodon.streaming.Subscription | PromiseLike<mastodon.streaming.Subscription>) => void) | undefined
-    const streamPromise = new Promise<mastodon.streaming.Subscription>(resolve => resolveStream = resolve)
+    let resolveStream:
+      | ((
+          value: mastodon.streaming.Subscription | PromiseLike<mastodon.streaming.Subscription>,
+        ) => void)
+      | undefined
+    const streamPromise = new Promise<mastodon.streaming.Subscription>(
+      (resolve) => (resolveStream = resolve),
+    )
     notifications[id] = [streamPromise, []]
 
     await until(streamingClient).toBeTruthy()
@@ -41,42 +48,35 @@ export function useNotifications() {
     const stream = streamingClient.value!.user.subscribe()
     resolveStream!(stream)
 
-    processNotifications(stream, id)
+    void processNotifications(stream, id)
 
     const position = await client.value.v1.markers.fetch({ timeline: ['notifications'] })
     const paginator = client.value.v1.notifications.list({ limit: 30 })
     const paginatorValues = paginator.values()
 
-    do {
-      const result = await paginatorValues.next()
-      if (!result.done && result.value.length) {
-        for (const notification of result.value) {
-          if (notification.id === position.notifications.lastReadId)
-            return
-          notifications[id]![1].push(notification.id)
-        }
+    for await (const page of paginatorValues) {
+      if (!page.length) break
+      for (const notification of page) {
+        if (notification.id === position.notifications.lastReadId) return
+        notifications[id]![1].push(notification.id)
       }
-      else {
-        break
-      }
-    } while (true)
+    }
   }
 
   function disconnect(): void {
-    if (!id || !notifications[id])
-      return
-    notifications[id]![0].then(stream => stream.unsubscribe())
+    if (!id || !notifications[id]) return
+    void notifications[id]![0].then((stream) => stream.unsubscribe())
     notifications[id] = undefined
   }
 
   watch(currentUser, disconnect)
 
   onHydrated(() => {
-    connect()
+    void connect()
   })
 
   return {
-    notifications: computed(() => id ? notifications[id]?.[1].length ?? 0 : 0),
+    notifications: computed(() => (id ? (notifications[id]?.[1].length ?? 0) : 0)),
     clearNotifications,
   }
 }

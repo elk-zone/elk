@@ -61,11 +61,7 @@ function handleReactedByClose() {
     <ModalDialog v-model="isPreviewHelpOpen" keep-alive max-w-125>
       <HelpPreview @close="closePreviewHelp()" />
     </ModalDialog>
-    <ModalDialog
-      v-model="isPublishDialogOpen"
-      max-w-180 flex w-full
-      @close="handlePublishClose"
-    >
+    <ModalDialog v-model="isPublishDialogOpen" max-w-180 flex w-full @close="handlePublishClose">
       <PublishWidgetList
         v-if="dialogDraftKey"
         :draft-key="dialogDraftKey"
@@ -76,8 +72,13 @@ function handleReactedByClose() {
     </ModalDialog>
     <ModalDialog
       :model-value="isMediaPreviewOpen"
-      w-full max-w-full h-full max-h-full
-      bg-transparent border-0 shadow-none
+      w-full
+      max-w-full
+      h-full
+      max-h-full
+      bg-transparent
+      border-0
+      shadow-none
       @update:model-value="closeMediaPreview"
     >
       <ModalMediaPreview v-if="isMediaPreviewOpen" @close="closeMediaPreview()" />
@@ -89,23 +90,35 @@ function handleReactedByClose() {
       <CommandPanel @close="closeCommandPanel()" />
     </ModalDialog>
     <ModalDialog v-model="isConfirmDialogOpen" py-4 px-8 max-w-125>
-      <ModalConfirm v-if="confirmDialogLabel" v-bind="confirmDialogLabel" @choice="handleConfirmChoice" />
+      <ModalConfirm
+        v-if="confirmDialogLabel"
+        v-bind="confirmDialogLabel"
+        @choice="handleConfirmChoice"
+      />
     </ModalDialog>
     <ModalDialog v-model="isErrorDialogOpen" py-4 px-8 max-w-125>
       <ModalError v-if="errorDialogData" v-bind="errorDialogData" />
     </ModalDialog>
-    <ModalDialog
-      v-model="isReactedByDialogOpen"
-      max-w-180
-      @close="handleReactedByClose"
-    >
+    <ModalDialog v-model="isReactedByDialogOpen" max-w-180 @close="handleReactedByClose">
       <StatusReactedBy />
     </ModalDialog>
-    <ModalDialog v-model="isKeyboardShortcutsDialogOpen" max-w-full sm:max-w-140 md:max-w-170 lg:max-w-220 md:min-w-160>
+    <ModalDialog
+      v-model="isKeyboardShortcutsDialogOpen"
+      max-w-full
+      sm:max-w-140
+      md:max-w-170
+      lg:max-w-220
+      md:min-w-160
+    >
       <MagickeysKeyboardShortcuts @close="closeKeyboardShortcuts()" />
     </ModalDialog>
     <ModalDialog v-model="isReportDialogOpen" keep-alive max-w-175>
-      <ReportModal v-if="reportAccount" :account="reportAccount" :status="reportStatus" @close="closeReportDialog()" />
+      <ReportModal
+        v-if="reportAccount"
+        :account="reportAccount"
+        :status="reportStatus"
+        @close="closeReportDialog()"
+      />
     </ModalDialog>
   </template>
 </template>

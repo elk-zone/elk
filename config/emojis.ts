@@ -10,9 +10,7 @@ export * from '@iconify-emoji/twemoji'
 export const iconifyEmojiPackage = '@iconify-emoji/twemoji'
 
 export function getEmojiAttributes(input: EmojiRegexMatch | string) {
-  const match = typeof input === 'string'
-    ? getEmojiMatchesInText(emojiRegEx, input)?.[0]
-    : input
+  const match = typeof input === 'string' ? getEmojiMatchesInText(emojiRegEx, input)?.[0] : input
   const file = emojiFilename(match)
   const className = `iconify-emoji iconify-emoji--${emojiPrefix}${file.padding ? ' iconify-emoji-padded' : ''}`
   return {

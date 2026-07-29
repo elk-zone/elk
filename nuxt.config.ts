@@ -77,7 +77,7 @@ export default defineNuxtConfig({
   ],
   alias: {
     'change-case': 'scule',
-    'semver': resolve('./mocks/semver'),
+    semver: resolve('./mocks/semver'),
   },
   imports: {
     dirs: [
@@ -98,8 +98,7 @@ export default defineNuxtConfig({
   vite: {
     define: {
       'process.env.VSCODE_TEXTMATE_DEBUG': 'false',
-      'process.mock':
-        ((!isCI || isPreview) && process.env.MOCK_USER) || 'false',
+      'process.mock': ((!isCI || isPreview) && process.env.MOCK_USER) || 'false',
       'process.test': 'false',
     },
     build: {
@@ -234,14 +233,13 @@ export default defineNuxtConfig({
     'nitro:config': function (config) {
       const nuxt = useNuxt()
       config.virtual = config.virtual || {}
-      config.virtual['#storage-config']
-        = `export const driver = ${JSON.stringify(nuxt.options.appConfig.storage.driver)}`
+      config.virtual['#storage-config'] =
+        `export const driver = ${JSON.stringify(nuxt.options.appConfig.storage.driver)}`
     },
     'vite:extendConfig': function (config, { isServer }) {
       if (isServer) {
         const alias = config.resolve!.alias as Record<string, string>
-        for (const dep of ['eventemitter3', 'isomorphic-ws'])
-          alias[dep] = resolve('./mocks/class')
+        for (const dep of ['eventemitter3', 'isomorphic-ws']) alias[dep] = resolve('./mocks/class')
         for (const dep of ['fuse.js']) alias[dep] = mockProxy
         const resolver = createResolver(import.meta.url)
 
@@ -249,20 +247,13 @@ export default defineNuxtConfig({
           name: 'mock',
           enforce: 'pre',
           resolveId(id) {
-            if (TIPTAP_IMPORT_RE.test(id))
-              return resolver.resolve('./mocks/tiptap.ts')
-            if (PROSEMIRROR_IMPORT_RE.test(id))
-              return resolver.resolve('./mocks/prosemirror.ts')
+            if (TIPTAP_IMPORT_RE.test(id)) return resolver.resolve('./mocks/tiptap.ts')
+            if (PROSEMIRROR_IMPORT_RE.test(id)) return resolver.resolve('./mocks/prosemirror.ts')
           },
         })
 
         const noExternal = config.ssr!.noExternal as string[]
-        noExternal.push(
-          'masto',
-          '@fnando/sparkline',
-          'vue-i18n',
-          '@mastojs/ponyfills',
-        )
+        noExternal.push('masto', '@fnando/sparkline', 'vue-i18n', '@mastojs/ponyfills')
       }
     },
   },
@@ -300,20 +291,20 @@ export default defineNuxtConfig({
     headers: {
       crossOriginEmbedderPolicy: false,
       contentSecurityPolicy: {
-        'default-src': ['\'self\''],
-        'base-uri': ['\'self\''],
-        'connect-src': ['\'self\'', 'https:', 'http:', 'wss:', 'ws:'],
-        'font-src': ['\'self\''],
-        'form-action': ['\'none\''],
-        'frame-ancestors': ['\'none\''],
+        'default-src': ["'self'"],
+        'base-uri': ["'self'"],
+        'connect-src': ["'self'", 'https:', 'http:', 'wss:', 'ws:'],
+        'font-src': ["'self'"],
+        'form-action': ["'none'"],
+        'frame-ancestors': ["'none'"],
         'frame-src': ['https:'],
-        'img-src': ['\'self\'', 'https:', 'http:', 'data:', 'blob:'],
-        'manifest-src': ['\'self\''],
-        'media-src': ['\'self\'', 'https:', 'http:'],
-        'object-src': ['\'none\''],
-        'script-src': ['\'self\'', '\'unsafe-inline\'', '\'wasm-unsafe-eval\''],
-        'script-src-attr': ['\'none\''],
-        'style-src': ['\'self\'', '\'unsafe-inline\''],
+        'img-src': ["'self'", 'https:', 'http:', 'data:', 'blob:'],
+        'manifest-src': ["'self'"],
+        'media-src': ["'self'", 'https:', 'http:'],
+        'object-src': ["'none'"],
+        'script-src': ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'"],
+        'script-src-attr': ["'none'"],
+        'style-src': ["'self'", "'unsafe-inline'"],
         'upgrade-insecure-requests': true,
       },
       permissionsPolicy: {

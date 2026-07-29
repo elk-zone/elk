@@ -6,7 +6,7 @@ export function usePaginator<T, P, U = T>(
   paginator: mastodon.Paginator<T[], P>,
   stream: Ref<mastodon.streaming.Subscription | undefined>,
   eventType: 'update' | 'notification' = 'update',
-  preprocess: (items: (T | U)[]) => U[] = items => items as unknown as U[],
+  preprocess: (items: (T | U)[]) => U[] = (items) => items as unknown as U[],
   buffer = 10,
 ) {
   // called `next` method will mutate the internal state of the variable,
@@ -27,52 +27,47 @@ export function usePaginator<T, P, U = T>(
   const deactivated = useDeactivated()
 
   async function update() {
-    (items.value as U[]).unshift(...preprocess(prevItems.value as T[]))
+    ;(items.value as U[]).unshift(...preprocess(prevItems.value as T[]))
     prevItems.value = []
   }
 
-  watch(stream, async (stream) => {
-    if (!stream)
-      return
+  watch(
+    stream,
+    async (stream) => {
+      if (!stream) return
 
-    for await (const entry of stream) {
-      if (entry.event === eventType) {
-        const status = entry.payload
+      for await (const entry of stream) {
+        if (entry.event === eventType) {
+          const status = entry.payload
 
-        if ('uri' in status)
+          if ('uri' in status) cacheStatus(status, undefined, true)
+
+          const index = prevItems.value.findIndex((i: any) => i.id === status.id)
+          if (index >= 0) prevItems.value.splice(index, 1)
+
+          prevItems.value.unshift(status as any)
+        } else if (entry.event === 'status.update') {
+          const status = entry.payload
           cacheStatus(status, undefined, true)
 
-        const index = prevItems.value.findIndex((i: any) => i.id === status.id)
-        if (index >= 0)
-          prevItems.value.splice(index, 1)
+          const data = items.value as mastodon.v1.Status[]
+          const index = data.findIndex((s) => s.id === status.id)
+          if (index >= 0) data[index] = status
+        } else if (entry.event === 'delete') {
+          const id = entry.payload
+          removeCachedStatus(id)
 
-        prevItems.value.unshift(status as any)
+          const data = items.value as mastodon.v1.Status[]
+          const index = data.findIndex((s) => s.id === id)
+          if (index >= 0) data.splice(index, 1)
+        }
       }
-      else if (entry.event === 'status.update') {
-        const status = entry.payload
-        cacheStatus(status, undefined, true)
-
-        const data = items.value as mastodon.v1.Status[]
-        const index = data.findIndex(s => s.id === status.id)
-        if (index >= 0)
-          data[index] = status
-      }
-
-      else if (entry.event === 'delete') {
-        const id = entry.payload
-        removeCachedStatus(id)
-
-        const data = items.value as mastodon.v1.Status[]
-        const index = data.findIndex(s => s.id === id)
-        if (index >= 0)
-          data.splice(index, 1)
-      }
-    }
-  }, { immediate: true })
+    },
+    { immediate: true },
+  )
 
   async function loadNext() {
-    if (state.value !== 'idle' || !canLoadMore.value)
-      return
+    if (state.value !== 'idle' || !canLoadMore.value) return
 
     state.value = 'loading'
     try {
@@ -80,21 +75,19 @@ export function usePaginator<T, P, U = T>(
 
       if (!result.done && result.value.length) {
         const preprocessedItems = preprocess([...nextItems.value, ...result.value] as (U | T)[])
-        const itemsToShowCount
-          = preprocessedItems.length <= buffer
+        const itemsToShowCount =
+          preprocessedItems.length <= buffer
             ? preprocessedItems.length
             : preprocessedItems.length - buffer
         ;(nextItems.value as U[]) = preprocessedItems.slice(itemsToShowCount)
         ;(items.value as U[]).push(...preprocessedItems.slice(0, itemsToShowCount))
         state.value = 'idle'
-      }
-      else {
+      } else {
         items.value.push(...nextItems.value)
         nextItems.value = []
         state.value = 'done'
       }
-    }
-    catch (e) {
+    } catch (e) {
       console.error(e)
 
       error.value = e
@@ -115,23 +108,21 @@ export function usePaginator<T, P, U = T>(
     if (!isHydrated.value) {
       onHydrated(() => {
         state.value = 'idle'
-        loadNext()
+        void loadNext()
       })
     }
 
-    watchEffect(
-      () => {
-        if (
-          isInScreen.value
-          && state.value === 'idle'
-          // No new content is loaded when the keepAlive page enters the background
-          && deactivated.value === false
-          && canLoadMore.value
-        ) {
-          loadNext()
-        }
-      },
-    )
+    watchEffect(() => {
+      if (
+        isInScreen.value &&
+        state.value === 'idle' &&
+        // No new content is loaded when the keepAlive page enters the background
+        deactivated.value === false &&
+        canLoadMore.value
+      ) {
+        void loadNext()
+      }
+    })
   }
 
   return {

@@ -81,59 +81,80 @@ const defaultIcons: Icons = {
 
 const root = process.cwd()
 
-const publicFolders = ['public', 'public-dev', 'public-staging'].map(folder => resolve(root, folder))
+const publicFolders = ['public', 'public-dev', 'public-staging'].map((folder) =>
+  resolve(root, folder),
+)
 
 async function optimizePng(filePath: string, png: PngOptions) {
-  await sharp(filePath).png(png).toFile(`${filePath.replace(TEMP_PNG_POSTFIX_RE, '.png')}`)
+  await sharp(filePath)
+    .png(png)
+    .toFile(`${filePath.replace(TEMP_PNG_POSTFIX_RE, '.png')}`)
   await rm(filePath)
 }
 
 async function generateTransparentIcons(icons: ResolvedIcons, svgLogo: string, folder: string) {
   const { sizes, padding, resizeOptions } = icons.transparent
-  await Promise.all(sizes.map(async (size) => {
-    const filePath = resolve(folder, icons.iconName('transparent', size))
-    await sharp({
-      create: {
-        width: size,
-        height: size,
-        channels: 4,
-        background: { r: 0, g: 0, b: 0, alpha: 0 },
-      },
-    }).composite([{
-      input: await sharp(svgLogo)
-        .resize(
-          Math.round(size * (1 - padding)),
-          Math.round(size * (1 - padding)),
-          resizeOptions,
-        )
-        .toBuffer(),
-    }]).toFile(filePath)
-    await optimizePng(filePath, icons.png)
-  }))
+  await Promise.all(
+    sizes.map(async (size) => {
+      const filePath = resolve(folder, icons.iconName('transparent', size))
+      await sharp({
+        create: {
+          width: size,
+          height: size,
+          channels: 4,
+          background: { r: 0, g: 0, b: 0, alpha: 0 },
+        },
+      })
+        .composite([
+          {
+            input: await sharp(svgLogo)
+              .resize(
+                Math.round(size * (1 - padding)),
+                Math.round(size * (1 - padding)),
+                resizeOptions,
+              )
+              .toBuffer(),
+          },
+        ])
+        .toFile(filePath)
+      await optimizePng(filePath, icons.png)
+    }),
+  )
 }
 
-async function generateMaskableIcons(type: IconType, icons: ResolvedIcons, svgLogo: string, folder: string) {
+async function generateMaskableIcons(
+  type: IconType,
+  icons: ResolvedIcons,
+  svgLogo: string,
+  folder: string,
+) {
   const { sizes, padding, resizeOptions } = icons[type]
-  await Promise.all(sizes.map(async (size) => {
-    const filePath = resolve(folder, icons.iconName(type, size))
-    await sharp({
-      create: {
-        width: size,
-        height: size,
-        channels: 4,
-        background: resizeOptions?.background ?? 'white',
-      },
-    }).composite([{
-      input: await sharp(svgLogo)
-        .resize(
-          Math.round(size * (1 - padding)),
-          Math.round(size * (1 - padding)),
-          resizeOptions,
-        )
-        .toBuffer(),
-    }]).toFile(filePath)
-    await optimizePng(filePath, icons.png)
-  }))
+  await Promise.all(
+    sizes.map(async (size) => {
+      const filePath = resolve(folder, icons.iconName(type, size))
+      await sharp({
+        create: {
+          width: size,
+          height: size,
+          channels: 4,
+          background: resizeOptions?.background ?? 'white',
+        },
+      })
+        .composite([
+          {
+            input: await sharp(svgLogo)
+              .resize(
+                Math.round(size * (1 - padding)),
+                Math.round(size * (1 - padding)),
+                resizeOptions,
+              )
+              .toBuffer(),
+          },
+        ])
+        .toFile(filePath)
+      await optimizePng(filePath, icons.png)
+    }),
+  )
 }
 
 async function generatePWAIconForEnv(folder: string, icons: ResolvedIcons) {
@@ -145,15 +166,17 @@ async function generatePWAIconForEnv(folder: string, icons: ResolvedIcons) {
   ])
 
   if (icons.ico) {
-    const {
-      icoName = size => `favicon-${size}x${size}.ico`,
-    } = icons.ico
-    await Promise.all(icons.ico.sizes.map(async (size) => {
-      const png = await sharp(
-        resolve(folder, icons.iconName('transparent', size).replace(TEMP_PNG_POSTFIX_RE, '.png')),
-      ).toFormat('png').toBuffer()
-      await writeFile(resolve(folder, icoName(size)), new Uint8Array(ico.encode([png])))
-    }))
+    const { icoName = (size) => `favicon-${size}x${size}.ico` } = icons.ico
+    await Promise.all(
+      icons.ico.sizes.map(async (size) => {
+        const png = await sharp(
+          resolve(folder, icons.iconName('transparent', size).replace(TEMP_PNG_POSTFIX_RE, '.png')),
+        )
+          .toFormat('png')
+          .toBuffer()
+        await writeFile(resolve(folder, icoName(size)), new Uint8Array(ico.encode([png])))
+      }),
+    )
   }
 }
 
@@ -179,27 +202,29 @@ async function generatePWAIcons(folders: string[], icons: Icons) {
   if (!transparent.resizeOptions)
     transparent.resizeOptions = { ...defaultIcons.transparent.resizeOptions }
 
-  if (!maskable.resizeOptions)
-    maskable.resizeOptions = { ...defaultIcons.maskable.resizeOptions }
+  if (!maskable.resizeOptions) maskable.resizeOptions = { ...defaultIcons.maskable.resizeOptions }
 
-  if (!apple.resizeOptions)
-    apple.resizeOptions = { ...defaultIcons.apple.resizeOptions }
+  if (!apple.resizeOptions) apple.resizeOptions = { ...defaultIcons.apple.resizeOptions }
 
-  await Promise.all(folders.map(folder => generatePWAIconForEnv(folder, {
-    png,
-    iconName,
-    transparent,
-    maskable,
-    apple,
-    ico,
-  })))
+  await Promise.all(
+    folders.map((folder) =>
+      generatePWAIconForEnv(folder, {
+        png,
+        iconName,
+        transparent,
+        maskable,
+        apple,
+        ico,
+      }),
+    ),
+  )
 }
 
 console.log('Generating Elk PWA Icons...')
 
 generatePWAIcons(publicFolders, <Icons>{
   transparent: { ...defaultIcons.transparent, sizes: [64, 192, 512] },
-  ico: { sizes: [64], icoName: _ => 'favicon.ico' },
+  ico: { sizes: [64], icoName: (_) => 'favicon.ico' },
   iconName: (type, size) => {
     switch (type) {
       case 'transparent':
@@ -210,4 +235,6 @@ generatePWAIcons(publicFolders, <Icons>{
         return 'apple-touch-icon-temp.png'
     }
   },
-}).then(() => console.log('Elk PWA Icons generated')).catch(console.error)
+})
+  .then(() => console.log('Elk PWA Icons generated'))
+  .catch(console.error)

@@ -29,16 +29,28 @@ function removeDisabledTranslation(code: string) {
 
 <template>
   <div>
-    <CommonCheckbox v-model="userSettings.preferences.hideTranslation" :label="$t('settings.preferences.hide_translation')" />
+    <CommonCheckbox
+      v-model="userSettings.preferences.hideTranslation"
+      :label="$t('settings.preferences.hide_translation')"
+    />
     <div v-if="!userSettings.preferences.hideTranslation" class="mt-1 ms-2">
-      <p class=" mb-2">
+      <p class="mb-2">
         {{ $t('settings.language.translations.hide_specific') }}
       </p>
       <div class="ms-4">
         <ul>
-          <li v-for="langCode in userSettings.disabledTranslationLanguages" :key="langCode" class="flex items-center">
+          <li
+            v-for="langCode in userSettings.disabledTranslationLanguages"
+            :key="langCode"
+            class="flex items-center"
+          >
             <div>{{ ISO6391.getNativeName(langCode) }}</div>
-            <button class="btn-text" type="button" :title="$t('settings.language.translations.remove')" @click.prevent="removeDisabledTranslation(langCode)">
+            <button
+              class="btn-text"
+              type="button"
+              :title="$t('settings.language.translations.remove')"
+              @click.prevent="removeDisabledTranslation(langCode)"
+            >
               <span class="block i-ri:close-line" aria-hidden="true" />
             </button>
           </li>
@@ -49,7 +61,11 @@ function removeDisabledTranslation(code: string) {
             <option disabled selected :value="null">
               {{ $t('settings.language.translations.choose_language') }}
             </option>
-            <option v-for="availableOption in availableOptions" :key="availableOption.code" :value="availableOption.code">
+            <option
+              v-for="availableOption in availableOptions"
+              :key="availableOption.code"
+              :value="availableOption.code"
+            >
               {{ availableOption.nativeName }}
             </option>
           </select>

@@ -28,7 +28,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
     name: 'elk-pwa',
     configKey: 'pwa',
   },
-  defaults: nuxt => ({
+  defaults: (nuxt) => ({
     base: nuxt.options.app.baseURL,
     scope: nuxt.options.app.baseURL,
   }),
@@ -71,20 +71,27 @@ export default defineNuxtModule<VitePWANuxtOptions>({
       options.injectManifest.globDirectory = nitro.options.output.publicDir
     })
     nuxt.hook('vite:extend', ({ config }) => {
-      const plugin = config.plugins?.find(p => p && typeof p === 'object' && 'name' in p && p.name === 'vite-plugin-pwa')
+      const plugin = config.plugins?.find(
+        (p) => p && typeof p === 'object' && 'name' in p && p.name === 'vite-plugin-pwa',
+      )
       if (plugin)
-        throw new Error('Remove vite-plugin-pwa plugin from Vite Plugins entry in Nuxt config file!')
+        throw new Error(
+          'Remove vite-plugin-pwa plugin from Vite Plugins entry in Nuxt config file!',
+        )
     })
     nuxt.hook('vite:extendConfig', async (viteInlineConfig, { isClient }) => {
-      const plugin = viteInlineConfig.plugins!.find(p => p && typeof p === 'object' && 'name' in p && p.name === 'vite-plugin-pwa')
+      const plugin = viteInlineConfig.plugins!.find(
+        (p) => p && typeof p === 'object' && 'name' in p && p.name === 'vite-plugin-pwa',
+      )
       if (plugin)
-        throw new Error('Remove vite-plugin-pwa plugin from Vite Plugins entry in Nuxt config file!')
+        throw new Error(
+          'Remove vite-plugin-pwa plugin from Vite Plugins entry in Nuxt config file!',
+        )
 
       webmanifests = await createI18n()
       const generateManifest = (entry: string) => {
         const manifest = webmanifests![entry]
-        if (!manifest)
-          throw new Error(`No webmanifest found for locale/theme ${entry}`)
+        if (!manifest) throw new Error(`No webmanifest found for locale/theme ${entry}`)
         return JSON.stringify(manifest)
       }
       if (isClient) {
@@ -92,8 +99,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
           name: 'elk:pwa:locales:build',
           apply: 'build',
           async writeBundle(_options, bundle) {
-            if (options.disable || !bundle)
-              return
+            if (options.disable || !bundle) return
             await mkdir(manifestDir, { recursive: true })
             for (const wm in webmanifests)
               await writeFile(join(manifestDir, `manifest-${wm}.webmanifest`), generateManifest(wm))
@@ -113,19 +119,21 @@ export default defineNuxtModule<VitePWANuxtOptions>({
           ]
 
           const folder = dirname(fileURLToPath(import.meta.url))
-          const useIcons = mappedIcons.reduce((acc, icon) => {
-            icon.src = `${nuxt.options.app.baseURL}${icon.src}`
-            acc[icon.src] = {
-              ...icon,
-              data: readFile(resolve(join(folder, '../../public-dev', icon.src))),
-            }
-            return acc
-          }, <Record<string, ResolvedPwaDevIcon>>{})
+          const useIcons = mappedIcons.reduce(
+            (acc, icon) => {
+              icon.src = `${nuxt.options.app.baseURL}${icon.src}`
+              acc[icon.src] = {
+                ...icon,
+                data: readFile(resolve(join(folder, '../../public-dev', icon.src))),
+              }
+              return acc
+            },
+            <Record<string, ResolvedPwaDevIcon>>{},
+          )
           const localeMatcher = new RegExp(`^${nuxt.options.app.baseURL}manifest-(.*).webmanifest$`)
           server.middlewares.use(async (req, res, next) => {
             const url = req.url
-            if (!url)
-              return next()
+            if (!url) return next()
 
             const match = url.match(localeMatcher)
             const entry = match && webmanifests![match[1]]
@@ -139,8 +147,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
             }
 
             const icon = useIcons[url]
-            if (!icon)
-              return next()
+            if (!icon) return next()
 
             res.statusCode = 200
             res.setHeader('Content-Type', icon.type)
@@ -155,7 +162,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
       const plugins = VitePWA(options)
       viteInlineConfig.plugins!.push(plugins)
       if (isClient)
-        vitePwaClientPlugin = plugins.find(p => p.name === 'vite-plugin-pwa') as Plugin
+        vitePwaClientPlugin = plugins.find((p) => p.name === 'vite-plugin-pwa') as Plugin
     })
 
     if (nuxt.options.dev) {
@@ -167,8 +174,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
         next()
       }
       nuxt.hook('vite:serverCreated', (viteServer, { isServer }) => {
-        if (isServer)
-          return
+        if (isServer) return
 
         viteServer.middlewares.stack.push({ route: webManifest, handle: emptyHandle })
         if (webmanifests) {
@@ -184,8 +190,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
 
       if (!options.strategies || options.strategies === 'generateSW') {
         nuxt.hook('vite:serverCreated', (viteServer, { isServer }) => {
-          if (isServer)
-            return
+          if (isServer) return
 
           viteServer.middlewares.stack.push({ route: workbox, handle: emptyHandle })
         })
@@ -193,8 +198,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
           // todo: cleanup dev-dist folder
         })
       }
-    }
-    else {
+    } else {
       nuxt.hook('nitro:config', async (nitroConfig) => {
         nitroConfig.routeRules = nitroConfig.routeRules || {}
         nitroConfig.routeRules!['/sw.js'] = {

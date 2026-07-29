@@ -11,8 +11,7 @@ export default defineDriver((driver: Driver = memory()) => {
   return {
     ...driver,
     async hasItem(key: string) {
-      if (await memoryDriver.hasItem(key, {}))
-        return true
+      if (await memoryDriver.hasItem(key, {})) return true
 
       return driver.hasItem(key, {})
     },
@@ -25,11 +24,10 @@ export default defineDriver((driver: Driver = memory()) => {
     async getItem(key: string) {
       let value = await memoryDriver.getItem(key)
 
-      if (value !== null)
-        return value
+      if (value !== null) return value
 
       value = await driver.getItem(key)
-      memoryDriver.setItem?.(key, value as string, {})
+      void memoryDriver.setItem?.(key, value as string, {})
 
       return value
     },

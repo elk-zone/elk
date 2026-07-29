@@ -24,15 +24,16 @@ export function useThreadComposer(draftKey: DraftKey, initial?: () => DraftItem)
     }
 
     const lastItem = draftItems.value.at(-1)
-    if (!lastItem)
-      return
+    if (!lastItem) return
 
-    draftItems.value.push(getDefaultDraftItem({
-      language: lastItem.params.language,
-      sensitive: lastItem.params.sensitive,
-      spoilerText: lastItem.params.spoilerText,
-      visibility: lastItem.params.visibility,
-    }))
+    draftItems.value.push(
+      getDefaultDraftItem({
+        language: lastItem.params.language,
+        sensitive: lastItem.params.sensitive,
+        spoilerText: lastItem.params.spoilerText,
+        visibility: lastItem.params.visibility,
+      }),
+    )
   }
 
   /**
@@ -54,8 +55,7 @@ export function useThreadComposer(draftKey: DraftKey, initial?: () => DraftItem)
     let lastPublishedStatus: mastodon.v1.Status | null = null
     let amountPublished = 0
     for (const draftItem of draftItems.value) {
-      if (lastPublishedStatus)
-        draftItem.params.inReplyToId = lastPublishedStatus.id
+      if (lastPublishedStatus) draftItem.params.inReplyToId = lastPublishedStatus.id
 
       const { publishDraft, failedMessages } = usePublish({
         draftItem: ref(draftItem),
@@ -69,8 +69,7 @@ export function useThreadComposer(draftKey: DraftKey, initial?: () => DraftItem)
       if (status) {
         lastPublishedStatus = status
         amountPublished++
-      }
-      else {
+      } else {
         allFailedMessages.push(...failedMessages.value)
         // Stop publishing if one fails
         break
@@ -81,12 +80,11 @@ export function useThreadComposer(draftKey: DraftKey, initial?: () => DraftItem)
     threadIsSending.value = false
 
     // If we have errors, return them
-    if (allFailedMessages.length > 0)
-      return allFailedMessages
+    if (allFailedMessages.length > 0) return allFailedMessages
 
     // If the thread was a reply and all items were published, jump to it
     if (isAReplyThread && lastPublishedStatus && draftItems.value.length === 0)
-      navigateToStatus({ status: lastPublishedStatus })
+      void navigateToStatus({ status: lastPublishedStatus })
 
     return lastPublishedStatus
   }

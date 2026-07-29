@@ -1,20 +1,13 @@
 import type { ExtendedRegExpMatchArray, InputRuleFinder, nodeInputRule } from '@tiptap/core'
 import type { NodeType } from '@tiptap/pm/model'
-import {
-  callOrReturn,
-  InputRule,
-  mergeAttributes,
-  Node,
-  nodePasteRule,
-} from '@tiptap/core'
+import { callOrReturn, InputRule, mergeAttributes, Node, nodePasteRule } from '@tiptap/core'
 import { emojiRegEx, getEmojiAttributes } from '~~/config/emojis'
 
 function wrapHandler<T extends (...args: any[]) => any>(handler: T): T {
   return <T>((...args: any[]) => {
     try {
       return handler(...args)
-    }
-    catch {
+    } catch {
       return null
     }
   })
@@ -74,12 +67,14 @@ export const TiptapPluginEmoji = Node.create({
 
   addCommands() {
     return {
-      insertEmoji: code => ({ commands }) => {
-        return commands.insertContent({
-          type: this.name,
-          attrs: getEmojiAttributes(code),
-        })
-      },
+      insertEmoji:
+        (code) =>
+        ({ commands }) => {
+          return commands.insertContent({
+            type: this.name,
+            attrs: getEmojiAttributes(code),
+          })
+        },
     }
   },
 

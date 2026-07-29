@@ -22,10 +22,7 @@ function reverseHistory(items: mastodon.v1.StatusEdit[]) {
 <template>
   <CommonPaginator :paginator="paginator" key-prop="createdAt" :preprocess="reverseHistory">
     <template #default="{ items, item, index }">
-      <CommonDropdownItem
-        px="0.5"
-        @click="showHistory(item)"
-      >
+      <CommonDropdownItem px="0.5" @click="showHistory(item)">
         {{ getDisplayName(item.account) }}
 
         <template v-if="index === items.length - 1">

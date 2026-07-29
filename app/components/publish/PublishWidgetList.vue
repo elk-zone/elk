@@ -31,7 +31,8 @@ function isFirstItem(index: number) {
 <template>
   <template v-if="isHydrated && currentUser">
     <PublishWidget
-      v-for="(_, index) in threadItems" :key="`${draftKey}-${index}`"
+      v-for="(_, index) in threadItems"
+      :key="`${draftKey}-${index}`"
       v-bind="$attrs"
       :thread-composer="threadComposer"
       :draft-key="draftKey"

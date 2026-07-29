@@ -4,7 +4,10 @@ import type { RemovableRef } from '@vueuse/core'
 import type { mastodon } from 'masto'
 import type { EffectScope, MaybeRefOrGetter, Ref } from 'vue'
 import type { ElkMasto } from './masto/masto'
-import type { PushNotificationPolicy, PushNotificationRequest } from '~/composables/push-notifications/types'
+import type {
+  PushNotificationPolicy,
+  PushNotificationRequest,
+} from '~/composables/push-notifications/types'
 import { withoutProtocol } from 'ufo'
 import {
   DEFAULT_POST_CHARS_LIMIT,
@@ -17,10 +20,19 @@ import {
 
 const mock = process.mock
 
-const users: Ref<UserLogin[]> | RemovableRef<UserLogin[]> = import.meta.server ? ref<UserLogin[]>([]) : ref<UserLogin[]>([]) as RemovableRef<UserLogin[]>
+const users: Ref<UserLogin[]> | RemovableRef<UserLogin[]> = import.meta.server
+  ? ref<UserLogin[]>([])
+  : (ref<UserLogin[]>([]) as RemovableRef<UserLogin[]>)
 const nodes = useLocalStorage<Record<string, any>>(STORAGE_KEY_NODES, {}, { deep: true })
-export const currentUserHandle = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER_HANDLE, mock ? mock.user.account.id : '')
-export const instanceStorage = useLocalStorage<Record<string, mastodon.v2.Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
+export const currentUserHandle = useLocalStorage<string>(
+  STORAGE_KEY_CURRENT_USER_HANDLE,
+  mock ? mock.user.account.id : '',
+)
+export const instanceStorage = useLocalStorage<Record<string, mastodon.v2.Instance>>(
+  STORAGE_KEY_SERVERS,
+  mock ? mock.server : {},
+  { deep: true },
+)
 
 export type ElkInstance = Partial<mastodon.v2.Instance> & {
   /** support GoToSocial */
@@ -34,9 +46,8 @@ export const currentUser = computed<UserLogin | undefined>(() => {
   const handle = currentUserHandle.value
   const currentUsers = users.value
   if (handle) {
-    const user = currentUsers.find(user => user.account?.acct === handle)
-    if (user)
-      return user
+    const user = currentUsers.find((user) => user.account?.acct === handle)
+    if (user) return user
   }
   // Fallback to the first account
   return currentUsers.length ? currentUsers[0] : undefined
@@ -47,7 +58,7 @@ export const currentInstance = computed<null | ElkInstance>(() => {
   const user = currentUser.value
   const storage = instanceStorage.value
   const instance = publicInstance.value
-  return user ? storage[user.server] ?? null : instance
+  return user ? (storage[user.server] ?? null) : instance
 })
 
 export function getInstanceDomain(instance: ElkInstance) {
@@ -57,7 +68,9 @@ export function getInstanceDomain(instance: ElkInstance) {
 export const publicServer = ref('')
 export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)
 
-export const currentNodeInfo = computed<null | Record<string, any>>(() => nodes.value[currentServer.value] || null)
+export const currentNodeInfo = computed<null | Record<string, any>>(
+  () => nodes.value[currentServer.value] || null,
+)
 export const isGotoSocial = computed(() => currentNodeInfo.value?.software?.name === 'gotosocial')
 export const isGlitchEdition = computed(() => currentInstance.value?.version?.includes('+glitch'))
 // TODO: currentNodeInfo is null for qoto instance
@@ -70,7 +83,9 @@ export function useSelfAccount(user: MaybeRefOrGetter<mastodon.v1.Account | unde
   return computed(() => currentUser.value && toValue(user)?.id === currentUser.value.account.id)
 }
 
-export const characterLimit = computed(() => currentInstance.value?.configuration?.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
+export const characterLimit = computed(
+  () => currentInstance.value?.configuration?.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT,
+)
 
 export async function loginTo(
   masto: ElkMasto,
@@ -81,9 +96,12 @@ export async function loginTo(
 
   // GoToSocial only API
   const url = `https://${user.server}`
-  fetch(`${url}/nodeinfo/2.0`).then(r => r.json()).then((info) => {
-    nodes.value[user.server] = info
-  }).catch(() => undefined)
+  fetch(`${url}/nodeinfo/2.0`)
+    .then((r) => r.json())
+    .then((info) => {
+      nodes.value[user.server] = info
+    })
+    .catch(() => undefined)
 
   if (!user?.token) {
     publicServer.value = user.server
@@ -92,19 +110,18 @@ export async function loginTo(
   }
 
   function getUser() {
-    return users.value.find(u => u.server === user.server && u.token === user.token)
+    return users.value.find((u) => u.server === user.server && u.token === user.token)
   }
 
   const account = getUser()?.account
-  if (account)
-    currentUserHandle.value = account.acct
+  if (account) currentUserHandle.value = account.acct
 
   const [me, pushSubscription] = await Promise.all([
     fetchAccountInfo(client.value, user.server),
     // if PWA is not enabled, don't get push subscription
     useAppConfig().pwaEnabled
-    // we get 404 response instead empty data
-      ? client.value.v1.push.subscription.fetch().catch(() => Promise.resolve(undefined))
+      ? // we get 404 response instead empty data
+        client.value.v1.push.subscription.fetch().catch(() => Promise.resolve(undefined))
       : Promise.resolve(undefined),
   ])
 
@@ -112,8 +129,7 @@ export async function loginTo(
   if (existingUser) {
     existingUser.account = me
     existingUser.pushSubscription = pushSubscription
-  }
-  else {
+  } else {
     users.value.push({
       ...user,
       account: me,
@@ -155,8 +171,7 @@ export async function fetchAccountInfo(client: mastodon.rest.Client, server: str
   const fetchPrefs = async (): Promise<Partial<mastodon.v1.Preference>> => {
     try {
       return await client.v1.preferences.fetch()
-    }
-    catch (e) {
+    } catch (e) {
       console.warn(`Cannot fetch preferences: ${e}`)
       return {}
     }
@@ -203,29 +218,29 @@ export async function removePushNotificationData(user: UserLogin, fromSWPushMana
   const pwaEnabled = useAppConfig().pwaEnabled
   const pwa = useNuxtApp().$pwa
   const registrationError = pwa?.registrationError === true
-  const unregister = pwaEnabled && !registrationError && pwa?.registrationError === true && fromSWPushManager
+  const unregister =
+    pwaEnabled && !registrationError && pwa?.registrationError === true && fromSWPushManager
 
   // we remove the sw push manager if required and there are no more accounts with subscriptions
-  if (unregister && (users.value.length === 0 || users.value.every(u => !u.pushSubscription))) {
+  if (unregister && (users.value.length === 0 || users.value.every((u) => !u.pushSubscription))) {
     // clear sw push subscription
     try {
       const registration = await navigator.serviceWorker.ready
       const subscription = await registration.pushManager.getSubscription()
-      if (subscription)
-        await subscription.unsubscribe()
-    }
-    catch {
+      if (subscription) await subscription.unsubscribe()
+    } catch {
       // just ignore
     }
   }
 }
 
 export async function removePushNotifications(user: UserLogin) {
-  if (!user.pushSubscription)
-    return
+  if (!user.pushSubscription) return
 
   // unsubscribe push notifications
-  await useMastoClient().v1.push.subscription.remove().catch(() => Promise.resolve())
+  await useMastoClient()
+    .v1.push.subscription.remove()
+    .catch(() => Promise.resolve())
 }
 
 export async function switchUser(user: UserLogin) {
@@ -246,14 +261,13 @@ export async function switchUser(user: UserLogin) {
 
 export async function signOut() {
   // TODO: confirm
-  if (!currentUser.value)
-    return
+  if (!currentUser.value) return
 
   const masto = useMasto()
 
   const _currentUserId = currentUser.value.account.id
 
-  const index = users.value.findIndex(u => u.account?.id === _currentUserId)
+  const index = users.value.findIndex((u) => u.account?.id === _currentUserId)
 
   if (index !== -1) {
     // Clear stale data
@@ -273,8 +287,7 @@ export async function signOut() {
   // Set currentUserId to next user if available
   currentUserHandle.value = users.value[0]?.account?.acct
 
-  if (!currentUserHandle.value)
-    await useRouter().push('/')
+  if (!currentUserHandle.value) await useRouter().push('/')
 
   await loginTo(masto, currentUser.value || { server: publicServer.value })
 }
@@ -298,11 +311,11 @@ interface UseUserLocalStorageCache {
  * @param initial
  */
 export function useUserLocalStorage<T extends object>(key: string, initial: () => T): Ref<T> {
-  if (import.meta.server || import.meta.test)
-    return shallowRef(initial())
+  if (import.meta.server || import.meta.test) return shallowRef(initial())
 
   // @ts-expect-error bind value to the function
-  const map: Map<string, UseUserLocalStorageCache> = useUserLocalStorage._ = useUserLocalStorage._ || new Map()
+  const map: Map<string, UseUserLocalStorageCache> = (useUserLocalStorage._ =
+    useUserLocalStorage._ || new Map())
 
   if (!map.has(key)) {
     const scope = effectScope(true)
@@ -310,9 +323,7 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
       const all = useLocalStorage<Record<string, T>>(key, {}, { deep: true })
 
       return computed(() => {
-        const id = currentUser.value?.account.id
-          ? currentUser.value.account.acct
-          : '[anonymous]'
+        const id = currentUser.value?.account.id ? currentUser.value.account.acct : '[anonymous]'
 
         // Backward compatibility, respect webDomain in acct
         // In previous versions, acct was username@server instead of username@webDomain
@@ -345,17 +356,14 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
  * @param account
  */
 export function clearUserLocalStorage(account?: mastodon.v1.Account) {
-  if (!account)
-    account = currentUser.value?.account
-  if (!account)
-    return
+  if (!account) account = currentUser.value?.account
+  if (!account) return
 
   const id = `${account.acct}@${currentInstance.value ? getInstanceDomain(currentInstance.value) : currentServer.value}`
 
   // @ts-expect-error bind value to the function
   const cacheMap = useUserLocalStorage._ as Map<string, UseUserLocalStorageCache> | undefined
   cacheMap?.forEach(({ value }) => {
-    if (value.value[id])
-      delete value.value[id]
+    if (value.value[id]) delete value.value[id]
   })
 }

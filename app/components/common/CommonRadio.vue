@@ -18,12 +18,7 @@ const modelValue = defineModel()
       :class="modelValue === value ? 'i-ri:radio-button-line' : 'i-ri:checkbox-blank-circle-line'"
       aria-hidden="true"
     />
-    <input
-      v-model="modelValue"
-      type="radio"
-      :value="value"
-      sr-only
-    >
+    <input v-model="modelValue" type="radio" :value="value" sr-only />
   </label>
 </template>
 

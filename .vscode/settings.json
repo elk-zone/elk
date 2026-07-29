@@ -1,21 +1,11 @@
 {
-  "cSpell.words": [
-    "masto",
-    "Nuxtodon",
-    "unmute",
-    "unstorage"
-  ],
+  "cSpell.words": ["masto", "Nuxtodon", "unmute", "unstorage"],
   "files.associations": {
     "*.css": "postcss"
   },
-  "i18n-ally.keysInUse": [
-    "time_ago_options.*",
-    "visibility.*"
-  ],
+  "i18n-ally.keysInUse": ["time_ago_options.*", "visibility.*"],
   "i18n-ally.keystyle": "nested",
-  "i18n-ally.localesPaths": [
-    "locales"
-  ],
+  "i18n-ally.localesPaths": ["locales"],
   "i18n-ally.preferredDelimiter": "_",
   "i18n-ally.sortKeys": true,
   "i18n-ally.sourceLanguage": "en",
@@ -30,7 +20,8 @@
   // Auto fix
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
-    "source.organizeImports": "never"
+    "source.organizeImports": "never",
+    "source.fixAll.oxc": "explicit"
   },
 
   // Silent the stylistic rules in you IDE, but still auto fix them
@@ -58,5 +49,20 @@
     "json",
     "jsonc",
     "yaml"
-  ]
+  ],
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "oxc.fmt.configPath": "./vite.config.ts",
+  "editor.formatOnSaveMode": "file"
 }

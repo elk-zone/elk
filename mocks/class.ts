@@ -1,3 +1,1 @@
-export default class SomeClass {
-
-}
+export default class SomeClass {}

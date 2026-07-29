@@ -16,7 +16,6 @@
   "action": {
     "bookmark": "Afig als marcadors",
     "open_image_preview_dialog": "Obri el diàleg de vista prèvia de la imatge"
-
   },
   "command": {
     "n_people_in_the_past_n_days": "{0} persones en els últims {1} dies",

@@ -25,31 +25,29 @@ export const gitBranch = process.env.BRANCH
  *
  * Whether triggered by PR, `deploy-preview` or `dev`.
  */
-export const isPreview = isPR || process.env.CONTEXT === 'deploy-preview' || process.env.CONTEXT === 'dev'
+export const isPreview =
+  isPR || process.env.CONTEXT === 'deploy-preview' || process.env.CONTEXT === 'dev'
 
 const git = Git()
 export async function getGitInfo() {
   let branch
   try {
-    branch = gitBranch || await git.revparse(['--abbrev-ref', 'HEAD'])
-  }
-  catch {
+    branch = gitBranch || (await git.revparse(['--abbrev-ref', 'HEAD']))
+  } catch {
     branch = 'unknown'
   }
 
   let commit
   try {
     commit = await git.revparse(['HEAD'])
-  }
-  catch {
+  } catch {
     commit = 'unknown'
   }
 
   let shortCommit
   try {
     shortCommit = await git.revparse(['--short=7', 'HEAD'])
-  }
-  catch {
+  } catch {
     shortCommit = 'unknown'
   }
 

@@ -46,9 +46,16 @@ const navButtons: NavButton[] = [
 const defaultSelectedNavButtonNames: NavButtonName[] = currentUser.value
   ? ['home', 'search', 'notification', 'mention', 'moreMenu']
   : ['explore', 'local', 'federated', 'moreMenu']
-const selectedNavButtonNames = useLocalStorage<NavButtonName[]>(STORAGE_KEY_BOTTOM_NAV_BUTTONS, defaultSelectedNavButtonNames)
+const selectedNavButtonNames = useLocalStorage<NavButtonName[]>(
+  STORAGE_KEY_BOTTOM_NAV_BUTTONS,
+  defaultSelectedNavButtonNames,
+)
 
-const selectedNavButtons = computed(() => selectedNavButtonNames.value.map(name => navButtons.find(navButton => navButton.name === name)))
+const selectedNavButtons = computed(() =>
+  selectedNavButtonNames.value.map((name) =>
+    navButtons.find((navButton) => navButton.name === name),
+  ),
+)
 
 // only one icon can be lit up at the same time
 const moreMenuVisible = ref(false)
@@ -57,10 +64,21 @@ const moreMenuVisible = ref(false)
 <template>
   <!-- This weird styles above are used for scroll locking, don't change it unless you know exactly what you're doing. -->
   <nav
-    h-14 border="t base" flex flex-row text-xl
-    of-y-scroll scrollbar-hide overscroll-none
+    h-14
+    border="t base"
+    flex
+    flex-row
+    text-xl
+    of-y-scroll
+    scrollbar-hide
+    overscroll-none
     class="after-content-empty after:(h-[calc(100%+0.5px)] w-0.1px pointer-events-none)"
   >
-    <Component :is="navButton!.component" v-for="navButton in selectedNavButtons" :key="navButton!.name" :active-class="moreMenuVisible ? '' : 'text-primary'" />
+    <Component
+      :is="navButton!.component"
+      v-for="navButton in selectedNavButtons"
+      :key="navButton!.name"
+      :active-class="moreMenuVisible ? '' : 'text-primary'"
+    />
   </nav>
 </template>

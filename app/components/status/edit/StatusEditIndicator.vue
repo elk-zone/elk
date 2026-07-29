@@ -17,9 +17,12 @@ const formatted = useFormattedDateTime(editedAt)
       <time
         :title="editedAt"
         :datetime="editedAt"
-        font-bold underline decoration-dashed
+        font-bold
+        underline
+        decoration-dashed
         text-secondary
-      >&#160;*&#160;</time>
+        >&#160;*&#160;</time
+      >
     </CommonTooltip>
 
     <CommonDropdown v-else>

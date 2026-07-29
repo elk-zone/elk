@@ -6,7 +6,7 @@ const { conversation } = defineProps<{
 }>()
 
 const withAccounts = computed(() =>
-  conversation.accounts.filter(account => account.id !== conversation.lastStatus?.account.id),
+  conversation.accounts.filter((account) => account.id !== conversation.lastStatus?.account.id),
 )
 </script>
 
@@ -18,7 +18,13 @@ const withAccounts = computed(() =>
           <p me-1>
             {{ $t('conversation.with') }}
           </p>
-          <AccountAvatar v-for="account in withAccounts" :key="account.id" h-5 w-5 :account="account" />
+          <AccountAvatar
+            v-for="account in withAccounts"
+            :key="account.id"
+            h-5
+            w-5
+            :account="account"
+          />
         </div>
       </template>
     </StatusCard>

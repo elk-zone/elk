@@ -16,7 +16,7 @@ const {
 
 const emit = defineEmits(['click'])
 
-const type = computed(() => is === 'button' ? 'button' : null)
+const type = computed(() => (is === 'button' ? 'button' : null))
 
 const { hide } = useDropdownContext() || {}
 
@@ -55,7 +55,12 @@ useCommand({
     ref="el"
     :type="type"
     w-full
-    flex gap-3 items-center cursor-pointer px4 py3
+    flex
+    gap-3
+    items-center
+    cursor-pointer
+    px4
+    py3
     select-none
     hover-bg-active
     :aria-label="text"

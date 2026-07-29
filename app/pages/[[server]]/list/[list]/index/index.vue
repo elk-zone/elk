@@ -9,9 +9,13 @@ const listId = computed(() => params.list as string)
 const client = useMastoClient()
 
 const paginator = client.v1.timelines.list.$select(listId.value).list()
-const stream = useStreaming(client => client.list.subscribe({ list: listId.value }))
+const stream = useStreaming((client) => client.list.subscribe({ list: listId.value }))
 </script>
 
 <template>
-  <TimelinePaginator v-bind="{ paginator, stream }" :preprocess="filterAndReorderTimeline" context="home" />
+  <TimelinePaginator
+    v-bind="{ paginator, stream }"
+    :preprocess="filterAndReorderTimeline"
+    context="home"
+  />
 </template>

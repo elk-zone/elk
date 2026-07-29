@@ -9,9 +9,10 @@ const timeAgoOptions = useTimeAgoOptions()
 const draftKey = ref<DraftKey>('home')
 
 const draftKeys = computed<DraftKey[]>(() => Object.keys(currentUserDrafts.value) as DraftKey[])
-const nonEmptyDrafts = computed(() => draftKeys.value
-  .filter(i => i !== draftKey.value && !isEmptyDraft(currentUserDrafts.value[i]))
-  .map(i => [i, currentUserDrafts.value[i]] as const),
+const nonEmptyDrafts = computed(() =>
+  draftKeys.value
+    .filter((i) => i !== draftKey.value && !isEmptyDraft(currentUserDrafts.value[i]))
+    .map((i) => [i, currentUserDrafts.value[i]] as const),
 )
 
 watchEffect(() => {
@@ -19,11 +20,9 @@ watchEffect(() => {
   if (quotedStatusId) {
     draftKey.value = 'quote'
     currentUserDrafts.value[draftKey.value] = [getDefaultDraftItem({ quotedStatusId })]
-  }
-  else {
+  } else {
     const key = route.query.draft?.toString() || 'home'
-    if (isDraftKey(key))
-      draftKey.value = key
+    if (isDraftKey(key)) draftKey.value = key
   }
 })
 
@@ -32,8 +31,7 @@ onDeactivated(() => {
 })
 
 function firstDraftItemOf(drafts: DraftItem | Array<DraftItem>): DraftItem {
-  if (Array.isArray(drafts))
-    return drafts[0]
+  if (Array.isArray(drafts)) return drafts[0]
   return drafts
 }
 </script>
@@ -43,14 +41,26 @@ function firstDraftItemOf(drafts: DraftItem | Array<DraftItem>): DraftItem {
     <div inline-flex justify-end h-8>
       <VDropdown v-if="nonEmptyDrafts.length" placement="bottom-end">
         <button btn-text flex="inline center">
-          {{ $t('compose.drafts', nonEmptyDrafts.length, { named: { v: formatNumber(nonEmptyDrafts.length) } }) }}&#160;
+          {{
+            $t('compose.drafts', nonEmptyDrafts.length, {
+              named: { v: formatNumber(nonEmptyDrafts.length) },
+            })
+          }}&#160;
           <div aria-hidden="true" i-ri:arrow-down-s-line />
         </button>
         <template #popper="{ hide }">
           <div flex="~ col">
             <NuxtLink
-              v-for="[key, drafts] of nonEmptyDrafts" :key="key" border="b base" text-left py2 px4
-              hover:bg-active :replace="true" :to="`/compose?draft=${encodeURIComponent(key)}`" @click="hide()"
+              v-for="[key, drafts] of nonEmptyDrafts"
+              :key="key"
+              border="b base"
+              text-left
+              py2
+              px4
+              hover:bg-active
+              :replace="true"
+              :to="`/compose?draft=${encodeURIComponent(key)}`"
+              @click="hide()"
             >
               <div>
                 <div flex="~ gap-1" items-center>
@@ -58,7 +68,10 @@ function firstDraftItemOf(drafts: DraftItem | Array<DraftItem>): DraftItem {
                     <code>{{ key }}</code>
                   </i18n-t>
                   <span v-if="firstDraftItemOf(drafts).lastUpdated" text-secondary text-sm>
-                    &middot; {{ formatTimeAgo(new Date(firstDraftItemOf(drafts).lastUpdated), timeAgoOptions) }}
+                    &middot;
+                    {{
+                      formatTimeAgo(new Date(firstDraftItemOf(drafts).lastUpdated), timeAgoOptions)
+                    }}
                   </span>
                 </div>
                 <div text-secondary>

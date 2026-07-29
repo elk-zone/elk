@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
-import { toggleBlockAccount, toggleBlockDomain, toggleMuteAccount } from '~/composables/masto/relationship'
+import {
+  toggleBlockAccount,
+  toggleBlockDomain,
+  toggleMuteAccount,
+} from '~/composables/masto/relationship'
 
 const { account } = defineProps<{
   account: mastodon.v1.Account
@@ -32,12 +36,13 @@ async function toggleReblogs() {
       confirm: t('confirm.show_reblogs.confirm'),
       cancel: t('confirm.show_reblogs.cancel'),
     })
-    if (dialogChoice.choice !== 'confirm')
-      return
+    if (dialogChoice.choice !== 'confirm') return
   }
 
   const showingReblogs = !relationship.value?.showingReblogs
-  relationship.value = await client.value.v1.accounts.$select(account.id).follow({ reblogs: showingReblogs })
+  relationship.value = await client.value.v1.accounts
+    .$select(account.id)
+    .follow({ reblogs: showingReblogs })
 }
 
 async function addUserNote() {
@@ -45,8 +50,7 @@ async function addUserNote() {
 }
 
 async function removeUserNote() {
-  if (!relationship.value!.note || relationship.value!.note.length === 0)
-    return
+  if (!relationship.value!.note || relationship.value!.note.length === 0) return
 
   const newNote = await client.value.v1.accounts.$select(account.id).note.create({ comment: '' })
   relationship.value!.note = newNote.note
@@ -56,7 +60,17 @@ async function removeUserNote() {
 
 <template>
   <CommonDropdown :eager-mount="command">
-    <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group :aria-label="t('actions.more')">
+    <button
+      flex
+      gap-1
+      items-center
+      w-full
+      rounded
+      op75
+      hover="op100 text-purple"
+      group
+      :aria-label="t('actions.more')"
+    >
       <div rounded-5 p2 elk-group-hover="bg-purple/10">
         <div i-ri:more-2-fill />
       </div>
@@ -136,7 +150,7 @@ async function removeUserNote() {
             :text="$t('menu.mute_account', [`@${account.acct}`])"
             icon="i-ri:volume-mute-line"
             :command="command"
-            @click="toggleMuteAccount (relationship!, account)"
+            @click="toggleMuteAccount(relationship!, account)"
           />
           <CommonDropdownItem
             is="button"
@@ -144,7 +158,7 @@ async function removeUserNote() {
             :text="$t('menu.unmute_account', [`@${account.acct}`])"
             icon="i-ri:volume-up-fill"
             :command="command"
-            @click="toggleMuteAccount (relationship!, account)"
+            @click="toggleMuteAccount(relationship!, account)"
           />
 
           <CommonDropdownItem
@@ -153,7 +167,7 @@ async function removeUserNote() {
             :text="$t('menu.block_account', [`@${account.acct}`])"
             icon="i-ri:forbid-2-line"
             :command="command"
-            @click="toggleBlockAccount (relationship!, account)"
+            @click="toggleBlockAccount(relationship!, account)"
           />
           <CommonDropdownItem
             is="button"
@@ -161,7 +175,7 @@ async function removeUserNote() {
             :text="$t('menu.unblock_account', [`@${account.acct}`])"
             icon="i-ri:checkbox-circle-line"
             :command="command"
-            @click="toggleBlockAccount (relationship!, account)"
+            @click="toggleBlockAccount(relationship!, account)"
           />
 
           <template v-if="getServerName(account) !== currentServer">
@@ -194,19 +208,39 @@ async function removeUserNote() {
 
         <template v-else>
           <NuxtLink to="/pinned">
-            <CommonDropdownItem :text="$t('account.pinned')" icon="i-ri:pushpin-line" :command="command" />
+            <CommonDropdownItem
+              :text="$t('account.pinned')"
+              icon="i-ri:pushpin-line"
+              :command="command"
+            />
           </NuxtLink>
           <NuxtLink to="/favourites">
-            <CommonDropdownItem :text="$t('account.favourites')" :icon="useStarFavoriteIcon ? 'i-ri:star-line' : 'i-ri:heart-3-line'" :command="command" />
+            <CommonDropdownItem
+              :text="$t('account.favourites')"
+              :icon="useStarFavoriteIcon ? 'i-ri:star-line' : 'i-ri:heart-3-line'"
+              :command="command"
+            />
           </NuxtLink>
           <NuxtLink to="/mutes">
-            <CommonDropdownItem :text="$t('account.muted_users')" icon="i-ri:volume-mute-line" :command="command" />
+            <CommonDropdownItem
+              :text="$t('account.muted_users')"
+              icon="i-ri:volume-mute-line"
+              :command="command"
+            />
           </NuxtLink>
           <NuxtLink to="/blocks">
-            <CommonDropdownItem :text="$t('account.blocked_users')" icon="i-ri:forbid-2-line" :command="command" />
+            <CommonDropdownItem
+              :text="$t('account.blocked_users')"
+              icon="i-ri:forbid-2-line"
+              :command="command"
+            />
           </NuxtLink>
           <NuxtLink to="/domain_blocks">
-            <CommonDropdownItem :text="$t('account.blocked_domains')" icon="i-ri:shut-down-line" :command="command" />
+            <CommonDropdownItem
+              :text="$t('account.blocked_domains')"
+              icon="i-ri:shut-down-line"
+              :command="command"
+            />
           </NuxtLink>
         </template>
       </template>

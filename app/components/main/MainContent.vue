@@ -20,8 +20,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
 const sticky = computed(() => route.path?.startsWith('/settings/'))
 const containerClass = computed(() => {
   // we keep original behavior when not in settings page and when the window height is smaller than the container height
-  if (!isHydrated.value || !sticky.value || (windowHeight.value < containerHeight.value))
-    return null
+  if (!isHydrated.value || !sticky.value || windowHeight.value < containerHeight.value) return null
 
   return 'lg:sticky lg:top-0'
 })
@@ -41,18 +40,31 @@ const showBackButton = computed(() => {
 <template>
   <div ref="container" :class="containerClass">
     <div
-      sticky top-0 z-20
+      sticky
+      top-0
+      z-20
       pt="[env(safe-area-inset-top,0)]"
       bg="[rgba(var(--rgb-bg-base),0.7)]"
       :class="{
         'backdrop-blur': !getPreferences(userSettings, 'optimizeForLowPerformanceDevice'),
       }"
     >
-      <div flex="~ justify-between" min-h-53px px-2 py-1 :class="{ 'xl:hidden': $route.name !== 'tag' }" border="b base">
+      <div
+        flex="~ justify-between"
+        min-h-53px
+        px-2
+        py-1
+        :class="{ 'xl:hidden': $route.name !== 'tag' }"
+        border="b base"
+      >
         <div flex="~ items-center" w-full>
           <button
             v-if="backOnSmallScreen || showBackButton"
-            btn-text flex items-center p-3 xl:hidden
+            btn-text
+            flex
+            items-center
+            p-3
+            xl:hidden
             :aria-label="$t('nav.back')"
             @click="$router.go(-1)"
           >
@@ -75,7 +87,10 @@ const showBackButton = computed(() => {
       </slot>
     </div>
     <PwaInstallPrompt xl:hidden />
-    <div :class="isHydrated && wideLayout ? 'xl:w-full sm:max-w-600px' : 'sm:max-w-600px md:shrink-0'" m-auto>
+    <div
+      :class="isHydrated && wideLayout ? 'xl:w-full sm:max-w-600px' : 'sm:max-w-600px md:shrink-0'"
+      m-auto
+    >
       <div hidden :class="{ 'xl:block': $route.name !== 'tag' && !$slots.header }" h-6 />
       <slot />
     </div>

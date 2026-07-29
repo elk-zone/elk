@@ -11,14 +11,12 @@ import {
 declare const self: ServiceWorkerGlobalScope
 
 self.addEventListener('message', (event) => {
-  if (event.data === ELK_PAGE_LIFECYCLE_FROZEN)
-    closeDatabaseConnections()
+  if (event.data === ELK_PAGE_LIFECYCLE_FROZEN) closeDatabaseConnections()
 })
 
 export function onPush(event: PushEvent) {
   const promise = isClientFocused().then((isFocused) => {
-    if (isFocused)
-      return Promise.resolve()
+    if (isFocused) return Promise.resolve()
 
     const options: PushPayload = event.data!.json()
 
@@ -28,7 +26,10 @@ export function onPush(event: PushEvent) {
         return Promise.resolve(undefined)
       })
       .then((notificationInfo) => {
-        return self.registration.showNotification(options.title, createNotificationOptions(options, notificationInfo))
+        return self.registration.showNotification(
+          options.title,
+          createNotificationOptions(options, notificationInfo),
+        )
       })
   })
 
@@ -45,8 +46,8 @@ export function onNotificationClick(event: NotificationEvent) {
 }
 
 function findBestClient(clients: WindowClient[]) {
-  const focusedClient = clients.find(client => client.focused)
-  const visibleClient = clients.find(client => client.visibilityState === 'visible')
+  const focusedClient = clients.find((client) => client.focused)
+  const visibleClient = clients.find((client) => client.visibilityState === 'visible')
 
   return focusedClient || visibleClient || clients[0]
 }
@@ -56,7 +57,7 @@ async function openUrl(url: string) {
   // Chrome 42-48 does not support navigate
   if (clients.length !== 0 && 'navigate' in clients[0]) {
     const client = findBestClient(clients as WindowClient[])
-    await client.navigate(url).then(client => client?.focus())
+    await client.navigate(url).then((client) => client?.focus())
   }
 
   await self.clients.openWindow(url)
@@ -65,5 +66,7 @@ async function openUrl(url: string) {
 function isClientFocused() {
   return self.clients
     .matchAll({ type: 'window', includeUncontrolled: true })
-    .then(windowClients => Promise.resolve(windowClients.some(windowClient => windowClient.focused)))
+    .then((windowClients) =>
+      Promise.resolve(windowClients.some((windowClient) => windowClient.focused)),
+    )
 }

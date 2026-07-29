@@ -9,12 +9,9 @@ const { status, isPreview = false } = defineProps<{
 
 const gridColumnNumber = computed(() => {
   const num = status.mediaAttachments.length
-  if (num <= 1)
-    return 1
-  else if (num <= 4)
-    return 2
-  else
-    return 3
+  if (num <= 1) return 1
+  else if (num <= 4) return 2
+  else return 3
 })
 </script>
 

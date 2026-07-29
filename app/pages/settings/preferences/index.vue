@@ -67,9 +67,9 @@ const userSettings = useUserSettings()
         :checked="getPreferences(userSettings, 'enableDataSaving')"
         @click="togglePreferences('enableDataSaving')"
       >
-        {{ $t("settings.preferences.enable_data_saving") }}
+        {{ $t('settings.preferences.enable_data_saving') }}
         <template #description>
-          {{ $t("settings.preferences.enable_data_saving_description") }}
+          {{ $t('settings.preferences.enable_data_saving_description') }}
         </template>
       </SettingsToggleItem>
       <SettingsToggleItem
@@ -130,7 +130,7 @@ const userSettings = useUserSettings()
         :checked="getPreferences(userSettings, 'hideUsernameEmojis')"
         @click="togglePreferences('hideUsernameEmojis')"
       >
-        {{ $t("settings.preferences.hide_username_emojis") }}
+        {{ $t('settings.preferences.hide_username_emojis') }}
         <template #description>
           {{ $t('settings.preferences.hide_username_emojis_description') }}
         </template>
@@ -139,7 +139,7 @@ const userSettings = useUserSettings()
         :checked="getPreferences(userSettings, 'hideNews')"
         @click="togglePreferences('hideNews')"
       >
-        {{ $t("settings.preferences.hide_news") }}
+        {{ $t('settings.preferences.hide_news') }}
       </SettingsToggleItem>
       <SettingsToggleItem
         :checked="getPreferences(userSettings, 'hideRepliesInTimeline')"
@@ -172,7 +172,7 @@ const userSettings = useUserSettings()
         :checked="getPreferences(userSettings, 'zenMode')"
         @click="togglePreferences('zenMode')"
       >
-        {{ $t("settings.preferences.zen_mode") }}
+        {{ $t('settings.preferences.zen_mode') }}
         <template #description>
           {{ $t('settings.preferences.zen_mode_description') }}
         </template>

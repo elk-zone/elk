@@ -33,7 +33,11 @@ function toggleApply() {
         v-if="removable"
         :aria-label="$t('attachment.remove_label')"
         class="bg-black/75 hover:bg-red/75"
-        text-white px2 py2 rounded-full cursor-pointer
+        text-white
+        px2
+        py2
+        rounded-full
+        cursor-pointer
         @click="$emit('remove')"
       >
         <div i-ri:close-line text-3 text-6 md:text-3 />
@@ -48,7 +52,8 @@ function toggleApply() {
       v-model="isEditDialogOpen"
       :dialog-labelled-by="dialogLabelledBy"
       py-6
-      px-6 max-w-300
+      px-6
+      max-w-300
     >
       <div flex flex-col-reverse gap-5 md:flex-row>
         <div flex flex-col gap-2 justify-between>
@@ -56,11 +61,24 @@ function toggleApply() {
             {{ $t('attachment.edit_title') }}
           </h1>
           <div flex flex-col gap-2>
-            <textarea v-model="description" p-3 h-50 bg-base rounded-2 border-strong border-1 md:w-100 />
+            <textarea
+              v-model="description"
+              p-3
+              h-50
+              bg-base
+              rounded-2
+              border-strong
+              border-1
+              md:w-100
+            />
             <div flex flex-row-reverse>
               <PublishCharacterCounter :length="description.length" :max="maxDescriptionLength" />
             </div>
-            <button btn-outline :disabled="description.length > maxDescriptionLength" @click="toggleApply">
+            <button
+              btn-outline
+              :disabled="description.length > maxDescriptionLength"
+              @click="toggleApply"
+            >
               {{ $t('action.apply') }}
             </button>
           </div>

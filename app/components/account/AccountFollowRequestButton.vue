@@ -14,8 +14,7 @@ async function authorizeFollowRequest() {
   try {
     const newRel = await client.value.v1.followRequests.$select(account.id).authorize()
     Object.assign(relationship!, newRel)
-  }
-  catch (err) {
+  } catch (err) {
     console.error(err)
     relationship.value!.requestedBy = true
     relationship.value!.followedBy = false
@@ -27,8 +26,7 @@ async function rejectFollowRequest() {
   try {
     const newRel = await client.value.v1.followRequests.$select(account.id).reject()
     Object.assign(relationship!, newRel)
-  }
-  catch (err) {
+  } catch (err) {
     console.error(err)
     relationship.value!.requestedBy = true
   }
@@ -41,8 +39,12 @@ async function rejectFollowRequest() {
       <CommonTooltip :content="$t('account.authorize')">
         <button
           type="button"
-          rounded-full text-sm p2 border-1
-          hover:text-green transition-colors
+          rounded-full
+          text-sm
+          p2
+          border-1
+          hover:text-green
+          transition-colors
           @click="authorizeFollowRequest"
         >
           <span block text-current i-ri:check-fill />
@@ -51,8 +53,12 @@ async function rejectFollowRequest() {
       <CommonTooltip :content="$t('account.reject')">
         <button
           type="button"
-          rounded-full text-sm p2 border-1
-          hover:text-red transition-colors
+          rounded-full
+          text-sm
+          p2
+          border-1
+          hover:text-red
+          transition-colors
           @click="rejectFollowRequest"
         >
           <span block text-current i-ri:close-fill />

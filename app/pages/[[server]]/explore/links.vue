@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { STORAGE_KEY_HIDE_EXPLORE_NEWS_TIPS, STORAGE_KEY_LAST_ACCESSED_EXPLORE_ROUTE } from '~/constants'
+import {
+  STORAGE_KEY_HIDE_EXPLORE_NEWS_TIPS,
+  STORAGE_KEY_LAST_ACCESSED_EXPLORE_ROUTE,
+} from '~/constants'
 
 const EXPLORE_ROUTE_REGEX = /(.*\/explore\/?)/
 
@@ -29,7 +32,14 @@ onActivated(() => {
 
   <CommonPaginator v-bind="{ paginator }">
     <template #default="{ item }">
-      <StatusPreviewCard :card="item" border="!b base" rounded="!none" p="!4" small-picture-only root />
+      <StatusPreviewCard
+        :card="item"
+        border="!b base"
+        rounded="!none"
+        p="!4"
+        small-picture-only
+        root
+      />
     </template>
     <template #loading>
       <StatusPreviewCardSkeleton square root border="b base" />

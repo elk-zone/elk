@@ -11,7 +11,9 @@ const error = ref(false)
 
 const preferredMotion = usePreferredReducedMotion()
 const accountAvatarSrc = computed(() => {
-  return preferredMotion.value === 'reduce' ? (account?.avatarStatic ?? account.avatar) : account.avatar
+  return preferredMotion.value === 'reduce'
+    ? (account?.avatarStatic ?? account.avatar)
+    : account.avatar
 })
 </script>
 
@@ -21,7 +23,11 @@ const accountAvatarSrc = computed(() => {
     width="400"
     height="400"
     select-none
-    :src="(error || !loaded) ? 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' : accountAvatarSrc"
+    :src="
+      error || !loaded
+        ? 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+        : accountAvatarSrc
+    "
     :alt="$t('account.avatar_description', [account.username])"
     loading="lazy"
     class="account-avatar object-cover"
@@ -30,5 +36,5 @@ const accountAvatarSrc = computed(() => {
     v-bind="$attrs"
     @load="loaded = true"
     @error="error = true"
-  >
+  />
 </template>

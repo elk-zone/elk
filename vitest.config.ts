@@ -8,11 +8,11 @@ export default defineConfig({
   },
   test: {
     reporters: isCI ? ['default', 'hanging-process'] : ['default'],
-    exclude: ['../tests/e2e/**'],
     projects: [
       await defineVitestProject({
         test: {
           name: 'nuxt',
+          exclude: ['**/node_modules/**', './tests/e2e/**'],
           setupFiles: [
             '../tests/setup.ts',
           ],

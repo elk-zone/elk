@@ -4,7 +4,6 @@ import type { mastodon } from 'masto'
 // Add undocumented 'annual_report' type introduced in v4.3
 // ref. https://github.com/mastodon/documentation/issues/1211#:~:text=api/v1/annual_reports
 type NotificationType = mastodon.v1.Notification['type'] | 'annual_report' | 'added_to_collection' | 'collection_update'
-// TODO: it seems that masto.js has not implemented new collection related notification types yet
 type Notification = Omit<mastodon.v1.Notification, 'type'> & { type: NotificationType } & { collection?: mastodon.v1.Collection }
 
 const { notification } = defineProps<{

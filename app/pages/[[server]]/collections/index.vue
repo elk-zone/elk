@@ -72,7 +72,7 @@ const activeCollections = computed(() =>
               {{ collection.description }}
             </div>
             <div text-sm text-secondary>
-              {{ $t('collection.item_count', [collection.itemCount]) }}
+              <CommonLocalizedNumber keypath="collection.item_count" :count="collection.itemCount" />
             </div>
           </div>
         </div>

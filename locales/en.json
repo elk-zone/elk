@@ -199,6 +199,7 @@
   "error": {
     "account_not_found": "Account {0} not found",
     "collection_not_found": "Collection not found",
+    "collections_not_supported": "This server doesn't support collections.",
     "explore_list_empty": "Nothing is trending right now. Check back later!",
     "file_size_cannot_exceed_n_mb": "File size cannot exceed {0}MB",
     "quote_fetch_error": "Could not fetch the quoted post",

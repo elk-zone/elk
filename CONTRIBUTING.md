@@ -71,6 +71,32 @@ Sometimes when you push your changes to create a new pull request (PR), the CI c
 
 If you get a **Semantic Pull Request** error, please check the [Semantic Pull Request](https://www.conventionalcommits.org/en/v1.0.0/#summary) documentation.
 
+## Using AI assistance
+
+Elk welcomes AI assistance. We follow the two rules from [antfu's contribution guide](https://github.com/antfu/contribute):
+
+- **Never let an LLM think for you.** You may use AI to help write code or tests, but always understand what it produced before contributing it, and take responsibility for it. PRs we consider fully "vibe-coded" — opened without the author understanding the change — may be closed without further explanation.
+- **Never let an LLM speak for you.** Write your PR descriptions, commit messages, and issue and review comments in your own words. AI-generated summaries tend to be long-winded, dense, and often inaccurate; we want to know what you think.
+
+## Signing off your work (recommended)
+
+To make that accountability explicit, we **recommend** signing off your commits under the [Developer Certificate of Origin](https://developercertificate.org/). By signing off on your commits, you make the contribution easier for the reviewers to trust.
+
+You sign off by adding a `Signed-off-by:` trailer to each commit, using the name you contribute under — a consistent pseudonym is fine — and a reachable email:
+
+```
+Signed-off-by: Random J Developer <random@developer.example.org>
+```
+
+Git can add this for you:
+
+```shell
+git commit -s -m "feat: ..."     # append your Signed-off-by to a new commit
+git rebase --signoff main        # add your sign-off to every commit already on your branch
+```
+
+Add the sign-off yourself — do not delegate it to an AI agent or otherwise automate it. It certifies *your own* review of the change, so having a tool apply it on your behalf defeats its purpose.
+
 ## RTL Support
 
 Elk supports `right-to-left` languages, we need to make sure that the UI is working correctly in both directions.

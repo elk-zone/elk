@@ -68,7 +68,7 @@ async function handleDelete() {
       </div>
 
       <div v-if="item.params.text" mt2>
-        <p v-html="item.params.text" />
+        <ContentRich :content="item.params.text" />
       </div>
 
       <div v-if="item.mediaAttachments?.length" mt2 flex flex-wrap gap-2>

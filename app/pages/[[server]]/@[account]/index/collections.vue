@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
+import { MastoUnexpectedError } from 'masto'
 
 definePageMeta({
   name: 'account-collections',
@@ -14,12 +15,15 @@ const account = await fetchAccountByHandle(handle.value)
 const client = useMastoClient()
 
 let collectionData: mastodon.v1.Collections | null = null
+const collectionsNotSupported = ref(false)
 if (account) {
   try {
     collectionData = await client.v1.accounts.$select(account.id).collections.list()
   }
-  catch {
-    // server may not support collections
+  catch (err) {
+    if (err instanceof MastoUnexpectedError) {
+      collectionsNotSupported.value = true
+    }
   }
 }
 
@@ -60,6 +64,9 @@ if (account) {
           </div>
         </div>
       </NuxtLink>
+    </div>
+    <div v-if="collectionsNotSupported" p-4 text-secondary text-sm text-center>
+      {{ $t('error.collections_not_supported') }}
     </div>
     <div v-else p-4 text-secondary text-sm text-center>
       {{ $t('collection.no_collections') }}

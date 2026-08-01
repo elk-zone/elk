@@ -11,9 +11,14 @@ const collectionId = computed(() => params.id as string)
 
 const client = useMastoClient()
 
+const collectionsNotSupported = ref(false)
+
 const { data: collectionData } = await useAsyncData<mastodon.v1.CollectionWithAccounts | null>(
   () => `collection-${collectionId.value}`,
-  () => client.v1.collections.$select(collectionId.value).fetch().catch(() => null),
+  () => client.v1.collections.$select(collectionId.value).fetch().catch(() => {
+    collectionsNotSupported.value = true
+    return null
+  }),
   { immediate: import.meta.client, default: () => shallowRef() },
 )
 
@@ -38,7 +43,12 @@ useHydratedHead({
       </MainTitle>
     </template>
 
-    <template v-if="!collectionData">
+    <template v-if="collectionsNotSupported">
+      <CommonNotFound>
+        {{ $t('error.collections_not_supported') }}
+      </CommonNotFound>
+    </template>
+    <template v-else-if="!collectionData">
       <CommonNotFound>
         {{ $t('error.collection_not_found') }}
       </CommonNotFound>

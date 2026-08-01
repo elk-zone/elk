@@ -17,6 +17,7 @@ const tabOptions: { name: CollectionsTab, display: string }[] = [
 
 let collectionsData = null
 let inCollectionsData = null
+const collectionsNotSupported = ref(false)
 if (accountId) {
   const [collectionsResult, inCollectionsResult] = await Promise.allSettled([
     client.v1.accounts.$select(accountId).collections.list(),
@@ -24,6 +25,9 @@ if (accountId) {
   ])
   if (collectionsResult.status === 'fulfilled') {
     collectionsData = collectionsResult.value
+  }
+  else {
+    collectionsNotSupported.value = true
   }
   if (inCollectionsResult.status === 'fulfilled') {
     inCollectionsData = inCollectionsResult.value
@@ -77,6 +81,9 @@ const activeCollections = computed(() =>
           </div>
         </div>
       </NuxtLink>
+    </div>
+    <div v-if="collectionsNotSupported" p-4 text-secondary text-sm text-center>
+      {{ $t('error.collections_not_supported') }}
     </div>
     <div v-else p-4 text-secondary text-sm text-center>
       {{ $t('collection.no_collections') }}

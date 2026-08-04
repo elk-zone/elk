@@ -1,0 +1,16 @@
+name: 🚀 New feature proposal
+description: Propose a new feature
+labels: ['s: pending triage']
+type: feature
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to request a new feature!
+  - type: textarea
+    id: feature-request
+    attributes:
+      label: Feature description
+      description: Tell us about your idea :)
+    validations:
+      required: true

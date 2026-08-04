@@ -68,7 +68,7 @@ const instance = computed(() => instanceStorage.value[currentServer.value])
             <!-- server info -->
             <div v-if="!currentUser && instance" grid gap-3 m3>
               <span text-size-lg text-primary font-bold>{{ instance.title }}</span>
-              <img rounded-3 :src="instance.thumbnail?.url">
+              <img v-if="instance.thumbnail?.url" rounded-3 :src="instance.thumbnail.url" :alt="$t('server.thumbnail_description', [instance.title])">
               <p text-secondary>
                 {{ instance.description }}
               </p>

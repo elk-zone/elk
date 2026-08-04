@@ -382,8 +382,10 @@
     "install": "Install",
     "install_title": "Install Elk",
     "screenshots": {
-      "dark": "Screenshot of Elk running in dark mode",
-      "light": "Screenshot of Elk running in light mode"
+      "dark": "Screenshot of Elk running on desktop in dark mode ",
+      "dark_mobile": "Screenshot of Elk running on mobile in dark mode",
+      "light": "Screenshot of Elk running on desktop in light mode",
+      "light_mobile": "Screenshot of Elk running on mobile in light mode"
     },
     "title": "New Elk update available!",
     "update": "Update",
@@ -458,6 +460,9 @@
   "search": {
     "search_desc": "Search for people & hashtags",
     "search_empty": "Could not find anything for these search terms"
+  },
+  "server": {
+    "thumbnail_description": "Thumbnail for {0} server"
   },
   "settings": {
     "about": {

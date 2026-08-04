@@ -1,0 +1,801 @@
+{
+  "a11y": {
+    "loading_page": "הדף נטען, אנא המתן",
+    "loading_titled_page": "הדף {0} נטען, אנא המתן",
+    "locale_changed": "השפה שונתה ל-{0}",
+    "locale_changing": "השפה משתנה, אנא המתן",
+    "route_loaded": "הדף {0} נטען"
+  },
+  "account": {
+    "authorize": "אישור מעקב",
+    "authorized": "הבקשה אושרה",
+    "avatar_description": "תמונת הפרופיל של {0}",
+    "blocked_by": "משתמש זה חסמך.",
+    "blocked_domains": "דומיינים חסומים",
+    "blocked_users": "משתמשים חסומים",
+    "blocking": "חסום",
+    "bot": "בוט",
+    "copy_account_name": "העתקת שם חשבון",
+    "favourites": "מועדפים",
+    "follow": "מעקב",
+    "follow_back": "מעקב חזרה",
+    "follow_requested": "הבקשה נשלחה",
+    "followers": "עוקבים",
+    "followers_count": "{0} עוקבים|{0} עוקב|{0} עוקבים",
+    "following": "במעקב",
+    "following_count": "{0} במעקב",
+    "follows_you": "עוקב אחריך",
+    "go_to_profile": "מעבר לפרופיל",
+    "joined": "הצטרף",
+    "lock": "נעול",
+    "moved_title": "צוין שחשבונם החדש הוא:",
+    "muted_users": "משתמשים מושתקים",
+    "muting": "מושתק",
+    "mutuals": "הדדיים",
+    "notifications_on_post_disable": "ביטול התראה על פרסומים של {username}",
+    "notifications_on_post_enable": "קבלת התראה על פרסומים של {username}",
+    "pinned": "מוצמד",
+    "posts": "פוסטים",
+    "posts_count": "{0} פוסטים|{0} פוסט|{0} פוסטים",
+    "profile_description": "כותרת הפרופיל של {0}",
+    "profile_personal_note": "הערה אישית",
+    "profile_unavailable": "הפרופיל אינו זמין",
+    "reject": "דחיית בקשת מעקב",
+    "rejected": "הבקשה נדחתה",
+    "request_follow": "בקשת מעקב",
+    "requested": "{0} ביקש לעקוב אחריך",
+    "unblock": "ביטול חסימה",
+    "unfollow": "ביטול מעקב",
+    "unmute": "ביטול השתקה",
+    "view_other_followers": "ייתכן שעוקבים ממשרתים אחרים לא יוצגו.",
+    "view_other_following": "ייתכן שנעקבים ממשרתים אחרים לא יוצגו.",
+    "withdraw_follow_request": "ביטול בקשת מעקב"
+  },
+  "action": {
+    "apply": "החלה",
+    "bookmark": "סימון",
+    "bookmarked": "מסומן",
+    "boost": "הדהוד",
+    "boost_count": "{0}",
+    "boosted": "הודהד",
+    "clear": "ניקוי",
+    "clear_publish_failed": "ניקוי שגיאות פרסום",
+    "clear_save_failed": "ניקוי שגיאות שמירה",
+    "clear_schedule_failed": "ניקוי שגיאות תזמון",
+    "clear_upload_failed": "ניקוי שגיאות העלאה",
+    "close": "סגירה",
+    "compose": "כתיבה",
+    "confirm": "אישור",
+    "done": "סיום",
+    "edit": "עריכה",
+    "enter_app": "כניסה ליישום",
+    "favourite": "סימון כמועדף",
+    "favourite_count": "{0}",
+    "favourited": "סומן כמועדף",
+    "more": "עוד",
+    "next": "הבא",
+    "open_image_preview_dialog": "פתיחת תצוגה מקדימה של תמונה",
+    "prev": "הקודם",
+    "publish": "פרסום",
+    "publish_thread": "פרסום שרשור",
+    "quote": "ציטוט",
+    "quote_count": "{0}",
+    "remove_quote": "הסרת ציטוט",
+    "reply": "תגובה",
+    "reply_count": "{0}",
+    "reset": "איפוס",
+    "save": "שמירה",
+    "save_changes": "שמירת שינויים",
+    "schedule": "תזמון",
+    "sign_in": "התחברות",
+    "sign_in_to": "התחברות אל {0}",
+    "switch_account": "החלפת חשבון",
+    "vote": "הצבעה"
+  },
+  "app_desc_short": "לקוח ווב זריז ל-Mastodon",
+  "app_logo": "לוגו עֶלְק",
+  "app_name": "עֶלְק",
+  "attachment": {
+    "edit_title": "תיאור",
+    "remove_label": "הסרת קובץ מצורף"
+  },
+  "command": {
+    "activate": "הפעלה",
+    "complete": "השלמה",
+    "compose_desc": "כתיבת פוסט חדש",
+    "n_people_in_the_past_n_days": "{0} אנשים ב-{1} הימים האחרונים",
+    "select_lang": "בחירת שפה",
+    "sign_in_desc": "הוספת חשבון קיים",
+    "switch_account": "מעבר אל {0}",
+    "switch_account_desc": "מעבר לחשבון אחר",
+    "toggle_dark_mode": "החלפת מצב כהה",
+    "toggle_zen_mode": "החלפת מצב זן"
+  },
+  "common": {
+    "end_of_list": "סוף הרשימה",
+    "error": "שגיאה",
+    "fetching": "מאחזר...",
+    "in": "ב-",
+    "no_bookmarks": "אין פוסטים מסומנים עדיין",
+    "no_favourites": "אין פוסטים מועדפים עדיין",
+    "no_scheduled_posts": "אין פוסטים מתוזמנים עדיין",
+    "not_found": "404 לא נמצא",
+    "offline_desc": "נראה שאינך מחובר. נא לבדוק את חיבור הרשת."
+  },
+  "compose": {
+    "draft_title": "טיוטה {0}",
+    "drafts": "טיוטות ({v})"
+  },
+  "confirm": {
+    "block_account": {
+      "cancel": "ביטול",
+      "confirm": "חסימה",
+      "description": "לחסום את {0}?",
+      "title": "חסימת חשבון"
+    },
+    "block_domain": {
+      "cancel": "ביטול",
+      "confirm": "חסימה",
+      "description": "לחסום את {0}? פעולה זו תחסום את כל המשתמשים בדומיין זה ותסיר לצמיתות מעקבים.",
+      "title": "חסימת דומיין",
+      "type_to_confirm": "להקליד {0} לאישור"
+    },
+    "common": {
+      "cancel": "לא",
+      "confirm": "כן"
+    },
+    "delete_list": {
+      "cancel": "ביטול",
+      "confirm": "מחיקה",
+      "description": "למחוק את הרשימה \"{0}\"?",
+      "title": "מחיקת רשימה"
+    },
+    "delete_posts": {
+      "cancel": "ביטול",
+      "confirm": "מחיקה",
+      "description": "למחוק את הפוסט הזה?",
+      "title": "מחיקת פוסט"
+    },
+    "mute_account": {
+      "cancel": "ביטול",
+      "confirm": "השתקה",
+      "days": "ימים|יום|ימים",
+      "description": "להשתיק את {0}?",
+      "hours": "שעות|שעה|שעות",
+      "minute": "דקות|דקה|דקות",
+      "notifications": "השתקת התראות",
+      "specify_duration": "ציון משך השתקה",
+      "title": "השתקת חשבון"
+    },
+    "show_reblogs": {
+      "cancel": "ביטול",
+      "confirm": "הצגה",
+      "description": "להציג הדהודים מ-{0}?",
+      "title": "הצגת הדהודים"
+    },
+    "unfollow": {
+      "cancel": "ביטול",
+      "confirm": "ביטול מעקב",
+      "description": "לבטל מעקב אחרי {0}?",
+      "title": "ביטול מעקב"
+    }
+  },
+  "conversation": {
+    "with": "עם"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "שורות {0}",
+      "open": "פתיחה",
+      "snippet_from": "קטע מ-{0}"
+    }
+  },
+  "error": {
+    "account_not_found": "החשבון {0} לא נמצא",
+    "explore_list_empty": "אין מגמות כרגע. נא לבדוק שוב מאוחר יותר!",
+    "file_size_cannot_exceed_n_mb": "גודל הקובץ לא יכול לעלות על {0} מ\"ב",
+    "quote_fetch_error": "לא ניתן לאחזר את הפוסט המצוטט",
+    "sign_in_error": "לא ניתן להתחבר לשרת.",
+    "status_not_found": "הפוסט לא נמצא",
+    "unsupported_file_format": "פורמט קובץ לא נתמך"
+  },
+  "help": {
+    "build_preview": {
+      "desc1": "זוהי גרסת תצוגה מקדימה של עֶלְק מהקהילה - {0}.",
+      "desc2": "היא עשויה להכיל שינויים שלא נבדקו או אפילו זדוניים.",
+      "desc3": "אין להתחבר עם חשבון אמיתי.",
+      "title": "פריסת תצוגה מקדימה"
+    },
+    "desc_highlight": "צפי לבאגים ותכונות חסרות כאן ושם.",
+    "desc_para1": "עֶלְק הוא לקוח ווב זריז ל-Mastodon. ניתן להתחבר לחשבון ה-Mastodon שלך ולהשתמש בו לתקשורת עם ה-Fediverse.",
+    "desc_para2": "עֶלְק הוא קוד פתוח ואנו משפרים אותו באופן פעיל כפרויקט קהילתי. מזמינים להצטרף ולבנות יחד!",
+    "desc_para3": "לקידום הפיתוח, ניתן לממן את הצוות דרך GitHub Sponsors. מקווים שתהנו מ-עֶלְק!",
+    "desc_para4": "לדיווח על באג, עזרה בבדיקות, מתן משוב, או תרומה,",
+    "desc_para5": "פנו אלינו ב-GitHub",
+    "desc_para6": "והשתתפו.",
+    "footer_team": "צוות עֶלְק",
+    "title": "ברוכים הבאים ל-עֶלְק!"
+  },
+  "language": {
+    "search": "חיפוש"
+  },
+  "list": {
+    "add_account": "הוספת חשבון לרשימה",
+    "cancel_edit": "ביטול עריכה",
+    "clear_error": "ניקוי שגיאה",
+    "create": "יצירה",
+    "delete": "מחיקת רשימה זו",
+    "delete_error": "אירעה שגיאה בעת מחיקת הרשימה",
+    "edit": "עריכת רשימה זו",
+    "edit_error": "אירעה שגיאה בעת עדכון הרשימה",
+    "error": "אירעה שגיאה בעת יצירת הרשימה",
+    "error_prefix": "שגיאה: ",
+    "list_title_placeholder": "כותרת הרשימה",
+    "manage": "ניהול רשימות",
+    "modify_account": "שינוי רשימות עם חשבון",
+    "remove_account": "הסרת חשבון מהרשימה",
+    "save": "שמירת שינויים",
+    "search_following_desc": "חיפוש אנשים במעקב",
+    "search_following_placeholder": "חיפוש בין האנשים במעקב"
+  },
+  "magic_keys": {
+    "dialog_header": "קיצורי מקלדת",
+    "groups": {
+      "actions": {
+        "boost": "הדהוד",
+        "command_mode": "מצב פקודה",
+        "compose": "כתיבה",
+        "favourite": "סימון כמועדף",
+        "quote": "ציטוט",
+        "search": "חיפוש",
+        "show_new_items": "הצגת פריטים חדשים",
+        "title": "פעולות"
+      },
+      "media": {
+        "title": "מדיה"
+      },
+      "navigation": {
+        "go_to_bookmarks": "סימניות",
+        "go_to_conversations": "שיחות",
+        "go_to_explore": "גילוי",
+        "go_to_favourites": "מועדפים",
+        "go_to_federated": "מאוחד",
+        "go_to_home": "בית",
+        "go_to_lists": "רשימות",
+        "go_to_local": "מקומי",
+        "go_to_notifications": "התראות",
+        "go_to_profile": "פרופיל",
+        "go_to_search": "חיפוש",
+        "go_to_settings": "הגדרות",
+        "next_status": "הפוסט הבא",
+        "previous_status": "הפוסט הקודם",
+        "shortcut_help": "עזרה בקיצורים",
+        "title": "ניווט"
+      }
+    },
+    "sequence_then": "ואז"
+  },
+  "menu": {
+    "add_personal_note": "הוספת הערה אישית ל-{0}",
+    "block_account": "חסימת {0}",
+    "block_domain": "חסימת דומיין {0}",
+    "copy_link_to_post": "העתקת קישור לפוסט זה",
+    "copy_original_link_to_post": "העתקת קישור מקורי לפוסט זה",
+    "delete": "מחיקה",
+    "delete_and_redraft": "מחיקה וטיוטה מחדש",
+    "edit": "עריכה",
+    "hide_reblogs": "הסתרת הדהודים מ-{0}",
+    "mention_account": "אזכור {0}",
+    "mute_account": "השתקת {0}",
+    "mute_conversation": "השתקת פוסט זה",
+    "open_in_original_site": "פתיחה באתר המקורי",
+    "pin_on_profile": "הצמדה לפרופיל",
+    "private_mention_account": "אזכור פרטי ל-{0}",
+    "remove_personal_note": "הסרת הערה אישית מ-{0}",
+    "report_account": "דיווח על {0}",
+    "share_account": "שיתוף {0}",
+    "share_post": "שיתוף פוסט זה",
+    "show_favourited_and_boosted_by": "הצגת מי סימן כמועדף והדהד",
+    "show_reacted_by": "הצגת מי הגיב",
+    "show_reblogs": "הצגת הדהודים מ-{0}",
+    "show_untranslated": "הצגה ללא תרגום",
+    "toggle_theme": {
+      "dark": "החלפה למצב כהה",
+      "light": "החלפה למצב בהיר"
+    },
+    "translate_post": "תרגום פוסט",
+    "unblock_account": "ביטול חסימת {0}",
+    "unblock_domain": "ביטול חסימת דומיין {0}",
+    "unfollow_account": "ביטול מעקב אחרי {0}",
+    "unmute_account": "ביטול השתקת {0}",
+    "unmute_conversation": "ביטול השתקת פוסט זה",
+    "unpin_on_profile": "הסרת הצמדה מהפרופיל"
+  },
+  "modals": {
+    "aria_label_close": "סגירה"
+  },
+  "nav": {
+    "back": "חזרה",
+    "blocked_domains": "דומיינים חסומים",
+    "blocked_users": "משתמשים חסומים",
+    "bookmarks": "סימניות",
+    "built_at": "נבנה {0}",
+    "compose": "כתיבה",
+    "conversations": "שיחות",
+    "docs": "תיעוד",
+    "favourites": "מועדפים",
+    "home": "בית",
+    "more_menu": "תפריט נוסף",
+    "muted_users": "משתמשים מושתקים",
+    "notifications": "התראות",
+    "privacy": "פרטיות",
+    "profile": "פרופיל",
+    "scheduled_posts": "פוסטים מתוזמנים",
+    "search": "חיפוש",
+    "select_feature_flags": "החלפת דגלי תכונות",
+    "select_font_size": "גודל גופן",
+    "select_language": "שפת תצוגה",
+    "settings": "הגדרות",
+    "show_intro": "הצגת מבוא",
+    "toggle_theme": "החלפת ערכת נושא",
+    "zen_mode": "מצב זן"
+  },
+  "notification": {
+    "and": "ו-",
+    "favourited_post": "הוסיף את הפוסט שלך למועדפים",
+    "followed_you": "התחיל לעקוב אחריך",
+    "followed_you_count": "{0} אנשים עוקבים אחריך|{0} אדם עוקב אחריך|{0} אנשים עוקבים אחריך",
+    "missing_type": "סוג התראה חסר:",
+    "others": "{0} אחרים|{0} אחר|{0} אחרים",
+    "reblogged_post": "הדהד את הפוסט שלך",
+    "reported": "{0} דיווח על {1}",
+    "request_to_follow": "ביקש לעקוב אחריך",
+    "signed_up": "נרשם",
+    "update_status": "עדכן את הפוסט שלו"
+  },
+  "placeholder": {
+    "content_warning": "כתיבת האזהרה כאן",
+    "default_1": "מה עובר לך בראש?",
+    "reply_to_account": "תגובה ל-{0}",
+    "replying": "מגיב"
+  },
+  "polls": {
+    "allow_multiple": "אפשר בחירה מרובה",
+    "cancel": "ביטול",
+    "create": "יצירת סקר",
+    "disallow_multiple": "ביטול בחירה מרובה",
+    "expiration": "תפוגת הסקר",
+    "hide_votes": "הסתרת סך הצבעות עד הסוף",
+    "option_placeholder": "אפשרות סקר {current}/{max}",
+    "remove_option": "הסרת אפשרות",
+    "settings": "אפשרויות סקר",
+    "show_votes": "הצגת סך הצבעות תמיד"
+  },
+  "pwa": {
+    "dismiss": "סגירה",
+    "install": "התקנה",
+    "install_title": "התקנת עֶלְק",
+    "screenshots": {
+      "dark": "צילום מסך של עֶלְק במצב כהה",
+      "light": "צילום מסך של עֶלְק במצב בהיר"
+    },
+    "title": "עדכון חדש ל-עֶלְק זמין!",
+    "update": "עדכון",
+    "update_available_short": "עדכון עֶלְק",
+    "webmanifest": {
+      "canary": {
+        "description": "לקוח ווב זריז ל-Mastodon",
+        "name": "עֶלְק",
+        "short_name": "עֶלְק"
+      },
+      "dev": {
+        "description": "לקוח ווב זריז ל-Mastodon",
+        "name": "עֶלְק",
+        "short_name": "עֶלְק"
+      },
+      "preview": {
+        "description": "לקוח ווב זריז ל-Mastodon",
+        "name": "עֶלְק",
+        "short_name": "עֶלְק"
+      },
+      "release": {
+        "description": "לקוח ווב זריז ל-Mastodon",
+        "name": "עֶלְק",
+        "short_name": "עֶלְק"
+      }
+    }
+  },
+  "quote_approval_policy": {
+    "followers": "עוקבים בלבד",
+    "followers_desc": "העוקבים שלך יכולים לצטט",
+    "nobody": "אף אחד",
+    "nobody_desc": "רק אתה יכול לצטט",
+    "public": "ציבורי",
+    "public_desc": "כל אחד יכול לצטט"
+  },
+  "report": {
+    "additional_comments": "הערות נוספות",
+    "another_server": "המשתמש שאליו מדווחים הוא משרת אחר",
+    "anything_else": "האם יש עוד משהו שחשוב שנדע?",
+    "block_desc": "לא יוצגו יותר פוסטים ממשתמש זה. הם לא יוכלו לראות את הפוסטים שלך או לעקוב אחריך. הם יוכלו לדעת שנחסמו.",
+    "dontlike": "זה לא מוצא חן",
+    "dontlike_desc": "זה משהו שאין רצון לראות",
+    "forward": "כן, להעביר דיווח זה ל-{0}",
+    "forward_question": "האם לשלוח עותק אנונימי של דיווח זה גם לאותו שרת?",
+    "further_actions": {
+      "limit": {
+        "description": "הנה האפשרויות לשליטה במה שמוצג:",
+        "title": "אין רצון לראות את זה?"
+      },
+      "report": {
+        "description": "בזמן הבחינה, הנה הפעולות שניתן לנקוט:",
+        "title": "תודה על הדיווח, נבחן זאת."
+      }
+    },
+    "limiting": "מגביל את {0}",
+    "mute_desc": "לא יוצגו יותר פוסטים ממשתמש זה. הם עדיין יוכלו לעקוב אחריך ולראות את הפוסטים שלך. הם לא ידעו שהושתקו.",
+    "other": "זה משהו אחר",
+    "other_desc": "הבעיה אינה מתאימה לקטגוריות אחרות",
+    "reporting": "מדווח על {0}",
+    "select_many": "בחירת כל הרלוונטיים:",
+    "select_one": "בחירת ההתאמה הטובה ביותר:",
+    "select_posts": "האם יש פוסטים שתומכים בדיווח זה?",
+    "select_posts_other": "האם יש פוסטים נוספים שתומכים בדיווח זה?",
+    "spam": "זה ספאם",
+    "spam_desc": "קישורים זדוניים, מעורבות מזויפת, או תגובות חוזרות",
+    "submit": "שליחת דיווח",
+    "unfollow_desc": "לא יוצגו יותר פוסטים ממשתמש זה בפיד הבית. עדיין יהיה ניתן לראות פוסטים שלהם במקומות אחרים.",
+    "violation": "זה מפר אחד או יותר מכללי השרת",
+    "whats_wrong_account": "סיפור מה לא בסדר עם חשבון זה",
+    "whats_wrong_post": "סיפור מה לא בסדר עם פוסט זה"
+  },
+  "search": {
+    "search_desc": "חיפוש אנשים וגיבובים",
+    "search_empty": "לא נמצא דבר עבור מונחי החיפוש האלה"
+  },
+  "settings": {
+    "about": {
+      "built_at": "נבנה",
+      "label": "אודות",
+      "meet_the_team": "הכרת הצוות",
+      "sponsor_action": "מממן אותנו",
+      "sponsor_action_desc": "לתמיכה בצוות שמפתח את עֶלְק",
+      "sponsors": "ממנים",
+      "sponsors_body_1": "עֶלְק אפשרי הודות למימון הנדיב ולעזרת:",
+      "sponsors_body_2": "וכל החברות והיחידים שממנים את צוות עֶלְק ואת חבריו.",
+      "sponsors_body_3": "אם נהנית מהאפליקציה, ניתן לשקול לממן אותנו:",
+      "version": "גרסה"
+    },
+    "account_settings": {
+      "description": "עריכת הגדרות החשבון בממשק Mastodon",
+      "label": "הגדרות חשבון"
+    },
+    "interface": {
+      "bottom_nav": "ניווט תחתון",
+      "bottom_nav_instructions": "בחירה עד חמישה כפתורי ניווט מועדפים לסרגל התחתון. חייב לכלול את כפתור \"תפריט נוסף\".",
+      "color_mode": "מצב צבע",
+      "dark_mode": "כהה",
+      "default": " (ברירת מחדל)",
+      "font_size": "גודל גופן",
+      "label": "ממשק",
+      "light_mode": "בהיר",
+      "system_mode": "מערכת",
+      "theme_color": "צבע ערכת נושא"
+    },
+    "language": {
+      "display_language": "שפת תצוגה",
+      "how_to_contribute": "כיצד לתרום?",
+      "label": "שפה",
+      "post_language": "שפת פרסום",
+      "status": "מצב תרגום: {0}/{1} ({2}%)",
+      "translations": {
+        "add": "הוספה",
+        "choose_language": "בחירת שפה",
+        "heading": "תרגומים",
+        "hide_specific": "הסתרת תרגומים ספציפיים",
+        "remove": "הסרה"
+      }
+    },
+    "notifications": {
+      "label": "התראות",
+      "notifications": {
+        "label": "הגדרות התראות"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "מועדפים",
+          "follow": "עוקבים חדשים",
+          "mention": "אזכורים",
+          "poll": "סקרים",
+          "reblog": "הדהודים",
+          "title": "אילו התראות לקבל?"
+        },
+        "description": "קבלת התראות גם כשאינך משתמש ב-עֶלְק.",
+        "instructions": "אין לשכוח לשמור את השינויים באמצעות כפתור @:settings.notifications.push_notifications.save_settings!",
+        "label": "הגדרות התראות דחיפה",
+        "policy": {
+          "all": "מכולם",
+          "followed": "של אנשים במעקב",
+          "follower": "של אנשים שעוקבים",
+          "none": "מאף אחד",
+          "title": "ממי ניתן לקבל התראות?"
+        },
+        "save_settings": "שמירת הגדרות",
+        "subscription_error": {
+          "clear_error": "ניקוי שגיאה",
+          "error_hint": "ניתן לעיין ברשימת שאלות נפוצות כדי לנסות לפתור את הבעיה: {0}.",
+          "invalid_vapid_key": "מפתח ה-VAPID הציבורי נראה לא תקין.",
+          "permission_denied": "ההרשאה נדחתה: יש להפעיל התראות בדפדפן.",
+          "repo_link": "מאגר עֶלְק ב-GitHub",
+          "request_error": "אירעה שגיאה בעת בקשת המנוי, נסה שוב ואם השגיאה נמשכת, נא לדווח על הבעיה למאגר עֶלְק.",
+          "title": "לא ניתן להירשם להתראות דחיפה",
+          "too_many_registrations": "בשל מגבלות הדפדפן, עֶלְק לא יכול להשתמש בשירות התראות הדחיפה עבור מספר חשבונות בשרתים שונים. יש לבטל את הרישום להתראות דחיפה בחשבון אחר ולנסות שוב.",
+          "vapid_not_supported": "הדפדפן תומך בהתראות דחיפה של האינטרנט, אך נראה שאינו מיישם את פרוטוקול VAPID."
+        },
+        "title": "הגדרות התראות דחיפה",
+        "undo_settings": "ביטול שינויים",
+        "unsubscribe": "ביטול התראות דחיפה",
+        "unsupported": "הדפדפן אינו תומך בהתראות דחיפה.",
+        "warning": {
+          "enable_close": "סגירה",
+          "enable_description": "לקבלת התראות כאשר עֶלְק אינו פתוח, יש להפעיל התראות דחיפה. ניתן לשלוט אילו סוגי אינטראקציות מייצרות התראות דחיפה דרך כפתור \"@:settings.notifications.show_btn{'\"'}\" למעלה לאחר ההפעלה.",
+          "enable_description_desktop": "לקבלת התראות כאשר עֶלְק אינו פתוח, יש להפעיל התראות דחיפה. ניתן לשלוט אילו סוגי אינטראקציות מייצרות התראות דחיפה ב-\"הגדרות > התראות > הגדרות התראות דחיפה\" לאחר ההפעלה.",
+          "enable_description_mobile": "ניתן גם לגשת להגדרות דרך תפריט הניווט \"הגדרות > התראות > הגדרות התראות דחיפה\".",
+          "enable_description_settings": "לקבלת התראות כאשר עֶלְק אינו פתוח, יש להפעיל התראות דחיפה. ניתן לשלוט אילו סוגי אינטראקציות מייצרות התראות דחיפה במסך זה לאחר ההפעלה.",
+          "enable_desktop": "הפעלת התראות דחיפה",
+          "enable_title": "לעולם אל תחמיצו דבר",
+          "re_auth": "נראה שהשרת אינו תומך בהתראות דחיפה. נסה להתנתק ולהתחבר שוב, ואם הודעה זו עדיין מופיעה צור קשר עם מנהל השרת."
+        }
+      },
+      "show_btn": "מעבר להגדרות התראות",
+      "under_construction": "בבנייה"
+    },
+    "notifications_settings": "התראות",
+    "preferences": {
+      "disable_timeline_autoloading": "ביטול טעינה אוטומטית של ציר הזמן",
+      "disable_timeline_autoloading_description": "מניעת טעינה אוטומטית של פוסטים חדשים בתצוגות ציר הזמן והצגת כפתור \"טעינת פוסטים נוספים\".",
+      "embedded_media": "נגן מדיה מוטמע",
+      "embedded_media_description": "הצגת נגן מוטמע במקום כרטיס התצוגה המקדימה הרגיל בעת הרחבת קישורי הזרמת מדיה משותפת.",
+      "enable_autoplay": "הפעלת ניגון אוטומטי",
+      "enable_data_saving": "הפעלת חיסכון בנתונים",
+      "enable_data_saving_description": "חיסכון בנתונים על ידי מניעת טעינה אוטומטית של קבצים מצורפים.",
+      "enable_pinch_to_zoom": "הפעלת צביטה לזום",
+      "github_cards": "כרטיסי GitHub",
+      "github_cards_description": "כאשר מפורסם קישור GitHub, מוצג כרטיס HTML נגיש במקום התמונה החברתית.",
+      "grayscale_mode": "מצב גווני אפור",
+      "hide_account_hover_card": "הסתרת כרטיס ריחוף של חשבון",
+      "hide_alt_indi_on_posts": "הסתרת מחוון alt בפוסטים",
+      "hide_boost_count": "הסתרת מספר הדהודים",
+      "hide_boosts_in_timeline": "הסתרת הדהודים בציר הזמן",
+      "hide_boosts_in_timeline_description": "הסתרת פוסטים מוהדים מציר הזמן הבית והציבורי.",
+      "hide_favorite_count": "הסתרת מספר מועדפים",
+      "hide_follower_count": "הסתרת מספר עוקבים ונעקבים",
+      "hide_gif_indi_on_posts": "הסתרת מחוון GIF בפוסטים",
+      "hide_news": "הסתרת חדשות",
+      "hide_quote_count": "הסתרת מספר ציטוטים",
+      "hide_replies_in_timeline": "הסתרת תגובות בציר הזמן",
+      "hide_replies_in_timeline_description": "הסתרת תגובות לפוסטים של אנשים אחרים בציר הזמן הבית והציבורי. התגובות עצמן עדיין יוצגו.",
+      "hide_reply_count": "הסתרת מספר תגובות",
+      "hide_tag_hover_card": "הסתרת כרטיס ריחוף של תגית",
+      "hide_translation": "הסתרת תרגום",
+      "hide_username_emojis": "הסתרת אמוג'ים בשמות משתמש",
+      "hide_username_emojis_description": "הסתרת אמוג'ים משמות משתמש בציר הזמן. האמוג'ים עדיין יהיו גלויים בפרופילים שלהם.",
+      "label": "העדפות",
+      "optimize_for_low_performance_device": "אופטימיזציה למכשיר בעל ביצועים נמוכים",
+      "title": "תכונות ניסיוניות",
+      "unmute_videos": "קול וידאו פועל כברירת מחדל",
+      "use_star_favorite_icon": "שימוש בסמל כוכב למועדפים",
+      "user_picker": "בורר משתמשים",
+      "user_picker_description": "הצגת כל הסמלים של החשבונות המחוברים בפינה התחתונה למעבר מהיר ביניהם.",
+      "virtual_scroll": "גלילה וירטואלית",
+      "virtual_scroll_description": "שימוש ברשימה וירטואלית בציר הזמן לעיבוד יעיל של מספר גדול יותר של פריטים.",
+      "wellbeing": "רווחה",
+      "zen_mode": "מצב זן",
+      "zen_mode_description": "הסתרת צדדים אלא אם סמן העכבר עליהם. כמו כן, הסתרת חלק מהאלמנטים בציר הזמן."
+    },
+    "profile": {
+      "appearance": {
+        "bio": "ביוגרפיה",
+        "description": "עריכת תמונת פרופיל, שם משתמש, פרופיל וכו'.",
+        "display_name": "שם תצוגה",
+        "label": "מראה",
+        "profile_metadata": "מטא-נתוני פרופיל",
+        "profile_metadata_desc": "ניתן להציג עד {0} פריטים כטבלה בפרופיל",
+        "profile_metadata_label": "תווית",
+        "profile_metadata_value": "תוכן",
+        "title": "עריכת פרופיל"
+      },
+      "featured_tags": {
+        "description": "אנשים יכולים לדפדף בפוסטים הציבוריים תחת תגיות אלה.",
+        "label": "תגיות מוצגות",
+        "under_construction": "בבנייה"
+      },
+      "label": "פרופיל"
+    },
+    "select_a_settings": "בחירת הגדרה",
+    "users": {
+      "export": "ייצוא אסימוני משתמש",
+      "import": "ייבוא אסימוני משתמש",
+      "label": "משתמשים מחוברים"
+    }
+  },
+  "share_target": {
+    "description": "ניתן להגדיר את עֶלְק כדי לשתף תוכן מאפליקציות אחרות, פשוט להתקין את עֶלְק במכשיר ולהתחבר.",
+    "hint": "לשיתוף תוכן עם עֶלְק, עֶלְק חייב להיות מותקן ועליך להיות מחובר.",
+    "title": "שיתוף עם עֶלְק"
+  },
+  "state": {
+    "attachments_exceed_server_limit": "מספר הקבצים המצורפים עלה על המגבלה לפוסט.",
+    "attachments_limit_audio_error": "גודל השמע המרבי חרג: {0}",
+    "attachments_limit_error": "המגבלה לפוסט חרגה",
+    "attachments_limit_image_error": "גודל התמונה המרבי חרג: {0}",
+    "attachments_limit_unknown_error": "גודל הקובץ המרבי חרג: {0}",
+    "attachments_limit_video_error": "גודל הוידאו המרבי חרג: {0}",
+    "edited": "(נערך)",
+    "editing": "בעריכה",
+    "loading": "בטעינה...",
+    "publish_failed": "הפרסום נכשל",
+    "publishing": "מפרסם",
+    "save_failed": "השמירה נכשלה",
+    "schedule_failed": "התזמון נכשל",
+    "schedule_time_invalid": "זמן התזמון חייב להיות לפחות 5 דקות בעתיד. הגדר ל-{0} או מאוחר יותר.",
+    "scheduling": "מתזמן",
+    "upload_failed": "ההעלאה נכשלה",
+    "uploading": "מעלה..."
+  },
+  "status": {
+    "account": {
+      "suspended_message": "החשבון של פוסט זה הושעה.",
+      "suspended_show": "להציג את התוכן בכל מקרה?"
+    },
+    "boosted_by": "הודהד על ידי",
+    "edited": "נערך {0}",
+    "embedded_warning": "השמעת זה עלולה לחשוף את כתובת ה-IP שלך לאחרים.",
+    "favourited_by": "סומן כמועדף על ידי",
+    "filter_hidden_phrase": "סונן על ידי",
+    "filter_show_anyway": "הצגה בכל מקרה",
+    "gif": "GIF",
+    "img_alt": {
+      "ALT": "ALT",
+      "desc": "תיאור",
+      "dismiss": "סגירה",
+      "read": "קריאת תיאור {0}"
+    },
+    "pinned": "פוסט מוצמד",
+    "poll": {
+      "count": "{0} הצבעות|{0} הצבעה|{0} הצבעות",
+      "ends": "מסתיים {0}",
+      "finished": "הסתיים {0}",
+      "update": "עדכון סקר"
+    },
+    "quoted_by": "צוטט על ידי",
+    "replying_to": "תגובה ל-{0}",
+    "show_full_thread": "הצגת שרשור מלא",
+    "someone": "מישהו",
+    "spoiler_media_hidden": "מדיה מוסתרת",
+    "spoiler_show_less": "הצגת פחות",
+    "spoiler_show_more": "הצגת יותר",
+    "thread": "שרשור",
+    "try_original_site": "ניסיון באתר המקורי"
+  },
+  "status_history": {
+    "created": "נוצר {0}",
+    "edited": "נערך {0}"
+  },
+  "tab": {
+    "accounts": "חשבונות",
+    "for_you": "בשבילך",
+    "hashtags": "תגיות",
+    "list": "רשימה",
+    "media": "מדיה",
+    "news": "חדשות",
+    "notifications_admin": {
+      "report": "דיווח",
+      "sign_up": "הרשמה"
+    },
+    "notifications_all": "הכל",
+    "notifications_favourite": "מועדף",
+    "notifications_follow": "מעקב",
+    "notifications_follow_request": "בקשת מעקב",
+    "notifications_mention": "אזכורים",
+    "notifications_more_tooltip": "סינון התראות לפי סוג",
+    "notifications_poll": "סקר",
+    "notifications_quote": "ציטוט",
+    "notifications_reblog": "הדהוד",
+    "notifications_status": "סטטוס",
+    "notifications_update": "עדכון",
+    "posts": "פוסטים",
+    "posts_with_replies": "פוסטים ותגובות"
+  },
+  "tag": {
+    "follow": "מעקב",
+    "follow_label": "מעקב אחרי תגית {0}",
+    "unfollow": "ביטול מעקב",
+    "unfollow_label": "ביטול מעקב אחרי תגית {0}"
+  },
+  "time_ago_options": {
+    "day_future": "בעוד 0 ימים|מחר|בעוד {v} ימים",
+    "day_past": "לפני 0 ימים|אתמול|לפני {v} ימים",
+    "hour_future": "בעוד 0 שעות|בעוד שעה|בעוד {v} שעות",
+    "hour_past": "לפני 0 שעות|לפני שעה|לפני {v} שעות",
+    "just_now": "עכשיו",
+    "minute_future": "בעוד 0 דקות|בעוד דקה|בעוד {v} דקות",
+    "minute_past": "לפני 0 דקות|לפני דקה|לפני {v} דקות",
+    "month_future": "בעוד 0 חודשים|בחודש הבא|בעוד {v} חודשים",
+    "month_past": "לפני 0 חודשים|בחודש שעבר|לפני {v} חודשים",
+    "second_future": "עכשיו|בעוד {v} שנייה|בעוד {v} שניות",
+    "second_past": "עכשיו|לפני {v} שנייה|לפני {v} שניות",
+    "short_day_future": "בעוד {v}י",
+    "short_day_past": "לפני {v}י",
+    "short_hour_future": "בעוד {v} שע'|בעוד שעה|בעוד {v} שע'",
+    "short_hour_past": "לפני {v} שע'|לפני שעה|לפני {v} שע'",
+    "short_minute_future": "בעוד {v} דק'|בעוד דקה|בעוד {v} דק'",
+    "short_minute_past": "לפני {v} דק'|לפני דקה|לפני {v} דק'",
+    "short_month_future": "בעוד {v}ח",
+    "short_month_past": "לפני {v}ח",
+    "short_second_future": "בעוד {v}שנ",
+    "short_second_past": "לפני {v}שנ",
+    "short_week_future": "בעוד {v}שב",
+    "short_week_past": "לפני {v}שב",
+    "short_year_future": "בעוד {v}שנה",
+    "short_year_past": "לפני {v}שנה",
+    "week_future": "בעוד 0 שבועות|בשבוע הבא|בעוד {v} שבועות",
+    "week_past": "לפני 0 שבועות|בשבוע שעבר|לפני {v} שבועות",
+    "year_future": "בעוד 0 שנים|בשנה הבאה|בעוד {v} שנים",
+    "year_past": "לפני 0 שנים|בשנה שעברה|לפני {v} שנים"
+  },
+  "timeline": {
+    "load_more": "טעינת פוסטים נוספים",
+    "no_posts": "אין פוסטים כאן!",
+    "show_new_items": "{v} פריטים חדשים|{v} פריט חדש|{v} פריטים חדשים",
+    "view_older_posts": "ייתכן שפוסטים ישנים ממשרתים אחרים לא יוצגו."
+  },
+  "title": {
+    "federated_timeline": "ציר זמן מאוחד",
+    "local_timeline": "ציר זמן מקומי"
+  },
+  "tooltip": {
+    "add_content_warning": "הוספת אזהרת תוכן",
+    "add_emojis": "הוספת אמוג'ים",
+    "add_media": "הוספת תמונות, וידאו או קובץ שמע",
+    "add_publishable_content": "הוספת תוכן לפרסום",
+    "add_thread_item": "הוספת פריט לשרשור",
+    "change_content_visibility": "שינוי נראות התוכן",
+    "change_language": "שינוי שפה",
+    "change_quote_approval_policy": "שינוי מדיניות אישור ציטוט",
+    "emoji": "אמוג'י",
+    "explore_links_intro": "סיפורי חדשות אלה נדונים כרגע על ידי אנשים בשרת זה ובשרתים אחרים של הרשת המבוזרת.",
+    "explore_posts_intro": "פוסטים אלה מהשרת הזה ושרתים אחרים ברשת המבוזרת צוברים תאוצה בשרת זה כרגע.",
+    "explore_tags_intro": "תגיות אלה צוברות תאוצה בקרב אנשים בשרת זה ובשרתים אחרים של הרשת המבוזרת כרגע.",
+    "open_editor_tools": "כלי עורך",
+    "pick_an_icon": "בחירת סמל",
+    "publish_failed": "סגירת הודעות שנכשלו בראש העורך כדי לפרסם מחדש פוסטים",
+    "remove_thread_item": "הסרת פריט מהשרשור",
+    "schedule_failed": "סגירת הודעות שנכשלו בראש העורך כדי לתזמן מחדש פוסטים",
+    "schedule_post": "תזמון פוסט",
+    "start_thread": "התחלת שרשור",
+    "toggle_bold": "החלפת מודגש",
+    "toggle_code_block": "החלפת בלוק קוד",
+    "toggle_italic": "החלפת נטוי"
+  },
+  "user": {
+    "add_existing": "הוספת חשבון קיים",
+    "server_address_label": "כתובת שרת Mastodon",
+    "sign_in_desc": "התחברות למעקב אחרי פרופילים או תגיות, הוספה למועדפים, שיתוף ותגובה לפוסטים, או לתקשר מחשבון בשרת אחר.",
+    "sign_in_notice_title": "צפייה בנתונים הציבוריים של {0}",
+    "sign_out_account": "התנתקות מ-{0}",
+    "single_instance_sign_in_desc": "התחברות למעקב אחרי פרופילים או תגיות, הוספה למועדפים, שיתוף ותגובה לפוסטים.",
+    "tip_no_account": "אם עדיין אין חשבון Mastodon, {0}.",
+    "tip_register_account": "הרשמה ל-Mastodon"
+  },
+  "visibility": {
+    "direct": "אזכור פרטי",
+    "direct_desc": "גלוי רק למשתמשים שאוזכרו",
+    "private": "עוקבים בלבד",
+    "private_desc": "גלוי לעוקבים בלבד",
+    "public": "ציבורי",
+    "public_desc": "גלוי לכולם",
+    "unlisted": "ציבורי שקט",
+    "unlisted_desc": "גלוי לכולם, אך מחוץ לתכונות הגילוי"
+  }
+}

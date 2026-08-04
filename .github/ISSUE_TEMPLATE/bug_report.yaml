@@ -1,0 +1,85 @@
+name: 🐞 Bug report
+description: Report an issue
+labels: ['s: pending triage', 'c: bug']
+type: bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: To Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+  - type: textarea
+    id: expectations
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen but did not?
+  - type: upload
+    id: screenshots
+    attributes:
+      label: Upload screenshots
+      description: If applicable, add screenshots to help explain your problem.
+  - type: markdown
+    attributes:
+      value: |
+        To help us debug the problem, please complete relevant information as much as you can:
+  - type: input
+    id: elk-url
+    attributes:
+      label: Elk information
+      placeholder: https://elk.zone, https://main.elk.zone
+  - type: input
+    id: elk-version
+    attributes:
+      label: Elk version
+      placeholder: v1.0.0
+  - type: input
+    id: server-url
+    attributes:
+      label: Mastodon Server URL
+      placeholder: https://mastodon.social
+  - type: input
+    id: server-version
+    attributes:
+      label: Mastodon Server version
+      placeholder: v4.6.0
+  - type: input
+    id: relevant-post
+    attributes:
+      label: Link to relevant posts (separate by comma)
+      placeholder: https://mastodon.social/@Gargron/1
+  - type: input
+    id: browser
+    attributes:
+      label: Browser used, and its version
+      placeholder: Chrome v112, Safari v112
+  - type: textarea
+    id: device
+    attributes:
+      label: Device used
+      placeholder: |
+        - Device: (e.g. iPhone6)
+        - OS: (e.g. iOS8.1)
+        - Browser: (e.g. Chrome, Safari)
+        - Version: (e.g. 22)
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      placeholder: |
+        Add any other context about the problem here.

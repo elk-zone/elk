@@ -61,6 +61,7 @@
     "clear": "Bersihkan",
     "clear_publish_failed": "Hapus error publikasi",
     "clear_save_failed": "Hapus kesalahan penyimpanan",
+    "clear_schedule_failed": "Hapus kesalahan jadwal",
     "clear_upload_failed": "Hapus kesalahan pengunggahan file",
     "close": "Tutup",
     "compose": "Menulis",
@@ -77,11 +78,15 @@
     "prev": "Sebelumnya",
     "publish": "Terbitkan",
     "publish_thread": "Terbitkan thread",
+    "quote": "Kutip",
+    "quote_count": "{0}",
+    "remove_quote": "Hapus kutipan",
     "reply": "Balas",
     "reply_count": "{0}",
     "reset": "Atur ulang",
     "save": "Simpan",
     "save_changes": "Simpan perubahan",
+    "schedule": "Jadwal",
     "sign_in": "Masuk",
     "sign_in_to": "Masuk ke {0}",
     "switch_account": "Ganti akun",
@@ -113,6 +118,7 @@
     "in": "di dalam",
     "no_bookmarks": "Belum ada postingan yang ditandai",
     "no_favourites": "Belum ada postingan yang disukai",
+    "no_scheduled_posts": "Belum ada pos terjadwal",
     "not_found": "404 tidak ditemukan",
     "offline_desc": "Sepertinya Anda sedang offline. \nSilakan periksa koneksi jaringan Anda."
   },
@@ -131,7 +137,8 @@
       "cancel": "Batalkan",
       "confirm": "Blokir",
       "description": "Yakin ingin memblokir {0}?",
-      "title": "Blokir domain"
+      "title": "Blokir domain",
+      "type_to_confirm": "Ketik {0} untuk mengonfirmasi"
     },
     "common": {
       "cancel": "Tidak",
@@ -187,6 +194,7 @@
     "account_not_found": "Akun {0} tidak ditemukan",
     "explore_list_empty": "Tidak ada yang sedang tren saat ini. \nPeriksa kembali nanti!",
     "file_size_cannot_exceed_n_mb": "Ukuran file tidak boleh melebihi {0}MB",
+    "quote_fetch_error": "Tidak dapat mengambil pos yang dikutip",
     "sign_in_error": "Tidak dapat terhubung ke server.",
     "status_not_found": "Pos tidak ditemukan",
     "unsupported_file_format": "Format berkas tidak didukung"
@@ -238,6 +246,7 @@
         "command_mode": "Mode perintah",
         "compose": "Menyusun",
         "favourite": "Favorit",
+        "quote": "Kutip",
         "search": "Cari",
         "show_new_items": "Tampilkan item baru",
         "title": "Tindakan"
@@ -274,7 +283,6 @@
     "copy_original_link_to_post": "Salin tautan asli ke pos ini",
     "delete": "Hapus",
     "delete_and_redraft": "Hapus dan buat ulang draf",
-    "direct_message_account": "Pesan langsung {0}",
     "edit": "Sunting",
     "hide_reblogs": "Sembunyikan dukungan dari {0}",
     "mention_account": "Sebut {0}",
@@ -282,11 +290,13 @@
     "mute_conversation": "Nonaktifkan postingan ini",
     "open_in_original_site": "Buka di situs asli",
     "pin_on_profile": "Sematkan di profil",
+    "private_mention_account": "Sebutan pribadi {0}",
     "remove_personal_note": "Hapus catatan pribadi dari {0}",
     "report_account": "Laporkan {0}",
     "share_account": "Bagikan {0}",
     "share_post": "Bagikan postingan ini",
     "show_favourited_and_boosted_by": "Tampilkan siapa yang memfavoritkan dan mendukung",
+    "show_reacted_by": "Tampilkan siapa yang bereaksi",
     "show_reblogs": "Tampilkan dukungan dari {0}",
     "show_untranslated": "Tampilkan versi non-terjemahan",
     "toggle_theme": {
@@ -326,6 +336,7 @@
     "notifications": "Notifikasi",
     "privacy": "Privasi",
     "profile": "Profil",
+    "scheduled_posts": "Pos terjadwal",
     "search": "Cari",
     "select_feature_flags": "Alihkan Bendera Fitur",
     "select_font_size": "Ukuran huruf",
@@ -399,6 +410,14 @@
         "short_name": "Elk"
       }
     }
+  },
+  "quote_approval_policy": {
+    "followers": "Hanya pengikut",
+    "followers_desc": "Pengikut Anda dapat mengutip",
+    "nobody": "Tidak ada",
+    "nobody_desc": "Hanya Anda yang dapat mengutip",
+    "public": "Publik",
+    "public_desc": "Siapa pun dapat mengutip"
   },
   "report": {
     "additional_comments": "Komentar tambahan",
@@ -539,6 +558,8 @@
     },
     "notifications_settings": "Notifikasi",
     "preferences": {
+      "disable_timeline_autoloading": "Nonaktifkan muat otomatis linimasa",
+      "disable_timeline_autoloading_description": "Cegah memuat otomatis pos baru dalam tampilan linimasa dan tampilkan tombol \"Muat lebih banyak pos\".",
       "embedded_media": "Pemutar Media Tertanam",
       "embedded_media_description": "Tampilkan pemutar media tertanam sebagai pengganti kartu pratinjau normal saat memperluas tautan media streaming.",
       "enable_autoplay": "Aktifkan Autoplay",
@@ -551,10 +572,15 @@
       "hide_account_hover_card": "Sembunyikan kartu hover akun",
       "hide_alt_indi_on_posts": "Sembunyikan indikator alternatif pada postingan",
       "hide_boost_count": "Sembunyikan jumlah dukungan",
+      "hide_boosts_in_timeline": "Sembunyikan dukungan di linimasa",
+      "hide_boosts_in_timeline_description": "Sembunyikan pos yang didukung/dibagikan ulang dari linimasa beranda dan publik Anda.",
       "hide_favorite_count": "Sembunyikan jumlah favorit",
       "hide_follower_count": "Sembunyikan jumlah pengikut",
       "hide_gif_indi_on_posts": "Sembunyikan indikator gif pada postingan",
       "hide_news": "Sembunyikan berita",
+      "hide_quote_count": "Sembunyikan jumlah kutipan",
+      "hide_replies_in_timeline": "Sembunyikan balasan di linimasa",
+      "hide_replies_in_timeline_description": "Sembunyikan balasan ke pos orang lain dari linimasa beranda dan publik Anda. Balasan Anda sendiri masih akan ditampilkan.",
       "hide_reply_count": "Sembunyikan jumlah balasan",
       "hide_tag_hover_card": "Sembunyikan tag kartu hover",
       "hide_translation": "Sembunyikan terjemahan",
@@ -617,6 +643,9 @@
     "publish_failed": "Publikasi gagal",
     "publishing": "Penerbitan",
     "save_failed": "Gagal menyimpan",
+    "schedule_failed": "Jadwal gagal",
+    "schedule_time_invalid": "Waktu terjadwal harus paling sedikit 5 menit di masa depan. Atur ke {0} atau lebih baru.",
+    "scheduling": "Menjadwalkan",
     "upload_failed": "Gagal mengunggah",
     "uploading": "Mengunggah..."
   },
@@ -645,6 +674,7 @@
       "finished": "selesai {0}",
       "update": "Perbarui jajak pendapat"
     },
+    "quoted_by": "Dikutip Oleh",
     "replying_to": "Membalas ke {0}",
     "show_full_thread": "Tampilkan thread Penuh",
     "someone": "seseorang",
@@ -676,6 +706,7 @@
     "notifications_mention": "Penyebutan",
     "notifications_more_tooltip": "Filter pemberitahuan berdasarkan jenis",
     "notifications_poll": "Polling",
+    "notifications_quote": "Kutipan",
     "notifications_reblog": "Menggiatkan",
     "notifications_status": "Status",
     "notifications_update": "Pembaruan",
@@ -720,6 +751,7 @@
     "year_past": "0 tahun lalu|tahun lalu|{n} tahun lalu"
   },
   "timeline": {
+    "load_more": "Muat lebih banyak pos",
     "no_posts": "Tidak ada postingan di sini!",
     "show_new_items": "Tampilkan {v} item baru|Tampilkan {v} item baru|Tampilkan {v} item baru",
     "view_older_posts": "Posting lama dari contoh lain mungkin tidak ditampilkan."
@@ -736,6 +768,7 @@
     "add_thread_item": "Tambahkan item ke thread",
     "change_content_visibility": "Ubah visibilitas konten",
     "change_language": "Ubah bahasa",
+    "change_quote_approval_policy": "Ubah kebijakan persetujuan kutipan",
     "emoji": "Emoji",
     "explore_links_intro": "Berita-berita ini sedang dibicarakan oleh orang-orang di server ini dan server-server lain dari jaringan terdesentralisasi saat ini.",
     "explore_posts_intro": "Postingan-postingan ini dari server ini dan server lain di jaringan terdesentralisasi sedang mendapatkan daya tarik di server ini sekarang.",
@@ -744,6 +777,8 @@
     "pick_an_icon": "Pilih ikon",
     "publish_failed": "Tutup pesan yang gagal di bagian atas editor untuk mempublikasikan ulang postingan",
     "remove_thread_item": "Hapus item dari thread",
+    "schedule_failed": "Tutup pesan gagal di bagian atas editor untuk menjadwalkan ulang pos",
+    "schedule_post": "Jadwalkan pos",
     "start_thread": "Mulai thread",
     "toggle_bold": "Ubah tebal",
     "toggle_code_block": "Tulis sebagai blok kode",

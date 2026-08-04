@@ -10,6 +10,6 @@ catch (err) {
 
 <template>
   <MainContent text-base grid gap-3 m3>
-    <img v-if="instance !== undefined" rounded-3 :src="instance.thumbnail.url">
+    <img v-if="instance?.thumbnail?.url" rounded-3 :src="instance.thumbnail.url" :alt="$t('server.thumbnail_description', [instance.title])">
   </MainContent>
 </template>

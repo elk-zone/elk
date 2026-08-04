@@ -382,8 +382,10 @@
     "install": "Telepítés",
     "install_title": "Elk telepítése",
     "screenshots": {
-      "dark": "Az Elk képernyőkép sötét módban fut",
-      "light": "Az Elk képernyőkép világos módban fut"
+      "dark": "Az Elk képernyőkép sötét módban fut desktopon",
+      "dark_mobile": "Az Elk képernyőkép sötét módban fut mobilon",
+      "light": "Az Elk képernyőkép világos módban fut desktopon",
+      "light_mobile": "Az Elk képernyőkép világos módban fut mobilon"
     },
     "title": "Új Elk frissítés elérhető!",
     "update": "Frissítés",
@@ -458,6 +460,9 @@
   "search": {
     "search_desc": "Személyek és címkék keresése",
     "search_empty": "Nem találtunk semmit ezekre a keresési kifejezésekre"
+  },
+  "server": {
+    "thumbnail_description": "Kis kép a {0} szerverhez"
   },
   "settings": {
     "about": {

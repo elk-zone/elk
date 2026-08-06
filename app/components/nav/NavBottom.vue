@@ -4,6 +4,7 @@ import type { NavButtonName } from '../../composables/settings'
 
 import {
   NavButtonBookmark,
+  NavButtonCollection,
   NavButtonCompose,
   NavButtonExplore,
   NavButtonFavorite,
@@ -39,6 +40,7 @@ const navButtons: NavButton[] = [
   { name: 'local', component: NavButtonLocal },
   { name: 'federated', component: NavButtonFederated },
   { name: 'list', component: NavButtonList },
+  { name: 'collection', component: NavButtonCollection },
   { name: 'hashtag', component: NavButtonHashtag },
   { name: 'moreMenu', component: NavButtonMoreMenu },
 ]

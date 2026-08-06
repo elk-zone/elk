@@ -3,8 +3,8 @@ import type { mastodon } from 'masto'
 
 // Add undocumented 'annual_report' type introduced in v4.3
 // ref. https://github.com/mastodon/documentation/issues/1211#:~:text=api/v1/annual_reports
-type NotificationType = mastodon.v1.Notification['type'] | 'annual_report'
-type Notification = Omit<mastodon.v1.Notification, 'type'> & { type: NotificationType }
+type NotificationType = mastodon.v1.Notification['type'] | 'annual_report' | 'added_to_collection' | 'collection_update'
+type Notification = Omit<mastodon.v1.Notification, 'type'> & { type: NotificationType } & { collection?: mastodon.v1.Collection }
 
 const { notification } = defineProps<{
   notification: Notification
@@ -26,6 +26,8 @@ const supportedNotificationTypes: NotificationType[] = [
   'status',
   'annual_report',
   'quote',
+  'added_to_collection',
+  'collection_update',
 ]
 
 // well-known emoji reactions types Elk does not support yet
@@ -157,6 +159,62 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
           </p>
         </div>
       </div>
+    </template>
+    <template v-else-if="notification.type === 'added_to_collection' && notification.collection">
+      <NuxtLink :to="getCollectionRoute(notification.collection)">
+        <div flex="~ col" p4 bg-shaded gap-3>
+          <div flex>
+            <div i-ri:shapes-line text-xl me-3 color-blue />
+            <AccountHoverWrapper :account="notification.account">
+              <NuxtLink :to="getAccountRoute(notification.account)">
+                <AccountDisplayName
+                  :account="notification.account" text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all
+                />
+              </NuxtLink>
+            </AccountHoverWrapper>
+            <span>{{ $t('notification.added_you_to_collection') }}</span>
+          </div>
+          <div flex gap-3 ps-8>
+            <div i-ri:shapes-line text-xl shrink-0 text-secondary />
+            <div flex="~ col" min-w-0>
+              <div font-bold truncate>
+                {{ notification.collection.name }}
+              </div>
+              <div v-if="notification.collection.description" text-sm text-secondary truncate>
+                {{ notification.collection.description }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </NuxtLink>
+    </template>
+    <template v-else-if="notification.type === 'collection_update' && notification.collection">
+      <NuxtLink :to="getCollectionRoute(notification.collection)">
+        <div flex="~ col" p4 bg-shaded gap-3>
+          <div flex>
+            <div i-ri:shapes-line text-xl me-3 color-blue />
+            <AccountHoverWrapper :account="notification.account">
+              <NuxtLink :to="getAccountRoute(notification.account)">
+                <AccountDisplayName
+                  :account="notification.account" text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all
+                />
+              </NuxtLink>
+            </AccountHoverWrapper>
+            <span>{{ $t('notification.collection_updated') }}</span>
+          </div>
+          <div flex gap-3 ps-8>
+            <div i-ri:shapes-line text-xl shrink-0 text-secondary />
+            <div flex="~ col" min-w-0>
+              <div font-bold truncate>
+                {{ notification.collection.name }}
+              </div>
+              <div v-if="notification.collection.description" text-sm text-secondary truncate>
+                {{ notification.collection.description }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </NuxtLink>
     </template>
   </article>
 </template>

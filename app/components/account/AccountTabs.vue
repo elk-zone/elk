@@ -35,6 +35,15 @@ const tabs = computed<CommonRouteTabOption[]>(() => [
     display: t('tab.media'),
     icon: 'i-ri:camera-2-line',
   },
+  {
+    name: 'account-collections',
+    to: {
+      name: 'account-collections',
+      params: { server: server.value, account: account.value },
+    },
+    display: t('tab.collections'),
+    icon: 'i-ri:shapes-line',
+  },
 ])
 </script>
 

@@ -16,7 +16,7 @@ const timeAgoOptions = useTimeAgoOptions()
 const expiredTimeAgo = useTimeAgo(poll.expiresAt!, timeAgoOptions)
 const expiredTimeFormatted = useFormattedDateTime(poll.expiresAt!)
 const { formatPercentage } = useHumanReadableNumber()
-const loading = ref(false)
+const isLoading = ref(false)
 
 const { client } = useMasto()
 
@@ -43,11 +43,11 @@ async function vote(e: Event) {
 }
 
 async function refresh() {
-  if (loading.value) {
+  if (isLoading.value) {
     return
   }
 
-  loading.value = true
+  isLoading.value = true
   try {
     const newPoll = await client.value.v1.polls.$select(poll.id).fetch()
     Object.assign(poll, newPoll)
@@ -57,7 +57,7 @@ async function refresh() {
     console.error(e)
   }
   finally {
-    loading.value = false
+    isLoading.value = false
   }
 }
 
@@ -108,9 +108,13 @@ const votersCount = computed(() => poll.votersCount ?? poll.votesCount ?? 0)
           </CommonTooltip>
         </div>
       </div>
-      <div v-if="!poll.expired">
+      <div v-if="!poll.expired" flex gap-x-2>
+        <button v-if="!poll.voted" whitespace-nowrap flex gap-1 items-center hover:text-primary @click="refresh">
+          <div text-xs i-ri:information-line />
+          {{ $t('status.poll.view_results') }}
+        </button>
         <button whitespace-nowrap flex gap-1 items-center hover:text-primary @click="refresh">
-          <div text-xs :class="loading ? 'animate-spin' : ''" i-ri:loop-right-line />
+          <div text-xs :class="isLoading ? 'animate-spin' : ''" i-ri:loop-right-line />
           {{ $t('status.poll.update') }}
         </button>
       </div>

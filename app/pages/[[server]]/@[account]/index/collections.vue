@@ -65,7 +65,7 @@ if (account) {
         </div>
       </NuxtLink>
     </div>
-    <div v-if="collectionsNotSupported" p-4 text-secondary text-sm text-center>
+    <div v-else-if="collectionsNotSupported" p-4 text-secondary text-sm text-center>
       {{ $t('error.collections_not_supported') }}
     </div>
     <div v-else p-4 text-secondary text-sm text-center>

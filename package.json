@@ -25,6 +25,10 @@
     "test:typecheck": "vue-tsc -b --noEmit",
     "test": "vitest",
     "test:ci": "vitest run",
+    "test:browser": "nuxt build && playwright test",
+    "test:browser:prebuilt": "playwright test",
+    "test:browser:start": "PORT=5678 node .output/server/index.mjs",
+    "test:browser:ui": "playwright test --ui",
     "update:team:avatars": "node scripts/avatars.ts",
     "cleanup-translations": "node scripts/cleanup-translations.ts",
     "prepare-translation-status": "node scripts/prepare-translation-status.ts",
@@ -134,6 +138,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^7.7.3",
+    "@playwright/test": "^1.61.1",
     "@types/chroma-js": "^3.1.2",
     "@types/file-saver": "^2.0.7",
     "@types/fnando__sparkline": "^0.3.7",

@@ -277,6 +277,7 @@ export default defineNuxtConfig({
         { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
         { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+        { rel: 'me', href: 'https://m.webtoo.ls/@elk' },
       ],
       meta: [
         { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },

@@ -68,6 +68,26 @@ export function getStatusInReplyToRoute(status: mastodon.v1.Status) {
   })
 }
 
+export function getCollectionRoute(collection: mastodon.v1.Collection) {
+  return useRouter().resolve({
+    name: 'collection',
+    params: {
+      server: currentServer.value,
+      id: collection.id,
+    },
+  })
+}
+
+export function getAccountCollectionsRoute(account: mastodon.v1.Account) {
+  return useRouter().resolve({
+    name: 'account-collections',
+    params: {
+      server: currentServer.value,
+      account: extractAccountHandle(account),
+    },
+  })
+}
+
 export function navigateToStatus({ status, focusReply = false }: {
   status: mastodon.v1.Status
   focusReply?: boolean

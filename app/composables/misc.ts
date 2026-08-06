@@ -38,5 +38,11 @@ export function isEmptyObject(object: object) {
 }
 
 export function removeHTMLTags(str: string) {
-  return str.replaceAll(HTMLTagRE, '')
+  let result = str
+  let prev: string
+  do {
+    prev = result
+    result = result.replaceAll(HTMLTagRE, '')
+  } while (result !== prev)
+  return result
 }

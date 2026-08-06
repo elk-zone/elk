@@ -382,8 +382,10 @@
     "install": "Instalar",
     "install_title": "Instalar Elk",
     "screenshots": {
-      "dark": "Captura de ecrã do Elk em modo escuro",
-      "light": "Captura de ecrã do Elk em modo claro"
+      "dark": "Captura de ecrã do Elk no ambiente de trabalho em modo escuro",
+      "dark_mobile": "Captura de ecrã do Elk no telemóvel em modo escuro ",
+      "light": "Captura de ecrã do Elk no ambiente de trabalho em modo claro",
+      "light_mobile": "Captura de ecrã do Elk no telemóvel em modo claro"
     },
     "title": "Nova atualização do Elk disponível!",
     "update": "Atualizar",
@@ -458,6 +460,9 @@
   "search": {
     "search_desc": "Pesquise por pessoas e hashtags",
     "search_empty": "Não foi possível encontrar nada para os termos que pesquisou"
+  },
+  "server": {
+    "thumbnail_description": "Miniatura do servidor {0}"
   },
   "settings": {
     "about": {

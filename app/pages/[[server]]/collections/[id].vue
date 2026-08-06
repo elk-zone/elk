@@ -23,12 +23,8 @@ const { data: collectionData } = await useAsyncData<mastodon.v1.CollectionWithAc
 )
 
 const accounts = computed(() => collectionData.value?.accounts ?? [])
+const [ownerAccount, ...memberAccounts] = accounts.value
 const collection = computed(() => collectionData.value?.collection)
-const ownerAccount = computed(() => accounts.value.find(a => a.id === collection.value?.accountId))
-
-const memberAccounts = computed(() =>
-  accounts.value.filter(a => a.id !== (ownerAccount.value?.id ?? ''),
-  ))
 
 useHydratedHead({
   title: t('nav.collections'),

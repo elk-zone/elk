@@ -33,6 +33,31 @@ export const TiptapMentionSuggestion: Partial<SuggestionOptions> = import.meta.s
       render: createSuggestionRenderer(TiptapMentionList),
     }
 
+/**
+ * The search API returns each hashtag with the casing it was first used in on
+ * the server, so accepting a suggestion rewrites a hand-typed `#GamingDeals`
+ * into `#gamingdeals`. Offer the typed text as the first option so it stays
+ * selected by default.
+ *
+ * Only when the server confirmed the same hashtag under a different casing:
+ * that is the case where accepting a suggestion would change what was typed.
+ * Prefix matches on other tags are left alone, so the popup never invents a
+ * hashtag the server did not return.
+ */
+export function prependTypedHashtag(hashtags: mastodon.v1.Tag[], query: string): mastodon.v1.Tag[] {
+  // Already offered verbatim — prepending would only duplicate it.
+  if (hashtags.some(tag => tag.name === query))
+    return hashtags
+
+  const confirmedInAnotherCasing = hashtags.some(
+    tag => tag.name.toLowerCase() === query.toLowerCase(),
+  )
+  if (!confirmedInAnotherCasing)
+    return hashtags
+
+  return [{ id: query, name: query, url: '' }, ...hashtags]
+}
+
 export const TiptapHashtagSuggestion: Partial<SuggestionOptions> = {
   pluginKey: new PluginKey('hashtag'),
   char: '#',
@@ -47,7 +72,8 @@ export const TiptapHashtagSuggestion: Partial<SuggestionOptions> = {
       resolve: false,
       excludeUnreviewed: true,
     })
-    return (await paginator.values().next()).value?.hashtags ?? []
+    const hashtags = (await paginator.values().next()).value?.hashtags ?? []
+    return prependTypedHashtag(hashtags, query)
   },
   render: createSuggestionRenderer(TiptapHashtagList),
 }

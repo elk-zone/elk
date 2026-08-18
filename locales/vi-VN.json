@@ -103,7 +103,7 @@
     "created_by": "Tạo bởi",
     "empty": "Chưa có tài khoản nào trong gói khởi đầu này.",
     "item_count": "{0} tài khoản|{0} tài khoản|{0} tài khoản",
-    "no_collections": "Chwua có gói khởi đầu nào."
+    "no_collections": "Chưa có gói khởi đầu nào."
   },
   "command": {
     "activate": "Kích hoạt",

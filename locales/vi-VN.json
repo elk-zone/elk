@@ -99,6 +99,12 @@
     "edit_title": "Mô tả",
     "remove_label": "Xóa file đính kèm"
   },
+  "collection": {
+    "created_by": "Tạo bởi",
+    "empty": "Chưa có tài khoản nào trong gói khởi đầu này.",
+    "item_count": "{0} tài khoản|{0} tài khoản|{0} tài khoản",
+    "no_collections": "Chwua có gói khởi đầu nào."
+  },
   "command": {
     "activate": "Kích hoạt",
     "complete": "Hoàn thành",
@@ -192,6 +198,8 @@
   },
   "error": {
     "account_not_found": "Không tìm thấy {0}",
+    "collection_not_found": "Không tìm thấy gói khởi đầu",
+    "collections_not_supported": "Máy chủ này không hỗ trợ gói khởi đầu.",
     "explore_list_empty": "Chưa có xu hướng. Hãy quay lại sau!",
     "file_size_cannot_exceed_n_mb": "Dung lượng file tối đa {0}MB",
     "quote_fetch_error": "Không thể lấy tút đã trích dẫn",
@@ -320,6 +328,7 @@
     "blocked_users": "Tài khoản đã chặn",
     "bookmarks": "Đã lưu",
     "built_at": "Bản dựng {0}",
+    "collections": "Gói khởi đầu",
     "compose": "Soạn tút",
     "conversations": "Nhắn riêng",
     "docs": "Tài liệu",
@@ -347,7 +356,9 @@
     "zen_mode": "Tập Trung"
   },
   "notification": {
+    "added_you_to_collection": "thêm bạn vào một gói khởi đầu",
     "and": "và",
+    "collection_updated": "cập nhật một gói khởi đầu có bạn",
     "favourited_post": "thích tút của bạn",
     "followed_you": "theo dõi bạn",
     "followed_you_count": "{0} người theo dõi bạn|{0} người theo dõi bạn|{0} người theo dõi bạn",
@@ -382,8 +393,10 @@
     "install": "Cài đặt",
     "install_title": "Cài đặt Elk",
     "screenshots": {
-      "dark": "Ảnh chụp Elk chế độ tối",
-      "light": "Ảnh chụp Elk chế độ sáng"
+      "dark": "Ảnh chụp Elk chế độ tối trên máy tính",
+      "dark_mobile": "Ảnh chụp Elk chế độ tối trên di động",
+      "light": "Ảnh chụp Elk chế độ sáng trên máy tính"
+      "light_mobile": "Ảnh chụp Elk chế độ sáng trên di động",
     },
     "title": "Có bản cập nhật Elk mới!",
     "update": "Cập nhật",
@@ -458,6 +471,9 @@
   "search": {
     "search_desc": "Tìm tài khoản hoặc hashtag",
     "search_empty": "Không tìm thấy gì với cụm từ này"
+  },
+    "server": {
+    "thumbnail_description": "Ảnh thu nhỏ cho {0} máy chủ"
   },
   "settings": {
     "about": {
@@ -651,7 +667,7 @@
   },
   "status": {
     "account": {
-      "suspended_message": "Trạm này đã bị vô hiệu hóa.",
+      "suspended_message": "Tài khoản này đã bị vô hiệu hóa.",
       "suspended_show": "Vẫn xem nội dung chứ?"
     },
     "boosted_by": "Đăng lại bởi",
@@ -689,11 +705,14 @@
     "edited": "sửa {0}"
   },
   "tab": {
-    "accounts": "Trạm",
+    "accounts": "Tài khoản",
+    "collections": "Gói khởi đầu",
     "for_you": "Cho bạn",
     "hashtags": "Hashtag",
+    "in_collections": "Có bạn trong đó",
     "list": "Danh sách",
     "media": "Media",
+    "my_collections": "Gói khởi đầu của tôi",
     "news": "Tin tức",
     "notifications_admin": {
       "report": "Báo cáo",
@@ -787,7 +806,7 @@
   "user": {
     "add_existing": "Thêm một tài khoản khác",
     "server_address_label": "Địa chỉ máy chủ Mastodon",
-    "sign_in_desc": "Đăng nhập để theo dõi trạm hoặc hashtag, thích, chia sẻ và trả lời tút hoặc tương tác từ tài khoản của bạn trên một máy chủ khác.",
+    "sign_in_desc": "Đăng nhập để theo dõi tài khoản hoặc hashtag, thích, chia sẻ và trả lời tút hoặc tương tác từ tài khoản của bạn trên một máy chủ khác.",
     "sign_in_notice_title": "Đang xem {0} công khai",
     "sign_out_account": "Đăng xuất {0}",
     "single_instance_sign_in_desc": "Đăng nhập để theo dõi tài khoản hoặc hashtag, thích, chia sẻ và trả lời tút",

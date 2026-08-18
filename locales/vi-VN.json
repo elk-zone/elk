@@ -395,8 +395,8 @@
     "screenshots": {
       "dark": "Ảnh chụp Elk chế độ tối trên máy tính",
       "dark_mobile": "Ảnh chụp Elk chế độ tối trên di động",
-      "light": "Ảnh chụp Elk chế độ sáng trên máy tính"
-      "light_mobile": "Ảnh chụp Elk chế độ sáng trên di động",
+      "light": "Ảnh chụp Elk chế độ sáng trên máy tính",
+      "light_mobile": "Ảnh chụp Elk chế độ sáng trên di động"
     },
     "title": "Có bản cập nhật Elk mới!",
     "update": "Cập nhật",
@@ -472,7 +472,7 @@
     "search_desc": "Tìm tài khoản hoặc hashtag",
     "search_empty": "Không tìm thấy gì với cụm từ này"
   },
-    "server": {
+  "server": {
     "thumbnail_description": "Ảnh thu nhỏ cho {0} máy chủ"
   },
   "settings": {

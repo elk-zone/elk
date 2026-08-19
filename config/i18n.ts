@@ -100,6 +100,11 @@ const locales: LocaleObjectData[] = [
     },
   } satisfies LocaleObjectData,
   {
+    code: 'eo',
+    file: 'eo.json',
+    name: 'Esperanto',
+  },
+  {
     code: 'fa-IR',
     file: 'fa-IR.json',
     name: 'فارسی',

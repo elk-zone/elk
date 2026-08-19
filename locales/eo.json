@@ -1,0 +1,826 @@
+{
+  "a11y": {
+    "loading_page": "Ŝarĝado de paĝo, bonvolu atendi",
+    "loading_titled_page": "Ŝarĝado de paĝo: {0}, bonvolu atendi",
+    "locale_changed": "Lingvo ŝanĝita al {0}",
+    "locale_changing": "Ŝanĝado de lingvo, bonvolu atendi",
+    "route_loaded": "Paĝo ŝarĝita: {0}"
+  },
+  "account": {
+    "authorize": "Rajtigi sekvadon",
+    "authorized": "Vi rajtigis la peton",
+    "avatar_description": "Profilbildo de {0}",
+    "blocked_by": "Vi estas blokita de ti ĉiu uzanto.",
+    "blocked_domains": "Blokitaj domajnoj",
+    "blocked_users": "Blokitaj uzantoj",
+    "blocking": "Blokita",
+    "bot": "AŬTOMATA",
+    "copy_account_name": "Kopii nomon de konto",
+    "favourites": "Ŝataĵoj",
+    "follow": "Sekvi",
+    "follow_back": "Retrosekvi",
+    "follow_requested": "Sekvado petita",
+    "followers": "Sekvantoj",
+    "followers_count": "{0} sekvantoj|{0} sekvanto|{0} sekvantoj",
+    "following": "Sekvatoj",
+    "following_count": "{0} sekvatoj|{0} sekvato|{0} sekvatoj",
+    "follows_you": "Sekvas vin",
+    "go_to_profile": "Iri al profilo",
+    "joined": "Aligita",
+    "lock": "Ŝlosilo",
+    "moved_title": "indikis, ke ties nova konto nun estas:",
+    "muted_users": "Silentigitaj uzantoj",
+    "muting": "Silentigita",
+    "mutuals": "Reciproka sekvado",
+    "notifications_on_post_disable": "Ne sciigi min plu, kiam {username} afiŝas",
+    "notifications_on_post_enable": "Sciigi min, kiam {username} afiŝas",
+    "pinned": "Alpinglitaj",
+    "posts": "Afiŝoj",
+    "posts_count": "{0} afiŝoj|{0} afiŝo|{0} afiŝoj",
+    "profile_description": "Kapbildo de profilo de {0}",
+    "profile_personal_note": "Persona noto",
+    "profile_unavailable": "Profilo nehavebla",
+    "reject": "Rifuzi sekvadon",
+    "rejected": "Vi rifuzis la peton",
+    "request_follow": "Peti sekvadon",
+    "requested": "{0} petis sekvi vin",
+    "unblock": "Malbloki",
+    "unfollow": "Malsekvi",
+    "unmute": "Malsilentigi",
+    "view_other_followers": "Sekvantoj de aliaj nodoj eble estas ne montritaj.",
+    "view_other_following": "Sekvatoj de aliaj nodoj eble estas ne montritaj.",
+    "withdraw_follow_request": "Revoki peton de sekvado"
+  },
+  "action": {
+    "apply": "Apliki",
+    "bookmark": "Legosigni",
+    "bookmarked": "Legosignita",
+    "boost": "Diskonigi",
+    "boost_count": "{0}",
+    "boosted": "Diskonigita",
+    "clear": "Vakigi",
+    "clear_publish_failed": "Vakigi erarojn de publikigo",
+    "clear_save_failed": "Vakigi erarojn de konservado",
+    "clear_schedule_failed": "Vakigi erarojn de planado",
+    "clear_upload_failed": "Vakiri erarojn de alŝutado",
+    "close": "Fermi",
+    "compose": "Verki",
+    "confirm": "Konfirmi",
+    "done": "Farita",
+    "edit": "Redakti",
+    "enter_app": "Enigi apon",
+    "favourite": "Ŝati",
+    "favourite_count": "{0}",
+    "favourited": "Ŝatita",
+    "more": "Pli",
+    "next": "Sekva",
+    "open_image_preview_dialog": "Malfermi antaŭvidon de bildo",
+    "prev": "Malsekva",
+    "publish": "Publikigi",
+    "publish_thread": "Publikigi fadenon",
+    "quote": "Citi",
+    "quote_count": "{0}",
+    "remove_quote": "Forigi citaĵon",
+    "reply": "Respondi",
+    "reply_count": "{0}",
+    "reset": "Reagordi",
+    "save": "Konservi",
+    "save_changes": "Konservi ŝanĝojn",
+    "schedule": "Plani",
+    "sign_in": "Ensaluti",
+    "sign_in_to": "Ensaluti al {0}",
+    "switch_account": "Ŝanĝi konton",
+    "vote": "Voĉdoni"
+  },
+  "app_desc_short": "Rapidmova retpaĝa kliento por Mastodon",
+  "app_logo": "Logotipo de Elk",
+  "app_name": "Elk",
+  "attachment": {
+    "edit_title": "Priskribo",
+    "remove_label": "Forigi kunsendaĵon"
+  },
+  "collection": {
+    "created_by": "Kreita de",
+    "empty": "Neniuj kontoj en ĉi tiu kolekto jam.",
+    "item_count": "{0} kontoj|{0} konto|{0} kontoj",
+    "no_collections": "Neniuj kolektoj jam."
+  },
+  "command": {
+    "activate": "Aktivigi",
+    "complete": "Plenumi",
+    "compose_desc": "Verki novan afiŝon",
+    "n_people_in_the_past_n_days": "{0} homoj dum la lastaj {1} tagoj",
+    "select_lang": "Elekti lingvon",
+    "sign_in_desc": "Aldoni ekzistantan konton",
+    "switch_account": "Ŝanĝi al {0}",
+    "switch_account_desc": "Ŝanĝi al alia konto",
+    "toggle_dark_mode": "Baskuligi malhelan reĝimon",
+    "toggle_zen_mode": "Baskuligi zenan reĝimon"
+  },
+  "common": {
+    "end_of_list": "Fino de la listo",
+    "error": "ERARO",
+    "fetching": "Ŝarĝado...",
+    "in": "en",
+    "no_bookmarks": "Neniuj legosignitaj afiŝoj jam",
+    "no_favourites": "Neniuj ŝatataj afiŝoj jam",
+    "no_scheduled_posts": "Neniuj planitaj afiŝoj jam",
+    "not_found": "404 Ne trovita",
+    "offline_desc": "Ŝajnas, ke vi ne estas konektita al interreto. Bonvolu, kontroli vian retan konekton."
+  },
+  "compose": {
+    "draft_title": "Malneto: {0}",
+    "drafts": "Malnetoj ({v})"
+  },
+  "confirm": {
+    "block_account": {
+      "cancel": "Rezigni",
+      "confirm": "Bloki",
+      "description": "Ĉu vi certas, ke vi volas bloki uzanton {0}?",
+      "title": "Bloki konton"
+    },
+    "block_domain": {
+      "cancel": "Regizni",
+      "confirm": "Bloki",
+      "description": "Ĉu vi certas, ke vi volas bloki domajnon {0}? Ĉiuj uzantoj sur ĉi tiu domajno estos blokitaj, kaj ties sekvantoj/sekvatoj estos forigitaj.",
+      "title": "Bloki domajnon",
+      "type_to_confirm": "Tajpu \"{0}\" por konfirmi"
+    },
+    "common": {
+      "cancel": "Ne",
+      "confirm": "Jes"
+    },
+    "delete_list": {
+      "cancel": "Rezigni",
+      "confirm": "Forigi",
+      "description": "Ĉu vi certas, ke vi volas forigi la liston \"{0}\"?",
+      "title": "Forigi liston"
+    },
+    "delete_posts": {
+      "cancel": "Rezigni",
+      "confirm": "Forigi",
+      "description": "Ĉu vi certas, ke vi volas forigi ĉi tiun afiŝon?",
+      "title": "Forigi afiŝon"
+    },
+    "mute_account": {
+      "cancel": "Rezigni",
+      "confirm": "Silentigi",
+      "days": "tagoj|tago|tagoj",
+      "description": "Ĉu vi certas, ke vi volas silentigi uzanton {0}?",
+      "hours": "horoj|horo|horoj",
+      "minute": "minutoj|minuto|minutoj",
+      "notifications": "Silentigi sciigojn",
+      "specify_duration": "Specifu daŭron de silentigo",
+      "title": "Silentigi konton"
+    },
+    "show_reblogs": {
+      "cancel": "Rezigni",
+      "confirm": "Montri",
+      "description": "Ĉu vi certas, ke vi volas vidi diskonigojn de {0}?",
+      "title": "Montri diskonigojn"
+    },
+    "unfollow": {
+      "cancel": "Rezigni",
+      "confirm": "Malsekvi",
+      "description": "Ĉu vi certas, ke vi volas malsekvi la uzanton {0}?",
+      "title": "Malsekvi"
+    }
+  },
+  "conversation": {
+    "with": "kun"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "Linioj {0}",
+      "open": "Malfermi",
+      "snippet_from": "Tondaĵo de {0}"
+    }
+  },
+  "error": {
+    "account_not_found": "Konto {0} ne trovita",
+    "collection_not_found": "Kolekto ne trovita",
+    "collections_not_supported": "Ĉi tiu servilo ne subtenas kolektojn.",
+    "explore_list_empty": "Nenio furoras nun. Vizitu poste!",
+    "file_size_cannot_exceed_n_mb": "Dosiergrando ne povas esti pli granda ol {0}MB",
+    "quote_fetch_error": "Ne povas ŝarĝi citatan afiŝon",
+    "sign_in_error": "Ne povas konekti al la servilo.",
+    "status_not_found": "Afiŝo ne trovita",
+    "unsupported_file_format": "Nesubtenata tipo de dosiero"
+  },
+  "help": {
+    "build_preview": {
+      "desc1": "Vi nune vidas antaŭvidan version de Elk de la komunumo - {0}.",
+      "desc2": "Ĝi povas enhavi nereviziitajn aŭ eĉ malicajn ŝanĝojn.",
+      "desc3": "Ne ensalutu per via vera konto.",
+      "title": "Antaŭvida disponigo"
+    },
+    "desc_highlight": "Atendu ekziston de iuj eraroj kaj mankantaj funkcioj.",
+    "desc_para1": "Elk estas rapidmova reteja kliento de Mastodon. Vi povas ensaluti kun via konto de Mastodon kaj uzi ĝin por interago kun federujo.",
+    "desc_para2": "Elk estas malfermitkoda programo, kaj ni aktive plibonigas ĝin, kiel komunuma projekto. Aliĝu, por ke ni konstruu ĝin kune!",
+    "desc_para3": "Por plirapidigi evoluigon, vi povas patroni la teamon per programo GitHub Sponsors. Ni esperas, ke Elk plaĉas al vi!",
+    "desc_para4": "Se vi volas raporti problemon, helpi nin testi, retrokupli aŭ kontribui,",
+    "desc_para5": "atingu nin per GitHub",
+    "desc_para6": "kaj iĝu parto de la teamo.",
+    "footer_team": "La teamo de Elk",
+    "title": "Bonvenon al Elk!"
+  },
+  "language": {
+    "search": "Serĉi"
+  },
+  "list": {
+    "add_account": "Aldoni konton al listo",
+    "cancel_edit": "Rezigni redakton",
+    "clear_error": "Vakigi eraron",
+    "create": "Krei",
+    "delete": "Forigi ĉi tiun liston",
+    "delete_error": "Estis eraro dum forigado de la listo",
+    "edit": "Redakti ĉi tiun liston",
+    "edit_error": "Estis eraro dum redaktado de la listo",
+    "error": "Estis eraro dum kreado de la listo",
+    "error_prefix": "Eraro: ",
+    "list_title_placeholder": "Titolo de la listo",
+    "manage": "Administri listojn",
+    "modify_account": "Modifi listojn kun konto",
+    "remove_account": "Forigi konton de listo",
+    "save": "Konservi ŝanĝojn",
+    "search_following_desc": "Serĉi tra homoj, kiujn vi sekvas",
+    "search_following_placeholder": "Serĉi tra viaj sekvatoj"
+  },
+  "magic_keys": {
+    "dialog_header": "Fulmoklavoj",
+    "groups": {
+      "actions": {
+        "boost": "Diskonigi",
+        "command_mode": "Komanda moduso",
+        "compose": "Verki",
+        "favourite": "Ŝati",
+        "quote": "Citi",
+        "search": "Serĉi",
+        "show_new_items": "Montri novajn erojn",
+        "title": "Agoj"
+      },
+      "media": {
+        "title": "Plurmedioj"
+      },
+      "navigation": {
+        "go_to_bookmarks": "Legosignoj",
+        "go_to_conversations": "Konversacioj",
+        "go_to_explore": "Esplorado",
+        "go_to_favourites": "Ŝataĵoj",
+        "go_to_federated": "Fratara tempolinio",
+        "go_to_home": "Hejmo",
+        "go_to_lists": "Listoj",
+        "go_to_local": "Loka tempolinio",
+        "go_to_notifications": "Sciigoj",
+        "go_to_profile": "Profilo",
+        "go_to_search": "Serĉo",
+        "go_to_settings": "Agordoj",
+        "next_status": "Sekva afiŝo",
+        "previous_status": "Malsekva afiŝo",
+        "shortcut_help": "Helpo pri fulmoklavoj",
+        "title": "Navigado"
+      }
+    },
+    "sequence_then": "do"
+  },
+  "menu": {
+    "add_personal_note": "Aldoni personan noton al {0}",
+    "block_account": "Bloki: {0}",
+    "block_domain": "Bloki domajnon {0}",
+    "copy_link_to_post": "Kopii ligilon al afiŝo",
+    "copy_original_link_to_post": "Kopii originalan ligilon al afiŝo",
+    "delete": "Forigi",
+    "delete_and_redraft": "Forigi & reverki",
+    "edit": "Redakti",
+    "hide_reblogs": "Kaŝi diskonigojn de {0}",
+    "mention_account": "Mencii: {0}",
+    "mute_account": "Silentigi: {0}",
+    "mute_conversation": "Silentigi afiŝon",
+    "open_in_original_site": "Malfermi en originala retejo",
+    "pin_on_profile": "Alpingli sur profilo",
+    "private_mention_account": "Private mencii: {0}",
+    "remove_personal_note": "Forigi personan noton de {0}",
+    "report_account": "Raporti: {0}",
+    "share_account": "Konigi: {0}",
+    "share_post": "Konigi afiŝon",
+    "show_favourited_and_boosted_by": "Montri diskonigantojn kaj ŝatantojn",
+    "show_reacted_by": "Montri reagantojn",
+    "show_reblogs": "Montri diskonigojn de {0}",
+    "show_untranslated": "Montri netradukitan version",
+    "toggle_theme": {
+      "dark": "Ŝalti malhelan reĝimon",
+      "light": "Ŝalti helan reĝimon"
+    },
+    "translate_post": "Traduki afiŝon",
+    "unblock_account": "Malbloki: {0}",
+    "unblock_domain": "Malbloki domajnon {0}",
+    "unfollow_account": "Malsekvi: {0}",
+    "unmute_account": "Malsilentigi: {0}",
+    "unmute_conversation": "Malsilentigi afiŝon",
+    "unpin_on_profile": "Depingli de profilo"
+  },
+  "modals": {
+    "aria_label_close": "Fermi"
+  },
+  "nav": {
+    "back": "Iri malantaŭen",
+    "blocked_domains": "Blokitaj domajnoj",
+    "blocked_users": "Blokitaj uzantoj",
+    "bookmarks": "Legosignoj",
+    "built_at": "Kompilita je {0}",
+    "collections": "Kolektoj",
+    "compose": "Verki",
+    "conversations": "Konversacioj",
+    "docs": "Dokumentaro",
+    "explore": "Esplorado",
+    "favourites": "Ŝataĵoj",
+    "federated": "Fratara",
+    "hashtags": "Kradvortoj",
+    "home": "Hejmo",
+    "list": "Listo",
+    "lists": "Listoj",
+    "local": "Loka",
+    "more_menu": "Menuo de pliaĵoj",
+    "muted_users": "Silentigitaj uzantoj",
+    "notifications": "Sciigoj",
+    "privacy": "Privateco",
+    "profile": "Profilo",
+    "scheduled_posts": "Planitaj afiŝoj",
+    "search": "Serĉi",
+    "select_feature_flags": "Elekto de funkciaj flagoj",
+    "select_font_size": "Tekstogrando",
+    "select_language": "Lingvo de montrado",
+    "settings": "Agordoj",
+    "show_intro": "Montri antaŭparolon",
+    "toggle_theme": "Elekti etoson",
+    "zen_mode": "Zena reĝimo"
+  },
+  "notification": {
+    "added_you_to_collection": "aldonis vin al kolekto",
+    "and": "kaj",
+    "collection_updated": "ĝisdatigis kolekton, kiu enhavas vin",
+    "favourited_post": "ŝatis vian afiŝon",
+    "followed_you": "sekvis vin",
+    "followed_you_count": "{0} homoj sekvis vin|{0} homo sekvis vin|{0} homoj sekvis vin",
+    "missing_type": "MANKANTA notification.type:",
+    "others": "{0} aliaj|{0} alia|{0} aliaj",
+    "reblogged_post": "diskonigis vian afiŝon",
+    "reported": "{0} raportis pri {1}",
+    "request_to_follow": "petis sekvi vin",
+    "signed_up": "registris",
+    "update_status": "redaktis sian afiŝon"
+  },
+  "placeholder": {
+    "content_warning": "Skribu vian averton ĉi tien",
+    "default_1": "Pri kio vi pensas?",
+    "reply_to_account": "Respondo al {0}",
+    "replying": "Respondo"
+  },
+  "polls": {
+    "allow_multiple": "Permesi multoblan elekton",
+    "cancel": "Rezigni",
+    "create": "Krei enketon",
+    "disallow_multiple": "Malpermesi multoblan elekton",
+    "expiration": "Daŭro de enketo",
+    "hide_votes": "Kaŝi voĉdonojn ĝis la fino",
+    "option_placeholder": "Elekto {current}/{max}",
+    "remove_option": "Forigi elekton",
+    "settings": "Agordoj de enketo",
+    "show_votes": "Ĉiam montri voĉdonojn"
+  },
+  "pwa": {
+    "dismiss": "Ignori",
+    "install": "Instali",
+    "install_title": "Instali la apon Elk",
+    "screenshots": {
+      "dark": "Ekrankopio de Elk, rulanta sur tabla komputilo en malhela reĝimo ",
+      "dark_mobile": "Ekrankopio de Elk, rulanta sur poŝtelefono en malhela reĝimo",
+      "light": "Ekrankopio de Elk, rulanta sur tabla komputilo en hela reĝimo",
+      "light_mobile": "Ekrankopio de Elk, rulanta sur poŝtelefono en hela reĝimo"
+    },
+    "title": "Nova ĝisdatigo de Elk disponebla!",
+    "update": "Ĝisdatigi",
+    "update_available_short": "Ĝisdatigi la apon Elk",
+    "webmanifest": {
+      "canary": {
+        "description": "Rapidmova retpaĝa kliento de Mastodon (testa versio)",
+        "name": "Elk (testa)",
+        "short_name": "Elk (testa)"
+      },
+      "dev": {
+        "description": "Rapidmova retpaĝa kliento de Mastodon (programada versio)",
+        "name": "Elk (programada)",
+        "short_name": "Elk (programada)"
+      },
+      "preview": {
+        "description": "Rapidmova retpaĝa kliento de Mastodon (antaŭvida versio)",
+        "name": "Elk (antaŭvida)",
+        "short_name": "Elk (antaŭvida)"
+      },
+      "release": {
+        "description": "Rapidmova retpaĝa kliento de Mastodon",
+        "name": "Elk",
+        "short_name": "Elk"
+      }
+    }
+  },
+  "quote_approval_policy": {
+    "followers": "Nur sekvantoj",
+    "followers_desc": "Viaj sekvantoj povas citi",
+    "nobody": "Neniu",
+    "nobody_desc": "Nur vi povas citi",
+    "public": "Publika",
+    "public_desc": "Ĉiu povas citi"
+  },
+  "report": {
+    "additional_comments": "Aldonaj komentoj",
+    "another_server": "Uzanto, pri kiu vi raportas, estas ĉe alia servilo",
+    "anything_else": "Ĉu estas io alia, pri kio vi volas scii?",
+    "block_desc": "Vi ne vidos plu afiŝojn de ĉi tiu uzanto. Tiu ne povas vidi viajn afiŝojn aŭ sekvi vin. Tiu povas scii, ke vi blokas tiun.",
+    "dontlike": "Ne plaĉas al mi",
+    "dontlike_desc": "Tio ne estas io, kion vi volas vidi",
+    "forward": "Jes, plusendi la raporton al la servilo {0}",
+    "forward_question": "Ĉu vi volas plusendi la anonimigitan kopion de ĉi tiu raporto al la origina servilo de la raportata afiŝo?",
+    "further_actions": {
+      "limit": {
+        "description": "Jen viaj opcioj por kontrolado de tio, kion vi vidas:",
+        "title": "Ĉu ne volas vidi ĉi tion?"
+      },
+      "report": {
+        "description": "Dum ni revizias ĉi tion, jen iuj agoj, kiuj vi povas fari:",
+        "title": "Dankon por la reporto, ni rigardos ĝin."
+      }
+    },
+    "limiting": "Limitado de {0}",
+    "mute_desc": "Vi ne vidos plu afiŝojn de ĉi tiu uzanto. Tamen, tiu eblos sekvi vin kaj vidi viajn afiŝojn. Tiu ne scios, ke vi silentigas tiun.",
+    "other": "Io alia",
+    "other_desc": "La problemo ne konformas al aliaj kategorioj",
+    "reporting": "Raportado pri {0}",
+    "select_many": "Elektu ĉiujn, kiuj konformas:",
+    "select_one": "Elektu la plej konforman opcion:",
+    "select_posts": "Ĉu estas iuj afiŝoj, kiuj pruvas ĉi tiun raporton?",
+    "select_posts_other": "Ĉu estas iuj aliaj afiŝoj, kiuj pruvas ĉi tiun raporton?",
+    "spam": "Trudaĵo",
+    "spam_desc": "Malicaj ligiloj, falsa engaĝado, aŭ ripetaj respondoj",
+    "submit": "Sendi raporton",
+    "unfollow_desc": "Vi ne vidos plu afiŝojn de ĉi tiu uzanto en via hejma tempolinio. Tamen, vi povos vidi ties afiŝojn en aliaj lokoj.",
+    "violation": "Rompado de unu al pli reguloj de la servilo",
+    "whats_wrong_account": "Kio estas malĝusta kun ĉi tiu konto?",
+    "whats_wrong_post": "Kio estas malĝusta kun ĉi tiu afiŝo?"
+  },
+  "search": {
+    "search_desc": "Serĉi por homoj & kradvortoj",
+    "search_empty": "Ne povas trovi ion ajn per ĉi tiuj serĉovortoj"
+  },
+  "server": {
+    "thumbnail_description": "Bildeto por la servilo {0}"
+  },
+  "settings": {
+    "about": {
+      "built_at": "Konstruita je",
+      "label": "Pri la aplikaĵo",
+      "meet_the_team": "Renkontiĝu kun la teamo",
+      "sponsor_action": "Sponsori nin",
+      "sponsor_action_desc": "Subteni la teamon, kiu evoluigas la aplikaĵon Elk",
+      "sponsors": "Sponsoroj",
+      "sponsors_body_1": "La evoluigado de Elk estas subtenata de donema sponsorado kaj helpo de:",
+      "sponsors_body_2": "Kaj ĉiuj kompanioj kaj individuoj, kiuj sponsoras la teamon de Elk kaj ties anoj.",
+      "sponsors_body_3": "Se la aplikaĵo plaĉas al vi, konsideru sponsori nin:",
+      "version": "Versio"
+    },
+    "account_settings": {
+      "description": "Redakti la agordojn de via konto per interfaco de Mastodon",
+      "label": "Agordoj de konto"
+    },
+    "interface": {
+      "bottom_nav": "Malsupra navigacia breto",
+      "bottom_nav_instructions": "Elektu viajn plej favorajn butonojn (maksimume 5) por la malsupra navigacia breto. La butono \"Menuo de pliaĵoj\" estas necesa.",
+      "color_mode": "Kolorreĝimo",
+      "dark_mode": "Malhela",
+      "default": " (defaŭlta)",
+      "font_size": "Grando de tiparo",
+      "label": "Interfaco",
+      "light_mode": "Hela",
+      "system_mode": "Operaciuma",
+      "theme_color": "Koloro de etoso"
+    },
+    "language": {
+      "display_language": "Lingvo de montrado",
+      "how_to_contribute": "Kiel kontribui?",
+      "label": "Lingvo",
+      "post_language": "Lingvo de afiŝado",
+      "status": "Statuso de traduko: {0}/{1} ({2}%)",
+      "translations": {
+        "add": "Aldoni",
+        "choose_language": "Elektu lingvon",
+        "heading": "Tradukoj",
+        "hide_specific": "Kaŝi specifajn tradukojn",
+        "remove": "Forigi"
+      }
+    },
+    "notifications": {
+      "label": "Sciigoj",
+      "notifications": {
+        "label": "Agordoj de sciigoj"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Ŝatadoj",
+          "follow": "Novaj sekvantoj",
+          "mention": "Mencioj",
+          "poll": "Enketoj",
+          "reblog": "Diskonigoj",
+          "title": "Ricevi kiajn sciigojn?"
+        },
+        "description": "Ricevi sciigojn, eĉ dum vi ne uzas la aplikaĵon Elk.",
+        "instructions": "Ne forgesu konservi viajn ŝanĝojn per la butono \"@:settings.notifications.push_notifications.save_settings\"!",
+        "label": "Agordoj de puŝsciigoj",
+        "policy": {
+          "all": "El iu ajn",
+          "followed": "El miaj sekvatoj",
+          "follower": "Of miaj sekvantoj",
+          "none": "El neniu",
+          "title": "El kiu mi povas ricevi sciigojn?"
+        },
+        "save_settings": "Konservi agordojn",
+        "subscription_error": {
+          "clear_error": "Eraro dum vakigado",
+          "error_hint": "Vi povas rigardi la liston de oftaj demandoj por provi solvi la problemon: {0}.",
+          "invalid_vapid_key": "La publika ŝlosilo de VAPID ŝajnas nevalida.",
+          "permission_denied": "Permeso rifuzita: ebligu sciigojn en via retumilo.",
+          "repo_link": "Deponejo de Elk ĉe GitHub",
+          "request_error": "Eraro okazis dum petado de la abono, provu denove kaj se la eraro reaperis, bonvolu raporti ĝin al la deponejo de Elk.",
+          "title": "Ne povis aboni al puŝsciigoj",
+          "too_many_registrations": "Pro limigoj de la retumiloj, Elk ne povas uzi la servon de puŝsciigoj por multaj kontoj ĉe aliaj serviloj. Vi devus malaboni de puŝsciigoj ĉe aliaj kontoj kaj provi denove.",
+          "vapid_not_supported": "Via retumilo subtenas normon Web Push Notifications, sed ŝajne ne realigas la protokolon VAPID."
+        },
+        "title": "Agordoj de puŝsciigoj",
+        "undo_settings": "Malfari ŝanĝojn",
+        "unsubscribe": "Malŝalti puŝsciigojn",
+        "unsupported": "Via retumilo ne subtenas puŝsciigojn.",
+        "warning": {
+          "enable_close": "Fermi",
+          "enable_description": "Por ricevi sciigojn dum Elk ne estas malfermita, ŝaltu puŝsciigojn. Vi povas kontroli, kiuj specoj de interagoj generas puŝsciigojn per la butono \"@:settings.notifications.show_btn{'\"'} post ties ŝaltado.",
+          "enable_description_desktop": "Por ricevi sciigojn dum Elk ne estas malfermita, ŝaltu puŝsciigojn. Vi povas kontroli, kiuj specoj de interagoj generas puŝsciigojn per \"Agordoj > Sciigoj > Agordoj de puŝsciigoj\" post ties ŝaltado.",
+          "enable_description_mobile": "Vi povas ankaŭ atingi la agordojn per navigacia menuo \"Agordoj > Sciigoj > Agordoj de puŝsciigoj\".",
+          "enable_description_settings": "Por ricevi sciigojn dum Elk ne estas malfermita, ŝaltu puŝsciigojn. Vi povas kontroli, kiuj specoj de interagoj generas puŝsciigojn sur tiu ekrano post ties ŝaltado.",
+          "enable_desktop": "Ŝalti puŝsciigojn",
+          "enable_title": "Neniam preterpasu ion ajn",
+          "re_auth": "Ŝajnas, ke via servilo ne subtenas puŝsciigojn. Provu elsaluti kaj reensaluti, kaj se ĉi tiu mesaĝo reaperas, kontaktu la administranton de via servilo."
+        }
+      },
+      "show_btn": "Iri al agordoj de sciigoj",
+      "under_construction": "Konstruata"
+    },
+    "notifications_settings": "Sciigoj",
+    "preferences": {
+      "disable_timeline_autoloading": "Malŝalti aŭtomatan ŝarĝadon de tempolinioj",
+      "disable_timeline_autoloading_description": "Anstataŭ aŭtomata ŝarĝado de novaj afiŝoj en tempolinioj, montri butonon \"Ŝarĝi pli da afiŝoj\".",
+      "embedded_media": "Enkorpigita ludilo por aŭdvidaĵoj",
+      "embedded_media_description": "Montri enkorpigitan ludilon anstataŭ norma antaŭvido dum etendado de ligiloj al fluoj de aŭdvidaĵoj.",
+      "enable_autoplay": "Ŝalti aŭtomatan ludadon",
+      "enable_data_saving": "Ŝalti trafikoŝparadon",
+      "enable_data_saving_description": "Ŝpari retan trafikon, malebligante aŭtomatan ŝarĝadon de kunsendaĵoj.",
+      "enable_pinch_to_zoom": "Ŝalti zomon per pinĉado",
+      "github_cards": "Kartoj por GitHub",
+      "github_cards_description": "Kiam ligilo al GitHub estas afiŝita, montri alireblan HTML-karton, uzantan metadatumoj de socia grafeo anstataŭ socia bildo.",
+      "grayscale_mode": "Grizoskala reĝimo",
+      "hide_account_hover_card": "Kaŝi musuman karton de kontoj",
+      "hide_alt_indi_on_posts": "Kaŝi indikilon de alternativa teksto",
+      "hide_boost_count": "Kaŝi nombron de diskonigoj",
+      "hide_boosts_in_timeline": "Kaŝi diskonigojn en tempolinioj",
+      "hide_boosts_in_timeline_description": "Kaŝi diskonigitajn afiŝojn de viaj hejma kaj publika tempolinioj.",
+      "hide_favorite_count": "Kaŝi nombron de ŝataĵoj",
+      "hide_follower_count": "Kaŝi nombron de sekvantoj/sekvatoj",
+      "hide_gif_indi_on_posts": "Kaŝi indikilon de GIF-bildo sur afiŝoj",
+      "hide_news": "Kaŝi novaĵojn",
+      "hide_quote_count": "Kaŝi nombron de citaĵoj",
+      "hide_replies_in_timeline": "Kaŝi respondojn en tempolinioj",
+      "hide_replies_in_timeline_description": "Kaŝi respondojn al afiŝoj de aliuloj de viaj hejma kaj publika tempolinioj. Tamen, viaj propraj respondoj estos montritaj.",
+      "hide_reply_count": "Kaŝi nombron de respondoj",
+      "hide_tag_hover_card": "Kaŝi musuman karton de kradvortoj",
+      "hide_translation": "Kaŝi tradukon",
+      "hide_username_emojis": "Kaŝi emoĝiojn de uzantnomoj",
+      "hide_username_emojis_description": "Kaŝas emoĝiojn de uzantnomoj en tempolinioj. Tamen, emoĝioj estos videblaj en ties profiloj.",
+      "label": "Konduko",
+      "optimize_for_low_performance_device": "Optimumigi por malrapidaj aparatoj",
+      "title": "Eksperimentaj funkcioj",
+      "unmute_videos": "Sono de videaĵoj defaŭlte",
+      "use_star_favorite_icon": "Uzi stelforman bildeton por ŝataĵoj",
+      "user_picker": "Elektilo de uzantoj",
+      "user_picker_description": "Montras ĉiujn profilbildojn de ensalutitaj kontoj en la malsupra-maldekstran angulo, por ke vi povas rapide ŝalti inter ili.",
+      "virtual_scroll": "Virtuala rulumado",
+      "virtual_scroll_description": "Uzi virtualan liston en tempolinioj, por ke pli granda nombro de eroj povas esti bildigita rapide.",
+      "wellbeing": "Protekto de mensa stato",
+      "zen_mode": "Zena reĝimo",
+      "zen_mode_description": "Kaŝi flankaĵojn, krom se la musa kursoro estas super ĝi. Ankaŭ kaŝaj iujn elementojn de tempolinioj."
+    },
+    "profile": {
+      "appearance": {
+        "bio": "Biografio",
+        "description": "Redakti profilbildojn, uzantnomon, profilon, ktp.",
+        "display_name": "Montra nomo",
+        "label": "Aspekto",
+        "profile_metadata": "Metadatumoj de profilo",
+        "profile_metadata_desc": "Vi povas havi ĝis {0} eroj montritaj, kiel tabelo, sur via profilo",
+        "profile_metadata_label": "Etikedo",
+        "profile_metadata_value": "Enhavo",
+        "title": "Redakti profilon"
+      },
+      "featured_tags": {
+        "description": "Homoj povas rigardi viajn publikajn afiŝojn, uzantajn tiujn kradvortojn.",
+        "label": "Promociitaj kradvortoj",
+        "under_construction": "Konstruata"
+      },
+      "label": "Profilo"
+    },
+    "select_a_settings": "Elektu agordon",
+    "users": {
+      "export": "Elporti uzantajn ĵetonojn",
+      "import": "Enporti uzantajn ĵetonojn",
+      "label": "Ensalutitaj uzantoj"
+    }
+  },
+  "share_target": {
+    "description": "Elk povas esti agordita, se vi povas konigi enhavon de aliaj aplikaĵoj. Simple instalu la aplikaĵon Elk sur via aparato aŭ komputilo kaj ensalutu.",
+    "hint": "Por konigi enhavon per Elk, Elk devas esti instalita, kaj vi devas ensaluti.",
+    "title": "Konigi per Elk"
+  },
+  "state": {
+    "attachments_exceed_server_limit": "La nombro de kunsendaĵoj superas la maksimumon por afiŝo.",
+    "attachments_limit_audio_error": "Maksimuma grando de aŭdiaĵa dosiero superita: {0}",
+    "attachments_limit_error": "Maksimumo por afiŝo superita",
+    "attachments_limit_image_error": "Maksimuma grando de bilda dosiero superita: {0}",
+    "attachments_limit_unknown_error": "Maksimuma grando de dosiero superita: {0}",
+    "attachments_limit_video_error": "Maksimuma grando de videaĵa dosiero superita: {0}",
+    "edited": "(Redaktita)",
+    "editing": "Redaktado",
+    "loading": "Ŝarĝado...",
+    "publish_failed": "Publikigo fiaskis",
+    "publishing": "Publikigo",
+    "save_failed": "Konservado fiaskis",
+    "schedule_failed": "Planado fiaskis",
+    "schedule_time_invalid": "La tempo por planita publikigo devas esti malpleje 5 minutoj post nun. Agordu kiel {0} aŭ poste.",
+    "scheduling": "Planado",
+    "upload_failed": "Alŝutado fiaskis",
+    "uploading": "Alŝutado..."
+  },
+  "status": {
+    "account": {
+      "suspended_message": "La konto de ĉi tiu afiŝo estis haltigita.",
+      "suspended_show": "Ĉu montri enhavon malgraŭ?"
+    },
+    "boosted_by": "Diskonigita de",
+    "edited": "Redaktita je {0}",
+    "embedded_warning": "Ludado povas malkaŝi vian IP-adreson al aliuloj.",
+    "favourited_by": "Ŝatita de",
+    "filter_hidden_phrase": "Filtrita per",
+    "filter_show_anyway": "Montri malgraŭ",
+    "gif": "GIF",
+    "img_alt": {
+      "ALT": "ALT",
+      "desc": "Priskribo",
+      "dismiss": "Ignori",
+      "read": "Legi priskribon de {0}"
+    },
+    "pinned": "Alpinglita afiŝo",
+    "poll": {
+      "count": "{0} voĉdonoj|{0} voĉdono|{0} voĉdonoj",
+      "ends": "finiĝas je {0}",
+      "finished": "finiĝis je {0}",
+      "update": "Ĝisdatigi enketon"
+    },
+    "quoted_by": "Citita de",
+    "replying_to": "Respondo al {0}",
+    "show_full_thread": "Montri plenan fadenon",
+    "someone": "iu",
+    "spoiler_media_hidden": "Aŭdvidaĵo kaŝita",
+    "spoiler_show_less": "Montri malpli",
+    "spoiler_show_more": "Montri pli",
+    "thread": "Fadeno",
+    "try_original_site": "Provi originalan retejon"
+  },
+  "status_history": {
+    "created": "kreita je {0}",
+    "edited": "redaktita je {0}"
+  },
+  "tab": {
+    "accounts": "Kontoj",
+    "collections": "Kolektoj",
+    "for_you": "Por vi",
+    "hashtags": "Kradvortoj",
+    "in_collections": "Enhavantaj vin",
+    "list": "Listo",
+    "media": "Aŭdvidaĵo",
+    "my_collections": "Mia kolekto",
+    "news": "Novaĵoj",
+    "notifications_admin": {
+      "report": "Raporto",
+      "sign_up": "Registrado"
+    },
+    "notifications_all": "Ĉiuj",
+    "notifications_favourite": "Ŝatado",
+    "notifications_follow": "Sekvado",
+    "notifications_follow_request": "Peto de sekvado",
+    "notifications_mention": "Mencioj",
+    "notifications_more_tooltip": "Filtri sciigojn per speco",
+    "notifications_poll": "Enketo",
+    "notifications_quote": "Citaĵo",
+    "notifications_reblog": "Diskonigo",
+    "notifications_status": "Afiŝo",
+    "notifications_update": "Redakto",
+    "posts": "Afiŝoj",
+    "posts_with_replies": "Afiŝoj & respondoj"
+  },
+  "tag": {
+    "follow": "Sekvi",
+    "follow_label": "Sekvi kradvorton {0}",
+    "unfollow": "Malsekvi",
+    "unfollow_label": "Malsekvi kradvorton {0}"
+  },
+  "time_ago_options": {
+    "day_future": "0 tagoj post|morgaŭ|{n} tagoj post",
+    "day_past": "0 tagoj antaŭ|hieraŭ|{n} tagoj antaŭ",
+    "hour_future": "0 horoj post|1 horo post|{n} horoj post",
+    "hour_past": "0 horoj antaŭ|1 horo antaŭ|{n} horoj antaŭ",
+    "just_now": "nun",
+    "minute_future": "0 minutoj post|1 minuto post|{n} minutoj post",
+    "minute_past": "0 minutoj antaŭ|1 minuto antaŭ|{n} minutoj antaŭ",
+    "month_future": "0 monatoj post|sekva monato|{n} monatoj post",
+    "month_past": "0 monatoj antaŭ|lasta monato|{n} monatoj antaŭ",
+    "second_future": "nun|{n} sekundo post|{n} sekundoj post",
+    "second_past": "nun|{n} sekundo antaŭ|{n} sekundoj antaŭ",
+    "short_day_future": "{n}t post",
+    "short_day_past": "{n}t",
+    "short_hour_future": "{n}h post",
+    "short_hour_past": "{n}h",
+    "short_minute_future": "{n}min post",
+    "short_minute_past": "{n}min",
+    "short_month_future": "{n}mo post",
+    "short_month_past": "{n}mo",
+    "short_second_future": "{n}s post",
+    "short_second_past": "{n}s",
+    "short_week_future": "{n}sem post",
+    "short_week_past": "{n}sem",
+    "short_year_future": "{n}j post",
+    "short_year_past": "{n}j",
+    "week_future": "0 semajnoj post|sekva semajno|{n} semajnoj post",
+    "week_past": "0 semajnoj antaŭ|lasta semajno|{n} semajnoj antaŭ",
+    "year_future": "0 jaroj post|sekva jaro|{n} jaroj post",
+    "year_past": "0 jaroj antaŭ|lasta jaro|{n} jaroj antaŭ"
+  },
+  "timeline": {
+    "load_more": "Ŝarĝi pli da afiŝoj",
+    "no_posts": "Neniu afiŝoj ĉi tie!",
+    "show_new_items": "Montri {v} novajn erojn|Montri {v} novan eron|Montri {v} novajn erojn",
+    "view_older_posts": "Pli malnovaj afiŝoj de aliaj serviloj povas ne esti montritaj."
+  },
+  "title": {
+    "federated_timeline": "Fratara tempolinio",
+    "local_timeline": "Loka tempolinio"
+  },
+  "tooltip": {
+    "add_content_warning": "Aldoni averton pri enhavo",
+    "add_emojis": "Aldoni emoĝiojn",
+    "add_media": "Aldoni bildojn, aŭdiaĵon aŭ videaĵon",
+    "add_publishable_content": "Aldoni enhavon por publikigi",
+    "add_thread_item": "Aldoni eron al fadeno",
+    "change_content_visibility": "Ŝanĝi videblecon de enhavo",
+    "change_language": "Ŝanĝi lingvon",
+    "change_quote_approval_policy": "Ŝanĝi regulon de citado",
+    "emoji": "Emoĝioj",
+    "explore_links_intro": "Ĉi tiuj novaĵoj estas diskutataj de la homoj sur ĉi tiu kaj aliaj serviloj de la malcentra reto nun.",
+    "explore_posts_intro": "Ĉi tiuj afiŝoj de ĉi tiu kaj aliaj serviloj en la malcentra reto iĝas popularaj sur ĉi tiu servilo nun.",
+    "explore_tags_intro": "Ĉi tiuj kradvortoj iĝas popularaj sur ĉi tiu kaj aliaj serviloj de la malcentra reto nun.",
+    "open_editor_tools": "Iloj de redaktilo",
+    "pick_an_icon": "Elektu bildeton",
+    "publish_failed": "Fermu la malsukcesajn mesaĝojn sur la supro de la redaktilo por republikigi afiŝojn",
+    "remove_thread_item": "Forigi eron de fadeno",
+    "schedule_failed": "Fermu la malsukcesajn mesaĝojn sur la supro de la redaktilo por replani afiŝojn",
+    "schedule_post": "Plani afiŝon",
+    "start_thread": "Komenci fadenon",
+    "toggle_bold": "Baskuligi grasan tiparon",
+    "toggle_code_block": "Baskuligi blokon de kodo",
+    "toggle_italic": "Baskuligi kursivan tiparon"
+  },
+  "user": {
+    "add_existing": "Aldoni ekzistantan konton",
+    "server_address_label": "Adreso de servilo de Mastodon",
+    "sign_in_desc": "Ensalutu por sekvi profilojn aŭ kradvortojn, ŝati, diskonigi kaj respondi al afiŝoj, aŭ interagi per via konto sur alia servilo.",
+    "sign_in_notice_title": "Vidado de publikaj datumoj de {0}",
+    "sign_out_account": "Elsaluti kiel {0}",
+    "single_instance_sign_in_desc": "Ensalutu por sekvi profilojn aŭ kradvortojn, ŝati, diskonigi kaj respondi al afiŝoj.",
+    "tip_no_account": "Se vi ankoraŭ ne havas konton de Mastodon, {0}.",
+    "tip_register_account": "elektu servilon kaj registriĝu"
+  },
+  "visibility": {
+    "direct": "Privata mencio",
+    "direct_desc": "Videbla nur por menciitaj uzantoj",
+    "private": "Nur sekvantoj",
+    "private_desc": "Videbla nur por sekvantoj",
+    "public": "Publika",
+    "public_desc": "Videbla por ĉiuj",
+    "unlisted": "Kviete publika",
+    "unlisted_desc": "Videbla por ĉiuj, sed ekskluzivita de funkciaro de malkovrado"
+  }
+}

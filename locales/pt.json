@@ -99,6 +99,12 @@
     "edit_title": "Descrição",
     "remove_label": "Remover anexo"
   },
+  "collection": {
+    "created_by": "Criada por",
+    "empty": "Ainda sem contas nesta coleção.",
+    "item_count": "{0} contas|{0} conta|{0} contas",
+    "no_collections": "Ainda sem coleções."
+  }
   "command": {
     "activate": "Ativar",
     "complete": "Completar",
@@ -192,6 +198,8 @@
   },
   "error": {
     "account_not_found": "Conta {0} não encontrada",
+    "collection_not_found": "Coleção não encontrada",
+    "collections_not_supported": "Este servidor não suporta coleções.",
     "explore_list_empty": "Nada está em tendência agora. Confirme mais tarde!",
     "file_size_cannot_exceed_n_mb": "O tamanho do ficheiro não pode exceder {0}MB",
     "quote_fetch_error": "Não foi possível obter a publicação citada",
@@ -320,6 +328,7 @@
     "blocked_users": "Utilizadores bloqueados",
     "bookmarks": "Itens Salvos",
     "built_at": "Produzido {0}",
+    "collections": "Coleções",
     "compose": "Compor",
     "conversations": "Conversas",
     "docs": "Documentação",
@@ -347,7 +356,9 @@
     "zen_mode": "Modo Zen"
   },
   "notification": {
+    "added_you_to_collection": "adicionou-o a uma coleção",
     "and": "e",
+    "collection_updated": "atualizou uma coleção que o inclui",
     "favourited_post": "adicionou a sua publicação aos favoritos",
     "followed_you": "começou a segui-lo",
     "followed_you_count": "{0} pessoas seguem-no|{0} pessoa segue-o|{0} pessoas seguem-no",
@@ -695,10 +706,13 @@
   },
   "tab": {
     "accounts": "Contas",
+    "collections": "Coleções",
     "for_you": "Para si",
     "hashtags": "Hashtags",
+    "in_collections": "A destacá-lo",
     "list": "Lista",
     "media": "Media",
+    "my_collections": "Minhas coleções",
     "news": "Notícias",
     "notifications_admin": {
       "report": "Denúncias",

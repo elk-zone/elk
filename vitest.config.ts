@@ -12,6 +12,7 @@ export default defineConfig({
       await defineVitestProject({
         test: {
           name: 'nuxt',
+          exclude: ['**/node_modules/**', './tests/e2e/**'],
           setupFiles: [
             '../tests/setup.ts',
           ],

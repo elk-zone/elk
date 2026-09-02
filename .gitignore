@@ -15,6 +15,11 @@ elk-translation-status.json
 
 public/emojis
 
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+
 *~
 *swp
 *swo

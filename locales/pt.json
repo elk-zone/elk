@@ -104,7 +104,7 @@
     "empty": "Ainda sem contas nesta coleção.",
     "item_count": "{0} contas|{0} conta|{0} contas",
     "no_collections": "Ainda sem coleções."
-  }
+  },
   "command": {
     "activate": "Ativar",
     "complete": "Completar",

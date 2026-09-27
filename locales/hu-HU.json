@@ -58,7 +58,7 @@
     "boost": "Kiemel",
     "boost_count": "{0}",
     "boosted": "Kiemelt",
-    "clear": "Tisztítás",
+    "clear": "Tisztít",
     "clear_publish_failed": "Közzétételi hibák tisztítása",
     "clear_save_failed": "Mentési hibák tisztítása",
     "clear_schedule_failed": "Időzítési hibák tisztítása",
@@ -619,7 +619,7 @@
         "bio": "Leírás",
         "description": "Avatar szerkesztése, felhasználónév, profil, stb.",
         "display_name": "Megjelenített név",
-        "label": "Megjelenés",
+        "label": "Megjelenítés",
         "profile_metadata": "Profil adatok",
         "profile_metadata_desc": "Összesen: {0} elem jeleníthető meg a profilban",
         "profile_metadata_label": "Címke",
@@ -771,7 +771,7 @@
   "timeline": {
     "load_more": "Több bejegyzés betöltése",
     "no_posts": "Itt nincsenek bejegyzések.",
-    "show_new_items": "{v} új elemek megjelenítése|{v} új elemek megjelenítése|{v} új elemek megjelenítése",
+    "show_new_items": "{v} új elem megjelenítése|{v} új elem megjelenítése|{v} új elem megjelenítése",
     "view_older_posts": "Előfordulhat, hogy más instancekről származó régebbi bejegyzések nem jelennek meg."
   },
   "title": {

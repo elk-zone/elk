@@ -46,7 +46,7 @@
     "@nuxtjs/color-mode": "^4.0.0",
     "@nuxtjs/i18n": "^10.1.0",
     "@pinia/nuxt": "^0.11.2",
-    "@tiptap/core": "2.27.2",
+    "@tiptap/core": "3.30.5",
     "@tiptap/extension-bold": "2.27.2",
     "@tiptap/extension-character-count": "2.27.2",
     "@tiptap/extension-code": "2.27.2",

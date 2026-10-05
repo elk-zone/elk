@@ -11,7 +11,7 @@ import memory from 'unstorage/drivers/memory'
 import vercelKVDriver from 'unstorage/drivers/vercel-kv'
 
 import { version } from '~~/config/env'
-import { APP_NAME } from '~/constants'
+import { APP_NAME, DEFAULT_OAUTH_SCOPES } from '~/constants'
 
 import cached from '../cache-driver'
 
@@ -64,7 +64,7 @@ async function fetchAppInfo(origin: string, server: string) {
         client_name: APP_NAME + (env !== 'release' ? ` (${env})` : ''),
         website: origin,
         redirect_uris: getRedirectURI(origin, server),
-        scopes: 'read write follow push',
+        scopes: DEFAULT_OAUTH_SCOPES,
       },
     }),
     $fetch(`https://${server}/api/v2/instance`, {

@@ -99,6 +99,12 @@
     "edit_title": "Deskribapena",
     "remove_label": "Kendu erantsitakoak"
   },
+  "collection": {
+    "created_by": "Honek sortua:",
+    "empty": "Bilduma honek ez du konturik.",
+    "item_count": "{0} kontu|kontu {0}|{0} kontu",
+    "no_collections": "Ez dago bildumarik."
+  },
   "command": {
     "activate": "Aktibatu",
     "complete": "Osatu",
@@ -191,7 +197,9 @@
     }
   },
   "error": {
-    "account_not_found": "{0} kontua ez da aurkitu",
+    "account_not_found": "Ez da {0} kontua aurkitu",
+    "collection_not_found": "Ez da bilduma aurkitu",
+    "collections_not_supported": "Zerbitzari hau ez da bildumekin bateragarria.",
     "explore_list_empty": "Ez dago joerarik une honetan. Zatoz geroago!",
     "file_size_cannot_exceed_n_mb": "Fitxategien tamaina ezin da {0}MB baino handiagoa izan",
     "quote_fetch_error": "Ezin izan da aipatutako bidalketa eskuratu",
@@ -320,6 +328,7 @@
     "blocked_users": "Blokeatutako erabiltzaileak",
     "bookmarks": "Laster-markak",
     "built_at": "Biltze-data: {0}",
+    "collections": "Bildumak",
     "compose": "Idatzi",
     "conversations": "Elkarrizketak",
     "docs": "Dokumentazioa",
@@ -347,7 +356,9 @@
     "zen_mode": "ZEN modua"
   },
   "notification": {
+    "added_you_to_collection": "bilduma batean sartu zaitu",
     "and": "eta",
+    "collection_updated": "zu zauden bilduma bat eguneratu du",
     "favourited_post": "(e)k zure bidalketa gogoko egin du",
     "followed_you": "(e)k jarraitu dizu",
     "followed_you_count": "{0} pertsonak jarraitu dizute|pertsona {0}ek jarraitu dizu|{0} pertsonak jarraitu dizute",
@@ -382,8 +393,10 @@
     "install": "Instalatu",
     "install_title": "Instalatu Elk",
     "screenshots": {
-      "dark": "Elk-en pantaila-argazkia, kolore ilunak darabiltzala",
-      "light": "Elk-en pantaila-argazkia, kolore argiak darabiltzala"
+      "dark": "Elk-en pantaila-argazkia, kolore ilunak darabiltzala, mahai gaineko ordenagailuan",
+      "dark_mobile": "Elk-en pantaila-argazkia, kolore ilunak darabiltzala, telefono mugikorrean",
+      "light": "Elk-en pantaila-argazkia, kolore argiak darabiltzala, mahai gaineko ordenagailuan",
+      "light_mobile": "Elk-en pantaila-argazkia, kolore argiak darabiltzala, telefono mugikorrean"
     },
     "title": "Eguneraketa berria eskuragai!",
     "update": "Eguneratu",
@@ -458,6 +471,9 @@
   "search": {
     "search_desc": "Bilatu pertsonak eta traolak",
     "search_empty": "Ezin izan da ezer aurkitu"
+  },
+  "server": {
+    "thumbnail_description": "{0} zerbitzariaren iruditxoa"
   },
   "settings": {
     "about": {
@@ -690,10 +706,13 @@
   },
   "tab": {
     "accounts": "Kontuak",
+    "collections": "Bildumak",
     "for_you": "Zuretzat",
     "hashtags": "Traolak",
+    "in_collections": "Zeu ageri zaren bildumak",
     "list": "Zerrendak",
     "media": "Multimedia",
+    "my_collections": "Nire bildumak",
     "news": "Albisteak",
     "notifications_admin": {
       "report": "Salaketa",

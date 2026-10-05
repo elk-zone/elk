@@ -139,9 +139,15 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
 }
 
 function removeFiltered(items: mastodon.v1.Notification[]): mastodon.v1.Notification[] {
-  return items.filter(item => !item.status?.filtered?.find(
-    filter => filter.filter.filterAction === 'hide' && filter.filter.context.includes('notifications'),
-  ))
+  return items
+    .map((item) => {
+      if (!item.status || (item.status.filtered && item.status.filtered.length > 0))
+        return item
+      return { ...item, status: applyClientFiltersToStatus(item.status, 'notifications') }
+    })
+    .filter(item => !item.status?.filtered?.find(
+      filter => filter.filter.filterAction === 'hide' && filter.filter.context.includes('notifications'),
+    ))
 }
 
 function preprocess(items: NotificationSlot[]): NotificationSlot[] {

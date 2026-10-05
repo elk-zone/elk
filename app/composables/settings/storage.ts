@@ -43,3 +43,8 @@ export function togglePreferences(key: keyof PreferencesSettings) {
   const flag = usePreferences(key)
   flag.value = !flag.value
 }
+
+export function useHideBottomNavigationLabel() {
+  const userSettings = useUserSettings()
+  return computed(() => getPreferences(userSettings.value, 'hideBottomNavLabel'))
+}

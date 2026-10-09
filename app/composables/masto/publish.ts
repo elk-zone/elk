@@ -8,11 +8,15 @@ import { fileOpen } from 'browser-fs-access'
  * than a regular Status (i.e. the post was scheduled via `scheduledAt`).
  * ScheduledStatus has no `account` field, so callers must not access
  * `status.account` when this returns true.
+ *
+ * Note: masto.js deserialises all JSON response keys with camelCase
+ * (see SerializerNativeImpl.deserialize → transformKeys(…, camelCase)),
+ * so the runtime property is `scheduledAt`, never `scheduled_at`.
  */
 export function isScheduledStatus(
   status: mastodon.v1.Status | mastodon.v1.ScheduledStatus,
 ): status is mastodon.v1.ScheduledStatus {
-  return 'scheduled_at' in status
+  return 'scheduledAt' in status
 }
 
 export function usePublish(options: {

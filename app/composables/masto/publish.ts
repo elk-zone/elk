@@ -3,6 +3,18 @@ import type { mastodon } from 'masto'
 import type { Ref } from 'vue'
 import { fileOpen } from 'browser-fs-access'
 
+/**
+ * Returns true when the Mastodon API responded with a ScheduledStatus rather
+ * than a regular Status (i.e. the post was scheduled via `scheduledAt`).
+ * ScheduledStatus has no `account` field, so callers must not access
+ * `status.account` when this returns true.
+ */
+export function isScheduledStatus(
+  status: mastodon.v1.Status | mastodon.v1.ScheduledStatus,
+): status is mastodon.v1.ScheduledStatus {
+  return 'scheduled_at' in status
+}
+
 export function usePublish(options: {
   draftItem: Ref<DraftItem>
   expanded: Ref<boolean>
@@ -132,16 +144,17 @@ export function usePublish(options: {
           })),
         })
       }
-      if (draftItem.value.params.inReplyToId && !options.isPartOfThread)
-        navigateToStatus({ status })
-
+      const inReplyToId = draftItem.value.params.inReplyToId
       draftItem.value = options.initialDraft()
 
-      if ('scheduled_at' in status)
+      if (isScheduledStatus(status))
         // When created a scheduled post, it returns `mastodon.v1.ScheduledStatus` instead
-        // We want to return only Status, which will be used to route to the posted status page
+        // which has no `account` field, so skip navigation entirely for scheduled posts.
         // ref. Mastodon documentation - https://docs.joinmastodon.org/methods/statuses/#create
         return
+
+      if (inReplyToId && !options.isPartOfThread)
+        navigateToStatus({ status })
 
       return status
     }

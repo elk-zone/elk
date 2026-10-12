@@ -65,13 +65,17 @@ async function toggleNotifications() {
 watchEffect(() => {
   const named: mastodon.v1.AccountField[] = []
   const icons: mastodon.v1.AccountField[] = []
+  const seenIcons = new Set<string>()
 
   account.fields?.forEach((field) => {
     const icon = getAccountFieldIcon(field.name)
-    if (icon)
+    if (icon && !seenIcons.has(icon)) {
+      seenIcons.add(icon)
       icons.push(field)
-    else
+    }
+    else {
       named.push(field)
+    }
   })
   icons.push({
     name: 'Joined',

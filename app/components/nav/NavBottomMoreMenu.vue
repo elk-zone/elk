@@ -163,7 +163,7 @@ const { dragging, dragDistance } = invoke(() => {
             <!-- Toggle Theme -->
             <button
               flex flex-row items-center
-              block px-5 py-2 focus-blue w-full
+              block px-5 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset w-full
               text-sm text-base capitalize text-left whitespace-nowrap
               transition-colors duration-200 transform
               hover="bg-gray-100 dark:(bg-gray-700 text-white)"
@@ -176,7 +176,7 @@ const { dragging, dragDistance } = invoke(() => {
             <!-- Zen Mode -->
             <button
               flex flex-row items-center
-              block px-5 py-2 focus-blue w-full
+              block px-5 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset w-full
               text-sm text-base capitalize text-left whitespace-nowrap
               transition-colors duration-200 transform
               hover="bg-gray-100 dark:(bg-gray-700 text-white)"

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
+  modelValue?: boolean | null
   label?: string
   hover?: boolean
   iconChecked?: string
@@ -7,27 +8,33 @@ defineProps<{
   checkedIconColor?: string
   prependCheckbox?: boolean
 }>()
-const modelValue = defineModel<boolean | null>()
+defineEmits<{
+  (event: 'update:modelValue', value: boolean): void
+}>()
+const checked = useModel(props, 'modelValue', {
+  get: value => !!value,
+  set: (value: boolean) => value,
+})
 </script>
 
 <template>
   <label
-    class="common-checkbox flex items-center cursor-pointer py-1 text-md w-full gap-y-1"
+    class="common-checkbox flex items-center cursor-pointer py-1 text-size-base w-full gap-y-1"
     :class="hover ? 'hover:bg-active ms--2 px-4 py-2' : null"
     v-bind="$attrs"
-    @click.prevent="modelValue = !modelValue"
+    @click.prevent="checked = !checked"
   >
     <span v-if="label && !prependCheckbox" flex-1 ms-2 pointer-events-none>{{ label }}</span>
     <span
       :class="[
-        modelValue ? (iconChecked ?? 'i-ri:checkbox-line') : (iconUnchecked ?? 'i-ri:checkbox-blank-line'),
-        modelValue && checkedIconColor,
+        checked ? (iconChecked ?? 'i-ri:checkbox-line') : (iconUnchecked ?? 'i-ri:checkbox-blank-line'),
+        checked && checkedIconColor,
       ]"
       text-lg
       aria-hidden="true"
     />
     <input
-      v-model="modelValue"
+      v-model="checked"
       type="checkbox"
       sr-only
     >

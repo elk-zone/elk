@@ -526,7 +526,7 @@ const detectLanguage = useDebounceFn(async () => {
                   </button>
                 </CommonTooltip>
               </header>
-              <div v-if="isExceedingAttachmentLimit" id="uploads-per-post" ps-2 sm:ps-1 text-small>
+              <div v-if="isExceedingAttachmentLimit" id="uploads-per-post" ps-2 sm:ps-1 text-sm>
                 {{ $t('state.attachments_exceed_server_limit') }}
               </div>
               <ol ps-2 sm:ps-1>

@@ -32,7 +32,6 @@ const userSettings = useUserSettings()
       placement="bottom-start"
       :delay="{ show: 500, hide: 100 }"
       v-bind="$attrs"
-      :close-on-content-click="false"
       no-auto-focus
     >
       <slot />

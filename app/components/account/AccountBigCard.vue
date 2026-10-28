@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
+import type { RouteLocationRaw } from 'vue-router'
 
 defineOptions({
   inheritAttrs: false,
@@ -8,13 +9,14 @@ defineOptions({
 const { account, as = 'div' } = defineProps<{
   account: mastodon.v1.Account
   as?: string
+  to?: RouteLocationRaw
 }>()
 
 cacheAccount(account)
 </script>
 
 <template>
-  <component :is="as" block focus:outline-none focus-visible:ring="2 primary" v-bind="$attrs">
+  <component :is="as" :to="to" block focus:outline-none focus-visible:ring="2 primary" v-bind="$attrs">
     <!-- Banner -->
     <div px2 pt2>
       <div rounded of-hidden bg="gray-500/20" aspect="3.19">

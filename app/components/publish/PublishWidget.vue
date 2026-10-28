@@ -489,16 +489,18 @@ const detectLanguage = useDebounceFn(async () => {
               </header>
             </CommonErrorMessage>
 
-            <div relative flex-1 flex flex-col :class="shouldExpanded ? 'min-h-30' : ''">
+            <div
+              relative flex-1 flex flex-col :class="shouldExpanded ? 'min-h-30' : ''"
+              @keydown="stopQuestionMarkPropagation"
+              @keydown.esc.prevent="editor?.commands.blur()"
+              @keyup="detectLanguage"
+            >
               <EditorContent
                 :editor="editor" flex max-w-full
                 :class="{
                   'md:max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-400px)] max-h-35 of-y-auto overscroll-contain': shouldExpanded,
                   'py2 px3.5 bg-dm rounded-4 me--1 ms--1 mt--1': isDM,
                 }"
-                @keydown="stopQuestionMarkPropagation"
-                @keydown.esc.prevent="editor?.commands.blur()"
-                @keyup="detectLanguage"
               />
             </div>
 
@@ -682,9 +684,9 @@ const detectLanguage = useDebounceFn(async () => {
             </template>
 
             <PublishEditorTools v-if="editor" :editor="editor" />
-            <CommonDropdown placement="bottom" @click="setInitialScheduledTime">
+            <CommonDropdown placement="bottom">
               <CommonTooltip placement="top" :content="$t('tooltip.schedule_post')" no-auto-focus>
-                <button btn-action-icon :aria-label="$t('tooltip.schedule_post')">
+                <button btn-action-icon :aria-label="$t('tooltip.schedule_post')" @click="setInitialScheduledTime">
                   <div i-ri:calendar-schedule-line :class="scheduledTime !== '' ? 'text-primary' : ''" />
                 </button>
               </CommonTooltip>

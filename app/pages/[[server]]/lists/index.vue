@@ -104,7 +104,7 @@ onDeactivated(() => clearError(false))
         </div>
         <div flex="~ col" gap-y-4 gap-x-2 sm="~ justify-between flex-row">
           <button flex="~ row" gap-x-2 items-center btn-solid :disabled="!enableSubmit || busy">
-            <span v-if="busy" aria-hidden="true" block animate animate-spin preserve-3d class="rtl-flip">
+            <span v-if="busy" aria-hidden="true" block animate-spin preserve-3d class="rtl-flip">
               <span block i-ri:loader-2-fill aria-hidden="true" />
             </span>
             <span v-else aria-hidden="true" block i-material-symbols:playlist-add-rounded class="rtl-flip" />

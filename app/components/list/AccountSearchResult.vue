@@ -12,7 +12,7 @@ defineProps<{
     as="div"
     :active="active"
     py2 block px2
-    :aria-selected="active"
+    :selected="active"
     :class="{ 'bg-active': active }"
   >
     <AccountInfo

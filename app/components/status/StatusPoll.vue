@@ -82,7 +82,7 @@ const votersCount = computed(() => poll.votersCount ?? poll.votesCount ?? 0)
         :style="{ '--bar-width': toPercentage(votersCount === 0 ? 0 : (option.votesCount ?? 0) / votersCount) }"
       >
         <div flex justify-between pb-2 w-full>
-          <span inline-flex align-items>
+          <span inline-flex items-center>
             {{ option.title }}
             <span v-if="poll.voted && poll.ownVotes?.includes(index)" ms-2 mt-1 inline-block i-ri:checkbox-circle-line />
           </span>

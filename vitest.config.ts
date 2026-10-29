@@ -17,6 +17,8 @@ export default defineConfig({
           ],
           environmentOptions: {
             nuxt: {
+              // Avoid the root route's deferred auth redirect loading timelines during teardown.
+              url: 'http://localhost:3000/settings',
               mock: {
                 indexedDb: true,
                 intersectionObserver: true,

@@ -7,7 +7,7 @@ function preprocess(items: mastodon.v1.Status[]) {
   return filterAndReorderTimeline(items, 'public')
 }
 
-let followedTags: mastodon.v1.Tag[]
+let followedTags: mastodon.v1.Tag[] = []
 if (currentUser.value !== undefined) {
   const { client } = useMasto()
   const paginator = client.value.v1.followedTags.list()

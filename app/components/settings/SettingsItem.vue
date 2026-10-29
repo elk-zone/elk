@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { text, description, icon, to, command, external, target } = defineProps<{
+const { text, description, icon, to, command, external, target, disabled } = defineProps<{
   text?: string
   content?: string
   description?: string
@@ -28,9 +28,11 @@ useCommand({
     ),
   description: () => description,
   icon: () => icon || '',
-  visible: () => command && to,
+  visible: () => command && to && !disabled,
 
   onActivate() {
+    if (disabled)
+      return
     router.push(to!)
   },
 })
@@ -38,15 +40,15 @@ useCommand({
 
 <template>
   <NuxtLink
-    :disabled="disabled"
-    :to="to"
+    :aria-disabled="disabled || undefined"
+    :to="disabled ? undefined : to"
     :external="external"
     :target="target"
     exact-active-class="text-primary"
     :class="disabled ? 'op25 pointer-events-none ' : match ? 'text-primary' : ''"
     block w-full group focus:outline-none
     :tabindex="disabled ? -1 : undefined"
-    @click="scrollOnClick ? $scrollToTop() : undefined"
+    @click="!disabled && scrollOnClick ? $scrollToTop() : undefined"
   >
     <div
       w-full flex px5 py3 md:gap2 gap4 items-center

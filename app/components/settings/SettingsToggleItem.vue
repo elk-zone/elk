@@ -9,7 +9,6 @@ const { disabled = false } = defineProps<{
 
 <template>
   <button
-    exact-active-class="text-primary"
     block w-full group focus:outline-none text-start
     role="checkbox" :aria-checked="checked"
     :disabled="disabled"

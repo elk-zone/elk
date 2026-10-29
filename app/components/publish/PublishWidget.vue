@@ -526,7 +526,7 @@ const detectLanguage = useDebounceFn(async () => {
                   </button>
                 </CommonTooltip>
               </header>
-              <div v-if="isExceedingAttachmentLimit" id="uploads-per-post" ps-2 sm:ps-1 text-small>
+              <div v-if="isExceedingAttachmentLimit" id="uploads-per-post" ps-2 sm:ps-1 text-sm>
                 {{ $t('state.attachments_exceed_server_limit') }}
               </div>
               <ol ps-2 sm:ps-1>
@@ -644,18 +644,20 @@ const detectLanguage = useDebounceFn(async () => {
                   <template #popper>
                     <div flex="~ col" gap-1 p-2>
                       <CommonCheckbox
-                        v-model="draft.params.poll.multiple"
+                        :model-value="draft.params.poll.multiple ?? false"
                         :label="draft.params.poll.multiple ? $t('polls.disallow_multiple') : $t('polls.allow_multiple')"
                         px-2 gap-3 h-9 flex justify-center hover:bg-active rounded-full
                         icon-checked="i-ri:checkbox-multiple-blank-line"
                         icon-unchecked="i-ri:checkbox-blank-circle-line"
+                        @update:model-value="draft.params.poll.multiple = $event"
                       />
                       <CommonCheckbox
-                        v-model="draft.params.poll.hideTotals"
+                        :model-value="draft.params.poll.hideTotals ?? false"
                         :label="draft.params.poll.hideTotals ? $t('polls.show_votes') : $t('polls.hide_votes')" px-2
                         gap-3
                         h-9 flex justify-center hover:bg-active rounded-full icon-checked="i-ri:eye-close-line"
                         icon-unchecked="i-ri:eye-line"
+                        @update:model-value="draft.params.poll.hideTotals = $event"
                       />
                     </div>
                   </template>

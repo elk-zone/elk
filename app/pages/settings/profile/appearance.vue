@@ -182,7 +182,7 @@ onReactivated(refreshInfo)
 
         <!-- metadata -->
 
-        <SettingsProfileMetadata v-model="form" />
+        <SettingsProfileMetadata v-model="form.fieldsAttributes" />
 
         <!-- actions -->
         <div flex="~ gap2" justify-end>

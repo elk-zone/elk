@@ -11,7 +11,7 @@ function preprocess(items: mastodon.v1.Status[]) {
   return filterAndReorderTimeline(items, 'home')
 }
 
-let followedTags: mastodon.v1.Tag[]
+let followedTags: mastodon.v1.Tag[] = []
 if (currentUser.value !== undefined) {
   const { client } = useMasto()
   try {

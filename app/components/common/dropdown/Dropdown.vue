@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import type { Placement } from 'floating-vue'
 import { InjectionKeyDropdownContext } from '~/constants/symbols'
 
 defineProps<{
-  placement?: string
+  placement?: Placement
   autoBoundaryMaxSize?: boolean
 }>()
 

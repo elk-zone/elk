@@ -1,6 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{
-  modelValue?: boolean | null
+defineProps<{
   label?: string
   hover?: boolean
   iconChecked?: string
@@ -8,13 +7,7 @@ const props = defineProps<{
   checkedIconColor?: string
   prependCheckbox?: boolean
 }>()
-defineEmits<{
-  (event: 'update:modelValue', value: boolean): void
-}>()
-const checked = useModel(props, 'modelValue', {
-  get: value => !!value,
-  set: (value: boolean) => value,
-})
+const checked = defineModel<boolean>({ default: false })
 </script>
 
 <template>

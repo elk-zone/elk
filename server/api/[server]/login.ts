@@ -1,5 +1,7 @@
 import { stringifyQuery } from 'ufo'
 
+import { DEFAULT_OAUTH_SCOPES } from '~/constants'
+
 export default defineEventHandler(async (event) => {
   let { server } = getRouterParams(event)
   if (!server) {
@@ -22,7 +24,7 @@ export default defineEventHandler(async (event) => {
   const query = stringifyQuery({
     client_id: app.client_id,
     force_login: force_login === true ? 'true' : 'false',
-    scope: 'read write follow push',
+    scope: DEFAULT_OAUTH_SCOPES,
     response_type: 'code',
     lang,
     redirect_uri: getRedirectURI(origin, server),

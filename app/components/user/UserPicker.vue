@@ -15,7 +15,7 @@ function clickUser(user: UserLogin) {
 <template>
   <div flex justify-start items-end px-2 gap-5>
     <div flex="~ wrap-reverse" gap-5>
-      <template v-for="user of all" :key="user.id">
+      <template v-for="user of all" :key="`${user.server}:${user.account.id}`">
         <CommonTooltip :distance="8" :delay="{ show: 300, hide: 100 }">
           <button
             flex rounded

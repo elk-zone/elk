@@ -59,7 +59,7 @@ function loadAttachment() {
       <div
         v-if="card.image"
         flex flex-col
-        display-block of-hidden
+        of-hidden
         :class="{
           'sm:(min-w-32 w-32 h-32) min-w-24 w-24 h-24': isSquare,
           'w-full aspect-[1.91]': !isSquare,
@@ -70,8 +70,8 @@ function loadAttachment() {
         <CommonBlurhash
           :blurhash="card.blurhash"
           :src="card.image"
-          :width="card.width"
-          :height="card.height"
+          :width="card.width ?? undefined"
+          :height="card.height ?? undefined"
           :alt="alt"
           :should-load-image="shouldLoadAttachment"
           w-full h-full object-cover

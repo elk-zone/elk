@@ -9,7 +9,7 @@ const modelValue = defineModel()
 
 <template>
   <label
-    class="common-radio flex items-center cursor-pointer py-1 text-md w-full gap-y-1"
+    class="common-radio flex items-center cursor-pointer py-1 text-size-base w-full gap-y-1"
     :class="hover ? 'hover:bg-active ms--2 px-4 py-2' : null"
     @click.prevent="modelValue = value"
   >

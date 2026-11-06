@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const model = defineModel<number>()
-const isValid = defineModel<boolean>('isValid')
+const model = defineModel<number>({ required: true })
+const isValid = defineModel<boolean>('isValid', { required: true })
 
 const days = ref<number | ''>(0)
 const hours = ref<number | ''>(1)

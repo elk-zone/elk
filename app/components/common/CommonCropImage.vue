@@ -10,7 +10,7 @@ const { stencilAspectRatio = 1 / 1, stencilSizePercentage = 0.9 } = defineProps<
   stencilSizePercentage?: number
 }>()
 
-const file = defineModel<File | null>()
+const file = defineModel<File | null>({ default: null })
 
 const cropperDialog = ref(false)
 const cropper = ref<InstanceType<typeof Cropper>>()

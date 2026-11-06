@@ -49,7 +49,7 @@ const objectPosition = computed(() => {
 const typeExtsMap = {
   video: ['mp4', 'webm', 'mov', 'avi', 'mkv', 'flv', 'wmv', 'mpg', 'mpeg'],
   audio: ['mp3', 'wav', 'ogg', 'flac', 'aac', 'm4a', 'wma'],
-  image: ['jpg', 'jpeg', 'png', 'svg', 'webp', 'bmp'],
+  image: ['jpg', 'jpeg', 'png', 'svg', 'webp', 'bmp', 'jxl'],
   gifv: ['gifv', 'gif'],
 }
 

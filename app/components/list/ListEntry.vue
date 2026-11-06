@@ -145,7 +145,7 @@ onDeactivated(cancelEdit)
           :disabled="deleting || !isDirty || submitting"
         >
           <template v-if="isEditing">
-            <span v-if="submitting" aria-hidden="true" block animate animate-spin preserve-3d class="rtl-flip">
+            <span v-if="submitting" aria-hidden="true" block animate-spin preserve-3d class="rtl-flip">
               <span block i-ri:loader-2-fill aria-hidden="true" />
             </span>
             <span v-else block text-current i-ri:save-2-fill class="rtl-flip" />
@@ -173,7 +173,7 @@ onDeactivated(cancelEdit)
           :disabled="isEditing"
           @click.prevent="removeList"
         >
-          <span v-if="deleting" aria-hidden="true" block animate animate-spin preserve-3d class="rtl-flip">
+          <span v-if="deleting" aria-hidden="true" block animate-spin preserve-3d class="rtl-flip">
             <span block i-ri:loader-2-fill aria-hidden="true" />
           </span>
           <span v-else block text-current i-ri:delete-bin-2-line class="rtl-flip" />

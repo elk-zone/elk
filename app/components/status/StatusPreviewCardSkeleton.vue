@@ -18,7 +18,7 @@ defineProps<{
   >
     <div
       flex flex-col
-      display-block of-hidden
+      of-hidden
       border="base"
       :class="{
         'sm:(min-w-32 w-32 h-32) min-w-22 w-22 h-22 border-r': square,

@@ -1,6 +1,6 @@
 import type { mastodon } from 'masto'
 import type { MaybeRefOrGetter } from 'vue'
-import type { RouteLocation } from 'vue-router'
+import type { RouteLocationRaw } from 'vue-router'
 
 export type UseSearchOptions = MaybeRefOrGetter<
   Partial<Omit<mastodon.rest.v2.SearchParams, keyof mastodon.DefaultPaginationParams | 'q'>>
@@ -10,9 +10,7 @@ export interface BuildSearchResult<K extends keyof any, T> {
   id: string
   type: K
   data: T
-  to: RouteLocation & {
-    href: string
-  }
+  to: RouteLocationRaw
 }
 export type AccountSearchResult = BuildSearchResult<'account', mastodon.v1.Account>
 export type HashTagSearchResult = BuildSearchResult<'hashtag', mastodon.v1.Tag>

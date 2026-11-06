@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { actions = true, isNested = false, disableLink = false, older, newer, hasOlder, hasNewer, main, account, ...props } = defineProps<{
+const { actions = true, isNested = false, disableLink = false, showReplyTo: showReplyToProp = true, older, newer, hasOlder, hasNewer, main, account, ...props } = defineProps<{
   status: mastodon.v1.Status
   followedTag?: string | null
   actions?: boolean
@@ -11,6 +11,7 @@ const { actions = true, isNested = false, disableLink = false, older, newer, has
   isPreview?: boolean
   isNested?: boolean
   disableLink?: boolean
+  showReplyTo?: boolean
 
   // If we know the prev and next status in the timeline, we can simplify the card
   older?: mastodon.v1.Status
@@ -69,7 +70,7 @@ const isPinned = computed(
 )
 
 const showUpperBorder = computed(() => newer && !directReply.value)
-const showReplyTo = computed(() => !replyToMain.value && !directReply.value)
+const showReplyTo = computed(() => showReplyToProp && !replyToMain.value && !directReply.value)
 
 const forceShow = ref(false)
 </script>

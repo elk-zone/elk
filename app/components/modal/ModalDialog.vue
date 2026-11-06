@@ -104,8 +104,10 @@ function bindTypeToAny($attrs: any) {
 }
 
 function trapFocusDialog() {
-  if (isVShow.value)
-    nextTick().then(() => activate())
+  nextTick(() => {
+    if (visible.value)
+      activate()
+  })
 }
 
 useEventListener('keydown', (e: KeyboardEvent) => {
@@ -121,7 +123,7 @@ useEventListener('keydown', (e: KeyboardEvent) => {
 <template>
   <Teleport to="body">
     <!-- Dialog component -->
-    <Transition name="dialog-visible" @transitionend="trapFocusDialog">
+    <Transition name="dialog-visible" :duration="250" @after-enter="trapFocusDialog">
       <div
         v-if="isVIf"
         v-show="isVShow"

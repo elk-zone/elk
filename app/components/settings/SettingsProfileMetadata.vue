@@ -1,29 +1,27 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const form = defineModel<{
-  fieldsAttributes: NonNullable<mastodon.rest.v1.UpdateCredentialsParams['fieldsAttributes']>
-}>({ required: true })
+const fields = defineModel<NonNullable<mastodon.rest.v1.UpdateCredentialsParams['fieldsAttributes']>>({ required: true })
 const dropdown = ref<any>()
 
 const fieldIcons = computed(() =>
   Array.from({ length: maxAccountFieldCount.value }, (_, i) =>
-    getAccountFieldIcon(form.value.fieldsAttributes[i].name)),
+    getAccountFieldIcon(fields.value[i].name)),
 )
 
 const fieldCount = computed(() => {
   // find last non-empty field
-  const idx = form.value.fieldsAttributes.toReversed().findIndex(f => f.name || f.value)
+  const idx = fields.value.toReversed().findIndex(f => f.name || f.value)
   if (idx === -1)
     return 1
   return Math.min(
-    form.value.fieldsAttributes.length - idx + 1,
+    fields.value.length - idx + 1,
     maxAccountFieldCount.value,
   )
 })
 
 function chooseIcon(i: number, text: string) {
-  form.value.fieldsAttributes[i].name = text
+  fields.value[i].name = text
   dropdown.value[i]?.hide()
 }
 </script>
@@ -62,13 +60,13 @@ function chooseIcon(i: number, text: string) {
           </template>
         </CommonDropdown>
         <input
-          v-model="form.fieldsAttributes[i - 1].name"
+          v-model="fields[i - 1].name"
           type="text" placeholder-text-secondary
           :placeholder="$t('settings.profile.appearance.profile_metadata_label')"
           input-base
         >
         <input
-          v-model="form.fieldsAttributes[i - 1].value"
+          v-model="fields[i - 1].value"
           type="text" placeholder-text-secondary
           :placeholder="$t('settings.profile.appearance.profile_metadata_value')"
           input-base

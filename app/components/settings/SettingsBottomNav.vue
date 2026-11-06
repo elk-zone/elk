@@ -112,7 +112,7 @@ function save() {
 
       <div flex="~ col" gap-y-4 gap-x-2 py-1 sm="~ justify-end flex-row">
         <button
-          btn-outline font-bold py2 full-w sm-wa flex="~ gap2 center"
+          btn-outline font-bold py2 w-full sm-wa flex="~ gap2 center"
           type="button"
           :disabled="selectedNavButtonNames.length === 0"
           :class="selectedNavButtonNames.length === 0 ? 'border-none' : undefined"
@@ -122,7 +122,7 @@ function save() {
           {{ $t('action.clear') }}
         </button>
         <button
-          btn-outline font-bold py2 full-w sm-wa flex="~ gap2 center"
+          btn-outline font-bold py2 w-full sm-wa flex="~ gap2 center"
           type="reset"
           @click="reset"
         >
@@ -130,7 +130,7 @@ function save() {
           {{ $t('action.reset') }}
         </button>
         <button
-          btn-solid font-bold py2 full-w sm-wa flex="~ gap2 center"
+          btn-solid font-bold py2 w-full sm-wa flex="~ gap2 center"
           :disabled="!canSave"
         >
           <span aria-hidden="true" i-ri:save-2-fill />

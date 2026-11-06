@@ -5,7 +5,7 @@ defineProps<{
   editing?: boolean
 }>()
 
-const modelValue = defineModel<string>({
+const modelValue = defineModel<mastodon.v1.StatusVisibility>({
   required: true,
 })
 

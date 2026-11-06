@@ -141,7 +141,7 @@ onActivated(() => (busy.value = false))
               </fieldset>
               <div flex="~ col" gap-y-4 gap-x-2 py-1 sm="~ justify-between flex-row">
                 <button
-                  btn-solid font-bold py2 full-w sm-wa flex="~ gap2 center"
+                  btn-solid font-bold py2 w-full sm-wa flex="~ gap2 center"
                   :class="busy || !saveEnabled ? 'border-transparent' : null"
                   :disabled="busy || !saveEnabled"
                 >
@@ -152,7 +152,7 @@ onActivated(() => (busy.value = false))
                   {{ $t('settings.notifications.push_notifications.save_settings') }}
                 </button>
                 <button
-                  btn-outline font-bold py2 full-w sm-wa flex="~ gap2 center"
+                  btn-outline font-bold py2 w-full sm-wa flex="~ gap2 center"
                   type="button"
                   :class="busy || !saveEnabled ? 'border-transparent' : null"
                   :disabled="busy || !saveEnabled"

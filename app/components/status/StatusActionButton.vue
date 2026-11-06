@@ -18,6 +18,10 @@ const { as = 'button', command, disabled, content, icon } = defineProps<{
   command?: boolean
 }>()
 
+const emit = defineEmits<{
+  (event: 'click', value: MouseEvent): void
+}>()
+
 defineSlots<{
   text: (props: object) => void
 }>()
@@ -59,6 +63,7 @@ useCommand({
     :aria-label="content"
     :disabled="disabled"
     :aria-disabled="disabled"
+    @click="emit('click', $event)"
   >
     <CommonTooltip placement="bottom" :content="content">
       <div

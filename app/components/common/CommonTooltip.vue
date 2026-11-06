@@ -1,17 +1,23 @@
 <script setup lang="ts">
-import type { Popper as VTooltipType } from 'floating-vue'
+import type { Placement } from 'floating-vue'
 
-export interface Props extends Partial<typeof VTooltipType> {
+export interface Props {
   content?: string
+  placement?: Placement
+  disabled?: boolean
+  distance?: string | number
+  delay?: string | number | { show: number, hide: number }
+  id?: string
 }
 
-defineProps<Props>()
+const { content, disabled = undefined, ...tooltipProps } = defineProps<Props>()
 </script>
 
 <template>
   <VTooltip
     v-if="isHydrated"
-    v-bind="$attrs"
+    v-bind="tooltipProps"
+    :disabled="disabled"
     auto-hide
     no-auto-focus
   >

@@ -89,7 +89,7 @@ const meta = computed(() => {
   <div
     v-if="card.image && meta"
     flex flex-col
-    display-block of-hidden
+    of-hidden
     bg-card
     relative
     w-full min-h-50 md:min-h-60

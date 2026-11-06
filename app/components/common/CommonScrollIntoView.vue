@@ -1,7 +1,17 @@
 <script setup lang="ts">
-const { as = 'div', active } = defineProps<{
+import type { HTMLAttributes } from 'vue'
+import type { RouteLocationRaw } from 'vue-router'
+
+const { as = 'div', active, selected = undefined } = defineProps<{
   as?: string
   active: boolean
+  to?: RouteLocationRaw
+  selected?: HTMLAttributes['aria-selected']
+  tabindex?: HTMLAttributes['tabindex']
+}>()
+
+const emit = defineEmits<{
+  (event: 'click', value: MouseEvent): void
 }>()
 
 const el = ref()
@@ -15,7 +25,7 @@ watch(() => active, (active) => {
 </script>
 
 <template>
-  <component :is="as" ref="el">
+  <component :is="as" ref="el" :to="to" :aria-selected="selected" :tabindex="tabindex" @click="emit('click', $event)">
     <slot />
   </component>
 </template>

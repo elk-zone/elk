@@ -39,7 +39,7 @@ if (account) {
 <template>
   <div>
     <AccountTabs />
-    <div v-if="collections.length > 0" divide-y="base">
+    <div v-if="collections.length > 0" divide-y divide="$c-border">
       <NuxtLink
         v-for="collection in collections"
         :key="collection.id"

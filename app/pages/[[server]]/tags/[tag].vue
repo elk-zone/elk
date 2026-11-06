@@ -26,7 +26,7 @@ onReactivated(() => {
   refresh()
 })
 
-let followedTags: mastodon.v1.Tag[]
+let followedTags: mastodon.v1.Tag[] = []
 if (currentUser.value !== undefined) {
   const paginator = client.value?.v1.followedTags.list()
   followedTags = paginator ? (await paginator.values().next()).value ?? [] : []

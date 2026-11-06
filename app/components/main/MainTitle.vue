@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import type { RouteLocationRaw } from 'vue-router'
+
 const { as = 'div' } = defineProps<{
   as?: string
+  to?: RouteLocationRaw
   icon?: string
   secondary?: boolean
 }>()
@@ -18,6 +21,7 @@ function doScroll({ currentTarget, metaKey, ctrlKey }: MouseEvent | KeyboardEven
 <template>
   <component
     :is="as"
+    :to="to"
     class="
       flex items-center gap-2 min-h-10 px-3
       text-start text-lg lh-tight font-bold cursor-pointer

@@ -6,7 +6,7 @@ defineProps<{
   editing?: boolean
 }>()
 
-const modelValue = defineModel<string | null | undefined>({
+const modelValue = defineModel<mastodon.rest.v1.QuoteApprovalPolicy | null | undefined>({
   required: true,
 })
 

@@ -73,7 +73,7 @@ useCommands(() => command
           >
             <CommonDropdownItem>
               <span flex="~ row" gap-x-4 items-center :class="option.match ? 'text-primary' : ''">
-                <span v-if="option.icon" :class="[option.icon, option.match ? 'text-primary' : 'text.secondary']" text-md me--1 block />
+                <span v-if="option.icon" :class="[option.icon, option.match ? 'text-primary' : 'text-secondary']" text-size-base me--1 block />
                 <span v-else block>&#160;</span>
                 <span>{{ option.display }}</span>
               </span>

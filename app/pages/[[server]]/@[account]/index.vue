@@ -26,7 +26,7 @@ onReactivated(() => {
       <MainTitle>
         <ContentRich
           :content="account ? getDisplayName(account) : t('nav.profile')"
-          :show-emojis="!getPreferences(userSettings, 'hideUsernameEmojis')"
+          :hide-emojis="getPreferences(userSettings, 'hideUsernameEmojis')"
           :markdown="false"
         />
       </MainTitle>

@@ -176,7 +176,7 @@
     "unfollow": {
       "cancel": "Batalkan",
       "confirm": "Berhenti mengikuti",
-      "description": "Anda yakin ingin berhenti mengikuti?",
+      "description": "Anda yakin ingin berhenti mengikuti {0}?",
       "title": "Berhenti mengikuti"
     }
   },

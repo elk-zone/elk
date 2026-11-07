@@ -182,7 +182,7 @@
     "unfollow": {
       "cancel": "Hủy bỏ",
       "confirm": "Bỏ theo dõi",
-      "description": "Bạn có chắc muốn bỏ theo dõi?",
+      "description": "Bạn có chắc muốn bỏ theo dõi {0}?",
       "title": "Bỏ theo dõi"
     }
   },

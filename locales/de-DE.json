@@ -171,7 +171,7 @@
     "unfollow": {
       "cancel": "Abbrechen",
       "confirm": "Entfolgen",
-      "description": "Bist du sicher, dass du entfolgen möchtest?",
+      "description": "Bist du sicher, dass du {0} entfolgen möchtest?",
       "title": "Entfolgen"
     }
   },
@@ -574,7 +574,7 @@
         "display_name": "Anzeigename",
         "label": "Erscheinungsbild",
         "profile_metadata": "Profil-Metadaten",
-        "profile_metadata_desc": "Du kannst bis zu vier Einträge als Tabelle in deinem Profil anzeigen lassen",
+        "profile_metadata_desc": "Du kannst bis zu {0} Einträge als Tabelle in deinem Profil anzeigen lassen",
         "profile_metadata_label": "Bezeichnung",
         "profile_metadata_value": "Inhalt",
         "title": "Profil bearbeiten"

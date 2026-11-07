@@ -174,7 +174,7 @@
     "unfollow": {
       "cancel": "キャンセル",
       "confirm": "フォロー解除",
-      "description": "本当にフォローを解除しますか？",
+      "description": "本当に{0}のフォローを解除しますか？",
       "title": "フォロー解除"
     }
   },

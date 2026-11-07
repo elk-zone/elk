@@ -169,7 +169,7 @@
     "unfollow": {
       "cancel": "Cancelar",
       "confirm": "Dejar de seguir",
-      "description": "¿Estás seguro que quieres dejar de seguir?",
+      "description": "¿Estás seguro que quieres dejar de seguir a {0}?",
       "title": "Dejar de seguir"
     }
   },
@@ -580,7 +580,7 @@
         "display_name": "Nombre a mostrar",
         "label": "Apariencia",
         "profile_metadata": "Metadatos de perfil",
-        "profile_metadata_desc": "Puede mostrar hasta 4 elementos en forma de tabla en tu perfil",
+        "profile_metadata_desc": "Puede mostrar hasta {0} elementos en forma de tabla en tu perfil",
         "profile_metadata_label": "Texto",
         "profile_metadata_value": "Contenido",
         "title": "Editar perfil"

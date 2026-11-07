@@ -60,7 +60,7 @@
       "description": "Tem certeza que quer mostrar os compartilhamentos de {0}?"
     },
     "unfollow": {
-      "description": "Tem certeza que quer deixar de seguir?"
+      "description": "Tem certeza que quer deixar de seguir {0}?"
     }
   },
   "error": {

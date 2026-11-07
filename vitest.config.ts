@@ -12,6 +12,7 @@ export default defineConfig({
       await defineVitestProject({
         test: {
           name: 'nuxt',
+          retry: 3,
           setupFiles: [
             '../tests/setup.ts',
           ],

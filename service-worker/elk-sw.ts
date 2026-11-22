@@ -25,13 +25,12 @@ if (import.meta.env.DEV) {
   entries.push({ url: '/', revision: Math.random().toString() })
 }
 
-// TODO: to enable parallel we need to change the custom precache module
-precacheAndRoute(entries, /* , {
+precacheAndRoute(entries, {
   parallel: {
     enabled: true,
     concurrency: 5,
   },
-} */)
+})
 
 // clean old assets
 cleanupOutdatedCaches()

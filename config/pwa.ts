@@ -3,13 +3,13 @@ import { isCI, isDevelopment } from 'std-env'
 import { STORAGE_KEY_PWA_HIDE_INSTALL } from '../app/constants'
 import { builder } from './custom-pwa-builder'
 
+// disable PWA only when in preview mode
 const pwaDisabled = /* temporarily test in CI isPreview || */ (isDevelopment && process.env.VITE_DEV_PWA !== 'true')
 
 export const pwaEnabled = !pwaDisabled
 
 export const pwa: Partial<PwaOptions<'buildSW', 'classic'>> = {
-  // disable PWA only when in preview mode
-  disable: /* temporarily test in CI isPreview || */ pwaDisabled,
+  disable: pwaDisabled,
   scope: '/',
   filename: 'elk-sw.js',
   strategies: 'buildSW',

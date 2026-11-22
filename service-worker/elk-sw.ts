@@ -55,11 +55,11 @@ if (import.meta.env.PROD) {
     // exclude sw: if the user navigates to it, fallback to index.html
     /^\/sw.js$/,
     /^\/elk-sw.js$/,
-    /^\/elk-share-target-?:(.*).js$/,
-    /^\/elk-push-notifications-?:(.*).js$/,
-    /^\/workbox-?:(.*).js$/,
+    /^\/elk-share-target-[0-9a-f]{8}.js$/,
+    /^\/elk-push-notifications-[0-9a-f]{8}.js$/,
+    /^\/workbox-[0-9a-f]{8}.js$/,
     // exclude webmanifest: has its own cache
-    /^\/manifest-?:(.*).webmanifest$/,
+    /^\/manifest-(.*).webmanifest$/,
   ]
 }
 

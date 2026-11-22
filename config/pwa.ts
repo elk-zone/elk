@@ -44,7 +44,7 @@ export const pwa: Partial<PwaOptions<'buildSW', 'classic'>> = {
         return 'elk-push-notifications'
       }
       if (moduleId.endsWith('share-target.ts')) {
-        return 'share-target'
+        return 'elk-share-target'
       }
     },
   },

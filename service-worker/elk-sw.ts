@@ -1,15 +1,19 @@
 /// <reference lib="WebWorker" />
 /// <reference types="vite/client" />
-import { CacheableResponsePlugin } from 'workbox-cacheable-response'
-import { ExpirationPlugin } from 'workbox-expiration'
-import { cleanupOutdatedCaches } from 'workbox-precaching'
-import { NavigationRoute, registerRoute } from 'workbox-routing'
-import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies'
+import { CacheableResponsePlugin } from '@vite-pwa/workbox-swkit/cacheable-response'
+import { ExpirationPlugin } from '@vite-pwa/workbox-swkit/expiration'
+import { cleanupOutdatedCaches } from '@vite-pwa/workbox-swkit/precaching'
+import { NavigationRoute, registerRoute } from '@vite-pwa/workbox-swkit/routing'
+import { NetworkFirst, StaleWhileRevalidate } from '@vite-pwa/workbox-swkit/strategies'
 import { createHandlerBoundToURL, precacheAndRoute } from './precache'
 import { onShareTarget } from './share-target'
 import { onNotificationClick, onPush } from './web-push-notifications'
 
 declare const self: ServiceWorkerGlobalScope
+
+if (import.meta.env.ENABLE_SWKIT_LOGS) {
+  self.__WB_DISABLE_DEV_LOGS = false
+}
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING')
@@ -17,10 +21,17 @@ self.addEventListener('message', (event) => {
 })
 
 const entries = self.__WB_MANIFEST
-if (import.meta.env.DEV)
+if (import.meta.env.DEV) {
   entries.push({ url: '/', revision: Math.random().toString() })
+}
 
-precacheAndRoute(entries)
+// TODO: to enable parallel we need to change the custom precache module
+precacheAndRoute(entries, /* , {
+  parallel: {
+    enabled: true,
+    concurrency: 5,
+  },
+} */)
 
 // clean old assets
 cleanupOutdatedCaches()
@@ -44,8 +55,11 @@ if (import.meta.env.PROD) {
     // exclude sw: if the user navigates to it, fallback to index.html
     /^\/sw.js$/,
     /^\/elk-sw.js$/,
+    /^\/elk-share-target-?:(.*).js$/,
+    /^\/elk-push-notifications-?:(.*).js$/,
+    /^\/workbox-?:(.*).js$/,
     // exclude webmanifest: has its own cache
-    /^\/manifest-(.*).webmanifest$/,
+    /^\/manifest-?:(.*).webmanifest$/,
   ]
 }
 
@@ -106,3 +120,9 @@ registerRoute(new NavigationRoute(
 self.addEventListener('push', onPush)
 self.addEventListener('notificationclick', onNotificationClick)
 self.addEventListener('fetch', onShareTarget)
+
+declare global {
+  interface WorkerGlobalScope {
+    __WB_DISABLE_DEV_LOGS: boolean
+  }
+}

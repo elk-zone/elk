@@ -4,7 +4,7 @@ import { createResolver, useNuxt } from 'nuxt/kit'
 import { isCI, isDevelopment, isTest, isWindows } from 'std-env'
 import { isPreview } from './config/env'
 import { currentLocales } from './config/i18n'
-import { pwa } from './config/pwa'
+import { pwa, pwaEnabled } from './config/pwa'
 
 const TIPTAP_IMPORT_RE = /(?:^|\/)@tiptap\//
 const PROSEMIRROR_IMPORT_RE = /(?:^|\/)prosemirror/
@@ -29,11 +29,18 @@ export default defineNuxtConfig({
         target: 3.5,
       },
     },
+    nodeTsConfig: {
+      include: [
+        '../config/pwa.ts',
+        '../config/custom-pwa-builder/*.ts',
+      ],
+    },
   },
   modules: [
     '@vueuse/nuxt',
     '@unocss/nuxt',
     '@pinia/nuxt',
+    '@vite-pwa/nuxt',
     '@vue-macros/nuxt',
     '@nuxtjs/i18n',
     // temporary disable module during test
@@ -137,12 +144,6 @@ export default defineNuxtConfig({
         'file-saver',
         'slimeform',
         'vue-advanced-cropper',
-        'workbox-window',
-        'workbox-precaching',
-        'workbox-routing',
-        'workbox-cacheable-response',
-        'workbox-strategies',
-        'workbox-expiration',
       ],
     },
   },
@@ -155,6 +156,7 @@ export default defineNuxtConfig({
     storage: {
       driver: process.env.NUXT_STORAGE_DRIVER ?? (isCI ? 'cloudflare' : 'fs'),
     },
+    pwaEnabled,
   },
   runtimeConfig: {
     adminKey: '',
@@ -188,7 +190,12 @@ export default defineNuxtConfig({
     '/settings/**': { prerender: false },
     // incremental regeneration
     '/api/list-servers': { swr: true },
-    // CDN cache rules
+    // old sw.js
+    '/sw.js': {
+      headers: {
+        'Cache-Control': 'public, max-age=0, must-revalidate',
+      },
+    },
     '/manifest.webmanifest': {
       headers: {
         'Content-Type': 'application/manifest+json',

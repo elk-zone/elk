@@ -1,10 +1,9 @@
-import type { RouteHandlerCallbackOptions } from 'workbox-core/src/types'
-import type { RouteHandlerCallback } from 'workbox-core/types'
-import type { PrecacheEntry, PrecacheRouteOptions } from 'workbox-precaching'
-import { WorkboxError } from 'workbox-core/_private/WorkboxError'
-import { PrecacheController, PrecacheRoute } from 'workbox-precaching'
-import { registerRoute } from 'workbox-routing'
-import { NetworkOnly } from 'workbox-strategies'
+import type { PrecacheEntry, PrecacheRouteOptions } from '@vite-pwa/workbox-swkit/precaching'
+import type { RouteHandlerCallback, RouteHandlerCallbackOptions } from '@vite-pwa/workbox-swkit/types'
+import { PrecacheController, PrecacheRoute } from '@vite-pwa/workbox-swkit/precaching'
+import { registerRoute } from '@vite-pwa/workbox-swkit/routing'
+import { NetworkOnly } from '@vite-pwa/workbox-swkit/strategies'
+import { WorkboxError } from './workbox-error'
 
 let precacheController: PrecacheController | undefined
 

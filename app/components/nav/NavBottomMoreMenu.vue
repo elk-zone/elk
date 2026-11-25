@@ -129,13 +129,13 @@ const { dragging, dragDistance } = invoke(() => {
     >
       <div
         v-show="modelValue"
-        absolute inset-x-0 top-auto bottom-full z-20 h-100vh
+        absolute inset-x-0 top-auto bottom-full z-20 h-100svh
         flex items-end of-y-scroll of-x-hidden scrollbar-hide overscroll-none
         bg="black/50"
       >
         <!-- The style `scrollbar-hide overscroll-none overflow-y-scroll mb="-1px"` and `h="[calc(100%+0.5px)]"` is used to implement scroll locking, -->
         <!-- corresponding to issue: #106, so please don't remove it. -->
-        <div absolute inset-0 opacity-0 h="[calc(100vh+0.5px)]" />
+        <div absolute inset-0 opacity-0 h="[calc(100svh+0.5px)]" />
         <div
           ref="drawerEl"
           :style="{
@@ -148,7 +148,7 @@ const { dragging, dragDistance } = invoke(() => {
           }"
           transition="transform ease-in"
           flex-1 min-w-48 py-6 mb="-1px"
-          of-y-auto scrollbar-hide overscroll-none max-h="[calc(100vh-200px)]"
+          of-y-auto scrollbar-hide overscroll-none max-h="[calc(100svh-200px)]"
           rounded-t-lg bg="white/85 dark:neutral-900/85" backdrop-filter
           border-t-1 border-base
         >

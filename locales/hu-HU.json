@@ -58,7 +58,7 @@
     "boost": "Kiemel",
     "boost_count": "{0}",
     "boosted": "Kiemelt",
-    "clear": "Tisztítás",
+    "clear": "Tisztít",
     "clear_publish_failed": "Közzétételi hibák tisztítása",
     "clear_save_failed": "Mentési hibák tisztítása",
     "clear_schedule_failed": "Időzítési hibák tisztítása",
@@ -98,6 +98,12 @@
   "attachment": {
     "edit_title": "Leírás",
     "remove_label": "Melléklet eltávolítása"
+  },
+  "collection": {
+    "created_by": "Készítette: ",
+    "empty": "Nincsenek fiókok még ebben a gyújteményben.",
+    "item_count": "{0} fiókok|{0} fiók|{0} fiók",
+    "no_collections": "Még nincsenek gyújtemények."
   },
   "command": {
     "activate": "Aktivál",
@@ -192,6 +198,8 @@
   },
   "error": {
     "account_not_found": "A {0} fiók nem található",
+    "collection_not_found": "Nem található gyűjtemény",
+    "collections_not_supported": "Ez a szerver nem támogatja a gyűjteményeket.",
     "explore_list_empty": "Nincs most semmi érdekes. Térj vissza később!",
     "file_size_cannot_exceed_n_mb": "A fájl mérete nem haladhatja meg a {0}MB-ot",
     "quote_fetch_error": "A hivatkozott bejegyzés nem tölthető be",
@@ -347,7 +355,9 @@
     "zen_mode": "Zen mód"
   },
   "notification": {
+    "added_you_to_collection": "Hozzáadva a gyújteményedhez",
     "and": "és",
+    "collection_updated": "frissítve lett egy gyűjtemény, amiben benne vagy",
     "favourited_post": "hozzáaadta a bejegyésed a kedvenceihez",
     "followed_you": "mostantól követ téged",
     "followed_you_count": "{0} ember követ téged|{0} ember követ téged|{0} ember követ téged",
@@ -609,7 +619,7 @@
         "bio": "Leírás",
         "description": "Avatar szerkesztése, felhasználónév, profil, stb.",
         "display_name": "Megjelenített név",
-        "label": "Megjelenés",
+        "label": "Megjelenítés",
         "profile_metadata": "Profil adatok",
         "profile_metadata_desc": "Összesen: {0} elem jeleníthető meg a profilban",
         "profile_metadata_label": "Címke",
@@ -695,10 +705,13 @@
   },
   "tab": {
     "accounts": "Fiókok",
-    "for_you": "Önnek",
-    "hashtags": "Címkék",
+    "collections": "Gyűjtemények",
+    "for_you": "Neked",
+    "hashtags": "Hashtagek",
+    "in_collections": "Rólad szól",
     "list": "Lista",
     "media": "Média",
+    "my_collections": "Az én gyűjteményem",
     "news": "Hírek",
     "notifications_admin": {
       "report": "Jelentés",
@@ -758,7 +771,7 @@
   "timeline": {
     "load_more": "Több bejegyzés betöltése",
     "no_posts": "Itt nincsenek bejegyzések.",
-    "show_new_items": "{v} új elemek megjelenítése|{v} új elemek megjelenítése|{v} új elemek megjelenítése",
+    "show_new_items": "{v} új elem megjelenítése|{v} új elem megjelenítése|{v} új elem megjelenítése",
     "view_older_posts": "Előfordulhat, hogy más instancekről származó régebbi bejegyzések nem jelennek meg."
   },
   "title": {

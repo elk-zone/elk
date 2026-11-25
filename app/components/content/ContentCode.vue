@@ -17,7 +17,7 @@ const langMap: Record<string, string> = {
 }
 
 const highlighted = computed(() => {
-  return lang ? highlightCode(raw.value, (langMap[lang] || lang) as any) : raw
+  return lang ? highlightCode(raw.value, (langMap[lang] || lang) as any) : raw.value
 })
 </script>
 

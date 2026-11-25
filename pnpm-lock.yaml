@@ -38,7 +38,7 @@ importers:
         version: 11.1.12
       '@intlify/shared':
         specifier: ^11.1.12
-        version: 11.1.12
+        version: 11.4.14
       '@nuxt/devtools':
         specifier: ^3.1.1
         version: 3.3.1(@upstash/redis@1.35.4)(@vercel/kv@3.0.0)(db0@0.3.4(better-sqlite3@12.4.1))(idb-keyval@6.2.2)(ioredis@5.11.1)(magic-string@0.30.21)(oxc-parser@0.133.0)(unplugin@2.3.11)(vite@7.3.7(@types/node@26.6.6)(jiti@2.7.0)(lightningcss@1.30.2)(terser@5.51.4)(yaml@2.9.0))(vue@3.5.30(typescript@5.9.3))
@@ -1990,6 +1990,10 @@ packages:
   '@intlify/shared@11.1.12':
     resolution: {integrity: sha512-Om86EjuQtA69hdNj3GQec9ZC0L0vPSAnXzB3gP/gyJ7+mA7t06d9aOAiqMZ+xEOsumGP4eEBlfl8zF2LOTzf2A==}
     engines: {node: '>= 16'}
+
+  '@intlify/shared@11.4.14':
+    resolution: {integrity: sha512-f8zSlPs4+Yd9za3CPQfW9OHxAJBOeRQzB/hhOhkbGA7hlqWk0W0bUtSV/LmyrGNwdl8JriBnFtJqZyF140bjGg==}
+    engines: {node: '>= 22'}
 
   '@intlify/unplugin-vue-i18n@11.0.1':
     resolution: {integrity: sha512-nH5NJdNjy/lO6Ne8LDtZzv4SbpVsMhPE+LbvBDmMeIeJDiino8sOJN2QB3MXzTliYTnqe3aB9Fw5+LJ/XVaXCg==}
@@ -4413,12 +4417,6 @@ packages:
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       typescript: '>=4.8.4 <6.0.0'
-
-  '@typescript-eslint/tsconfig-utils@8.60.1':
-    resolution: {integrity: sha512-nh8w4qAteiKuZu3pSSzG/yGKpw0OlkrKnzFmbVRenKaD4qc+7i1GrmZaLVkr8rk4uipiPGMOW4YsM6WmKZ5CvA==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      typescript: '>=4.8.4 <6.1.0'
 
   '@typescript-eslint/tsconfig-utils@8.74.0':
     resolution: {integrity: sha512-p07wAuaS6BjCYgOSXKJi4YhvTnAf7fiG37e9THcpnYaQEt2QiTTYZWKwUFNgeRiywiMudazhzgddAirZ0GgHtQ==}
@@ -12601,7 +12599,7 @@ snapshots:
   '@intlify/bundle-utils@11.0.1(vue-i18n@11.1.12(vue@3.5.30(typescript@5.9.3)))':
     dependencies:
       '@intlify/message-compiler': 11.1.12
-      '@intlify/shared': 11.1.12
+      '@intlify/shared': 11.4.14
       acorn: 8.17.0
       esbuild: 0.25.12
       escodegen: 2.1.0
@@ -12634,12 +12632,14 @@ snapshots:
 
   '@intlify/shared@11.1.12': {}
 
+  '@intlify/shared@11.4.14': {}
+
   '@intlify/unplugin-vue-i18n@11.0.1(@vue/compiler-dom@3.5.38)(eslint@9.39.4(jiti@2.7.0))(rollup@4.68.8)(typescript@5.9.3)(vue-i18n@11.1.12(vue@3.5.30(typescript@5.9.3)))(vue@3.5.30(typescript@5.9.3))':
     dependencies:
       '@eslint-community/eslint-utils': 4.9.1(eslint@9.39.4(jiti@2.7.0))
       '@intlify/bundle-utils': 11.0.1(vue-i18n@11.1.12(vue@3.5.30(typescript@5.9.3)))
-      '@intlify/shared': 11.1.12
-      '@intlify/vue-i18n-extensions': 8.0.0(@intlify/shared@11.1.12)(@vue/compiler-dom@3.5.38)(vue-i18n@11.1.12(vue@3.5.30(typescript@5.9.3)))(vue@3.5.30(typescript@5.9.3))
+      '@intlify/shared': 11.4.14
+      '@intlify/vue-i18n-extensions': 8.0.0(@intlify/shared@11.4.14)(@vue/compiler-dom@3.5.38)(vue-i18n@11.1.12(vue@3.5.30(typescript@5.9.3)))(vue@3.5.30(typescript@5.9.3))
       '@rollup/pluginutils': 5.3.0(rollup@4.68.8)
       '@typescript-eslint/scope-manager': 8.57.0
       '@typescript-eslint/typescript-estree': 8.57.0(typescript@5.9.3)
@@ -12662,8 +12662,8 @@ snapshots:
     dependencies:
       '@eslint-community/eslint-utils': 4.9.1(eslint@9.39.4(jiti@2.7.0))
       '@intlify/bundle-utils': 11.0.1(vue-i18n@11.1.12(vue@3.5.30(typescript@5.9.3)))
-      '@intlify/shared': 11.1.12
-      '@intlify/vue-i18n-extensions': 8.0.0(@intlify/shared@11.1.12)(@vue/compiler-dom@3.5.46)(vue-i18n@11.1.12(vue@3.5.30(typescript@5.9.3)))(vue@3.5.46(typescript@5.9.3))
+      '@intlify/shared': 11.4.14
+      '@intlify/vue-i18n-extensions': 8.0.0(@intlify/shared@11.4.14)(@vue/compiler-dom@3.5.46)(vue-i18n@11.1.12(vue@3.5.30(typescript@5.9.3)))(vue@3.5.46(typescript@5.9.3))
       '@rollup/pluginutils': 5.3.0(rollup@4.68.8)
       '@typescript-eslint/scope-manager': 8.57.0
       '@typescript-eslint/typescript-estree': 8.57.0(typescript@5.9.3)
@@ -12684,20 +12684,20 @@ snapshots:
 
   '@intlify/utils@0.13.0': {}
 
-  '@intlify/vue-i18n-extensions@8.0.0(@intlify/shared@11.1.12)(@vue/compiler-dom@3.5.38)(vue-i18n@11.1.12(vue@3.5.30(typescript@5.9.3)))(vue@3.5.30(typescript@5.9.3))':
+  '@intlify/vue-i18n-extensions@8.0.0(@intlify/shared@11.4.14)(@vue/compiler-dom@3.5.38)(vue-i18n@11.1.12(vue@3.5.30(typescript@5.9.3)))(vue@3.5.30(typescript@5.9.3))':
     dependencies:
       '@babel/parser': 7.29.9
     optionalDependencies:
-      '@intlify/shared': 11.1.12
+      '@intlify/shared': 11.4.14
       '@vue/compiler-dom': 3.5.38
       vue: 3.5.30(typescript@5.9.3)
       vue-i18n: 11.1.12(vue@3.5.30(typescript@5.9.3))
 
-  '@intlify/vue-i18n-extensions@8.0.0(@intlify/shared@11.1.12)(@vue/compiler-dom@3.5.46)(vue-i18n@11.1.12(vue@3.5.30(typescript@5.9.3)))(vue@3.5.46(typescript@5.9.3))':
+  '@intlify/vue-i18n-extensions@8.0.0(@intlify/shared@11.4.14)(@vue/compiler-dom@3.5.46)(vue-i18n@11.1.12(vue@3.5.30(typescript@5.9.3)))(vue@3.5.46(typescript@5.9.3))':
     dependencies:
       '@babel/parser': 7.29.9
     optionalDependencies:
-      '@intlify/shared': 11.1.12
+      '@intlify/shared': 11.4.14
       '@vue/compiler-dom': 3.5.46
       vue: 3.5.46(typescript@5.9.3)
       vue-i18n: 11.1.12(vue@3.5.30(typescript@5.9.3))
@@ -13906,7 +13906,7 @@ snapshots:
     dependencies:
       '@intlify/core': 11.1.12
       '@intlify/h3': 0.7.1
-      '@intlify/shared': 11.1.12
+      '@intlify/shared': 11.4.14
       '@intlify/unplugin-vue-i18n': 11.0.1(@vue/compiler-dom@3.5.38)(eslint@9.39.4(jiti@2.7.0))(rollup@4.68.8)(typescript@5.9.3)(vue-i18n@11.1.12(vue@3.5.30(typescript@5.9.3)))(vue@3.5.30(typescript@5.9.3))
       '@intlify/utils': 0.13.0
       '@miyaneee/rollup-plugin-json5': 1.2.0(rollup@4.68.8)
@@ -13964,7 +13964,7 @@ snapshots:
     dependencies:
       '@intlify/core': 11.1.12
       '@intlify/h3': 0.7.1
-      '@intlify/shared': 11.1.12
+      '@intlify/shared': 11.4.14
       '@intlify/unplugin-vue-i18n': 11.0.1(@vue/compiler-dom@3.5.46)(eslint@9.39.4(jiti@2.7.0))(rollup@4.68.8)(typescript@5.9.3)(vue-i18n@11.1.12(vue@3.5.30(typescript@5.9.3)))(vue@3.5.46(typescript@5.9.3))
       '@intlify/utils': 0.13.0
       '@miyaneee/rollup-plugin-json5': 1.2.0(rollup@4.68.8)
@@ -15624,8 +15624,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.56.1(typescript@5.9.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.60.1(typescript@5.9.3)
-      '@typescript-eslint/types': 8.60.1
+      '@typescript-eslint/tsconfig-utils': 8.56.1(typescript@5.9.3)
+      '@typescript-eslint/types': 8.56.1
       debug: 4.4.3
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -15683,10 +15683,6 @@ snapshots:
       typescript: 5.9.3
 
   '@typescript-eslint/tsconfig-utils@8.57.0(typescript@5.9.3)':
-    dependencies:
-      typescript: 5.9.3
-
-  '@typescript-eslint/tsconfig-utils@8.60.1(typescript@5.9.3)':
     dependencies:
       typescript: 5.9.3
 

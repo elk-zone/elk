@@ -17,7 +17,7 @@ export const pwa: VitePWANuxtOptions = {
     // minify: false,
     // enableWorkboxModulesLogs: true,
 
-    globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
+    globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,jxl,woff,woff2,ttf,eot,otf,wasm}'],
     globIgnores: ['emojis/**', 'manifest**.webmanifest'],
   },
   devOptions: {

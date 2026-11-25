@@ -1,4 +1,4 @@
-import type { ManifestOptions } from 'vite-plugin-pwa'
+import type { ManifestOptions } from '@unplugin-pwa/core'
 import { Buffer } from 'node:buffer'
 import { readFile } from 'node:fs/promises'
 import { createResolver } from 'nuxt/kit'

@@ -1,10 +1,9 @@
-import type { RouteHandlerCallbackOptions } from 'workbox-core/src/types'
-import type { RouteHandlerCallback } from 'workbox-core/types'
-import type { PrecacheEntry, PrecacheRouteOptions } from 'workbox-precaching'
-import { WorkboxError } from 'workbox-core/_private/WorkboxError'
-import { PrecacheController, PrecacheRoute } from 'workbox-precaching'
-import { registerRoute } from 'workbox-routing'
-import { NetworkOnly } from 'workbox-strategies'
+import type { PrecacheEntry, PrecacheOptions } from '@vite-pwa/workbox-swkit/precaching'
+import type { RouteHandlerCallback, RouteHandlerCallbackOptions } from '@vite-pwa/workbox-swkit/types'
+import { PrecacheController, PrecacheRoute } from '@vite-pwa/workbox-swkit/precaching'
+import { registerRoute } from '@vite-pwa/workbox-swkit/routing'
+import { NetworkOnly } from '@vite-pwa/workbox-swkit/strategies'
+import { WorkboxError } from './workbox-error'
 
 let precacheController: PrecacheController | undefined
 
@@ -121,7 +120,7 @@ function precache(entries: Array<PrecacheEntry | string>): void {
   const precacheController = getOrCreatePrecacheController()
   precacheController.precache(entries)
 }
-function addRoute(options?: PrecacheRouteOptions): void {
+function addRoute(options?: PrecacheOptions): void {
   const precacheController = getOrCreatePrecacheController()
 
   const precacheRoute = new PrecacheRoute(precacheController, options)
@@ -130,7 +129,7 @@ function addRoute(options?: PrecacheRouteOptions): void {
 
 export function precacheAndRoute(
   entries: Array<PrecacheEntry | string>,
-  options?: PrecacheRouteOptions,
+  options?: PrecacheOptions,
 ): void {
   precache(entries)
   addRoute(options)

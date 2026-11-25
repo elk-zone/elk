@@ -1,5 +1,9 @@
 ignoreWorkspaceRootCheck: true
 
+minimumReleaseAgeExclude:
+  - '@vite-pwa/nuxt-core@2.0.4'
+  - '@vite-pwa/nuxt-vite@2.0.4'
+  - '@vite-pwa/nuxt@2.0.4'
 shellEmulator: true
 
 trustPolicy: no-downgrade

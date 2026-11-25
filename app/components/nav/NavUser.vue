@@ -26,7 +26,7 @@ const { busy, oauth, singleInstanceServer } = useSignIn()
       :disabled="busy"
       @click="oauth()"
     >
-      <span v-if="busy" aria-hidden="true" block animate animate-spin preserve-3d class="rtl-flip">
+      <span v-if="busy" aria-hidden="true" block animate-spin preserve-3d class="rtl-flip">
         <span block i-ri:loader-2-fill aria-hidden="true" />
       </span>
       <span v-else aria-hidden="true" block i-ri:login-circle-line class="rtl-flip" />

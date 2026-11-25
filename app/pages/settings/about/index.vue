@@ -110,7 +110,7 @@ function handleShowCommit() {
       external large target="_blank"
     >
       <template #icon>
-        <div i-ri-heart-3-fill text-rose rounded-full w-8 h-8 height="32" width="32" />
+        <div i-ri-heart-3-fill text-rose rounded-full w-8 h-8 />
       </template>
     </SettingsItem>
 

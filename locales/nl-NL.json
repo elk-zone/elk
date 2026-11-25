@@ -118,7 +118,7 @@
   },
   "compose": {
     "drafs": "Concepten",
-    "draft_title": "Concept"
+    "draft_title": "Concept {0}"
   },
   "confirm": {
     "block_account": {
@@ -163,7 +163,7 @@
     "show_reblogs": {
       "cancel": "Annuleren",
       "confirm": "Toon boosts",
-      "description": "Weet je zeker dat je alle boosts van deze post wilt tonen?",
+      "description": "Weet je zeker dat je boosts van {0} wilt tonen?",
       "title": "Toon boosts"
     },
     "unfollow": {
@@ -265,7 +265,7 @@
     "sequence_then": "dan"
   },
   "menu": {
-    "add_personal_note": "Voeg persoonlijke notitie toe",
+    "add_personal_note": "Voeg persoonlijke notitie toe aan {0}",
     "block_account": "Blokkeer {0}",
     "block_domain": "Blokkeer domein {0}",
     "copy_link_to_post": "Kopieer link naar deze post",
@@ -274,7 +274,7 @@
     "delete_and_redraft": "Verwijder & Opnieuw opstellen",
     "direct_message_account": "Direct bericht naar {0}",
     "edit": "Aanpassen",
-    "hide_reblogs": "Verberg boosts",
+    "hide_reblogs": "Verberg boosts van {0}",
     "mention_account": "Noem {0}",
     "mute_account": "Demp {0}",
     "mute_conversation": "Demp deze post",
@@ -285,7 +285,7 @@
     "share_account": "Deel {0}",
     "share_post": "Deel deze post",
     "show_favourited_and_boosted_by": "Toon wie deze post leuk vindt en geboost heeft",
-    "show_reblogs": "Toon boosts",
+    "show_reblogs": "Toon boosts van {0}",
     "show_untranslated": "Laat onvertaalde versie zien",
     "toggle_theme": {
       "dark": "Donkere modus wisselen",

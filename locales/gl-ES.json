@@ -154,7 +154,7 @@
     "unfollow": {
       "cancel": "Cancelar",
       "confirm": "Retirar",
-      "description": "Tes certeza de querer retirar o seguimento?"
+      "description": "Tes certeza de querer retirar o seguimento a {0}?"
     }
   },
   "conversation": {

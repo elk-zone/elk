@@ -137,7 +137,7 @@
     "unfollow": {
       "cancel": "取消",
       "confirm": "取消追蹤",
-      "description": "你確定要取消追蹤嗎？"
+      "description": "你確定要取消追蹤 {0} 嗎？"
     }
   },
   "conversation": {

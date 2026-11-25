@@ -169,7 +169,7 @@
     "unfollow": {
       "cancel": "Annuler",
       "confirm": "Se désabonner",
-      "description": "Voulez-vous vraiment vous désabonner ?",
+      "description": "Voulez-vous vraiment vous désabonner de {0} ?",
       "title": "Se désabonner"
     }
   },
@@ -579,7 +579,7 @@
         "display_name": "Nom d'affichage",
         "label": "Apparence",
         "profile_metadata": "Métadonnées de profil",
-        "profile_metadata_desc": "Vous pouvez avoir jusqu'à 4 éléments affichés sous forme de tableau sur votre profil",
+        "profile_metadata_desc": "Vous pouvez avoir jusqu'à {0} éléments affichés sous forme de tableau sur votre profil",
         "profile_metadata_label": "Label",
         "profile_metadata_value": "Contenu",
         "title": "Éditer le profil"

@@ -169,7 +169,7 @@
     "unfollow": {
       "cancel": "取消",
       "confirm": "取消关注",
-      "description": "你确定要取消关注吗？",
+      "description": "你确定要取消关注 {0} 吗？",
       "title": "取消关注"
     }
   },

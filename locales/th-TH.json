@@ -314,7 +314,7 @@
     "disallow_multiple": "ไม่อนุญาตให้มีหลายตัวเลือก",
     "expiration": "ตั้งเวลาสิ้นสุดโพล",
     "hide_votes": "ซ่อนคะแนนทั้งหมดจนกว่าจะสิ้นสุด",
-    "option_placeholder": "ตัวเลือกโพล",
+    "option_placeholder": "ตัวเลือกโพล {current}/{max}",
     "remove_option": "ลบตัวเลือก",
     "settings": "ตั้งค่าโพล",
     "show_votes": "แสดงผลรวมคะแนนทุกครั้ง"

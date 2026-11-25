@@ -146,7 +146,7 @@
     "unfollow": {
       "cancel": "Anuluj",
       "confirm": "Przestań obserwować",
-      "description": "Czy na pewno chcesz przestać obserwować?"
+      "description": "Czy na pewno chcesz przestać obserwować {0}?"
     }
   },
   "conversation": {

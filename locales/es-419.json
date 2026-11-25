@@ -5,7 +5,7 @@
   },
   "account": {
     "authorized": "Autorizaste la petición",
-    "avatar_description": "Foto de perfil de",
+    "avatar_description": "Foto de perfil de {0}",
     "blocked_by": "Estás bloqueado por este usuario.",
     "blocked_domains": "Dominios ocultos",
     "favourites": "Publicaciones Favoritas",
@@ -66,7 +66,7 @@
       "description": "¿De verdad quieres ver los retoots de {0}"
     },
     "unfollow": {
-      "description": "¿De verdad quieres dejar de seguir?"
+      "description": "¿De verdad quieres dejar de seguir a {0}?"
     }
   },
   "error": {
@@ -172,7 +172,7 @@
       "appearance": {
         "description": "Actualizar foto, nombre de usuario, perfil, etc.",
         "display_name": "Nombre visible",
-        "profile_metadata_desc": "Puedes ver en tu perfil hasta 4 elementos en forma de tabla",
+        "profile_metadata_desc": "Puedes ver en tu perfil hasta {0} elementos en forma de tabla",
         "title": "Actualizar perfil"
       },
       "featured_tags": {

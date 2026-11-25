@@ -176,7 +176,7 @@
     "unfollow": {
       "cancel": "Annulla",
       "confirm": "Smetti di seguire",
-      "description": "Smettere di seguire?",
+      "description": "Smettere di seguire {0}?",
       "title": "Smetti di seguire"
     }
   },

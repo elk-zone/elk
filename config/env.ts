@@ -1,4 +1,4 @@
-import Git from 'simple-git'
+import { simpleGit } from 'simple-git'
 import { isDevelopment } from 'std-env'
 
 export { version } from '../package.json'
@@ -27,7 +27,7 @@ export const gitBranch = process.env.BRANCH
  */
 export const isPreview = isPR || process.env.CONTEXT === 'deploy-preview' || process.env.CONTEXT === 'dev'
 
-const git = Git()
+const git = simpleGit()
 export async function getGitInfo() {
   let branch
   try {

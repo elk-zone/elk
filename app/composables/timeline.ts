@@ -86,7 +86,8 @@ export function reorderTimeline(items: mastodon.v1.Status[]) {
 }
 
 export function filterAndReorderTimeline(items: mastodon.v1.Status[], context: mastodon.v1.FilterContext = 'public') {
-  const itemsWithoutFiltered = removeFilteredItems(items, context)
+  const itemsWithClientFilters = applyClientFilters(items, context)
+  const itemsWithoutFiltered = removeFilteredItems(itemsWithClientFilters, context)
   const itemsWithUserPreference = removeUserPreferenceItems(itemsWithoutFiltered, context)
   return reorderTimeline(itemsWithUserPreference)
 }

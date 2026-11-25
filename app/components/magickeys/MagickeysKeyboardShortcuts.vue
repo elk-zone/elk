@@ -138,7 +138,7 @@ const shortcutItemGroups = computed<ShortcutItemGroup[]>(() => [
     <h2 text-xl font-700 mb3>
       {{ $t('magic_keys.dialog_header') }}
     </h2>
-    <div mb2 grid grid-cols-1 md:grid-cols-3 gap-y- md:gap-x-6 lg:gap-x-8>
+    <div mb2 grid grid-cols-1 md:grid-cols-3 gap-y-2 md:gap-x-6 lg:gap-x-8>
       <div
         v-for="group in shortcutItemGroups"
         :key="group.name"

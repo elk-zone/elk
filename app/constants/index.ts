@@ -2,6 +2,8 @@ import type { mastodon } from 'masto'
 
 export const APP_NAME = 'Elk'
 
+export const DEFAULT_OAUTH_SCOPES = 'read write follow push'
+
 export const DEFAULT_POST_CHARS_LIMIT = 500
 export const DEFAULT_FONT_SIZE = '15px'
 

@@ -29,7 +29,7 @@ RUN pnpm nuxt prepare
 RUN pnpm i --frozen-lockfile
 
 # Build
-RUN pnpm build
+RUN NODE_OPTIONS="--max-old-space-size=6144" pnpm build
 
 FROM base AS runner
 

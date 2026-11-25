@@ -32,7 +32,7 @@ function processSignIn() {
 
 <template>
   <div sm:min-w-80 max-w-100vw mxa py2 flex="~ col" @click="emit('click')">
-    <template v-for="user of sorted" :key="user.id">
+    <template v-for="user of sorted" :key="`${user.server}:${user.account.id}`">
       <button
         flex rounded px4 py3 text-left
         hover:bg-active cursor-pointer transition-100

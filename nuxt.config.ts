@@ -109,7 +109,6 @@ export default defineNuxtConfig({
       include: [
         '@tiptap/vue-3',
         'string-length',
-        'vue-virtual-scroller',
         'emoji-mart',
         'iso-639-1',
         '@tiptap/extension-placeholder',

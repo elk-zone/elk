@@ -60,7 +60,7 @@ const vnodeCode = computed(() => {
   <div
     v-if="meta.code"
     flex flex-col gap-1
-    display-block of-hidden
+    of-hidden
     w-full
     rounded-lg
     overflow-hidden
@@ -74,7 +74,7 @@ const vnodeCode = computed(() => {
     <div
       flex
       justify-between
-      display-block of-hidden
+      of-hidden
       bg-card
       w-full
       p-3

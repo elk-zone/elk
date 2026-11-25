@@ -12,6 +12,11 @@ defineSlots<{
   default: (props: object) => void
 }>()
 
+// Optimize rendering for the common case of being logged in, only show visual feedback for disabled user-only items
+// when we know there is no user.
+const noUserDisable = computed(() => !isHydrated.value || (userOnly && !currentUser.value))
+const noUserVisual = computed(() => isHydrated.value && userOnly && !currentUser.value)
+
 const router = useRouter()
 
 useCommand({
@@ -19,9 +24,11 @@ useCommand({
 
   name: () => text ?? (typeof to === 'string' ? to as string : to.name),
   icon: () => icon,
-  visible: () => command,
+  visible: () => command && !noUserDisable.value,
 
   onActivate() {
+    if (noUserDisable.value)
+      return
     router.push(to)
   },
 })
@@ -34,22 +41,17 @@ onHydrated(async () => {
   await nextTick()
   activeClass.value = 'text-primary'
 })
-
-// Optimize rendering for the common case of being logged in, only show visual feedback for disabled user-only items
-// when we know there is no user.
-const noUserDisable = computed(() => !isHydrated.value || (userOnly && !currentUser.value))
-const noUserVisual = computed(() => isHydrated.value && userOnly && !currentUser.value)
 </script>
 
 <template>
   <NuxtLink
-    :to="to"
-    :disabled="noUserDisable"
+    :to="noUserDisable ? undefined : to"
+    :aria-disabled="noUserDisable || undefined"
     :class="noUserVisual ? 'op25 pointer-events-none ' : ''"
     :active-class="activeClass"
-    group focus:outline-none disabled:pointer-events-none
+    group focus:outline-none
     :tabindex="noUserDisable ? -1 : undefined"
-    @click="$scrollToTop"
+    @click="!noUserDisable && $scrollToTop()"
   >
     <CommonTooltip :disabled="!isMediumOrLargeScreen" :content="text" placement="right">
       <div

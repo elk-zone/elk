@@ -5,6 +5,7 @@ const {
   description,
   icon,
   command,
+  disabled = false,
 } = defineProps<{
   is?: string
   text?: string
@@ -12,6 +13,7 @@ const {
   icon?: string
   checked?: boolean
   command?: boolean
+  disabled?: boolean
 }>()
 
 const emit = defineEmits(['click'])
@@ -20,9 +22,11 @@ const type = computed(() => is === 'button' ? 'button' : null)
 
 const { hide } = useDropdownContext() || {}
 
-const el = ref<HTMLDivElement>()
+const el = ref<HTMLElement>()
 
 function handleClick(evt: MouseEvent) {
+  if (disabled)
+    return
   hide?.()
   emit('click', evt)
 }
@@ -31,13 +35,15 @@ useCommand({
   scope: 'Actions',
 
   order: -1,
-  visible: () => command && text,
+  visible: () => command && text && !disabled,
 
   name: () => text!,
   icon: () => icon ?? 'i-ri:question-line',
   description: () => description,
 
   onActivate() {
+    if (disabled)
+      return
     const clickEvent = new MouseEvent('click', {
       view: window,
       bubbles: true,
@@ -54,6 +60,10 @@ useCommand({
     :is="is"
     ref="el"
     :type="type"
+    :disabled="is === 'button' ? disabled : undefined"
+    :aria-disabled="disabled || undefined"
+    :tabindex="disabled ? -1 : undefined"
+    :class="disabled ? 'op50 cursor-not-allowed' : ''"
     w-full
     flex gap-3 items-center cursor-pointer px4 py3
     select-none

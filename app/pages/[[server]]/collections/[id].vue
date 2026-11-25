@@ -75,7 +75,7 @@ useHydratedHead({
         </div>
       </div>
 
-      <div v-if="memberAccounts.length > 0" divide-y="base">
+      <div v-if="memberAccounts.length > 0" divide-y divide="$c-border">
         <div
           v-for="account in memberAccounts"
           :key="account.id"

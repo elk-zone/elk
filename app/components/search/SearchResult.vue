@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import type { HTMLAttributes } from 'vue'
 import type { SearchResult } from '~/composables/masto/search'
 
 defineProps<{
   result: SearchResult
   active: boolean
+  tabindex?: HTMLAttributes['tabindex']
 }>()
 
 function onActivate() {
@@ -16,8 +18,9 @@ function onActivate() {
     as="RouterLink"
     hover:bg-active
     :active="active"
+    :tabindex="tabindex"
     :to="result.to" py2 block px2
-    :aria-selected="active"
+    :selected="active"
     :class="{ 'bg-active': active }"
     @click="() => onActivate()"
   >

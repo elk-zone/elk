@@ -489,16 +489,18 @@ const detectLanguage = useDebounceFn(async () => {
               </header>
             </CommonErrorMessage>
 
-            <div relative flex-1 flex flex-col :class="shouldExpanded ? 'min-h-30' : ''">
+            <div
+              relative flex-1 flex flex-col :class="shouldExpanded ? 'min-h-30' : ''"
+              @keydown="stopQuestionMarkPropagation"
+              @keydown.esc.prevent="editor?.commands.blur()"
+              @keyup="detectLanguage"
+            >
               <EditorContent
                 :editor="editor" flex max-w-full
                 :class="{
                   'md:max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-400px)] max-h-35 of-y-auto overscroll-contain': shouldExpanded,
                   'py2 px3.5 bg-dm rounded-4 me--1 ms--1 mt--1': isDM,
                 }"
-                @keydown="stopQuestionMarkPropagation"
-                @keydown.esc.prevent="editor?.commands.blur()"
-                @keyup="detectLanguage"
               />
             </div>
 
@@ -526,7 +528,7 @@ const detectLanguage = useDebounceFn(async () => {
                   </button>
                 </CommonTooltip>
               </header>
-              <div v-if="isExceedingAttachmentLimit" id="uploads-per-post" ps-2 sm:ps-1 text-small>
+              <div v-if="isExceedingAttachmentLimit" id="uploads-per-post" ps-2 sm:ps-1 text-sm>
                 {{ $t('state.attachments_exceed_server_limit') }}
               </div>
               <ol ps-2 sm:ps-1>
@@ -644,18 +646,20 @@ const detectLanguage = useDebounceFn(async () => {
                   <template #popper>
                     <div flex="~ col" gap-1 p-2>
                       <CommonCheckbox
-                        v-model="draft.params.poll.multiple"
+                        :model-value="draft.params.poll.multiple ?? false"
                         :label="draft.params.poll.multiple ? $t('polls.disallow_multiple') : $t('polls.allow_multiple')"
                         px-2 gap-3 h-9 flex justify-center hover:bg-active rounded-full
                         icon-checked="i-ri:checkbox-multiple-blank-line"
                         icon-unchecked="i-ri:checkbox-blank-circle-line"
+                        @update:model-value="draft.params.poll.multiple = $event"
                       />
                       <CommonCheckbox
-                        v-model="draft.params.poll.hideTotals"
+                        :model-value="draft.params.poll.hideTotals ?? false"
                         :label="draft.params.poll.hideTotals ? $t('polls.show_votes') : $t('polls.hide_votes')" px-2
                         gap-3
                         h-9 flex justify-center hover:bg-active rounded-full icon-checked="i-ri:eye-close-line"
                         icon-unchecked="i-ri:eye-line"
+                        @update:model-value="draft.params.poll.hideTotals = $event"
                       />
                     </div>
                   </template>
@@ -680,9 +684,9 @@ const detectLanguage = useDebounceFn(async () => {
             </template>
 
             <PublishEditorTools v-if="editor" :editor="editor" />
-            <CommonDropdown placement="bottom" @click="setInitialScheduledTime">
+            <CommonDropdown placement="bottom">
               <CommonTooltip placement="top" :content="$t('tooltip.schedule_post')" no-auto-focus>
-                <button btn-action-icon :aria-label="$t('tooltip.schedule_post')">
+                <button btn-action-icon :aria-label="$t('tooltip.schedule_post')" @click="setInitialScheduledTime">
                   <div i-ri:calendar-schedule-line :class="scheduledTime !== '' ? 'text-primary' : ''" />
                 </button>
               </CommonTooltip>

@@ -48,5 +48,5 @@ const tabs = computed<CommonRouteTabOption[]>(() => [
 </script>
 
 <template>
-  <CommonRouteTabs force replace :options="tabs" prevent-scroll-top command border="base b" />
+  <CommonRouteTabs replace :options="tabs" prevent-scroll-top command border="base b" />
 </template>

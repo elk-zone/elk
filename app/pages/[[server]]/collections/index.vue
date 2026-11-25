@@ -56,7 +56,7 @@ const activeCollections = computed(() =>
       </button>
     </div>
 
-    <div v-if="activeCollections?.length" divide-y="base">
+    <div v-if="activeCollections?.length" divide-y divide="$c-border">
       <NuxtLink
         v-for="collection in activeCollections"
         :key="collection.id"

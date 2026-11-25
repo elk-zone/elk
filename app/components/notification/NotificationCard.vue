@@ -68,7 +68,7 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
     </template>
     <template v-else-if="notification.type === 'admin.sign_up'">
       <NuxtLink :to="getAccountRoute(notification.account)">
-        <div flex p4 items-center bg-shaded>
+        <div flex p4 items-center bg-card>
           <div i-ri:user-add-line text-xl me-2 color-purple />
           <AccountDisplayName
             :account="notification.account"
@@ -84,7 +84,7 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
     </template>
     <template v-else-if="notification.type === 'admin.report'">
       <NuxtLink :to="getReportRoute(notification.report?.id!)">
-        <div flex p4 items-center bg-shaded>
+        <div flex p4 items-center bg-card>
           <div i-ri:flag-line text-xl me-2 color-purple />
           <i18n-t keypath="notification.reported">
             <AccountDisplayName
@@ -144,7 +144,7 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
       <StatusCard :status="notification.status!" />
     </template>
     <template v-else-if="notification.type === 'annual_report'">
-      <div flex p4 items-center bg-shaded>
+      <div flex p4 items-center bg-card>
         <div i-mdi:party-popper text-xl me-4 color-purple />
         <div class="content-rich">
           <p>
@@ -162,7 +162,7 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
     </template>
     <template v-else-if="notification.type === 'added_to_collection' && notification.collection">
       <NuxtLink :to="getCollectionRoute(notification.collection)">
-        <div flex="~ col" p4 bg-shaded gap-3>
+        <div flex="~ col" p4 bg-card gap-3>
           <div flex>
             <div i-ri:shapes-line text-xl me-3 color-blue />
             <AccountHoverWrapper :account="notification.account">
@@ -190,7 +190,7 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
     </template>
     <template v-else-if="notification.type === 'collection_update' && notification.collection">
       <NuxtLink :to="getCollectionRoute(notification.collection)">
-        <div flex="~ col" p4 bg-shaded gap-3>
+        <div flex="~ col" p4 bg-card gap-3>
           <div flex>
             <div i-ri:shapes-line text-xl me-3 color-blue />
             <AccountHoverWrapper :account="notification.account">
